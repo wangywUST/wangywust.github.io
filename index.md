@@ -16,7 +16,7 @@ My recent research is focused on **reliable and explainable language models** an
 <strong style="color:#e74d3c; font-weight:600">I am looking for a postdoc or research scientist position in the US and EU. I would appreciate a ping if you see a job I might fit.</strong>
 -->
 
-## News
+<!-- ## News
 
 <ul>
 <li><strong>[Feb. 2023]</strong> Two papers about <a href="./#publications">continual learning</a> are accepted to <a href="http://cvpr2023.thecvf.com/">CVPR 2023</a>.</li>
@@ -39,7 +39,7 @@ My recent research is focused on **reliable and explainable language models** an
   <li><strong>[Mar. 2019]</strong> Our paper about <a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Sun_Meta-Transfer_Learning_for_Few-Shot_Learning_CVPR_2019_paper.pdf">few-shot learning</a> is accepted to <a href="http://cvpr2019.thecvf.com/">CVPR 2019</a>.</li>
 </div>
 
-</ul>
+</ul> -->
 
 {% include_relative _includes/publications.md %}
 
