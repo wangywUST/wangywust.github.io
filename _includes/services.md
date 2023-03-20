@@ -1,6 +1,6 @@
 ## Services
 
-<h4 style="margin:0 10px 0;">Organization Committee</h4>
+<!-- <h4 style="margin:0 10px 0;">Organization Committee</h4>
 
 <ul style="margin:0 0 5px;">
   <li>Website Chair, <a href="https://bmvc2023.org/people/organisers/"><autocolor>The British Machine Vision Conference (BMVC)</autocolor></a> <a href="https://bmvc2022.org/people/organisers/"><autocolor>2022</autocolor></a>-<a href="https://bmvc2023.org/people/organisers/"><autocolor>2023</autocolor></a></li>
@@ -18,7 +18,7 @@
 
 <ul style="margin:0 0 5px;">
   <li><a href="https://ijcai-21.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2021</autocolor></a></li>
-</ul>
+</ul> -->
 
 <h4 style="margin:0 10px 0;">Conference Reviewers</h4>
 
