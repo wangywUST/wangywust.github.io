@@ -44,12 +44,13 @@ My recent research is focused on **reliable language models** and **scalable gra
 {% include_relative _includes/publications.md %}
 
 ## Teaching
-
-- Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining  ) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
+- Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
+- Teaching Assistant, [Parallel Computing ](https://nusmods.com/modules/CS3210/parallel-computing) at [National University of Singapore](https://nus.edu.sg/), 2020
+- Teaching Assistant, [Signal Processing and Communications](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining  ) at [The Hong Kong University of Science and Technology](https://hkust.edu.hk/), 2018
 
 {% include_relative _includes/services.md %}
 
 ## Contact
 **Address:** [501 Fairview Ave N, Seattle 98109, WA](https://goo.gl/maps/3EpPHNd1Q5zvKS8b7)
 <br>
-**Office Location:** Amazon - Amelia (Urban Union) Floor 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 625-5851
+**Office Location:** Amazon - Amelia (Urban Union) Floor 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 525-5851
