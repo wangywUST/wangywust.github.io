@@ -10,12 +10,12 @@
             <abbr class="badge">WSDM</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="https://www.cs.jhu.edu/~yyliu/preprints/Continual_Detection_Transformer_for_Incremental_Object_Detection.pdf">Continual Detection Transformer for Incremental Object Detection</a></div>
-      <div class="author"><strong>Yaoyao Liu</strong>, Bernt Schiele, Andrea Vedaldi, Christian Rupprecht</div>
-      <div class="periodical"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition <strong>(CVPR)</strong>, 2023.</em>
+      <div class="title"><a href="https://dl.acm.org/doi/pdf/10.1145/3539597.3570388">Graph Explicit Neural Networks: Explicitly Encoding Graphs for Efficient and Accurate Inference</a></div>
+      <div class="author"><strong>Yiwei Wang</strong>, Bryan Hooi, Yozen Liu, Neil Shah</div>
+      <div class="periodical"><em>WSDM '23: Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining<strong>(WSDM)</strong>, 2023.</em>
       </div>
     <div class="links">
-      <a href="https://www.cs.jhu.edu/~yyliu/preprints/Continual_Detection_Transformer_for_Incremental_Object_Detection.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+      <a href="https://dl.acm.org/doi/pdf/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
       <a href="https://bib.yliu.me/CVPR23a.txt" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">BibTex</a> 
     </div>
   </div>
