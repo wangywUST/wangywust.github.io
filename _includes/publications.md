@@ -6,8 +6,8 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="https://img.yliu.me/teaser/cvpr23_1.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">CVPR</abbr>
+    <img src="Image/2023_gra.png" class="teaser img-fluid z-depth-1">
+            <abbr class="badge">WSDM</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://www.cs.jhu.edu/~yyliu/preprints/Continual_Detection_Transformer_for_Incremental_Object_Detection.pdf">Continual Detection Transformer for Incremental Object Detection</a></div>
