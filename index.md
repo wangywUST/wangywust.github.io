@@ -52,4 +52,4 @@ My recent research is focused on **reliable language models** and **scalable gra
 ## Contact
 **Address:** [501 Fairview Ave N, Seattle 98109, WA](https://goo.gl/maps/3EpPHNd1Q5zvKS8b7)
 <br>
-**Office Location:** Amazon - Amelia (Urban Union) Level 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 625-5851
+**Office Location:** Amazon - Amelia (Urban Union) Floor 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 625-5851
