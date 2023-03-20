@@ -4,9 +4,11 @@ layout: homepage
 
 ## About Me
 
-I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/). I am fortunate to work with [Prof. Alan L. Yuille](https://www.cs.jhu.edu/~ayuille/). I received my Ph.D. in Computer Science at [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/), where I was fortunate to be advised by [Prof. Bernt Schiele](https://people.mpi-inf.mpg.de/~schiele/) and [Prof. Qianru Sun](https://qianrusun.com/). As part of the [European Laboratory for Learning and Intelligent Systems (ELLIS) Ph.D. Program](https://ellis.eu/phd-postdoc), I was also co-supervised by [Dr. Christian Rupprecht](https://chrirupp.github.io/) and [Prof. Andrea Vedaldi](https://www.robots.ox.ac.uk/~vedaldi/) in the [Visual Geometry Group (VGG)](https://www.robots.ox.ac.uk/~vgg/) at the [University of Oxford](https://www.ox.ac.uk/). From 2018 to 2019, I was a research intern at the [National University of Singapore](https://www.comp.nus.edu.sg/), working with [Prof. Tat-Seng Chua](https://www.chuatatseng.com/) and [Prof. Qianru Sun](https://qianrusun.com/). Prior to this, I obtained my bachelor’s degree from [Tianjin University](http://www.tju.edu.cn/english/index.htm). 
+I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/). I received my Ph.D. in Computer Science at [National University of Singapore](https://nus.edu.sg/), where I was fortunate to be advised by [Prof. Bryan Hooi](http://bhooi.github.io/). Prior to this, I obtained my Master of Philosophy (MPhil) degree from [The Hong Kong University of Science and Technology](https://hkust.edu.hk/) and Bachelor degree from [Southeast University](https://www.seu.edu.cn/english/_t1875/main.htm).
 
-My research lies at the intersection of **computer vision** and **machine learning** -- with a special focus on building intelligent visual systems that are continual and data-efficient. My research interests include **continual learning**, **few-shot learning**, **semi-supervised learning**, and **image generation**.
+
+
+My research lies at the  -- with a special focus on building intelligent visual systems that are continual and data-efficient. My research interests include **continual learning**, **few-shot learning**, **semi-supervised learning**, and **image generation**.
 
 <!--
 <strong style="color:#e74d3c; font-weight:600">I am looking for a postdoc or research scientist position in the US and EU. I would appreciate a ping if you see a job I might fit.</strong>
