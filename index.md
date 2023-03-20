@@ -45,7 +45,7 @@ My recent research is focused on **reliable language models** and **scalable gra
 
 ## Teaching
 
-- Teaching Assistant, [High-Level Computer Vision](https://www.mpi-inf.mpg.de/hlcv) at [Universität des Saarlandes](https://www.uni-saarland.de/), 2021 and 2022
+- Teaching Assistant, [High-Level Computer Vision](https://www.mpi-inf.mpg.de/hlcv) at [National University of Singapore](https://www.uni-saarland.de/), 2020 and 2021
 
 {% include_relative _includes/services.md %}
 
