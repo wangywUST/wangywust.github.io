@@ -45,6 +45,8 @@ My recent research is focused on **reliable language models** and **scalable gra
 
 ## Teaching
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
+- Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2021
+- Teaching Assistant, [Programming Methodology](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2021
 - Teaching Assistant, [Parallel Computing ](https://nusmods.com/modules/CS3210/parallel-computing) at [National University of Singapore](https://nus.edu.sg/), 2020
 - Teaching Assistant, [Signal Processing and Communications](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining  ) at [The Hong Kong University of Science and Technology](https://hkust.edu.hk/), 2018
 
