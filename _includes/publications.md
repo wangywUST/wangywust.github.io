@@ -37,7 +37,7 @@
       </div>
     <div class="links">
       <a href="https://aclanthology.org/2022.naacl-main.224/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-<!--       <a href="https://bib.yliu.me/CVPR23a.txt" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">BibTex</a>  -->
+      <a href="https://github.com/vanoracai/CoRE" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
     </div>
   </div>
 </div>
