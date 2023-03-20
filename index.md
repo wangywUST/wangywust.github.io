@@ -45,11 +45,11 @@ My recent research is focused on **reliable language models** and **scalable gra
 
 ## Teaching
 
-- Teaching Assistant, [High-Level Computer Vision](https://www.mpi-inf.mpg.de/hlcv) at [National University of Singapore](https://www.uni-saarland.de/), 2020 and 2021
+- Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining  ) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
 
 {% include_relative _includes/services.md %}
 
 ## Contact
-**Address:** [3400 N Charles St, Baltimore, MD 21218-2625](https://www.google.com/maps/place/Malone+Hall,+3400+N+Charles+St,+Baltimore,+MD+21218/@39.3262085,-76.6253679,17z/data=!3m1!4b1!4m6!3m5!1s0x89c804de59b4d18d:0x2d92398f0946a9ad!8m2!3d39.3262044!4d-76.6208832!16s%2Fg%2F11b6g45l_1?coh=164777&entry=tt)
+**Address:** [501 Fairview Ave N, Seattle 98109, WA](https://goo.gl/maps/3EpPHNd1Q5zvKS8b7)
 <br>
-**Office Location:** 248 Malone Hall &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (410) 929-6777
+**Office Location:** Amazon - Amelia (Urban Union) Level 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 625-5851
