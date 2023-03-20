@@ -10,7 +10,7 @@ My work at [Amazon Inc.](https://www.amazon.science/) detect and block the fraud
 I design and implement the fraud seller detection pipelines empowered the cutting-edge graph neural network and natural language processing algorithms.
 
 My research interests include **natural language understanding**, **graph neural networks**, **computer vision**, and **data mining**.
-My recent research is focused on **reliable and explainable language models** and **scalable graph neural networks**.
+My recent research is focused on **reliable language models** and **scalable graph neural networks**.
 
 <!--
 <strong style="color:#e74d3c; font-weight:600">I am looking for a postdoc or research scientist position in the US and EU. I would appreciate a ping if you see a job I might fit.</strong>
