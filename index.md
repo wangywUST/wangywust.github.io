@@ -9,8 +9,7 @@ I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/
 My work at [Amazon Inc.](https://www.amazon.science/) detect and block the fraud sellers at an early stage to prevent the customers from bearing the losses of purchasing fake products from fraud sellers.
 I design and implement the fraud seller detection pipelines empowered the cutting-edge graph neural network and natural language processing algorithms.
 
-My research interests include **natural language understanding**, **graph neural networks**, **computer vision**, and **data mining**.
-My recent research is focused on **reliable language models** and **scalable graph neural networks**.
+My recent research is focused on **faithful natural language understanding**.
 
 <!--
 <strong style="color:#e74d3c; font-weight:600">I am looking for a postdoc or research scientist position in the US and EU. I would appreciate a ping if you see a job I might fit.</strong>
