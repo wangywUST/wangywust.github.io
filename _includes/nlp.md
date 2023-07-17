@@ -6,7 +6,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_how.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2021_mix.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Arxiv</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -25,7 +25,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_sho.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2020_nod.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">KDD</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
