@@ -34,9 +34,9 @@ I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/
 </div>
 
 </ul> -->
-{% include_relative _includes/preprint.md %}
+{% include_relative _includes/nlp.md %}
 
-{% include_relative _includes/publications.md %}
+{% include_relative _includes/gnn.md %}
 
 ## Teaching
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
