@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
-I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/), Seattle. I received my Ph.D. in Computer Science at [National University of Singapore](https://nus.edu.sg/), where I was fortunate to be advised by [Prof. Bryan Hooi](http://bhooi.github.io/) and collaborate with [Prof. Muhao Chen](https://muhaochen.github.io/). My current research is focused on **faithful natural language understanding**.
+I am currently a Postdoc at [UCLA](https://www.amazon.science/) advised by Prof. Kai-wei Chang (http://web.cs.ucla.edu/~kwchang/members/). I received my Ph.D. in Computer Science at [National University of Singapore](https://nus.edu.sg/), where I was fortunate to be advised by [Prof. Bryan Hooi](http://bhooi.github.io/) and collaborate with [Prof. Muhao Chen](https://muhaochen.github.io/). My current research is focused on **trustworthy natural language processing**.
 
 <!--
 <strong style="color:#e74d3c; font-weight:600">I am looking for a postdoc or research scientist position in the US and EU. I would appreciate a ping if you see a job I might fit.</strong>
@@ -48,6 +48,7 @@ I am currently an Applied Scientist at [Amazon Inc.](https://www.amazon.science/
 {% include_relative _includes/services.md %}
 
 ## Contact
-**Address:** [501 Fairview Ave N, Seattle 98109, WA](https://goo.gl/maps/3EpPHNd1Q5zvKS8b7)
+**Address:** [405 Hilgard Avenue, LA 90095, CA](https://www.google.com/maps/place/UCLA+Computer+Science+Department/@34.0699182,-118.4438495,15z/data=!4m6!3m5!1s0x80c2bd738396536f:0x17516f52d28faa7c!8m2!3d34.0692977!4d-118.4445525!16s%2Fg%2F11f5lxm92j?entry=ttu)
 <br>
-**Office Location:** Amazon - Amelia (Urban Union) Floor 9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 525-5851
+**Office Location:**  UCLA Eng VI Rm 397
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **Phone:** (425) 525-5851
