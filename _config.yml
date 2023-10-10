@@ -1,14 +1,14 @@
 # Basic Information 
 title: Yiwei Wang
-position: Applied Scientist
-affiliation: Amazon Inc.
-affiliation_link: https://www.amazon.science/
+position: Postdoc
+affiliation: UCLA
+affiliation_link: https://web.cs.ucla.edu/~kwchang/members/
 email: wangyw_seu (at) foxmail.com
 
 # Search Engine Optimization (SEO)
-keywords: yiwei wang, wang yiwei, nus, amazon, natural language processing, graph neural networks
+keywords: yiwei wang, wang yiwei, nus, ucla, amazon, natural language processing, graph neural networks
 canonical: https://wangywust.github.io/
-description: Yiwei Wang is an Applied Scientist at Amazon Inc. His research lies in natural language processing and graph neural networks.
+description: Yiwei Wang is a Postdoc at UCLA. His research lies in natural language processing and graph neural networks.
 
 # The option is used to enable the Johns Hopkins template.
 enable_hopkins_logo: false
