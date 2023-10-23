@@ -1,4 +1,4 @@
-<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications in GNNs</h2>
+<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications in Graph Neural Networks</h2>
 
 <div class="publications">
 <ol class="bibliography">
