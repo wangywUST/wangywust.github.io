@@ -3,24 +3,43 @@
 <div class="publications">
 <ol class="bibliography">
 
-<!-- <li>
+<li>
+<div class="pub-row">
+  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+    <img src="Image/2023_cau.png" class="teaser img-fluid z-depth-1">
+            <abbr class="badge">EMNLP</abbr>
+  </div>
+  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+      <div class="title"><a href="https://arxiv.org/abs/2305.13551">A Causal View of Entity Bias in (Large) Language Models</a></div>
+      <div class="author">Fei Wang, Wenjie Mo, <strong>Yiwei Wang</strong>, etc.</div>
+      <div class="periodical"><em>EMNLP, 2023.</em>
+      </div>
+    <div class="links">
+      <a href="https://arxiv.org/pdf/2305.14695.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+      <a href="https://github.com/luka-group/Causal-View-of-Entity-Bias" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
+    </div>
+  </div>
+</div>
+</li>
+
+<li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/2023_how.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Arxiv</abbr>
+            <abbr class="badge">CONLL</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://arxiv.org/abs/2305.13551">How Fragile is Relation Extraction under Entity Replacements?</a></div>
       <div class="author"><strong>Yiwei Wang</strong>, Bryan Hooi, etc.</div>
-      <div class="periodical"><em>Arxiv, 2023.</em>
+      <div class="periodical"><em>CONLL, 2023.</em>
       </div>
     <div class="links">
-      <a href="https://arxiv.org/abs/2305.13551" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+      <a href="https://aclanthology.org/2023.conll-1.27/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
       <a href="https://github.com/wangywUST/RobustRE" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
     </div>
   </div>
 </div>
-</li> -->
+</li>
 
 <li>
 <div class="pub-row">
