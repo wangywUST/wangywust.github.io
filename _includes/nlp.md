@@ -69,7 +69,7 @@
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://aclanthology.org/2022.naacl-main.224/">Should we rely on entity mentions for relation extraction? debiasing relation extraction with counterfactual analysis</a></div>
       <div class="author"><strong>Yiwei Wang</strong>, Muhao Chen, etc.</div>
-      <div class="periodical"><em>NAACL '22: 2022 Annual Conference of the North American Chapter of the Association for Computational Linguistics<strong>(NAACL)</strong>, 2022.</em>
+      <div class="periodical"><em>NAACL, 2022.</em>
       </div>
     <div class="links">
       <a href="https://aclanthology.org/2022.naacl-main.224/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
