@@ -6,6 +6,25 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+    <img src="Image/2024_dee.png" class="teaser img-fluid z-depth-1">
+            <abbr class="badge">Arxiv</abbr>
+  </div>
+  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+      <div class="title"><a href="https://arxiv.org/pdf/2310.13206.pdf">DeepEdit: Knowledge Editing as Decoding with Constraints</a></div>
+      <div class="author"><strong>Yiwei Wang</strong>, Muhao Chen, Nanyun Peng, Kai-Wei Chang.</div>
+      <div class="periodical"><em>Arxiv, 2024.</em>
+      </div>
+    <div class="links">
+      <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+      <a href="https://wangywust.github.io/detect-pretrain.github.io-main/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
+    </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row">
+  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/2023_pri.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">EMNLP</abbr>
   </div>
