@@ -7,12 +7,12 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/2021_ada.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">NIPS</abbr>
+            <abbr class="badge">NeurIPS</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://proceedings.neurips.cc/paper/2021/file/0b0b0994d12ad343511adfbfc364256e-Paper.pdf">Adaptive Data Augmentation on Temporal Graphs</a></div>
       <div class="author"><strong>Yiwei Wang</strong>, Yujun Cai, Yuxuan Liang, Yujun Cai, etc.</div>
-      <div class="periodical"><em>35th Conference on Neural Information Processing Systems (NeurIPS 2021). <strong>(NIPS)</strong>, 2021.</em>
+      <div class="periodical"><em>35th Conference on Neural Information Processing Systems (NeurIPS 2021). <strong>(NeurIPS)</strong>, 2021.</em>
       </div>
     <div class="links">
       <a href="https://proceedings.neurips.cc/paper/2021/file/0b0b0994d12ad343511adfbfc364256e-Paper.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
