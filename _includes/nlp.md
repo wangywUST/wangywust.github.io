@@ -16,7 +16,7 @@
       </div>
     <div class="links">
       <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-      <a href="https://wangywust.github.io/detect-pretrain.github.io-main/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
+      <a href="https://wangywust.github.io/deepedit.io/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
     </div>
   </div>
 </div>
