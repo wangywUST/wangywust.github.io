@@ -4,6 +4,8 @@ layout: homepage
 
 ## About Me
 
+<font color=red>I am red.</font>
+
 I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-wei Chang](http://web.cs.ucla.edu/~kwchang/members/) and [Prof. Nanyun Peng](https://vnpeng.net/group/). I received my Ph.D. in Computer Science at [National University of Singapore](https://nus.edu.sg/), where I was fortunate to be advised by [Prof. Bryan Hooi](http://bhooi.github.io/) and collaborate with [Prof. Muhao Chen](https://muhaochen.github.io/). My current research is focused on **trustworthy natural language processing**.
 
 <!--
