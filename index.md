@@ -6,8 +6,7 @@ layout: homepage
 
 <font color=red>I will join the Department of Computer Science at University of California, Merced as an Assistant Professor in the Spring of 2025.</font><br>
 
-<font color=red>Recruiting Ph.D. students and research interns. I’m actively looking for strong and motivated students. If you are interested in working with me, please feel free to email me at wangyw.evan@gmail.com</font>
-
+<font color=red>Recruiting Ph.D. students and research interns. I’m actively looking for strong and motivated students. If you are interested in working with me, please feel free to email me at wangyw.evan@gmail.com</font><br>
 I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-wei Chang](http://web.cs.ucla.edu/~kwchang/members/) and [Prof. Nanyun Peng](https://vnpeng.net/group/). I received my Ph.D. in Computer Science at [National University of Singapore](https://nus.edu.sg/), where I was fortunate to be advised by [Prof. Bryan Hooi](http://bhooi.github.io/) and collaborate with [Prof. Muhao Chen](https://muhaochen.github.io/). My recent research is focused on **trustworthy large language models**.
 
 <!--
