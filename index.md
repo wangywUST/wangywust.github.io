@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
-I will join the Department of Computer Science at [University of California, Merced](https://www.ucmerced.edu/) as an Assistant Professor in the Spring of 2025.<br>
+**I will join the Department of Computer Science at [University of California, Merced](https://www.ucmerced.edu/) as an Assistant Professor in the Spring of 2025.**<br>
 
 **Recruiting Ph.D. students and research interns.** I’m actively looking for strong and motivated students. If you are interested in working with me, please feel free to email me.<br>
 
