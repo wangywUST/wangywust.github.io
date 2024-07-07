@@ -164,7 +164,7 @@
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="http://bhooi.github.io/papers/nodeaug_kdd20.pdf">NodeAug: Semi-Supervised Node Classification with Data Augmentation</a></div>
       <div class="author"><strong>Yiwei Wang</strong>, etc.</div>
-      <div class="periodical"><em>KDD ’20, August 23–27, 2020, Virtual Event, CA, USA<strong>(KDD)</strong>, 2020.</em>
+      <div class="periodical"><em>KDD ’20, August 23–27, 2020, Virtual Event, CA, USA <strong>(KDD)</strong>, 2020.</em>
       </div>
     <div class="links">
       <a href="http://bhooi.github.io/papers/nodeaug_kdd20.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
