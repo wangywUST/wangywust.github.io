@@ -6,25 +6,6 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">ACL</abbr>
-  </div>
-  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="https://arxiv.org/pdf/2401.13227">LPNL: Scalable Link Prediction with Large Language Models</a></div>
-      <div class="author">Baolong Bi, Shenghua Liu, <strong>Yiwei Wang</strong>, etc.</div>
-      <div class="periodical"><em>ACL, 2024.</em>
-      </div>
-    <div class="links">
-      <a href="https://arxiv.org/pdf/2401.13227" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-      <a href="https://arxiv.org/pdf/2401.13227" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
-    </div>
-  </div>
-</div>
-</li>
-
-  <li>
-<div class="pub-row">
-  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/2024_jai.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
@@ -55,6 +36,25 @@
     <div class="links">
       <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
       <a href="https://wangywust.github.io/deepedit.io/" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
+    </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row">
+  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
+            <abbr class="badge">ACL</abbr>
+  </div>
+  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+      <div class="title"><a href="https://arxiv.org/pdf/2401.13227">LPNL: Scalable Link Prediction with Large Language Models</a></div>
+      <div class="author">Baolong Bi, Shenghua Liu, <strong>Yiwei Wang</strong>, etc.</div>
+      <div class="periodical"><em>ACL, 2024.</em>
+      </div>
+    <div class="links">
+      <a href="https://arxiv.org/pdf/2401.13227" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+      <a href="https://arxiv.org/pdf/2401.13227" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a> 
     </div>
   </div>
 </div>
