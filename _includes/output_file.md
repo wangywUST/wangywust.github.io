@@ -10,11 +10,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Decoding by Contrasting Knowledge: Enhancing LLMs'  Confidence on Edited Facts</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2405.11613">Decoding by Contrasting Knowledge: Enhancing LLMs'  Confidence on Edited Facts</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Pengliang Ji, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2405.11613, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2405.11613" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -28,11 +28,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Is factuality decoding a free lunch for llms? evaluation on knowledge editing benchmark</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2404.00216">Is factuality decoding a free lunch for llms? evaluation on knowledge editing benchmark</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2404.00216, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2404.00216" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -82,11 +82,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2406.04975">UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting</a></div>
       <div class="author"><strong>Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2406.04975, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2406.04975" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -100,11 +100,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">" Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models'  Jailbreak</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2406.11668">" Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models'  Jailbreak</a></div>
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Jiayi Mao, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2406.11668, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2406.11668" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -118,11 +118,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">SLANG: New Concept Comprehension of Large Language Models</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2401.12585">SLANG: New Concept Comprehension of Large Language Models</a></div>
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Xueqi Chen</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2401.12585, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2401.12585" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -154,11 +154,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Deepedit: Knowledge editing as decoding with constraints</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2401.10471">Deepedit: Knowledge editing as decoding with constraints</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -550,11 +550,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Structure-aware label smoothing for graph neural networks</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2112.00499">Structure-aware label smoothing for graph neural networks</a></div>
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Wei Wang, Henghui Ding, Muhao Chen, Jing Tang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2112.00499, 2021.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2112.00499" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -622,11 +622,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Active learning for node classification: The additional learning ability from unlabelled nodes</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2012.07065">Active learning for node classification: The additional learning ability from unlabelled nodes</a></div>
       <div class="author"><strong>Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2012.07065, 2020.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2012.07065" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -658,11 +658,11 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Graphcrop: Subgraph cropping for graph classification</a></div>
+      <div class="title"><a href="https://arxiv.org/abs/2009.10564">Graphcrop: Subgraph cropping for graph classification</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2009.10564, 2020.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://arxiv.org/abs/2009.10564" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
