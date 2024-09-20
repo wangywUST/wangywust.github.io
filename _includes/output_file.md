@@ -25,7 +25,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/zhao2019optimization.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">IEEE Transactions on Signal Processing</abbr>
+            <abbr class="badge">TSP</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{O}ptimization algorithms for graph {L}aplacian estimation via {A}DM{M} and {M}M</a></div>
@@ -61,7 +61,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2017using.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the 2017 ACM on Conference on Information and Knowledge Management</abbr>
+            <abbr class="badge">CIKM</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{U}sing knowledge graphs to explain entity co-occurrence in {T}witter</a></div>
@@ -97,7 +97,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2020detecting.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE)</abbr>
+            <abbr class="badge">ISSRE</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{D}etecting implementation bugs in graph convolutional network based node classifiers</a></div>
@@ -187,7 +187,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021mixup.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
+            <abbr class="badge">WWW</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{M}ixup for node and graph classification</a></div>
@@ -205,7 +205,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021curgraph.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
+            <abbr class="badge">WWW</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{C}urgraph: {C}urriculum learning for graph classification</a></div>
@@ -223,7 +223,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liang2021fine.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
+            <abbr class="badge">WWW</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{F}ine-grained urban flow prediction</a></div>

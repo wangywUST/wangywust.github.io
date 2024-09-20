@@ -2,7 +2,7 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 
-# Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences)
+# Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
     'ACM SIGKDD': 'KDD',
     'IEEE/CVF Conference on Computer Vision and Pattern Recognition': 'CVPR',
@@ -34,6 +34,10 @@ VENUE_ABBREVIATIONS = {
     'Conference on Uncertainty in Artificial Intelligence': 'UAI',
     'International Conference on Knowledge Capture': 'K-CAP',
     'IEEE International Conference on Computer Communications': 'INFOCOM',
+    'IEEE Transactions on Signal Processing': 'TSP',
+    'Proceedings of the 2017 ACM on Conference on Information and Knowledge Management': 'CIKM',
+    'Proceedings of the Web Conference': 'WWW',
+    'International Symposium on Software Reliability Engineering': 'ISSRE',
     # Add more mappings for common conferences/journals
 }
 
