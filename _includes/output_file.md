@@ -43,7 +43,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/cai2020learning.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part VII 16</abbr>
+            <abbr class="badge">ECCV</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{L}earning progressive joint propagation for human motion prediction</a></div>
@@ -115,7 +115,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liang2021revisiting.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, Ghent, Belgium, September 14--18, 2020, Proceedings, Part I</abbr>
+            <abbr class="badge">ECML</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{R}evisiting convolutional neural networks for citywide crowd flow analytics</a></div>
@@ -241,7 +241,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021progressive.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, Ghent, Belgium, September 14--18, 2020, Proceedings, Part I</abbr>
+            <abbr class="badge">ECML</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{P}rogressive supervision for node classification</a></div>
@@ -421,7 +421,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2022flashlight.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Learning on Graphs Conference</abbr>
+            <abbr class="badge">LOG</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{F}lashlight: {S}calable link prediction with effective decoders</a></div>
@@ -439,7 +439,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liang2023airformer.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the AAAI Conference on Artificial Intelligence</abbr>
+            <abbr class="badge">AAAI</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{A}irformer: {P}redicting nationwide air quality in china with transformers</a></div>
@@ -457,7 +457,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liang2022mixed.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">IEEE Transactions on Knowledge and Data Engineering</abbr>
+            <abbr class="badge">TKDE</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{M}ixed-order relation-aware recurrent neural networks for spatio-temporal forecasting</a></div>
@@ -475,7 +475,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2022lscale.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Joint European Conference on Machine Learning and Knowledge Discovery in Databases</abbr>
+            <abbr class="badge">ECML</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{L}scale: latent space clustering-based active learning for node classification</a></div>
@@ -547,7 +547,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2023fragile.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">CONLL 2023</abbr>
+            <abbr class="badge">CONLL</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{H}ow {F}ragile is {R}elation {E}xtraction under {E}ntity {R}eplacements?</a></div>

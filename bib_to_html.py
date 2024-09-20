@@ -10,7 +10,6 @@ VENUE_ABBREVIATIONS = {
     'International Conference on Learning Representations': 'ICLR',
     'Advances in Neural Information Processing Systems': 'NeurIPS',
     'Association for Computational Linguistics': 'ACL',
-    'European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases': 'ECML-PKDD',
     'International Conference on Data Mining': 'ICDM',
     'International Joint Conference on Artificial Intelligence': 'IJCAI',
     'Conference on Computer Vision and Pattern Recognition': 'CVPR',
@@ -38,6 +37,13 @@ VENUE_ABBREVIATIONS = {
     'Proceedings of the 2017 ACM on Conference on Information and Knowledge Management': 'CIKM',
     'Proceedings of the Web Conference': 'WWW',
     'International Symposium on Software Reliability Engineering': 'ISSRE',
+    'ECCV' : 'ECCV',
+    'Machine Learning and Knowledge Discovery in Databases: European' : 'ECML',
+    'Learning on Graph' : 'LOG',
+    'AAAI' : 'AAAI',
+    'Transactions on Knowledge and Data Engineering' : 'TKDE',
+    'European Conference on Machine Learning' : 'ECML',
+    'CONLL' : 'CONLL',
     # Add more mappings for common conferences/journals
 }
 
