@@ -2,7 +2,7 @@
 
 <div class="publications">
 <ol class="bibliography">
-
+<h3>2024</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -182,7 +182,7 @@
   </div>
 </div>
 </li>
-
+<h3>2023</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -272,7 +272,7 @@
   </div>
 </div>
 </li>
-
+<h3>2022</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -380,7 +380,7 @@
   </div>
 </div>
 </li>
-
+<h3>2021</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -578,7 +578,7 @@
   </div>
 </div>
 </li>
-
+<h3>2020</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -704,7 +704,7 @@
   </div>
 </div>
 </li>
-
+<h3>2019</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -722,7 +722,7 @@
   </div>
 </div>
 </li>
-
+<h3>2017</h3><hr>
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">

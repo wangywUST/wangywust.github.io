@@ -122,7 +122,7 @@ def load_bib_file(file_path):
 def sort_entries_by_year(entries):
     return sorted(entries, key=lambda x: int(x.get('year', 0)), reverse=True)
 
-# Generate HTML for all entries in the bib file
+# Generate HTML for all entries in the bib file, adding a divider for each year
 def generate_bibliography_html(entries):
     # Sort entries by year from newest to oldest
     sorted_entries = sort_entries_by_year(entries)
@@ -132,7 +132,13 @@ def generate_bibliography_html(entries):
 <div class="publications">
 <ol class="bibliography">
 '''
+    last_year = None
     for entry in sorted_entries:
+        current_year = entry.get('year', 'Unknown')
+        if current_year != last_year:
+            # Add a divider for each new year
+            html_content += f'<h3>{current_year}</h3><hr>'
+            last_year = current_year
         html_content += generate_html(entry)
     html_content += '</ol>\n</div>'
     return html_content
