@@ -1,3 +1,4 @@
+import os
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
@@ -37,13 +38,13 @@ VENUE_ABBREVIATIONS = {
     'Proceedings of the 2017 ACM on Conference on Information and Knowledge Management': 'CIKM',
     'Proceedings of the Web Conference': 'WWW',
     'International Symposium on Software Reliability Engineering': 'ISSRE',
-    'ECCV' : 'ECCV',
-    'Machine Learning and Knowledge Discovery in Databases: European' : 'ECML',
-    'Learning on Graph' : 'LOG',
-    'AAAI' : 'AAAI',
-    'Transactions on Knowledge and Data Engineering' : 'TKDE',
-    'European Conference on Machine Learning' : 'ECML',
-    'CONLL' : 'CONLL',
+    'ECCV': 'ECCV',
+    'Machine Learning and Knowledge Discovery in Databases: European': 'ECML',
+    'Learning on Graph': 'LOG',
+    'AAAI': 'AAAI',
+    'Transactions on Knowledge and Data Engineering': 'TKDE',
+    'European Conference on Machine Learning': 'ECML',
+    'CONLL': 'CONLL',
     # Add more mappings for common conferences/journals
 }
 
@@ -74,6 +75,12 @@ def clean_full_venue(venue):
 def clean_title(title):
     return title.replace("{", "").replace("}", "").replace("\\textquotesingle", "\u0027").replace("\\ast", "*")
 
+# Function to generate image path based on the bib entry
+def generate_image_filename(entry):
+    # Get the entry ID, which is typically the bibtex citation key
+    entry_id = entry.get('ID', 'default')
+    return f"Image/{entry_id}.png"
+
 # Function to generate HTML from bib entry
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
@@ -88,8 +95,8 @@ def generate_html(entry):
     abbreviated_venue = abbreviate_venue(full_venue)
     cleaned_full_venue = clean_full_venue(full_venue)  # Cleaned full venue without abbreviations
 
-    # Assuming you want to use the entry's 'ID' as part of the image filename
-    img_src = f"Image/{entry.get('ID', 'default')}.png"
+    # Use the entry's ID to generate the image filename
+    img_src = generate_image_filename(entry)
     
     html = f'''
 <li>
