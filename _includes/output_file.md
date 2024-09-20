@@ -523,11 +523,11 @@
 
 <li>
 <div class="pub-row">
-  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+  <div class="col-sm-2 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 66%; height: auto; max-height: 300px;">
             <abbr class="badge">KDD</abbr>
   </div>
-  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+  <div class="col-sm-10" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://doi.org/10.1145/3394486.3403063">Nodeaug: Semi-supervised node classification with data augmentation</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>

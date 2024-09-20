@@ -81,7 +81,7 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to generate HTML from bib entry, adjusting image size
+# Function to generate HTML from bib entry, adjusting image size and text alignment
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
@@ -109,11 +109,11 @@ def generate_html(entry):
         html = f'''
 <li>
 <div class="pub-row">
-  <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+  <div class="col-sm-2 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
             <abbr class="badge">{abbreviated_venue}</abbr>
   </div>
-  <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
+  <div class="col-sm-10" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
@@ -144,6 +144,7 @@ def generate_html(entry):
 '''
 
     return html
+
 
 
 # Load the .bib file
