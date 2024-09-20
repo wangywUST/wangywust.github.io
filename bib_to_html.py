@@ -2,15 +2,39 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 
-# Dictionary to map long venue names to abbreviations
+# Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences)
 VENUE_ABBREVIATIONS = {
-    'Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining': 'KDD',
-    'Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition': 'CVPR',
-    'arXiv preprint arXiv': 'Preprint',
+    'ACM SIGKDD': 'KDD',
+    'IEEE/CVF Conference on Computer Vision and Pattern Recognition': 'CVPR',
+    'arXiv preprint': 'Preprint',
     'International Conference on Learning Representations': 'ICLR',
     'Advances in Neural Information Processing Systems': 'NeurIPS',
     'Association for Computational Linguistics': 'ACL',
-    # Add more mappings as necessary
+    'European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases': 'ECML-PKDD',
+    'International Conference on Data Mining': 'ICDM',
+    'International Joint Conference on Artificial Intelligence': 'IJCAI',
+    'Conference on Computer Vision and Pattern Recognition': 'CVPR',
+    'International Conference on Computer Vision': 'ICCV',
+    'International Conference on Database Systems for Advanced Applications': 'DASFAA',
+    'Symposium on Theory of Computing': 'STOC',
+    'International Symposium on Computer Architecture': 'ISCA',
+    'ACM Conference on Information and Knowledge Management': 'CIKM',
+    'International Conference on Web Search and Data Mining': 'WSDM',
+    'International Conference on Very Large Data Bases': 'VLDB',
+    'Annual Meeting of the Association for Computational Linguistics': 'ACL',
+    'International Conference on Automated Planning and Scheduling': 'ICAPS',
+    'International Symposium on Information Theory': 'ISIT',
+    'IEEE International Conference on Robotics and Automation': 'ICRA',
+    'European Conference on Computer Vision': 'ECCV',
+    'International Symposium on Software Testing and Analysis': 'ISSTA',
+    'International Symposium on Theoretical Aspects of Software Engineering': 'TASE',
+    'International Conference on Artificial Intelligence and Statistics': 'AISTATS',
+    'IEEE International Conference on Data Engineering': 'ICDE',
+    'International Conference on Principles of Knowledge Representation and Reasoning': 'KR',
+    'Conference on Uncertainty in Artificial Intelligence': 'UAI',
+    'International Conference on Knowledge Capture': 'K-CAP',
+    'IEEE International Conference on Computer Communications': 'INFOCOM',
+    # Add more mappings for common conferences/journals
 }
 
 # Function to convert 'Last, First' to 'First Last'
@@ -20,14 +44,14 @@ def convert_author_format(author_name):
         return f"{parts[1].strip()} {parts[0].strip()}"
     return author_name  # If no comma, return as is
 
-# Function to clean and abbreviate the venue for the image badge
+# Function to clean and abbreviate the venue for the image badge using keyword matching
 def abbreviate_venue(venue):
-    # Clean venue by removing backslashes and other special characters
+    # Clean venue by removing backslashes and special characters
     venue_cleaned = venue.replace("\\", "").replace("&", "and")
     
-    # Match abbreviations
-    for long_name, short_name in VENUE_ABBREVIATIONS.items():
-        if long_name in venue_cleaned:
+    # Match based on keywords in the venue name
+    for keyword, short_name in VENUE_ABBREVIATIONS.items():
+        if keyword in venue_cleaned:
             return short_name
     return venue_cleaned  # Return cleaned venue if no abbreviation is found
 

@@ -151,7 +151,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2020provably.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">2020 IEEE International Conference on Data Mining (ICDM)</abbr>
+            <abbr class="badge">ICDM</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{P}rovably robust node classification via low-pass message passing</a></div>
@@ -259,7 +259,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/cai2021unified.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the IEEE/CVF International Conference on Computer Vision</abbr>
+            <abbr class="badge">ICCV</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{A} unified 3d human motion synthesis model via conditional variational auto-encoder</a></div>
@@ -493,7 +493,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2023graph.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining</abbr>
+            <abbr class="badge">WSDM</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{G}raph explicit neural networks: {E}xplicitly encoding graphs for efficient and accurate inference</a></div>
