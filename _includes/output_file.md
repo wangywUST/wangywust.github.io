@@ -586,11 +586,11 @@
             <abbr class="badge">KDD</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Nodeaug: Semi-supervised node classification with data augmentation</a></div>
+      <div class="title"><a href="https://www.researchgate.net/profile/Yiwei-Wang-46/publication/343776437\_NodeAug\_Semi-Supervised\_Node\_Classification\_with\_Data\_Augmentation/links/6642e84e06ea3d0b7466decb/NodeAug-Semi-Supervised-Node-Classification-with-Data-Augmentation.pdf">Nodeaug: Semi-supervised node classification with data augmentation</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>
       <div class="links">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://www.researchgate.net/profile/Yiwei-Wang-46/publication/343776437\_NodeAug\_Semi-Supervised\_Node\_Classification\_with\_Data\_Augmentation/links/6642e84e06ea3d0b7466decb/NodeAug-Semi-Supervised-Node-Classification-with-Data-Augmentation.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
