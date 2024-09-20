@@ -81,7 +81,7 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to generate HTML from bib entry
+# Function to generate HTML from bib entry, without the image if the file doesn't exist
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
@@ -98,7 +98,12 @@ def generate_html(entry):
     # Use the entry's ID to generate the image filename
     img_src = generate_image_filename(entry)
     
-    html = f'''
+    # Check if the image file exists
+    image_exists = os.path.exists(img_src)
+    
+    # If the image exists, include the image and layout as before
+    if image_exists:
+        html = f'''
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
@@ -117,6 +122,24 @@ def generate_html(entry):
 </div>
 </li>
 '''
+    else:
+        # If the image doesn't exist, remove the image section and extend the text
+        html = f'''
+<li>
+<div class="pub-row">
+  <div class="col-sm-12" style="position: relative;padding-right: 15px;padding-left: 15px;">
+      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
+      <div class="author"><strong>{formatted_authors}</strong>.</div>
+      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="links">
+        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+'''
+
     return html
 
 # Load the .bib file
