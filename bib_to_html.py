@@ -118,14 +118,21 @@ def load_bib_file(file_path):
         bib_database = bibtexparser.load(bib_file, parser=BibTexParser(customization=homogenize_latex_encoding))
     return bib_database.entries
 
+# Sort entries by year in descending order
+def sort_entries_by_year(entries):
+    return sorted(entries, key=lambda x: int(x.get('year', 0)), reverse=True)
+
 # Generate HTML for all entries in the bib file
 def generate_bibliography_html(entries):
+    # Sort entries by year from newest to oldest
+    sorted_entries = sort_entries_by_year(entries)
+
     html_content = '''<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:15px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:15px;">Google Scholar</a><temp style="font-size:15px;">]</temp><temp style="font-size:15px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:15px;">DBLP</a><temp style="font-size:15px;">]</temp></h2>
 
 <div class="publications">
 <ol class="bibliography">
 '''
-    for entry in entries:
+    for entry in sorted_entries:
         html_content += generate_html(entry)
     html_content += '</ol>\n</div>'
     return html_content
