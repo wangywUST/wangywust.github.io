@@ -117,7 +117,11 @@
 
 <li>
 <div class="pub-row">
-  <div class="col-sm-12" style="position: relative;padding-right: 15px;padding-left: 15px;">
+  <div class="col-sm-2 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
+    <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 66%; height: auto; max-height: 300px;">
+            <abbr class="badge">Preprint</abbr>
+  </div>
+  <div class="col-sm-10" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="https://arxiv.org/abs/2401.10471">Deepedit: Knowledge editing as decoding with constraints</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
