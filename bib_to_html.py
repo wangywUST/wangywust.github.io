@@ -8,7 +8,7 @@ def generate_html(entry):
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/{entry.get('year', '2024')}_{entry.get('ID', 'default')}.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">{entry.get('booktitle', 'Preprint')}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -55,4 +55,4 @@ def convert_bib_to_html(bib_file_path, output_html_path):
     print(f"HTML file successfully written to {output_html_path}")
 
 # Example usage:
-convert_bib_to_html('citations.bib', 'output_file.md')
+convert_bib_to_html('citations.bib', '_includes/output_file.md')

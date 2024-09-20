@@ -6,7 +6,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_wang2020nodeaug.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -24,7 +24,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2019_zhao2019optimization.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -42,7 +42,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_cai2020learning.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part VII 16</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -60,7 +60,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2017_wang2017using.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the 2017 ACM on Conference on Information and Knowledge Management</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -78,7 +78,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_wang2020graphcrop.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -96,7 +96,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_wang2020detecting.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE)</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -114,7 +114,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_liang2021revisiting.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, Ghent, Belgium, September 14--18, 2020, Proceedings, Part I</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -132,7 +132,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_liu2020active.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -150,7 +150,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_wang2020provably.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">2020 IEEE International Conference on Data Mining (ICDM)</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -168,7 +168,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2020_liang2020revisiting.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -186,7 +186,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021mixup.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -204,7 +204,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021curgraph.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -222,7 +222,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_liang2021fine.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the Web Conference 2021</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -240,7 +240,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021progressive.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, Ghent, Belgium, September 14--18, 2020, Proceedings, Part I</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -258,7 +258,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_cai2021unified.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the IEEE/CVF International Conference on Computer Vision</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -276,7 +276,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_liang2021modeling.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">IJCAI</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -294,7 +294,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021adaptive.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -312,7 +312,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_liu2021eignn.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -330,7 +330,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021structure.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -348,7 +348,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2021_wang2021time.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -366,7 +366,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_wang2022graphcache.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -384,7 +384,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_wang2022should.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -402,7 +402,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_liu2022dangling.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -420,7 +420,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_wang2022flashlight.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Learning on Graphs Conference</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -438,7 +438,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_liang2023airformer.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the AAAI Conference on Artificial Intelligence</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -456,7 +456,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_liang2022mixed.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -474,7 +474,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2022_liu2022lscale.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Joint European Conference on Machine Learning and Knowledge Discovery in Databases</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -492,7 +492,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_wang2023graph.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -510,7 +510,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_wang2023causal.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -528,7 +528,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_wang2023primacy.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -546,7 +546,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2023_wang2023fragile.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -564,7 +564,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_wang2024deepedit.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -582,7 +582,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_wang2024frustratingly.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -600,7 +600,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_liu2024unitst.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -618,7 +618,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_liu2024scalable.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">The Twelfth International Conference on Learning Representations</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -636,7 +636,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_mei2024slang.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -654,7 +654,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_bi2024factuality.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -672,7 +672,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_bi2024decoding.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -690,7 +690,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_bi2024lpnl.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Findings of the Association for Computational Linguistics ACL 2024</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -708,7 +708,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_mei2024not.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -726,7 +726,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_meng2024llm.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
