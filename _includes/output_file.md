@@ -524,7 +524,7 @@
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1">
+    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 66%; height: auto; max-height: 300px;">
             <abbr class="badge">KDD</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">

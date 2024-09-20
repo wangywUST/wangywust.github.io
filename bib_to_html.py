@@ -81,7 +81,7 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to generate HTML from bib entry, without the image if the file doesn't exist
+# Function to generate HTML from bib entry, adjusting image size
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
@@ -101,13 +101,16 @@ def generate_html(entry):
     # Check if the image file exists
     image_exists = os.path.exists(img_src)
     
+    # Define the image size as a slimmer and taller ratio
+    image_style = "width: 66%; height: auto; max-height: 300px;"  # Adjust width to 2/3 and set max-height for slim long effect
+    
     # If the image exists, include the image and layout as before
     if image_exists:
         html = f'''
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="{img_src}" class="teaser img-fluid z-depth-1">
+    <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
             <abbr class="badge">{abbreviated_venue}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
@@ -141,6 +144,7 @@ def generate_html(entry):
 '''
 
     return html
+
 
 # Load the .bib file
 def load_bib_file(file_path):
