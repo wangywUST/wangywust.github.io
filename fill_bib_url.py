@@ -40,8 +40,8 @@ def fill_bib_urls(bib_file):
                         entry['url'] = get_url_from_doi(doi)
 
     # 保存修改后的 .bib 文件
-    with open('updated_' + bib_file, 'w', encoding='utf-8') as bibtex_file:
+    with open(bib_file, 'w', encoding='utf-8') as bibtex_file:
         bibtexparser.dump(bib_database, bibtex_file)
 
 # 示例：自动填充 url 字段
-fill_bib_urls('example.bib')
+fill_bib_urls('citations.bib')
