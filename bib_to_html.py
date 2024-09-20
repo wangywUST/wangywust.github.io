@@ -2,10 +2,18 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 
+# Function to convert 'Last, First' to 'First Last'
+def convert_author_format(author_name):
+    if ',' in author_name:
+        parts = author_name.split(',')
+        return f"{parts[1].strip()} {parts[0].strip()}"
+    return author_name  # If no comma, return as is
+
 # Function to generate HTML from bib entry
 def generate_html(entry):
-    # Handling multiple authors by joining them with commas
-    authors = entry.get('author', 'Unknown Author').replace(" and ", ", ")
+    # Handling multiple authors by splitting and formatting them
+    authors = entry.get('author', 'Unknown Author').split(" and ")
+    formatted_authors = ', '.join([convert_author_format(author) for author in authors])
 
     # Assuming you want to use the entry's 'ID' as part of the image filename
     img_src = f"Image/{entry.get('ID', 'default')}.png"
@@ -19,7 +27,7 @@ def generate_html(entry):
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="{entry.get('url', '#')}">{entry.get('title', 'Untitled')}</a></div>
-      <div class="author"><strong>{authors}</strong>.</div>
+      <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{entry.get('journal', entry.get('booktitle', 'Preprint'))}, {entry.get('year', '2024')}.</em></div>
       <div class="links">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
