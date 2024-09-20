@@ -118,7 +118,7 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">Decoding by Contrasting Knowledge: Enhancing LLMs\textquotesingle  Confidence on Edited Facts</a></div>
+      <div class="title"><a href="#">Decoding by Contrasting Knowledge: Enhancing LLMs'  Confidence on Edited Facts</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Pengliang Ji, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2405.11613, 2024.</em></div>
       <div class="links">
@@ -154,7 +154,7 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="#">" Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models\textquotesingle  Jailbreak</a></div>
+      <div class="title"><a href="#">" Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models'  Jailbreak</a></div>
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Jiayi Mao, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2406.11668, 2024.</em></div>
       <div class="links">
