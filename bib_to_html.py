@@ -9,11 +9,18 @@ def convert_author_format(author_name):
         return f"{parts[1].strip()} {parts[0].strip()}"
     return author_name  # If no comma, return as is
 
+# Function to remove special characters from venue
+def clean_venue(venue):
+    return venue.replace("\\", "")  # Remove backslashes
+
 # Function to generate HTML from bib entry
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
     formatted_authors = ', '.join([convert_author_format(author) for author in authors])
+
+    # Clean the venue (journal or booktitle) to remove special characters
+    venue = clean_venue(entry.get('journal', entry.get('booktitle', 'Preprint')))
 
     # Assuming you want to use the entry's 'ID' as part of the image filename
     img_src = f"Image/{entry.get('ID', 'default')}.png"
@@ -23,12 +30,12 @@ def generate_html(entry):
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">{entry.get('booktitle', 'Preprint')}</abbr>
+            <abbr class="badge">{venue}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="{entry.get('url', '#')}">{entry.get('title', 'Untitled')}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
-      <div class="periodical"><em>{entry.get('journal', entry.get('booktitle', 'Preprint'))}, {entry.get('year', '2024')}.</em></div>
+      <div class="periodical"><em>{venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
