@@ -70,11 +70,18 @@ def clean_full_venue(venue):
     # Remove special characters like backslashes and replace '&' with 'and'
     return venue.replace("\\", "").replace("&", "and")
 
+# Function to clean and remove special characters from title
+def clean_title(title):
+    return title.replace("{", "").replace("}", "")
+
 # Function to generate HTML from bib entry
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
     formatted_authors = ', '.join([convert_author_format(author) for author in authors])
+
+    # Clean the title to remove special characters
+    clean_title_text = clean_title(entry.get('title', 'Untitled'))
 
     # Get the full venue (journal or booktitle) and its abbreviation for the image badge
     full_venue = entry.get('journal', entry.get('booktitle', 'Preprint'))
@@ -92,7 +99,7 @@ def generate_html(entry):
             <abbr class="badge">{abbreviated_venue}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="{entry.get('url', '#')}">{entry.get('title', 'Untitled')}</a></div>
+      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links">
