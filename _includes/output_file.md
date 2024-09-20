@@ -136,7 +136,7 @@
             <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
-      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4613568/v1">LLM-A\ast : Large Language Model Enhanced Incremental Heuristic Search on Path Planning</a></div>
+      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4613568/v1">LLM-A* : Large Language Model Enhanced Incremental Heuristic Search on Path Planning</a></div>
       <div class="author"><strong>Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2407.02511, 2024.</em></div>
       <div class="links">

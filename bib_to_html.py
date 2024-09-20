@@ -70,9 +70,9 @@ def clean_full_venue(venue):
     # Remove special characters like backslashes and replace '&' with 'and'
     return venue.replace("\\", "").replace("&", "and")
 
-# Function to clean and remove special characters from title, including replacing \textquotesingle
+# Function to clean and remove special characters from title, including replacing \textquotesingle and \ast
 def clean_title(title):
-    return title.replace("{", "").replace("}", "").replace("\\textquotesingle", "\u0027")
+    return title.replace("{", "").replace("}", "").replace("\\textquotesingle", "\u0027").replace("\\ast", "*")
 
 # Function to generate HTML from bib entry
 def generate_html(entry):
