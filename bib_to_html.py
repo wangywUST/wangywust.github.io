@@ -81,8 +81,6 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-import os
-
 # Function to generate HTML from bib entry, adjusting image size and text alignment using flexbox
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
@@ -103,17 +101,17 @@ def generate_html(entry):
     # Check if the image file exists
     image_exists = os.path.exists(img_src)
     
-    # Define the image style to make it slim and long
-    image_style = "width: 100px; height: 150px;"  # Explicitly define a slim and long image size
+    # Define the image style to make it slim and long, and fix margin issues
+    image_style = "width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;"  # Slim long image, no extra margin
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
         html = f'''
 <li>
 <div class="pub-row" style="display: flex; align-items: flex-start;">
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px;">
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
-    <abbr class="badge">{abbreviated_venue}</abbr>
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
   <div class="text-container" style="flex: 1;">
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>

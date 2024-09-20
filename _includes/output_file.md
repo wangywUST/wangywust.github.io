@@ -117,9 +117,9 @@
 
 <li>
 <div class="pub-row" style="display: flex; align-items: flex-start;">
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px;">
-    <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px;">
-    <abbr class="badge">Preprint</abbr>
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+    <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">Preprint</abbr>
   </div>
   <div class="text-container" style="flex: 1;">
       <div class="title"><a href="https://arxiv.org/abs/2401.10471">Deepedit: Knowledge editing as decoding with constraints</a></div>
@@ -527,9 +527,9 @@
 
 <li>
 <div class="pub-row" style="display: flex; align-items: flex-start;">
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px;">
-    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px;">
-    <abbr class="badge">KDD</abbr>
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">KDD</abbr>
   </div>
   <div class="text-container" style="flex: 1;">
       <div class="title"><a href="https://doi.org/10.1145/3394486.3403063">Nodeaug: Semi-supervised node classification with data augmentation</a></div>
