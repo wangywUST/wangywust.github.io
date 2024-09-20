@@ -7,12 +7,12 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining</abbr>
+            <abbr class="badge">KDD</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{N}odeaug: {S}emi-supervised node classification with data augmentation</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2020.</em></div>
+      <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>
       <div class="links">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -79,7 +79,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2020graphcrop.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2009.10564</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{G}raphcrop: {S}ubgraph cropping for graph classification</a></div>
@@ -133,7 +133,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2020active.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2012.07065</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{A}ctive learning for node classification: {T}he additional learning ability from unlabelled nodes</a></div>
@@ -295,7 +295,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021adaptive.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Advances in Neural Information Processing Systems</abbr>
+            <abbr class="badge">NeurIPS</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{A}daptive data augmentation on temporal graphs</a></div>
@@ -313,7 +313,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2021eignn.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Advances in Neural Information Processing Systems</abbr>
+            <abbr class="badge">NeurIPS</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{E}ignn: {E}fficient infinite-depth graph neural networks</a></div>
@@ -331,7 +331,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021structure.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2112.00499</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{S}tructure-aware label smoothing for graph neural networks</a></div>
@@ -349,7 +349,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2021time.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2112.09845</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{T}ime-aware neighbor sampling for temporal graph networks</a></div>
@@ -367,7 +367,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2022graphcache.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2205.03786</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{G}raphcache: {M}essage passing as caching for sentence-level relation extraction</a></div>
@@ -385,7 +385,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2022should.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2205.03784</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{S}hould we rely on entity mentions for relation extraction? debiasing relation extraction with counterfactual analysis</a></div>
@@ -403,7 +403,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2022dangling.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2205.02406</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{D}angling-aware entity alignment with mixed high-order proximities</a></div>
@@ -511,7 +511,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2023causal.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2305.14695</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{A} causal view of entity bias in (large) language models</a></div>
@@ -529,7 +529,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2023primacy.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2310.13206</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{P}rimacy effect of chatgpt</a></div>
@@ -565,7 +565,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2401.10471</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{D}eepedit: {K}nowledge editing as decoding with constraints</a></div>
@@ -601,7 +601,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2024unitst.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2406.04975</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{U}ni{T}ST: {E}ffectively {M}odeling {I}nter-{S}eries and {I}ntra-{S}eries {D}ependencies for {M}ultivariate {T}ime {S}eries {F}orecasting</a></div>
@@ -619,7 +619,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/liu2024scalable.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">The Twelfth International Conference on Learning Representations</abbr>
+            <abbr class="badge">ICLR</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{S}calable and {E}ffective {I}mplicit {G}raph {N}eural {N}etworks on {L}arge {G}raphs</a></div>
@@ -637,7 +637,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/mei2024slang.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2401.12585</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">S{L}AN{G}: {N}ew {C}oncept {C}omprehension of {L}arge {L}anguage {M}odels</a></div>
@@ -655,7 +655,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/bi2024factuality.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2404.00216</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{I}s factuality decoding a free lunch for llms? evaluation on knowledge editing benchmark</a></div>
@@ -673,7 +673,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/bi2024decoding.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2405.11613</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{D}ecoding by {C}ontrasting {K}nowledge: {E}nhancing {L}LMs\textquotesingle  {C}onfidence on {E}dited {F}acts</a></div>
@@ -691,7 +691,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/bi2024lpnl.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">Findings of the Association for Computational Linguistics ACL 2024</abbr>
+            <abbr class="badge">ACL</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">{L}pnl: {S}calable link prediction with large language models</a></div>
@@ -709,7 +709,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/mei2024not.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2406.11668</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">" {N}ot {A}ligned" is {N}ot" {M}alicious": {B}eing {C}areful about {H}allucinations of {L}arge {L}anguage {M}odels\textquotesingle  {J}ailbreak</a></div>
@@ -727,7 +727,7 @@
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="Image/meng2024llm.png" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">arXiv preprint arXiv:2407.02511</abbr>
+            <abbr class="badge">Preprint</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="#">L{L}M-{A}\ast : {L}arge {L}anguage {M}odel {E}nhanced {I}ncremental {H}euristic {S}earch on {P}ath {P}lanning</a></div>

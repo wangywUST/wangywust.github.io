@@ -2,6 +2,17 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 
+# Dictionary to map long venue names to abbreviations
+VENUE_ABBREVIATIONS = {
+    'Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining': 'KDD',
+    'Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition': 'CVPR',
+    'arXiv preprint arXiv': 'Preprint',
+    'International Conference on Learning Representations': 'ICLR',
+    'Advances in Neural Information Processing Systems': 'NeurIPS',
+    'Association for Computational Linguistics': 'ACL',
+    # Add more mappings as necessary
+}
+
 # Function to convert 'Last, First' to 'First Last'
 def convert_author_format(author_name):
     if ',' in author_name:
@@ -9,9 +20,21 @@ def convert_author_format(author_name):
         return f"{parts[1].strip()} {parts[0].strip()}"
     return author_name  # If no comma, return as is
 
-# Function to remove special characters from venue
-def clean_venue(venue):
-    return venue.replace("\\", "")  # Remove backslashes
+# Function to clean and abbreviate the venue for the image badge
+def abbreviate_venue(venue):
+    # Clean venue by removing backslashes and other special characters
+    venue_cleaned = venue.replace("\\", "").replace("&", "and")
+    
+    # Match abbreviations
+    for long_name, short_name in VENUE_ABBREVIATIONS.items():
+        if long_name in venue_cleaned:
+            return short_name
+    return venue_cleaned  # Return cleaned venue if no abbreviation is found
+
+# Function to clean venue for full name (without abbreviating)
+def clean_full_venue(venue):
+    # Remove special characters like backslashes and replace '&' with 'and'
+    return venue.replace("\\", "").replace("&", "and")
 
 # Function to generate HTML from bib entry
 def generate_html(entry):
@@ -19,8 +42,10 @@ def generate_html(entry):
     authors = entry.get('author', 'Unknown Author').split(" and ")
     formatted_authors = ', '.join([convert_author_format(author) for author in authors])
 
-    # Clean the venue (journal or booktitle) to remove special characters
-    venue = clean_venue(entry.get('journal', entry.get('booktitle', 'Preprint')))
+    # Get the full venue (journal or booktitle) and its abbreviation for the image badge
+    full_venue = entry.get('journal', entry.get('booktitle', 'Preprint'))
+    abbreviated_venue = abbreviate_venue(full_venue)
+    cleaned_full_venue = clean_full_venue(full_venue)  # Cleaned full venue without abbreviations
 
     # Assuming you want to use the entry's 'ID' as part of the image filename
     img_src = f"Image/{entry.get('ID', 'default')}.png"
@@ -30,12 +55,12 @@ def generate_html(entry):
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1">
-            <abbr class="badge">{venue}</abbr>
+            <abbr class="badge">{abbreviated_venue}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="{entry.get('url', '#')}">{entry.get('title', 'Untitled')}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
-      <div class="periodical"><em>{venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
