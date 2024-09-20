@@ -4,16 +4,22 @@ from bibtexparser.customization import homogenize_latex_encoding
 
 # Function to generate HTML from bib entry
 def generate_html(entry):
+    # Handling multiple authors by joining them with commas
+    authors = entry.get('author', 'Unknown Author').replace(" and ", ", ")
+
+    # Assuming you want to use the entry's 'ID' as part of the image filename
+    img_src = f"Image/{entry.get('ID', 'default')}.png"
+    
     html = f'''
 <li>
 <div class="pub-row">
   <div class="col-sm-3 abbr" style="position: relative;padding-right: 15px;padding-left: 15px;">
-    <img src="Image/2024_lpn.png" class="teaser img-fluid z-depth-1">
+    <img src="{img_src}" class="teaser img-fluid z-depth-1">
             <abbr class="badge">{entry.get('booktitle', 'Preprint')}</abbr>
   </div>
   <div class="col-sm-9" style="position: relative;padding-right: 15px;padding-left: 20px;">
       <div class="title"><a href="{entry.get('url', '#')}">{entry.get('title', 'Untitled')}</a></div>
-      <div class="author"><strong>{entry.get('author', 'Unknown Author')}</strong>.</div>
+      <div class="author"><strong>{authors}</strong>.</div>
       <div class="periodical"><em>{entry.get('journal', entry.get('booktitle', 'Preprint'))}, {entry.get('year', '2024')}.</em></div>
       <div class="links">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
