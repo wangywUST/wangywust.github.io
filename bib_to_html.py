@@ -171,7 +171,7 @@ def generate_bibliography_html(entries):
         current_year = entry.get('year', 'Unknown')
         if current_year != last_year:
             # Add a divider for each new year
-            html_content += f'<h3 style="margin-top: 20px; margin-bottom: 5px;">{current_year}</h3><hr>'
+            html_content += f'<h3 style="margin-top: 20px; margin-bottom: 5px;">{current_year}</h3><hr style="margin-bottom: 5px;">'
             last_year = current_year
         html_content += generate_html(entry)
     html_content += '</ol>\n</div>'
