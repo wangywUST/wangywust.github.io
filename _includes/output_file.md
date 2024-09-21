@@ -118,7 +118,7 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: flex-start;">
   <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
-    <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;">
+    <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">Preprint</abbr>
   </div>
   <div class="text-container" style="flex: 1;">
@@ -528,7 +528,7 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: flex-start;">
   <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
-    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;">
+    <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">KDD</abbr>
   </div>
   <div class="text-container" style="flex: 1;">

@@ -101,8 +101,8 @@ def generate_html(entry):
     # Check if the image file exists
     image_exists = os.path.exists(img_src)
     
-    # Define the image style to make it slim and long, and fix margin issues
-    image_style = "width: 100px; height: 150px; object-fit: cover; margin-bottom: 0;"  # Slim long image, no extra margin
+    # Define the image style to make it shorter
+    image_style = "width: 100px; height: 100px; object-fit: cover; margin-bottom: 0;"  # Shorter image
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
