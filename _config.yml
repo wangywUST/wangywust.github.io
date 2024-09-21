@@ -11,7 +11,7 @@ canonical: https://wangywust.github.io/
 description: Yiwei Wang is a Postdoc at UCLA. His research lies in natural language processing and graph neural networks.
 
 # The option is used to enable the Johns Hopkins template.
-enable_hopkins_logo: false
+enable_hopkins_logo: true
 
 # The option is used to show the last update time.
 enable_last_update: true
