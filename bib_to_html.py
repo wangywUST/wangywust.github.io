@@ -45,6 +45,8 @@ VENUE_ABBREVIATIONS = {
     'Transactions on Knowledge and Data Engineering': 'TKDE',
     'European Conference on Machine Learning': 'ECML',
     'CONLL': 'CONLL',
+    'EMNLP': 'EMNLP',
+    'Empirical Methods' : 'EMNLP',
     # Add more mappings for common conferences/journals
 }
 
