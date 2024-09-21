@@ -83,15 +83,15 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to check if a paper is a Preprint or ArXiv, or has no journal/booktitle
+# Function to check if a paper is a Preprint or ArXiv
 def is_preprint(entry):
-    # Check if the journal or booktitle contains "Preprint" or "arXiv"
-    venue = entry.get('journal', entry.get('booktitle', ''))
-    url = entry.get('url', '').lower()
-    doi = entry.get('doi', '').lower()
+    # Preprint is defined as having no 'journal' or 'booktitle' field
+    return 'journal' not in entry and 'booktitle' not in entry
 
-    # Identify preprint if it lacks journal/booktitle or based on venue, URL or DOI
-    return (not venue) or 'preprint' in venue.lower() or 'arxiv' in venue.lower() or 'arxiv' in url or 'arxiv' in doi or 'preprint' in url
+# Function to check if the paper is specifically an ArXiv preprint
+def is_arxiv(entry):
+    # ArXiv is identified by 'journal' field containing 'arXiv'
+    return 'journal' in entry and 'arxiv' in entry['journal'].lower()
 
 # Function to sort papers by the abbreviation of their venue
 def get_venue_abbreviation(entry):
@@ -188,7 +188,7 @@ def sort_entries_by_year(entries):
         # Sort by venue abbreviation and move Preprints/arXiv to the bottom
         entries_by_year[year] = sorted(
             year_entries, 
-            key=lambda x: (is_preprint(x), get_venue_abbreviation(x))
+            key=lambda x: (is_preprint(x), is_arxiv(x), get_venue_abbreviation(x))
         )
 
     # Return all entries, sorted by year (newest to oldest) and grouped by venue within each year

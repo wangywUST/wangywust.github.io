@@ -48,48 +48,6 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4613568/v1">LLM-A* : Large Language Model Enhanced Incremental Heuristic Search on Path Planning</a></div>
-      <div class="author"><strong>Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Scalable and Effective Implicit Graph Neural Networks on Large Graphs</a></div>
-      <div class="author"><strong>Juncheng Liu, Bryan Hooi, Kenji Kawaguchi, Yiwei Wang, Chaosheng Dong, Xiaokui Xiao</strong>.</div>
-      <div class="periodical"><em>The Twelfth International Conference on Learning Representations (ICLR), 2024.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4385503/v1">Frustratingly Easy Jailbreak of Large Language Models via Output Prefix Attacks</a></div>
-      <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>Preprint, 2024.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.21203/rs.3.rs-4385503/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://arxiv.org/abs/2401.12585">SLANG: New Concept Comprehension of Large Language Models</a></div>
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Xueqi Chen</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
@@ -109,6 +67,34 @@
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4613568/v1">LLM-A* : Large Language Model Enhanced Incremental Heuristic Search on Path Planning</a></div>
+      <div class="author"><strong>Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Scalable and Effective Implicit Graph Neural Networks on Large Graphs</a></div>
+      <div class="author"><strong>Juncheng Liu, Bryan Hooi, Kenji Kawaguchi, Yiwei Wang, Chaosheng Dong, Xiaokui Xiao</strong>.</div>
+      <div class="periodical"><em>The Twelfth International Conference on Learning Representations (ICLR), 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -183,6 +169,20 @@
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4385503/v1">Frustratingly Easy Jailbreak of Large Language Models via Output Prefix Attacks</a></div>
+      <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Preprint, 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://doi.org/10.21203/rs.3.rs-4385503/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -560,20 +560,6 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Revisiting convolutional neural networks for urban flow analytics</a></div>
-      <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, David Samuel Rosenblum</strong>.</div>
-      <div class="periodical"><em>Preprint, 2020.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://arxiv.org/abs/2012.07065">Active learning for node classification: The additional learning ability from unlabelled nodes</a></div>
       <div class="author"><strong>Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2012.07065, 2020.</em></div>
@@ -593,6 +579,20 @@
       <div class="periodical"><em>arXiv preprint arXiv:2009.10564, 2020.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://arxiv.org/abs/2009.10564" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Revisiting convolutional neural networks for urban flow analytics</a></div>
+      <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, David Samuel Rosenblum</strong>.</div>
+      <div class="periodical"><em>Preprint, 2020.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
