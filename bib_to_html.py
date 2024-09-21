@@ -83,11 +83,15 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to check if a paper is a Preprint or arXiv
+# Function to check if a paper is a Preprint or arXiv, or has no journal/booktitle
 def is_preprint(entry):
     # Check if the journal or booktitle contains "Preprint" or "arXiv"
     venue = entry.get('journal', entry.get('booktitle', ''))
-    return 'Preprint' in venue or 'arXiv' in venue
+    url = entry.get('url', '').lower()
+    doi = entry.get('doi', '').lower()
+
+    # Identify preprint if it lacks journal/booktitle or based on venue, URL or DOI
+    return (not venue) or 'preprint' in venue.lower() or 'arxiv' in venue.lower() or 'arxiv' in url or 'arxiv' in doi or 'preprint' in url
 
 # Function to generate HTML from bib entry, adjusting image size and center-aligning content
 def generate_html(entry):
@@ -162,10 +166,9 @@ def load_bib_file(file_path):
         bib_database = bibtexparser.load(bib_file, parser=BibTexParser(customization=homogenize_latex_encoding))
     return bib_database.entries
 
-# Sort entries by year (newest to oldest) and within each year, place Preprints/arXiv at the bottom
+# Sort entries by year (newest to oldest), conference/journal, and within each year, place Preprints/arXiv at the bottom
 def sort_entries_by_year(entries):
-    # First sort by year in descending order
-    # Then within each year, sort by whether it's a Preprint (Preprints and arXiv go to the bottom)
+    # Group entries by year
     entries_by_year = {}
     
     # Group entries by year
@@ -175,11 +178,15 @@ def sort_entries_by_year(entries):
             entries_by_year[year] = []
         entries_by_year[year].append(entry)
 
-    # Sort each year group by whether the entry is a Preprint or arXiv, placing them last
+    # Sort each year group first by venue (conference/journal) and place Preprints/arXiv last
     for year, year_entries in entries_by_year.items():
-        entries_by_year[year] = sorted(year_entries, key=lambda x: is_preprint(x))
+        # Sort by venue alphabetically and move Preprints/arXiv to the bottom
+        entries_by_year[year] = sorted(
+            year_entries, 
+            key=lambda x: (is_preprint(x), x.get('journal', x.get('booktitle', '')).lower())
+        )
 
-    # Return all entries, sorted by year (newest to oldest) and Preprints/arXiv at the bottom for each year
+    # Return all entries, sorted by year (newest to oldest) and grouped by venue within each year
     sorted_entries = []
     for year in sorted(entries_by_year.keys(), reverse=True):
         sorted_entries.extend(entries_by_year[year])
@@ -188,7 +195,7 @@ def sort_entries_by_year(entries):
 
 # Generate HTML for all entries in the bib file, adding a divider for each year
 def generate_bibliography_html(entries):
-    # Sort entries by year from newest to oldest, with Preprints/arXiv at the bottom for each year
+    # Sort entries by year from newest to oldest, grouped by venue, with Preprints/arXiv at the bottom for each year
     sorted_entries = sort_entries_by_year(entries)
 
     html_content = '''<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:15px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:15px;">Google Scholar</a><temp style="font-size:15px;">]</temp><temp style="font-size:15px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:15px;">DBLP</a><temp style="font-size:15px;">]</temp></h2>
