@@ -101,6 +101,9 @@ def generate_html(entry):
     # Check if the image file exists
     image_exists = os.path.exists(img_src)
     
+    # Get code URL or default code link (if 'code_url' field is present in the bib file, use it)
+    code_url = entry.get('code_url', entry.get('code', '#'))
+
     # Define the image style to make it slightly longer and adjust layout
     image_style = "width: 110px; height: 130px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
     
@@ -119,7 +122,7 @@ def generate_html(entry):
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
 </div>
@@ -136,7 +139,7 @@ def generate_html(entry):
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
 </div>
