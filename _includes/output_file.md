@@ -6,6 +6,34 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</a></div>
+      <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Hongcheng Gao, Yilong Xu, Xueqi Cheng</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Controllable Generation of Black-Box Large Language Models via Divide-and-Conquer</a></div>
+      <div class="author"><strong>Bingxuan Li, Yiwei Wang, Tao Meng, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://arxiv.org/abs/2405.11613">Decoding by Contrasting Knowledge: Enhancing LLMs'  Confidence on Edited Facts</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Pengliang Ji, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2405.11613, 2024.</em></div>
@@ -106,7 +134,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4613568/v1">LLM-A* : Large Language Model Enhanced Incremental Heuristic Search on Path Planning</a></div>
       <div class="author"><strong>Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2407.02511, 2024.</em></div>
+      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -164,9 +192,9 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013">A causal view of entity bias in (large) language models</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013">A Causal View of Entity Bias in (Large) Language Models</a></div>
       <div class="author"><strong>Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2305.14695, 2023.</em></div>
+      <div class="periodical"><em>Association for Computational Linguistics: EMNLP 2023, 2023.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -194,7 +222,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1145/3539597.3570388">Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference</a></div>
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Yozen Liu, Neil Shah</strong>.</div>
-      <div class="periodical"><em>Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining, 2023.</em></div>
+      <div class="periodical"><em>Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM), 2023.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -264,7 +292,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">Flashlight: Scalable link prediction with effective decoders</a></div>
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Yozen Liu, Tong Zhao, Zhichun Guo, Neil Shah</strong>.</div>
-      <div class="periodical"><em>Learning on Graphs Conference, 2022.</em></div>
+      <div class="periodical"><em>Learning on Graphs Conference (LOG), 2022.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -276,9 +304,9 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2022.findings-naacl.128">Graphcache: Message passing as caching for sentence-level relation extraction</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2022.findings-naacl.128">GraphCache: Message Passing as Caching for Sentence-Level Relation Extraction</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2205.03786, 2022.</em></div>
+      <div class="periodical"><em>Association for Computational Linguistics: NAACL 2022, 2022.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.18653/v1/2022.findings-naacl.128" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -290,9 +318,9 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2022.naacl-main.224">Should we rely on entity mentions for relation extraction? debiasing relation extraction with counterfactual analysis</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2022.naacl-main.224">Should We Rely on Entity Mentions for Relation Extraction? Debiasing Relation Extraction with Counterfactual Analysis</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Dayiheng Liu, Baosong Yang, Juncheng Liu, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2205.03784, 2022.</em></div>
+      <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.18653/v1/2022.naacl-main.224" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -376,7 +404,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">Adaptive data augmentation on temporal graphs</a></div>
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Siddharth Bhatia, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Advances in Neural Information Processing Systems, 2021.</em></div>
+      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -390,7 +418,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1145/3442381.3450025">Curgraph: Curriculum learning for graph classification</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Proceedings of the Web Conference 2021, 2021.</em></div>
+      <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1145/3442381.3450025" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -404,7 +432,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1145/3442381.3449796">Mixup for node and graph classification</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Proceedings of the Web Conference 2021, 2021.</em></div>
+      <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1145/3442381.3449796" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -418,7 +446,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1007/978-3-030-67658-2\_16">Progressive supervision for node classification</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, ECML PKDD 2020, Ghent, Belgium, September 14--18, 2020, Proceedings, Part I, 2021.</em></div>
+      <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1007/978-3-030-67658-2\_16" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
@@ -444,7 +472,7 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.1109/ijcnn55064.2022.9892942">Time-aware neighbor sampling for temporal graph networks</a></div>
+      <div class="title"><a href="https://doi.org/10.1109/ijcnn55064.2022.9892942">2022 International Joint Conference on Neural Networks (IJCNN)</a></div>
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2112.09845, 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
