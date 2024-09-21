@@ -83,7 +83,7 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to check if a paper is a Preprint or arXiv, or has no journal/booktitle
+# Function to check if a paper is a Preprint or ArXiv, or has no journal/booktitle
 def is_preprint(entry):
     # Check if the journal or booktitle contains "Preprint" or "arXiv"
     venue = entry.get('journal', entry.get('booktitle', ''))
@@ -92,6 +92,11 @@ def is_preprint(entry):
 
     # Identify preprint if it lacks journal/booktitle or based on venue, URL or DOI
     return (not venue) or 'preprint' in venue.lower() or 'arxiv' in venue.lower() or 'arxiv' in url or 'arxiv' in doi or 'preprint' in url
+
+# Function to sort papers by the abbreviation of their venue
+def get_venue_abbreviation(entry):
+    venue = entry.get('journal', entry.get('booktitle', ''))
+    return abbreviate_venue(venue)
 
 # Function to generate HTML from bib entry, adjusting image size and center-aligning content
 def generate_html(entry):
@@ -178,12 +183,12 @@ def sort_entries_by_year(entries):
             entries_by_year[year] = []
         entries_by_year[year].append(entry)
 
-    # Sort each year group first by venue (conference/journal) and place Preprints/arXiv last
+    # Sort each year group first by venue abbreviation, then move Preprints/arXiv to the bottom
     for year, year_entries in entries_by_year.items():
-        # Sort by venue alphabetically and move Preprints/arXiv to the bottom
+        # Sort by venue abbreviation and move Preprints/arXiv to the bottom
         entries_by_year[year] = sorted(
             year_entries, 
-            key=lambda x: (is_preprint(x), x.get('journal', x.get('booktitle', '')).lower())
+            key=lambda x: (is_preprint(x), get_venue_abbreviation(x))
         )
 
     # Return all entries, sorted by year (newest to oldest) and grouped by venue within each year
