@@ -206,11 +206,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013">A Causal View of Entity Bias in (Large) Language Models</a></div>
-      <div class="author"><strong>Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen</strong>.</div>
-      <div class="periodical"><em>Association for Computational Linguistics: EMNLP 2023, 2023.</em></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2023.conll-1.27">How Fragile is Relation Extraction under Entity Replacements?</a></div>
+      <div class="author"><strong>Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen</strong>.</div>
+      <div class="periodical"><em>CONLL 2023, 2023.</em></div>
       <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -220,11 +220,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2023.conll-1.27">How Fragile is Relation Extraction under Entity Replacements?</a></div>
-      <div class="author"><strong>Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen</strong>.</div>
-      <div class="periodical"><em>CONLL 2023, 2023.</em></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013">A Causal View of Entity Bias in (Large) Language Models</a></div>
+      <div class="author"><strong>Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
       <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
