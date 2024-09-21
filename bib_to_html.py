@@ -171,31 +171,59 @@ def load_bib_file(file_path):
         bib_database = bibtexparser.load(bib_file, parser=BibTexParser(customization=homogenize_latex_encoding))
     return bib_database.entries
 
-# Sort entries by year (newest to oldest), conference/journal, and within each year, place Preprints/arXiv at the bottom
+# 会议时间排序列表，基于缩写
+CONFERENCE_TIME_ORDER = [
+    'NeurIPS',
+    'EMNLP',
+    'ACL',
+    'CVPR',
+    'NAACL',
+    'ICCV',
+    'ICLR',
+    'AAAI'
+    # 你可以根据需要添加更多的会议
+]
+
+# 获取会议时间的排序
+def get_conference_time_rank(venue):
+    abbreviated_venue = abbreviate_venue(venue)
+    if abbreviated_venue in CONFERENCE_TIME_ORDER:
+        return CONFERENCE_TIME_ORDER.index(abbreviated_venue)
+    return len(CONFERENCE_TIME_ORDER)  # 未在列表中的会议放在最后
+
+# 根据会议时间排序
+def sort_entries_by_conference_time(entries):
+    return sorted(
+        entries,
+        key=lambda x: (
+            is_preprint(x),  # 将预印本/ArXiv 排在最后
+            is_arxiv(x),     # ArXiv 论文排在其他预印本后面
+            1 if 'journal' in x else 0,  # 期刊论文放在会议论文之后
+            get_conference_time_rank(x.get('booktitle', x.get('journal', ''))),  # 按照会议时间顺序排序
+            get_venue_abbreviation(x)  # 作为次要排序条件的会议简称
+        )
+    )
+
+# 按年份和会议时间排序
 def sort_entries_by_year(entries):
-    # Group entries by year
+    # 按年份分组
     entries_by_year = {}
-    
-    # Group entries by year
+
     for entry in entries:
         year = int(entry.get('year', 0))
         if year not in entries_by_year:
             entries_by_year[year] = []
         entries_by_year[year].append(entry)
 
-    # Sort each year group first by venue abbreviation, then move Preprints/arXiv to the bottom
+    # 在每个年份内按会议时间排序
     for year, year_entries in entries_by_year.items():
-        # Sort by venue abbreviation and move Preprints/arXiv to the bottom
-        entries_by_year[year] = sorted(
-            year_entries, 
-            key=lambda x: (is_preprint(x), is_arxiv(x), get_venue_abbreviation(x))
-        )
+        entries_by_year[year] = sort_entries_by_conference_time(year_entries)
 
-    # Return all entries, sorted by year (newest to oldest) and grouped by venue within each year
+    # 按年份从新到旧返回所有的条目
     sorted_entries = []
     for year in sorted(entries_by_year.keys(), reverse=True):
         sorted_entries.extend(entries_by_year[year])
-    
+
     return sorted_entries
 
 # Generate HTML for all entries in the bib file, adding a divider for each year

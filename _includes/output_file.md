@@ -6,20 +6,6 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Lpnl: Scalable link prediction with large language models</a></div>
-      <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
-      <div class="periodical"><em>Association for Computational Linguistics ACL 2024, 2024.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Hongcheng Gao, Yilong Xu, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
@@ -81,6 +67,20 @@
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Lpnl: Scalable link prediction with large language models</a></div>
+      <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2024, 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -192,34 +192,6 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.1609/aaai.v37i12.26676">Airformer: Predicting nationwide air quality in china with transformers</a></div>
-      <div class="author"><strong>Yuxuan Liang, Yutong Xia, Songyu Ke, Yiwei Wang, Qingsong Wen, Junbo Zhang, Yu Zheng, Roger Zimmermann</strong>.</div>
-      <div class="periodical"><em>Proceedings of the AAAI Conference on Artificial Intelligence, 2023.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.1609/aaai.v37i12.26676" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.18653/v1/2023.conll-1.27">How Fragile is Relation Extraction under Entity Replacements?</a></div>
-      <div class="author"><strong>Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen</strong>.</div>
-      <div class="periodical"><em>CONLL 2023, 2023.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013">A Causal View of Entity Bias in (Large) Language Models</a></div>
       <div class="author"><strong>Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
@@ -248,11 +220,39 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://doi.org/10.1609/aaai.v37i12.26676">Airformer: Predicting nationwide air quality in china with transformers</a></div>
+      <div class="author"><strong>Yuxuan Liang, Yutong Xia, Songyu Ke, Yiwei Wang, Qingsong Wen, Junbo Zhang, Yu Zheng, Roger Zimmermann</strong>.</div>
+      <div class="periodical"><em>Proceedings of the AAAI Conference on Artificial Intelligence, 2023.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://doi.org/10.1609/aaai.v37i12.26676" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1145/3539597.3570388">Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference</a></div>
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Yozen Liu, Neil Shah</strong>.</div>
       <div class="periodical"><em>Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM), 2023.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://doi.org/10.18653/v1/2023.conll-1.27">How Fragile is Relation Extraction under Entity Replacements?</a></div>
+      <div class="author"><strong>Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen</strong>.</div>
+      <div class="periodical"><em>CONLL 2023, 2023.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -346,6 +346,20 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://doi.org/10.1109/iccv48922.2021.01144">A unified 3d human motion synthesis model via conditional variational auto-encoder</a></div>
+      <div class="author"><strong>Yujun Cai, Yiwei Wang, Yiheng Zhu, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Chuanxia Zheng, Sijie Yan, Henghui Ding, others</strong>.</div>
+      <div class="periodical"><em>Proceedings of the IEEE/CVF International Conference on Computer Vision, 2021.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://doi.org/10.1109/iccv48922.2021.01144" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.1007/978-3-030-67658-2\_33">Revisiting convolutional neural networks for citywide crowd flow analytics</a></div>
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, Ye Liu, Junbo Zhang, Yu Zheng, David S Rosenblum</strong>.</div>
       <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
@@ -374,53 +388,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.1109/iccv48922.2021.01144">A unified 3d human motion synthesis model via conditional variational auto-encoder</a></div>
-      <div class="author"><strong>Yujun Cai, Yiwei Wang, Yiheng Zhu, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Chuanxia Zheng, Sijie Yan, Henghui Ding, others</strong>.</div>
-      <div class="periodical"><em>Proceedings of the IEEE/CVF International Conference on Computer Vision, 2021.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.1109/iccv48922.2021.01144" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://doi.org/10.24963/ijcai.2021/207">Modeling Trajectories with Neural Ordinary Differential Equations.</a></div>
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Hanshu Yan, Yiwei Wang, Zekun Tong, Roger Zimmermann</strong>.</div>
       <div class="periodical"><em>IJCAI, 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.24963/ijcai.2021/207" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Eignn: Efficient infinite-depth graph neural networks</a></div>
-      <div class="author"><strong>Juncheng Liu, Kenji Kawaguchi, Bryan Hooi, Yiwei Wang, Xiaokui Xiao</strong>.</div>
-      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Adaptive data augmentation on temporal graphs</a></div>
-      <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Siddharth Bhatia, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
-      <div class="links" style="margin-top: 10px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
@@ -463,6 +435,34 @@
       <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1145/3442381.3449796" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Eignn: Efficient infinite-depth graph neural networks</a></div>
+      <div class="author"><strong>Juncheng Liu, Kenji Kawaguchi, Bryan Hooi, Yiwei Wang, Xiaokui Xiao</strong>.</div>
+      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Adaptive data augmentation on temporal graphs</a></div>
+      <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Siddharth Bhatia, Bryan Hooi</strong>.</div>
+      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
