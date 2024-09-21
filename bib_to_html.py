@@ -81,7 +81,7 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
-# Function to generate HTML from bib entry, adjusting image size and text alignment using flexbox
+# Function to generate HTML from bib entry, adjusting image size and center-aligning content
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
     authors = entry.get('author', 'Unknown Author').split(" and ")
@@ -101,23 +101,23 @@ def generate_html(entry):
     # Check if the image file exists
     image_exists = os.path.exists(img_src)
     
-    # Define the image style to make it shorter
-    image_style = "width: 100px; height: 100px; object-fit: cover; margin-bottom: 0;"  # Shorter image
+    # Define the image style to make it slightly longer and adjust layout
+    image_style = "width: 100px; height: 120px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
         html = f'''
 <li>
-<div class="pub-row" style="display: flex; align-items: flex-start;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
-  <div class="text-container" style="flex: 1;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links">
+      <div class="links" style="margin-top: 10px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
@@ -129,12 +129,12 @@ def generate_html(entry):
         # If the image doesn't exist, remove the image section and extend the text
         html = f'''
 <li>
-<div class="pub-row" style="display: flex; align-items: flex-start;">
-  <div class="text-container" style="flex: 1;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links">
+      <div class="links" style="margin-top: 10px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{entry.get('code', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
