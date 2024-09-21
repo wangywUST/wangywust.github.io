@@ -102,7 +102,7 @@ def generate_html(entry):
     image_exists = os.path.exists(img_src)
     
     # Define the image style to make it slightly longer and adjust layout
-    image_style = "width: 100px; height: 120px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
+    image_style = "width: 110px; height: 130px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
