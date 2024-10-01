@@ -118,9 +118,12 @@ def bib_to_paper_list(bib_file):
 
     # 按年份降序排序，然后按会议时间顺序进行排序
     paper_list.sort(key=lambda x: (-x[0], get_conference_order(x[1]), x[1].lower() if x[1] else ''))
+
+    # 为每篇论文添加编号 [1], [2], 等
+    numbered_papers = [f"[{i+1}] {entry}" for i, (_, _, entry) in enumerate(paper_list)]
     
-    # 返回排序后的论文列表
-    return "\n\n".join([entry for _, _, entry in paper_list])
+    # 返回带有编号的论文列表
+    return "\n\n".join(numbered_papers)
 
 # 示例用法
 bib_file = "citations.bib"
