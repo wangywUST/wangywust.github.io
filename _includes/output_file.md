@@ -104,6 +104,20 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Fast Graph Sharpness-Aware Minimization for Enhancing and Accelerating Few-Shot Node Classification</a></div>
+      <div class="author"><strong>Yihong Luo, Yuhan Chen, Siya Qiu, Yiwei Wang, Chen Zhang, Yan Zhou, Xiaochun Cao, Jing Tang</strong>.</div>
+      <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://arxiv.org/abs/2405.11613">Decoding by Contrasting Knowledge: Enhancing LLMs'  Confidence on Edited Facts</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Pengliang Ji, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2405.11613, 2024.</em></div>
@@ -546,7 +560,7 @@
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">KDD</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.1145/3394486.3403063">Nodeaug: Semi-supervised node classification with data augmentation</a></div>
+      <div class="title"><a href="https://doi.org/10.1145/3394486.3403063">NodeAug: Semi-supervised node classification with data augmentation</a></div>
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>
       <div class="links" style="margin-top: 10px;">
