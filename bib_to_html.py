@@ -191,16 +191,26 @@ def get_conference_time_rank(venue):
         return CONFERENCE_TIME_ORDER.index(abbreviated_venue)
     return len(CONFERENCE_TIME_ORDER)  # 未在列表中的会议放在最后
 
-# 根据会议时间排序
+# 按会议时间排序
 def sort_entries_by_conference_time(entries):
+    def get_entry_type_rank(entry):
+        # 根据 venue abbreviation 判断是否为会议，优先检查会议
+        venue = entry.get('booktitle', entry.get('journal', ''))
+        abbreviation = abbreviate_venue(venue)
+        
+        # 如果是会议，返回 0，表示会议优先；如果是期刊，返回 1；预印本返回 2
+        if abbreviation in CONFERENCE_TIME_ORDER:
+            return 0  # 会议条目优先
+        elif 'journal' in entry:
+            return 1  # 期刊条目次优
+        else:
+            return 2  # 预印本/ArXiv 条目最后
+        
     return sorted(
         entries,
         key=lambda x: (
-            is_preprint(x),  # 将预印本/ArXiv 排在最后
-            is_arxiv(x),     # ArXiv 论文排在其他预印本后面
-            1 if 'journal' in x else 0,  # 期刊论文放在会议论文之后
-            get_conference_time_rank(x.get('booktitle', x.get('journal', ''))),  # 按照会议时间顺序排序
-            get_venue_abbreviation(x)  # 作为次要排序条件的会议简称
+            get_entry_type_rank(x),  # 按条目类型排序，会议 > 期刊 > 预印本
+            get_conference_time_rank(x.get('booktitle', x.get('journal', ''))),  # 按会议时间顺序排序
         )
     )
 
