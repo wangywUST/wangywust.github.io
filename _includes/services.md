@@ -23,10 +23,10 @@
 <h4 style="margin:0 10px 0;">Conference Reviewers</h4>
 
 <ul style="margin:0 0 5px;">
+  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024, 2025 (Area Chair)</autocolor></a></li>
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>Annual Meeting of the Association for Computational Linguistics (ACL) 2023, 2024</autocolor></a></li>
   <li><a href="http://iccv2023.thecvf.com/"><autocolor>Learning on Graphs Conference (LOG) 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://eccv2022.ecva.net/"><autocolor>The Web Conference (WWW) 2023, 2024</autocolor></a></li>
-  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024, 2025 (Area Chair)</autocolor></a></li>
   <li><a href="https://icml.cc/Conferences/2022"><autocolor>Conference on Neural Information Processing Systems (NeurIPS) 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://iclr.cc/Conferences/2023"><autocolor>The AAAI Conference on Artificial Intelligence (AAAI) 2021, 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://aaai.org/Conferences/AAAI-23/"><autocolor>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021, 2022, 2023, 2024</autocolor></a></li>
