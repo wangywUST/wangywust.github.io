@@ -416,9 +416,9 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.1109/ijcnn55064.2022.9892942">2022 International Joint Conference on Neural Networks (IJCNN)</a></div>
+      <div class="title"><a href="https://doi.org/10.1109/ijcnn55064.2022.9892942">Time-aware neighbor sampling for temporal graph networks</a></div>
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Bryan Hooi</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2112.09845, 2021.</em></div>
+      <div class="periodical"><em>2022 International Joint Conference on Neural Networks (IJCNN), 2021.</em></div>
       <div class="links" style="margin-top: 10px;">
         <a href="https://doi.org/10.1109/ijcnn55064.2022.9892942" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
