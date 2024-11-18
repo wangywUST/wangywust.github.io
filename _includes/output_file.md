@@ -34,7 +34,7 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Controllable Generation of Black-Box Large Language Models via Divide-and-Conquer</a></div>
+      <div class="title"><a href="#">Control Large Language Models via Divide-and-Conquer</a></div>
       <div class="author"><strong>Bingxuan Li, Yiwei Wang, Tao Meng, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
