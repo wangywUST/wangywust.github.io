@@ -202,6 +202,20 @@
   </div>
 </div>
 </li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://arxiv.org/abs/2402.07140">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</a></div>
+      <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
+      <div class="periodical"><em>Preprint, 2024.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="https://arxiv.org/abs/2402.07140" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
 <h3 style="margin-top: 20px; margin-bottom: 5px;">2023</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
