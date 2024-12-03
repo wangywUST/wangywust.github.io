@@ -20,10 +20,18 @@
   <li><a href="https://ijcai-21.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2021</autocolor></a></li>
 </ul> -->
 
-<h4 style="margin:0 10px 0;">Conference Reviewers</h4>
+<h4 style="margin:0 10px 0;">Area Chair</h4>
 
 <ul style="margin:0 0 5px;">
-  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024, 2025 (Area Chair)</autocolor></a></li>
+  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2025</autocolor></a></li>
+  <li><a href="http://cvpr2023.thecvf.com/"><autocolor>International Conference on Machine Learning (ICML) 2025</autocolor></a></li>
+</ul>
+
+<h4 style="margin:0 10px 0;">Conference Reviewer</h4>
+
+<ul style="margin:0 0 5px;">
+  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024</autocolor></a></li>
+  <li><a href="http://cvpr2023.thecvf.com/"><autocolor>International Conference on Machine Learning (ICML) 2024</autocolor></a></li>
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>Annual Meeting of the Association for Computational Linguistics (ACL) 2023, 2024</autocolor></a></li>
   <li><a href="http://iccv2023.thecvf.com/"><autocolor>Learning on Graphs Conference (LOG) 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://eccv2022.ecva.net/"><autocolor>The Web Conference (WWW) 2023, 2024</autocolor></a></li>
@@ -36,13 +44,14 @@
   <li><a href="https://2022.acmmm.org/"><autocolor>IEEE International Conference on Multimedia and Expo (ICME) 2022</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD) 2020</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2022</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>The 28th International Conference on Artificial Intelligence and Statistics (AISTATS) 2025</autocolor></a></li>  
   <!--
   <li><a href="https://mmasia2021.uqcloud.net/"><autocolor>ACM MM Asia 2020-2021</autocolor></a></li>
   <li><a href="http://www.acml-conf.org/2021/"><autocolor>ACML 2021</autocolor></a></li>  
   -->
 </ul>
 
-<h4 style="margin:0 10px 0;">Journal Reviewers</h4>
+<h4 style="margin:0 10px 0;">Journal Reviewer</h4>
 
 <ul style="margin:0 0 20px;">
   <li><a href="https://www.computer.org/csdl/journal/tp"><autocolor>Neurocomputing</autocolor></a></li>
