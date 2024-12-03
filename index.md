@@ -24,6 +24,6 @@ I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-
 {% include_relative _includes/services.md %}
 
 ## Contact
-**Address:** [405 Hilgard Avenue, LA 90095, CA](https://www.google.com/maps/place/UCLA+Computer+Science+Department/@34.0699182,-118.4438495,15z/data=!4m6!3m5!1s0x80c2bd738396536f:0x17516f52d28faa7c!8m2!3d34.0692977!4d-118.4445525!16s%2Fg%2F11f5lxm92j?entry=ttu)
+**Address:** [5200 Lake Rd, Merced, CA 95343](https://g.co/kgs/4tVi9BQ)
 <br>
-**Office Location:**  UCLA Eng VI Rm 397
+**Office Location:**  Science & Engineering 2, Office 205
