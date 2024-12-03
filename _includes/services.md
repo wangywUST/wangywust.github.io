@@ -33,6 +33,8 @@
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024</autocolor></a></li>
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>International Conference on Machine Learning (ICML) 2024</autocolor></a></li>
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>Annual Meeting of the Association for Computational Linguistics (ACL) 2023, 2024</autocolor></a></li>
+  <li><a href="http://cvpr2023.thecvf.com/"><autocolor>Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL) 2024</autocolor></a></li>
+  <li><a href="http://cvpr2023.thecvf.com/"><autocolor>AConference on Empirical Methods in Natural Language Processing (EMNLP) 2024</autocolor></a></li>
   <li><a href="http://iccv2023.thecvf.com/"><autocolor>Learning on Graphs Conference (LOG) 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://eccv2022.ecva.net/"><autocolor>The Web Conference (WWW) 2023, 2024</autocolor></a></li>
   <li><a href="https://icml.cc/Conferences/2022"><autocolor>Conference on Neural Information Processing Systems (NeurIPS) 2022, 2023, 2024</autocolor></a></li>
