@@ -14,12 +14,12 @@ I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-
 
 
 ## Teaching
-- Lecturer, [Large Language Models](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [University of California, Merced](https://www.ucmerced.edu/), 2025
-- Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2020 and 2021
-- Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2021
-- Teaching Assistant, [Programming Methodology](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [National University of Singapore](https://nus.edu.sg/), 2021
-- Teaching Assistant, [Parallel Computing ](https://nusmods.com/modules/CS3210/parallel-computing) at [National University of Singapore](https://nus.edu.sg/), 2020
-- Teaching Assistant, [Signal Processing and Communications](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at [The Hong Kong University of Science and Technology](https://hkust.edu.hk/), 2018
+- Lecturer, [Large Language Models](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at University of California, Merced, 2025
+- Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2020 and 2021
+- Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
+- Teaching Assistant, [Programming Methodology](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
+- Teaching Assistant, [Parallel Computing ](https://nusmods.com/modules/CS3210/parallel-computing) at National University of Singapore, 2020
+- Teaching Assistant, [Signal Processing and Communications](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at The Hong Kong University of Science and Technology, 2018
 
 {% include_relative _includes/services.md %}
 
