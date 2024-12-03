@@ -192,11 +192,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://doi.org/10.21203/rs.3.rs-4385503/v1">Frustratingly Easy Jailbreak of Large Language Models via Output Prefix Attacks</a></div>
+      <div class="title"><a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf">Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>Preprint, 2024.</em></div>
+      <div class="periodical"><em>Authorea Preprints, 2024.</em></div>
       <div class="links" style="margin-top: 10px;">
-        <a href="https://doi.org/10.21203/rs.3.rs-4385503/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
   </div>
