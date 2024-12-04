@@ -6,6 +6,7 @@ from bibtexparser.customization import homogenize_latex_encoding
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
     'ACM SIGKDD': 'KDD',
+    'COLING' : 'COLING',
     'IEEE/CVF Conference on Computer Vision and Pattern Recognition': 'CVPR',
     'arXiv preprint': 'Preprint',
     'International Conference on Learning Representations': 'ICLR',
