@@ -14,7 +14,7 @@ I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-
 
 
 ## Teaching
-- Lecturer, [Large Language Models](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at University of California, Merced, 2025
+- Instructor, [Large Language Models](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at University of California, Merced, 2025
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2020 and 2021
 - Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
 - Teaching Assistant, [Programming Methodology](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
