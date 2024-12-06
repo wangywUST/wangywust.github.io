@@ -128,7 +128,11 @@
 </li>
 
 <li>
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+    <img src="Image/bi2024lpnl.png" class="teaser img-fluid z-depth-1" style="width: 110px; height: 130px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">ACL</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">Lpnl: Scalable link prediction with large language models</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
