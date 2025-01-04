@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
-body { background-color: #fff; padding: 0px; font: 19.0px/1.5 Crimson Pro, serif; color: #595959; font-weight: 400; margin: 0; }
+body { background-color: #fff; padding: 0px; font: 16.0px/1.5 Crimson Pro, serif; color: #595959; font-weight: 400; margin: 0; }
 
 .pub-row { display: flex; align-items: center; }
 
@@ -91,10 +91,7 @@ a small { font-size: 11px; color: #777; margin-top: -0.3em; display: block; }
 
 a:hover small { color: #777; }
 
-.wrapper {
-    width: 1200px;  /* 增加整体宽度 */
-    margin: 0 auto;
-}
+.wrapper { width: 960px; margin: 0 auto; }
 
 blockquote { border-left: 1px solid #e5e5e5; margin: 0; padding: 0 0 0 20px; font-style: italic; }
 
@@ -114,7 +111,7 @@ th { color: #444; }
 
 img { max-width: 100%; }
 
-header { width: 132px; float: left; position: fixed; -webkit-font-smoothing: subpixel-antialiased; padding-top: 5.5em; text-align: center; }
+header { width: 232px; float: left; position: fixed; -webkit-font-smoothing: subpixel-antialiased; padding-top: 5.5em; text-align: center; }
 
 header ul { list-style: none; height: 40px; padding: 0; background: #f4f4f4; border-radius: 5px; border: 1px solid #e0e0e0; width: 270px; }
 
@@ -138,13 +135,13 @@ header ul li + li + li { border-right: none; width: 89px; }
 
 header ul a strong { font-size: 14px; display: block; color: #222; }
 
-section { width: 750px; float: right; padding-top: 5.5em; padding-bottom: 50px; }
+section { width: 650px; float: right; padding-top: 5.5em; padding-bottom: 50px; }
 
 small { font-size: 11px; }
 
 hr { border: 0; background: #e5e5e5; height: 1px; margin: 0 0 20px; }
 
-footer { width: 132px; float: left; position: fixed; bottom: 30px; -webkit-font-smoothing: subpixel-antialiased; text-align: center; }
+footer { width: 232px; float: left; position: fixed; bottom: 30px; -webkit-font-smoothing: subpixel-antialiased; text-align: center; }
 
 @media print, screen and (max-width: 960px) { .pub-row { display: flex; align-items: center; } div.wrapper { width: auto; margin: 0; } header, section, footer { float: none; position: static; width: auto; } header { padding-right: 320px; } section { border: 1px solid #e5e5e5; border-width: 1px 0; padding: 20px 0; margin: 0 0 20px; } header a small { display: inline; } header ul { position: absolute; right: 50px; top: 52px; } .image.avatar img { border-radius: 100%; width: 117px; padding: 20px; } #head1o2 { visibility: hidden; } #head2o2 { visibility: hidden; } }
 
