@@ -8,7 +8,7 @@ layout: homepage
 
 ## Research Aim
 
-At the NICE Lab, we envision a future where AI and networks converge to create intelligent digital ecosystems. Our mission is to pioneer transformative technologies at this intersection, developing next-generation systems that are both technologically advanced and human-centric, ultimately building the foundation for a fully connected, intelligent world.
+At the UC Merced NLP Lab, we envision a future where language model based AI assistants converge to create intelligent digital ecosystems. Our mission is to pioneer transformative technologies at this intersection, developing next-generation systems that are both technologically advanced and human-centric, ultimately building the foundation for a fully connected, intelligent world.
 
 ## Team Members
 
