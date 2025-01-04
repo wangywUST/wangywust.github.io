@@ -32,7 +32,7 @@ header {
     position: fixed;
     -webkit-font-smoothing: subpixel-antialiased;
     padding-top: 5.5em;
-    padding-left: 2%; /* 添加左侧内边距 */
+    padding-left: 6%; /* 添加左侧内边距 */
     text-align: center;
 }
 
@@ -265,8 +265,8 @@ papertitle {
 
 .image.avatar img {
     border-radius: 100%;
-    width: 28%;
-    padding: 15px;
+    width: 30%;
+    padding: 16px;
 }
 
 #header .image.avatar {

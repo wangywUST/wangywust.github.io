@@ -8,7 +8,8 @@ layout: homepage
 
 ## Research Aim
 
-At the UC Merced NLP Lab, we envision a future where language model based AI systems converge to create trustworthy intelligent assistants to serve humans in most scenarios, e.g., education, healthcare, information search. Our mission is to pioneer transformative technologies at this intersection, developing next-generation systems that are both technologically advanced and human-centric, ultimately building the foundation for a fully connected, intelligent world.
+At the UC Merced NLP Lab, we envision a future where language model based AI systems converge to create trustworthy intelligent assistants to serve humans in all important scenarios, e.g., education, healthcare, creative work. 
+Our mission is to pioneer transformative technologies at this intersection, developing next-generation AI systems that are both technologically advanced and human-centric, ultimately building the foundation for a mutual trusted, intelligent world.
 
 ## Team Members
 
