@@ -45,63 +45,6 @@
       }
    </script>
    
-    <style>
-        #back-to-top {
-          border: 1px solid #ccc;
-          border-radius: 0;
-          font-size: 15px;
-          width: 100px;
-          text-align: center;
-          line-height: 30px;
-          height: 30px;
-        }
-    </style>
-    
-    <!-- 新的导航样式 -->
-    <style>
-        .wrapper {
-            position: relative;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 30px;
-            right: 50px;
-            display: flex;
-            gap: 20px;
-            background-color: white;
-            padding: 10px;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-radius: 5px;
-        }
-
-        .nav-menu a {
-            color: #333;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 5px 15px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-        }
-
-        @media screen and (max-width: 768px) {
-            .nav-menu {
-                position: relative;
-                top: 0;
-                right: 0;
-                justify-content: center;
-                width: 100%;
-                margin: 20px 0;
-                flex-wrap: wrap;
-            }
-        }
-    </style>
 
   </head>
   <body>
@@ -124,14 +67,17 @@
         textColor: '#333'
       })
     </script>
-    
-    <!-- 导航菜单放在这里 -->
-    <div class="nav-menu">
-        <a href="./research.html">Research</a>
-        <a href="./publications.html">Publications</a>
-        <a href="./teaching.html">Teaching</a>
-        <a href="./blog.html">Blog</a>
-    </div>
+    <style>
+        #back-to-top {
+          border: 1px solid #ccc;
+          border-radius: 0;
+          font-size: 15px;
+          width: 100px;
+          text-align: center;
+          line-height: 30px;
+          height: 30px;
+        }
+    </style>
     
     <div class="wrapper">
       <header>
