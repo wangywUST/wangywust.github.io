@@ -2,7 +2,7 @@
 layout: homepage
 ---
 
-## About Me
+# About Me
 
 **I will join the Department of Computer Science at [University of California, Merced](https://www.ucmerced.edu/) as an Assistant Professor in the Spring of 2025.**<br>
 
@@ -13,7 +13,7 @@ I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-
 {% include_relative _includes/output_file.md %}
 
 
-## Teaching
+# Teaching
 - Instructor, [Large Language Models](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at University of California, Merced, 2025
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2020 and 2021
 - Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
@@ -23,7 +23,7 @@ I am currently a Postdoc at [UCLA](https://www.ucla.edu/) advised by [Prof. Kai-
 
 {% include_relative _includes/services.md %}
 
-## Contact
+# Contact
 **Address:** [5200 Lake Rd, Merced, CA 95343](https://g.co/kgs/4tVi9BQ)
 <br>
 **Office Location:**  Science & Engineering 2, Office 205
