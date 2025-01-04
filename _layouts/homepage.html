@@ -57,34 +57,48 @@
         }
     </style>
     
-    <!-- 新添加的导航样式 -->
+    <!-- 新的导航样式 -->
     <style>
+        .wrapper {
+            position: relative;
+        }
+
         .nav-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: fixed;
+            top: 30px;
+            right: 50px;
             display: flex;
             gap: 20px;
+            background-color: white;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
         }
 
         .nav-menu a {
             color: #333;
             text-decoration: none;
             font-size: 16px;
-            padding: 5px 10px;
+            padding: 5px 15px;
             border-radius: 4px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .nav-menu a:hover {
             background-color: #f0f0f0;
+            transform: translateY(-2px);
         }
 
         @media screen and (max-width: 768px) {
             .nav-menu {
-                position: static;
+                position: relative;
+                top: 0;
+                right: 0;
                 justify-content: center;
-                margin-top: 20px;
+                width: 100%;
+                margin: 20px 0;
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -111,15 +125,15 @@
       })
     </script>
     
+    <!-- 导航菜单放在这里 -->
+    <div class="nav-menu">
+        <a href="./research.html">Research</a>
+        <a href="./publications.html">Publications</a>
+        <a href="./teaching.html">Teaching</a>
+        <a href="./blog.html">Blog</a>
+    </div>
+    
     <div class="wrapper">
-        <!-- 新添加的导航菜单 -->
-        <div class="nav-menu">
-            <a href="./research.html">Research</a>
-            <a href="./publications.html">Publications</a>
-            <a href="./teaching.html">Teaching</a>
-            <a href="./blog.html">Blog</a>
-        </div>
-
       <header>
         {% if site.avatar %}
         <a class="image avatar"><img src="{{ site.avatar }}" alt="avatar" /></a>
