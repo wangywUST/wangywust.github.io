@@ -19,10 +19,10 @@ Our mission is to pioneer transformative technologies at this intersection, deve
 Our research is highly interdisciplinary, involving collaboration with experts from computer vision, healthcare, and education. Our focus is primarily on publishing in top-tier AI conferences or journals, complemented by practical implementations. Our primary goal is to prepare our students for future academic positions as well as high-impact positions in industry. Here's what we're looking for and what you can expect from this journey:
 
 ### 1. What I Offer:
-- Resources: Full scholarships covering study and living in Hong Kong, plus access to advanced research facilities.
+- Resources: Full scholarships covering study and living in California, plus access to advanced research facilities.
 - Guidance: **Hands-on mentorship with clear direction.** For outstanding students, I also offer adequate freedom and opportunities for growth.
 - International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international academic connections.
-- Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued. **Say no to 996; embrace sustainable productivity.**
+- Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued. **Say no to work overtime.**
 
 ### 2. What I Expect from You:
 - Passion for Learning: **Strong self-motivation and ability to quickly learn from new fields.**
