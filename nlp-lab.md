@@ -16,7 +16,7 @@ Our mission is to pioneer transformative technologies at this intersection, deve
 
 ## My Support and Expectations
 
-Our research is highly interdisciplinary, involving collaboration with experts from AI, networking systems, human–computer interaction, psychology, and electrical engineering. Our focus is primarily on publishing in top-tier AI conferences and IEEE journals, complemented by practical implementations. Our primary goal is to prepare our students for future academic positions as well as high-impact positions in industry. Here's what we're looking for and what you can expect from this journey:
+Our research is highly interdisciplinary, involving collaboration with experts from computer vision, healthcare, and education. Our focus is primarily on publishing in top-tier AI conferences or journals, complemented by practical implementations. Our primary goal is to prepare our students for future academic positions as well as high-impact positions in industry. Here's what we're looking for and what you can expect from this journey:
 
 ### 1. What I Offer:
 - Resources: Full scholarships covering study and living in Hong Kong, plus access to advanced research facilities.
