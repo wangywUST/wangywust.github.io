@@ -38,16 +38,12 @@
     <!-- 添加导航栏样式 -->
     <style>
       .topnav {
-        background-color: #ddeafc;
         overflow: hidden;
         position: relative;
-        padding: 10px 20px;
       }
 
       .topnav #myLinks {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 20px;
+        display: none;
       }
 
       .topnav a {
@@ -56,42 +52,26 @@
         text-decoration: none;
         font-size: 17px;
         display: inline-block;
-        vertical-align: middle;
       }
 
-      .topnav a:hover {
-        background-color: #c4d7f5;
-      }
-
-      .topnav a.icon {
+      .topnav .icon {
         display: none;
         position: absolute;
-        right: 0;
-        top: 0;
-      }
-
-      .topnav img {
-        vertical-align: middle;
+        right: 20px;
+        top: 15px;
       }
 
       @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child) {display: none;}
+        .topnav .icon {
+          display: block;
+        }
         .topnav #myLinks {
-          display: none;
           width: 100%;
-          margin-left: 0;
+          text-align: right;
+          padding-right: 20px;
         }
-        .topnav a:not(:first-child) {
-          display: none;
-        }
-        .topnav a.icon {
-          display: block;
-          padding: 25px 20px;
-        }
-        .topnav.responsive #myLinks {
-          display: block;
-          text-align: left;
-        }
-        .topnav.responsive #myLinks a {
+        .topnav #myLinks a {
           display: block;
           padding: 10px 20px;
         }
@@ -106,37 +86,52 @@
           else
               e.style.display = 'none';
       }
-    </script>
+   </script>
+
+   <script>
+      function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "inline") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "inline";
+        }
+      }
+
+      function reverseLinks() {
+        var container = document.getElementById("myLinks");
+        var links = Array.from(container.getElementsByTagName('a'));
+        container.innerHTML = '';
+        for (var i = links.length - 1; i >= 0; i--) {
+          container.appendChild(links[i]);
+        }
+      }
+   </script>
    
   </head>
   <body>
+    {% if site.enable_hopkins_logo %}
+    <lightonly>
+      <div id="head1o2">
+        <div id="myheader" style="background-color:#ddeafc; margin: 0px auto; height: 60px;">
+          <a href="https://www.ucla.edu/">
+            <img style="max-height: 90%; margin-left: 17%; padding-top: 2px;" src="./assets/img/uc_yellow.svg" alt="Merced Logo">
+          </a>
+        </div>
+      </div>
+    </lightonly>
+    {% endif %}
+
     <!-- 添加导航栏 -->
-    <div class="topnav" id="myTopnav">
-      <a href="https://www.ucla.edu/">
-        <img style="max-height: 40px;" src="./assets/img/uc_yellow.svg" alt="UC Logo">
-      </a>
-      <div id="myLinks">
+    <div class="topnav">
+      <div id="myLinks" style="text-align: right; padding: 10px 20px;">
         <a href="/nlp-lab">UC Merced NLP Lab</a>
         <a href="/courses">Course</a>
       </div>
-      <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+      <a href="javascript:void(0);" class="icon" onclick="myFunction();reverseLinks()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
-
-    <!-- 添加导航栏的JavaScript -->
-    <script>
-      function toggleNav() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-          x.className += " responsive";
-          document.getElementById("myLinks").style.display = "block";
-        } else {
-          x.className = "topnav";
-          document.getElementById("myLinks").style.display = "none";
-        }
-      }
-    </script>
 
     <script src="./assets/js/vanilla-back-to-top.min.js"></script>
     <script>addBackToTop({
