@@ -4,7 +4,9 @@ layout: homepage
 
 # UC Merced NLP Lab
 
-<img src='lab_logo.png' width = "500"><br/>
+<p align="center">
+<img src='lab_logo.png' width = "50%">
+</p>
 
 ## Research Aim
 
