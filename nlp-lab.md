@@ -15,10 +15,12 @@ Our mission is to pioneer transformative technologies at this intersection, deve
 
 ## Team Advisors
 
-### Advisor: Assistant Professor, Yiwei Wang
+### 
 
 <p align="center">
-<img src='photo.jpg' width = "10%">
+	<img src='photo.jpg' width = "10%">
+	<br>
+	Advisor: Assistant Professor, Yiwei Wang
 </p>
 
 Yiwei Wang is an Assistant Professor at University of California, Merced. Ph.D. from NUS, MPhil from HKUST and B.S. from SEU. He serves as Area Chair for ICLR, ICML, IJCAI, ACL ARR, etc. Reviewer of TPAMI, TKDE, NeurIPS, KDD, WWW, AAAI, ICCV, CVPR, etc., Recognized as 1 out of 10 most innovative and impactful PhD students focusing on Data Science in Singapore by Singapore Data Science Consortium (SDSC) in 2020.
