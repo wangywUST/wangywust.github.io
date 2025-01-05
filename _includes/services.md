@@ -48,7 +48,7 @@
   <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Computer Vision (ECCV) 2022, 2023, 2024</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2022, 2023, 2024</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>IEEE International Conference on Multimedia and Expo (ICME) 2022</autocolor></a></li>  
-  <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD) 2020</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Machine Learning (ECML-PKDD) 2020</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2022</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>The 28th International Conference on Artificial Intelligence and Statistics (AISTATS) 2025</autocolor></a></li>  
   <!--
