@@ -22,8 +22,11 @@ UC Merced, according to US News 2024, [is ranked 58th in the U.S. universities](
 <img src='loc_logo.png' width = "100%">
 </p>
 
-Our connections include but are not limited to the following organizations:
+Our friends are at the following organizations:
 
+<p align="center">
+<img src='connect_logo.png' width = "100%">
+</p>
 
 
 ## Research Aim
