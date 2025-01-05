@@ -61,14 +61,14 @@
 
 <ul style="margin:0 0 20px;">
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)</autocolor></a></li>
-  <li><a href="https://www.computer.org/csdl/journal/tp"><autocolor>Neurocomputing</autocolor></a></li>
-  <li><a href="https://www.springer.com/journal/11263"><autocolor>Pattern Recognition</autocolor></a></li>
   <li><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-image-processing"><autocolor>IEEE Transactions on Knowledge and Data Engineering (TKDE)</autocolor></a></li>
   <li><a href="https://www.computer.org/csdl/journal/tk"><autocolor>IET Image Processing</autocolor></a></li>
   <li><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia"><autocolor>IEEE Transactions on Big Data</autocolor></a></li>
   <li><a href="https://ieee-cas.org/publications/ieee-transactions-circuits-and-systems-video-technology"><autocolor>Computer Science Review</autocolor></a></li>
   <li><a href="https://cis.ieee.org/publications/t-neural-networks-and-learning-systems"><autocolor>Cybernetics and Systems</autocolor></a></li>
   <li><a href="https://dl.acm.org/journal/tomm"><autocolor>Transactions on Systems, Man and Cybernetics: Systems</autocolor></a></li>
+  <li><a href="https://www.computer.org/csdl/journal/tp"><autocolor>Neurocomputing</autocolor></a></li>
+  <li><a href="https://www.springer.com/journal/11263"><autocolor>Pattern Recognition</autocolor></a></li>
   <!--
   <li><a href="https://www.journals.elsevier.com/neural-networks"><autocolor>Neural Networks</autocolor></a></li>
   <li><a href="https://www.springer.com/journal/10994"><autocolor>Machine Learning</autocolor></a></li>
