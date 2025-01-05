@@ -11,7 +11,7 @@ layout: homepage
 ## Our Location
 
 <p align="center">
-<img src='loc_logo.png' width = "50%">
+<img src='loc_logo.png' width = "100%">
 </p>
 
 UC Merced, according to US News 2024, [is ranked 58th in U.S. universities](https://www.usnews.com/best-colleges/rankings/national-universities?schoolName=University+of+California). In the UC system, its rank higher than UC Riverside (ranked 76th) and UC Santa Cruz (ranked 84th).
