@@ -8,6 +8,20 @@ layout: homepage
 <img src='lab_logo.png' width = "50%">
 </p>
 
+## Our Location
+
+<p align="center">
+<img src='loc_logo.png' width = "50%">
+</p>
+
+UC Merced, according to US News 2024, [is ranked 58th in U.S. universities](https://www.usnews.com/best-colleges/rankings/national-universities?schoolName=University+of+California). In the UC system, its rank higher than UC Riverside (ranked 76th) and UC Santa Cruz (ranked 84th).
+
+**UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.**
+
+Our connections include but are not limited to the following organizations:
+
+
+
 ## Research Aim
 
 At the UC Merced NLP Lab, we envision a future where large language model based AI systems converge to create trustworthy intelligent assistants to serve humans in all important scenarios, e.g., education, healthcare, creative work. 
@@ -17,7 +31,7 @@ Our research focuses on large foundation models based trustworthy natural langua
 
 ## Team Advisors
 
-### Advisor: Assistant Professor, Yiwei Wang
+### Advisor: [Assistant Professor, Yiwei Wang](https://wangywust.github.io/)
 
 <p align="center">
 	<img src='photo.jpg' width = "10%">
