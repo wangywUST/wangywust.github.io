@@ -15,6 +15,18 @@ Our mission is to pioneer transformative technologies at this intersection, deve
 
 ## Team Advisors
 
+### Advisor: Assistant Professor, Yiwei Wang
+
+<p align="center">
+<img src='photo.jpg' width = "20%">
+</p>
+
+### Advisor: Assistant Professor, Yiwei Wang
+
+<p align="center">
+<img src='photo.jpg' width = "20%">
+</p>
+
 ## Open Positions
 
 We have multiple openings for PhD students, postdoctoral researchers, visiting students, research assistants, and interns:
