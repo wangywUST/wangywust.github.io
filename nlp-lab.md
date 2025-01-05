@@ -40,7 +40,7 @@ We have multiple openings for PhD students, postdoctoral researchers, visiting s
 
 ### 1. PhD Students
 
-2-4 full scholarship opportunities.
+3-5 full scholarship opportunities.
 
 ### 2. Visiting Students / Research Assistants / Interns
 
@@ -55,7 +55,7 @@ Our research is highly interdisciplinary, involving collaboration with experts f
 - Resources: Full scholarships covering study and living in California, plus access to advanced research facilities.
 - Guidance: **Hands-on mentorship with clear direction.** For outstanding students, I also offer adequate freedom and opportunities for growth.
 - International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international academic connections.
-- Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued. **Say no to work overtime.**
+- Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued.
 
 ### 2. What We Expect from You:
 - Passion for Learning: **Strong self-motivation and ability to quickly learn from new fields.**
