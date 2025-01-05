@@ -60,6 +60,7 @@
 <h4 style="margin:0 10px 0;">Journal Reviewer</h4>
 
 <ul style="margin:0 0 20px;">
+  <li><a href="https://neurips.cc/Conferences/2022"><autocolor>IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)</autocolor></a></li>
   <li><a href="https://www.computer.org/csdl/journal/tp"><autocolor>Neurocomputing</autocolor></a></li>
   <li><a href="https://www.springer.com/journal/11263"><autocolor>Pattern Recognition</autocolor></a></li>
   <li><a href="https://signalprocessingsociety.org/publications-resources/ieee-transactions-image-processing"><autocolor>IEEE Transactions on Knowledge and Data Engineering (TKDE)</autocolor></a></li>
