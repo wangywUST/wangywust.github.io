@@ -63,6 +63,6 @@ Our research is highly interdisciplinary, involving collaboration with experts f
 
 ## How to apply
 
-If you're interested in joining NICE Lab or would like more information, please contact me:
+If you're interested in joining UC Merced NLP Lab or would like more information, please contact me:
 - Email: yiweiwang2@ucmerced.edu
 - Attachment: CV
