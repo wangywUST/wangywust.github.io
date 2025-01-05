@@ -38,6 +38,34 @@
   </div>
 </div>
 </li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Context-DPO: Aligning Language Models for Context-Faithfulness</a></div>
+      <div class="author"><strong>Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, others</strong>.</div>
+      <div class="periodical"><em>arXiv preprint arXiv:2412.15280, 2025.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Are LLMs Really Not Knowledgable? Mining the Submerged Knowledge in LLMs'  Memory</a></div>
+      <div class="author"><strong>Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang</strong>.</div>
+      <div class="periodical"><em>arXiv preprint arXiv:2412.20846, 2025.</em></div>
+      <div class="links" style="margin-top: 10px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
 <h3 style="margin-top: 20px; margin-bottom: 5px;">2024</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">

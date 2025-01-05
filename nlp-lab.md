@@ -24,12 +24,12 @@ Our mission is to pioneer transformative technologies at this intersection, deve
 
 Yiwei Wang is an Assistant Professor at University of California, Merced. Ph.D. from NUS, MPhil from HKUST and B.S. from SEU. He serves as Area Chair for ICLR, ICML, IJCAI, ACL ARR, etc. Reviewer of TPAMI, TKDE, NeurIPS, KDD, WWW, AAAI, ICCV, CVPR, etc., Recognized as 1 out of 10 most innovative and impactful PhD students focusing on Data Science in Singapore by Singapore Data Science Consortium (SDSC) in 2020.
 
-### Senior Advisor: Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang
+### [Senior Advisor: Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)
 
 <p align="center">
 	<img src='mhyang2005_70.jpg' width = "10%">
 	<br>
-[Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)
+Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang
 </p>
 
 ACM Fellow and IEEE Fellow, Ming-Hsuan Yang is a Professor at University of California, Merced. Ph.D. from UIUC and B.S. from NTHU. He serves as Program Chair for ICCV and ACCV, and EiC of CVIU. Currently AEiC of PAMI and AE of IJCV. SAC/AC for top conferences in computer vision (CVPR, ICCV, ECCV) and machine learning (NeurIPS, ICLR, ICML). His research has been recognized with Best Paper Award at ICML, Longuet-Higgins Prize at CVPR, and Best Paper Honorable Mentions at multiple venues. Highly Cited Researcher by Clarivate Analytics, NSF CAREER Award recipient, and Google Faculty Award recipient.
