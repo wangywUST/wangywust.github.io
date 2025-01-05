@@ -13,10 +13,14 @@ layout: homepage
 UC Merced, according to US News 2024, [is ranked 58th in the U.S. universities](https://www.usnews.com/best-colleges/rankings/national-universities?schoolName=University+of+California). In the UC system, its rank higher than UC Riverside (ranked 76th) and UC Santa Cruz (ranked 84th).
 
 <p align="center">
-<img src='loc_logo.png' width = "100%">
+<img src='rank_logo.png' width = "100%">
 </p>
 
 **UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.**
+
+<p align="center">
+<img src='loc_logo.png' width = "100%">
+</p>
 
 Our connections include but are not limited to the following organizations:
 
