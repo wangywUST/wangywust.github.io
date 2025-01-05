@@ -25,6 +25,10 @@
 <ul style="margin:0 0 5px;">
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2025</autocolor></a></li>
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>International Conference on Machine Learning (ICML) 2025</autocolor></a></li>
+  <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2025</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>ACL ARR 2024, 2025</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>IEEE International Conference on Multimedia and Expo (ICME) 2025</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2025</autocolor></a></li>  
 </ul>
 
 <h4 style="margin:0 10px 0;">Conference Reviewer</h4>
@@ -42,7 +46,7 @@
   <li><a href="https://aaai.org/Conferences/AAAI-23/"><autocolor>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2021, 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://ijcai-23.org/"><autocolor>International Conference on Computer Vision (ICCV) 2021, 2022, 2023, 2024</autocolor></a></li>
   <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Computer Vision (ECCV) 2022, 2023, 2024</autocolor></a></li>  
-  <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI-ECAI) 2022, 2023, 2024</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2022, 2023, 2024</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>IEEE International Conference on Multimedia and Expo (ICME) 2022</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD) 2020</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2022</autocolor></a></li>  
