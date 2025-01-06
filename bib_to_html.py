@@ -123,7 +123,7 @@ def generate_html(entry):
     code_url = entry.get('code_url', entry.get('code', '#'))
 
     # Define the image style to make it slightly longer and adjust layout
-    image_style = "width: 110px; height: 130px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
+    image_style = "width: 150px; height: 170px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
@@ -138,7 +138,7 @@ def generate_html(entry):
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links" style="margin-top: 10px;">
+      <div class="links" style="margin-top: 3px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
@@ -155,7 +155,7 @@ def generate_html(entry):
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links" style="margin-top: 10px;">
+      <div class="links" style="margin-top: 3px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
       </div>
@@ -242,7 +242,7 @@ def generate_bibliography_html(entries):
     # Sort entries by year from newest to oldest, grouped by venue, with Preprints/arXiv at the bottom for each year
     sorted_entries = sort_entries_by_year(entries)
 
-    html_content = '''<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:15px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:15px;">Google Scholar</a><temp style="font-size:15px;">]</temp><temp style="font-size:15px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:15px;">DBLP</a><temp style="font-size:15px;">]</temp></h2>
+    html_content = '''<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:25px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:25px;">Google Scholar</a><temp style="font-size:25px;">]</temp><temp style="font-size:25px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:25px;">DBLP</a><temp style="font-size:25px;">]</temp></h2>
 
 <div class="publications">
 <ol class="bibliography">
