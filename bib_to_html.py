@@ -139,8 +139,8 @@ def generate_html(entry):
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -156,8 +156,8 @@ def generate_html(entry):
       <div class="author"><strong>{formatted_authors}</strong>.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>

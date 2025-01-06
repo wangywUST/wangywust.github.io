@@ -14,8 +14,8 @@
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Jiayi Mao, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -32,8 +32,8 @@
       <div class="author"><strong>Cheng Wang, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -50,8 +50,8 @@
       <div class="author"><strong>Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, others</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2412.15280, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -68,8 +68,8 @@
       <div class="author"><strong>Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2412.20846, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -82,8 +82,8 @@
       <div class="author"><strong>Yihong Luo, Yuhan Chen, Siya Qiu, Yiwei Wang, Chen Zhang, Yan Zhou, Xiaochun Cao, Jing Tang</strong>.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -96,8 +96,8 @@
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Hongcheng Gao, Yilong Xu, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -114,8 +114,8 @@
       <div class="author"><strong>Bingxuan Li, Yiwei Wang, Tao Meng, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -128,8 +128,8 @@
       <div class="author"><strong>Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Xueqi Chen</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2401.12585" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2401.12585" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -142,8 +142,8 @@
       <div class="author"><strong>Zhicheng Yang, Yinya Huang, Jing Xiong, Liang Feng, Xiaodan Liang, Yiwei Wang, Jing Tang</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -160,8 +160,8 @@
       <div class="author"><strong>Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -178,8 +178,8 @@
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL 2024, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -192,8 +192,8 @@
       <div class="author"><strong>Juncheng Liu, Bryan Hooi, Kenji Kawaguchi, Yiwei Wang, Chaosheng Dong, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>The Twelfth International Conference on Learning Representations (ICLR), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -206,8 +206,8 @@
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Pengliang Ji, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2405.11613, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2405.11613" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="https://arxiv.org/abs/2405.11613" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2405.11613" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://arxiv.org/abs/2405.11613" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -220,8 +220,8 @@
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2404.00216, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2404.00216" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2404.00216" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -234,8 +234,8 @@
       <div class="author"><strong>Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2406.04975, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2406.04975" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2406.04975" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -252,8 +252,8 @@
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -266,8 +266,8 @@
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Authorea Preprints, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -280,8 +280,8 @@
       <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Naifan Cheung, Nanyun Peng, Kai-wei Chang</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2410.20021, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -294,8 +294,8 @@
       <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Preprint, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2402.07140" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2402.07140" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -308,8 +308,8 @@
       <div class="author"><strong>Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -326,8 +326,8 @@
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Muhao Chen, Yuxuan Liang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2023.emnlp-main.8" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2023.emnlp-main.8" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -340,8 +340,8 @@
       <div class="author"><strong>Yuxuan Liang, Yutong Xia, Songyu Ke, Yiwei Wang, Qingsong Wen, Junbo Zhang, Yu Zheng, Roger Zimmermann</strong>.</div>
       <div class="periodical"><em>Proceedings of the AAAI Conference on Artificial Intelligence, 2023.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1609/aaai.v37i12.26676" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1609/aaai.v37i12.26676" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -354,8 +354,8 @@
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen</strong>.</div>
       <div class="periodical"><em>CONLL 2023, 2023.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -368,8 +368,8 @@
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Yozen Liu, Neil Shah</strong>.</div>
       <div class="periodical"><em>Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM), 2023.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -382,8 +382,8 @@
       <div class="author"><strong>Juncheng Liu, Zequn Sun, Bryan Hooi, Yiwei Wang, Dayiheng Liu, Baosong Yang, Xiaokui Xiao, Muhao Chen</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.88" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.88" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -396,8 +396,8 @@
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.128" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.128" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -410,8 +410,8 @@
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Dayiheng Liu, Baosong Yang, Juncheng Liu, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.18653/v1/2022.naacl-main.224" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.18653/v1/2022.naacl-main.224" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -424,8 +424,8 @@
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, Zheyi Pan, Yifang Yin, Hongyang Chen, Junbo Zhang, Yu Zheng, David S Rosenblum, Roger Zimmermann</strong>.</div>
       <div class="periodical"><em>IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/tkde.2022.3222373" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/tkde.2022.3222373" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -438,8 +438,8 @@
       <div class="author"><strong>Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>Joint European Conference on Machine Learning and Knowledge Discovery in Databases (ECML-PKDD), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1007/978-3-031-26387-3\_4" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1007/978-3-031-26387-3\_4" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -452,8 +452,8 @@
       <div class="author"><strong>Yiwei Wang, Bryan Hooi, Yozen Liu, Tong Zhao, Zhichun Guo, Neil Shah</strong>.</div>
       <div class="periodical"><em>Learning on Graphs Conference (LOG), 2022.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -466,8 +466,8 @@
       <div class="author"><strong>Juncheng Liu, Kenji Kawaguchi, Bryan Hooi, Yiwei Wang, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -480,8 +480,8 @@
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Siddharth Bhatia, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -494,8 +494,8 @@
       <div class="author"><strong>Yujun Cai, Yiwei Wang, Yiheng Zhu, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Chuanxia Zheng, Sijie Yan, Henghui Ding, others</strong>.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF International Conference on Computer Vision, 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/iccv48922.2021.01144" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/iccv48922.2021.01144" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -508,8 +508,8 @@
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Wei Wang, Henghui Ding, Muhao Chen, Jing Tang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2112.00499, 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2112.00499" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2112.00499" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -522,8 +522,8 @@
       <div class="author"><strong>Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>2022 International Joint Conference on Neural Networks (IJCNN), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/ijcnn55064.2022.9892942" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/ijcnn55064.2022.9892942" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -536,8 +536,8 @@
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Junkai Sun, Yiwei Wang, Junbo Zhang, Yu Zheng, David Rosenblum, Roger Zimmermann</strong>.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021, 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3442381.3449792" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3442381.3449792" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -550,8 +550,8 @@
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Hanshu Yan, Yiwei Wang, Zekun Tong, Roger Zimmermann</strong>.</div>
       <div class="periodical"><em>IJCAI, 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.24963/ijcai.2021/207" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.24963/ijcai.2021/207" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -564,8 +564,8 @@
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, Ye Liu, Junbo Zhang, Yu Zheng, David S Rosenblum</strong>.</div>
       <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1007/978-3-030-67658-2\_33" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1007/978-3-030-67658-2\_33" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -578,8 +578,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3442381.3450025" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3442381.3450025" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -592,8 +592,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3442381.3449796" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3442381.3449796" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -606,8 +606,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1007/978-3-030-67658-2\_16" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1007/978-3-030-67658-2\_16" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -620,8 +620,8 @@
       <div class="author"><strong>Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2012.07065, 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2012.07065" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2012.07065" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -634,8 +634,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2009.10564, 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2009.10564" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://arxiv.org/abs/2009.10564" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -648,8 +648,8 @@
       <div class="author"><strong>Yujun Cai, Lin Huang, Yiwei Wang, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Xu Yang, Yiheng Zhu, Xiaohui Shen, others</strong>.</div>
       <div class="periodical"><em>Computer Vision--ECCV 2020: 16th European Conference, 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1007/978-3-030-58571-6\_14" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1007/978-3-030-58571-6\_14" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -662,8 +662,8 @@
       <div class="author"><strong>Yuxuan Liang, Kun Ouyang, Yiwei Wang, David Samuel Rosenblum</strong>.</div>
       <div class="periodical"><em>Preprint, 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -676,8 +676,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yujun Ca, Bryan Hooi, Beng Chin Ooi</strong>.</div>
       <div class="periodical"><em>2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE), 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/issre5003.2020.00037" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/issre5003.2020.00037" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -694,8 +694,8 @@
       <div class="author"><strong>Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3394486.3403063" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3394486.3403063" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -708,8 +708,8 @@
       <div class="author"><strong>Yiwei Wang, Shenghua Liu, Minji Yoon, Hemank Lamba, Wei Wang, Christos Faloutsos, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>2020 IEEE International Conference on Data Mining (ICDM), 2020.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/icdm50108.2020.00071" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/icdm50108.2020.00071" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -722,8 +722,8 @@
       <div class="author"><strong>Licheng Zhao, Yiwei Wang, Sandeep Kumar, Daniel P Palomar</strong>.</div>
       <div class="periodical"><em>IEEE Transactions on Signal Processing, 2019.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1109/tsp.2019.2925602" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1109/tsp.2019.2925602" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
@@ -736,8 +736,8 @@
       <div class="author"><strong>Yiwei Wang, Mark James Carman, Yuan-Fang Li</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2017 ACM on Conference on Information and Knowledge Management, 2017.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://doi.org/10.1145/3132847.3133161" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:12px;">Code</a>
+        <a href="https://doi.org/10.1145/3132847.3133161" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
 </div>
