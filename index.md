@@ -13,18 +13,24 @@ I am an Assistant Professor at the Department of Computer Science at [University
 ## Main Experience
 
 **University of California, Merced**\t\t\t\t\t\tJan. 2025 - Present  
+Assistant Professor  
 
 **UCLA NLP Lab**\t\t\t\t\t\tSep. 2023 - Dec. 2024  
+Postdoc  
 Advisor: Kai-Wei Chang, Nanyun Peng  
 
-**Amazon**\t\t\t\t\t\tSep. 2022 - Sep. 2023  
+**Amazon (Seattle)**\t\t\t\t\t\tSep. 2022 - Sep. 2023  
+Applied Scientist  
 
 **National University of Singapore**\t\t\t\t\t\tJul. 2019 - Mar. 2023  
+Ph.D. Student  
 Advisor: Bryan Hooi, Muhao Chen  
 
 **Hong Kong University of Science and Technology**\t\t\t\t\t\tAug. 2017 - Jun. 2019  
+M.Phil. Student  
 
 **Southeast University**\t\t\t\t\t\tAug. 2013 - Jun. 2017  
+Undergraduate Student  
 Main Advisor: Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc.
 
 ## Research Focus
