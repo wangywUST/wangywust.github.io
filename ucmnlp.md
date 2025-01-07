@@ -78,7 +78,7 @@ Our research is highly interdisciplinary, involving collaboration with experts f
 - Resources: Full scholarships covering study and living in California, plus access to advanced research facilities.
 - Internships: Support for internships even at the beginniing of Ph.D. study.
 - Guidance: **Hands-on mentorship with clear direction.** For outstanding students, I also offer adequate freedom and opportunities for growth.
-- International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international academic connections.
+- International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international connections to the academy and industry.
 - Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued.
 
 ### 2. What We Expect from You:
