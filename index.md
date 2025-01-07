@@ -8,6 +8,31 @@ I am an Assistant Professor at the Department of Computer Science at [University
 
 **Recruiting Ph.D. students and (remote) research interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
 
+## Main Experience
+
+### University of California, Merced
+**Time:** Jan. 2025 - Present
+
+### UCLA NLP Lab
+**Time:** Sep. 2023 - Dec. 2024
+**Advisor:** Kai-Wei Chang, Nanyun Peng
+
+### Amazon
+**Time:** Sep. 2022 - Sep. 2023
+
+### National University of Singapore
+**Time:** Jul. 2019 - Mar. 2023
+**Advisor:** Bryan Hooi
+
+### Hong Kong University of Science and Technology  
+**Time:** Aug. 2017 - Jun. 2019
+
+### Southeast University
+**Time:** Aug. 2013 - Jun. 2017
+**Main Advisor:** Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc.
+
+## Research Focus
+
 **My research focuses on large foundation models based trustworthy natural language processing and its applications as AI assistants. Our research considers not only textual but also vision data, with the target of understanding ubiquitos multi-modal data in real-world applications.** <br> 
 
 <p align="center">
