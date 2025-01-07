@@ -67,7 +67,7 @@ We have multiple openings for PhD students, visiting students, research assistan
 
 ### 2. Visiting Students / Research Assistants / Interns
 
-We welcome outstanding students (including qualified PhD students, master and undergraduate students, either online or in-person) to join our lab and participate in cutting-edge research projects.
+We welcome students (including qualified PhD students, master and undergraduate students, either online or in-person) to join our lab and participate in cutting-edge research projects.
 
 
 ## Our Support and Expectations
@@ -82,7 +82,7 @@ Our research is highly interdisciplinary, involving collaboration with experts f
 - Friendly Environment and Work-Life Balance: Service attitudes from advisors to students and help to have a good living locally.
 
 ### 2. What We Expect from You:
-- Passion for Learning: **Strong self-motivation and ability to quickly learn from new fields.**
+- Passion for Learning: Strong self-motivation and ability to quickly learn from new fields.
 - Personal Qualities: Responsibility, reliability, and good communication skills.
 
 ## How to apply
