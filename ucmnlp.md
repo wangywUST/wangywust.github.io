@@ -72,14 +72,14 @@ We welcome outstanding students (including qualified PhD students, master and un
 
 ## Our Support and Expectations
 
-Our research is highly interdisciplinary, involving collaboration with experts from computer vision, healthcare, and education. Our focus is primarily on publishing in top-tier AI conferences or journals, complemented by practical implementations. Our primary goal is to prepare our students for future academic positions as well as high-impact positions in industry. Here's what we're looking for and what you can expect from this journey:
+Our research is highly interdisciplinary, involving collaboration with experts from NLP, computer vision, healthcare, and education. Our focus is primarily on publishing in top-tier AI conferences or journals, complemented by practical implementations. Our primary goal is to prepare our students for future academic positions as well as high-impact positions in industry. Here's what we're looking for and what you can expect from this journey:
 
 ### 1. What We Offer:
 - Resources: Full scholarships covering study and living in California, plus access to advanced research facilities.
 - Internships: Support for internships even at the beginniing of Ph.D. study.
-- Guidance: **Hands-on mentorship with clear direction.** For outstanding students, I also offer adequate freedom and opportunities for growth.
+- Guidance: Fundemental research abilities' education that is essential to survive in the current AI community. I also offer adequate freedom and opportunities for growth.
 - International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international connections to the academy and industry.
-- Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued.
+- Friendly Environment and Work-Life Balance: Service attitudes from advisors to students and help to have a good living locally.
 
 ### 2. What We Expect from You:
 - Passion for Learning: **Strong self-motivation and ability to quickly learn from new fields.**
