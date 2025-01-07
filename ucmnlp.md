@@ -16,7 +16,7 @@ UC Merced, according to US News 2024, [is ranked 58th in the U.S. universities](
 <img src='rank_logo.png' width = "100%">
 </p>
 
-**UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.**
+**UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of your Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.**
 
 <p align="center">
 <img src='loc_logo.png' width = "100%">
@@ -59,7 +59,7 @@ ACM Fellow and IEEE Fellow, Ming-Hsuan Yang is a Professor at University of Cali
 
 ## Open Positions
 
-We have multiple openings for PhD students, postdoctoral researchers, visiting students, research assistants, and interns:
+We have multiple openings for PhD students, visiting students, research assistants, and interns:
 
 ### 1. PhD Students
 
@@ -76,6 +76,7 @@ Our research is highly interdisciplinary, involving collaboration with experts f
 
 ### 1. What We Offer:
 - Resources: Full scholarships covering study and living in California, plus access to advanced research facilities.
+- Internships: Support for internships even at the beginniing of Ph.D. study.
 - Guidance: **Hands-on mentorship with clear direction.** For outstanding students, I also offer adequate freedom and opportunities for growth.
 - International Connections: Strong ties with leading researchers and institutions worldwide. I will help you build international academic connections.
 - Friendly Environment and Work-Life Balance: Collaborative and supportive lab culture where teamwork and mutual respect are valued.
