@@ -2,7 +2,7 @@
 layout: homepage
 ---
 
-## EECS 224: Large Language Models
+# EECS 224: Large Language Models
 
 This is a new course of UC Merced starting at Spring 2025. In this course, students will learn the fundamentals about the modeling, theory, ethics, and systems aspects of large language models, as well as gain hands-on experience working with them.
 
