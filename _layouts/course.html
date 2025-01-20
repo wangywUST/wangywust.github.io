@@ -98,31 +98,12 @@
 
       @media screen and (max-width: 600px) {
         #myLinks {
-          display: none;
+          display: flex;
           flex-direction: column;
           gap: 15px;
         }
-        
-        .icon {
-          display: block;
-        }
-        
-        #myLinks.show {
-          display: flex;
-        }
       }
     </style>
-
-    <!-- Scripts remain the same -->
-    <script type="text/javascript">
-      function toggle_vis(id) {
-        var e = document.getElementById(id);
-        if (e.style.display == 'none')
-          e.style.display = 'inline';
-        else
-          e.style.display = 'none';
-      }
-    </script>
   </head>
   <body>
     <!-- Navigation -->
@@ -137,9 +118,6 @@
           <a href="/ucmnlp">UC Merced NLP Lab</a>
           <a href="/llm-course-2025">LLM Course: EECS 224</a>
         </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
       </div>
     </div>
 
