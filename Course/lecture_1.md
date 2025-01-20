@@ -28,8 +28,6 @@ Text demonstrates several key properties:
 
 Based on the above properties shared by different langauges, the NLP researchers develop a unified Machine Learning technique to model language data -- Large Language Models. Let's start to learn this unfied language modeling technique.
 
-![Words in documents that get filtered out of C4](../images/c4-excluded.png)
-
 # What is a Language Model?
 
 ## Mathematical Definition
