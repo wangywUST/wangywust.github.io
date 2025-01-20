@@ -27,3 +27,4 @@ Every student should complete a final project related to LLMs and present it in 
 
 The final project scores will be calculated through 50% Instructor's rating + 50% Classmates' rating. After all the presentations, every student will be asked to choose 3 best projects. The classmates' ratings will be based on the ratings of all the classmates.
 
+{% include_relative Course/lecture_1.md %}
