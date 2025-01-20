@@ -39,11 +39,11 @@ Based on the above properties shared by different languages, NLP researchers dev
 
 A language model is fundamentally a probability distribution over sequences of words or tokens. Mathematically, it can be expressed as:
 
-$$P(w_1, w_2, ..., w_n) = \prod_i P(w_i|w_1, ..., w_{i-1})$$
+$$P(w_1, w_2, ..., w_n) = \prod_{i=1}^{n} P(w_i|w_1, ..., w_{i-1})$$
 
 where:
-- $$w_1, w_2, ..., w_n$$ represents a sequence of words or tokens
-- The conditional probability of word $$w_i$$ given all previous words is:
+- $w_1, w_2, ..., w_n$ represents a sequence of words or tokens
+- The conditional probability of word $w_i$ given all previous words is:
 
   $$P(w_i|w_1, ..., w_{i-1})$$
 
@@ -52,9 +52,9 @@ For practical implementation, this often takes the form:
 $$P(w_t|context) = \text{softmax}(h(context) \cdot W)$$
 
 where:
-- Target word: $$w_t$$
-- Context encoding function: $$h(context)$$
-- Weight matrix: $$W$$
+- Target word: $w_t$
+- Context encoding function: $h(context)$
+- Weight matrix: $W$
 - softmax normalizes the output into probabilities
 
 ## Why Use Conditional Probability in Language Models?
@@ -65,27 +65,27 @@ From a classification perspective, the number of categories directly impacts the
 ### Comparing Two Approaches
 
 #### Joint Probability Approach
-When modeling $$P(w_1,...,w_n)$$ directly:
-- Needs to predict $$V^n$$ categories
+When modeling $P(w_1,...,w_n)$ directly:
+- Needs to predict $V^n$ categories
 - Requires seeing enough samples of each possible sentence
 - Most long sequences may never appear in training data
 - Makes learning practically impossible
 
 #### Conditional Probability Approach
-When modeling $$P(w_i|w_1,...,w_{i-1})$$:
-- Only predicts $$V$$ categories at each step
+When modeling $P(w_i|w_1,...,w_{i-1})$:
+- Only predicts $V$ categories at each step
 - Each word position provides a training sample
 - Same words in different contexts contribute learning signals
 - Dramatically improves data efficiency
 
 ### Numerical Example
 Consider a language model with:
-- Vocabulary size $$V = 10,000$$
-- Sequence length $$n = 5$$
+- Vocabulary size $V = 10,000$
+- Sequence length $n = 5$
 
 Then:
-- Joint probability: Must learn $$10,000^5$$ categories
-- Conditional probability: Must learn $$10,000$$ categories at each step
+- Joint probability: Must learn $10,000^5$ categories
+- Conditional probability: Must learn $10,000$ categories at each step
 
 ### Why This Matters
 
@@ -127,13 +127,13 @@ In practical applications, we often:
 - Document completion
 
 ### Why Conditional Probability Helps
-The formulation $$P(w_i|w_1,...,w_{i-1})$$ naturally fits this scenario because:
+The formulation $P(w_i|w_1,...,w_{i-1})$ naturally fits this scenario because:
 - We can directly condition on the given prefix
 - No need to model the probability of the prefix itself
 - Can focus computational resources on predicting what comes next
 
 ### Comparison with Joint Probability
-The joint probability $$P(w_1,...,w_n)$$ would be less suitable because:
+The joint probability $P(w_1,...,w_n)$ would be less suitable because:
 - Would need to model probability of the fixed prefix
 - Wastes computation on already-known parts
 - Doesn't directly give us what we want (continuation probability)
