@@ -1,5 +1,5 @@
 ---
-layout: homepage
+layout: course
 ---
 
 # EECS 224: Large Language Models
