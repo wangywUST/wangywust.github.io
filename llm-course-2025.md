@@ -19,9 +19,8 @@ Your grade is based on two activities:
 
 ### In-Course Question Answering
 
-In each class, you will be asked some questions. Every student can only answer every question for one time. The student who correctly answer the question for the first time will be granted 1 credit. 
-The final scores will be calculated based on the accumulated credits in the whole semester.
+In each class, the students will be asked several questions. Every student can only answer every question for one time. The student who correctly answer the question for the first time will be granted 1 credit. The final scores will be calculated based on the accumulated credits in the whole semester.
 
 ### Final Projects
 
-Every student should complete a final project related to LLMs and present it in the final classes.
+Every student should complete a final project related to LLMs and present it in the final classes. 
