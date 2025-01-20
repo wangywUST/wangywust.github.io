@@ -19,7 +19,7 @@ Your grade is based on two activities:
 
 ### In-Course Question Answering
 
-In each class, the students will be asked several questions. Every student can only answer every question for one time. The student who correctly answer the question for the first time will be granted 1 credit. The final scores will be calculated based on the accumulated credits in the whole semester.
+In each class, students will be asked several questions. Each student can only answer each question one time. The student who correctly answers a question for the first time and explain the answer clearly to all the classmates will be granted 1 credit. The final scores will be calculated based on the accumulated credits throughout the whole semester.
 
 ### Final Projects
 
