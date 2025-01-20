@@ -50,11 +50,12 @@
 
       .topnav .content {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
+        gap: 35px;
       }
 
       .logo img {
@@ -66,12 +67,13 @@
         gap: 35px;
       }
 
-      #myLinks a {
+      #myLinks a, .home-link {
         color: #1a365d;
         text-decoration: none;
         font-size: 1.2rem;
         font-weight: 500;
         transition: color 0.3s ease;
+        white-space: nowrap;
       }
 
       .main-content {
@@ -79,32 +81,18 @@
       }
 
       @media screen and (max-width: 600px) {
-        #myLinks {
-          display: none;
+        .topnav .content {
           flex-direction: column;
+          align-items: flex-start;
           gap: 15px;
         }
         
-        .icon {
-          display: block;
-        }
-        
-        #myLinks.show {
-          display: flex;
+        #myLinks {
+          flex-direction: column;
+          gap: 15px;
         }
       }
     </style>
-
-    <!-- Scripts remain the same -->
-    <script type="text/javascript">
-      function toggle_vis(id) {
-        var e = document.getElementById(id);
-        if (e.style.display == 'none')
-          e.style.display = 'inline';
-        else
-          e.style.display = 'none';
-      }
-    </script>
   </head>
   <body>
     <!-- Navigation -->
@@ -115,13 +103,11 @@
             <img src="./assets/img/merced.svg" alt="Merced Logo">
           </a>
         </div>
+        <a href="https://wangywust.github.io/" class="home-link">Home</a>
         <div id="myLinks">
           <a href="/ucmnlp">UC Merced NLP Lab</a>
           <a href="/llm-course-2025">LLM Course: EECS 224</a>
         </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
       </div>
     </div>
 
