@@ -4,7 +4,7 @@
 
 Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
 
-![Example Figure](./Course/example_fig.png)
+<img src="./Course/example_fig.png" width="50%">
 
 #### Text in Language
 
