@@ -4,6 +4,8 @@
 
 Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
 
+![Example Figure](./Course/example_fig.png)
+
 #### Text in Language
 
 Text represents the written form of language, converting speech and meaning into visual symbols. Key aspects include:
