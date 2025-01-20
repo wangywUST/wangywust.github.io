@@ -8,14 +8,7 @@ This is a new course of UC Merced starting at Spring 2025. In this course, stude
 
 ## The Goal of This Course
 
-Offering useful, fundemental, detailed LLM knowledge to students, which are useful in research but not accessible in most trending papers.
-
-## Staff
-
-{% assign instructors = site.staffers | sort: 'index' %}
-{% for staffer in instructors %}
-{{ staffer }}
-{% endfor %}
+Offering useful, fundemental, detailed LLM knowledge to students.
 
 ## Coursework
 
