@@ -1,5 +1,9 @@
 ## Lecture 1: Overview of LLMs
 
+1. [What is language?](##what-is-language)
+1. [What is a language model?](##what-is-a-language-model)
+1. [What are large language models?](##what-are-large-language-models)
+
 ### What is Language?
 
 Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
