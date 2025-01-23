@@ -125,7 +125,7 @@ The probabilities assigned by the language model are:
 - $$P(\text{'barked'}|\text{'The dog'}) = 0.5$$  
 - $$P(\text{'loudly'}|\text{'The dog barked'}) = 0.6$$  
 
-**Question:** Calculate the total probability of the sentence $$P(\text{'The dog barked loudly'})$$ using the given probabilities.
+Question 2: Calculate the total probability of the sentence $$P(\text{'The dog barked loudly'})$$ using the given probabilities.
 
 ### The Transformer Model: Revolutionizing Language Models
 
@@ -321,6 +321,8 @@ Large language models are transformers with billions to trillions of parameters,
    - **Emergence Point**: 
      - Becomes effective at ~100B parameters
      - GPT-3 showed first strong results
+
+Question 3: Design a few-shot prompt that can classify the film topic by the film name. It must be able to correctly classify more than 5 films proposed by other students. Using ChatGPT as the test LLM.
 
 2. **Instruction Following**
    - **Definition**: Ability to understand and execute natural language instructions
