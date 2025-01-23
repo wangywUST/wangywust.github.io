@@ -218,7 +218,7 @@ Large language models are transformers with billions to trillions of parameters,
 - **Definition**: Large Language Models are artificial intelligence systems trained on vast amounts of text data, containing hundreds of billions of parameters. Unlike traditional AI models, they can understand and generate human-like text across a wide range of tasks and domains.
 
 - **Scale and Architecture**:
-  - Typically contain >10B parameters (Some exceed 500B)
+  - Typically contain >1B parameters (Some exceed 500B)
   - Built on Transformer architecture with attention mechanisms
   - Require massive computational resources for training
   - Examples: GPT-3 (175B), PaLM (540B), LLaMA (65B)
