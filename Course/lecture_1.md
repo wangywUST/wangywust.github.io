@@ -457,3 +457,5 @@ Large language models are transformers with billions to trillions of parameters,
 - Safety and Alignment Studies
 - Technical Documentation
 - Industry Reports
+
+Paper Reading: [A Survey of Large Language Models](https://arxiv.org/pdf/2303.18223)
