@@ -35,6 +35,8 @@ Text demonstrates several key properties:
 - Structure: Follows grammatical and syntactic rules
 - Context: Meaning often depends on surrounding text
 
+Question 1: Could you give some examples in English that a word has two different meanings across two sentences?
+
 Based on the above properties shared by different langauges, the NLP researchers develop a unified Machine Learning technique to model language data -- Large Language Models. Let's start to learn this unfied language modeling technique.
 
 ### What is a Language Model?
@@ -60,6 +62,70 @@ where:
 - Context encoding function: $$h(context)$$
 - Weight matrix: $$W$$
 - softmax normalizes the output into probabilities
+
+#### **Example 1: Sentence Probability Calculation**
+
+Consider the sentence: "I love chocolate."
+
+The language model predicts the following probabilities:
+- $$P(\text{'I'}) = 0.2$$  
+- $$P(\text{'love'}|\text{'I'}) = 0.4$$  
+- $$P(\text{'chocolate'}|\text{'I love'}) = 0.5$$  
+
+The total probability of the sentence is calculated as:  
+$$P(\text{'I love chocolate'}) = P(\text{'I'}) \cdot P(\text{'love'}|\text{'I'}) \cdot P(\text{'chocolate'}|\text{'I love'})$$  
+$$P(\text{'I love chocolate'}) = 0.2 \cdot 0.4 \cdot 0.5 = 0.04$$  
+
+Thus, the probability of the sentence "I love chocolate" is **0.04**.
+
+---
+
+#### **Example 2: Dialogue Probability Calculation**
+
+For the dialogue:  
+A: "Hello, how are you?"  
+B: "I'm fine, thank you."
+
+The model provides the following probabilities:
+- **Speaker A's Sentence:**  
+  1. $$P(\text{'Hello'}) = 0.3$$  
+  2. $$P(\text{','}|\text{'Hello'}) = 0.8$$  
+  3. $$P(\text{'how'}|\text{'Hello ,'}) = 0.5$$  
+  4. $$P(\text{'are'}|\text{'Hello , how'}) = 0.6$$  
+  5. $$P(\text{'you'}|\text{'Hello , how are'}) = 0.7$$  
+
+  $$P(\text{'Hello, how are you?'}) = 0.3 \cdot 0.8 \cdot 0.5 \cdot 0.6 \cdot 0.7 = 0.0504$$  
+
+- **Speaker B's Sentence:**  
+  1. $$P(\text{'I'}) = 0.4$$  
+  2. $$P(\text{'m'}|\text{'I'}) = 0.5$$  
+  3. $$P(\text{'fine'}|\text{'I m'}) = 0.6$$  
+  4. $$P(\text{','}|\text{'I m fine'}) = 0.7$$  
+  5. $$P(\text{'thank'}|\text{'I m fine ,'}) = 0.8$$  
+  6. $$P(\text{'you'}|\text{'I m fine , thank'}) = 0.9$$  
+
+  $$P(\text{'I\'m fine, thank you.'}) = 0.4 \cdot 0.5 \cdot 0.6 \cdot 0.7 \cdot 0.8 \cdot 0.9 = 0.06048$$  
+
+- **Total Probability for the Dialogue:**  
+  Combine the probabilities for both sentences:  
+  $$P(\text{'Hello, how are you? I\'m fine, thank you.'}) = P(\text{'Hello, how are you?'}) \cdot P(\text{'I\'m fine, thank you.'})$$  
+  $$P(\text{'Hello, how are you? I\'m fine, thank you.'}) = 0.0504 \cdot 0.06048 = 0.003048192$$  
+
+Thus, the total probability of the dialogue is approximately **0.00305**.
+
+---
+
+#### **Example 3: Partial Sentence Generation**
+
+Consider the sentence: "The dog barked loudly."
+
+The probabilities assigned by the language model are:
+- $$P(\text{'The'}) = 0.25$$  
+- $$P(\text{'dog'}|\text{'The'}) = 0.4$$  
+- $$P(\text{'barked'}|\text{'The dog'}) = 0.5$$  
+- $$P(\text{'loudly'}|\text{'The dog barked'}) = 0.6$$  
+
+**Question:** Calculate the total probability of the sentence $$P(\text{'The dog barked loudly'})$$ using the given probabilities.
 
 ### The Transformer Model: Revolutionizing Language Models
 
