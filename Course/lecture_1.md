@@ -8,12 +8,10 @@
 
 Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
 
-<center>
+<div style="text-align: center;">
   <img src="./Course/fig_1.jpg" width="50%">
-  
-  More than 7,000 languages are spoken around the world today, shaping how we describe and perceive the world around us.
-
-</center>
+  <p style="margin-top: 10px;">More than 7,000 languages are spoken around the world today, shaping how we describe and perceive the world around us.</p>
+</div>
 
 #### Text in Language
 
