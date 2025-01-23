@@ -9,7 +9,9 @@
 Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
 
 <center>
-  <img src="./Course/example_fig.png" width="50%">
+  <img src="./Course/fig_1.jpg" width="50%">
+  More than 7,000 languages are spoken around the world today, shaping how we describe and perceive the world around us.
+
 </center>
 
 #### Text in Language
@@ -60,89 +62,6 @@ where:
 - Weight matrix: $$W$$
 - softmax normalizes the output into probabilities
 
-### Why Use Conditional Probability in Language Models?
-
-#### Core Insight
-From a classification perspective, the number of categories directly impacts the learning difficulty - more categories require exponentially more training data to achieve adequate coverage.
-
-#### Comparing Two Approaches
-
-##### Joint Probability Approach
-When modeling $$P(w_1,...,w_n)$$ directly:
-- Needs to predict $$V^n$$ categories
-- Requires seeing enough samples of each possible sentence
-- Most long sequences may never appear in training data
-- Makes learning practically impossible
-
-##### Conditional Probability Approach
-When modeling $$P(w_i|w_1,...,w_{i-1})$$:
-- Only predicts $$V$$ categories at each step
-- Each word position provides a training sample
-- Same words in different contexts contribute learning signals
-- Dramatically improves data efficiency
-
-#### Numerical Example
-Consider a language model with:
-- Vocabulary size $$V = 10,000$$
-- Sequence length $$n = 5$$
-
-Then:
-- Joint probability: Must learn $$10,000^5$$ categories
-- Conditional probability: Must learn $$10,000$$ categories at each step
-
-#### Why This Matters
-
-##### Training Data Requirements
-- More categories require more training examples
-- Each category needs sufficient representation
-- Data requirements grow exponentially with category count
-
-##### Learning Efficiency
-- Smaller category spaces are easier to model
-- More efficient use of training data
-- Each word occurrence contributes to learning
-
-##### Statistical Coverage
-- Impossible to see all possible sequences
-- But possible to see all words in various contexts
-- Makes learning feasible with finite training data
-
-#### Conclusion
-The conditional probability formulation cleverly transforms an intractable large-scale classification problem into a series of manageable smaller classification problems. This is the fundamental reason why language models can learn effectively from finite training data.
-
-### Real-world Application: Text Completion
-
-#### The Prefix-based Generation Task
-In practical applications, we often:
-- Have a fixed prefix of text
-- Need to predict/generate the continuation
-- Don't need to generate text from scratch
-
-#### Examples
-1. Auto-completion
-- Code completion in IDEs
-- Search query suggestions
-- Email text completion
-
-2. Text Generation
-- Story continuation
-- Dialogue response generation
-- Document completion
-
-#### Why Conditional Probability Helps
-The formulation $$P(w_i|w_1,...,w_{i-1})$$ naturally fits this scenario because:
-- We can directly condition on the given prefix
-- No need to model the probability of the prefix itself
-- Can focus computational resources on predicting what comes next
-
-#### Comparison with Joint Probability
-The joint probability $$P(w_1,...,w_n)$$ would be less suitable because:
-- Would need to model probability of the fixed prefix
-- Wastes computation on already-known parts
-- Doesn't directly give us what we want (continuation probability)
-
-This alignment between the mathematical formulation and practical use cases is another key advantage of the conditional probability approach in language modeling.
-
 ### The Transformer Model: Revolutionizing Language Models
 
 The emergence of the Transformer architecture marked a paradigm shift in how machines process and understand human language. Unlike its predecessors, which struggled with long-range patterns in text, this groundbreaking architecture introduced mechanisms that revolutionized natural language processing (NLP).
@@ -190,23 +109,6 @@ In language, this means the model can:
 - Understand idiomatic expressions ("kicked the bucket" means something very different from "kicked the ball")
 - Grasp long-distance dependencies ("The keys, which I thought I had left on the kitchen counter yesterday morning, were actually in my coat pocket")
 
-##### Information Refinement
-
-After the attention mechanism identifies relevant connections, the information passes through a series of specialized neural networks. These networks:
-- Combine and transform the gathered context
-- Extract higher-level patterns
-- Refine the understanding of each piece of text
-
-#### Generation and Decision Making
-
-The final stage involves converting all this processed information into useful output. Whether the task is:
-- Completing a sentence
-- Translating text
-- Answering a question
-- Summarizing a document
-
-The model uses a probability distribution system to select the most appropriate output. This is similar to a skilled writer choosing the perfect word from their vocabulary, considering both meaning and context.
-
 #### Real-World Applications and Impact
 
 The Transformer architecture has enabled breakthrough applications in:
@@ -214,7 +116,6 @@ The Transformer architecture has enabled breakthrough applications in:
 1. **Cross-Language Communication**
 - Real-time translation systems
 - Multilingual document processing
-- Cultural context adaptation
 
 2. **Content Creation and Analysis**
 - Automated report generation
