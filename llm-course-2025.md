@@ -17,7 +17,7 @@ Offering useful, fundemental, detailed LLM knowledge to students.
 
 ### In-Course Question Answering
 
-In each class, students will be asked several questions. Each student can only answer each question one time. The student who correctly answers a question for the first time and explain the answer clearly to all the classmates will be granted 1 credit. The final scores will be calculated based on the accumulated credits throughout the whole semester. This score does not contribute to the final grading. In the final course, the students who get high scores in question answering will be highlighted.
+In each class, students will be asked several questions. Each student can only answer each question one time. The student who correctly answers a question for the first time and explain the answer clearly to all the classmates will be granted 1 credit. The final scores will be calculated based on the accumulated credits throughout the whole semester. This score does not contribute to the final grading. In the final course, the students who get high scores in question answering will be highlighted as a reputation.
 
 ### Final Projects
 
