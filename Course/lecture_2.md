@@ -30,6 +30,8 @@ Let's dive deep into one of the most widely used subword tokenization methods: B
 
 # Byte-Pair Encoding (BPE) Tokenization
 
+Reference Tutorial: [Byte-Pair Encoding tokenization](https://huggingface.co/learn/nlp-course/chapter6/5)
+
 Byte-Pair Encoding (BPE) was initially developed as an algorithm to compress texts, and then used by OpenAI for tokenization when pretraining the GPT model. It's used by many Transformer models, including GPT, GPT-2, Llama1, Llama2, Llama3, RoBERTa, BART, and DeBERTa.
 
 ## Training Algorithm

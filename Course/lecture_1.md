@@ -317,7 +317,6 @@ Large language models are transformers with billions to trillions of parameters,
      - Few-shot and zero-shot capabilities
      - Task adaptation through demonstrations
    - **Emergence Point**: 
-     - Becomes effective at ~100B parameters
      - GPT-3 showed first strong results
 
 Question 3: Design a few-shot prompt that can classify the film topic by the film name. It must be able to correctly classify more than 5 films proposed by other students. Using ChatGPT as the test LLM.
@@ -328,9 +327,6 @@ Question 3: Design a few-shot prompt that can classify the film topic by the fil
      - Instruction tuning
      - Multi-task training
      - Natural language task descriptions
-   - **Emergence Point**:
-     - Requires >60B parameters
-     - Improves significantly with scale
 
 3. **Step-by-step Reasoning**
    - **Definition**: Ability to break down complex problems
