@@ -27,7 +27,7 @@
   <li><a href="http://cvpr2023.thecvf.com/"><autocolor>International Conference on Machine Learning (ICML) 2025</autocolor></a></li>
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2025</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>Association for Computational Linguistics Rolling Review (ACL ARR) 2025</autocolor></a></li>  
-  <li><a href="https://2022.acmmm.org/"><autocolor>CONFERENCE ON LANGUAGE MODELING (COLM) 2025</autocolor></a></li>  
+  <li><a href="https://2022.acmmm.org/"><autocolor>Conference on Language Modeling (COLM) 2025</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>IEEE International Conference on Multimedia and Expo (ICME) 2025</autocolor></a></li>  
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2025</autocolor></a></li>  
 </ul>
