@@ -34,3 +34,5 @@ The final project scores will be calculated through 70% Instructor's rating + 30
 [Project Report Examples](https://aclanthology.org/events/acl-2024/#2024acl-long)
 
 {% include_relative Course/lecture_1.md %}
+
+{% include_relative Course/lecture_2.md %}
