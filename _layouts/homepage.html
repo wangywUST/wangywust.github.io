@@ -28,64 +28,94 @@
 
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin=anonymous>
+    
+    <!-- 修改1：添加基础样式文件中的字体大小 -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+      body {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      
+      p, ul, ol, dl {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      
+      h1 {
+        font-size: 2.5rem !important;
+      }
+      
+      h2 {
+        font-size: 2rem !important;
+      }
+      
+      h3 {
+        font-size: 1.75rem !important;
+      }
+      
+      .wrapper {
+        font-size: 1.1rem;
+      }
+    </style>
+    
     <link rel="stylesheet" href="./assets/css/pub.css">
-
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/mpii_files/mpi-inf.css">
-    <script src="./assets/js/github-stars.js"></script>
-    <script type="text/javascript" src="./assets/js/jquery.js"></script>
 
-    <!-- MathJax Configuration -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [['$','$'], ['\\(','\\)']],
-          processEscapes: true
-        },
-        TeX: {
-          equationNumbers: {
-            autoNumber: "AMS"
-          }
-        }
-      });
-    </script>
-    <script type="text/javascript" async
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-
-    <!-- 修改导航栏样式部分 -->
+    <!-- 修改2：导航栏样式调整 -->
     <style>
       .topnav {
         display: inline-block;
         float: right;
         margin-right: 17%;
-        height: 60px;  /* 与 myheader 相同高度 */
-        line-height: 60px;  /* 垂直居中文本 */
-        padding-top: 0;  /* 移除上边距 */
+        height: 60px;
+        line-height: 60px;
+        padding-top: 0;
       }
 
       .topnav #myLinks {
         display: inline-block;
         vertical-align: middle;
         height: 60px;
-        margin-top: -10px;  /* 添加负边距使整体向上移动 */
+        margin-top: -10px;
       }
 
       .topnav a {
-        color: #1a365d;  /* 改成深蓝色 */
-        padding: 0 35px;  /* 修改padding，只保留左右间距 */
+        color: #1a365d;
+        padding: 0 35px;
         text-decoration: none;
-        font-size: 34px;
+        font-size: 1.2rem;  /* 修改：从34px改为1.2rem */
         display: inline-block;
-        line-height: 60px;  /* 修改这里，使其与容器高度一致 */
-        height: 60px;      /* 添加这行，确保链接高度与容器一致 */
+        line-height: 60px;
+        height: 60px;
         vertical-align: middle;
-        font-weight: 500;  /* 稍微加粗一点 */
-        transition: color 0.3s ease;  /* 添加颜色过渡效果 */
+        font-weight: 500;
+        transition: color 0.3s ease;
       }
 
       .topnav .icon {
         display: none;
+      }
+
+      /* 修改3：社交图标和其他元素大小调整 */
+      .social-icons i {
+        font-size: 1.4rem;
+      }
+
+      email {
+        font-size: 1.1rem;
+      }
+
+      position {
+        font-size: 1.3rem !important;
+      }
+
+      /* 修改4：返回顶部按钮调整 */
+      #back-to-top {
+        font-size: 1rem;
+        width: 120px;
+        line-height: 35px;
+        height: 35px;
       }
 
       @media screen and (max-width: 600px) {
@@ -99,6 +129,15 @@
         .topnav .icon {
           display: inline-block;
           line-height: 60px;
+        }
+        
+        /* 修改5：响应式字体大小 */
+        body {
+          font-size: 14px;
+        }
+        
+        .topnav a {
+          font-size: 1.1rem;
         }
       }
     </style>
@@ -131,7 +170,25 @@
           container.appendChild(links[i]);
         }
       }
-   </script>
+    </script>
+
+    <!-- MathJax配置保持不变 -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
    
   </head>
   <body>
@@ -142,7 +199,6 @@
           <a href="https://wangywust.github.io/">
             <img style="max-height: 90%; margin-left: 17%; padding-top: 2px;" src="./assets/img/merced.svg" alt="Merced Logo">
           </a>
-          <!-- 添加导航栏 -->
           <div class="topnav">
             <div id="myLinks">
               <a href="/ucmnlp">UC Merced NLP Lab</a>
@@ -164,17 +220,6 @@
         textColor: '#333'
       })
     </script>
-    <style>
-        #back-to-top {
-          border: 1px solid #ccc;
-          border-radius: 0;
-          font-size: 15px;
-          width: 100px;
-          text-align: center;
-          line-height: 30px;
-          height: 30px;
-        }
-    </style>
     
     <div class="wrapper">
       <header>
@@ -185,7 +230,7 @@
         <h1>{{ site.title }}</h1>
 
         {% if site.position %}
-        <position style="font-size:2.00rem;">{{ site.position }}</position>
+        <position style="font-size:1.3rem;">{{ site.position }}</position>
         <br>
         {% endif %}
         {% if site.affiliation %}
@@ -241,8 +286,7 @@
       {% if site.enable_last_update %}
       <small>Last Update:
             <script>
-              const monthNames = ["January", "Februray", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-              ];
+              const monthNames = ["January", "Februray", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
               var modiDate = new Date(document.lastModified);
               var showAs = modiDate.getDate() + ". " + monthNames[modiDate.getMonth()] + " " + modiDate.getFullYear();
               document.write(showAs);
@@ -251,7 +295,7 @@
       {% endif %}
 
       {% if site.footnote %}
-      <div style="font: 12px/1.2 Crimson Pro, serif">
+      <div style="font: 16px/1.2 Crimson Pro, serif">
         <br>
         <a href="{{ site.footnote_link }}" rel="noopener">{{ site.footnote }}</a>
       </div>
@@ -266,7 +310,7 @@
       
       </section>
       <footer>
-        <div style="font: 12px/1.2 Crimson Pro, serif">
+        <div style="font: 16px/1.2 Crimson Pro, serif">
         <p>
         <small>
         {% if site.imprint %}
