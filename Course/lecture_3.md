@@ -65,7 +65,10 @@ $$
 
 Visually, we can show the attention over a sequence of words as follows:
 
-<center width="100%" style="padding:25px"><img src="attention_example.svg" width="750px"></center>
+<div style="text-align: center;">
+  <img src="./Course/attention_example.svg" width="50%">
+  <p style="margin-top: 10px;">Attention Example</p>
+</div>
 
 For every word, we have one key and one value vector. The query is compared to all keys with a score function (in this case the dot product) to determine the weights. The softmax is not visualized for simplicity. Finally, the value vectors of all words are averaged using the attention weights.
 
