@@ -100,8 +100,6 @@ $$
    \end{bmatrix}
    $$
 
-让我把这个计算过程以 markdown 格式重新组织：
-
 3. **Apply softmax row-wise**  
    The softmax of a vector $x$ is given by
    $$
