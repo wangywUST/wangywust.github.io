@@ -1342,10 +1342,12 @@ Let:
    $$
 
 2. **Compute $\min(\text{step}_\text{num}^{-0.5},\; \text{step}_\text{num} \times \text{warmup}_\text{steps}^{-1.5})$**
-   - $\text{step}_\text{num}^{-0.5} = 1000^{-0.5} = \frac{1}{\sqrt{1000}} \approx 0.0316.$
-   - $\text{step}_\text{num} \times \text{warmup}_\text{steps}^{-1.5} = 1000 \times 2000^{-1.5}.$  
-     $2000^{-1.5} = \frac{1}{2000^{1.5}} \approx \frac{1}{2000\times44.72} \approx 1.118\times10^{-5}.$  
-     Hence $\approx 1000 \times 1.118\times10^{-5} = 0.01118.$
+  - $\text{step}_\text{num}^{-0.5} = 1000^{-0.5} = \frac{1}{\sqrt{1000}} \approx 0.0316$
+  - $\text{step}_\text{num} \times \text{warmup}_\text{steps}^{-1.5} = 1000 \times 2000^{-1.5}$
+  
+    $2000^{-1.5} = \frac{1}{2000^{1.5}} \approx \frac{1}{2000 \times 44.72} \approx 1.118 \times 10^{-5}$
+  
+    Therefore $1000 \times 1.118 \times 10^{-5} \approx 0.01118$
 
    The minimum is $\min(0.0316, 0.01118) = 0.01118.$
 
