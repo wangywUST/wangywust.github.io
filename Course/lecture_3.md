@@ -54,7 +54,8 @@ $$
 \text{Attention}(Q, K, V) = \text{softmax}\Bigl( \frac{QK^T}{\sqrt{d_k}} \Bigr)V
 $$
 
-where $d_k$ is the dimensionality of the key vectors (often the same as the query dimensionality).
+where $d_k$ is the dimensionality of the key vectors (often the same as the query dimensionality). 
+Every row of $Q$ corresponds a token's embedding.
 
 #### Example 1: Detailed Numerical Computation
 Suppose we have the following matrices (small dimensions chosen for illustrative purposes):
