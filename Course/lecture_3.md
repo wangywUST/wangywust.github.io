@@ -1362,3 +1362,5 @@ where:
 The Transformer architecture has become a foundational model in modern deep learning, showing remarkable performance in NLP, computer vision, and multimodal applications. Its ability to capture long-range dependencies, combined with high parallelizability and scalability, has inspired a diverse range of research directions and practical systems. Ongoing work continues to explore ways to improve Transformer efficiency, adapt it to new scenarios, and enhance model interpretability.
 
 ---
+
+Paper Reading: [Attention Is All You Need](https://arxiv.org/pdf/1706.03762)
