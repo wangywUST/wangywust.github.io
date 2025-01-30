@@ -332,3 +332,5 @@ For example:
 >>> tokenize("This is not a token.")
 >>> ['This', 'Ġis', 'Ġ', 'n', 'o', 't', 'Ġa', 'Ġtoken', '.']
 ```
+
+Question 1: Given the tokenizer introduced in Lecture 2, what is the tokenization result of the string "This is a token."
