@@ -100,22 +100,47 @@ $$
    \end{bmatrix}
    $$
 
+让我把这个计算过程以 markdown 格式重新组织：
+
 3. **Apply softmax row-wise**  
    The softmax of a vector $x$ is given by
-
    $$
    \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}.
    $$
+   Let's calculate this row by row:
 
    - Row 1: $[0.71, 0.71, 0.71]$  
-     Since all elements are equal, each is $\approx e^{0.71} \approx 2.03$. The sum is $6.09$. Hence, each entry becomes $\frac{2.03}{6.09} \approx 0.33$.  
+     For each element:
+     * Calculate $e^{0.71} \approx 2.034$ for all three numbers
+     * Sum of exponentials: $2.034 + 2.034 + 2.034 \approx 6.102$
+     * Each softmax value: $\frac{2.034}{6.102} \approx 0.333$
+     * Final result: $[0.333, 0.333, 0.333]$
+
    - Row 2: $[0, 0.71, 0]$  
-     $e^{0} = 1,\; e^{0.71} \approx 2.03$. The sum is $4.03$. So we get $[0.25, 0.50, 0.25]$.  
+     * Calculate exponentials:
+       * $e^0 = 1$
+       * $e^{0.71} \approx 2.034$
+       * $e^0 = 1$
+     * Sum of exponentials: $1 + 2.034 + 1 \approx 4.034$
+     * Softmax values:
+       * $\frac{1}{4.034} \approx 0.248$
+       * $\frac{2.034}{4.034} \approx 0.504$
+       * $\frac{1}{4.034} \approx 0.248$
+     * Final result: $[0.248, 0.504, 0.248]$ ≈ $[0.25, 0.50, 0.25]$
+
    - Row 3: $[0.71, 1.41, 0.71]$  
-     $e^{0.71} \approx 2.03,\; e^{1.41} \approx 4.10$. The sum is $8.16$. So the row becomes $[0.25, 0.50, 0.25]$.  
+     * Calculate exponentials:
+       * $e^{0.71} \approx 2.034$
+       * $e^{1.41} \approx 4.096$
+       * $e^{0.71} \approx 2.034$
+     * Sum of exponentials: $2.034 + 4.096 + 2.034 \approx 8.164$
+     * Softmax values:
+       * $\frac{2.034}{8.164} \approx 0.249$
+       * $\frac{4.096}{8.164} \approx 0.502$
+       * $\frac{2.034}{8.164} \approx 0.249$
+     * Final result: $[0.249, 0.502, 0.249]$ ≈ $[0.25, 0.50, 0.25]$
 
-   The softmax matrix $\alpha$ is:
-
+   The final softmax matrix $\alpha$ is:
    $$
    \alpha = \begin{bmatrix}
    0.33 & 0.33 & 0.33 \\
@@ -123,6 +148,12 @@ $$
    0.25 & 0.50 & 0.25
    \end{bmatrix}
    $$
+
+   Key observations about the softmax results:
+   1. All output values are between 0 and 1
+   2. Each row sums to 1
+   3. Equal input values (Row 1) result in equal output probabilities
+   4. Larger input values receive larger output probabilities (middle values in Rows 2 and 3)
 
    (slight rounding applied).
 
