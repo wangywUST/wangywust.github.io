@@ -1356,36 +1356,6 @@ where:
 - $\text{step}_\text{num}$ is the current training step.
 - $\text{warmup}_\text{steps}$ is the number of warmup steps.
 
-#### Example: Learning Rate Calculation
-Let:
-- $d_{\text{model}} = 4$,
-- $\text{step}_\text{num} = 1000$,
-- $\text{warmup}_\text{steps} = 2000$.
-
-1. **Compute $d_{\text{model}}^{-0.5}$**
-
-   $$
-   4^{-0.5} = \frac{1}{\sqrt{4}} = 0.5.
-   $$
-
-2. **Compute $\min(\text{step}_\text{num}^{-0.5},\; \text{step}_\text{num} \times \text{warmup}_\text{steps}^{-1.5})$**
-  - $\text{step}_\text{num}^{-0.5} = 1000^{-0.5} = \frac{1}{\sqrt{1000}} \approx 0.0316$
-  - $\text{step}_\text{num} \times \text{warmup}_\text{steps}^{-1.5} = 1000 \times 2000^{-1.5}$
-  
-    $2000^{-1.5} = \frac{1}{2000^{1.5}} \approx \frac{1}{2000 \times 44.72} \approx 1.118 \times 10^{-5}$
-  
-    Therefore $1000 \times 1.118 \times 10^{-5} \approx 0.01118$
-
-   The minimum is $\min(0.0316, 0.01118) = 0.01118.$
-
-3. **Combine for final LR**
-
-   $$
-   l_{\text{rate}} = 0.5 \times 0.01118 = 0.00559.
-   $$
-
-   So the learning rate $\approx 0.00559.$
-
 ---
 
 ## Conclusion
