@@ -48,7 +48,7 @@ Decoder-only models generate outputs in an autoregressive manner, making them we
 The core of the Transformer lies in its attention mechanism, which allows the model to focus on the most relevant parts of the input sequence given a query. Below, we detail the Scaled Dot-Product Attention and the Multi-Head Attention mechanisms.
 
 ### Scaled Dot-Product Attention
-Given a query matrix \(Q\), key matrix \(K\), and value matrix \(V\), the attention formula is:
+Given a query matrix $Q$, key matrix \(K\), and value matrix \(V\), the attention formula is:
 
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\Bigl( \frac{QK^T}{\sqrt{d_k}} \Bigr)V
