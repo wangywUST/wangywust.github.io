@@ -110,9 +110,9 @@ $$
 
    $$
    QK^T = \begin{bmatrix}
-   1 & 1 & 1 \\
-   0 & 1 & 0 \\
-   1 & 2 & 1
+   1 & 0 & 1 \\
+   1 & 1 & 0 \\
+   2 & 1 & 1
    \end{bmatrix}
    $$
 
@@ -122,9 +122,9 @@ $$
    $$
    \frac{QK^T}{\sqrt{2}} \approx
    \begin{bmatrix}
-   0.71 & 0.71 & 0.71 \\
-   0    & 0.71 & 0    \\
-   0.71 & 1.41 & 0.71
+   0.71 & 0    & 0.71 \\
+   0.71 & 0.71 & 0    \\
+   1.41 & 0.71 & 0.71
    \end{bmatrix}
    $$
 
@@ -135,43 +135,45 @@ $$
    $$
    Let's calculate this row by row:
 
-   - Row 1: $[0.71, 0.71, 0.71]$  
-     For each element:
-     * Calculate $e^{0.71} \approx 2.034$ for all three numbers
-     * Sum of exponentials: $2.034 + 2.034 + 2.034 \approx 6.102$
-     * Each softmax value: $\frac{2.034}{6.102} \approx 0.333$
-     * Final result: $[0.333, 0.333, 0.333]$
-
-   - Row 2: $[0, 0.71, 0]$  
+   - Row 1: $[0.71, 0, 0.71]$  
      * Calculate exponentials:
-       * $e^0 = 1$
-       * $e^{0.71} \approx 2.034$
-       * $e^0 = 1$
-     * Sum of exponentials: $1 + 2.034 + 1 \approx 4.034$
+       * $e^{0.71} \approx 2.034$ (for the 1st and 3rd elements)
+       * $e^{0} = 1$ (for the 2nd element)
+     * Sum of exponentials: $2.034 + 1 + 2.034 \approx 5.068$
      * Softmax values:
-       * $\frac{1}{4.034} \approx 0.248$
-       * $\frac{2.034}{4.034} \approx 0.504$
-       * $\frac{1}{4.034} \approx 0.248$
-     * Final result: $[0.248, 0.504, 0.248]$ ≈ $[0.25, 0.50, 0.25]$
+       * $\frac{2.034}{5.068} \approx 0.401$
+       * $\frac{1}{5.068} \approx 0.197$
+       * $\frac{2.034}{5.068} \approx 0.401$
+     * Final result: $[0.401, 0.197, 0.401]$ ≈ $[0.40, 0.20, 0.40]$
 
-   - Row 3: $[0.71, 1.41, 0.71]$  
+   - Row 2: $[0.71, 0.71, 0]$  
      * Calculate exponentials:
-       * $e^{0.71} \approx 2.034$
+       * $e^{0.71} \approx 2.034$ (for the 1st and 2nd elements)
+       * $e^{0} = 1$ (for the 3rd element)
+     * Sum of exponentials: $2.034 + 2.034 + 1 \approx 5.068$
+     * Softmax values:
+       * $\frac{2.034}{5.068} \approx 0.401$
+       * $\frac{2.034}{5.068} \approx 0.401$
+       * $\frac{1}{5.068} \approx 0.197$
+     * Final result: $[0.401, 0.401, 0.197]$ ≈ $[0.40, 0.40, 0.20]$
+
+   - Row 3: $[1.41, 0.71, 0.71]$  
+     * Calculate exponentials:
        * $e^{1.41} \approx 4.096$
-       * $e^{0.71} \approx 2.034$
-     * Sum of exponentials: $2.034 + 4.096 + 2.034 \approx 8.164$
+       * $e^{0.71} \approx 2.034$ (for the 2nd and 3rd elements)
+     * Sum of exponentials: $4.096 + 2.034 + 2.034 \approx 8.164$
      * Softmax values:
+       * $\frac{4.096}{8.164} \approx 0.501$
        * $\frac{2.034}{8.164} \approx 0.249$
-       * $\frac{4.096}{8.164} \approx 0.502$
        * $\frac{2.034}{8.164} \approx 0.249$
-     * Final result: $[0.249, 0.502, 0.249]$ ≈ $[0.25, 0.50, 0.25]$
+     * Final result: $[0.501, 0.249, 0.249]$ ≈ $[0.50, 0.25, 0.25]$
 
    The final softmax matrix $\alpha$ is:
    $$
    \alpha = \begin{bmatrix}
-   0.33 & 0.33 & 0.33 \\
-   0.25 & 0.50 & 0.25 \\
-   0.25 & 0.50 & 0.25
+   0.40 & 0.20 & 0.40 \\
+   0.40 & 0.40 & 0.20 \\
+   0.50 & 0.25 & 0.25
    \end{bmatrix}
    $$
 
