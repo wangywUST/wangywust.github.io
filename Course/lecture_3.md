@@ -75,175 +75,111 @@ For every word, we have one key and one value vector. The query is compared to a
 Most attention mechanisms differ in terms of what queries they use, how the key and value vectors are defined, and what score function is used. The attention applied inside the Transformer architecture is called **self-attention**. In self-attention, each sequence element provides a key, value, and query. For each element, we perform an attention layer where based on its query, we check the similarity of the all sequence elements' keys, and returned a different, averaged value vector for each element. We will now go into a bit more detail by first looking at the specific implementation of the attention mechanism which is in the Transformer case the scaled dot product attention.
 
 ### Scaled Dot-Product Attention
-Given a query matrix \(Q\), key matrix \(K\), and value matrix \(V\), the attention formula is:
+Given a query matrix $Q$, key matrix $K$, and value matrix $V$, the attention formula is:
 
-\[
-\text{Attention}(Q, K, V) 
-= \text{softmax}\Bigl( \frac{QK^T}{\sqrt{d_k}} \Bigr)\, V
-\]
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\Bigl( \frac{QK^T}{\sqrt{d_k}} \Bigr)V
+$$
 
-where \(d_k\) is the dimensionality of the key vectors (often the same as the query dimensionality).
+where $d_k$ is the dimensionality of the key vectors (often the same as the query dimensionality). 
+Every row of $Q$ corresponds a token's embedding.
 
-Every row of \(Q\) corresponds to a token's embedding.
-
----
-
-## Example 1: Detailed Numerical Computation
-
+#### Example 1: Detailed Numerical Computation
 Suppose we have the following matrices (small dimensions chosen for illustrative purposes):
 
-\[
+$$
 Q = \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
 1 & 1
-\end{bmatrix}, 
-\quad
+\end{bmatrix}, \quad
 K = \begin{bmatrix}
 1 & 1 \\
 0 & 1 \\
 1 & 0
-\end{bmatrix}, 
-\quad
+\end{bmatrix}, \quad
 V = \begin{bmatrix}
 0 & 2 \\
 1 & 1 \\
 2 & 0
-\end{bmatrix}.
-\]
-
-### 1. Compute \(QK^T\)
-
-First, note the shapes:
-
-- \(Q\) is \((3 \times 2)\).  
-- \(K\) is \((3 \times 2)\), so \(K^T\) is \((2 \times 3)\).  
-- Thus, \(QK^T\) should be \((3 \times 3)\).
-
-By definition, 
-\[
-(QK^T)_{i,j} 
-= \sum_{m} Q_{i,m} \times K_{j,m}.
-\]
-
-Concretely:
-
-- Row 1 of \(Q\) is \([1, 0]\):
-  - Dot with row 1 of \(K\), \([1, 1]\): \(1 \times 1 + 0 \times 1 = 1\)
-  - Dot with row 2 of \(K\), \([0, 1]\): \(1 \times 0 + 0 \times 1 = 0\)
-  - Dot with row 3 of \(K\), \([1, 0]\): \(1 \times 1 + 0 \times 0 = 1\)
-
-  So the first row is \([1, 0, 1]\).
-
-- Row 2 of \(Q\) is \([0, 1]\):
-  - Dot with row 1 of \(K\), \([1, 1]\): \(0 \times 1 + 1 \times 1 = 1\)
-  - Dot with row 2 of \(K\), \([0, 1]\): \(0 \times 0 + 1 \times 1 = 1\)
-  - Dot with row 3 of \(K\), \([1, 0]\): \(0 \times 1 + 1 \times 0 = 0\)
-
-  So the second row is \([1, 1, 0]\).
-
-- Row 3 of \(Q\) is \([1, 1]\):
-  - Dot with row 1 of \(K\), \([1, 1]\): \(1 \times 1 + 1 \times 1 = 2\)
-  - Dot with row 2 of \(K\), \([0, 1]\): \(1 \times 0 + 1 \times 1 = 1\)
-  - Dot with row 3 of \(K\), \([1, 0]\): \(1 \times 1 + 1 \times 0 = 1\)
-
-  So the third row is \([2, 1, 1]\).
-
-Hence,
-
-\[
-QK^T 
-= \begin{bmatrix}
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-2 & 1 & 1
-\end{bmatrix}.
-\]
-
-### 2. Scale by \(\sqrt{d_k}\)
-
-Here, \(d_k = 2\). Thus, \(\sqrt{2} \approx 1.41\). So,
-
-\[
-\frac{QK^T}{\sqrt{2}}
-\approx
-\begin{bmatrix}
-\frac{1}{1.41} & 0 & \frac{1}{1.41} \\
-\frac{1}{1.41} & \frac{1}{1.41} & 0 \\
-\frac{2}{1.41} & \frac{1}{1.41} & \frac{1}{1.41}
 \end{bmatrix}
-=
-\begin{bmatrix}
-0.71 & 0    & 0.71 \\
-0.71 & 0.71 & 0    \\
-1.41 & 0.71 & 0.71
-\end{bmatrix}.
-\]
+$$
 
-### 3. Apply softmax row-wise
+1. **Compute $QK^T$**  
+   According to the example setup:
 
-The softmax of a vector \(x\) is given by
+   $$
+   QK^T = \begin{bmatrix}
+   1 & 1 & 1 \\
+   0 & 1 & 0 \\
+   1 & 2 & 1
+   \end{bmatrix}
+   $$
 
-\[
-\mathrm{softmax}(x_i)
-= \frac{e^{x_i}}{\sum_j e^{x_j}}.
-\]
+2. **Scale by $\sqrt{d_k}$**  
+   Here, $d_k = 2$. Thus, $\sqrt{2} \approx 1.41$. So,
 
-Let’s calculate this row by row:
+   $$
+   \frac{QK^T}{\sqrt{2}} \approx
+   \begin{bmatrix}
+   0.71 & 0.71 & 0.71 \\
+   0    & 0.71 & 0    \\
+   0.71 & 1.41 & 0.71
+   \end{bmatrix}
+   $$
 
-- **Row 1**: \([0.71,\,0,\,0.71]\)
+3. **Apply softmax row-wise**  
+   The softmax of a vector $x$ is given by
+   $$
+   \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}.
+   $$
+   Let's calculate this row by row:
 
-  1. \(e^{0.71} \approx 2.03\), \(e^0 = 1\).  
-  2. Sum: \(2.03 + 1 + 2.03 \approx 5.06\).  
-  3. Each softmax value:  
-     \[
-     \frac{2.03}{5.06} \approx 0.40,\quad 
-     \frac{1}{5.06} \approx 0.20,\quad
-     \frac{2.03}{5.06} \approx 0.40.
-     \]
-  4. Final result: \([0.40,\, 0.20,\, 0.40]\).
+   - Row 1: $[0.71, 0.71, 0.71]$  
+     For each element:
+     * Calculate $e^{0.71} \approx 2.034$ for all three numbers
+     * Sum of exponentials: $2.034 + 2.034 + 2.034 \approx 6.102$
+     * Each softmax value: $\frac{2.034}{6.102} \approx 0.333$
+     * Final result: $[0.333, 0.333, 0.333]$
 
-- **Row 2**: \([0.71,\,0.71,\,0]\)
+   - Row 2: $[0, 0.71, 0]$  
+     * Calculate exponentials:
+       * $e^0 = 1$
+       * $e^{0.71} \approx 2.034$
+       * $e^0 = 1$
+     * Sum of exponentials: $1 + 2.034 + 1 \approx 4.034$
+     * Softmax values:
+       * $\frac{1}{4.034} \approx 0.248$
+       * $\frac{2.034}{4.034} \approx 0.504$
+       * $\frac{1}{4.034} \approx 0.248$
+     * Final result: $[0.248, 0.504, 0.248]$ ≈ $[0.25, 0.50, 0.25]$
 
-  1. \(e^{0.71} \approx 2.03\), \(e^0 = 1\).  
-  2. Sum: \(2.03 + 2.03 + 1 \approx 5.06\).  
-  3. Softmax values:
-     \[
-     \frac{2.03}{5.06} \approx 0.40,\quad
-     \frac{2.03}{5.06} \approx 0.40,\quad
-     \frac{1}{5.06} \approx 0.20.
-     \]
-  4. Final result: \([0.40,\, 0.40,\, 0.20]\).
+   - Row 3: $[0.71, 1.41, 0.71]$  
+     * Calculate exponentials:
+       * $e^{0.71} \approx 2.034$
+       * $e^{1.41} \approx 4.096$
+       * $e^{0.71} \approx 2.034$
+     * Sum of exponentials: $2.034 + 4.096 + 2.034 \approx 8.164$
+     * Softmax values:
+       * $\frac{2.034}{8.164} \approx 0.249$
+       * $\frac{4.096}{8.164} \approx 0.502$
+       * $\frac{2.034}{8.164} \approx 0.249$
+     * Final result: $[0.249, 0.502, 0.249]$ ≈ $[0.25, 0.50, 0.25]$
 
-- **Row 3**: \([1.41,\,0.71,\,0.71]\)
+   The final softmax matrix $\alpha$ is:
+   $$
+   \alpha = \begin{bmatrix}
+   0.33 & 0.33 & 0.33 \\
+   0.25 & 0.50 & 0.25 \\
+   0.25 & 0.50 & 0.25
+   \end{bmatrix}
+   $$
 
-  1. \(e^{1.41} \approx 4.09\), \(e^{0.71} \approx 2.03\).  
-  2. Sum: \(4.09 + 2.03 + 2.03 \approx 8.15\).  
-  3. Softmax values:
-     \[
-     \frac{4.09}{8.15} \approx 0.50,\quad
-     \frac{2.03}{8.15} \approx 0.25,\quad
-     \frac{2.03}{8.15} \approx 0.25.
-     \]
-  4. Final result: \([0.50,\, 0.25,\, 0.25]\).
-
-Thus, the final softmax matrix \(\alpha\) is:
-
-\[
-\alpha 
-= \begin{bmatrix}
-0.40 & 0.20 & 0.40 \\
-0.40 & 0.40 & 0.20 \\
-0.50 & 0.25 & 0.25
-\end{bmatrix}.
-\]
-
-Key observations about the softmax results:
-
-1. All output values are between 0 and 1.  
-2. Each row sums to 1.  
-3. Equal input values in a row (e.g., the first two elements in Row 2) result in equal output probabilities.  
-4. Larger input values receive larger output probabilities (see Row 3’s first element).
+   Key observations about the softmax results:
+   1. All output values are between 0 and 1
+   2. Each row sums to 1
+   3. Equal input values (Row 1) result in equal output probabilities
+   4. Larger input values receive larger output probabilities (middle values in Rows 2 and 3)
 
    (slight rounding applied).
 
