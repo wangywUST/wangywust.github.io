@@ -487,7 +487,7 @@ $$
     =
     [1*1 + 2*0 + 1*1 + 0*0,\; 1*0 + 2*1 + 1*0 + 0*1]
     =
-    [1+0+1,\;0+2+0] = [2,\;2].
+    [2,\;2].
     $$
 
   - Row 2: $[0,1,1,1]$
@@ -501,7 +501,7 @@ $$
     0 & 1
     \end{bmatrix}
     =
-    [0+0+1,\;0+1+1] = [1,\;2].
+    [1,\;2].
     $$
 
   - Row 3: $[1,0,2,1]$
@@ -515,7 +515,7 @@ $$
     0 & 1
     \end{bmatrix}
     =
-    [1+0+2,\;0+0+1] = [3,\;1].
+    [3,\;1].
     $$
 
   Thus,
@@ -556,10 +556,6 @@ $$
     1 & 0
     \end{bmatrix}
     =
-    [1*1 +1*0+0*0+2*1,\;1*0+1*1+0*1+2*0]
-    =
-    [1 + 2,\;1]
-    =
     [3,\;1].
     $$
 
@@ -575,8 +571,6 @@ $$
     1 & 0
     \end{bmatrix}
     =
-    [2*1 +1*0+1*0+0*1,\;2*0+1*1+1*1+0*0]
-    =
     [2,\;2].
     $$
 
@@ -591,8 +585,6 @@ $$
     0 & 1\\
     1 & 0
     \end{bmatrix}
-    =
-    [0+0+0+1,\;0+1+1+0]
     =
     [1,\;2].
     $$
@@ -634,7 +626,7 @@ $$
     0 & 1
     \end{bmatrix}
     =
-    [1+0,\;0+1] = [1,\;1].
+    [1,\;1].
     $$
 
   - Row 2: $[0,2,1,1]$
@@ -648,8 +640,6 @@ $$
     1 & 0\\
     0 & 1
     \end{bmatrix}
-    =
-    [0+0+1,\;0+2+1]
     =
     [1,\;3].
     $$
@@ -666,7 +656,7 @@ $$
     0 & 1
     \end{bmatrix}
     =
-    [1+0+2,\;0+1+2] = [3,\;3].
+    [3,\;3].
     $$
 
   Therefore,
@@ -712,9 +702,7 @@ $$
     0 & 0
     \end{bmatrix}
     =
-    [1*0+2*1+1*1+0*0,\; 1*1+2*0+1*1+0*0]
-    =
-    [2+1,\;1+1] = [3,\;2].
+    [3,\;2].
     $$
 
   - Row 2 $[0,1,1,1]$:
@@ -729,7 +717,7 @@ $$
     0 & 0
     \end{bmatrix}
     =
-    [0+1+1,\;0+0+1] = [2,\;1].
+    [2,\;1].
     $$
 
   - Row 3 $[1,0,2,1]$:
@@ -744,9 +732,7 @@ $$
     0 & 0
     \end{bmatrix}
     =
-    [1*0+0*1+2*1+1*0,\;1*1+0*0+2*1+1*0]
-    =
-    [2,\;1+2] = [2,\;3].
+    [2,\;3].
     $$
 
   Hence,
@@ -781,9 +767,7 @@ $$
     1 & 1
     \end{bmatrix}
     =
-    [1*0+1*1+0*1+2*1,\; 1*1+1*0+0*0+2*1]
-    =
-    [1+2,\;1+2] = [3,\;3].
+    [3,\;3].
     $$
 
   - Row 2 $[2,1,1,0]$:
@@ -797,9 +781,7 @@ $$
     1 & 1
     \end{bmatrix}
     =
-    [2*0+1*1+1*1+0*1,\;2*1+1*0+1*0+0*1]
-    =
-    [1+1,\;2] = [2,\;2].
+    [2,\;2].
     $$
 
   - Row 3 $[0,1,1,1]$:
@@ -813,7 +795,7 @@ $$
     1 & 1
     \end{bmatrix}
     =
-    [0+1+1+1,\;0+0+0+1] = [3,\;1].
+    [3,\;1].
     $$
 
   So,
@@ -848,8 +830,6 @@ $$
     1 & 0
     \end{bmatrix}
     =
-    [1*0+1*1+0*0+0*1,\;1*1+1*1+0*1+0*0]
-    =
     [1,\;2].
     $$
 
@@ -864,10 +844,6 @@ $$
     1 & 0
     \end{bmatrix}
     =
-    [0+2*1+1*0+1*1,\;0+2*1+1*1+1*0]
-    =
-    [2+1,\;2+1]
-    =
     [3,\;3].
     $$
 
@@ -881,10 +857,6 @@ $$
     0 & 1\\
     1 & 0
     \end{bmatrix}
-    =
-    [1*0+1*1+2*0+2*1,\;1*1+1*1+2*1+2*0]
-    =
-    [1+2,\;1+1+2]
     =
     [3,\;4].
     $$
@@ -947,28 +919,13 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \end{bmatrix}
      =
      \begin{bmatrix}
-     (2*3 + 2*1) & (2*2 + 2*2) & (2*1 + 2*2) \\
-     (1*3 + 2*1) & (1*2 + 2*2) & (1*1 + 2*2) \\
-     (3*3 + 1*1) & (3*2 + 1*2) & (3*1 + 1*2)
-     \end{bmatrix}.
-     $$
-
-     Concretely:
-     - Row 1 = $[6+2,\;4+4,\;2+4] = [8,\;8,\;6]$
-     - Row 2 = $[3+2,\;2+4,\;1+4] = [5,\;6,\;5]$
-     - Row 3 = $[9+1,\;6+2,\;3+2] = [10,\;8,\;5]$
-
-     So,
-
-     $$
-     Q_1 K_1^T = \begin{bmatrix}
      8 & 8 & 6\\
      5 & 6 & 5\\
      10 & 8 & 5
      \end{bmatrix}.
      $$
 
-  2. Scale: $\frac{Q_1 K_1^T}{\sqrt{2}}$. Numerically multiply each element by $\approx 0.707$.  
+  2. Scale: $\frac{Q_1 K_1^T}{\sqrt{2}}$:
 
      $$
      \approx
@@ -979,16 +936,14 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \end{bmatrix}.
      $$
 
-  3. Apply softmax row-wise.  
-     
-     Let’s provide approximate results (after exponentiation and normalization):
+  3. Apply softmax row-wise (approx results after exponentiation and normalization):
 
      $$
      \alpha_1 \approx
      \begin{bmatrix}
-     0.43 & 0.43 & 0.14\\
-     0.30 & 0.41 & 0.30\\
-     0.67 & 0.24 & 0.09
+     0.45 & 0.45 & 0.11\\
+     0.25 & 0.50 & 0.25\\
+     0.79 & 0.19 & 0.02
      \end{bmatrix}.
      $$
 
@@ -998,37 +953,16 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \text{head}_1 = \alpha_1 \times V_1.
      $$
 
-     Where
+     Approximating:
 
      $$
-     V_1 = \begin{bmatrix}
-     1 & 1\\
-     1 & 3\\
-     3 & 3
+     \text{head}_1 \approx
+     \begin{bmatrix}
+     1.23 & 2.13\\
+     1.50 & 2.50\\
+     1.04 & 1.42
      \end{bmatrix}.
      $$
-
-     - Row 1 of $\alpha_1$: $[0.43, 0.43, 0.14]$
-
-       $$
-       = 0.43 \times [1,1] + 0.43 \times [1,3] + 0.14 \times [3,3].
-       $$
-       Approximating:
-       $$
-       = [0.43+0.43+0.42,\; 0.43+1.29+0.42]
-       = [1.28,\;2.14].
-       $$
-
-     - Similarly for rows 2 and 3. Suppose final approximate:
-
-       $$
-       \text{head}_1 \approx
-       \begin{bmatrix}
-       1.28 & 2.14\\
-       1.05 & 2.25\\
-       1.78 & 2.70
-       \end{bmatrix}.
-       $$
 
 - **Head 2**:  
   1. $Q_2 K_2^T$.  
@@ -1055,21 +989,8 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \end{bmatrix}.
      $$
 
-     Multiply to get $(3 \times 2) \times (2 \times 3) = 3 \times 3$:
-
-     $$
-     Q_2 K_2^T = \begin{bmatrix}
-     (3*3 +2*3) & (3*2 +2*2) & (3*3+2*1)\\
-     (2*3 +1*3) & (2*2 +1*2) & (2*3 +1*1)\\
-     (2*3 +3*3) & (2*2 +3*2) & (2*3 +3*1)
-     \end{bmatrix}
-     =
-     \begin{bmatrix}
-     9+6 & 6+4 & 9+2\\
-     6+3 & 4+2 & 6+1\\
-     6+9 & 4+6 & 6+3
-     \end{bmatrix}
-     =
+     $$ 
+     Q_2 K_2^T =
      \begin{bmatrix}
      15 & 10 & 11\\
      9  & 6  & 7\\
@@ -1088,14 +1009,14 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \end{bmatrix}.
      $$
 
-  3. Softmax row-wise (again, approximate):
+  3. Softmax row-wise (approx):
 
      $$
      \alpha_2 \approx
      \begin{bmatrix}
-     0.46 & 0.24 & 0.30\\
-     0.43 & 0.26 & 0.31\\
-     0.45 & 0.30 & 0.25
+     0.92 & 0.03 & 0.05\\
+     0.73 & 0.09 & 0.18\\
+     0.96 & 0.03 & 0.01
      \end{bmatrix}.
      $$
 
@@ -1109,24 +1030,14 @@ Assume each key vector dimension is $d_k = 2$. Hence the scale is $\frac{1}{\sqr
      \end{bmatrix}.
      $$
 
-     For row 1 of $\alpha_2$: $[0.46, 0.24, 0.30]$:
-
-     $$
-     = 0.46\times[1,2] + 0.24\times[3,3] + 0.30\times[3,4].
-     $$
-     $$
-     \approx [0.46+0.72+0.90,\;0.92+0.72+1.20]
-     = [2.08,\;2.84].
-     $$
-
-     Similarly compute for rows 2 and 3. Suppose we get:
+     Approximating:
 
      $$
      \text{head}_2 \approx
      \begin{bmatrix}
-     2.08 & 2.84\\
-     1.73 & 2.30\\
-     2.40 & 3.10
+     1.16 & 2.13\\
+     1.53 & 2.45\\
+     1.09 & 2.06
      \end{bmatrix}.
      $$
 
@@ -1138,9 +1049,9 @@ We now concatenate $\text{head}_1$ and $\text{head}_2$ horizontally to form a $(
 $$
 \text{Concat}(\text{head}_1, \text{head}_2) =
 \begin{bmatrix}
-1.28 & 2.14 & 2.08 & 2.84 \\
-1.05 & 2.25 & 1.73 & 2.30 \\
-1.78 & 2.70 & 2.40 & 3.10
+1.23 & 2.13 & 1.16 & 2.13 \\
+1.50 & 2.50 & 1.53 & 2.45 \\
+1.04 & 1.42 & 1.09 & 2.06
 \end{bmatrix}.
 $$
 
