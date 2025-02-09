@@ -10,6 +10,8 @@ VENUE_ABBREVIATIONS = {
     'arXiv preprint': 'Preprint',
     'International Conference on Learning Representations': 'ICLR',
     'Advances in Neural Information Processing Systems': 'NeurIPS',
+    'North American Chapter of the Association for Computational Linguistics': 'NAACL',
+    'NAACL' : 'NAACL',
     'Association for Computational Linguistics': 'ACL',
     'International Conference on Data Mining': 'ICDM',
     'International Joint Conference on Artificial Intelligence': 'IJCAI',
