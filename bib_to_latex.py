@@ -58,9 +58,9 @@ CONFERENCE_TIME_ORDER = [
     'EMNLP',
     'ACL',
     'CVPR',
+    'ICLR',
     'NAACL',
     'ICCV',
-    'ICLR',
     'AAAI'
     # 你可以根据需要添加更多的会议
 ]
