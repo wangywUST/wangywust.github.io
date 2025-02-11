@@ -40,7 +40,11 @@
 </li>
 
 <li>
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+    <img src="Image/zhong2025mquake.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">MQuAKE-Remastered: Multi-Hop Knowledge Editing Can Only Be Advanced With Reliable Evaluations</a></div>
       <div class="author"><strong>Shaochen Zhong, Yifan Lu, Lize Shao, Bhargav Bhushanam, Xiaocong Du, Louis Feng, Yixin Wan, Yucheng Shi, Daochen Zha, Yiwei Wang, others</strong>.</div>
