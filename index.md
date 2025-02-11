@@ -10,7 +10,7 @@ I am an Assistant Professor at the Department of Computer Science at [University
 
 **Recruiting Ph.D. students and (remote) research interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
 
-## Main Experience
+<!-- ## Main Experience
 
 **University of California, Merced**, Jan. 2025 - Present  
 Assistant Professor  
@@ -31,7 +31,7 @@ M.Phil. Student
 
 **Southeast University**, Aug. 2013 - Jun. 2017  
 Undergraduate Student  
-Main Advisor: Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc.
+Main Advisor: Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc. -->
 
 ## Research Focus
 
