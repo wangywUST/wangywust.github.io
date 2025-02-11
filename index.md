@@ -38,7 +38,7 @@ Main Advisor: Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc.
 **My research focuses on large foundation models based trustworthy natural language processing and its applications as AI assistants. Our research considers not only textual but also vision data, with the target of understanding ubiquitos multi-modal data in real-world applications.** <br> 
 
 <p align="center">
-<img src='person_logo.png' width = "50%">
+<img src='person_logo.png' width = "70%">
 </p>
 
 {% include_relative _includes/output_file.md %}
