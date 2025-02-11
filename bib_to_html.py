@@ -132,7 +132,7 @@ def generate_html(entry):
         html = f'''
 <li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
