@@ -58,7 +58,11 @@
 </li>
 
 <li>
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
+    <img src="Image/wang2025vulnerability.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">NAACL</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf">Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety</a></div>
       <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
