@@ -47,7 +47,7 @@
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">MQuAKE-Remastered: Multi-Hop Knowledge Editing Can Only Be Advanced With Reliable Evaluations</a></div>
-      <div class="author"><strong>Shaochen Zhong, Yifan Lu, Lize Shao, Bhargav Bhushanam, Xiaocong Du, Louis Feng, Yixin Wan, Yucheng Shi, Daochen Zha, Yiwei Wang, others</strong>.</div>
+      <div class="author"><strong>Shaochen Zhong, others</strong>.</div>
       <div class="periodical"><em>The Thirteenth International Conference on Learning Representations (ICLR), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
