@@ -20,7 +20,7 @@
   <li><a href="https://ijcai-21.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2021</autocolor></a></li>
 </ul> -->
 
-<h4 style="font-size: 32px; margin:0 10px 0;">Area Chair</h4>
+<h4 style="font-size: 31px; margin:0 10px 0;">Area Chair</h4>
 
 <ul style="margin:0 0 5px;">
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2025</autocolor></a></li>
@@ -32,7 +32,7 @@
   <li><a href="https://2022.acmmm.org/"><autocolor>International Joint Conference on Neural Network (IJCNN) 2025</autocolor></a></li>  
 </ul>
 
-<h4 style="font-size: 32px; margin:0 10px 0;">Conference Reviewer</h4>
+<h4 style="font-size: 31px; margin:0 10px 0;">Conference Reviewer</h4>
 
 <ul style="margin:0 0 5px;">
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024</autocolor></a></li>
