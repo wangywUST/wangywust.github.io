@@ -2,7 +2,7 @@
 
 <div class="publications">
 <ol class="bibliography">
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 15px; position: relative;">
@@ -148,7 +148,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2024</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2024</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -346,7 +346,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2023</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2023</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -420,7 +420,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2022</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2022</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -504,7 +504,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2021</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2021</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -658,7 +658,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2020</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2020</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -760,7 +760,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2019</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2019</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -774,7 +774,7 @@
   </div>
 </div>
 </li>
-<h3 style="margin-top: 20px; margin-bottom: 5px;">2017</h3><hr style="margin-bottom: 5px;">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2017</h3><hr style="margin-bottom: 5px;">
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
