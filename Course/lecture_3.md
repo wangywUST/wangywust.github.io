@@ -293,6 +293,79 @@ Here, $Q$ is $1 \times 2$, $K$ is $2 \times 2$, and $V$ is $2 \times 2$.
 
 **Final Output**: $[3,\;2]$.
 
+#### Example 3: Larger Q and K with V as a Column Vector
+Let us consider an example where $Q$ and $K$ have a larger dimension, but $V$ has only one column:
+
+$$
+Q = \begin{bmatrix}
+1 & 1 & 1 & 1
+\end{bmatrix}, \quad
+K = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}, \quad
+V = \begin{bmatrix}
+2 \\
+4 \\
+6 \\
+8
+\end{bmatrix}.
+$$
+
+In-Course Question: Attention computation result of the above Q, K, V.
+
+1. **Compute $QK^T$**  
+   Since $K$ is a square matrix and $K^T = K$:
+
+   $$
+   QK^T = QK =
+   \begin{bmatrix}
+   1 & 1 & 1 & 1
+   \end{bmatrix}
+   \begin{bmatrix}
+   1 & 0 & 0 & 0 \\
+   0 & 1 & 0 & 0 \\
+   0 & 0 & 1 & 0 \\
+   0 & 0 & 0 & 1
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+   1 & 1 & 1 & 1
+   \end{bmatrix}.
+   $$
+
+2. **Scale by $\sqrt{d_k}$**  
+   Here, $d_k = 4$. Thus, $\frac{1}{\sqrt{4}} = \frac{1}{2} = 0.5$. So,
+
+   $$
+   \frac{[1,\;1,\;1,\;1]}{2} = [0.5,\;0.5,\;0.5,\;0.5].
+   $$
+
+3. **Softmax**  
+   Since all values are equal, the softmax yields equal weights:
+
+   $$
+   \text{softmax}([0.5,\;0.5,\;0.5,\;0.5]) = [0.25,\;0.25,\;0.25,\;0.25].
+   $$
+
+4. **Multiply by $V$**  
+
+   $$
+   [0.25,\;0.25,\;0.25,\;0.25]
+   \begin{bmatrix}
+   2 \\
+   4 \\
+   6 \\
+   8
+   \end{bmatrix}
+   = 0.25 \times 2 + 0.25 \times 4 + 0.25 \times 6 + 0.25 \times 8 = 0.5 + 1 + 1.5 + 2 = 5.
+   $$
+
+**Final Output**: $5$.
+
+
 ---
 
 ### Multi-Head Attention
