@@ -316,7 +316,7 @@ $$
 
 In-Course Question: Attention computation result of the above Q, K, V.
 
-1. **Compute $QK^T$**  
+<!-- 1. **Compute $QK^T$**  
    Since $K$ is a square matrix and $K^T = K$:
 
    $$
@@ -363,7 +363,7 @@ In-Course Question: Attention computation result of the above Q, K, V.
    = 0.25 \times 2 + 0.25 \times 4 + 0.25 \times 6 + 0.25 \times 8 = 0.5 + 1 + 1.5 + 2 = 5.
    $$
 
-**Final Output**: $5$.
+**Final Output**: $5$. -->
 
 
 ---
