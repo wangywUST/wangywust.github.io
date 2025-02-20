@@ -1397,6 +1397,8 @@ The introduction situates the proposed Transformer within the history of neural 
 **Commentary**  
 The introduction highlights a major bottleneck in typical RNN-based models: the inability to parallelize across time steps in a straightforward way. Traditional attention over RNN outputs is still useful, but the authors propose a more radical approach, removing recurrences and using attention everywhere. This sets the stage for a highly parallelizable model that can scale better to longer sequences, given sufficient memory and computational resources.
 
+In-Course Question 1: What is the number of dimensionality of the transformer's query embeddings designed in this paper.
+
 ---
 
 ## 2 Background
