@@ -1504,6 +1504,8 @@ The authors argue that self-attention layers are efficient (especially when sequ
 
 ---
 
+What is the probability assigned to the ground-truth class in the ground-truth distribution after label smoothing when training the Transformer in the default setting of this paper?
+
 ## 5 Training
 
 ### 5.1 Training Data and Batching
