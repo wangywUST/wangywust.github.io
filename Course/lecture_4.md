@@ -1,4 +1,4 @@
-# Calculating Parameters in the Vanilla Transformer Model
+<!-- # Calculating Parameters in the Vanilla Transformer Model
 
 Looking at Table 3 in the "Attention Is All You Need" paper, I'll explain how to calculate the number of trainable parameters for the Transformer architecture. This calculation is important for understanding model complexity and computational requirements.
 
@@ -93,6 +93,8 @@ The paper explores various configurations by changing:
 
 For example, reducing N from 6 to 2 reduces the parameter count to approximately 36 million, while increasing dmodel to 1024 and using 16 heads increases it to about 213 million for the "big" model.
 
-The parameter calculation principles remain the same across all variations; you just substitute the new dimensions into the formulas above.
+The parameter calculation principles remain the same across all variations; you just substitute the new dimensions into the formulas above. -->
 
-<!-- In-Course Question Answering: Given N = 6, d_model = 1024, d_ff = 4096, h = 16, what is the transformer's model size (number of params)? -->
+In-Class Question 1: Given layer number $N$ as 6, model dimension $d_{model}$ as 512, feed-forward dimension $d_{ff}$ = 2048, number of attention heads $h$ = 8, what is the total number of learnable parameters in a vanilla Transformer model?
+
+In-Class Question 2: Given layer number $N$ as 6, model dimension $d_{model}$ as 1024, feed-forward dimension $d_{ff}$ = 4096, number of attention heads $h$ = 16, what is the total number of learnable parameters in a vanilla Transformer model?
