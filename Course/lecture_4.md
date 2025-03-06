@@ -1,4 +1,4 @@
-# Lecture 4: # Calculating Parameters in the Transformer Model
+# Calculating Parameters in the Vanilla Transformer Model
 
 Looking at Table 3 in the "Attention Is All You Need" paper, I'll explain how to calculate the number of trainable parameters for the Transformer architecture. This calculation is important for understanding model complexity and computational requirements.
 
