@@ -380,6 +380,11 @@ $$
 \;=\; 3.1428\times 10^{23}\,\text{FLOPs}.
 $$
 
+<div style="text-align: center;">
+  <img src="./Course/lecture_4_figure_1.png" width="100%">
+  <p style="margin-top: 10px;">Large Language Model's Costs</p>
+</div>
+
 ### 3.6 Training Time Estimation
 
 Given the total FLOPs and the GPU hardware specs, we can estimate **training time**. The raw GPU FLOP rate alone does not reflect real-world utilization, and typical utilization might be between 0.3 and 0.55 due to factors like data loading, communication, and logging overheads.
@@ -613,5 +618,3 @@ By dissecting these components, we gain a clearer picture of **why** training la
 8. Smith S, Patwary M, Norick B, et al. Using deepspeed and megatron to train megatron-turing nlg 530b, a large-scale generative language model. *arXiv preprint arXiv:2201.11990*, 2022.
 
 ---
-
-通过以上更详细的分步讲解和数学推导，相信你对大型语言模型在训练和推理阶段的内存和计算需求有了更全面的了解。祝学习顺利!
