@@ -94,3 +94,5 @@ The paper explores various configurations by changing:
 For example, reducing N from 6 to 2 reduces the parameter count to approximately 36 million, while increasing dmodel to 1024 and using 16 heads increases it to about 213 million for the "big" model.
 
 The parameter calculation principles remain the same across all variations; you just substitute the new dimensions into the formulas above.
+
+<!-- In-Course Question Answering: Given N = 6, d_model = 1024, d_ff = 4096, h = 16, what is the transformer's model size (number of params)? -->
