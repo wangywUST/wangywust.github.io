@@ -121,6 +121,38 @@
         font-size: 85%;
       }
 
+      /* Table styles - Added for better Markdown table rendering */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1em 0;
+        overflow-x: auto;
+        display: block;
+        border: 1px solid #e1e4e8;
+      }
+      
+      th, td {
+        border: 1px solid #e1e4e8;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      
+      th {
+        background-color: #f6f8fa;
+        font-weight: 600;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f8f8f8;
+      }
+      
+      /* Enable horizontal scrolling for wide tables */
+      table {
+        display: block;
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
       /* Syntax highlighting */
       .highlight .k { color: #d73a49; } /* Keyword */
       .highlight .s { color: #032f62; } /* String */
@@ -144,6 +176,11 @@
           padding: 12px;
           font-size: 13px;
         }
+        
+        th, td {
+          padding: 6px 8px;
+          font-size: 0.9rem;
+        }
       }
 
       /* Dark mode support */
@@ -159,6 +196,23 @@
 
         :not(pre) > code {
           background-color: rgba(220, 220, 220, 0.1);
+        }
+        
+        /* Dark mode table styles */
+        table {
+          border-color: #2f363d;
+        }
+        
+        th, td {
+          border-color: #2f363d;
+        }
+        
+        th {
+          background-color: #1b1f23;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #24292e;
         }
 
         .highlight .k { color: #f97583; } /* Keyword */
