@@ -200,6 +200,11 @@ Next, we can estimate the computational requirements for training GPT3-175B. For
 
 $6 \times 174600 \times 10^6 \times 300 \times 10^9 = 3.1428 \times 10^{23} \text{ flops}$
 
+<div style="text-align: center;">
+  <img src="./Course/lecture_4_fig_1.png" width="50%">
+  <p style="margin-top: 10px;">Large Language Model's Costs</p>
+</div>
+
 ### 3.2 Training Time Estimation
 
 The model parameter count and total training tokens determine the computational requirements for training a transformer model. Given the hardware GPU type, we can estimate the required training time. Given the computational requirements, the training time (i.e., the time it takes for GPUs to complete so many flops of computation) depends not only on the GPU type but also on GPU utilization. When calculating end-to-end training GPU utilization, we need to consider not only the computation time of forward and backward passes but also the time for CPU data loading, optimizer updates, multi-card communication, and logging. Generally speaking, GPU utilization is typically between 0.3 and 0.55.
