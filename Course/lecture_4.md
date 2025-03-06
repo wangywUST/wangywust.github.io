@@ -215,7 +215,13 @@ $\text{Training Time} \approx \frac{8 \times \text{tokens count} \times \text{mo
 
 Taking GPT3-175B as an example, on 1024 A100 GPUs with 40GB memory, training 175B parameters of GPT3 on 300B tokens of data. The peak performance of a 40GB memory A100 is 312 TFLOPS, assuming a GPU utilization of 0.45, then the required training time is 34 days, which aligns with the training time reported in [7].
 
+$\text{Training Time} \approx \frac{8 \times 300 \times 10^9 \times 175 \times 10^9}{1024 \times 312 \times 10^{12} \times 0.45} \approx \frac{420,000 \times 10^{18}}{143,360 \times 10^{12}} \approx 2,929,687 \text{seconds} \approx 34 \text{days}$
+
+
 Taking LLaMA-65B as an example, on 2048 A100 GPUs with 80GB memory, training a 65B parameter model on 1.4TB tokens of data. The peak performance of an 80GB memory A100 is 624 TFLOPS, assuming a GPU utilization of 0.3, then the required training time is 21 days, which aligns with the actual training time reported in [4].
+
+$\text{Training Time} \approx \frac{8 \times 1.4 \times 10^{12} \times 65 \times 10^9}{2048 \times 624 \times 10^{12} \times 0.3} \approx \frac{728 \times 10^{21}}{383,990 \times 10^{12}} \approx 1,896,379 \text{seconds} \approx 21 \text{days}$
+
 
 ## 4. Intermediate Activation Analysis
 
