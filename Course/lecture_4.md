@@ -309,6 +309,12 @@ Given the total FLOPs and the GPU hardware, we can estimate training time. The r
 
 Also note that **activation recomputation** (discussed later) adds an extra forward pass to save memory, resulting in a factor of 4 (forward + backward + recomputation) instead of 3. Thus, per token per parameter, we get $2\times 4 = 8$ FLOPs.
 
+Given the training tokens, hardware environment configuration, the computation time for training a transformer model is:
+
+$$
+\text{Training Time} \approx \frac{8 \times \text{tokens count} \times \text{model parameter count}}{\text{GPU count} \times \text{GPU peak performance in flops} \times \text{GPU utilization}}
+$$
+
 #### Example: GPT3-175B
 
 Using 1024 A100 (40GB) GPUs to train GPT3-175B on 300B tokens:
@@ -442,9 +448,6 @@ $$
 4\,l\,b\,h\,(s+n).
 $$
 
-**(Correction)**  
-Previously, an extra factor of $l$ was mistakenly repeated in the formula. The correct expression includes the batch size $b$ and does not double-count the number of layers.
-
 #### GPT3 Example
 
 Consider GPT3 again with 350 GB of parameter memory. Suppose $b=64$, $s=512$, and $n=32$. Then:
@@ -484,11 +487,3 @@ By dissecting these components, we gain a clearer picture of **why** training la
 8. Smith S, Patwary M, Norick B, et al. Using deepspeed and megatron to train megatron-turing nlg 530b, a large-scale generative language model. *arXiv preprint arXiv:2201.11990*, 2022.
 
 ---
-
-### Summary of Corrections
-
-- **KV Cache Memory Formula**: Originally, there was a factor $l(s+n) \times h \times l \times 2 \times 2$. This erroneously duplicated $l$ and omitted $b$. The correct formula for KV cache memory is  
-  $$
-  4\,l\,b\,h\,(s+n)\,\text{bytes}
-  $$
-  assuming float16 storage and a batch size of $b$.
