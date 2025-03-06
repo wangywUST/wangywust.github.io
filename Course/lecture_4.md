@@ -201,7 +201,7 @@ Next, we can estimate the computational requirements for training GPT3-175B. For
 $6 \times 174600 \times 10^6 \times 300 \times 10^9 = 3.1428 \times 10^{23} \text{ flops}$
 
 <div style="text-align: center;">
-  <img src="./Course/lecture_4_figure_1.png" width="50%">
+  <img src="./Course/lecture_4_figure_1.png" width="100%">
   <p style="margin-top: 10px;">Large Language Model's Costs</p>
 </div>
 
