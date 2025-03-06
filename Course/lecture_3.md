@@ -1397,6 +1397,8 @@ The introduction situates the proposed Transformer within the history of neural 
 **Commentary**  
 The introduction highlights a major bottleneck in typical RNN-based models: the inability to parallelize across time steps in a straightforward way. Traditional attention over RNN outputs is still useful, but the authors propose a more radical approach, removing recurrences and using attention everywhere. This sets the stage for a highly parallelizable model that can scale better to longer sequences, given sufficient memory and computational resources.
 
+In-Course Question 1: What is the number of dimensionality of the transformer's query embeddings designed in this paper.
+
 ---
 
 ## 2 Background
@@ -1501,6 +1503,8 @@ Self-attention:
 The authors argue that self-attention layers are efficient (especially when sequence length is not extremely large) and effective at modeling dependencies. This is a key motivation for the entire design.
 
 ---
+
+In-class question: What is the probability assigned to the ground-truth class in the ground-truth distribution after label smoothing when training the Transformer in the default setting of this paper?
 
 ## 5 Training
 
