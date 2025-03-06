@@ -104,8 +104,6 @@ In-Class Question 2: Given layer number $N$ as 6, model dimension $d_{model}$ as
 Reference Tutorial: [Parameter size of vanilla transformer](https://colab.research.google.com/drive/1jdhD6yexq2PBZYg9zg5FG-YRGyL8ZJ0L?usp=sharing)
 Reference Tutorial: [Analysis of Transformer Models](https://zhuanlan.zhihu.com/p/624740065)
 
-以下内容在原有基础上增补了更多细节，特别是对数学公式和模型结构的解释，使读者能够更直观地理解大型语言模型的训练与推理成本。所有数学公式仍保留或增加在美元符号环境中，并且不使用\[\]语法。
-
 ---
 
 ## 1. Introduction
