@@ -132,11 +132,11 @@ In summary, an $l$-layer transformer model has a trainable parameter count of $l
 Next, let's estimate the parameter counts of different versions of the LLaMA model:
 
 | Actual Parameter Count | Hidden Dimension h | Layer Count l | 12lh² |
-|----------------------|-------------------|------------|------------|
-| 6.7B                 | 4096              | 32         | 6,442,450,944 |
-| 13.0B                | 5120              | 40         | 12,582,912,000 |
-| 32.5B                | 6656              | 60         | 31,897,681,920 |
-| 65.2B                | 8192              | 80         | 64,424,509,440 |
+|------------------------|--------------------|--------------:|--------|
+| 6.7B                   | 4096               | 32            | 6,442,450,944 |
+| 13.0B                  | 5120               | 40            | 12,582,912,000 |
+| 32.5B                  | 6656               | 60            | 31,897,681,920 |
+| 65.2B                  | 8192               | 80            | 64,424,509,440 |
 
 ### 2.1 Memory Usage Analysis During Training
 
