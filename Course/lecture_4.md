@@ -95,13 +95,14 @@ For example, reducing N from 6 to 2 reduces the parameter count to approximately
 
 The parameter calculation principles remain the same across all variations; you just substitute the new dimensions into the formulas above. -->
 
+# Lecture 4: Analysis of Transformer Models: Parameter Count, Computation, Activations, and KV Cache
+
 In-Class Question 1: Given layer number $N$ as 6, model dimension $d_{model}$ as 512, feed-forward dimension $d_{ff}$ = 2048, number of attention heads $h$ = 8, what is the total number of learnable parameters in a vanilla Transformer model?
 
 In-Class Question 2: Given layer number $N$ as 6, model dimension $d_{model}$ as 1024, feed-forward dimension $d_{ff}$ = 4096, number of attention heads $h$ = 16, what is the total number of learnable parameters in a vanilla Transformer model?
 
 Reference Tutorial: [Parameter size of vanilla transformer](https://colab.research.google.com/drive/1jdhD6yexq2PBZYg9zg5FG-YRGyL8ZJ0L?usp=sharing)
-
-# Lecture 4: Analysis of Transformer Models: Parameter Count, Computation, Activations, and KV Cache
+Reference Tutorial: [Analysis of Transformer Models](https://zhuanlan.zhihu.com/p/624740065)
 
 ## 1. Introduction
 
