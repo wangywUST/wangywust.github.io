@@ -541,44 +541,9 @@ This trades extra computation for less memory usage and can cut activation memor
 
 ---
 
-## 5. KV Cache
+## 5. Conclusion
 
-For faster generative inference, transformers often use a **KV cache**, which stores keys and values from **previous** tokens so that each new token only attends to the previously computed K and V rather than recomputing them from scratch.
-
-A typical inference process has two phases:
-
-1. **Prefill Phase**: The full prompt sequence ($s$ tokens) is fed into the model, generating the key and value cache for each layer.  
-2. **Decoding Phase**: Tokens are generated one by one (or in small batches), each time updating and using the cached keys and values.
-
-### 5.1 Memory Usage of the KV Cache
-
-Suppose the input sequence length is $s$, and we want to generate $n$ tokens. Let $b$ be the inference batch size (number of parallel sequences). We store $K, V \in \mathbb{R}^{b \times (s+n) \times h}$ in float16. Each element is 2 bytes, and we have both $K$ and $V$, so the memory cost per layer is:
-
-$$
-2 \;\text{(for K and V)} \;\times\; b(s+n)h \;\times\; 2\,\text{bytes} = 4\,b\,(s+n)\,h.
-$$
-
-For $l$ layers, the total KV cache memory is:
-$$
-4\,l\,b\,h\,(s+n).
-$$
-
-#### GPT-3 Example
-
-Recall GPT-3 has around 350 GB of parameters (in float16). Suppose we do inference with batch size $b=64$, prompt length $s=512$, and we generate $n=32$ tokens:
-
-- **Model parameters**: 350 GB  
-- **KV cache**:  
-  $$
-  4\,l\,b\,h\,(s+n)\approx 164\,\text{GB}
-  $$
-  which is nearly half the parameter size under these settings.
-
----
-
-## 6. Conclusion
-
-In this tutorial, we explored how to estimate and analyze key aspects of training and inference for large language models:
+In this class, we explored how to estimate and analyze key aspects of training for large language models:
 
 1. **Parameter Count**  
    - For a transformer-based LLM, each layer has approximately $12h^2 + 13h$ parameters, plus $Vh$ for the embeddings, leading to a total of  
@@ -595,10 +560,6 @@ In this tutorial, we explored how to estimate and analyze key aspects of trainin
 3. **FLOP Estimation**  
    - Roughly **2 FLOPs** per token-parameter during a forward pass (one multiplication + one addition).  
    - Training (forward + backward) yields about **6 FLOPs** per token-parameter if no recomputation is used, or **8 FLOPs** per token-parameter if activation recomputation is used.
-
-4. **KV Cache**  
-   - A powerful mechanism for fast autoregressive decoding, storing keys and values for each token in float16 to avoid recomputing them.  
-   - The total KV cache scales with $b(s+n)h$ per layer.
 
 By dissecting these components, we gain a clearer picture of **why** training large language models requires extensive memory and computation, and **how** various strategies (e.g., activation recomputation, KV cache) are applied to optimize hardware resources. Such understanding is crucial for practitioners to make informed decisions about scaling laws, distributed training setups, and memory-saving techniques.
 
