@@ -95,7 +95,7 @@ For example, reducing N from 6 to 2 reduces the parameter count to approximately
 
 The parameter calculation principles remain the same across all variations; you just substitute the new dimensions into the formulas above. -->
 
-# Lecture 4: Analysis of Transformer Models: Parameter Count, Computation, Activations, and KV Cache
+# Lecture 4: Analysis of Transformer Models: Parameter Count, Computation, Activations
 
 In-Class Question 1: Given layer number $N$ as 6, model dimension $d_{model}$ as 512, feed-forward dimension $d_{ff}$ = 2048, number of attention heads $h$ = 8, what is the total number of learnable parameters in a vanilla Transformer model?
 
@@ -108,9 +108,9 @@ Reference Tutorial: [Analysis of Transformer Models](https://zhuanlan.zhihu.com/
 
 ## 1. Introduction
 
-Welcome to this expanded tutorial on analyzing the memory and computational efficiency of training large language models (LLMs). With the rise of models like OpenAI’s ChatGPT, researchers and engineers have become increasingly interested in the mechanics behind Large Language Models. The “large” aspect of these models refers both to the **number of model parameters** and the **scale of training data**. For example, GPT-3 has 175 billion parameters and was trained on 570 GB of data. Consequently, training such models presents two key challenges: **memory efficiency** and **computational efficiency**.
+Welcome to this expanded class on analyzing the memory and computational efficiency of training large language models (LLMs). With the rise of models like OpenAI’s ChatGPT, researchers and engineers have become increasingly interested in the mechanics behind Large Language Models. The “large” aspect of these models refers both to the **number of model parameters** and the **scale of training data**. For example, GPT-3 has 175 billion parameters and was trained on 570 GB of data. Consequently, training such models presents two key challenges: **memory efficiency** and **computational efficiency**.
 
-Most large models in industry today utilize the **transformer architecture**. Their structures can be broadly divided into encoder-decoder (exemplified by T5) and decoder-only. The decoder-only structure can be split into *Causal LM* (represented by the GPT series) and *Prefix LM* (represented by GLM). Causal language models like GPT have achieved significant success, so many mainstream LLMs employ the Causal LM paradigm. In this tutorial, we will focus on the decoder-only transformer framework, analyzing its parameter count, computational requirements, intermediate activations, and KV cache usage to better understand the memory and computational efficiency of training and inference.
+Most large models in industry today utilize the **transformer architecture**. Their structures can be broadly divided into encoder-decoder (exemplified by T5) and decoder-only. The decoder-only structure can be split into *Causal LM* (represented by the GPT series) and *Prefix LM* (represented by GLM). Causal language models like GPT have achieved significant success, so many mainstream LLMs employ the Causal LM paradigm. In this class, we will focus on the decoder-only transformer framework, analyzing its parameter count, computational requirements, and intermediate activations to better understand the memory and computational efficiency of training and inference.
 
 To make the analysis clearer, let us define the following notation:
 
