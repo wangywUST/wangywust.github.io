@@ -15,8 +15,8 @@ Greedy Search selects the token with the highest probability at each step, aimin
 **Mechanism:**
 
 - **Step 1:** Start with an initial prompt.
-- **Step 2:** At each position \( t \), choose the token \( x_t \) that maximizes the conditional probability \( P(x_t \mid x_{1:t-1}) \).
-- **Step 3:** Append \( x_t \) to the sequence.
+- **Step 2:** At each position $t$, choose the token $x_t$ that maximizes the conditional probability $P(x_t \mid x_{1:t-1})$.
+- **Step 3:** Append $x_t$ to the sequence.
 - **Step 4:** Repeat until a stopping criterion is met (e.g., end-of-sequence token).
 
 **Example:**
@@ -39,9 +39,9 @@ Beam Search maintains multiple candidate sequences (beams) simultaneously, balan
 **Mechanism:**
 
 - **Step 1:** Initialize with the prompt, creating the initial beam.
-- **Step 2:** At each step \( t \), expand each beam by all possible next tokens.
+- **Step 2:** At each step $t$, expand each beam by all possible next tokens.
 - **Step 3:** Score each expanded sequence using a scoring function, often the sum of log probabilities.
-- **Step 4:** Retain the top \( B \) beams based on scores, where \( B \) is the beam width.
+- **Step 4:** Retain the top $B$ beams based on scores, where $B$ is the beam width.
 - **Step 5:** Repeat until beams reach a stopping criterion.
 
 **Example:**
@@ -87,13 +87,13 @@ Given the prompt "Once upon a time", the model might generate various continuati
 
 #### 2.3.2 Top-k Sampling
 
-Limits the sampling pool to the top \( k \) tokens with the highest probabilities.
+Limits the sampling pool to the top $k$ tokens with the highest probabilities.
 
 **Mechanism:**
 
 - **Step 1:** Compute the probability distribution for the next token.
-- **Step 2:** Select the top \( k \) tokens with the highest probabilities.
-- **Step 3:** Normalize the probabilities of these \( k \) tokens.
+- **Step 2:** Select the top $k$ tokens with the highest probabilities.
+- **Step 3:** Normalize the probabilities of these $k$ tokens.
 - **Step 4:** Sample a token from this restricted distribution.
 - **Step 5:** Append the sampled token to the sequence.
 - **Step 6:** Repeat until a stopping criterion is met.
@@ -109,7 +109,7 @@ With \( k = 50 \), the model considers only the top 50 probable tokens at each s
 
 **Disadvantages:**
 
-- The choice of \( k \) is crucial; too high or too low can affect output quality.
+- The choice of $k$ is crucial; too high or too low can affect output quality.
 
 #### 2.3.3 Top-p (Nucleus) Sampling
 
@@ -127,7 +127,7 @@ Considers the smallest set of top tokens whose cumulative probability exceeds a 
 
 **Example:**
 
-With \( p = 0.9 \), the model dynamically adjusts the number of tokens considered at each step, ensuring that 90% of the probability mass is covered.
+With $p = 0.9$, the model dynamically adjusts the number of tokens considered at each step, ensuring that 90% of the probability mass is covered.
 
 **Advantages:**
 
@@ -136,7 +136,7 @@ With \( p = 0.9 \), the model dynamically adjusts the number of tokens considere
 
 **Disadvantages:**
 
-- Requires careful tuning of \( p \) to balance diversity and coherence.
+- Requires careful tuning of $p$ to balance diversity and coherence.
 
 ### 2.4 Temperature Scaling
 
@@ -145,7 +145,7 @@ Temperature scaling adjusts the sharpness of the probability distribution before
 **Mechanism:**
 
 - **Step 1:** Compute the logits (unnormalized probabilities) for the next token.
-- **Step 2:** Divide the logits by the temperature \( T \) (a positive scalar).
+- **Step 2:** Divide the logits by the temperature $T$ (a positive scalar).
 - **Step 3:** Apply the softmax function to obtain the adjusted probabilities.
 - **Step 4:** Sample a token from this adjusted distribution.
 - **Step 5:** Append the sampled token to the sequence.
@@ -153,9 +153,9 @@ Temperature scaling adjusts the sharpness of the probability distribution before
 
 **Example:**
 
-- With \( T = 1 \), the distribution remains unchanged.
-- With \( T < 1 \), the distribution becomes sharper, making high-probability tokens more likely.
-- With \( T > 1 \), the distribution flattens, allowing for more diverse token selection.
+- With $T = 1$, the distribution remains unchanged.
+- With $T < 1$, the distribution becomes sharper, making high-probability tokens more likely.
+- With $T > 1$, the distribution flattens, allowing for more diverse token selection.
 
 **Advantages:**
 
@@ -164,4 +164,4 @@ Temperature scaling adjusts the sharpness of the probability distribution before
 
 **Disadvantages:**
 
-- Setting \( T \) too high can lead to incoherent text; too low can make the output deterministic.
+- Setting $T$ too high can lead to incoherent text; too low can make the output deterministic.
