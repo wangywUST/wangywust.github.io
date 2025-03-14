@@ -1,4 +1,4 @@
-# Tutorial on Decoding Algorithms in Large Language Models (LLMs)
+# Class 6: Decoding Algorithms in Large Language Models (LLMs)
 
 Decoding algorithms are pivotal in determining how Large Language Models (LLMs) generate text sequences. These methods influence the coherence, diversity, and overall quality of the output. This tutorial delves into various decoding strategies, elucidating their mechanisms and applications.
 
