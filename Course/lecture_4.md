@@ -565,7 +565,7 @@ By dissecting these components, we gain a clearer picture of **why** training la
 
 ---
 
-## 7. References
+## 6. References
 
 1. Raffel C, Shazeer N, Roberts A, et al. Exploring the limits of transfer learning with a unified text-to-text transformer. *The Journal of Machine Learning Research*, 2020, 21(1): 5485-5551.  
 2. Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need. *Advances in neural information processing systems*, 2017, 30.  
