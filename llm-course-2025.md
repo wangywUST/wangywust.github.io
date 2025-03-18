@@ -44,3 +44,5 @@ The final project scores will be calculated through 70% Instructor's rating + 30
 {% include_relative Course/lecture_5.md %}
 
 {% include_relative Course/lecture_6.md %}
+
+{% include_relative Course/lecture_7.md %}
