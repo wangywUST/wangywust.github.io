@@ -433,8 +433,9 @@ $$
 
 This also aligns with [4].
 
-In-Class Question 1: What is the training costs of using 4096 H100 GPUs to train LLaMA-70B on 300B tokens?
-In-Class Question 2: What is the training costs of using 1024 H100 GPUs to train LLaMA-70B on 1.4T tokens?
+In-Class Question 1: What is the training time of using 4096 H100 GPUs to train LLaMA-70B on 300B tokens?
+
+In-Class Question 2: What is the training time of using 1024 H100 GPUs to train LLaMA-70B on 1.4T tokens?
 
 ---
 
