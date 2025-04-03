@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Modern Large Language Models (LLMs) are primarily based on decoder-only transformer architectures, while the original transformer model ("vanilla transformer") uses an encoder-decoder structure. This tutorial will explore the differences between these two architectures in detail, including their respective advantages, disadvantages, and application scenarios.
+Modern Large Language Models (LLMs) are primarily based on decoder-only transformer architectures, while the original transformer model ("vanilla transformer") uses an encoder-decoder structure. This class will explore the differences between these two architectures in detail, including their respective advantages, disadvantages, and application scenarios.
 
 ## Vanilla Transformer Architecture
 
