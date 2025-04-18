@@ -1,5 +1,5 @@
 ---
-layout: homepage
+layout: course
 ---
 
 # UC Merced NLP Lab
