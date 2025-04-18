@@ -2,7 +2,6 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     <title>{{ site.title }}'s Homepage</title>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{ site.title }}">
@@ -23,13 +22,13 @@
     <link rel="canonical" href="{{site.canonical}}"/>
     <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
     <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
-    <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
+    <script src="./assets/js/favicon-switcher.js"></script>
 
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css crossorigin=anonymous>
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css crossorigin=anonymous>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/pub.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/mpii_files/mpi-inf.css">
+    <link rel="stylesheet" type="text/css" href="./assets/mpii_files/mpi-inf.css">
     <script src="./assets/js/github-stars.js"></script>
     <script src="./assets/js/jquery.js"></script>
 
@@ -45,44 +44,48 @@
     </script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+    <!-- 样式修复：导航栏 + Logo + 手机端 -->
     <style>
       #myheader {
         background-color: #ddeafc;
-        margin: 0 auto;
-        min-height: 60px;
-        height: auto;
-        overflow: hidden;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
         flex-wrap: wrap;
+        align-items: center;
         padding: 0 5%;
+        gap: 10px;
       }
 
-      #myheader img {
+      #myheader .logo-wrapper {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        height: 60px;
+      }
+
+      #myheader .logo-wrapper img {
         max-height: 50px;
       }
 
       .topnav {
+        flex: 2 1 auto;
         display: flex;
         align-items: center;
-        gap: 15px;
+        justify-content: flex-end;
       }
 
       .topnav #myLinks {
         display: flex;
-        gap: 10px;
+        gap: 15px;
       }
 
       .topnav a {
         color: #1a365d;
-        padding: 0 20px;
         text-decoration: none;
         font-size: 24px;
         font-weight: 500;
-        height: 60px;
         line-height: 60px;
         transition: color 0.3s ease;
+        padding: 0 10px;
       }
 
       .topnav .icon {
@@ -99,24 +102,25 @@
         }
 
         .topnav {
+          width: 100%;
           flex-direction: column;
           align-items: flex-start;
-          width: 100%;
         }
 
         .topnav #myLinks {
           display: none;
           flex-direction: column;
           width: 100%;
-          gap: 0;
+        }
+
+        .topnav.responsive #myLinks {
+          display: flex !important;
         }
 
         .topnav #myLinks a {
-          display: block;
           width: 100%;
           font-size: 18px;
           padding: 10px 0;
-          height: auto;
           line-height: normal;
         }
 
@@ -126,13 +130,14 @@
           margin-top: 5px;
         }
 
-        .topnav.responsive #myLinks {
-          display: flex !important;
-        }
-
         .wrapper section {
           font-size: 18px;
         }
+      }
+
+      .wrapper {
+        margin-top: 0;
+        padding-top: 10px;
       }
 
       .wrapper section {
@@ -171,9 +176,11 @@
     {% if site.enable_hopkins_logo %}
     <lightonly>
       <div id="myheader">
-        <a href="https://wangywust.github.io/">
-          <img src="./assets/img/merced.svg" alt="Merced Logo">
-        </a>
+        <div class="logo-wrapper">
+          <a href="https://wangywust.github.io/">
+            <img src="./assets/img/merced.svg" alt="Merced Logo">
+          </a>
+        </div>
         <div class="topnav">
           <div id="myLinks">
             <a href="/ucmnlp">Research: UC Merced NLP Lab</a>
@@ -257,7 +264,7 @@
 
         {% if site.clustrmaps_id %}
         <div style="width:100px; pointer-events: none;">
-          <script type='text/javascript' id='clustrmaps'
+          <script id='clustrmaps'
             src='//cdn.clustrmaps.com/map_v2.js?cl=043361&w=153&t=n&d={{ site.clustrmaps_id }}&co=ffffff&cmo=3eb7f0&ct=043361'></script>
         </div>
         {% endif %}
@@ -279,6 +286,7 @@
         <br><br>
       </footer>
     </div>
+
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
   </body>
 </html>
