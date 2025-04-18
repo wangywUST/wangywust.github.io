@@ -89,16 +89,20 @@
       }
 
       @media screen and (max-width: 600px) {
-        .topnav {
-          margin-right: 5%;
+        .topnav a {
+          font-size: 18px;
+          padding: 10px 15px;
+          display: block;
+          text-align: left;
         }
-        .topnav #myLinks {
-          display: none;
-          line-height: normal;
-        }
-        .topnav .icon {
-          display: inline-block;
-          line-height: 60px;
+
+        .topnav.responsive #myLinks {
+          display: block;
+          background-color: #ddeafc;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 100%;
         }
       }
 
