@@ -1,4 +1,4 @@
-# Recent Advances in Large Language Models: Reasoning, Agents, and Vision-Language Models
+# Lecture 7: Recent Advances in Large Language Models: Reasoning, Agents, and Vision-Language Models
 
 ## Introduction  
 Large Language Models (LLMs) have rapidly progressed from mere text predictors to versatile AI systems capable of complex reasoning, tool use, and multi-modal understanding. This presentation explores three major recent directions in LLM development:
@@ -146,7 +146,7 @@ Thought: Now I have enough info to answer.
 Answer: [final answer here]
 ```
 
-The model, seeing this format, will generate both “Thought” and “Action” lines. The key is that we interleave them: the model produces a thought (reasoning) which leads to an action, gets new info, reasons further, and so on. ReAct thus **synergizes reasoning and acting** ([ReAct Prompting | Prompt Engineering Guide<!-- --> ](https://www.promptingguide.ai/techniques/react#:~:text=ReAct%20is%20a%20general%20paradigm,involved%20to%20perform%20question%20answering)). The reasoning trace helps the model decide the next action, and the retrieved information informs the subsequent reasoning – a positive feedback loop.
+The model, seeing this format, will generate both “Thought” and “Action” lines. The key is that we interleave them: the model produces a thought (reasoning) which leads to an action, gets new info, reasons further, and so on. ReAct thus **synergizes reasoning and acting** ([ReAct Prompting | Prompt Engineering Guide](https://www.promptingguide.ai/techniques/react#:~:text=ReAct%20is%20a%20general%20paradigm,involved%20to%20perform%20question%20answering)). The reasoning trace helps the model decide the next action, and the retrieved information informs the subsequent reasoning – a positive feedback loop.
 
 **Benefits:** ReAct was shown to **outperform prior baselines** on knowledge-intensive tasks (like open-domain QA) and decision-making tasks ([ReAct Prompting | Prompt Engineering Guide<!-- --> ](https://www.promptingguide.ai/techniques/react#:~:text=Results%20show%20that%20ReAct%20can,external%20information%20obtained%20during%20reasoning)). By retrieving relevant facts in the middle of its reasoning, it greatly reduces hallucinations and errors. It also makes the process **interpretable and controllable** – you can watch the agent’s chain-of-thought and intervene if needed. In fact, *“ReAct leads to improved human interpretability and trustworthiness of LLMs”* and the best results were achieved when combining ReAct with chain-of-thought prompting ([ReAct Prompting | Prompt Engineering Guide<!-- --> ](https://www.promptingguide.ai/techniques/react#:~:text=Results%20show%20that%20ReAct%20can,external%20information%20obtained%20during%20reasoning)) – essentially using CoT-style thinking for planning actions, which allows use of both internal knowledge and external information.
 
