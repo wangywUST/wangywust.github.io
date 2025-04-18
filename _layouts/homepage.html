@@ -2,12 +2,12 @@
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     <title>{{ site.title }}'s Homepage</title>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="{{ site.title }}">
     <meta name="keywords" content="{{ site.keywords }}">
 
-    <!-- Meta tags remain the same -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ site.title }} | {{ site.affiliation }}">
     <meta property="og:url" content="{{ site.canonical }}">
@@ -21,14 +21,19 @@
     <meta name="twitter:image" content="{{ site.avatar }}">
 
     <link rel="canonical" href="{{site.canonical}}"/>
+
     <link rel="icon" media="(prefers-color-scheme:dark)" href="{{ site.favicon_dark }}" type="image/png" />
     <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.favicon }}" type="image/png" />
     <script src="./assets/js/favicon-switcher.js" type="application/javascript"></script>
-    
-    <!-- External resources -->
+
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin=anonymous>
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/pub.css">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/mpii_files/mpi-inf.css">
+    <script src="./assets/js/github-stars.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
 
     <!-- MathJax Configuration -->
     <script type="text/x-mathjax-config">
@@ -47,204 +52,61 @@
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
-    
-    <!-- Custom styles -->
+
+    <!-- 修改导航栏样式部分 -->
     <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.6;
-        padding: 0;
-        margin: 0;
-      }
-      
-      .wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
       .topnav {
-        background-color: #ddeafc;
-        padding: 10px 0;
+        display: inline-block;
+        float: right;
+        margin-right: 17%;
+        height: 60px;  /* 与 myheader 相同高度 */
+        line-height: 60px;  /* 垂直居中文本 */
+        padding-top: 0;  /* 移除上边距 */
       }
 
-      .topnav .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+      .topnav #myLinks {
+        display: inline-block;
+        vertical-align: middle;
+        height: 60px;
+        margin-top: -10px;  /* 添加负边距使整体向上移动 */
       }
 
-      .logo img {
-        max-height: 50px;
-      }
-
-      #myLinks {
-        display: flex;
-        gap: 35px;
-      }
-
-      #myLinks a {
-        color: #1a365d;
+      .topnav a {
+        color: #1a365d;  /* 改成深蓝色 */
+        padding: 0 35px;  /* 修改padding，只保留左右间距 */
         text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 500;
-        transition: color 0.3s ease;
+        font-size: 34px;
+        display: inline-block;
+        line-height: 60px;  /* 修改这里，使其与容器高度一致 */
+        height: 60px;      /* 添加这行，确保链接高度与容器一致 */
+        vertical-align: middle;
+        font-weight: 500;  /* 稍微加粗一点 */
+        transition: color 0.3s ease;  /* 添加颜色过渡效果 */
       }
 
-      .main-content {
-        padding: 40px 0;
-      }
-
-      header h1 {
-        font-size: 2rem;
-        margin-bottom: 0.5em;
-      }
-
-      header position {
-        font-size: 1.2rem;
-      }
-
-      /* Code block styles */
-      pre {
-        background-color: #f6f8fa;
-        border-radius: 6px;
-        padding: 16px;
-        overflow-x: auto;
-        margin: 1em 0;
-        border: 1px solid #e1e4e8;
-      }
-
-      code {
-        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-        font-size: 14px;
-        line-height: 1.4;
-        color: #24292e;
-      }
-
-      /* Inline code styles */
-      :not(pre) > code {
-        background-color: rgba(27, 31, 35, 0.05);
-        border-radius: 3px;
-        padding: 0.2em 0.4em;
-        font-size: 85%;
-      }
-
-      /* Table styles */
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 1em 0;
-        overflow-x: auto;
-        display: block;
-        border: 1px solid #e1e4e8;
-      }
-      
-      th, td {
-        border: 1px solid #e1e4e8;
-        padding: 8px 12px;
-        text-align: left;
-      }
-      
-      th {
-        background-color: #f6f8fa;
-        font-weight: 600;
-      }
-      
-      tr:nth-child(even) {
-        background-color: #f8f8f8;
-      }
-      
-      /* Enable horizontal scrolling for wide tables */
-      table {
-        display: block;
-        overflow-x: auto;
-        max-width: 100%;
-      }
-
-      /* Social icons */
-      .social-icons a {
-        font-size: 1.5rem;
-        margin-right: 10px;
-      }
-
-      /* Back to top button */
-      #back-to-top {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        width: auto;
-        padding: 5px 10px;
-        text-align: center;
-      }
-
-      footer {
-        font-size: 0.8rem;
-        padding: 20px 0;
-      }
-
-      footer div {
-        font: 12px/1.2 Crimson Pro, serif;
+      .topnav .icon {
+        display: none;
       }
 
       @media screen and (max-width: 600px) {
-        #myLinks {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
+        .topnav {
+          margin-right: 5%;
         }
-
-        pre {
-          padding: 12px;
-          font-size: 13px;
+        .topnav #myLinks {
+          display: none;
+          line-height: normal;
         }
-        
-        th, td {
-          padding: 6px 8px;
-          font-size: 0.9rem;
-        }
-
         .topnav .icon {
-          display: block;
+          display: inline-block;
+          line-height: 60px;
         }
       }
 
-      /* Dark mode support */
-      @media (prefers-color-scheme: dark) {
-        pre {
-          background-color: #1b1f23;
-          border-color: #2f363d;
-        }
-
-        code {
-          color: #e1e4e8;
-        }
-
-        :not(pre) > code {
-          background-color: rgba(220, 220, 220, 0.1);
-        }
-        
-        /* Dark mode table styles */
-        table {
-          border-color: #2f363d;
-        }
-        
-        th, td {
-          border-color: #2f363d;
-        }
-        
-        th {
-          background-color: #1b1f23;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #24292e;
-        }
+      .wrapper section {
+        font-size: 30px;
       }
     </style>
-    
+
     <script type="text/javascript">
       function toggle_vis(id) {
           var e = document.getElementById(id);
@@ -258,35 +120,66 @@
     <script>
       function myFunction() {
         var x = document.getElementById("myLinks");
-        if (window.getComputedStyle(x).display === "flex") {
+        if (x.style.display === "inline") {
           x.style.display = "none";
         } else {
-          x.style.display = "flex";
+          x.style.display = "inline";
         }
       }
-    </script>
+
+      function reverseLinks() {
+        var container = document.getElementById("myLinks");
+        var links = Array.from(container.getElementsByTagName('a'));
+        container.innerHTML = '';
+        for (var i = links.length - 1; i >= 0; i--) {
+          container.appendChild(links[i]);
+        }
+      }
+   </script>
+   
   </head>
   <body>
-    <!-- Navigation -->
-    <div class="topnav">
-      <div class="content">
-        <div class="logo">
+    {% if site.enable_hopkins_logo %}
+    <lightonly>
+      <div id="head1o2">
+        <div id="myheader" style="background-color:#ddeafc; margin: 0px auto; height: 60px;">
           <a href="https://wangywust.github.io/">
-            <img src="./assets/img/merced.svg" alt="Merced Logo">
+            <img style="max-height: 90%; margin-left: 17%; padding-top: 2px;" src="./assets/img/merced.svg" alt="Merced Logo">
           </a>
+          <!-- 添加导航栏 -->
+          <div class="topnav">
+            <div id="myLinks">
+              <a href="/ucmnlp">UC Merced NLP Lab</a>
+              <a href="/llm-course-2025">LLM Course: EECS 224</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction();reverseLinks()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
         </div>
-        <div id="myLinks">
-          <a href="/index">Yiwei Wang's Homepage</a>
-          <a href="/ucmnlp">Research: UC Merced NLP Lab</a>
-          <a href="/llm-course-2025">Teaching: LLM Course: EECS 224</a>
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
       </div>
-    </div>
+    </lightonly>
+    {% endif %}
 
-    <!-- Main Content -->
+    <script src="./assets/js/vanilla-back-to-top.min.js"></script>
+    <script>addBackToTop({
+        backgroundColor: '#fff',
+        innerHTML: 'Back to Top',
+        textColor: '#333'
+      })
+    </script>
+    <style>
+        #back-to-top {
+          border: 1px solid #ccc;
+          border-radius: 0;
+          font-size: 15px;
+          width: 100px;
+          text-align: center;
+          line-height: 30px;
+          height: 30px;
+        }
+    </style>
+    
     <div class="wrapper">
       <header>
         {% if site.avatar %}
@@ -296,11 +189,11 @@
         <h1>{{ site.title }}</h1>
 
         {% if site.position %}
-        <position>{{ site.position }}</position>
+        <position style="font-size:2.00rem;">{{ site.position }}</position>
         <br>
         {% endif %}
         {% if site.affiliation %}
-        <a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a>
+        <a href="{{ site.affiliation_link }}" rel="noopener"><autocolor>{{ site.affiliation }}</autocolor></a>
         <br>
         {% endif %}
         {% if site.email %}
@@ -341,44 +234,58 @@
         {% endif %}
         </div>
         <br>
-      </header>
-      
-      <section class="main-content">
-        {{ content }}
-      </section>
 
-      <!-- Footer -->
+      </header>
+      <section>
+
+      {{ content }}
+
+      <br>
+
+      {% if site.enable_last_update %}
+      <small>Last Update:
+            <script>
+              const monthNames = ["January", "Februray", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+              ];
+              var modiDate = new Date(document.lastModified);
+              var showAs = modiDate.getDate() + ". " + monthNames[modiDate.getMonth()] + " " + modiDate.getFullYear();
+              document.write(showAs);
+            </script>
+      </small> 
+      {% endif %}
+
+      {% if site.footnote %}
+      <div style="font: 12px/1.2 Crimson Pro, serif">
+        <br>
+        <a href="{{ site.footnote_link }}" rel="noopener">{{ site.footnote }}</a>
+      </div>
+      {% endif %}
+
+      <br>
+      {% if site.clustrmaps_id %}
+      <div style="width:100px; pointer-events: none;">
+      <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=043361&w=153&t=n&d={{ site.clustrmaps_id }}&co=ffffff&cmo=3eb7f0&ct=043361'></script>
+      </div>
+      {% endif %}
+      
+      </section>
       <footer>
-        {% if site.enable_last_update %}
-        <small>Last Update:
-          <script>
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            var modiDate = new Date(document.lastModified);
-            var showAs = modiDate.getDate() + ". " + monthNames[modiDate.getMonth()] + " " + modiDate.getFullYear();
-            document.write(showAs);
-          </script>
-        </small>
+        <div style="font: 12px/1.2 Crimson Pro, serif">
+        <p>
+        <small>
+        {% if site.imprint %}
+        <a href="{{ site.imprint }}" rel="noopener"><autocolor>Imprint / Impressum</autocolor></a><br>
         {% endif %}
-        
-        <!-- Footer links -->
-        <div>
-          {% if site.imprint %}
-          <a href="{{ site.imprint }}" rel="noopener">Imprint / Impressum</a><br>
-          {% endif %}
-          {% if site.data_protection %}
-          <a href="{{ site.data_protection }}" rel="noopener">Data Protection / Datenschutzhinweis</a>
-          {% endif %}
+        {% if site.data_protection %}
+        <a href="{{ site.data_protection }}" rel="noopener"><autocolor>Data Protection / Datenschutzhinweis</autocolor></a>
+        {% endif %}
+        </small>
+        </p>
         </div>
+        <br>
+        <br>
       </footer>
     </div>
-    
-    <script src="./assets/js/vanilla-back-to-top.min.js"></script>
-    <script>addBackToTop({
-        backgroundColor: '#fff',
-        innerHTML: 'Back to Top',
-        textColor: '#333'
-      })
-    </script>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
   </body>
 </html>
