@@ -89,98 +89,96 @@ Beam Search maintains multiple candidate sequences (beams) simultaneously, balan
 
 **Example:**
 
-**Prompt:** “The cat”
-
-**Beam width (B):** 2
+Here’s a concrete English example of Beam Search (beam width = 2) generating the sentence **“The cat sat on the mat.”** Step by step, showing the beam prefixes (what’s in cache), candidate next-tokens with their log-probs, and which beams survive at each iteration.
 
 ---
 
-### Iteration 1 (t=1)
-
-We expand “The cat” with three candidate next tokens and their (fictional) cumulative log-scores:
-
-| Candidate                  | Log-Score |
-|----------------------------|-----------|
-| The cat **sat**            | –1.2      |
-| The cat **is**             | –1.5      |
-| The cat **was**            | –1.7      |
-
-**Top 2 beams retained:**
-1. **The cat sat** (–1.2)  
-2. **The cat is**  (–1.5)
+#### **Prompt (initial beam)**  
+```
+“The cat”
+```
 
 ---
 
-### Iteration 2 (t=2)
+### **Step 1 (t=1)**  
+We expand **“The cat”** to all candidate next tokens; here we show the top 4 by log-prob:
 
-#### Expanding **“The cat sat”**:
-- The cat sat **on** (–1.2 + –0.8 = –2.0)  
-- The cat sat **under** (–1.2 + –1.1 = –2.3)  
+| Beam Prefix     | Next Token | Log Prob | Cumulative Score |
+|-----------------|------------|----------|------------------|
+| “The cat”       |  sat       | –0.10    | –0.10            |
+| “The cat”       |  is        | –1.20    | –1.20            |
+| “The cat”       |  on        | –1.50    | –1.50            |
+| “The cat”       |  meows     | –2.00    | –2.00            |
 
-#### Expanding **“The cat is”**:
-- The cat is **sleeping** (–1.5 + –0.9 = –2.4)  
-- The cat is **cute**     (–1.5 + –0.6 = –2.1)  
-
-All candidates:
-
-| Candidate                        | Log-Score |
-|----------------------------------|-----------|
-| The cat sat **on**               | –2.0      |
-| The cat is **cute**              | –2.1      |
-| The cat sat **under**            | –2.3      |
-| The cat is **sleeping**          | –2.4      |
-
-**Top 2 beams retained:**
-1. **The cat sat on**      (–2.0)  
-2. **The cat is cute**     (–2.1)
+**Keep top 2 beams** (smallest negative score):  
+1. **“The cat sat”** (–0.10)  
+2. **“The cat is”**  (–1.20)  
 
 ---
 
-### Iteration 3 (t=3)
+### **Step 2 (t=2)**  
+Expand each surviving beam:
 
-#### Expanding **“The cat sat on”**:
-- The cat sat on **the** (–2.0 + –0.5 = –2.5)  
-- The cat sat on **a**   (–2.0 + –1.0 = –3.0)  
+| Beam Prefix       | Next Token | Log Prob | Cumulative Score |
+|-------------------|------------|----------|------------------|
+| **“The cat sat”** |  on        | –0.05    | –0.15            |
+| **“The cat sat”** |  quietly   | –1.00    | –1.10            |
+| **“The cat is”**  |  sleeping  | –0.20    | –1.40            |
+| **“The cat is”**  |  hungry    | –0.50    | –1.70            |
 
-#### Expanding **“The cat is cute”**:
-- The cat is cute **and**   (–2.1 + –0.8 = –2.9)  
-- The cat is cute **when**  (–2.1 + –1.2 = –3.3)  
-
-All candidates:
-
-| Candidate                          | Log-Score |
-|------------------------------------|-----------|
-| The cat sat on **the**             | –2.5      |
-| The cat is cute **and**            | –2.9      |
-| The cat sat on **a**               | –3.0      |
-| The cat is cute **when**           | –3.3      |
-
-**Top 2 beams retained:**
-1. **The cat sat on the**      (–2.5)  
-2. **The cat is cute and**     (–2.9)
+**Keep top 2 beams**:  
+1. **“The cat sat on”**      (–0.15)  
+2. **“The cat sat quietly”** (–1.10)  
 
 ---
 
-### Iteration 4 (t=4)
+### **Step 3 (t=3)**  
 
-#### Expanding **“The cat sat on the”**:
-- The cat sat on the **mat.** (–2.5 + –0.4 = –2.9)  ← **[STOP: ends with “.”]**  
-- The cat sat on the **floor** (–2.5 + –0.7 = –3.2)  
+| Beam Prefix            | Next Token | Log Prob | Cumulative Score |
+|------------------------|------------|----------|------------------|
+| **“The cat sat on”**      |  the       | –0.02    | –0.17            |
+| **“The cat sat on”**      |  a         | –0.30    | –0.45            |
+| **“The cat sat quietly”** |  on        | –0.40    | –1.50            |
+| **“The cat sat quietly”** |  in        | –0.60    | –1.70            |
 
-#### Expanding **“The cat is cute and”**:
-- The cat is cute and **soft.**   (–2.9 + –0.6 = –3.5)  ← **[STOP: ends with “.”]**  
-- The cat is cute and **small**   (–2.9 + –1.0 = –3.9)  
+**Keep top 2 beams**:  
+1. **“The cat sat on the”**    (–0.17)  
+2. **“The cat sat on a”**      (–0.45)  
 
-All completed candidates (ending in “.”):
+---
 
-| Completed Sentence                      | Log-Score |
-|-----------------------------------------|-----------|
-| The cat sat on the mat.                 | –2.9      |
-| The cat is cute and soft.               | –3.5      |
+### **Step 4 (t=4)**  
 
-**Beam Search outputs (best two complete sentences):**
-1. **The cat sat on the mat.**  
-2. **The cat is cute and soft.**
+| Beam Prefix               | Next Token | Log Prob | Cumulative Score |
+|---------------------------|------------|----------|------------------|
+| **“The cat sat on the”**  |  mat       | –0.01    | –0.18            |
+| **“The cat sat on the”**  |  rug       | –1.00    | –1.17            |
+| **“The cat sat on a”**    |  chair     | –0.50    | –0.95            |
+| **“The cat sat on a”**    |  bed       | –0.80    | –1.25            |
+
+**Keep top 2 beams**:  
+1. **“The cat sat on the mat”** (–0.18)  
+2. **“The cat sat on a chair”** (–0.95)  
+
+---
+
+### **Step 5 (t=5)**  
+We stop beams when they output a period token “.”. Only the first beam has that option with a high score:
+
+| Beam Prefix                       | Next Token | Log Prob | Cumulative Score |
+|-----------------------------------|------------|----------|------------------|
+| **“The cat sat on the mat”**      |  .         | –0.01    | –0.19            |
+| **“The cat sat on a chair”**      |  .         | –0.05    | –1.00            |
+
+**Keep top 1 completed beam**:  
+- **“The cat sat on the mat.”** (–0.19)
+
+---
+
+### **Final Output**  
+>The cat sat on the mat.
+
+This illustrates how Beam Search maintains multiple prefixes, scores them, and finally selects the highest-scoring complete sentence.
 
 **Advantages:**
 
