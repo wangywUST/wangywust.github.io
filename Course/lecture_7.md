@@ -21,7 +21,50 @@ Greedy Search selects the token with the highest probability at each step, aimin
 
 **Example:**
 
-Given the prompt "The capital of France is", the model might generate "Paris" by selecting the highest-probability token at each step.
+- **Prompt:** "The quick brown fox"
+  
+  1. **Step 1 (t=1):**  
+     Model predicts:  
+     - "jumps" (0.65)  
+     - "runs"  (0.20)  
+     - "sleeps" (0.15)  
+     → Greedy selects **"jumps"**  
+     Sequence: "The quick brown fox jumps"
+  
+  2. **Step 2 (t=2):**  
+     Model predicts:  
+     - "over"   (0.70)  
+     - "under"  (0.20)  
+     - "beside" (0.10)  
+     → Greedy selects **"over"**  
+     Sequence: "The quick brown fox jumps over"
+  
+  3. **Step 3 (t=3):**  
+     Model predicts:  
+     - "the"   (0.80)  
+     - "a"     (0.15)  
+     - "that"  (0.05)  
+     → Greedy selects **"the"**  
+     Sequence: "The quick brown fox jumps over the"
+  
+  4. **Step 4 (t=4):**  
+     Model predicts:  
+     - "lazy"   (0.60)  
+     - "sleepy" (0.25)  
+     - "hungry" (0.15)  
+     → Greedy selects **"lazy"**  
+     Sequence: "The quick brown fox jumps over the lazy"
+  
+  5. **Step 5 (t=5):**  
+     Model predicts:  
+     - "dog" (0.85)  
+     - "."   (0.10)  
+     - "cat" (0.05)  
+     → Greedy selects **"dog"**  
+     Sequence: "The quick brown fox jumps over the lazy dog"
+  
+  6. **Stopping Criterion:**  
+     The next highest-probability token is the end-of-sequence marker, so generation stops.
 
 **Advantages:**
 
