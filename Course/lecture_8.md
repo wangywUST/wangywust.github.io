@@ -50,7 +50,11 @@ Reasoning in steps allows the model to tackle **multi-step logic, arithmetic, or
 
 The improvements show that prompting the model to “think out loud” mitigates errors from trying to do too much in one step. It also reduces hallucination in reasoning since each step can be checked against the problem.
 
-![Image: Chain-of-Thought vs Standard Prompting]()  
+<div style="text-align: center;">
+  <img src="./Course/fig_2.jpg" width="50%">
+  <p style="margin-top: 10px;">Chain-of-Thought vs Standard Prompting</p>
+</div>
+
 *Illustration:* **Step-by-step CoT vs. direct answer.** The left side shows a naive single-step answer (often incorrect for hard problems), while the right side depicts an LLM enumerating reasoning steps, leading to a correct, justified answer. (By writing out the logic, the model reaches the correct conclusion more reliably.)
 
 ### 1.3 Advanced Reasoning Techniques  
