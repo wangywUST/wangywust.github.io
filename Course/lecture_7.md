@@ -89,7 +89,98 @@ Beam Search maintains multiple candidate sequences (beams) simultaneously, balan
 
 **Example:**
 
-For a beam width of 3, the model explores three parallel sequences, selecting the most probable completions among them.
+**Prompt:** “The cat”
+
+**Beam width (B):** 2
+
+---
+
+### Iteration 1 (t=1)
+
+We expand “The cat” with three candidate next tokens and their (fictional) cumulative log-scores:
+
+| Candidate                  | Log-Score |
+|----------------------------|-----------|
+| The cat **sat**            | –1.2      |
+| The cat **is**             | –1.5      |
+| The cat **was**            | –1.7      |
+
+**Top 2 beams retained:**
+1. **The cat sat** (–1.2)  
+2. **The cat is**  (–1.5)
+
+---
+
+### Iteration 2 (t=2)
+
+#### Expanding **“The cat sat”**:
+- The cat sat **on** (–1.2 + –0.8 = –2.0)  
+- The cat sat **under** (–1.2 + –1.1 = –2.3)  
+
+#### Expanding **“The cat is”**:
+- The cat is **sleeping** (–1.5 + –0.9 = –2.4)  
+- The cat is **cute**     (–1.5 + –0.6 = –2.1)  
+
+All candidates:
+
+| Candidate                        | Log-Score |
+|----------------------------------|-----------|
+| The cat sat **on**               | –2.0      |
+| The cat is **cute**              | –2.1      |
+| The cat sat **under**            | –2.3      |
+| The cat is **sleeping**          | –2.4      |
+
+**Top 2 beams retained:**
+1. **The cat sat on**      (–2.0)  
+2. **The cat is cute**     (–2.1)
+
+---
+
+### Iteration 3 (t=3)
+
+#### Expanding **“The cat sat on”**:
+- The cat sat on **the** (–2.0 + –0.5 = –2.5)  
+- The cat sat on **a**   (–2.0 + –1.0 = –3.0)  
+
+#### Expanding **“The cat is cute”**:
+- The cat is cute **and**   (–2.1 + –0.8 = –2.9)  
+- The cat is cute **when**  (–2.1 + –1.2 = –3.3)  
+
+All candidates:
+
+| Candidate                          | Log-Score |
+|------------------------------------|-----------|
+| The cat sat on **the**             | –2.5      |
+| The cat is cute **and**            | –2.9      |
+| The cat sat on **a**               | –3.0      |
+| The cat is cute **when**           | –3.3      |
+
+**Top 2 beams retained:**
+1. **The cat sat on the**      (–2.5)  
+2. **The cat is cute and**     (–2.9)
+
+---
+
+### Iteration 4 (t=4)
+
+#### Expanding **“The cat sat on the”**:
+- The cat sat on the **mat.** (–2.5 + –0.4 = –2.9)  ← **[STOP: ends with “.”]**  
+- The cat sat on the **floor** (–2.5 + –0.7 = –3.2)  
+
+#### Expanding **“The cat is cute and”**:
+- The cat is cute and **soft.**   (–2.9 + –0.6 = –3.5)  ← **[STOP: ends with “.”]**  
+- The cat is cute and **small**   (–2.9 + –1.0 = –3.9)  
+
+All completed candidates (ending in “.”):
+
+| Completed Sentence                      | Log-Score |
+|-----------------------------------------|-----------|
+| The cat sat on the mat.                 | –2.9      |
+| The cat is cute and soft.               | –3.5      |
+
+**Beam Search outputs (best two complete sentences):**
+1. **The cat sat on the mat.**  
+2. **The cat is cute and soft.**
 
 **Advantages:**
 
