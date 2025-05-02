@@ -297,3 +297,5 @@ Temperature scaling adjusts the sharpness of the probability distribution before
 **Disadvantages:**
 
 - Setting $T$ too high can lead to incoherent text; too low can make the output deterministic.
+
+In-class Question: Even setting the temperature value as 0, sometimes we can see LLMs to output different outputs given the same prefix. What is the possible cause? Should the LLMs' outputs always be consistent given the temperature as 0?
