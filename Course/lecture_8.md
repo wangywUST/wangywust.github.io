@@ -383,3 +383,14 @@ For a graduate student studying these topics, key takeaways are:
 - Scale is not the only path; many of these advances achieve more by **using models smarter** (e.g., a 6B Toolformer doing what a 175B couldn’t because it lacked tools).
 
 In conclusion, the progress in these three areas – reasoning, agents, and VLMs – represents a significant step change in what AI systems can do. They are more **intelligent** in a practical sense: they can reason through hard problems, take actions to get information or affect the world, and understand multiple modalities. As research continues, we can expect future LLM-based systems to seamlessly integrate all these abilities, bringing us closer to AI that can see, think, and act in the world much like an human assistant would (albeit with superhuman knowledge and speed in certain aspects). It’s an exciting time, and the lines between “language model” and “general AI agent” are increasingly blurring.
+
+# Top 6 students who have great performance in the In-Class Question Answering:
+
+Dalin Annappa, Lavanya
+Wu, Jianbo
+Du, Shangjie
+Amanbayev, Abylay
+Qiu, Weimin
+Seth, Siddharth
+
+This is to acknowledge the above students' active participation in this course's learning about LLMs' knowledge and their great intelligence on the fast and correct reponses to the in-class questions.
