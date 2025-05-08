@@ -387,10 +387,15 @@ In conclusion, the progress in these three areas – reasoning, agents, and VLMs
 # Top 6 students who have great performance in the In-Class Question Answering:
 
 Dalin Annappa, Lavanya
+
 Wu, Jianbo
+
 Du, Shangjie
+
 Amanbayev, Abylay
+
 Qiu, Weimin
+
 Seth, Siddharth
 
 This is to acknowledge the above students' active participation in this course's learning about LLMs' knowledge and their great intelligence on the fast and correct reponses to the in-class questions.
