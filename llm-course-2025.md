@@ -21,13 +21,13 @@ In each class, students will be asked several questions. Each student can only a
 
 ### Final Projects
 
-Every student should complete a final project related to LLMs and present it in the final classes. A project report should be completed before the presentation and submitted to [Final Project Google Form](https://forms.gle/rRBwK53V1J7yyi228) The file should be named as "Your Name.pdf" The format should follow the [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj). Good examples are at [Project Report Examples](https://aclanthology.org/events/acl-2024/#2024acl-long)
+Every student should complete a final project related to LLMs and present it in the final classes. A project report should be completed before the presentation and submitted to [Final Project Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdqlfCtOUqB19FRnhpsOcx4N4wIFnqwZD_J6oytfCOtxmsUIQ/viewform?usp=dialog) The file should be named as "Your Name.pdf" The format should follow the [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj). Good examples are at [Project Report Examples](https://aclanthology.org/events/acl-2024/#2024acl-long)
 
 The final project scores will be calculated through 70% Instructor's rating + 30% Classmates' rating. After all the presentations, every student will be asked to choose 3 best projects. The classmates' ratings will be based on the ratings of all the classmates.
 
 ### Useful Links
 
-[Final Project Google Folder](https://drive.google.com/drive/folders/1foBTff-e2GpbRGu97B125TFwSLKJX54l?usp=sharing)
+<!-- [Final Project Google Folder](https://drive.google.com/drive/folders/1foBTff-e2GpbRGu97B125TFwSLKJX54l?usp=sharing) -->
 
 [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj)
 
