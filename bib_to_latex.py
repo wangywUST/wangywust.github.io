@@ -135,3 +135,5 @@ output_file = "paper_list.tex"  # 生成的 LaTeX 文件
 # 将结果写入到 LaTeX 文件
 with open(output_file, "w") as f:
     f.write(bib_to_paper_list(bib_file))
+
+print('done')

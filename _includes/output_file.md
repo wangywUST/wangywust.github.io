@@ -4,6 +4,118 @@
 <ol class="bibliography">
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
 <li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Context-DPO: Aligning Language Models for Context-Faithfulness</a></div>
+      <div class="author"><strong>Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, Weiwei Deng, Feng Sun, Qi Zhang, Shenghua Liu</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts</a></div>
+      <div class="author"><strong>Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Junfeng Fang, Pengliang Ji, Xueqi Cheng</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Vulnerability of LLMs to Vertically Aligned Text Manipulations</a></div>
+      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Zhen Xiong, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">DRS: Deep Question Reformulation With Structured Output</a></div>
+      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering</a></div>
+      <div class="author"><strong>Rongzhi Zhu, Xiangyu Liu, Zequn Sun, Yiwei Wang, Wei Hu</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">EvoStealer: Differential Evolution for Prompt Template Stealing Against Text-to-Image Synthesis</a></div>
+      <div class="author"><strong>Yurong Wu, Fangwen Mu, Qiuhong Zhang, Jinjing Zhao, Xinrun Xu, Lingrui Mei, Yang Wu, Lin Shi, Junjie Wang, Zhiming Ding, Yiwei Wang</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling</a></div>
+      <div class="author"><strong>Bingxuan Li, Yiwei Wang, Jiuxiang Gu, Kai-Wei Chang, Nanyun Peng</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</a></div>
+      <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL 2025, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2025is.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
@@ -85,6 +197,20 @@
       <div class="title"><a href="#">Tricking Retrievers with Influential Tokens: An Efficient Black-Box Corpus Poisoning Attack</a></div>
       <div class="author"><strong>Chen Wang, Yiwei Wang, Yujun Cai, Bryan Hooi</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Peripheral Memory for LLMs: Integration of Sequential Memory Banks with Adaptive Querying</a></div>
+      <div class="author"><strong>Songlin Zhai, Yuan Meng, Yongrui Chen, Yiwei Wang, Guilin Qi</strong>.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
@@ -343,20 +469,6 @@
       <div class="periodical"><em>arXiv preprint arXiv:2410.20021, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://arxiv.org/abs/2402.07140">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</a></div>
-      <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
-      <div class="periodical"><em>Preprint, 2024.</em></div>
-      <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2402.07140" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
