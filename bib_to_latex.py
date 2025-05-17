@@ -58,7 +58,6 @@ CCF_RATINGS = {
     'ICML': 'A',
     'KDD': 'A',
     'CVPR': 'A',
-    'ICLR': 'A',
     'NeurIPS': 'A',
     'ACL': 'A',
     'IJCAI': 'A',
