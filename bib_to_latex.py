@@ -53,6 +53,60 @@ VENUE_ABBREVIATIONS = {
     # Add more mappings for common conferences/journals
 }
 
+# CCF Ratings for conferences and journals
+CCF_RATINGS = {
+    'ICML': 'A',
+    'KDD': 'A',
+    'CVPR': 'A',
+    'ICLR': 'A',
+    'NeurIPS': 'A',
+    'ACL': 'A',
+    'IJCAI': 'A',
+    'ICCV': 'A',
+    'STOC': 'A',
+    'ISCA': 'A',
+    'VLDB': 'A',
+    'ECCV': 'A',
+    'ICDE': 'A',
+    'WWW': 'A',
+    'AAAI': 'A',
+    
+    'CIKM': 'B',
+    'WSDM': 'B',
+    'ICAPS': 'B',
+    'ISIT': 'B',
+    'ICRA': 'B',
+    'AISTATS': 'B',
+    'UAI': 'B',
+    'INFOCOM': 'B',
+    'COLING': 'B',
+    'EMNLP': 'B',
+    'NAACL': 'B',
+    'ECML': 'B',
+    
+    'DASFAA': 'C',
+    'ISSTA': 'C',
+    'TASE': 'C',
+    'K-CAP': 'C',
+    'ISSRE': 'C',
+    'ICDM': 'C',
+    'CONLL': 'C',
+    
+    'Preprint': 'N/A',
+    'LOG': 'N/A',
+    'TKDE': 'A',  # IEEE Transactions on Knowledge and Data Engineering
+    'TSP': 'A',   # IEEE Transactions on Signal Processing
+    # Add more CCF ratings as needed
+}
+
+# Colors for different CCF ratings
+CCF_COLORS = {
+    'A': 'red',
+    'B': 'blue',
+    'C': 'green',
+    'N/A': 'black'
+}
+
 # 定义会议时间顺序
 CONFERENCE_TIME_ORDER = [
     'NeurIPS',
@@ -130,12 +184,60 @@ def bib_to_paper_list(bib_file):
     # 返回带有编号的论文列表
     return "\n\n".join(numbered_papers)
 
+# 新函数：带有CCF评级的论文列表
+def bib_to_paper_list_ccf(bib_file):
+    # 读取.bib文件并使用BibTexParser
+    with open(bib_file) as bibtex_file:
+        parser = BibTexParser(common_strings=True)  # 保留特殊字符并禁用多余的转义
+        bib_database = bibtexparser.load(bibtex_file, parser=parser)
+    
+    paper_list = []
+
+    for entry in bib_database.entries:
+        # 跳过arXiv论文
+        if 'arxiv' in entry.get('journal', '').lower():
+            continue
+
+        authors_str = entry.get('author', 'Unknown')
+        authors = format_author_names(authors_str)  # 改为 "First Name Last Name" 格式
+        title = entry.get('title', 'Title not available').rstrip('.')
+        year = entry.get('year', '')
+        venue = entry.get('booktitle', entry.get('journal', ''))
+        venue_abbr = abbreviate_venue(venue)  # 使用缩写规则
+        
+        # 获取CCF评级，如果没有则使用N/A
+        ccf_rating = CCF_RATINGS.get(venue_abbr, 'N/A')
+        ccf_color = CCF_COLORS.get(ccf_rating, 'black')
+        
+        # 生成带有颜色的CCF评级标签
+        ccf_label = f"\\textcolor{{{ccf_color}}}{{(CCF-{ccf_rating})}}"
+        
+        # 生成格式化条目，带有CCF评级
+        formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}. {ccf_label}".strip()
+
+        # 存储年份、venue和条目，用于排序
+        paper_list.append((int(year), venue_abbr, formatted_entry))
+
+    # 按年份降序排序，然后按会议时间顺序进行排序
+    paper_list.sort(key=lambda x: (-x[0], get_conference_order(x[1]), x[1].lower() if x[1] else ''))
+
+    # 为每篇论文添加编号 [1], [2], 等
+    numbered_papers = [f"[{i+1}] {entry}" for i, (_, _, entry) in enumerate(paper_list)]
+    
+    # 返回带有编号的论文列表
+    return "\n\n".join(numbered_papers)
+
 # 示例用法
 bib_file = "citations.bib"
 output_file = "paper_list.tex"  # 生成的 LaTeX 文件
+output_file_ccf = "paper_list_ccf.tex"  # 生成的带CCF评级的 LaTeX 文件
 
 # 将结果写入到 LaTeX 文件
 with open(output_file, "w") as f:
     f.write(bib_to_paper_list(bib_file))
+
+# 将带CCF评级的结果写入到 LaTeX 文件
+with open(output_file_ccf, "w") as f:
+    f.write(bib_to_paper_list_ccf(bib_file))
 
 print('done')
