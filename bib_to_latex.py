@@ -184,7 +184,7 @@ def bib_to_paper_list(bib_file):
     # 返回带有编号的论文列表
     return "\n\n".join(numbered_papers)
 
-# 新函数：带有CCF评级的论文列表
+# 新函数：带有CCF评级的论文列表（仅显示A类会议/期刊）
 def bib_to_paper_list_ccf(bib_file):
     # 读取.bib文件并使用BibTexParser
     with open(bib_file) as bibtex_file:
@@ -205,15 +205,16 @@ def bib_to_paper_list_ccf(bib_file):
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue_abbr = abbreviate_venue(venue)  # 使用缩写规则
         
-        # 获取CCF评级，如果没有则使用N/A
-        ccf_rating = CCF_RATINGS.get(venue_abbr, 'N/A')
-        ccf_color = CCF_COLORS.get(ccf_rating, 'black')
+        # 获取CCF评级
+        ccf_rating = CCF_RATINGS.get(venue_abbr, '')
         
-        # 生成带有颜色的CCF评级标签
-        ccf_label = f"\\textcolor{{{ccf_color}}}{{(CCF-{ccf_rating})}}"
-        
-        # 生成格式化条目，带有CCF评级
-        formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}. {ccf_label}".strip()
+        # 仅为A类会议/期刊添加CCF标签，其他不添加
+        if ccf_rating == 'A':
+            # 使用字符串作为颜色名称
+            ccf_label = f"\\textcolor{{red}}{{(CCF-A)}}"
+            formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}. {ccf_label}".strip()
+        else:
+            formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}.".strip()
 
         # 存储年份、venue和条目，用于排序
         paper_list.append((int(year), venue_abbr, formatted_entry))
