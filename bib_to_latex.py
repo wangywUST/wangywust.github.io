@@ -58,6 +58,7 @@ CCF_RATINGS = {
     'ICML': 'A',
     'KDD': 'A',
     'CVPR': 'A',
+    # 'ICLR': 'A',
     'NeurIPS': 'A',
     'ACL': 'A',
     'IJCAI': 'A',
@@ -209,8 +210,8 @@ def bib_to_paper_list_ccf(bib_file):
         
         # 仅为A类会议/期刊添加CCF标签，其他不添加
         if ccf_rating == 'A':
-            # 使用字符串作为颜色名称
-            ccf_label = f"\\textcolor{{red}}{{(CCF-A)}}"
+            # 使用\textbf加粗并添加CCF-A标识，这更常用且兼容性更好
+            ccf_label = "\\textbf{\\color{red}{(CCF-A)}}"
             formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}. {ccf_label}".strip()
         else:
             formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}.".strip()
