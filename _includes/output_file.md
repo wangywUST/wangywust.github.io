@@ -4,6 +4,20 @@
 <ol class="bibliography">
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
 <li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Unitst: Effectively modeling inter-series and intra-series dependencies for multivariate time series forecasting</a></div>
+      <div class="author"><strong>Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo</strong>.</div>
+      <div class="periodical"><em>Transactions on Machine Learning Research, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2025context.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
@@ -38,8 +52,8 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Vulnerability of LLMs to Vertically Aligned Text Manipulations</a></div>
-      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Zhen Xiong, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="title"><a href="#">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</a></div>
+      <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
@@ -66,8 +80,22 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering</a></div>
-      <div class="author"><strong>Rongzhi Zhu, Xiangyu Liu, Zequn Sun, Yiwei Wang, Wei Hu</strong>.</div>
+      <div class="title"><a href="#">METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling</a></div>
+      <div class="author"><strong>Bingxuan Li, Yiwei Wang, Jiuxiang Gu, Kai-Wei Chang, Nanyun Peng</strong>.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="#">Vulnerability of LLMs to Vertically Aligned Text Manipulations</a></div>
+      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Zhen Xiong, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
@@ -94,22 +122,8 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling</a></div>
-      <div class="author"><strong>Bingxuan Li, Yiwei Wang, Jiuxiang Gu, Kai-Wei Chang, Nanyun Peng</strong>.</div>
-      <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
-      <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</a></div>
-      <div class="author"><strong>Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng</strong>.</div>
+      <div class="title"><a href="#">Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering</a></div>
+      <div class="author"><strong>Rongzhi Zhu, Xiangyu Liu, Zequn Sun, Yiwei Wang, Wei Hu</strong>.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
@@ -140,11 +154,11 @@
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Is Factuality Enhancement a Free Lunch For LLMs? Better Factuality Can Lead to Worse Context-Faithfulness</a></div>
+      <div class="title"><a href="https://doi.org/10.36227/techrxiv.173160875.51599596/v1">Is Factuality Enhancement a Free Lunch For LLMs? Better Factuality Can Lead to Worse Context-Faithfulness</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>The Thirteenth International Conference on Learning Representations (ICLR), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.36227/techrxiv.173160875.51599596/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -190,24 +204,6 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/wang2025vulnerability.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">NAACL</abbr>
-  </div>
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf">Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety</a></div>
-      <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
-      <div class="links" style="margin-top: 1px;">
-        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2025tricking.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">NAACL</abbr>
   </div>
@@ -217,6 +213,24 @@
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/wang2025vulnerability.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">NAACL</abbr>
+  </div>
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf">Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety</a></div>
+      <div class="author"><strong>Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -244,15 +258,15 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/wang2025recall.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">COLING</abbr>
+    <img src="Image/tao2024llms.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">Preprint</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Con-ReCall: Detecting Pre-training Data in LLMs via Contrastive Decoding</a></div>
-      <div class="author"><strong>Cheng Wang, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang</strong>.</div>
-      <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
+      <div class="title"><a href="https://arxiv.org/abs/2412.20846">Are LLMs Really Not Knowledgable? Mining the Submerged Knowledge in LLMs'  Memory</a></div>
+      <div class="author"><strong>Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang</strong>.</div>
+      <div class="periodical"><em>arXiv preprint arXiv:2412.20846, 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://arxiv.org/abs/2412.20846" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -262,13 +276,13 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/tao2024llms.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">Preprint</abbr>
+    <img src="Image/wang2025recall.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">COLING</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Are LLMs Really Not Knowledgable? Mining the Submerged Knowledge in LLMs'  Memory</a></div>
-      <div class="author"><strong>Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2412.20846, 2025.</em></div>
+      <div class="title"><a href="#">Con-ReCall: Detecting Pre-training Data in LLMs via Contrastive Decoding</a></div>
+      <div class="author"><strong>Cheng Wang, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang</strong>.</div>
+      <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
@@ -294,11 +308,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Hongcheng Gao, Yilong Xu, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -312,11 +326,11 @@
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">EMNLP</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Control Large Language Models via Divide-and-Conquer</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2024.emnlp-main.850">Control Large Language Models via Divide-and-Conquer</a></div>
       <div class="author"><strong>Bingxuan Li, Yiwei Wang, Tao Meng, Nanyun Peng, Kai-Wei Chang</strong>.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2024.emnlp-main.850" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -331,20 +345,6 @@
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="https://arxiv.org/abs/2401.12585" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://arxiv.org/abs/2311.13538">AlignedCoT: Prompting Large Language Models via Native-Speaking Demonstrations</a></div>
-      <div class="author"><strong>Zhicheng Yang, Yinya Huang, Jing Xiong, Liang Feng, Xiaodan Liang, Yiwei Wang, Jing Tang</strong>.</div>
-      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
-      <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -370,17 +370,31 @@
 </li>
 
 <li>
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title"><a href="https://arxiv.org/abs/2311.13538">AlignedCoT: Prompting Large Language Models via Native-Speaking Demonstrations</a></div>
+      <div class="author"><strong>Zhicheng Yang, Yinya Huang, Jing Xiong, Liang Feng, Xiaodan Liang, Yiwei Wang, Jing Tang</strong>.</div>
+      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li>
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2024lpnl.png" class="teaser img-fluid z-depth-1" style="width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 5px; left: 5px; background-color: #007bff; color: white; padding: 5px;">ACL</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="#">Lpnl: Scalable link prediction with large language models</a></div>
+      <div class="title"><a href="https://doi.org/10.18653/v1/2024.findings-acl.215">Lpnl: Scalable link prediction with large language models</a></div>
       <div class="author"><strong>Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng</strong>.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL 2024, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2024.findings-acl.215" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -404,11 +418,11 @@
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://arxiv.org/abs/2406.04975">UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting</a></div>
-      <div class="author"><strong>Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2406.04975, 2024.</em></div>
+      <div class="title"><a href="https://arxiv.org/pdf/2410.20021">Think Carefully and Check Again! Meta-Generation Unlocking LLMs for Low-Resource Cross-Lingual Summarization</a></div>
+      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Naifan Cheung, Nanyun Peng, Kai-wei Chang</strong>.</div>
+      <div class="periodical"><em>arXiv preprint arXiv:2410.20021, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/abs/2406.04975" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -427,20 +441,6 @@
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li>
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="https://arxiv.org/pdf/2410.20021">Think Carefully and Check Again! Meta-Generation Unlocking LLMs for Low-Resource Cross-Lingual Summarization</a></div>
-      <div class="author"><strong>Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Naifan Cheung, Nanyun Peng, Kai-wei Chang</strong>.</div>
-      <div class="periodical"><em>arXiv preprint arXiv:2410.20021, 2024.</em></div>
-      <div class="links" style="margin-top: 1px;">
-        <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
