@@ -3,8 +3,10 @@ import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 print('done')
+
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    'Transactions on Machine Learning Research' : 'TMLR',
     'International Conference on Machine Learning' : 'ICML',
     'ACM SIGKDD': 'KDD',
     'COLING' : 'COLING',
@@ -177,6 +179,7 @@ def load_bib_file(file_path):
 
 # 会议时间排序列表，基于缩写
 CONFERENCE_TIME_ORDER = [
+    'TMLR',
     'NeurIPS',
     'EMNLP',
     'ACL',

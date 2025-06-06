@@ -4,6 +4,7 @@ from bibtexparser.customization import homogenize_latex_encoding
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    'Transactions on Machine Learning Research' : 'TMLR',
     'International Conference on Machine Learning' : 'ICML',
     'COLING': 'COLING',
     'ACM SIGKDD': 'KDD',
@@ -108,6 +109,7 @@ CCF_COLORS = {
 
 # 定义会议时间顺序
 CONFERENCE_TIME_ORDER = [
+    'TMLR',
     'NeurIPS',
     'EMNLP',
     'ACL',
