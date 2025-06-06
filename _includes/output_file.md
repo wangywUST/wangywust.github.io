@@ -8,7 +8,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title"><a href="#">Unitst: Effectively modeling inter-series and intra-series dependencies for multivariate time series forecasting</a></div>
       <div class="author"><strong>Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo</strong>.</div>
-      <div class="periodical"><em>Transactions on Machine Learning Research, 2025.</em></div>
+      <div class="periodical"><em>Transactions on Machine Learning Research (TMLR), 2025.</em></div>
       <div class="links" style="margin-top: 1px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
