@@ -1,4 +1,4 @@
-<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:24px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:24px;">Google Scholar</a><temp style="font-size:24px;">]</temp><temp style="font-size:32px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:24px;">DBLP</a><temp style="font-size:24px;">]</temp></h2>
+<h2 id="publications" style="margin: 2px 0px -15px;">Selected Publications <temp style="font-size:24px;">[</temp><a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ&hl=en" target="_blank" style="font-size:24px;">Google Scholar</a><temp style="font-size:24px;">]</temp><temp style="font-size:24px;">[</temp><a href="https://dblp.org/pid/50/5889-1.html" target="_blank" style="font-size:24px;">DBLP</a><temp style="font-size:24px;">]</temp></h2>
 
 <div class="publications">
 <ol class="bibliography">
