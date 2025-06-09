@@ -138,6 +138,31 @@
         text-align: justify;
       }
 
+      /* Image centering support */
+      p[align="center"] {
+        text-align: center !important;
+      }
+
+      p[align="left"] {
+        text-align: left !important;
+      }
+
+      p[align="right"] {
+        text-align: right !important;
+      }
+
+      /* General image centering */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Center images in paragraphs with center alignment */
+      p[align="center"] img {
+        display: block;
+        margin: 0 auto;
+      }
+
       /* Code block styles - keeping monospace for code */
       pre {
         background-color: #f6f8fa;
