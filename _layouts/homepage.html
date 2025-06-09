@@ -681,27 +681,29 @@
       }
 
       /* Teaching/Experience list styling */
-      .main-content ul li {
+      ul li {
         position: relative;
-        margin-bottom: 0.5em;
-        padding: 6px 10px;
+        margin-bottom: 0.3em;
+        padding: 2px 3px;
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-radius: 6px;
-        border-left: 2px solid #3b82f6;
+        border-radius: 3px;
+        border-left: 1px solid #3b82f6;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         line-height: 1.6;
         color: #000000 !important;
       }
 
-      .main-content ul li:hover {
+      ul li:hover {
         transform: translateX(8px);
         background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
         border-left-color: #2563eb;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
         color: #1e3a8a !important;
       }
 
       /* Style for links within list items */
-      .main-content ul li a {
+      ul li a {
         color: #1e40af;
         font-weight: 500;
         text-decoration: none;
@@ -710,15 +712,15 @@
         transition: all 0.2s ease;
       }
 
-      .main-content ul li a:hover {
+      ul li a:hover {
         background-color: rgba(30, 64, 175, 0.1);
         color: #1e3a8a;
       }
 
       /* Ordered lists (for publications, etc.) */
       ol li {
-        margin-bottom: 0.8em;
-        padding-left: 0.5em;
+        margin-bottom: 0.3em;
+        padding-left: 0.2em;
       }
 
       /* Enhanced Links styling with multiple hover effects */
@@ -876,23 +878,24 @@
       @media (prefers-color-scheme: dark) {
 
 /* Dark mode list adjustments */
-        .main-content ul li {
+        ul li {
           background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
           border-left-color: #60a5fa;
-          color: #cbd5e1 !important;
+          color: #cbd5e1;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .main-content ul li:hover {
+        ul li:hover {
           background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
           border-left-color: #93c5fd;
-          color: #dbeafe !important;
+          box-shadow: 0 4px 16px rgba(96, 165, 250, 0.25);
         }
 
-        .main-content ul li a {
+        ul li a {
           color: #93c5fd;
         }
 
-        .main-content ul li a:hover {
+        ul li a:hover {
           background-color: rgba(147, 197, 253, 0.15);
           color: #dbeafe;
         }
