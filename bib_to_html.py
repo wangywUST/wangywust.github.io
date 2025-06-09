@@ -140,15 +140,13 @@ def generate_html(entry):
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title" style="margin-bottom: 5px;">
-        <a href="{entry.get('url', '#')}">{clean_title_text}</a>
-        <span class="links" style="margin-left: 10px;">
-          <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-          <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-        </span>
-      </div>
+      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
   </div>
 </div>
 </li>
@@ -159,15 +157,13 @@ def generate_html(entry):
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title" style="margin-bottom: 5px;">
-        <a href="{entry.get('url', '#')}">{clean_title_text}</a>
-        <span class="links" style="margin-left: 10px;">
-          <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-          <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-        </span>
-      </div>
+      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="links" style="margin-top: 1px;">
+        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
   </div>
 </div>
 </li>
