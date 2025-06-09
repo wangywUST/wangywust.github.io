@@ -27,6 +27,11 @@
     <!-- External resources -->
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin=anonymous>
+    
+    <!-- Google Fonts - Crimson Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- MathJax Configuration -->
     <script type="text/x-mathjax-config">
@@ -49,10 +54,12 @@
     <!-- Custom styles -->
     <style>
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.6;
+        font-family: 'Crimson Pro', Georgia, 'Times New Roman', Times, serif;
+        line-height: 1.7;
         padding: 0;
         margin: 0;
+        font-size: 18px;
+        color: #2c3e50;
       }
       
       .wrapper {
@@ -87,16 +94,51 @@
       #myLinks a {
         color: #1a365d;
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 500;
         transition: color 0.3s ease;
+        font-family: 'Crimson Pro', serif;
+      }
+
+      #myLinks a:hover {
+        color: #2c5282;
       }
 
       .main-content {
         padding: 40px 0;
       }
 
-      /* Code block styles */
+      /* Typography enhancements */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Crimson Pro', serif;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        color: #1a365d;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin-bottom: 1.2em;
+        text-align: justify;
+      }
+
+      /* Code block styles - keeping monospace for code */
       pre {
         background-color: #f6f8fa;
         border-radius: 6px;
@@ -121,25 +163,28 @@
         font-size: 85%;
       }
 
-      /* Table styles - Added for better Markdown table rendering */
+      /* Table styles - Enhanced for Crimson Pro */
       table {
         border-collapse: collapse;
         width: 100%;
-        margin: 1em 0;
+        margin: 1.5em 0;
         overflow-x: auto;
         display: block;
         border: 1px solid #e1e4e8;
+        font-family: 'Crimson Pro', serif;
+        font-size: 16px;
       }
       
       th, td {
         border: 1px solid #e1e4e8;
-        padding: 8px 12px;
+        padding: 12px 16px;
         text-align: left;
       }
       
       th {
         background-color: #f6f8fa;
         font-weight: 600;
+        color: #1a365d;
       }
       
       tr:nth-child(even) {
@@ -151,6 +196,38 @@
         display: block;
         overflow-x: auto;
         max-width: 100%;
+      }
+
+      /* Lists styling */
+      ul, ol {
+        margin-bottom: 1.2em;
+        padding-left: 1.5em;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+      }
+
+      /* Links styling */
+      a {
+        color: #2c5282;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #1a365d;
+        text-decoration: underline;
+      }
+
+      /* Blockquote styling */
+      blockquote {
+        border-left: 4px solid #ddeafc;
+        margin: 1.5em 0;
+        padding: 1em 1.5em;
+        background-color: #f8fbff;
+        font-style: italic;
+        color: #4a5568;
       }
 
       /* Syntax highlighting */
@@ -166,10 +243,30 @@
       .highlight .cs { color: #6a737d; } /* Comment.Special */
 
       @media screen and (max-width: 600px) {
+        body {
+          font-size: 16px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        h2 {
+          font-size: 1.7rem;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+        }
+
         #myLinks {
           display: flex;
           flex-direction: column;
           gap: 15px;
+        }
+
+        #myLinks a {
+          font-size: 1rem;
         }
 
         pre {
@@ -178,13 +275,48 @@
         }
         
         th, td {
-          padding: 6px 8px;
+          padding: 8px 10px;
           font-size: 0.9rem;
         }
       }
 
       /* Dark mode support */
       @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #1a202c;
+          color: #e2e8f0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          color: #f7fafc;
+        }
+
+        a {
+          color: #63b3ed;
+        }
+
+        a:hover {
+          color: #90cdf4;
+        }
+
+        .topnav {
+          background-color: #2d3748;
+        }
+
+        #myLinks a {
+          color: #e2e8f0;
+        }
+
+        #myLinks a:hover {
+          color: #f7fafc;
+        }
+
+        blockquote {
+          background-color: #2d3748;
+          border-left-color: #4a5568;
+          color: #cbd5e0;
+        }
+
         pre {
           background-color: #1b1f23;
           border-color: #2f363d;
@@ -209,6 +341,7 @@
         
         th {
           background-color: #1b1f23;
+          color: #f7fafc;
         }
         
         tr:nth-child(even) {
@@ -262,7 +395,7 @@
       {% endif %}
       
       <!-- Footer links -->
-      <div style="font: 12px/1.2 Crimson Pro, serif">
+      <div style="font: 12px/1.2 'Crimson Pro', serif">
         {% if site.imprint %}
         <a href="{{ site.imprint }}" rel="noopener">Imprint / Impressum</a><br>
         {% endif %}
