@@ -12,7 +12,7 @@ layout: homepage
 |-------|----------------|----------------------|----------------------|----------------------|---------------|
 | **Research Interns** | Zero AI background student | First AI Top Conference submission | First AI Top Conference Publication | PhD or Industry Researcher Offer | Career Launch |
 
-| Student Track | Starting Point | Stage 1 (6-12 months) | Stage 2 (12-24 months) | Stage 3 (6-12 months) | Final Outcome |
+| Student Track | Starting Point | Stage 1 (6-12 months) | Stage 2 (12-36 months) | Stage 3 (6-12 months) | Final Outcome |
 |-------|----------------|----------------------|----------------------|----------------------|---------------|
 | **PhD Students** | Junior Researcher | First Publication and Industry Intern | Sufficient AI Publications | Graduation with Academic or Industry Researcher Offer | Career Success |
 
