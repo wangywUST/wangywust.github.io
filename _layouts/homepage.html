@@ -1063,24 +1063,26 @@
       /* 美化PDF和Code按钮 */
       .btn {
         display: inline-block;
-        padding: 1px 3px;
+        padding: 4px 8px;
         margin-right: 6px;
-        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-        color: #1565c0;
+        background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+        color: #4a90e2;
         text-decoration: none;
-        border-radius: 2px;
+        border-radius: 12px;
         font-size: 12px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #90caf9;
+        font-weight: 400;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+        border: 1px solid rgba(74, 144, 226, 0.2);
+        backdrop-filter: blur(10px);
       }
 
       .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 6px rgba(21, 101, 192, 0.3);
-        background: linear-gradient(135deg, #bbdefb 0%, #90caf9 100%);
-        color: #0d47a1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(74, 144, 226, 0.25);
+        background: linear-gradient(135deg, #e6f3ff 0%, #d6eaff 100%);
+        color: #3a7bc8;
+        border-color: rgba(74, 144, 226, 0.3);
       }
 
       .btn:active {
@@ -1091,15 +1093,17 @@
       /* Dark mode adjustments for buttons */
       @media (prefers-color-scheme: dark) {
         .btn {
-          background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-          color: #dbeafe;
-          border-color: #3b82f6;
+          background: linear-gradient(135deg, rgba(30, 58, 138, 0.6) 0%, rgba(59, 130, 246, 0.6) 100%);
+          color: #93c5fd;
+          border-color: rgba(147, 197, 253, 0.3);
+          box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
         }
 
         .btn:hover {
-          background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-          color: #1e293b;
-          box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.7) 0%, rgba(96, 165, 250, 0.7) 100%);
+          color: #dbeafe;
+          box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+          border-color: rgba(147, 197, 253, 0.4);
         }
       }
 
