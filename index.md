@@ -8,10 +8,13 @@ layout: homepage
 
 ### Development Roadmap
 
-| Track | Starting Point | Stage 1 (3-6 months) | Stage 2 (3-6 months) | Stage 3 (3-6 months) | Final Outcome |
+| Student Track | Starting Point | Stage 1 (3-6 months) | Stage 2 (3-6 months) | Stage 3 (3-6 months) | Final Outcome |
 |-------|----------------|----------------------|----------------------|----------------------|---------------|
 | **Research Interns** | Zero AI background student | First AI Top Conference submission | First AI Top Conference Publication | PhD or Industry Researcher Offer | Career Launch |
-| **PhD Students** | Junior Researcher | First Publication and Industry Intern (6-12 months) | Sufficient AI Publications (12-24 months) | Graduation with Academic or Industry Researcher Offer (6-12 months) | Career Success |
+
+| Student Track | Starting Point | Stage 1 (6-12 months) | Stage 2 (12-24 months) | Stage 3 (6-12 months) | Final Outcome |
+|-------|----------------|----------------------|----------------------|----------------------|---------------|
+| **PhD Students** | Junior Researcher | First Publication and Industry Intern | Sufficient AI Publications | Graduation with Academic or Industry Researcher Offer | Career Success |
 
 ### 🎯 **100% Research Resource Coverage Guarantee**
 *All students across all tracks receive full access to computational resources and AI model APIs*
