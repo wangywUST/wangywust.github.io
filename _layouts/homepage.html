@@ -35,6 +35,11 @@
     <script src="./assets/js/github-stars.js"></script>
     <script type="text/javascript" src="./assets/js/jquery.js"></script>
 
+    <!-- Google Fonts - Crimson Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
     <!-- MathJax Configuration -->
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
@@ -53,52 +58,125 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-    <!-- 修改导航栏样式部分 -->
+    <!-- Updated Navigation Styles -->
     <style>
+      body {
+        font-family: 'Crimson Pro', Georgia, 'Times New Roman', Times, serif;
+        line-height: 1.7;
+        padding: 0;
+        margin: 0;
+        font-size: 22px;
+        color: #000000;
+      }
+
       .topnav {
-        display: inline-block;
-        float: right;
-        margin-right: 17%;
-        height: 60px;  /* 与 myheader 相同高度 */
-        line-height: 60px;  /* 垂直居中文本 */
-        padding-top: 0;  /* 移除上边距 */
+        background-color: #ddeafc;
+        padding: 10px 0;
+        transition: background-color 0.3s ease;
       }
 
-      .topnav #myLinks {
-        display: inline-block;
-        vertical-align: middle;
-        height: 60px;
-        margin-top: -10px;  /* 添加负边距使整体向上移动 */
+      .topnav .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
       }
 
-      .topnav a {
-        color: #1a365d;  /* 改成深蓝色 */
-        padding: 0 35px;  /* 修改padding，只保留左右间距 */
+      .logo img {
+        max-height: 50px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo a:hover img {
+        transform: scale(1.05);
+      }
+
+      #myLinks {
+        display: flex;
+        gap: 35px;
+      }
+
+      #myLinks a {
+        color: #000000;
         text-decoration: none;
-        font-size: 34px;
-        display: inline-block;
-        line-height: 60px;  /* 修改这里，使其与容器高度一致 */
-        height: 60px;      /* 添加这行，确保链接高度与容器一致 */
-        vertical-align: middle;
-        font-weight: 500;  /* 稍微加粗一点 */
-        transition: color 0.3s ease;  /* 添加颜色过渡效果 */
+        font-size: 1.4rem;
+        font-weight: 500;
+        font-family: 'Crimson Pro', serif;
+        position: relative;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        overflow: hidden;
       }
 
-      .topnav .icon {
+      /* Enhanced navigation link hover effects */
+      #myLinks a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+        z-index: -1;
+      }
+
+      #myLinks a:hover {
+        color: #2c5aa0;
+        background-color: rgba(44, 90, 160, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(44, 90, 160, 0.2);
+      }
+
+      #myLinks a:hover::before {
+        left: 100%;
+      }
+
+      #myLinks a:active {
+        transform: translateY(0);
+        transition: transform 0.1s ease;
+      }
+
+      .icon {
         display: none;
       }
 
       @media screen and (max-width: 600px) {
-        .topnav {
-          margin-right: 5%;
+        .topnav .content {
+          justify-content: space-between;
         }
-        .topnav #myLinks {
+        
+        #myLinks {
           display: none;
-          line-height: normal;
+          flex-direction: column;
+          gap: 15px;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background-color: #ddeafc;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .topnav .icon {
+
+        #myLinks.show {
+          display: flex;
+        }
+
+        #myLinks a {
+          font-size: 1.2rem;
+          padding: 10px 15px;
+        }
+
+        .icon {
           display: inline-block;
-          line-height: 60px;
+          color: #000000;
+          font-size: 1.4rem;
+          padding: 8px 12px;
+          cursor: pointer;
         }
       }
 
@@ -120,11 +198,7 @@
     <script>
       function myFunction() {
         var x = document.getElementById("myLinks");
-        if (x.style.display === "inline") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "inline";
-        }
+        x.classList.toggle("show");
       }
 
       function reverseLinks() {
@@ -141,21 +215,21 @@
   <body>
     {% if site.enable_hopkins_logo %}
     <lightonly>
-      <div id="head1o2">
-        <div id="myheader" style="background-color:#ddeafc; margin: 0px auto; height: 60px;">
-          <a href="https://wangywust.github.io/">
-            <img style="max-height: 90%; margin-left: 17%; padding-top: 2px;" src="./assets/img/merced.svg" alt="Merced Logo">
-          </a>
-          <!-- 添加导航栏 -->
-          <div class="topnav">
-            <div id="myLinks">
-              <a href="/ucmnlp">Research: UC Merced NLP Lab</a>
-              <a href="/llm-course-2025">Teaching: EECS 224 Large Language Models</a>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction();reverseLinks()">
-              <i class="fa fa-bars"></i>
+      <!-- Updated Navigation Structure -->
+      <div class="topnav">
+        <div class="content">
+          <div class="logo">
+            <a href="https://wangywust.github.io/">
+              <img src="./assets/img/merced.svg" alt="Merced Logo">
             </a>
           </div>
+          <div id="myLinks">
+            <a href="/ucmnlp">Research: UC Merced NLP Lab</a>
+            <a href="/llm-course-2025">Teaching: EECS 224 Large Language Models</a>
+          </div>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction();reverseLinks()">
+            <i class="fa fa-bars"></i>
+          </a>
         </div>
       </div>
     </lightonly>
