@@ -184,10 +184,11 @@
       /* 将关键词移到左侧 */
       .keywords {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 8px;
         align-items: center;
-        max-width: 200px;
+        justify-content: center;
+        max-width: 280px;
       }
 
       .keyword-tag {
@@ -200,8 +201,7 @@
         border: 1px solid #93c5fd;
         transition: all 0.3s ease;
         text-align: center;
-        width: 100%;
-        box-sizing: border-box;
+        white-space: nowrap;
       }
 
       .keyword-tag:hover {
@@ -217,7 +217,7 @@
         align-items: center;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 200px;
+        max-width: 280px;
       }
 
       .social-links a {
@@ -653,7 +653,7 @@
         }
 
         .keywords {
-          max-width: 300px;
+          max-width: 350px;
         }
 
         h1 {
