@@ -128,7 +128,7 @@ def generate_html(entry):
     code_url = entry.get('code_url', entry.get('code', '#'))
 
     # Define the image style to make it slightly longer and adjust layout
-    image_style = "width: 180px; height: 220px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
+    image_style = "width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
     
     # If the image exists, include the image and layout using flexbox
     if image_exists:
