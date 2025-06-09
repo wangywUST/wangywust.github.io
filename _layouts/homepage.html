@@ -407,6 +407,18 @@
         height: auto;
       }
 
+      /* Markdown图片的简单悬停效果 */
+      .main-content img {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .main-content img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+
       /* Center images in paragraphs with center alignment */
       p[align="center"] img {
         display: block;
