@@ -179,7 +179,7 @@
 
       .profile-info {
         flex: 1;
-        max-width: 1200px;
+        max-width: 800px;
         padding: 20px 0;
       }
 
@@ -897,69 +897,45 @@
     <div class="profile-section">
       <div class="profile-container">
         <div class="profile-image">
-          <img src="{{ site.avatar }}" alt="{{ site.title }}" />
+          <img src="./assets/img/profile.jpg" alt="Yiwei Wang" />
         </div>
         <div class="profile-info">
-          <h1>{{ site.title }}</h1>
-          {% if site.position and site.affiliation %}
-          <div class="position-affiliation">{{ site.position }}, <a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a></div>
-          {% elsif site.position %}
-          <div class="position-affiliation">{{ site.position }}</div>
-          {% elsif site.affiliation %}
-          <div class="position-affiliation"><a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a></div>
-          {% endif %}
-          {% if site.email %}
-          <div class="email">Email: {{ site.email }}</div>
-          {% endif %}
+          <h1>Yiwei Wang</h1>
+          <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">University of California, Merced</a></div>
+          <div class="email">Email: yiwang2@ucmerced.edu</div>
           
           <!-- 研究兴趣或简介 (可选) -->
-          {% if site.research_interests or site.bio %}
           <div class="research-interests">
-            {% if site.research_interests %}
             <h3>Research Interests</h3>
-            <p>{{ site.research_interests }}</p>
-            {% endif %}
-            {% if site.bio %}
-            <p>{{ site.bio }}</p>
-            {% endif %}
+            <p>Natural Language Processing, Large Language Models, Machine Learning, AI Safety</p>
           </div>
-          {% endif %}
           
           <!-- 关键词标签 (可选) -->
-          {% if site.keywords_list %}
           <div class="keywords">
-            {% for keyword in site.keywords_list %}
-            <span class="keyword-tag">{{ keyword }}</span>
-            {% endfor %}
+            <span class="keyword-tag">NLP</span>
+            <span class="keyword-tag">LLM</span>
+            <span class="keyword-tag">Machine Learning</span>
+            <span class="keyword-tag">PyTorch</span>
+            <span class="keyword-tag">Transformers</span>
+            <span class="keyword-tag">AI Safety</span>
           </div>
-          {% endif %}
           
           <div class="social-links">
-            {% if site.google_scholar %}
-            <a href="{{ site.google_scholar }}" class="google-scholar" title="Google Scholar" rel="noopener">
+            <a href="https://scholar.google.com/citations?user=EXAMPLE" class="google-scholar" title="Google Scholar" rel="noopener">
               <i class="ai ai-google-scholar"></i>
-            </a>  
-            {% endif %}
-            {% if site.cv_link %}
-            <a href="{{ site.cv_link }}" class="cv" title="CV" rel="noopener">
+            </a>
+            <a href="/assets/cv.pdf" class="cv" title="CV" rel="noopener">
               <i class="ai ai-cv"></i>
             </a>
-            {% endif %}
-            {% if site.github_link %}
-            <a href="{{ site.github_link }}" class="github" title="GitHub" rel="noopener">
+            <a href="https://github.com/wangywust" class="github" title="GitHub" rel="noopener">
               <i class="fab fa-github"></i>
             </a>
-            {% endif %}
-            {% if site.linkedin %}
-            <a href="{{ site.linkedin }}" class="linkedin" title="LinkedIn" rel="noopener">
+            <a href="https://www.linkedin.com/in/yiwei-wang" class="linkedin" title="LinkedIn" rel="noopener">
               <i class="fab fa-linkedin"></i>
             </a>
-            {% endif %}
-            {% if site.twitter %}
-            <a href="{{ site.twitter }}" class="twitter" title="Twitter" rel="noopener">
+            <a href="https://twitter.com/yiwei_wang" class="twitter" title="Twitter" rel="noopener">
               <i class="fab fa-twitter"></i>
             </a>
-            {% endif %}
           </div>
         </div>
       </div>
