@@ -139,16 +139,37 @@
         transition: transform 0.1s ease;
       }
 
-      /* New profile section */
+      /* Modified profile section with background image */
       .profile-section {
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         padding: 3px 0;
         border-bottom: 1px solid #e2e8f0;
         margin-bottom: 30px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Add background image on the right side */
+      .profile-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        background-image: url('./assets/img/your-background-image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.15;
+        z-index: 0;
+        pointer-events: none;
       }
 
       .profile-container {
+        position: relative;
+        z-index: 1;
         max-width: 1500px;
         margin: 0 auto;
         padding: 0 20px;
@@ -707,6 +728,12 @@
         th {
           font-size: 0.85rem;
         }
+
+        /* Mobile background image adjustment */
+        .profile-section::after {
+          width: 100%;
+          opacity: 0.08;
+        }
       }
 
       /* Dark mode support */
@@ -723,6 +750,10 @@
         .profile-section {
           background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
           border-bottom-color: #334155;
+        }
+
+        .profile-section::after {
+          opacity: 0.08;
         }
 
         .profile-info h1 {
