@@ -407,43 +407,103 @@
         height: auto;
       }
 
-      /* 在现有CSS的 img 规则后添加以下代码 */
+/* 在现有CSS的 img 规则后添加以下代码 */
 
-      /* Markdown图片的第三简单特效：旋转+发光+渐变边框 */
-      .main-content img {
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border: 3px solid transparent;
-        background: linear-gradient(white, white) padding-box,
-                    linear-gradient(135deg, #3b82f6, #06b6d4, #10b981, #f59e0b) border-box;
-        position: relative;
-        overflow: hidden;
-      }
+/* Markdown图片的玻璃态效果 */
+.main-content img {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
 
-      .main-content img::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transform: rotate(45deg);
-        transition: all 0.6s ease;
-        opacity: 0;
-      }
+/* 玻璃反光效果 */
+.main-content img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.8s ease;
+  z-index: 1;
+}
 
-      .main-content img:hover {
-        transform: translateY(-8px) scale(1.03) rotate(1deg);
-        box-shadow: 0 16px 32px rgba(59, 130, 246, 0.2);
-        filter: brightness(1.08) saturate(1.15) contrast(1.05);
-      }
+/* 玻璃高光 */
+.main-content img::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 40%;
+  height: 30%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  border-radius: 20px;
+  filter: blur(2px);
+  z-index: 1;
+  opacity: 0.7;
+}
 
-      .main-content img:hover::before {
-        opacity: 1;
-        transform: rotate(45deg) translate(50%, 50%);
-      }
+.main-content img:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    0 0 30px rgba(59, 130, 246, 0.1);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.main-content img:hover::before {
+  left: 100%;
+}
+
+/* 暗色模式下的玻璃效果调整 */
+@media (prefers-color-scheme: dark) {
+  .main-content img {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .main-content img:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px) saturate(180%);
+    box-shadow: 
+      0 16px 48px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      0 0 30px rgba(96, 165, 250, 0.2);
+  }
+}
 
       /* Center images in paragraphs with center alignment */
       p[align="center"] img {
