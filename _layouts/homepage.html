@@ -154,29 +154,27 @@
         padding: 0 20px;
         display: flex;
         align-items: center;
-        gap: 40px;
+        justify-content: space-between;
+        gap: 60px;
       }
 
       .profile-image {
         flex-shrink: 0;
       }
 
-      /* 修改照片样式为长方形 */
+      /* 修改照片样式为椭圆形 */
       .profile-image img {
         width: 160px;
         height: 220px;
-        border-radius: 16px;
+        border-radius: 50%;
         object-fit: cover;
         object-position: center;
-        border: 4px solid #ffffff;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         transition: all 0.3s ease;
         display: block;
       }
 
       .profile-image img:hover {
         transform: scale(1.05);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
       }
 
       .profile-info {
