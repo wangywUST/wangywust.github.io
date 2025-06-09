@@ -407,16 +407,20 @@
         height: auto;
       }
 
-      /* Markdown图片的简单悬停效果 */
+      /* Markdown图片的第二简单特效：渐变边框+缩放 */
       .main-content img {
         transition: all 0.3s ease;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+                    linear-gradient(135deg, #3b82f6, #06b6d4, #10b981) border-box;
       }
 
       .main-content img:hover {
-        transform: translateY(-5px);
+        transform: translateY(-5px) scale(1.02);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        filter: brightness(1.05) saturate(1.1);
       }
 
       /* Center images in paragraphs with center alignment */
