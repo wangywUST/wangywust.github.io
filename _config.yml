@@ -35,3 +35,7 @@ exclude:
   - README.md
   - LICENSE
   - CNAME
+
+research_interests: "Natural Language Processing, Machine Learning, AI Safety"
+bio: "简短的个人介绍..."
+keywords_list: ["NLP", "Machine Learning", "PyTorch", "Transformers", "AI Ethics"]
