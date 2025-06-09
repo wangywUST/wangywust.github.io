@@ -1059,6 +1059,34 @@
         box-shadow: 0 4px 16px rgba(0, 123, 255, 0.4);
       }
 
+      /* 美化PDF和Code按钮 */
+      .btn {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 8px;
+        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+        color: white;
+      }
+
+      .btn:active {
+        transform: translateY(0);
+        transition: transform 0.1s ease;
+      }
+
     </style>
   </head>
   <body>
