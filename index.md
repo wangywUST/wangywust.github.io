@@ -4,7 +4,17 @@ layout: homepage
 
 ## Recruiting
 
-**Recruiting Ph.D. students and (remote) Research Interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
+**Recruiting Ph.D. students and (remote) Research Interns.** I’m actively looking for students at all levels interested in large language models' related research. If you are interested, please feel free to email me.<br>
+
+### Development Roadmap
+
+| Track | Starting Point | Stage 1 (3-6 months) | Stage 2 (3-6 months) | Stage 3 (3-6 months) | Final Outcome |
+|-------|----------------|----------------------|----------------------|----------------------|---------------|
+| **Research Interns** | Zero AI background student | First AI Top Conference submission | First AI Top Conference Publication | PhD or Industry Researcher Offer | Career Launch |
+| **PhD Students** | Junior Researcher | First Research Intern (6-12 months) | Sufficient AI Publications (12-24 months) | Graduation with Academic or Industry Researcher Offer (6-12 months) | Career Success |
+
+### Provided Reserach Resources
+**Independent and Sufficient GPU resources across students**
 
 <!-- ## Main Experience
 
