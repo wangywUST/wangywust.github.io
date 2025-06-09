@@ -2,10 +2,6 @@
 layout: homepage
 ---
 
-## About Me
-
-I am an Assistant Professor at the Department of Computer Science at [University of California, Merced](https://www.ucmerced.edu/). I am leading [UC Merced NLP Lab](https://wangywust.github.io/ucmnlp).
-
 ## Recruiting
 
 **Recruiting Ph.D. students and (remote) research interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
