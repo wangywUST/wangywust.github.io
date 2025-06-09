@@ -139,135 +139,6 @@
         transition: transform 0.1s ease;
       }
 
-      /* New profile section */
-      .profile-section {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        padding: 40px 0;
-        border-bottom: 1px solid #e2e8f0;
-        margin-bottom: 30px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-
-      .profile-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-      }
-
-      .profile-image {
-        flex-shrink: 0;
-      }
-
-      .profile-image img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid #ffffff;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-      }
-
-      .profile-image img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-      }
-
-      .profile-info {
-        flex: 1;
-      }
-
-      .profile-info h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin: 0 0 10px 0;
-        color: #1e293b;
-        font-family: 'Crimson Pro', serif;
-      }
-
-      .profile-info .position {
-        font-size: 1.3rem;
-        color: #475569;
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-
-      .profile-info .affiliation {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-      }
-
-      .profile-info .affiliation a {
-        color: #2563eb;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-      }
-
-      .profile-info .affiliation a:hover {
-        color: #1d4ed8;
-      }
-
-      .profile-info .email {
-        font-size: 1rem;
-        color: #64748b;
-        margin-bottom: 20px;
-        font-family: 'SF Mono', monospace;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-      }
-
-      .social-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        border-radius: 50%;
-        color: #475569;
-        font-size: 1.4rem;
-        text-decoration: none;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border: 2px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .social-links a:hover {
-        transform: translateY(-3px) scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        border-color: #3b82f6;
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        color: #ffffff;
-      }
-
-      .social-links a.google-scholar:hover {
-        background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
-      }
-
-      .social-links a.cv:hover {
-        background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      }
-
-      .social-links a.github:hover {
-        background: linear-gradient(135deg, #24292e 0%, #1b1f23 100%);
-      }
-
-      .social-links a.linkedin:hover {
-        background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
-      }
-
-      .social-links a.twitter:hover {
-        background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
-      }
-
       .main-content {
         padding: 15px 0;
       }
@@ -393,6 +264,23 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
+      /* Language label for code blocks (optional enhancement) */
+      pre[class*="language-"]::after {
+        content: attr(class);
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid #e2e8f0;
+      }
+
       /* Enhanced Table styles with rounded corners and hover effects */
       table {
         border-collapse: separate;
@@ -498,6 +386,65 @@
         color: #1e293b;
       }
 
+      /* Responsive table wrapper */
+      .table-wrapper {
+        overflow-x: auto;
+        margin: 2em 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .table-wrapper table {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      /* Table caption styling */
+      caption {
+        caption-side: top;
+        margin-bottom: 1em;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #1e293b;
+        text-align: left;
+      }
+
+      /* Special styling for data tables */
+      .data-table {
+        font-size: 16px;
+      }
+
+      .data-table th {
+        font-size: 14px;
+        padding: 12px 16px;
+      }
+
+      .data-table td {
+        padding: 12px 16px;
+      }
+
+      /* Numeric column alignment */
+      .numeric {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Status indicators in tables */
+      .status-active {
+        color: #059669;
+        font-weight: 600;
+      }
+
+      .status-inactive {
+        color: #dc2626;
+        font-weight: 600;
+      }
+
+      .status-pending {
+        color: #d97706;
+        font-weight: 600;
+      }
+
       /* Lists styling */
       ul, ol {
         margin-bottom: 1.2em;
@@ -520,7 +467,7 @@
       }
 
       /* Subtle underline animation for content links */
-      a:not(.logo a):not(#myLinks a):not(.social-links a)::after {
+      a:not(.logo a):not(#myLinks a)::after {
         content: '';
         position: absolute;
         width: 0;
@@ -532,15 +479,34 @@
         transform: translateX(-50%);
       }
 
-      a:not(.logo a):not(#myLinks a):not(.social-links a):hover {
+      a:not(.logo a):not(#myLinks a):hover {
         color: #000050;
         background-color: rgba(0, 0, 128, 0.05);
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0, 0, 128, 0.15);
       }
 
-      a:not(.logo a):not(#myLinks a):not(.social-links a):hover::after {
+      a:not(.logo a):not(#myLinks a):hover::after {
         width: 100%;
+      }
+
+      /* Special hover effect for footer links */
+      footer a {
+        font-size: 12px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      footer a:hover {
+        color: #4da6ff;
+        border-bottom-color: #4da6ff;
+        background-color: transparent;
+        transform: none;
+        box-shadow: none;
+      }
+
+      footer a::after {
+        display: none;
       }
 
       /* Blockquote styling */
@@ -559,32 +525,25 @@
         background-color: #f0f8ff;
       }
 
-      @media screen and (max-width: 768px) {
+      /* Enhanced syntax highlighting */
+      .highlight .k { color: #d73a49; font-weight: 600; } /* Keyword */
+      .highlight .s { color: #032f62; } /* String */
+      .highlight .n { color: #24292e; } /* Name */
+      .highlight .c { color: #6a737d; font-style: italic; } /* Comment */
+      .highlight .o { color: #d73a49; } /* Operator */
+      .highlight .p { color: #24292e; } /* Punctuation */
+      .highlight .cm { color: #6a737d; font-style: italic; } /* Comment.Multiline */
+      .highlight .cp { color: #6a737d; } /* Comment.Preproc */
+      .highlight .c1 { color: #6a737d; font-style: italic; } /* Comment.Single */
+      .highlight .cs { color: #6a737d; font-style: italic; } /* Comment.Special */
+      .highlight .nf { color: #6f42c1; font-weight: 600; } /* Function names */
+      .highlight .nc { color: #6f42c1; font-weight: 600; } /* Class names */
+      .highlight .mi { color: #005cc5; } /* Numbers */
+      .highlight .se { color: #e36209; } /* String escape */
+
+      @media screen and (max-width: 600px) {
         body {
           font-size: 20px;
-        }
-
-        .profile-container {
-          flex-direction: column;
-          text-align: center;
-          gap: 25px;
-        }
-
-        .profile-image img {
-          width: 140px;
-          height: 140px;
-        }
-
-        .profile-info h1 {
-          font-size: 2rem;
-        }
-
-        .profile-info .position {
-          font-size: 1.1rem;
-        }
-
-        .social-links {
-          justify-content: center;
         }
 
         h1 {
@@ -634,9 +593,20 @@
         th {
           font-size: 0.85rem;
         }
+
+        /* Mobile table scroll hint */
+        .table-wrapper::after {
+          content: '← Scroll horizontally to see more →';
+          display: block;
+          text-align: center;
+          font-size: 12px;
+          color: #6b7280;
+          margin-top: 8px;
+          font-style: italic;
+        }
       }
 
-      /* Dark mode support */
+      /* Dark mode support with enhanced code blocks and tables */
       @media (prefers-color-scheme: dark) {
         body {
           background-color: #1a202c;
@@ -647,49 +617,23 @@
           color: #f7fafc;
         }
 
-        .profile-section {
-          background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-          border-bottom-color: #334155;
-        }
-
-        .profile-info h1 {
-          color: #f1f5f9;
-        }
-
-        .profile-info .position {
-          color: #cbd5e1;
-        }
-
-        .profile-info .affiliation a {
-          color: #60a5fa;
-        }
-
-        .profile-info .affiliation a:hover {
-          color: #3b82f6;
-        }
-
-        .profile-info .email {
-          color: #94a3b8;
-        }
-
-        .social-links a {
-          background: linear-gradient(135deg, #334155 0%, #475569 100%);
-          color: #cbd5e1;
-          border-color: #475569;
-        }
-
         a {
           color: #4da6ff;
         }
 
-        a:not(.logo a):not(#myLinks a):not(.social-links a)::after {
+        a:not(.logo a):not(#myLinks a)::after {
           background: linear-gradient(90deg, #4da6ff, #1a75ff);
         }
 
-        a:not(.logo a):not(#myLinks a):not(.social-links a):hover {
+        a:not(.logo a):not(#myLinks a):hover {
           color: #1a75ff;
           background-color: rgba(77, 166, 255, 0.1);
           box-shadow: 0 2px 8px rgba(77, 166, 255, 0.2);
+        }
+
+        footer a:hover {
+          color: #66b3ff;
+          border-bottom-color: #66b3ff;
         }
 
         .topnav {
@@ -721,7 +665,7 @@
           background-color: #1a2332;
         }
 
-        /* Dark mode code blocks */
+        /* Dark mode code blocks with elegant styling */
         pre {
           background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
           border-color: #334155;
@@ -748,6 +692,12 @@
 
         :not(pre) > code:hover {
           background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+        }
+
+        pre[class*="language-"]::after {
+          color: #94a3b8;
+          background: rgba(15, 23, 42, 0.8);
+          border-color: #334155;
         }
         
         /* Dark mode enhanced table styles */
@@ -795,17 +745,60 @@
           background-color: rgba(96, 165, 250, 0.1);
           color: #f1f5f9;
         }
+
+        caption {
+          color: #f1f5f9;
+        }
+
+        .table-wrapper {
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Dark mode syntax highlighting */
+        .highlight .k { color: #f97583; font-weight: 600; } /* Keyword */
+        .highlight .s { color: #9ecbff; } /* String */
+        .highlight .n { color: #e1e4e8; } /* Name */
+        .highlight .c { color: #959da5; font-style: italic; } /* Comment */
+        .highlight .o { color: #f97583; } /* Operator */
+        .highlight .p { color: #e1e4e8; } /* Punctuation */
+        .highlight .nf { color: #b392f0; font-weight: 600; } /* Function names */
+        .highlight .nc { color: #b392f0; font-weight: 600; } /* Class names */
+        .highlight .mi { color: #79b8ff; } /* Numbers */
+        .highlight .se { color: #f97583; } /* String escape */
+      }
+
+      /* Additional animations for interactive elements */
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 5px rgba(77, 166, 255, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(77, 166, 255, 0.6);
+        }
       }
 
       /* Focus states for accessibility */
       a:focus-visible {
         outline: 2px solid #4da6ff;
         outline-offset: 2px;
+        animation: glow 2s infinite;
       }
 
-      .social-links a:focus-visible {
+      #myLinks a:focus-visible {
+        outline: 2px solid #4da6ff;
+        outline-offset: 2px;
+      }
+
+      /* Table accessibility */
+      table:focus-within {
         outline: 2px solid #4da6ff;
         outline-offset: 4px;
+      }
+
+      th:focus, td:focus {
+        outline: 2px solid #4da6ff;
+        outline-offset: -2px;
+        background-color: rgba(77, 166, 255, 0.1);
       }
     </style>
   </head>
@@ -822,56 +815,6 @@
           <a href="/index">Yiwei Wang's Homepage</a>
           <a href="/ucmnlp">Research: UC Merced NLP Lab</a>
           <a href="/llm-course-2025">Teaching: EECS 224 Large Language Models</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Profile Section -->
-    <div class="profile-section">
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="{{ site.avatar }}" alt="{{ site.title }}" />
-        </div>
-        <div class="profile-info">
-          <h1>{{ site.title }}</h1>
-          {% if site.position %}
-          <div class="position">{{ site.position }}</div>
-          {% endif %}
-          {% if site.affiliation %}
-          <div class="affiliation">
-            <a href="{{ site.affiliation_link }}" rel="noopener">{{ site.affiliation }}</a>
-          </div>
-          {% endif %}
-          {% if site.email %}
-          <div class="email">{{ site.email }}</div>
-          {% endif %}
-          <div class="social-links">
-            {% if site.google_scholar %}
-            <a href="{{ site.google_scholar }}" class="google-scholar" title="Google Scholar" rel="noopener">
-              <i class="ai ai-google-scholar"></i>
-            </a>  
-            {% endif %}
-            {% if site.cv_link %}
-            <a href="{{ site.cv_link }}" class="cv" title="CV" rel="noopener">
-              <i class="ai ai-cv"></i>
-            </a>
-            {% endif %}
-            {% if site.github_link %}
-            <a href="{{ site.github_link }}" class="github" title="GitHub" rel="noopener">
-              <i class="fab fa-github"></i>
-            </a>
-            {% endif %}
-            {% if site.linkedin %}
-            <a href="{{ site.linkedin }}" class="linkedin" title="LinkedIn" rel="noopener">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            {% endif %}
-            {% if site.twitter %}
-            <a href="{{ site.twitter }}" class="twitter" title="Twitter" rel="noopener">
-              <i class="fab fa-twitter"></i>
-            </a>
-            {% endif %}
-          </div>
         </div>
       </div>
     </div>
