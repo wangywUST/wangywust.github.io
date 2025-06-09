@@ -4,7 +4,7 @@ layout: homepage
 
 ## Recruiting
 
-**Recruiting Ph.D. students and (remote) research interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
+**Recruiting Ph.D. students and (remote) Research Interns.** I’m actively looking for students at all levels interested in large language models' research. If you are interested, please feel free to email me.<br>
 
 <!-- ## Main Experience
 
