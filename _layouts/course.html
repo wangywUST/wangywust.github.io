@@ -17,7 +17,7 @@
     <meta property="og:image" content="{{ site.avatar }}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ site.title }} | {{ site.affiliation }}">
-    <meta name="twitter:description" content="{{ site.description }}">
+    <meta property="twitter:description" content="{{ site.description }}">
     <meta name="twitter:image" content="{{ site.avatar }}">
 
     <link rel="canonical" href="{{site.canonical}}"/>
@@ -71,6 +71,7 @@
       .topnav {
         background-color: #ddeafc;
         padding: 10px 0;
+        transition: background-color 0.3s ease;
       }
 
       .topnav .content {
@@ -84,6 +85,11 @@
 
       .logo img {
         max-height: 50px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo a:hover img {
+        transform: scale(1.05);
       }
 
       #myLinks {
@@ -96,12 +102,41 @@
         text-decoration: none;
         font-size: 1.4rem;
         font-weight: 500;
-        transition: color 0.3s ease;
         font-family: 'Crimson Pro', serif;
+        position: relative;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        overflow: hidden;
+      }
+
+      /* Enhanced navigation link hover effects */
+      #myLinks a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+        z-index: -1;
       }
 
       #myLinks a:hover {
-        color: #666666;
+        color: #2c5aa0;
+        background-color: rgba(44, 90, 160, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(44, 90, 160, 0.2);
+      }
+
+      #myLinks a:hover::before {
+        left: 100%;
+      }
+
+      #myLinks a:active {
+        transform: translateY(0);
+        transition: transform 0.1s ease;
       }
 
       .main-content {
@@ -242,16 +277,58 @@
         margin-bottom: 0.5em;
       }
 
-      /* Links styling */
+      /* Enhanced Links styling with multiple hover effects */
       a {
         color: #000080;
         text-decoration: none;
-        transition: color 0.3s ease;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-radius: 3px;
+        padding: 2px 4px;
+        margin: -2px -4px;
       }
 
-      a:hover {
+      /* Subtle underline animation for content links */
+      a:not(.logo a):not(#myLinks a)::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 50%;
+        background: linear-gradient(90deg, #000080, #4da6ff);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateX(-50%);
+      }
+
+      a:not(.logo a):not(#myLinks a):hover {
         color: #000050;
-        text-decoration: underline;
+        background-color: rgba(0, 0, 128, 0.05);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 128, 0.15);
+      }
+
+      a:not(.logo a):not(#myLinks a):hover::after {
+        width: 100%;
+      }
+
+      /* Special hover effect for footer links */
+      footer a {
+        font-size: 12px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      footer a:hover {
+        color: #4da6ff;
+        border-bottom-color: #4da6ff;
+        background-color: transparent;
+        transform: none;
+        box-shadow: none;
+      }
+
+      footer a::after {
+        display: none;
       }
 
       /* Blockquote styling */
@@ -262,6 +339,12 @@
         background-color: #f8fbff;
         font-style: italic;
         color: #000000;
+        transition: border-left-color 0.3s ease, background-color 0.3s ease;
+      }
+
+      blockquote:hover {
+        border-left-color: #4da6ff;
+        background-color: #f0f8ff;
       }
 
       /* Syntax highlighting */
@@ -301,6 +384,7 @@
 
         #myLinks a {
           font-size: 1.2rem;
+          padding: 10px 15px;
         }
 
         pre {
@@ -329,8 +413,19 @@
           color: #4da6ff;
         }
 
-        a:hover {
+        a:not(.logo a):not(#myLinks a)::after {
+          background: linear-gradient(90deg, #4da6ff, #1a75ff);
+        }
+
+        a:not(.logo a):not(#myLinks a):hover {
           color: #1a75ff;
+          background-color: rgba(77, 166, 255, 0.1);
+          box-shadow: 0 2px 8px rgba(77, 166, 255, 0.2);
+        }
+
+        footer a:hover {
+          color: #66b3ff;
+          border-bottom-color: #66b3ff;
         }
 
         .topnav {
@@ -342,13 +437,24 @@
         }
 
         #myLinks a:hover {
-          color: #cbd5e0;
+          color: #4da6ff;
+          background-color: rgba(77, 166, 255, 0.15);
+          box-shadow: 0 4px 12px rgba(77, 166, 255, 0.3);
+        }
+
+        #myLinks a::before {
+          background: linear-gradient(90deg, transparent, rgba(77, 166, 255, 0.2), transparent);
         }
 
         blockquote {
           background-color: #2d3748;
           border-left-color: #4a5568;
           color: #cbd5e0;
+        }
+
+        blockquote:hover {
+          border-left-color: #4da6ff;
+          background-color: #1a2332;
         }
 
         pre {
@@ -388,6 +494,28 @@
         .highlight .c { color: #959da5; } /* Comment */
         .highlight .o { color: #f97583; } /* Operator */
         .highlight .p { color: #e1e4e8; } /* Punctuation */
+      }
+
+      /* Additional animations for interactive elements */
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 5px rgba(77, 166, 255, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(77, 166, 255, 0.6);
+        }
+      }
+
+      /* Focus states for accessibility */
+      a:focus-visible {
+        outline: 2px solid #4da6ff;
+        outline-offset: 2px;
+        animation: glow 2s infinite;
+      }
+
+      #myLinks a:focus-visible {
+        outline: 2px solid #4da6ff;
+        outline-offset: 2px;
       }
     </style>
   </head>
