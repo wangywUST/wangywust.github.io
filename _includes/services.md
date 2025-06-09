@@ -20,19 +20,17 @@
   <li><a href="https://ijcai-21.org/"><autocolor>International Joint Conference on Artificial Intelligence (IJCAI) 2021</autocolor></a></li>
 </ul> -->
 
-<h4 style="font-size: 28px; margin:0 10px 0;">(Senior) Area Chair</h4>
+### (Senior) Area Chair
 
-<ul style="margin:0 0 5px;">
-  <li>International Conference on Learning Representations (<a href="https://neurips.cc/Conferences/2022">ICLR</a>) 2025</li>
-  <li>International Conference on Machine Learning (<a href="http://cvpr2023.thecvf.com/">ICML</a>) 2025</li>
-  <li>International Joint Conference on Artificial Intelligence (<a href="https://2022.acmmm.org/">IJCAI</a>) 2025</li>
-  <li>Association for Computational Linguistics Rolling Review (<a href="https://2022.acmmm.org/">ACL ARR</a>) 2025</li>
-  <li>Conference on Language Modeling (<a href="https://2022.acmmm.org/">COLM</a>) 2025</li>
-  <li>IEEE International Conference on Multimedia and Expo (<a href="https://2022.acmmm.org/">ICME</a>) 2025</li>
-  <li>International Joint Conference on Neural Network (<a href="https://2022.acmmm.org/">IJCNN</a>) 2025</li>
-</ul>
+- International Conference on Learning Representations ([ICLR](https://neurips.cc/Conferences/2022)) 2025
+- International Conference on Machine Learning ([ICML](http://cvpr2023.thecvf.com/)) 2025
+- International Joint Conference on Artificial Intelligence ([IJCAI](https://2022.acmmm.org/)) 2025
+- Association for Computational Linguistics Rolling Review ([ACL ARR](https://2022.acmmm.org/)) 2025
+- Conference on Language Modeling ([COLM](https://2022.acmmm.org/)) 2025
+- IEEE International Conference on Multimedia and Expo ([ICME](https://2022.acmmm.org/)) 2025
+- International Joint Conference on Neural Network ([IJCNN](https://2022.acmmm.org/)) 2025
 
-<h4 style="font-size: 28px; margin:0 10px 0;">Reviewer</h4>
+### Reviewer
 
 <ul style="margin:0 0 5px;">
   <li><a href="https://neurips.cc/Conferences/2022"><autocolor>International Conference on Learning Representations (ICLR) 2023, 2024</autocolor></a></li>
