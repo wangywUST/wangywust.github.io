@@ -5,7 +5,7 @@ layout: course
 # UC Merced NLP Lab
 
 <p align="center">
-<img src='lab_logo.png' width = "50%">
+<img src='lab_logo.png' width = "30%">
 </p>
 
 ## Our Location
@@ -41,7 +41,7 @@ Our research focuses on large foundation models based trustworthy natural langua
 ### Advisor: [Assistant Professor, Yiwei Wang](https://wangywust.github.io/)
 
 <p align="center">
-	<img src='photo.jpg' width = "10%">
+	<img src='photo.jpg' width = "20%">
 	<br>Assistant Professor, Yiwei Wang
 </p>
 
@@ -50,7 +50,7 @@ Yiwei Wang is an Assistant Professor at University of California, Merced. Ph.D. 
 ### [Senior Advisor: Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/)
 
 <p align="center">
-	<img src='mhyang2005_70.jpg' width = "10%">
+	<img src='mhyang2005_70.jpg' width = "20%">
 	<br>
 Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang
 </p>
