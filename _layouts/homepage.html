@@ -407,20 +407,42 @@
         height: auto;
       }
 
-      /* Markdown图片的第二简单特效：渐变边框+缩放 */
+      /* 在现有CSS的 img 规则后添加以下代码 */
+
+      /* Markdown图片的第三简单特效：旋转+发光+渐变边框 */
       .main-content img {
-        transition: all 0.3s ease;
-        border-radius: 8px;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-radius: 12px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border: 2px solid transparent;
+        border: 3px solid transparent;
         background: linear-gradient(white, white) padding-box,
-                    linear-gradient(135deg, #3b82f6, #06b6d4, #10b981) border-box;
+                    linear-gradient(135deg, #3b82f6, #06b6d4, #10b981, #f59e0b) border-box;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .main-content img::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+        opacity: 0;
       }
 
       .main-content img:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        filter: brightness(1.05) saturate(1.1);
+        transform: translateY(-8px) scale(1.03) rotate(1deg);
+        box-shadow: 0 16px 32px rgba(59, 130, 246, 0.2);
+        filter: brightness(1.08) saturate(1.15) contrast(1.05);
+      }
+
+      .main-content img:hover::before {
+        opacity: 1;
+        transform: rotate(45deg) translate(50%, 50%);
       }
 
       /* Center images in paragraphs with center alignment */
