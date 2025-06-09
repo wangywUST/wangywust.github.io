@@ -153,19 +153,23 @@
         margin: 0 auto;
         padding: 0 20px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        gap: 80px;
+        gap: 60px;
       }
 
-      .profile-image {
+      .profile-left {
         flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
       }
 
-      /* 修改照片样式为椭圆形 */
+      /* 修改照片样式为椭圆形，减小尺寸 */
       .profile-image img {
-        width: 160px;
-        height: 200px;
+        width: 140px;
+        height: 175px;
         border-radius: 50%;
         object-fit: cover;
         object-position: center;
@@ -177,9 +181,92 @@
         transform: scale(1.05);
       }
 
+      /* 将关键词移到左侧 */
+      .keywords {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        max-width: 200px;
+      }
+
+      .keyword-tag {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        color: #1e40af;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid #93c5fd;
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .keyword-tag:hover {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* 将社交链接移到左侧 */
+      .social-links {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 200px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 50%;
+        color: #475569;
+        font-size: 1.3rem;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 2px solid #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .social-links a:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        color: #ffffff;
+      }
+
+      .social-links a.google-scholar:hover {
+        background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
+      }
+
+      .social-links a.cv:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      }
+
+      .social-links a.github:hover {
+        background: linear-gradient(135deg, #24292e 0%, #1b1f23 100%);
+      }
+
+      .social-links a.linkedin:hover {
+        background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
+      }
+
+      .social-links a.twitter:hover {
+        background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+      }
+
       .profile-info {
         flex: 1;
-        max-width: 800px;
+        max-width: 700px;
         padding: 20px 0;
       }
 
@@ -218,7 +305,7 @@
         font-family: 'SF Mono', monospace;
       }
 
-      /* 添加研究兴趣或简介区域 */
+      /* 研究兴趣保留在右侧 */
       .profile-info .research-interests {
         margin-bottom: 25px;
         font-size: 1.1rem;
@@ -231,81 +318,6 @@
         margin-bottom: 8px;
         color: #1e293b;
         font-weight: 600;
-      }
-
-      .profile-info .keywords {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
-
-      .profile-info .keyword-tag {
-        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-        color: #1e40af;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        border: 1px solid #93c5fd;
-        transition: all 0.3s ease;
-      }
-
-      .profile-info .keyword-tag:hover {
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        color: white;
-        transform: translateY(-2px);
-      }
-
-      .social-links {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .social-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        border-radius: 50%;
-        color: #475569;
-        font-size: 1.5rem;
-        text-decoration: none;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border: 2px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .social-links a:hover {
-        transform: translateY(-3px) scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        border-color: #3b82f6;
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-        color: #ffffff;
-      }
-
-      .social-links a.google-scholar:hover {
-        background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
-      }
-
-      .social-links a.cv:hover {
-        background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      }
-
-      .social-links a.github:hover {
-        background: linear-gradient(135deg, #24292e 0%, #1b1f23 100%);
-      }
-
-      .social-links a.linkedin:hover {
-        background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
-      }
-
-      .social-links a.twitter:hover {
-        background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
       }
 
       .main-content {
@@ -611,7 +623,12 @@
           justify-content: center;
         }
 
+        .profile-left {
+          order: 1;
+        }
+
         .profile-info {
+          order: 2;
           margin-left: 0;
           max-width: none;
         }
@@ -633,6 +650,10 @@
 
         .social-links {
           justify-content: center;
+        }
+
+        .keywords {
+          max-width: 300px;
         }
 
         h1 {
@@ -896,21 +917,12 @@
     <!-- Profile Section -->
     <div class="profile-section">
       <div class="profile-container">
-        <div class="profile-image">
-          <img src="./photo.jpg" alt="Yiwei Wang" />
-        </div>
-        <div class="profile-info">
-          <h1>Yiwei Wang</h1>
-          <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">University of California, Merced</a></div>
-          <div class="email">Email: yiwang2@ucmerced.edu</div>
-          
-          <!-- 研究兴趣或简介 (可选) -->
-          <div class="research-interests">
-            <h3>Research Interests</h3>
-            <p>Natural Language Processing, Large Language Models, Machine Learning, AI Safety</p>
+        <div class="profile-left">
+          <div class="profile-image">
+            <img src="./photo.jpg" alt="Yiwei Wang" />
           </div>
           
-          <!-- 关键词标签 (可选) -->
+          <!-- 关键词标签移到左侧 -->
           <div class="keywords">
             <span class="keyword-tag">NLP</span>
             <span class="keyword-tag">LLM</span>
@@ -920,6 +932,7 @@
             <span class="keyword-tag">AI Safety</span>
           </div>
           
+          <!-- 社交链接移到左侧 -->
           <div class="social-links">
             <a href="https://scholar.google.com/citations?user=EXAMPLE" class="google-scholar" title="Google Scholar" rel="noopener">
               <i class="ai ai-google-scholar"></i>
@@ -936,6 +949,18 @@
             <a href="https://twitter.com/yiwei_wang" class="twitter" title="Twitter" rel="noopener">
               <i class="fab fa-twitter"></i>
             </a>
+          </div>
+        </div>
+        
+        <div class="profile-info">
+          <h1>Yiwei Wang</h1>
+          <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">University of California, Merced</a></div>
+          <div class="email">Email: yiwang2@ucmerced.edu</div>
+          
+          <!-- 研究兴趣保留在右侧 -->
+          <div class="research-interests">
+            <h3>Research Interests</h3>
+            <p>Natural Language Processing, Large Language Models, Machine Learning, AI Safety</p>
           </div>
         </div>
       </div>
