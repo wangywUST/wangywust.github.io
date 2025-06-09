@@ -181,15 +181,7 @@
         transform: scale(1.05);
       }
 
-      /* 将关键词移到左侧 */
-      .keywords {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        align-items: center;
-        justify-content: center;
-        max-width: 280px;
-      }
+
 
       .keyword-tag {
         background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
@@ -315,9 +307,17 @@
 
       .profile-info .research-interests h3 {
         font-size: 1.3rem;
-        margin-bottom: 8px;
+        margin-bottom: 15px;
         color: #1e293b;
         font-weight: 600;
+      }
+
+      /* 关键词标签样式 */
+      .profile-info .keywords {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
       }
 
       .main-content {
@@ -652,8 +652,8 @@
           justify-content: center;
         }
 
-        .keywords {
-          max-width: 350px;
+        .profile-info .keywords {
+          justify-content: flex-start;
         }
 
         h1 {
@@ -922,15 +922,7 @@
             <img src="./photo.jpg" alt="Yiwei Wang" />
           </div>
           
-          <!-- 关键词标签移到左侧 -->
-          <div class="keywords">
-            <span class="keyword-tag">NLP</span>
-            <span class="keyword-tag">LLM</span>
-            <span class="keyword-tag">Machine Learning</span>
-            <span class="keyword-tag">PyTorch</span>
-            <span class="keyword-tag">Transformers</span>
-            <span class="keyword-tag">AI Safety</span>
-          </div>
+
           
           <!-- 社交链接移到左侧 -->
           <div class="social-links">
@@ -957,9 +949,17 @@
           <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">University of California, Merced</a></div>
           <div class="email">Email: yiwang2@ucmerced.edu</div>
           
-          <!-- 研究兴趣保留在右侧 -->
+          <!-- 研究兴趣和关键词标签 -->
           <div class="research-interests">
             <h3>Research Interests</h3>
+            <div class="keywords">
+              <span class="keyword-tag">NLP</span>
+              <span class="keyword-tag">LLM</span>
+              <span class="keyword-tag">Machine Learning</span>
+              <span class="keyword-tag">PyTorch</span>
+              <span class="keyword-tag">Transformers</span>
+              <span class="keyword-tag">AI Safety</span>
+            </div>
             <p>Natural Language Processing, Large Language Models, Machine Learning, AI Safety</p>
           </div>
         </div>
