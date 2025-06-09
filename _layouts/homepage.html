@@ -890,6 +890,38 @@
 
       /* Dark mode support */
       @media (prefers-color-scheme: dark) {
+
+        /* Dark mode list adjustments */
+        ul li {
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+          border-left-color: #60a5fa;
+          color: #cbd5e1;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        ul li::before {
+          color: #60a5fa;
+        }
+
+        ul li:hover {
+          background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+          border-left-color: #93c5fd;
+          box-shadow: 0 4px 16px rgba(96, 165, 250, 0.25);
+        }
+
+        ul li:hover::before {
+          color: #93c5fd;
+        }
+
+        ul li a {
+          color: #93c5fd;
+        }
+
+        ul li a:hover {
+          background-color: rgba(147, 197, 253, 0.15);
+          color: #dbeafe;
+        }
+        
         body {
           background-color: #1a202c;
           color: #e2e8f0;
