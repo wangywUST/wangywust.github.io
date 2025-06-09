@@ -11,10 +11,15 @@ layout: homepage
 | Track | Starting Point | Stage 1 (3-6 months) | Stage 2 (3-6 months) | Stage 3 (3-6 months) | Final Outcome |
 |-------|----------------|----------------------|----------------------|----------------------|---------------|
 | **Research Interns** | Zero AI background student | First AI Top Conference submission | First AI Top Conference Publication | PhD or Industry Researcher Offer | Career Launch |
-| **PhD Students** | Junior Researcher | First Research Intern (6-12 months) | Sufficient AI Publications (12-24 months) | Graduation with Academic or Industry Researcher Offer (6-12 months) | Career Success |
+| **PhD Students** | Junior Researcher | First Publication and Industry Intern (6-12 months) | Sufficient AI Publications (12-24 months) | Graduation with Academic or Industry Researcher Offer (6-12 months) | Career Success |
 
-### Provided Reserach Resources
-**Independent and Sufficient GPU resources across students**
+### 🎯 **100% Research Resource Coverage Guarantee**
+*All students across all tracks receive full access to computational resources and AI model APIs*
+
+| Student Track | **Independent & Sufficient GPU Resources (A100, H100, H200, A6000)** | **OpenAI LLM APIs Credits** | **Fast APIs for Many Other (Multimodal) LLMs (Deepseek, Claude, Llama, Qwen)** | **Weekly One-to-One Meeting** | **Real-time Responses on Wechat** |
+|:--|:--:|:--:|:--:|:--:|:--:|
+| **Research Interns** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **PhD Students** | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <!-- ## Main Experience
 
