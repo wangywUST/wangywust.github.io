@@ -143,7 +143,7 @@ def generate_html(entry):
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links" style="margin-top: 0px;">
+      <div class="links" style="margin-top: -2px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
@@ -160,7 +160,7 @@ def generate_html(entry):
       <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
-      <div class="links" style="margin-top: 0px;">
+      <div class="links" style="margin-top: -2px;">
         <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
