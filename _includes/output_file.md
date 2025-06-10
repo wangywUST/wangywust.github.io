@@ -3,7 +3,7 @@
 <div class="publications">
 <ol class="bibliography">
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Unitst: Effectively modeling inter-series and intra-series dependencies for multivariate time series forecasting</div>
@@ -17,7 +17,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2025context.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -35,7 +35,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts</div>
@@ -49,7 +49,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?</div>
@@ -63,7 +63,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">DRS: Deep Question Reformulation With Structured Output</div>
@@ -77,7 +77,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling</div>
@@ -91,7 +91,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Vulnerability of LLMs to Vertically Aligned Text Manipulations</div>
@@ -105,7 +105,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">EvoStealer: Differential Evolution for Prompt Template Stealing Against Text-to-Image Synthesis</div>
@@ -119,7 +119,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering</div>
@@ -133,7 +133,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Peripheral Memory for LLMs: Integration of Sequential Memory Banks with Adaptive Querying</div>
@@ -147,7 +147,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2025is.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -165,7 +165,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/yang2025optibench.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -183,7 +183,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/zhong2025mquake.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -201,7 +201,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2025tricking.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -219,7 +219,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2025vulnerability.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -237,7 +237,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/mei2025not.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -255,7 +255,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/tao2024llms.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -273,7 +273,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2025recall.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -291,7 +291,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2024</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Fast Graph Sharpness-Aware Minimization for Enhancing and Accelerating Few-Shot Node Classification</div>
@@ -305,7 +305,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</div>
@@ -319,7 +319,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/li2024control.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -337,7 +337,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">SLANG: New Concept Comprehension of Large Language Models</div>
@@ -351,7 +351,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/meng2024llm.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -369,7 +369,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">AlignedCoT: Prompting Large Language Models via Native-Speaking Demonstrations</div>
@@ -383,7 +383,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2024lpnl.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -401,7 +401,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Scalable and Effective Implicit Graph Neural Networks on Large Graphs</div>
@@ -415,7 +415,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Think Carefully and Check Again! Meta-Generation Unlocking LLMs for Low-Resource Cross-Lingual Summarization</div>
@@ -429,7 +429,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2024deepedit.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -447,7 +447,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2023</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">A Causal View of Entity Bias in (Large) Language Models</div>
@@ -461,7 +461,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2023primacy.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -479,7 +479,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Airformer: Predicting nationwide air quality in china with transformers</div>
@@ -493,7 +493,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">How Fragile is Relation Extraction under Entity Replacements?</div>
@@ -507,7 +507,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference</div>
@@ -521,7 +521,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2022</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Dangling-Aware Entity Alignment with Mixed High-Order Proximities</div>
@@ -535,7 +535,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">GraphCache: Message Passing as Caching for Sentence-Level Relation Extraction</div>
@@ -549,7 +549,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Should We Rely on Entity Mentions for Relation Extraction? Debiasing Relation Extraction with Counterfactual Analysis</div>
@@ -563,7 +563,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mixed-order relation-aware recurrent neural networks for spatio-temporal forecasting</div>
@@ -577,7 +577,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Lscale: latent space clustering-based active learning for node classification</div>
@@ -591,7 +591,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Flashlight: Scalable link prediction with effective decoders</div>
@@ -605,7 +605,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2021</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Eignn: Efficient infinite-depth graph neural networks</div>
@@ -619,7 +619,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Adaptive data augmentation on temporal graphs</div>
@@ -633,7 +633,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">A unified 3d human motion synthesis model via conditional variational auto-encoder</div>
@@ -647,7 +647,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Structure-aware label smoothing for graph neural networks</div>
@@ -661,7 +661,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Time-aware neighbor sampling for temporal graph networks</div>
@@ -675,7 +675,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Fine-grained urban flow prediction</div>
@@ -689,7 +689,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Modeling Trajectories with Neural Ordinary Differential Equations.</div>
@@ -703,7 +703,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Revisiting convolutional neural networks for citywide crowd flow analytics</div>
@@ -717,7 +717,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Curgraph: Curriculum learning for graph classification</div>
@@ -731,7 +731,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mixup for node and graph classification</div>
@@ -745,7 +745,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Progressive supervision for node classification</div>
@@ -759,7 +759,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2020</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Active learning for node classification: The additional learning ability from unlabelled nodes</div>
@@ -773,7 +773,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Graphcrop: Subgraph cropping for graph classification</div>
@@ -787,7 +787,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Learning progressive joint propagation for human motion prediction</div>
@@ -801,7 +801,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Revisiting convolutional neural networks for urban flow analytics</div>
@@ -815,7 +815,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Detecting implementation bugs in graph convolutional network based node classifiers</div>
@@ -829,7 +829,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/wang2020nodeaug.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -847,7 +847,7 @@
 </div>
 </li>
 
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Provably robust node classification via low-pass message passing</div>
@@ -861,7 +861,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2019</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Optimization algorithms for graph Laplacian estimation via ADMM and MM</div>
@@ -875,7 +875,7 @@
 </div>
 </li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2017</h3><hr style="margin-bottom: 5px;">
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Using knowledge graphs to explain entity co-occurrence in Twitter</div>

@@ -133,7 +133,7 @@ def generate_html(entry):
     # If the image exists, include the image and layout using flexbox
     if image_exists:
         html = f'''
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
@@ -154,7 +154,7 @@ def generate_html(entry):
     else:
         # If the image doesn't exist, remove the image section and extend the text
         html = f'''
-<li>
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">{clean_title_text}</div>
