@@ -140,7 +140,7 @@ def generate_html(entry):
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
+      <div class="title">{clean_title_text}</div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: -5px;">
@@ -157,7 +157,7 @@ def generate_html(entry):
 <li>
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title"><a href="{entry.get('url', '#')}">{clean_title_text}</a></div>
+      <div class="title">{clean_title_text}</div>
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: -5px;">
