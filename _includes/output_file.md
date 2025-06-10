@@ -6,7 +6,7 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Unitst: Effectively modeling inter-series and intra-series dependencies for multivariate time series forecasting</div>
+      <div class="title">UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting</div>
       <div class="author">Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo.</div>
       <div class="periodical"><em>Transactions on Machine Learning Research (TMLR), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
