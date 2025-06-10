@@ -914,6 +914,28 @@
       /* Dark mode support */
       @media (prefers-color-scheme: dark) {
 
+  /* 在这里添加标题的暗色模式样式 */
+        .title {
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+          border-left-color: #60a5fa;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .title:hover {
+          background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+          border-left-color: #93c5fd;
+          box-shadow: 0 4px 16px rgba(96, 165, 250, 0.25);
+        }
+
+        .title a {
+          color: #93c5fd !important;
+        }
+
+        .title a:hover {
+          background-color: rgba(147, 197, 253, 0.15);
+          color: #dbeafe !important;
+        }
+
 /* Dark mode list adjustments */
         ul li {
           background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
