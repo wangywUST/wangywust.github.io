@@ -6,6 +6,7 @@ print('done')
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    'COLM' : 'COLM',
     'Transactions on Machine Learning Research' : 'TMLR',
     'International Conference on Machine Learning' : 'ICML',
     'ACM SIGKDD': 'KDD',
@@ -182,6 +183,7 @@ CONFERENCE_TIME_ORDER = [
     'TMLR',
     'NeurIPS',
     'EMNLP',
+    'COLM',
     'ACL',
     'ICML',
     'CVPR',

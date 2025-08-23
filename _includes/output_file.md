@@ -18,6 +18,48 @@
 </li>
 
 <li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Texture or Semantics? Vision-Language Models Get Lost in Font Recognition.</div>
+      <div class="author">Zhecheng Li, Guoxian Song, Yujun Cai, Zhen Xiong, Junsong Yuan, Yiwei Wang.</div>
+      <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Text Speaks Louder than Vision: ASCII Art Reveals Textual Biases in Vision-Language Models.</div>
+      <div class="author">Zhaochen Wang, Bryan Hooi, Yiwei Wang, Ming-Hsuan Yang, Zi Huang, Yujun Cai.</div>
+      <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">How does Watermarking Affect Visual Language Models in Document Understanding?</div>
+      <div class="author">Chunxue Xu, Yiwei Wang, Bryan Hooi, Yujun Cai, Songze Li.</div>
+      <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/bi2025context.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
@@ -28,7 +70,7 @@
       <div class="author">Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, Weiwei Deng, Feng Sun, Qi Zhang, Shenghua Liu.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.findings-acl.536" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -42,7 +84,7 @@
       <div class="author">Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Junfeng Fang, Pengliang Ji, Xueqi Cheng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.acl-long.841" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -56,7 +98,7 @@
       <div class="author">Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.acl-long.321" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -70,7 +112,7 @@
       <div class="author">Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.findings-acl.666" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -84,7 +126,7 @@
       <div class="author">Bingxuan Li, Yiwei Wang, Jiuxiang Gu, Kai-Wei Chang, Nanyun Peng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.acl-long.1452" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -98,7 +140,7 @@
       <div class="author">Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Zhen Xiong, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.acl-long.978" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -126,7 +168,7 @@
       <div class="author">Rongzhi Zhu, Xiangyu Liu, Zequn Sun, Yiwei Wang, Wei Hu.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.acl-long.1089" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -212,7 +254,7 @@
       <div class="author">Chen Wang, Yiwei Wang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://doi.org/10.18653/v1/2025.naacl-long.210" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
