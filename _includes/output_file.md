@@ -35,20 +35,6 @@
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
-      <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
-      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
       <div class="author">Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
@@ -106,20 +92,6 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">How to Make Large Language Models Generate 100\% Valid Molecules?</div>
       <div class="author">Wen Tao, Yiwei Wang.</div>
-      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">SemVink: Advancing VLMs'  Semantic Understanding of Optical Illusions via Visual Global Thinking</div>
-      <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
