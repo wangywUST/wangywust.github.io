@@ -20,6 +20,146 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation</div>
+      <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
+      <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
+      <div class="author">Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Making every step effective: Jailbreaking large vision-language models through hierarchical kv equalization</div>
+      <div class="author">Shuyang Hao, Yiwei Wang, Bryan Hooi, Jun Liu, Muhao Chen, Zi Huang, Yujun Cai.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">MRFD: Multi-Region Fusion Decoding with Self-Consistency for Mitigating Hallucinations in LVLMs</div>
+      <div class="author">Haonan Ge, Yiwei Wang, Ming-Hsuan Yang, Yujun Cai.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning</div>
+      <div class="author">Hang Wu, Hongkai Chen, Yujun Cai, Chang Liu, Qingwen Ye, Ming-Hsuan Yang, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">How to Make Large Language Models Generate 100\% Valid Molecules?</div>
+      <div class="author">Wen Tao, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">SemVink: Advancing VLMs'  Semantic Understanding of Optical Illusions via Visual Global Thinking</div>
+      <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">SemVink: Advancing VLMs'  Semantic Understanding of Optical Illusions via Visual Global Thinking</div>
+      <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Understanding GUI Agent Localization Biases through Logit Sharpness</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Texture or Semantics? Vision-Language Models Get Lost in Font Recognition.</div>
       <div class="author">Zhecheng Li, Guoxian Song, Yujun Cai, Zhen Xiong, Junsong Yuan, Yiwei Wang.</div>
       <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
@@ -341,20 +481,6 @@
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Adaptive Token Biaser: Knowledge Editing via Biasing Key Entities</div>
-      <div class="author">Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Hongcheng Gao, Yilong Xu, Xueqi Cheng.</div>
-      <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
