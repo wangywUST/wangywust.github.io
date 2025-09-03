@@ -333,7 +333,7 @@ def main():
     parser = argparse.ArgumentParser(description="Download PDFs for BibTeX entries and name files from a template.")
     parser.add_argument("--bib", required=True, help="Path to .bib file")
     parser.add_argument("--outdir", default="./pdfs", help="Output directory for PDFs")
-    parser.add_argument("--template", default="{citekey}_{title}", help="Filename template; fields: {citekey},{title},{year},{first_author}")
+    parser.add_argument("--template", default="{citekey}", help="Filename template; fields: {citekey},{title},{year},{first_author}")
     parser.add_argument("--punct", choices=["safe","strip","raw"], default="safe", help="How to handle punctuation/illegal chars in filenames")
     parser.add_argument("--sleep", type=float, default=0.6, help="Sleep seconds between network calls (politeness)")
     parser.add_argument("--dry-run", action="store_true", help="Do not download; just resolve and print plan")
