@@ -10,7 +10,7 @@
       <div class="author">Juncheng Liu, Chenghao Liu, Gerald Woo, Yiwei Wang, Bryan Hooi, Caiming Xiong, Doyen Sahoo.</div>
       <div class="periodical"><em>Transactions on Machine Learning Research (TMLR), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2025unitst.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -24,7 +24,7 @@
       <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/yao2025who.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -38,7 +38,7 @@
       <div class="author">Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.findings-emnlp.647" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/xiong2025map.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -52,7 +52,7 @@
       <div class="author">Shuyang Hao, Yiwei Wang, Bryan Hooi, Jun Liu, Muhao Chen, Zi Huang, Yujun Cai.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/hao2025making.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -66,7 +66,7 @@
       <div class="author">Haonan Ge, Yiwei Wang, Ming-Hsuan Yang, Yujun Cai.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/ge2025mrfd.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -80,7 +80,7 @@
       <div class="author">Hang Wu, Hongkai Chen, Yujun Cai, Chang Liu, Qingwen Ye, Ming-Hsuan Yang, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wu2025dimo.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -94,7 +94,7 @@
       <div class="author">Wen Tao, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2025how.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -108,7 +108,7 @@
       <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025semvink.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -122,7 +122,7 @@
       <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2025understanding.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -136,7 +136,7 @@
       <div class="author">Zhecheng Li, Guoxian Song, Yujun Cai, Zhen Xiong, Junsong Yuan, Yiwei Wang.</div>
       <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025text.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -150,7 +150,7 @@
       <div class="author">Zhaochen Wang, Bryan Hooi, Yiwei Wang, Ming-Hsuan Yang, Zi Huang, Yujun Cai.</div>
       <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2025text.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -164,7 +164,7 @@
       <div class="author">Chunxue Xu, Yiwei Wang, Bryan Hooi, Yujun Cai, Songze Li.</div>
       <div class="periodical"><em>Second Conference on Language Modeling (COLM), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/xu2025how.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -182,7 +182,7 @@
       <div class="author">Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, Weiwei Deng, Feng Sun, Qi Zhang, Shenghua Liu.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.findings-acl.536" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/bi2025context.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -196,7 +196,7 @@
       <div class="author">Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Junfeng Fang, Pengliang Ji, Xueqi Cheng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.acl-long.841" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/bi2025decoding.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -210,7 +210,7 @@
       <div class="author">Yuyao Ge, Shenghua Liu, Baolong Bi, Yiwei Wang, Lingrui Mei, Wenjie Feng, Lizhe Chen, Xueqi Cheng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.acl-long.321" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/ge2025acl.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -224,7 +224,7 @@
       <div class="author">Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.findings-acl.666" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025drs.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -238,7 +238,7 @@
       <div class="author">Bingxuan Li, Yiwei Wang, Jiuxiang Gu, Kai-Wei Chang, Nanyun Peng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.acl-long.1452" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025metal.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -252,7 +252,7 @@
       <div class="author">Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Zhen Xiong, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.acl-long.978" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025vertical.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -266,7 +266,7 @@
       <div class="author">Yurong Wu, Fangwen Mu, Qiuhong Zhang, Jinjing Zhao, Xinrun Xu, Lingrui Mei, Yang Wu, Lin Shi, Junjie Wang, Zhiming Ding, Yiwei Wang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wu2025evostealer.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -280,7 +280,7 @@
       <div class="author">Rongzhi Zhu, Xiangyu Liu, Zequn Sun, Yiwei Wang, Wei Hu.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.acl-long.1089" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhu2025mitigating.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -294,7 +294,7 @@
       <div class="author">Songlin Zhai, Yuan Meng, Yongrui Chen, Yiwei Wang, Guilin Qi.</div>
       <div class="periodical"><em>International Conference on Machine Learning (ICML), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhai2025peripheral.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -312,7 +312,7 @@
       <div class="author">Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng.</div>
       <div class="periodical"><em>The Thirteenth International Conference on Learning Representations (ICLR), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.36227/techrxiv.173160875.51599596/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/bi2025is.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -330,7 +330,7 @@
       <div class="author">Zhicheng Yang, Yiwei Wang, Yinya Huang, Zhijiang Guo, Wei Shi, Xiongwei Han, Liang Feng, Linqi Song, Xiaodan Liang, Jing Tang.</div>
       <div class="periodical"><em>The Thirteenth International Conference on Learning Representations (ICLR), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/yang2025optibench.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -348,7 +348,7 @@
       <div class="author">Shaochen Zhong, others.</div>
       <div class="periodical"><em>The Thirteenth International Conference on Learning Representations (ICLR), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhong2025mquake.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -366,7 +366,7 @@
       <div class="author">Chen Wang, Yiwei Wang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2025.naacl-long.210" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2025tricking.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -384,7 +384,7 @@
       <div class="author">Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint\_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2025vulnerability.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -402,7 +402,7 @@
       <div class="author">Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Jiayi Mao, Xueqi Cheng.</div>
       <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/mei2025not.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -420,7 +420,7 @@
       <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2412.20846, 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2412.20846" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2024llms.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -438,7 +438,7 @@
       <div class="author">Cheng Wang, Yiwei Wang, Bryan Hooi, Yujun Cai, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>International Conference on Computational Linguistics (COLING), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2025recall.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -452,7 +452,7 @@
       <div class="author">Yihong Luo, Yuhan Chen, Siya Qiu, Yiwei Wang, Chen Zhang, Yan Zhou, Xiaochun Cao, Jing Tang.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/luo2024fast.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -470,7 +470,7 @@
       <div class="author">Bingxuan Li, Yiwei Wang, Tao Meng, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.emnlp-main.850" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2024control.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -484,7 +484,7 @@
       <div class="author">Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Xueqi Chen.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2401.12585" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/mei2024slang.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -502,7 +502,7 @@
       <div class="author">Silin Meng, Yiwei Wang, Cheng-Fu Yang, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.21203/rs.3.rs-4613568/v1" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/meng2024llm.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -516,7 +516,7 @@
       <div class="author">Zhicheng Yang, Yinya Huang, Jing Xiong, Liang Feng, Xiaodan Liang, Yiwei Wang, Jing Tang.</div>
       <div class="periodical"><em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2311.13538" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/yang2024alignedcotpromptinglargelanguage.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -534,7 +534,7 @@
       <div class="author">Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL 2024, 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2024.findings-acl.215" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/bi2024lpnl.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -548,7 +548,7 @@
       <div class="author">Juncheng Liu, Bryan Hooi, Kenji Kawaguchi, Yiwei Wang, Chaosheng Dong, Xiaokui Xiao.</div>
       <div class="periodical"><em>The Twelfth International Conference on Learning Representations (ICLR), 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2024scalable.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -562,7 +562,7 @@
       <div class="author">Zhecheng Li, Yiwei Wang, Bryan Hooi, Yujun Cai, Naifan Cheung, Nanyun Peng, Kai-wei Chang.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2410.20021, 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/pdf/2410.20021" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2024think.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -580,7 +580,7 @@
       <div class="author">Yiwei Wang, Muhao Chen, Nanyun Peng, Kai-Wei Chang.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2401.10471, 2024.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2401.10471" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2024deepedit.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -594,7 +594,7 @@
       <div class="author">Fei Wang, Wenjie Mo, Yiwei Wang, Wenxuan Zhou, Muhao Chen.</div>
       <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.1013" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2023causal.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -612,7 +612,7 @@
       <div class="author">Yiwei Wang, Yujun Cai, Muhao Chen, Yuxuan Liang, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2023.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2023.emnlp-main.8" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2023primacy.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -626,7 +626,7 @@
       <div class="author">Yuxuan Liang, Yutong Xia, Songyu Ke, Yiwei Wang, Qingsong Wen, Junbo Zhang, Yu Zheng, Roger Zimmermann.</div>
       <div class="periodical"><em>Proceedings of the AAAI Conference on Artificial Intelligence, 2023.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1609/aaai.v37i12.26676" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2023airformer.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -640,7 +640,7 @@
       <div class="author">Yiwei Wang, Bryan Hooi, Fei Wang, Yujun Cai, Yuxuan Liang, Wenxuan Zhou, Jing Tang, Manjuan Duan, Muhao Chen.</div>
       <div class="periodical"><em>CONLL 2023, 2023.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2023.conll-1.27" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2023fragile.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -654,7 +654,7 @@
       <div class="author">Yiwei Wang, Bryan Hooi, Yozen Liu, Neil Shah.</div>
       <div class="periodical"><em>Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM), 2023.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3539597.3570388" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2023graph.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -668,7 +668,7 @@
       <div class="author">Juncheng Liu, Zequn Sun, Bryan Hooi, Yiwei Wang, Dayiheng Liu, Baosong Yang, Xiaokui Xiao, Muhao Chen.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.88" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2022dangling.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -682,7 +682,7 @@
       <div class="author">Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2022.findings-naacl.128" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2022graphcache.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -696,7 +696,7 @@
       <div class="author">Yiwei Wang, Muhao Chen, Wenxuan Zhou, Yujun Cai, Yuxuan Liang, Dayiheng Liu, Baosong Yang, Juncheng Liu, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.18653/v1/2022.naacl-main.224" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2022should.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -710,7 +710,7 @@
       <div class="author">Yuxuan Liang, Kun Ouyang, Yiwei Wang, Zheyi Pan, Yifang Yin, Hongyang Chen, Junbo Zhang, Yu Zheng, David S Rosenblum, Roger Zimmermann.</div>
       <div class="periodical"><em>IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/tkde.2022.3222373" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2022mixed.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -724,7 +724,7 @@
       <div class="author">Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao.</div>
       <div class="periodical"><em>Joint European Conference on Machine Learning and Knowledge Discovery in Databases (ECML-PKDD), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1007/978-3-031-26387-3\_4" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2022lscale.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -738,7 +738,7 @@
       <div class="author">Yiwei Wang, Bryan Hooi, Yozen Liu, Tong Zhao, Zhichun Guo, Neil Shah.</div>
       <div class="periodical"><em>Learning on Graphs Conference (LOG), 2022.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2022flashlight.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -752,7 +752,7 @@
       <div class="author">Juncheng Liu, Kenji Kawaguchi, Bryan Hooi, Yiwei Wang, Xiaokui Xiao.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2021eignn.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -766,7 +766,7 @@
       <div class="author">Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Siddharth Bhatia, Bryan Hooi.</div>
       <div class="periodical"><em>Advances in Neural Information Processing Systems (NeurIPS), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021adaptive.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -780,7 +780,7 @@
       <div class="author">Yujun Cai, Yiwei Wang, Yiheng Zhu, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Chuanxia Zheng, Sijie Yan, Henghui Ding, others.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF International Conference on Computer Vision, 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/iccv48922.2021.01144" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/cai2021unified.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -794,7 +794,7 @@
       <div class="author">Yiwei Wang, Yujun Cai, Yuxuan Liang, Wei Wang, Henghui Ding, Muhao Chen, Jing Tang, Bryan Hooi.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2112.00499, 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2112.00499" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021structure.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -808,7 +808,7 @@
       <div class="author">Yiwei Wang, Yujun Cai, Yuxuan Liang, Henghui Ding, Changhu Wang, Bryan Hooi.</div>
       <div class="periodical"><em>2022 International Joint Conference on Neural Networks (IJCNN), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/ijcnn55064.2022.9892942" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021time.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -822,7 +822,7 @@
       <div class="author">Yuxuan Liang, Kun Ouyang, Junkai Sun, Yiwei Wang, Junbo Zhang, Yu Zheng, David Rosenblum, Roger Zimmermann.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021, 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3442381.3449792" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2021fine.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -836,7 +836,7 @@
       <div class="author">Yuxuan Liang, Kun Ouyang, Hanshu Yan, Yiwei Wang, Zekun Tong, Roger Zimmermann.</div>
       <div class="periodical"><em>IJCAI, 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.24963/ijcai.2021/207" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2021modeling.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -850,7 +850,7 @@
       <div class="author">Yuxuan Liang, Kun Ouyang, Yiwei Wang, Ye Liu, Junbo Zhang, Yu Zheng, David S Rosenblum.</div>
       <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1007/978-3-030-67658-2\_33" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2021revisiting.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -864,7 +864,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3442381.3450025" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021curgraph.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -878,7 +878,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2021 (WWW), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3442381.3449796" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021mixup.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -892,7 +892,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD), 2021.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1007/978-3-030-67658-2\_16" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2021progressive.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -906,7 +906,7 @@
       <div class="author">Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2012.07065, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2012.07065" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liu2020active.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -920,7 +920,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2009.10564, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://arxiv.org/abs/2009.10564" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2020graphcrop.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -934,7 +934,7 @@
       <div class="author">Yujun Cai, Lin Huang, Yiwei Wang, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Xu Yang, Yiheng Zhu, Xiaohui Shen, others.</div>
       <div class="periodical"><em>Computer Vision--ECCV 2020: 16th European Conference, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1007/978-3-030-58571-6\_14" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/cai2020learning.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -948,7 +948,7 @@
       <div class="author">Yuxuan Liang, Kun Ouyang, Yiwei Wang, David Samuel Rosenblum.</div>
       <div class="periodical"><em>Preprint, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/liang2020revisiting.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -962,7 +962,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yujun Ca, Bryan Hooi, Beng Chin Ooi.</div>
       <div class="periodical"><em>2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE), 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/issre5003.2020.00037" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2020detecting.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -980,7 +980,7 @@
       <div class="author">Yiwei Wang, Wei Wang, Yuxuan Liang, Yujun Cai, Juncheng Liu, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3394486.3403063" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2020nodeaug.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -994,7 +994,7 @@
       <div class="author">Yiwei Wang, Shenghua Liu, Minji Yoon, Hemank Lamba, Wei Wang, Christos Faloutsos, Bryan Hooi.</div>
       <div class="periodical"><em>2020 IEEE International Conference on Data Mining (ICDM), 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/icdm50108.2020.00071" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2020provably.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -1008,7 +1008,7 @@
       <div class="author">Licheng Zhao, Yiwei Wang, Sandeep Kumar, Daniel P Palomar.</div>
       <div class="periodical"><em>IEEE Transactions on Signal Processing, 2019.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1109/tsp.2019.2925602" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhao2019optimization.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -1022,7 +1022,7 @@
       <div class="author">Yiwei Wang, Mark James Carman, Yuan-Fang Li.</div>
       <div class="periodical"><em>Proceedings of the 2017 ACM on Conference on Information and Knowledge Management, 2017.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://doi.org/10.1145/3132847.3133161" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2017using.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>

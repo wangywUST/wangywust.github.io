@@ -90,6 +90,12 @@ def generate_image_filename(entry):
     entry_id = entry.get('ID', 'default')
     return f"Image/{entry_id}.png"
 
+# Function to generate PDF URL based on the bib entry ID
+def generate_pdf_url(entry):
+    # Get the entry ID and create the PDF URL
+    entry_id = entry.get('ID', 'default')
+    return f"https://wangywust.github.io/pdfs/{entry_id}.pdf"
+
 # Function to check if a paper is a Preprint or ArXiv
 def is_preprint(entry):
     # Preprint is defined as having no 'journal' or 'booktitle' field
@@ -127,6 +133,9 @@ def generate_html(entry):
     
     # Get code URL or default code link (if 'code_url' field is present in the bib file, use it)
     code_url = entry.get('code_url', entry.get('code', '#'))
+    
+    # Generate PDF URL based on entry ID
+    pdf_url = generate_pdf_url(entry)
 
     # Define the image style to make it slightly longer and adjust layout
     image_style = "width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;"  # Slightly taller image
@@ -145,7 +154,7 @@ def generate_html(entry):
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{pdf_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -162,7 +171,7 @@ def generate_html(entry):
       <div class="author">{formatted_authors}.</div>
       <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="{entry.get('url', '#')}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="{pdf_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
