@@ -4,7 +4,7 @@ layout: homepage
 
 ## Recruiting
 
-**Recruiting Ph.D. students and (remote) Research Interns.** I’m actively looking for students at all levels interested in large language models' related research. If you are interested, please feel free to email me.<br>
+**Recruiting Ph.D. students and Research Interns. Working either onsite or remotely is fine.**<br>
 
 ## Research Focus
 
@@ -13,6 +13,8 @@ My research focuses on large foundation models based trustworthy natural languag
 <p align="center">
 <img src='person_logo.png' width = "50%">
 </p>
+
+## Alumni
 
 {% include_relative _includes/output_file.md %}
 
