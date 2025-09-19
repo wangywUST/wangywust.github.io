@@ -6,47 +6,6 @@ layout: homepage
 
 **Recruiting Ph.D. students and (remote) Research Interns.** I’m actively looking for students at all levels interested in large language models' related research. If you are interested, please feel free to email me.<br>
 
-### Development Roadmap
-
-| Student Track | Starting Point | Stage 1 (3-6 months) | Stage 2 (3-6 months) | Stage 3 (3-6 months) | Final Outcome |
-|-------|----------------|----------------------|----------------------|----------------------|---------------|
-| **Research Interns** | Zero AI background student | First AI Top Conference submission | First AI Top Conference Publication | PhD or Industry Researcher Offer | Career Launch |
-
-| Student Track | Starting Point | Stage 1 (6-12 months) | Stage 2 (12-36 months) | Stage 3 (6-12 months) | Final Outcome |
-|-------|----------------|----------------------|----------------------|----------------------|---------------|
-| **PhD Students** | Junior Researcher | First Publication and Industry Intern | Sufficient AI Publications | Graduation with Academic or Industry Researcher Offer | Career Success |
-
-### 🎯 **100% Research Resource Coverage Guarantee**
-*All students across all tracks receive full access to computational resources and AI model APIs*
-
-| Student Track | **Independent & Sufficient GPU Resources (A100, H100, H200, A6000)** | **OpenAI LLM APIs Credits** | **Fast APIs for Many Other (Multimodal) LLMs (Deepseek, Claude, Llama, Qwen)** | **Weekly One-to-One Meeting** | **Real-time Responses on Wechat** |
-|:--|:--:|:--:|:--:|:--:|:--:|
-| **Research Interns** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **PhD Students** | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-<!-- ## Main Experience
-
-**University of California, Merced**, Jan. 2025 - Present  
-Assistant Professor  
-
-**UCLA NLP Lab**, Sep. 2023 - Dec. 2024  
-Postdoc  
-Advisor: Kai-Wei Chang, Nanyun Peng  
-
-**Amazon (Seattle)**, Sep. 2022 - Sep. 2023  
-Applied Scientist  
-
-**National University of Singapore**, Jul. 2019 - Mar. 2023  
-Ph.D. Student  
-Advisor: Bryan Hooi, Muhao Chen  
-
-**Hong Kong University of Science and Technology**, Aug. 2017 - Jun. 2019  
-M.Phil. Student  
-
-**Southeast University**, Aug. 2013 - Jun. 2017  
-Undergraduate Student  
-Main Advisor: Shi Jin, Liang An, Qinzhen Xu, Yuanfang Li, Qiao Wang, etc. -->
-
 ## Research Focus
 
 My research focuses on large foundation models based trustworthy natural language processing and its applications as AI assistants. Our research considers not only textual but also vision data, with the target of understanding ubiquitos multi-modal data in real-world applications.<br> 
