@@ -8,20 +8,10 @@ layout: homepage
 
 ## Alumni
 
-<div style="border:1px solid #ccc; border-radius:8px; padding:10px; margin:10px;">
-  <b>Alice Wang</b> (2023)<br>
-  🎓 PhD Student at MIT
-</div>
+| Alumni                                                                 | Alumni                                                                 | Alumni                                                                 |
+|------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
+| <div style="border:1px solid #ccc; border-radius:8px; padding:10px;"><b>Alice Wang</b> (2023)<br>🎓 PhD Student at MIT</div> | <div style="border:1px solid #ccc; border-radius:8px; padding:10px;"><b>Bob Li</b> (2022)<br>💼 Software Engineer at Google</div> | <div style="border:1px solid #ccc; border-radius:8px; padding:10px;"><b>Chen Zhang</b> (2021)<br>👩‍🏫 Lecturer at UQ</div> |
 
-<div style="border:1px solid #ccc; border-radius:8px; padding:10px; margin:10px;">
-  <b>Bob Li</b> (2022)<br>
-  💼 Software Engineer at Google
-</div>
-
-<div style="border:1px solid #ccc; border-radius:8px; padding:10px; margin:10px;">
-  <b>Chen Zhang</b> (2021)<br>
-  👩‍🏫 Lecturer at UQ
-</div>
 
 
 
