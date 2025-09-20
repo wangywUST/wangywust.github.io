@@ -6,9 +6,13 @@ layout: homepage
 
 **Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br>
 
+## Alumni
+
+
+
 ## Research Focus
 
-My research focuses on large foundation models based trustworthy natural language processing and its applications as AI assistants. Our research considers not only textual but also vision data, with the target of understanding ubiquitos multi-modal data in real-world applications.<br> 
+Natural Language Processing, Multi-modal Large Language Models.<br> 
 
 <p align="center">
 <img src='person_logo.png' width = "50%">
