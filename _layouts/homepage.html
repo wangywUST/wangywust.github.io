@@ -635,28 +635,28 @@
         color: #000000 !important;
       }
 
-      /* 奇数项（第1、3、5...项）*/
+      /* 奇数项（第1、3、5...项）- 薄荷绿版本 */
       ul li:nth-child(odd) {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-left: 1px solid #3b82f6;
+        background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+        border-left: 1px solid #34d399;
       }
 
-      /* 偶数项（第2、4、6...项）*/
+      /* 偶数项（第2、4、6...项）- 保持现有蓝色 */
       ul li:nth-child(even) {
         background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         border-left: 1px solid #0ea5e9;
       }
 
-      /* 奇数项悬停效果 */
+      /* 奇数项悬停效果 - 薄荷绿版本 */
       ul li:nth-child(odd):hover {
         transform: translateX(8px);
-        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-        border-left-color: #2563eb;
-        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
-        color: #1e3a8a !important;
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        border-left-color: #10b981;
+        box-shadow: 0 4px 16px rgba(52, 211, 153, 0.15);
+        color: #064e3b !important;
       }
 
-      /* 偶数项悬停效果 */
+      /* 偶数项悬停效果 - 保持现有蓝色 */
       ul li:nth-child(even):hover {
         transform: translateX(8px);
         background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
@@ -664,7 +664,7 @@
         box-shadow: 0 4px 16px rgba(14, 165, 233, 0.15);
         color: #1e3a8a !important;
       }
-
+      
       /* Style for links within list items */
       ul li a {
         color: #1e40af;
