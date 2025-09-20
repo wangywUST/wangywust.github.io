@@ -363,7 +363,7 @@
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Tricking Retrievers with Influential Tokens: An Efficient Black-Box Corpus Poisoning Attack</div>
-      <div class="author">Chen Wang, Yiwei Wang, Yujun Cai, Bryan Hooi.</div>
+      <div class="author">Cheng Wang, Yiwei Wang, Yujun Cai, Bryan Hooi.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL), 2025.</em></div>
       <div class="links" style="margin-top: -5px;">
         <a href="https://wangywust.github.io/pdfs/wang2025tricking.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>

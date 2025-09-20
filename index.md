@@ -8,7 +8,7 @@ layout: homepage
 
 ## Alumni
 - Silin Meng, (Collaboration 2023.11 - 2024.05), Master at UCLA -> Machine Learning Engineer at Boson AI (Santa Clara, California)
-- Silin Meng, (Collaboration during 2023.11 - 2024.05), Master at UCLA -> Machine Learning Engineer at Boson AI (Santa Clara, California)
+- Cheng Wang, (Collaboration during 2024.04 - 2024.12), Undergraduate at NUS, 
 
 
 
