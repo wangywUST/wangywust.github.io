@@ -4,7 +4,7 @@ layout: homepage
 
 ## Recruiting
 
-**Recruiting Ph.D. students and Research Interns. Working either onsite or remotely is fine.**<br>
+**Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br>
 
 ## Research Focus
 
