@@ -7,8 +7,8 @@ layout: homepage
 **Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br>
 
 ## Alumni
-
-| Silin Meng <br> 2023.11 - 2024.05 <br> Master at UCLA  -> Machine Learning Engineer at Boson AI (Santa Clara, California, United States)                                                                | Alumni                                                                 | Alumni                                                                 |
+- Silin Meng, Collaboration Time:2023.11 - 2024.05, Master at UCLA  -> Machine Learning Engineer at Boson AI (Santa Clara, California)                                                                | 
+Alumni                                                                 | Alumni                                                                 |
 |------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
 | UCLA Master | | |
 
