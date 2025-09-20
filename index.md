@@ -6,13 +6,6 @@ layout: homepage
 
 **Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br>
 
-## Alumni
-- Silin Meng, (Collaboration 2023.11 - 2024.05), Master at UCLA -> Machine Learning Engineer at Boson AI (Santa Clara, California)
-- Cheng Wang, (Collaboration 2024.04 - 2024.12), Undergraduate at NUS, First Author's Paper at COLING 2025, NAACL 2025 
-- Sheng Pan, (Collaboration 2024.04 - 2024.12), Master at XJTU -> Ph.D. at Griffth University
-
-
-
 ## Research Focus
 
 Natural Language Processing, Multi-modal Large Language Models.<br> 
@@ -22,6 +15,9 @@ Natural Language Processing, Multi-modal Large Language Models.<br>
 </p>
 
 ## Alumni
+- Silin Meng, (Collaboration 2023.11 - 2024.05), Master at UCLA -> Machine Learning Engineer at Boson AI (Santa Clara, California)
+- Cheng Wang, (Collaboration 2024.04 - 2024.12), Undergraduate at NUS, First Author's Paper at COLING 2025, NAACL 2025 
+- Sheng Pan, (Collaboration 2024.04 - 2024.12), Master at XJTU -> Ph.D. at Griffth University
 
 {% include_relative _includes/output_file.md %}
 
