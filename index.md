@@ -6,7 +6,7 @@ layout: homepage
 
 **Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br>
 
-## Research Focus
+## Research Interests
 
 Natural Language Processing, Multi-modal Large Language Models.<br> 
 
