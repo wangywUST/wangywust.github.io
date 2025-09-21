@@ -6,7 +6,7 @@ layout: course
 - Organizer, [Towards Comprehensive Reasoning in Vision-Language Models
 ](https://wangywust.github.io/iccv-tutorial-reasoning-vlm/) at ICCV 2025
 
-## Courses in Universities
+## Courses
 - Instructor, [Large Language Models](https://wangywust.github.io/llm-course-2025) at University of California, Merced, 2025
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2020 and 2021
 - Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
