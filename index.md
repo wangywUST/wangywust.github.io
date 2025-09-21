@@ -8,7 +8,13 @@ layout: homepage
 
 ## Research Areas
 
-- Graph Machine Learning (Active in 2018, 2019, 2020, 2025)
+- Controllable Generation with Diffusion LLMs (2025-Now)
+
+- Context-Faithful Large Language Models (2023-Now)
+
+- Information Extraction with Pretrained Language Models (2021 - 2023)
+
+- Data-Efficient Graph Machine Learning (2018 - 2021)
 
 
 
