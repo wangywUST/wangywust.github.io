@@ -1,3 +1,7 @@
+---
+layout: course
+---
+
 ## Services
 
 ### (Senior) Area Chair
