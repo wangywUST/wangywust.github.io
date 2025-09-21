@@ -5,6 +5,7 @@ layout: course
 ## Funding
 - Lead PI, NSF CRII 2025 (Computer and Information Science and Engineering Research Initiation Initiative)
 - Lead PI, NVIDIA Academic Grants Program
+- Lead PI, University of California at Merced Faculty Research Award
 
 ## Courses
 - Instructor, [Large Language Models](https://wangywust.github.io/llm-course-2025) at University of California, Merced, 2025
