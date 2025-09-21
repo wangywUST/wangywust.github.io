@@ -9,7 +9,6 @@ layout: homepage
 ## Research Areas
 
 - Controllable Generation with Diffusion LLMs (2025-Now)
-
 ffff
 
 - Context-Faithful Large Language Models (2023-Now)
