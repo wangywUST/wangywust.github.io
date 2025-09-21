@@ -2,4 +2,4 @@
 layout: course
 ---
 
-{% include_relative ../_includes/output_file.md %}
+{% include_relative output_file.md %}
