@@ -288,4 +288,4 @@ def convert_bib_to_html(bib_file_path, output_html_path):
     print(f"HTML file successfully written to {output_html_path}")
 
 # Example usage:
-convert_bib_to_html('citations.bib', 'md/output_file.md')
+convert_bib_to_html('citations.bib', '../output_file.md')
