@@ -623,7 +623,8 @@
         list-style: none;
       }
 
-      /* Teaching/Experience list styling - 适中饱和度纯色版本 */
+      /* 新代码 - 优化的橙绿配色，字体颜色加深 */
+      /* Teaching/Experience list styling - 橙绿配色版本 */
       ul li {
         position: relative;
         margin-bottom: 0.3em;
@@ -632,40 +633,41 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         line-height: 1.6;
-        color: #1f2937 !important;
+        color: #0f172a !important; /* 加深基础字体颜色 */
         border-left: 4px solid transparent;
+        font-weight: 500; /* 增加字体粗细 */
       }
 
-      /* 奇数项（第1、3、5...项）- 适中饱和度绿色 */
+      /* 奇数项（第1、3、5...项）- 绿色系 */
       ul li:nth-child(odd) {
-        background-color: #ecfdf5;
-        border-left-color: #10b981;
-        color: #065f46 !important;
+        background-color: #f0fdf4; /* 更淡的绿色背景 */
+        border-left-color: #22c55e; /* 鲜艳的绿色边框 */
+        color: #052e16 !important; /* 深绿色字体 */
       }
 
-      /* 偶数项（第2、4、6...项）- 适中饱和度蓝色 */
+      /* 偶数项（第2、4、6...项）- 橙色系 */
       ul li:nth-child(even) {
-        background-color: #eff6ff;
-        border-left-color: #3b82f6;
-        color: #1e40af !important;
+        background-color: #fff7ed; /* 淡橙色背景 */
+        border-left-color: #f97316; /* 鲜艳的橙色边框 */
+        color: #7c2d12 !important; /* 深橙色字体 */
       }
 
-      /* 奇数项悬停效果 - 轻微加深的绿色 */
+      /* 奇数项悬停效果 - 加深的绿色 */
       ul li:nth-child(odd):hover {
         transform: translateX(8px) translateY(-1px);
-        background-color: #d1fae5;
-        border-left-color: #059669;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-        color: #047857 !important;
+        background-color: #dcfce7; /* 稍深的绿色背景 */
+        border-left-color: #16a34a; /* 深绿色边框 */
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2); /* 绿色阴影 */
+        color: #14532d !important; /* 更深的绿色字体 */
       }
 
-      /* 偶数项悬停效果 - 轻微加深的蓝色 */
+      /* 偶数项悬停效果 - 加深的橙色 */
       ul li:nth-child(even):hover {
         transform: translateX(8px) translateY(-1px);
-        background-color: #dbeafe;
-        border-left-color: #2563eb;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-        color: #1d4ed8 !important;
+        background-color: #fed7aa; /* 稍深的橙色背景 */
+        border-left-color: #ea580c; /* 深橙色边框 */
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2); /* 橙色阴影 */
+        color: #9a3412 !important; /* 更深的橙色字体 */
       }
       
       /* Style for links within list items */
