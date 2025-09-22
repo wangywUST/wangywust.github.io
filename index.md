@@ -20,7 +20,7 @@ layout: homepage
 "DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning" EMNLP, 2025.  
 "a1: Steep test-time scaling law via environment augmented generation", 2025.  
 
-- Data-Efficient Graph and Spatio-Temporal Learning (2018–2022)  
+- Data-Efficient Graph and Spatio-Temporal Learning (2018–Now)  
 
 "EIGNN: Efficient Infinite-Depth Graph Neural Networks." NeurIPS, 2021.  
 "Adaptive Data Augmentation on Temporal Graphs." NeurIPS, 2021.  
