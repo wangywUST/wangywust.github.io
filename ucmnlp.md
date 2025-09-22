@@ -5,7 +5,7 @@ layout: course
 ## UC Merced NLP Lab
 
 <p align="center">
-<img src='Image/lab_logo.png' width = "35%">
+<img src='Image/lab_logo.png' width = "25%">
 </p>
 
 ### Advisors
