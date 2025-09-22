@@ -8,7 +8,8 @@ layout: homepage
 
 ## Research Areas
 
-- Controllable and Trustworthy Large Language Models (2023–Now)  
+- Controllable and Trustworthy Large Language Models (2023–Now) 
+ 
 Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, Weiwei Deng, Feng Sun, Qi Zhang, Shenghua Liu. "Context-DPO: Aligning Language Models for Context-Faithfulness." Association for Computational Linguistics (ACL), 2025.  
 Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Junfeng Fang, Pengliang Ji, Xueqi Cheng. "Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts." Association for Computational Linguistics (ACL), 2025.  
 [缺少引用：Vulnerability of Large Language Models to Output Prefix Jailbreaks]  
