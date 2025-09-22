@@ -11,13 +11,14 @@ layout: homepage
 - Controllable and Trustworthy Large Language Models (2023–Now) 
 
 "Context-DPO: Aligning Language Models for Context-Faithfulness." ACL, 2025.  
-"Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts." ACL, 2025.  
+"Control Large Language Models via Divide-and-Conquer" EMNLP, 2024.  
 "Unveiling the Potential of Diffusion Large Language Model in Controllable Generation", 2025.
 
 - Reasoning-Centric Multi-Modal Agents (2024–Now)  
-Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng. "Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation." Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.  
-Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang. "Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs." Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.  
-Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Cheng. "Lpnl: Scalable Link Prediction with Large Language Models." Association for Computational Linguistics (ACL), 2024.  
+
+"METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling" EMNLP, 2025.  
+"DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning" EMNLP, 2025.  
+"a1: Steep test-time scaling law via environment augmented generation", 2025.  
 
 - Efficient and Robust Graph & Spatio-Temporal Learning (2018–2022)  
 Juncheng Liu, Kenji Kawaguchi, Bryan Hooi, Yiwei Wang, Xiaokui Xiao. "EIGNN: Efficient Infinite-Depth Graph Neural Networks." Advances in Neural Information Processing Systems (NeurIPS), 2021.  
