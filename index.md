@@ -8,15 +8,25 @@ layout: homepage
 
 ## Research Areas
 
-- Controllable Generation with Diffusion LLMs (2025-Now)
+- Controllable and Trustworthy Large Language Models (2023–Now)  
+  - Controllable generation (Diffusion/Alignment, Context-DPO, Divide-and-Conquer).  
+  - Faithfulness and safety (context fidelity, hallucination mitigation, adversarial robustness, watermarking, jailbreak defense).  
+  - Bias and fairness (entity bias, multilingual bias, input vulnerability).  
 
-- Reasoning Multi-Modal LLMs for Universal Agents
+- Reasoning-Centric Multi-Modal Agents (2024–Now)  
+  - Reasoning and fusion across modalities (vision, language, structured data).  
+  - Knowledge graph-based explainable reasoning.  
+  - Tool use and task-driven agents.  
 
-- Context-Faithful Large Language Models (2023-Now)
+- Efficient and Robust Graph & Spatio-Temporal Learning (2018–2022)  
+  - Data-efficient graph learning (IGNN, EIGNN, GraphCrop, etc.).  
+  - Robust graph learning and adversarial defense.  
+  - Temporal graphs and urban computing (time-aware neighbor sampling, traffic prediction, dynamic modeling).  
 
-- Information Extraction with Pretrained Language Models (2021 - 2023)
-
-- Data-Efficient Graph Machine Learning (2018 - 2021)
+- Human Motion and Behavior Understanding (2018–Now)  
+  - 3D human/hand pose estimation and generative modeling (VAE, NeRF, Gaussian Splatting).  
+  - Action recognition and prediction (graph-based modeling, LLMs for action recognition).  
+  - Applications in AR/VR and human-computer interaction.  
 
 
 
