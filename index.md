@@ -9,10 +9,10 @@ layout: homepage
 ## Research Areas
 
 - Controllable and Trustworthy Large Language Models (2023–Now) 
- 
-Baolong Bi, Shaohan Huang, Yiwei Wang, Tianchi Yang, Zihan Zhang, Haizhen Huang, Lingrui Mei, Junfeng Fang, Zehao Li, Furu Wei, Weiwei Deng, Feng Sun, Qi Zhang, Shenghua Liu. "Context-DPO: Aligning Language Models for Context-Faithfulness." Association for Computational Linguistics (ACL), 2025.  
-Baolong Bi, Shenghua Liu, Lingrui Mei, Yiwei Wang, Junfeng Fang, Pengliang Ji, Xueqi Cheng. "Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts." Association for Computational Linguistics (ACL), 2025.  
-[缺少引用：Vulnerability of Large Language Models to Output Prefix Jailbreaks]  
+
+"Context-DPO: Aligning Language Models for Context-Faithfulness." ACL, 2025.  
+"Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts." ACL, 2025.  
+"Unveiling the Potential of Diffusion Large Language Model in Controllable Generation", 2025.
 
 - Reasoning-Centric Multi-Modal Agents (2024–Now)  
 Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng. "Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation." Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.  
