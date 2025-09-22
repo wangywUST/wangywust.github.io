@@ -4,6 +4,10 @@ layout: course
 
 ## UC Merced NLP Lab
 
+<p align="center">
+<img src='Image/lab_logo.png' width = "35%">
+</p>
+
 ### Advisors
 
 #### Advisor: [Assistant Professor, Yiwei Wang](https://wangywust.github.io/)
@@ -25,28 +29,16 @@ Professor, IEEE Fellow, ACM Fellow, Ming-Hsuan Yang
 
 ACM Fellow and IEEE Fellow, Ming-Hsuan Yang is a Professor at University of California, Merced. Ph.D. from UIUC and B.S. from NTHU. He serves as Program Chair for ICCV and ACCV, and EiC of CVIU. Currently AEiC of PAMI and AE of IJCV. SAC/AC for top conferences in computer vision (CVPR, ICCV, ECCV) and machine learning (NeurIPS, ICLR, ICML). His research has been recognized with Best Paper Award at ICML, Longuet-Higgins Prize at CVPR, and Best Paper Honorable Mentions at multiple venues. Highly Cited Researcher by Clarivate Analytics, NSF CAREER Award recipient, and Google Faculty Award recipient.
 
-<p align="center">
-<img src='lab_logo.png' width = "35%">
-</p>
-
 ## Our Location
 
 UC Merced, according to US News 2024, [is ranked 58th in the U.S. universities](https://www.usnews.com/best-colleges/rankings/national-universities?schoolName=University+of+California). In the UC system, its rank higher than UC Riverside (ranked 76th) and UC Santa Cruz (ranked 84th).
 
-<p align="center">
-<img src='rank_logo.png' width = "100%">
-</p>
-
-**UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of your Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.**
-
-<p align="center">
-<img src='loc_logo.png' width = "100%">
-</p>
+UC Merced is close to the Yosemite National Park and Silicon Valley, both of which require only 2 hours' driving. Such a distance allows the flexible internship during learning. Our lab absolutely supports all the research internships even at the beginning of your Ph.D. study. Also, the advisors will utilize our own connections to help the students find the internship and job chances.
 
 Our friends are at the following organizations:
 
 <p align="center">
-<img src='connect_logo.png' width = "100%">
+<img src='Image/connect_logo.png' width = "100%">
 </p>
 
 
