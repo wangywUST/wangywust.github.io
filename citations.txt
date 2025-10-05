@@ -1,0 +1,631 @@
+@inproceedings{yao2025who,
+ author = {Yao, Jiayu and Liu, Shenghua and Wang, Yiwei and Mei, Lingrui and Bi, Baolong and Ge, Yuyao and Li, Zhecheng and Cheng, Xueqi},
+ booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.18653/v1/2024.findings-emnlp.647},
+ title = {Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation},
+ url = {https://doi.org/10.18653/v1/2024.findings-emnlp.647},
+ year = {2025}
+}
+
+@inproceedings{xiong2025map,
+ author = {Xiong, Zhen and Cai, Yujun and Li, Zhecheng and Wang, Yiwei},
+ booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.18653/v1/2024.findings-emnlp.647},
+ title = {Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs},
+ url = {https://doi.org/10.18653/v1/2024.findings-emnlp.647},
+ year = {2025}
+}
+
+@inproceedings{hao2025making,
+  title={Making every step effective: Jailbreaking large vision-language models through hierarchical kv equalization},
+  author={Hao, Shuyang and Wang, Yiwei and Hooi, Bryan and Liu, Jun and Chen, Muhao and Huang, Zi and Cai, Yujun},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{ge2025mrfd,
+  title={MRFD: Multi-Region Fusion Decoding with Self-Consistency for Mitigating Hallucinations in LVLMs},
+  author={Ge, Haonan and Wang, Yiwei and Yang, Ming-Hsuan and Cai, Yujun},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{wu2025dimo,
+  title={DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning},
+  author={Wu, Hang and Chen, Hongkai and Cai, Yujun and Liu, Chang and Ye, Qingwen and Yang, Ming-Hsuan and Wang, Yiwei},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{tao2025how,
+  title={How to Make Large Language Models Generate 100% Valid Molecules?},
+  author={Tao, Wen and Wang, Yiwei},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{li2025semvink,
+  title={SemVink: Advancing VLMs' Semantic Understanding of Optical Illusions via Visual Global Thinking},
+  author={Li, Sifan and Cai, Yujun and Wang, Yiwei},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{tao2025understanding,
+  title={Understanding GUI Agent Localization Biases through Logit Sharpness},
+  author={Tao, Xingjian and Wang, Yiwei and Cai, Yujun and Yang, Zhicheng and Tang, Jing},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year={2025}
+}
+
+@inproceedings{bi2024lpnl,
+ author = {Bi, Baolong and Liu, Shenghua and Wang, Yiwei and Mei, Lingrui and Cheng, Xueqi},
+ booktitle = {Association for Computational Linguistics ACL 2024},
+ doi = {10.18653/v1/2024.findings-acl.215},
+ pages = {3615--3625},
+ title = {Lpnl: Scalable link prediction with large language models},
+ url = {https://doi.org/10.18653/v1/2024.findings-acl.215},
+ year = {2024}
+}
+
+@inproceedings{bi2025context,
+ author = {Baolong Bi and Shaohan Huang and Yiwei Wang and Tianchi Yang and Zihan Zhang and Haizhen Huang and Lingrui Mei and Junfeng Fang and Zehao Li and Furu Wei and Weiwei Deng and Feng Sun and Qi Zhang and Shenghua Liu},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.findings-acl.536},
+ pages = {XXXX--XXXX},
+ title = {Context-DPO: Aligning Language Models for Context-Faithfulness},
+ url = {https://doi.org/10.18653/v1/2025.findings-acl.536},
+ year = {2025}
+}
+
+@inproceedings{bi2025decoding,
+ author = {Baolong Bi and Shenghua Liu and Lingrui Mei and Yiwei Wang and Junfeng Fang and Pengliang Ji and Xueqi Cheng},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.acl-long.841},
+ pages = {XXXX--XXXX},
+ title = {Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts},
+ url = {https://doi.org/10.18653/v1/2025.acl-long.841},
+ year = {2025}
+}
+
+@inproceedings{bi2025is,
+ author = {Bi, Baolong and Liu, Shenghua and Wang, Yiwei and Mei, Lingrui and Cheng, Xueqi},
+ booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+ doi = {10.36227/techrxiv.173160875.51599596/v1},
+ title = {Is Factuality Enhancement a Free Lunch For LLMs? Better Factuality Can Lead to Worse Context-Faithfulness},
+ url = {https://doi.org/10.36227/techrxiv.173160875.51599596/v1},
+ year = {2025}
+}
+
+@inproceedings{cai2020learning,
+ author = {Cai, Yujun and Huang, Lin and Wang, Yiwei and Cham, Tat-Jen and Cai, Jianfei and Yuan, Junsong and Liu, Jun and Yang, Xu and Zhu, Yiheng and Shen, Xiaohui and others},
+ booktitle = {Computer Vision--ECCV 2020: 16th European Conference},
+ doi = {10.1007/978-3-030-58571-6_14},
+ organization = {Springer International Publishing},
+ pages = {226--242},
+ title = {Learning progressive joint propagation for human motion prediction},
+ url = {https://doi.org/10.1007/978-3-030-58571-6_14},
+ year = {2020}
+}
+
+@inproceedings{cai2021unified,
+ author = {Cai, Yujun and Wang, Yiwei and Zhu, Yiheng and Cham, Tat-Jen and Cai, Jianfei and Yuan, Junsong and Liu, Jun and Zheng, Chuanxia and Yan, Sijie and Ding, Henghui and others},
+ booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
+ doi = {10.1109/iccv48922.2021.01144},
+ pages = {11645--11655},
+ title = {A unified 3d human motion synthesis model via conditional variational auto-encoder},
+ url = {https://doi.org/10.1109/iccv48922.2021.01144},
+ year = {2021}
+}
+
+@inproceedings{ge2025acl,
+ author = {Yuyao Ge and Shenghua Liu and Baolong Bi and Yiwei Wang and Lingrui Mei and Wenjie Feng and Lizhe Chen and Xueqi Cheng},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.acl-long.321},
+ pages = {3615--3625},
+ title = {Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?},
+ url = {https://doi.org/10.18653/v1/2025.acl-long.321},
+ year = {2025}
+}
+
+@inproceedings{li2024control,
+ author = {Li, Bingxuan and Wang, Yiwei and Meng, Tao and Peng, Nanyun and Chang, Kai-Wei},
+ booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.18653/v1/2024.emnlp-main.850},
+ title = {Control Large Language Models via Divide-and-Conquer},
+ url = {https://doi.org/10.18653/v1/2024.emnlp-main.850},
+ year = {2024}
+}
+
+@article{li2024think,
+ author = {Li, Zhecheng and Wang, Yiwei and Hooi, Bryan and Cai, Yujun and Cheung, Naifan and Peng, Nanyun and Chang, Kai-wei},
+ journal = {arXiv preprint arXiv:2410.20021},
+ title = {Think Carefully and Check Again! Meta-Generation Unlocking LLMs for Low-Resource Cross-Lingual Summarization},
+ url = {https://arxiv.org/pdf/2410.20021},
+ year = {2024}
+}
+
+@inproceedings{li2025drs,
+ author = {Zhecheng Li and Yiwei Wang and Bryan Hooi and Yujun Cai and Nanyun Peng and Kai-Wei Chang},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.findings-acl.666},
+ pages = {XXXX--XXXX},
+ title = {DRS: Deep Question Reformulation With Structured Output},
+ url = {https://doi.org/10.18653/v1/2025.findings-acl.666},
+ year = {2025}
+}
+
+@inproceedings{li2025metal,
+ author = {Bingxuan Li and Yiwei Wang and Jiuxiang Gu and Kai-Wei Chang and Nanyun Peng},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.acl-long.1452},
+ pages = {XXXX--XXXX},
+ title = {METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling},
+ url = {https://doi.org/10.18653/v1/2025.acl-long.1452},
+ year = {2025}
+}
+
+@article{li2025text,
+ author = {Li, Zhecheng and Song, Guoxian and Cai, Yujun and Xiong, Zhen and Yuan, Junsong and Wang, Yiwei},
+ journal = {Second Conference on Language Modeling (COLM)},
+ pages = {18762--18773},
+ title = {Texture or Semantics? Vision-Language Models Get Lost in Font Recognition.},
+ volume = {34},
+ year = {2025}
+}
+
+@inproceedings{li2025vertical,
+ author = {Zhecheng Li and Yiwei Wang and Bryan Hooi and Yujun Cai and Zhen Xiong and Nanyun Peng and Kai-Wei Chang},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.acl-long.978},
+ pages = {XXXX--XXXX},
+ title = {Vulnerability of LLMs to Vertically Aligned Text Manipulations},
+ url = {https://doi.org/10.18653/v1/2025.acl-long.978},
+ year = {2025}
+}
+
+@article{liang2020revisiting,
+ author = {Liang, Yuxuan and Ouyang, Kun and Wang, Yiwei and Rosenblum, David Samuel},
+ title = {Revisiting convolutional neural networks for urban flow analytics},
+ year = {2020}
+}
+
+@inproceedings{liang2021fine,
+ author = {Liang, Yuxuan and Ouyang, Kun and Sun, Junkai and Wang, Yiwei and Zhang, Junbo and Zheng, Yu and Rosenblum, David and Zimmermann, Roger},
+ booktitle = {Proceedings of the Web Conference 2021},
+ doi = {10.1145/3442381.3449792},
+ pages = {1833--1845},
+ title = {Fine-grained urban flow prediction},
+ url = {https://doi.org/10.1145/3442381.3449792},
+ year = {2021}
+}
+
+@inproceedings{liang2021modeling,
+ author = {Liang, Yuxuan and Ouyang, Kun and Yan, Hanshu and Wang, Yiwei and Tong, Zekun and Zimmermann, Roger},
+ booktitle = {IJCAI},
+ doi = {10.24963/ijcai.2021/207},
+ pages = {1498--1504},
+ title = {Modeling Trajectories with Neural Ordinary Differential Equations.},
+ url = {https://doi.org/10.24963/ijcai.2021/207},
+ year = {2021}
+}
+
+@inproceedings{liang2021revisiting,
+ author = {Liang, Yuxuan and Ouyang, Kun and Wang, Yiwei and Liu, Ye and Zhang, Junbo and Zheng, Yu and Rosenblum, David S},
+ booktitle = {Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD)},
+ doi = {10.1007/978-3-030-67658-2_33},
+ organization = {Springer International Publishing},
+ pages = {578--594},
+ title = {Revisiting convolutional neural networks for citywide crowd flow analytics},
+ url = {https://doi.org/10.1007/978-3-030-67658-2_33},
+ year = {2021}
+}
+
+@article{liang2022mixed,
+ author = {Liang, Yuxuan and Ouyang, Kun and Wang, Yiwei and Pan, Zheyi and Yin, Yifang and Chen, Hongyang and Zhang, Junbo and Zheng, Yu and Rosenblum, David S and Zimmermann, Roger},
+ doi = {10.1109/tkde.2022.3222373},
+ journal = {IEEE Transactions on Knowledge and Data Engineering (TKDE)},
+ number = {9},
+ pages = {9254--9268},
+ publisher = {IEEE},
+ title = {Mixed-order relation-aware recurrent neural networks for spatio-temporal forecasting},
+ url = {https://doi.org/10.1109/tkde.2022.3222373},
+ volume = {35},
+ year = {2022}
+}
+
+@inproceedings{liang2023airformer,
+ author = {Liang, Yuxuan and Xia, Yutong and Ke, Songyu and Wang, Yiwei and Wen, Qingsong and Zhang, Junbo and Zheng, Yu and Zimmermann, Roger},
+ booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+ doi = {10.1609/aaai.v37i12.26676},
+ number = {12},
+ pages = {14329--14337},
+ title = {Airformer: Predicting nationwide air quality in china with transformers},
+ url = {https://doi.org/10.1609/aaai.v37i12.26676},
+ volume = {37},
+ year = {2023}
+}
+
+@article{liu2020active,
+ author = {Liu, Juncheng and Wang, Yiwei and Hooi, Bryan and Yang, Renchi and Xiao, Xiaokui},
+ journal = {arXiv preprint arXiv:2012.07065},
+ title = {Active learning for node classification: The additional learning ability from unlabelled nodes},
+ url = {https://arxiv.org/abs/2012.07065},
+ year = {2020}
+}
+
+@article{liu2021eignn,
+ author = {Liu, Juncheng and Kawaguchi, Kenji and Hooi, Bryan and Wang, Yiwei and Xiao, Xiaokui},
+ journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+ pages = {18762--18773},
+ title = {Eignn: Efficient infinite-depth graph neural networks},
+ volume = {34},
+ year = {2021}
+}
+
+@inproceedings{liu2022dangling,
+ author = {Liu, Juncheng and Sun, Zequn and Hooi, Bryan and Wang, Yiwei and Liu, Dayiheng and Yang, Baosong and Xiao, Xiaokui and Chen, Muhao},
+ booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ doi = {10.18653/v1/2022.findings-naacl.88},
+ pages = {1172--1184},
+ title = {Dangling-Aware Entity Alignment with Mixed High-Order Proximities},
+ url = {https://doi.org/10.18653/v1/2022.findings-naacl.88},
+ year = {2022}
+}
+
+@inproceedings{liu2022lscale,
+ author = {Liu, Juncheng and Wang, Yiwei and Hooi, Bryan and Yang, Renchi and Xiao, Xiaokui},
+ booktitle = {Joint European Conference on Machine Learning and Knowledge Discovery in Databases (ECML-PKDD)},
+ doi = {10.1007/978-3-031-26387-3_4},
+ organization = {Springer International Publishing Cham},
+ pages = {55--70},
+ title = {Lscale: latent space clustering-based active learning for node classification},
+ url = {https://doi.org/10.1007/978-3-031-26387-3_4},
+ year = {2022}
+}
+
+@inproceedings{liu2024scalable,
+ author = {Liu, Juncheng and Hooi, Bryan and Kawaguchi, Kenji and Wang, Yiwei and Dong, Chaosheng and Xiao, Xiaokui},
+ booktitle = {The Twelfth International Conference on Learning Representations (ICLR)},
+ title = {Scalable and Effective Implicit Graph Neural Networks on Large Graphs},
+ year = {2024}
+}
+
+@article{liu2025unitst,
+ author = {Liu, Juncheng and Liu, Chenghao and Woo, Gerald and Wang, Yiwei and Hooi, Bryan and Xiong, Caiming and Sahoo, Doyen},
+ journal = {Transactions on Machine Learning Research (TMLR)},
+ title = {UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting},
+ year = {2025}
+}
+
+@article{luo2024fast,
+ author = {Luo, Yihong and Chen, Yuhan and Qiu, Siya and Wang, Yiwei and Zhang, Chen and Zhou, Yan and Cao, Xiaochun and Tang, Jing},
+ journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+ pages = {18762--18773},
+ title = {Fast Graph Sharpness-Aware Minimization for Enhancing and Accelerating Few-Shot Node Classification},
+ volume = {34},
+ year = {2024}
+}
+
+@inproceedings{mei2024slang,
+ author = {Mei, Lingrui and Liu, Shenghua and Wang, Yiwei and Bi, Baolong and Chen, Xueqi},
+ booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ title = {SLANG: New Concept Comprehension of Large Language Models},
+ url = {https://arxiv.org/abs/2401.12585},
+ year = {2024}
+}
+
+@article{mei2025not,
+ author = {Mei, Lingrui and Liu, Shenghua and Wang, Yiwei and Bi, Baolong and Mao, Jiayi and Cheng, Xueqi},
+ journal = {International Conference on Computational Linguistics (COLING)},
+ pages = {18762--18773},
+ title = {"Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models' Jailbreak},
+ volume = {34},
+ year = {2025}
+}
+
+@inproceedings{meng2024llm,
+ author = {Meng, Silin and Wang, Yiwei and Yang, Cheng-Fu and Peng, Nanyun and Chang, Kai-Wei},
+ booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.21203/rs.3.rs-4613568/v1},
+ title = {LLM-A*: Large Language Model Enhanced Incremental Heuristic Search on Path Planning},
+ url = {https://doi.org/10.21203/rs.3.rs-4613568/v1},
+ year = {2024}
+}
+
+@article{tao2024llms,
+ author = {Tao, Xingjian and Wang, Yiwei and Cai, Yujun and Yang, Zhicheng and Tang, Jing},
+ journal = {arXiv preprint arXiv:2412.20846},
+ title = {Are LLMs Really Not Knowledgable? Mining the Submerged Knowledge in LLMs' Memory},
+ url = {https://arxiv.org/abs/2412.20846},
+ year = {2025}
+}
+
+@inproceedings{wang2017using,
+ author = {Wang, Yiwei and Carman, Mark James and Li, Yuan-Fang},
+ booktitle = {Proceedings of the 2017 ACM on Conference on Information and Knowledge Management},
+ doi = {10.1145/3132847.3133161},
+ pages = {2351--2354},
+ title = {Using knowledge graphs to explain entity co-occurrence in Twitter},
+ url = {https://doi.org/10.1145/3132847.3133161},
+ year = {2017}
+}
+
+@inproceedings{wang2020detecting,
+ author = {Wang, Yiwei and Wang, Wei and Ca, Yujun and Hooi, Bryan and Ooi, Beng Chin},
+ booktitle = {2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE)},
+ doi = {10.1109/issre5003.2020.00037},
+ organization = {IEEE},
+ pages = {313--324},
+ title = {Detecting implementation bugs in graph convolutional network based node classifiers},
+ url = {https://doi.org/10.1109/issre5003.2020.00037},
+ year = {2020}
+}
+
+@article{wang2020graphcrop,
+ author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Hooi, Bryan},
+ journal = {arXiv preprint arXiv:2009.10564},
+ title = {Graphcrop: Subgraph cropping for graph classification},
+ url = {https://arxiv.org/abs/2009.10564},
+ year = {2020}
+}
+
+@inproceedings{wang2020nodeaug,
+ author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Liu, Juncheng and Hooi, Bryan},
+ booktitle = {Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+ doi = {10.1145/3394486.3403063},
+ pages = {207--217},
+ title = {NodeAug: Semi-supervised node classification with data augmentation},
+ url = {https://doi.org/10.1145/3394486.3403063},
+ year = {2020}
+}
+
+@inproceedings{wang2020provably,
+ author = {Wang, Yiwei and Liu, Shenghua and Yoon, Minji and Lamba, Hemank and Wang, Wei and Faloutsos, Christos and Hooi, Bryan},
+ booktitle = {2020 IEEE International Conference on Data Mining (ICDM)},
+ doi = {10.1109/icdm50108.2020.00071},
+ organization = {IEEE},
+ pages = {621--630},
+ title = {Provably robust node classification via low-pass message passing},
+ url = {https://doi.org/10.1109/icdm50108.2020.00071},
+ year = {2020}
+}
+
+@article{wang2021adaptive,
+ author = {Wang, Yiwei and Cai, Yujun and Liang, Yuxuan and Ding, Henghui and Wang, Changhu and Bhatia, Siddharth and Hooi, Bryan},
+ journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+ pages = {1440--1452},
+ title = {Adaptive data augmentation on temporal graphs},
+ volume = {34},
+ year = {2021}
+}
+
+@inproceedings{wang2021curgraph,
+ author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Hooi, Bryan},
+ booktitle = {Proceedings of the Web Conference 2021 (WWW)},
+ doi = {10.1145/3442381.3450025},
+ pages = {1238--1248},
+ title = {Curgraph: Curriculum learning for graph classification},
+ url = {https://doi.org/10.1145/3442381.3450025},
+ year = {2021}
+}
+
+@inproceedings{wang2021mixup,
+ author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Hooi, Bryan},
+ booktitle = {Proceedings of the Web Conference 2021 (WWW)},
+ doi = {10.1145/3442381.3449796},
+ pages = {3663--3674},
+ title = {Mixup for node and graph classification},
+ url = {https://doi.org/10.1145/3442381.3449796},
+ year = {2021}
+}
+
+@inproceedings{wang2021progressive,
+ author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Hooi, Bryan},
+ booktitle = {Machine Learning and Knowledge Discovery in Databases: European Conference, (ECML-PKDD)},
+ doi = {10.1007/978-3-030-67658-2_16},
+ organization = {Springer International Publishing},
+ pages = {266--281},
+ title = {Progressive supervision for node classification},
+ url = {https://doi.org/10.1007/978-3-030-67658-2_16},
+ year = {2021}
+}
+
+@article{wang2021structure,
+ author = {Wang, Yiwei and Cai, Yujun and Liang, Yuxuan and Wang, Wei and Ding, Henghui and Chen, Muhao and Tang, Jing and Hooi, Bryan},
+ journal = {arXiv preprint arXiv:2112.00499},
+ title = {Structure-aware label smoothing for graph neural networks},
+ url = {https://arxiv.org/abs/2112.00499},
+ year = {2021}
+}
+
+@article{wang2021time,
+ author = {Wang, Yiwei and Cai, Yujun and Liang, Yuxuan and Ding, Henghui and Wang, Changhu and Hooi, Bryan},
+ doi = {10.1109/ijcnn55064.2022.9892942},
+ journal = {2022 International Joint Conference on Neural Networks (IJCNN)},
+ title = {Time-aware neighbor sampling for temporal graph networks},
+ url = {https://doi.org/10.1109/ijcnn55064.2022.9892942},
+ year = {2021}
+}
+
+@inproceedings{wang2022flashlight,
+ author = {Wang, Yiwei and Hooi, Bryan and Liu, Yozen and Zhao, Tong and Guo, Zhichun and Shah, Neil},
+ booktitle = {Learning on Graphs Conference (LOG)},
+ organization = {PMLR},
+ pages = {14--1},
+ title = {Flashlight: Scalable link prediction with effective decoders},
+ year = {2022}
+}
+
+@inproceedings{wang2022graphcache,
+ author = {Wang, Yiwei and Chen, Muhao and Zhou, Wenxuan and Cai, Yujun and Liang, Yuxuan and Hooi, Bryan},
+ booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ doi = {10.18653/v1/2022.findings-naacl.128},
+ pages = {1698--1708},
+ title = {GraphCache: Message Passing as Caching for Sentence-Level Relation Extraction},
+ url = {https://doi.org/10.18653/v1/2022.findings-naacl.128},
+ year = {2022}
+}
+
+@inproceedings{wang2022should,
+ author = {Wang, Yiwei and Chen, Muhao and Zhou, Wenxuan and Cai, Yujun and Liang, Yuxuan and Liu, Dayiheng and Yang, Baosong and Liu, Juncheng and Hooi, Bryan},
+ booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ doi = {10.18653/v1/2022.naacl-main.224},
+ pages = {3071--3081},
+ title = {Should We Rely on Entity Mentions for Relation Extraction? Debiasing Relation Extraction with Counterfactual Analysis},
+ url = {https://doi.org/10.18653/v1/2022.naacl-main.224},
+ year = {2022}
+}
+
+@inproceedings{wang2023causal,
+ author = {Wang, Fei and Mo, Wenjie and Wang, Yiwei and Zhou, Wenxuan and Chen, Muhao},
+ booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.18653/v1/2023.findings-emnlp.1013},
+ pages = {15173--15184},
+ title = {A Causal View of Entity Bias in (Large) Language Models},
+ url = {https://doi.org/10.18653/v1/2023.findings-emnlp.1013},
+ year = {2023}
+}
+
+@article{wang2023fragile,
+ author = {Wang, Yiwei and Hooi, Bryan and Wang, Fei and Cai, Yujun and Liang, Yuxuan and Zhou, Wenxuan and Tang, Jing and Duan, Manjuan and Chen, Muhao},
+ doi = {10.18653/v1/2023.conll-1.27},
+ journal = {CONLL 2023},
+ title = {How Fragile is Relation Extraction under Entity Replacements?},
+ url = {https://doi.org/10.18653/v1/2023.conll-1.27},
+ year = {2023}
+}
+
+@inproceedings{wang2023graph,
+ author = {Wang, Yiwei and Hooi, Bryan and Liu, Yozen and Shah, Neil},
+ booktitle = {Proceedings of the Sixteenth ACM International Conference on Web Search and Data Mining (WSDM)},
+ doi = {10.1145/3539597.3570388},
+ pages = {348--356},
+ title = {Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference},
+ url = {https://doi.org/10.1145/3539597.3570388},
+ year = {2023}
+}
+
+@inproceedings{wang2023primacy,
+ author = {Wang, Yiwei and Cai, Yujun and Chen, Muhao and Liang, Yuxuan and Hooi, Bryan},
+ booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ doi = {10.18653/v1/2023.emnlp-main.8},
+ pages = {108--115},
+ title = {Primacy Effect of ChatGPT},
+ url = {https://doi.org/10.18653/v1/2023.emnlp-main.8},
+ year = {2023}
+}
+
+@article{wang2024deepedit,
+ author = {Wang, Yiwei and Chen, Muhao and Peng, Nanyun and Chang, Kai-Wei},
+ journal = {arXiv preprint arXiv:2401.10471},
+ title = {Deepedit: Knowledge editing as decoding with constraints},
+ url = {https://arxiv.org/abs/2401.10471},
+ year = {2024}
+}
+
+@article{wang2025recall,
+ author = {Wang, Cheng and Wang, Yiwei and Hooi, Bryan and Cai, Yujun and Peng, Nanyun and Chang, Kai-Wei},
+ journal = {International Conference on Computational Linguistics (COLING)},
+ pages = {18762--18773},
+ title = {Con-ReCall: Detecting Pre-training Data in LLMs via Contrastive Decoding},
+ volume = {34},
+ year = {2025}
+}
+
+@article{wang2025text,
+ author = {Wang, Zhaochen and Hooi, Bryan and Wang, Yiwei and Yang, Ming-Hsuan and Huang, Zi and Cai, Yujun},
+ journal = {Second Conference on Language Modeling (COLM)},
+ pages = {18762--18773},
+ title = {Text Speaks Louder than Vision: ASCII Art Reveals Textual Biases in Vision-Language Models.},
+ volume = {34},
+ year = {2025}
+}
+
+@article{wang2025tricking,
+ author = {Wang, Cheng and Wang, Yiwei and Cai, Yujun and Hooi, Bryan},
+ booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ doi = {10.18653/v1/2025.naacl-long.210},
+ title = {Tricking Retrievers with Influential Tokens: An Efficient Black-Box Corpus Poisoning Attack},
+ url = {https://doi.org/10.18653/v1/2025.naacl-long.210},
+ year = {2025}
+}
+
+@article{wang2025vulnerability,
+ author = {Wang, Yiwei and Chen, Muhao and Peng, Nanyun and Chang, Kai-Wei},
+ booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ title = {Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety},
+ url = {https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf},
+ year = {2025}
+}
+
+@inproceedings{wu2025evostealer,
+ author = {Yurong Wu and Fangwen Mu and Qiuhong Zhang and Jinjing Zhao and Xinrun Xu and Lingrui Mei and Yang Wu and Lin Shi and Junjie Wang and Zhiming Ding and Yiwei Wang},
+ booktitle = {Association for Computational Linguistics ACL},
+ pages = {XXXX--XXXX},
+ title = {EvoStealer: Differential Evolution for Prompt Template Stealing Against Text-to-Image Synthesis},
+ year = {2025}
+}
+
+@article{xu2025how,
+ author = {Xu, Chunxue and Wang, Yiwei and Hooi, Bryan and Cai, Yujun and Li, Songze},
+ journal = {Second Conference on Language Modeling (COLM)},
+ pages = {18762--18773},
+ title = {How does Watermarking Affect Visual Language Models in Document Understanding?},
+ volume = {34},
+ year = {2025}
+}
+
+@inproceedings{yang2024alignedcotpromptinglargelanguage,
+ author = {Zhicheng Yang and Yinya Huang and Jing Xiong and Liang Feng and Xiaodan Liang and Yiwei Wang and Jing Tang},
+ booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ title = {AlignedCoT: Prompting Large Language Models via Native-Speaking Demonstrations},
+ url = {https://arxiv.org/abs/2311.13538},
+ year = {2024}
+}
+
+@inproceedings{yang2025optibench,
+ author = {Yang, Zhicheng and Wang, Yiwei and Huang, Yinya and Guo, Zhijiang and Shi, Wei and Han, Xiongwei and Feng, Liang and Song, Linqi and Liang, Xiaodan and Tang, Jing},
+ booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+ title = {OptiBench meets ReSocratic: Measure and improve LLMs for optimization modeling},
+ year = {2025}
+}
+
+@article{zhai2025peripheral,
+ author = {Zhai, Songlin and Meng, Yuan and Chen, Yongrui and Wang, Yiwei and Qi, Guilin},
+ journal = {International Conference on Machine Learning (ICML)},
+ pages = {18762--18773},
+ title = {Peripheral Memory for LLMs: Integration of Sequential Memory Banks with Adaptive Querying},
+ volume = {34},
+ year = {2025}
+}
+
+@article{zhao2019optimization,
+ author = {Zhao, Licheng and Wang, Yiwei and Kumar, Sandeep and Palomar, Daniel P},
+ doi = {10.1109/tsp.2019.2925602},
+ journal = {IEEE Transactions on Signal Processing},
+ number = {16},
+ pages = {4231--4244},
+ publisher = {IEEE},
+ title = {Optimization algorithms for graph Laplacian estimation via ADMM and MM},
+ url = {https://doi.org/10.1109/tsp.2019.2925602},
+ volume = {67},
+ year = {2019}
+}
+
+@article{zhong2025mquake,
+ author = {Zhong, Shaochen and others},
+ booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+ title = {MQuAKE-Remastered: Multi-Hop Knowledge Editing Can Only Be Advanced With Reliable Evaluations},
+ year = {2025}
+}
+
+@inproceedings{zhu2025mitigating,
+ author = {Rongzhi Zhu and Xiangyu Liu and Zequn Sun and Yiwei Wang and Wei Hu},
+ booktitle = {Association for Computational Linguistics ACL},
+ doi = {10.18653/v1/2025.acl-long.1089},
+ pages = {XXXX--XXXX},
+ title = {Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering},
+ url = {https://doi.org/10.18653/v1/2025.acl-long.1089},
+ year = {2025}
+}
