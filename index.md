@@ -4,7 +4,7 @@ layout: homepage
 
 ## Recruiting
 
-**Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br> Weekly one-on-one meetings with me are guaranteed — no group meetings. Sufficient computational resources will be provided, and the focus will be solely on your first-author papers.
+**Recruiting Ph.D. students and Research Interns. Either onsite or remotely is fine.**<br> Weekly one-on-one meetings with me are guaranteed — no group meetings. Sufficient computational resources are provided, and the focus will be solely on your first-author papers.
 
 ## Research Areas
 
