@@ -4,6 +4,11 @@ layout: course
 
 ## Services
 
+### (Senior) Associate Editor
+
+- Pattern Recognition 2025
+- Neurocomputing 2025
+
 ### (Senior) Area Chair
 
 - International Conference on Learning Representations ([ICLR](https://neurips.cc/Conferences/2022)) 2025
