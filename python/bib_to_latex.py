@@ -232,7 +232,7 @@ def bib_to_paper_list_ccf(bib_file):
     return "\n\n".join(numbered_papers)
 
 # 示例用法
-bib_file = "citations.bib"
+bib_file = "../citations.bib"
 output_file = "paper_list.tex"  # 生成的 LaTeX 文件
 output_file_ccf = "paper_list_ccf.tex"  # 生成的带CCF评级的 LaTeX 文件
 
