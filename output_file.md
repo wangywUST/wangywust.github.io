@@ -2,6 +2,20 @@
 
 <div class="publications">
 <ol class="bibliography">
+<h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2026</h3><hr style="margin-bottom: 5px;">
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">OIDA-QA: A Multimodal Benchmark for Analyzing the Opioid Industry Documents Archive</div>
+      <div class="author">Xuan Shen, Brian Wingenroth, Zichao Wang, Jason Kuen, Wanrong Zhu, Ruiyi Zhang, Yiwei Wang, Lichun Ma, Anqi Liu, Hongfu Liu, Tong Sun, Kevin S. Hawkins, Kate Tasker, G. Caleb Alexander, Jiuxiang Gu.</div>
+      <div class="periodical"><em>Proceedings of the AAAI Conference on Artificial Intelligence, 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/shen2025oida.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
 <h3 style="font-size: 30px; margin-top: 20px; margin-bottom: 5px;">2025</h3><hr style="margin-bottom: 5px;">
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">

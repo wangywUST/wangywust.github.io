@@ -88,7 +88,7 @@ def clean_title(title):
 def generate_image_filename(entry):
     # Get the entry ID, which is typically the bibtex citation key
     entry_id = entry.get('ID', 'default')
-    return f"Image/{entry_id}.png"
+    return f"../Image/{entry_id}.png"
 
 # Function to generate PDF URL based on the bib entry ID
 def generate_pdf_url(entry):
@@ -146,7 +146,7 @@ def generate_html(entry):
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
+    <img src="{img_src[3:]}" class="teaser img-fluid z-depth-1" style="{image_style}">
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -288,4 +288,4 @@ def convert_bib_to_html(bib_file_path, output_html_path):
     print(f"HTML file successfully written to {output_html_path}")
 
 # Example usage:
-convert_bib_to_html('citations.bib', '../output_file.md')
+convert_bib_to_html('../citations.bib', '../output_file.md')
