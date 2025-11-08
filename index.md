@@ -13,7 +13,7 @@ layout: homepage
   - "Control Large Language Models via Divide-and-Conquer." *EMNLP*, 2024.  
   - "Unveiling the Potential of Diffusion Large Language Model in Controllable Generation." 2025.
 
-- **Reasoning-Centric Multi-Modal Agents (2024–Now)**
+- **Reasoning Multi-Modal Foundation Models and Agents (2024–Now)**
   - "METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling." *EMNLP*, 2025.  
   - "DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning." *EMNLP*, 2025.  
   - "a1: Steep Test-Time Scaling Law via Environment Augmented Generation." 2025.
