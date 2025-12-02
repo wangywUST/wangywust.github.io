@@ -6,8 +6,9 @@ layout: course
 
 ### (Senior) Associate Editor
 
-- Pattern Recognition 2025
-- Neurocomputing 2025
+- IEEE Transactions on Industrial Informatics (JCR Q1)
+- Pattern Recognition (JCR Q1)
+- Neurocomputing (JCR Q1)
 
 ### (Senior) Area Chair
 
