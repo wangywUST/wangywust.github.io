@@ -4,7 +4,7 @@ layout: course
 
 ## Services
 
-### (Senior) Associate Editor
+### Associate Editor
 
 - IEEE Transactions on Industrial Informatics (JCR Q1)
 - Pattern Recognition (JCR Q1)
