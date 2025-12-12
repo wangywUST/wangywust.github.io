@@ -12,6 +12,7 @@ layout: course
 
 ### (Senior) Area Chair
 
+- Annual Conference on Neural Information Processing Systems ()
 - International Conference on Learning Representations ([ICLR](https://neurips.cc/Conferences/2022)) 2025
 - International Conference on Machine Learning ([ICML](http://cvpr2023.thecvf.com/)) 2025
 - International Joint Conference on Artificial Intelligence ([IJCAI](https://2022.acmmm.org/)) 2025
