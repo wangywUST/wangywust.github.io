@@ -625,49 +625,28 @@
         list-style: none;
       }
 
-      /* 一级无序列表样式 - 橙绿配色 */
+      /* 一级无序列表样式 - 统一蓝色系 */
       ul > li {
         position: relative;
         margin-bottom: 0.8em;
         padding: 8px 15px;
         border-radius: 8px;
+        background-color: #f0f9ff;
+        border-left: 4px solid #3b82f6;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         line-height: 1.6;
-        color: #0f172a !important;
-        border-left: 4px solid transparent;
+        color: #1e293b !important;
         font-weight: 500;
       }
 
-      /* 奇数项 - 绿色系 */
-      ul > li:nth-child(odd) {
-        background-color: #f0fdf4;
-        border-left-color: #22c55e;
-        color: #052e16 !important;
-      }
-
-      /* 偶数项 - 橙色系 */
-      ul > li:nth-child(even) {
-        background-color: #fff7ed;
-        border-left-color: #f97316;
-        color: #7c2d12 !important;
-      }
-
       /* 一级列表悬停效果 */
-      ul > li:nth-child(odd):hover {
+      ul > li:hover {
         transform: translateX(8px) translateY(-1px);
-        background-color: #dcfce7;
-        border-left-color: #16a34a;
-        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
-        color: #14532d !important;
-      }
-
-      ul > li:nth-child(even):hover {
-        transform: translateX(8px) translateY(-1px);
-        background-color: #fed7aa;
-        border-left-color: #ea580c;
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
-        color: #9a3412 !important;
+        background-color: #e0f2fe;
+        border-left-color: #2563eb;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        color: #0f172a !important;
       }
       
       /* 二级无序列表容器 */
@@ -675,53 +654,35 @@
         margin-top: 0.6em;
         margin-bottom: 0.6em;
         padding-left: 30px;
-        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        border-left: 2px dashed rgba(59, 130, 246, 0.3);
         margin-left: 10px;
         list-style: none;
       }
 
       /* 二级列表项 - 更小更轻的设计 */
       ul ul > li {
-        padding: 5px 12px;
+        padding: 6px 12px;
         margin-bottom: 0.5em;
         font-size: 0.95em;
-        font-weight: 400;
-        border-left-width: 3px;
+        font-weight: 450;
+        background-color: #f8fafc;
+        border-left: 3px solid #60a5fa;
+        color: #334155 !important;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-      }
-
-      /* 二级列表 - 淡化配色 */
-      ul ul > li:nth-child(odd) {
-        background-color: #f8fdf9;
-        border-left-color: #86efac;
-        color: #166534 !important;
-      }
-
-      ul ul > li:nth-child(even) {
-        background-color: #fffaf5;
-        border-left-color: #fdba74;
-        color: #9a3412 !important;
       }
 
       ul ul > li:hover {
         transform: translateX(6px);
+        background-color: #f1f5f9;
+        border-left-color: #3b82f6;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-
-      ul ul > li:nth-child(odd):hover {
-        background-color: #dcfce7;
-        border-left-color: #4ade80;
-      }
-
-      ul ul > li:nth-child(even):hover {
-        background-color: #ffedd5;
-        border-left-color: #fb923c;
+        color: #1e293b !important;
       }
 
       /* 三级无序列表容器 */
       ul ul ul {
         padding-left: 25px;
-        border-left: 2px dotted rgba(100, 116, 139, 0.2);
+        border-left: 2px dotted rgba(59, 130, 246, 0.2);
       }
 
       /* 三级列表项 - 更小更简约 */
@@ -729,26 +690,19 @@
         padding: 4px 10px;
         margin-bottom: 0.4em;
         font-size: 0.9em;
-        border-left-width: 2px;
+        font-weight: 400;
+        background-color: #fafafa;
+        border-left: 2px solid #93c5fd;
+        color: #475569 !important;
         box-shadow: none;
         border-radius: 6px;
       }
 
-      ul ul ul > li:nth-child(odd) {
-        background-color: rgba(34, 197, 94, 0.05);
-        border-left-color: #bbf7d0;
-        color: #15803d !important;
-      }
-
-      ul ul ul > li:nth-child(even) {
-        background-color: rgba(249, 115, 22, 0.05);
-        border-left-color: #fed7aa;
-        color: #9a3412 !important;
-      }
-
       ul ul ul > li:hover {
         transform: translateX(4px);
-        background-color: rgba(59, 130, 246, 0.08);
+        background-color: #f5f5f5;
+        border-left-color: #60a5fa;
+        color: #334155 !important;
       }
 
       /* 有序列表的基本样式 */
@@ -758,8 +712,18 @@
 
       ol > li {
         margin-bottom: 0.6em;
-        padding-left: 0.5em;
+        padding: 8px 15px 8px 0.5em;
         position: relative;
+        background-color: #f0f9ff;
+        border-radius: 8px;
+        color: #1e293b !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      ol > li:hover {
+        background-color: #e0f2fe;
+        color: #0f172a !important;
       }
 
       ol > li::before {
@@ -778,10 +742,22 @@
         counter-reset: subitem;
       }
 
+      ol ol > li {
+        background-color: #f8fafc;
+        font-size: 0.95em;
+        font-weight: 450;
+        color: #334155 !important;
+      }
+
+      ol ol > li:hover {
+        background-color: #f1f5f9;
+        color: #1e293b !important;
+      }
+
       ol ol > li::before {
         content: counter(item) "." counter(subitem) " ";
         counter-increment: subitem;
-        color: #6366f1;
+        color: #60a5fa;
       }
 
       ol ol ol {
@@ -789,10 +765,22 @@
         counter-reset: subsubitem;
       }
 
+      ol ol ol > li {
+        background-color: #fafafa;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: #475569 !important;
+      }
+
+      ol ol ol > li:hover {
+        background-color: #f5f5f5;
+        color: #334155 !important;
+      }
+
       ol ol ol > li::before {
         content: counter(item) "." counter(subitem) "." counter(subsubitem) " ";
         counter-increment: subsubitem;
-        color: #8b5cf6;
+        color: #93c5fd;
       }
 
       /* 混合嵌套：ul 中的 ol */
@@ -800,7 +788,7 @@
         margin-top: 0.6em;
         margin-bottom: 0.6em;
         padding-left: 35px;
-        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        border-left: 2px dashed rgba(59, 130, 246, 0.3);
         margin-left: 10px;
         counter-reset: item;
       }
@@ -809,16 +797,17 @@
         padding: 5px 10px 5px 0;
         margin-bottom: 0.4em;
         font-size: 0.95em;
-        background: transparent;
+        background: #f8fafc;
         border: none;
         box-shadow: none;
-        font-weight: 400;
-        color: #374151 !important;
+        font-weight: 450;
+        color: #334155 !important;
       }
 
       ul ol > li:hover {
-        background: rgba(59, 130, 246, 0.05);
+        background: #f1f5f9;
         border-radius: 4px;
+        color: #1e293b !important;
       }
 
       ul ol > li::before {
@@ -834,24 +823,23 @@
         margin-top: 0.6em;
         margin-bottom: 0.6em;
         padding-left: 30px;
-        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        border-left: 2px dashed rgba(59, 130, 246, 0.3);
         margin-left: 10px;
       }
 
       ol ul > li {
-        padding: 5px 12px;
+        padding: 6px 12px;
         margin-bottom: 0.5em;
         font-size: 0.95em;
+        background-color: #f8fafc;
+        border-left: 3px solid #60a5fa;
+        color: #334155 !important;
       }
 
-      ol ul > li:nth-child(odd) {
-        background-color: #f8fdf9;
-        border-left-color: #86efac;
-      }
-
-      ol ul > li:nth-child(even) {
-        background-color: #fffaf5;
-        border-left-color: #fdba74;
+      ol ul > li:hover {
+        background-color: #f1f5f9;
+        border-left-color: #3b82f6;
+        color: #1e293b !important;
       }
 
       /* 列表内链接样式 */
@@ -1060,7 +1048,7 @@
         ul > li {
           background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
           border-left-color: #60a5fa;
-          color: #cbd5e1 !important;
+          color: #e2e8f0 !important;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -1068,17 +1056,19 @@
           background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
           border-left-color: #93c5fd;
           box-shadow: 0 4px 16px rgba(96, 165, 250, 0.25);
+          color: #f1f5f9 !important;
         }
 
         ul ul > li {
           background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
           border-left-color: #3b82f6;
-          color: #94a3b8 !important;
+          color: #cbd5e1 !important;
         }
 
         ul ul > li:hover {
           background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
           border-left-color: #60a5fa;
+          color: #e2e8f0 !important;
         }
 
         ul ul ul > li {
@@ -1089,6 +1079,59 @@
 
         ul ul ul > li:hover {
           background: rgba(30, 58, 138, 0.3);
+          color: #cbd5e1 !important;
+        }
+
+        ol > li {
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+          color: #e2e8f0 !important;
+        }
+
+        ol > li:hover {
+          background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+          color: #f1f5f9 !important;
+        }
+
+        ol ol > li {
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          color: #cbd5e1 !important;
+        }
+
+        ol ol > li:hover {
+          background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+          color: #e2e8f0 !important;
+        }
+
+        ol ol ol > li {
+          background: rgba(15, 23, 42, 0.5);
+          color: #94a3b8 !important;
+        }
+
+        ol ol ol > li:hover {
+          background: rgba(30, 58, 138, 0.3);
+          color: #cbd5e1 !important;
+        }
+
+        ul ol > li {
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          color: #cbd5e1 !important;
+        }
+
+        ul ol > li:hover {
+          background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+          color: #e2e8f0 !important;
+        }
+
+        ol ul > li {
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          border-left-color: #3b82f6;
+          color: #cbd5e1 !important;
+        }
+
+        ol ul > li:hover {
+          background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+          border-left-color: #60a5fa;
+          color: #e2e8f0 !important;
         }
 
         ul li a, ol li a {
