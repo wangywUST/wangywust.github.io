@@ -45,14 +45,18 @@ The final project scores will be calculated through 50% Instructor's rating + 50
 
 [Project Report Examples](https://aclanthology.org/events/acl-2024/#2024acl-long)
 
-### Having Questions?
+## Having Questions?
 
 Please feel free to add your question and name to the following spreadsheet: [Sheet of Students' Questions](
 https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing)
 
-### Lab Sessions?
+## Lab Sessions?
 
 This course does not have in-person lab sessions. Students are encouraged to use the lab session time to work remotely on their final projects.
+
+## Syllabus
+
+Below is a comprehensive syllabus table for the course, organized by lecture topics, key concepts, and learning objectives.
 
 | Week | Lecture | Topic | Key Concepts | Learning Objectives |
 |------|---------|-------|--------------|---------------------|
