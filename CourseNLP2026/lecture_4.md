@@ -379,7 +379,7 @@ $$
 $$
 
 <div style="text-align: center;">
-  <img src="./Course/lecture_4_figure_1.png" width="100%">
+  <img src="./CourseNLP2026/lecture_4_figure_1.png" width="100%">
   <p style="margin-top: 10px;">Large Language Model's Costs (https://arxiv.org/pdf/2005.14165v4)</p>
 </div>
 
