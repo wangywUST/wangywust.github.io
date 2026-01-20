@@ -1,4 +1,4 @@
-## Lecture 1: Overview of LLMs
+## Lecture 1: Overview of NLP
 
 1. [What is language?](#what-is-language)
 2. [What is a language model?](#what-is-a-language-model)
