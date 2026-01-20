@@ -18,7 +18,7 @@ TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
 
 ## Course Modality
 
-Either onsite or virtual attendance is acceptable. Regardless of whether you attend lectures in person, you are required to join the course using the [Zoom link](https://ucmerced.zoom.us/my/ucmnlp). This is necessary for participating in the in-course question answering.
+Either onsite or virtual attendance is acceptable. Regardless of whether you attend lectures in person, you are encouraged to join the course using the [Zoom link](https://ucmerced.zoom.us/my/ucmnlp). This is necessary for participating in the in-course question answering.
 
 ## Coursework
 
@@ -54,7 +54,7 @@ https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_
 
 This course does not have in-person lab sessions. Students are encouraged to use the lab session time to work remotely on their final projects.
 
-## Syllabus
+## Course Syllabus
 
 Below is a comprehensive syllabus table for the course, organized by lecture topics, key concepts, and learning objectives.
 
