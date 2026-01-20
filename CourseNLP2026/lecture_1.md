@@ -296,33 +296,34 @@ Large language models are transformers with billions to trillions of parameters,
    - Predicts diminishing returns as model/data/compute scale increases
    - Helps optimize resource allocation for training
 
-The KM scaling law does **not** claim that the training loss of a large language model is determined by a single variable such as model size, data size, or compute alone. Instead, it describes a *resource-limited regime* in which **one factor becomes the dominant bottleneck while the others are sufficiently large**. In large-scale language model training, model performance is jointly constrained by three resources: model capacity \(N\), dataset size \(D\), and total compute \(C\). At any concrete training configuration, the final achievable loss is effectively governed by the *most limiting* of these three factors.
+The KM scaling law does **not** claim that the training loss of a large language model is determined by a single variable such as model size, data size, or compute alone. Instead, it describes a *resource-limited regime* in which **one factor becomes the dominant bottleneck while the others are sufficiently large**. In large-scale language model training, model performance is jointly constrained by three resources: model capacity $N$, dataset size $D$, and total compute $C$. At any concrete training configuration, the final achievable loss is effectively governed by the *most limiting* of these three factors.
 
 The commonly cited formulations  
-\[
+$$
 L(N) = \left(\frac{N_c}{N}\right)^{\alpha_N}, \quad
 L(D) = \left(\frac{D_c}{D}\right)^{\alpha_D}, \quad
 L(C) = \left(\frac{C_c}{C}\right)^{\alpha_C}
-\]
-should therefore be understood as **conditional scaling relationships**, not unconditional ones. For example, the expression \(L(N)\) holds only under the assumption that the dataset size and compute budget are already sufficient to fully utilize a model of size \(N\). Formally, this corresponds to the regime
-\[
+$$
+should therefore be understood as **conditional scaling relationships**, not unconditional ones. For example, the expression $L(N)$ holds only under the assumption that the dataset size and compute budget are already sufficient to fully utilize a model of size $N$. Formally, this corresponds to the regime
+$$
 D \ge D^\*(N), \quad C \ge C^\*(N),
-\]
-where \(D^\*(N)\) and \(C^\*(N)\) denote the minimum data and compute required for a model of size \(N\) to reach its capacity-limited performance. If these conditions are not met, increasing \(N\) alone will not meaningfully reduce loss, because the optimization is instead constrained by insufficient data or compute.
+$$
+where $D^\*(N)$ and $C^\*(N)$ denote the minimum data and compute required for a model of size $N$ to reach its capacity-limited performance. If these conditions are not met, increasing $N$ alone will not meaningfully reduce loss, because the optimization is instead constrained by insufficient data or compute.
 
 More generally, the effective training loss can be approximated as
-\[
+$$
 L(N, D, C) \;\approx\; \max\big( L_N(N),\; L_D(D),\; L_C(C) \big),
-\]
-meaning that performance is controlled by whichever resource currently forms the tightest bottleneck. Only when model size is the limiting factor do we observe the clean power-law decay described by \(L(N)\); analogous interpretations apply to \(L(D)\) and \(L(C)\).
+$$
+meaning that performance is controlled by whichever resource currently forms the tightest bottleneck. Only when model size is the limiting factor do we observe the clean power-law decay described by $L(N)$; analogous interpretations apply to $L(D)$ and $L(C)$.
 
 From this perspective, the KM scaling law reveals a *shortest-board effect* rather than a single-variable causal rule. It characterizes the **upper-bound performance trajectory** achievable under well-balanced resource scaling, not the outcome of arbitrary training setups. Consequently, meaningful performance improvements require model size, data, and compute to scale *in concert*, following approximate proportional relationships such as
-\[
+$$
 D^\*(N) \propto N, \quad C^\*(N) \propto N^{1.3}.
-\]
+$$
 Failing to respect these relationships leads to wasted resources and diminishing or nonexistent returns.
 
 In summary, the KM scaling law should be interpreted as a statement about *capacity realization under matched resources*: it explains how performance improves when a single factor is allowed to scale while all others are no longer constraining. It does not imply that loss is inherently a function of only one variable, nor does it guarantee improvements from naive scaling in isolation.
+
 
 
 2. **Chinchilla Scaling Law (DeepMind)**:
