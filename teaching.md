@@ -7,6 +7,7 @@ layout: course
 ](https://wangywust.github.io/iccv-tutorial-reasoning-vlm/), ICCV 2025
 
 ## Courses
+- Instructor, [Large Language Models](https://wangywust.github.io/nlp-course-2026) at University of California, Merced, 2026
 - Instructor, [Large Language Models](https://wangywust.github.io/llm-course-2025) at University of California, Merced, 2025
 - Teaching Assistant, [Knowledge Discovery and Data Mining](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2020 and 2021
 - Teaching Assistant, [Big Data Systems for Data Science](https://nusmods.com/modules/CS5228/knowledge-discovery-and-data-mining) at National University of Singapore, 2021
