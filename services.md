@@ -12,6 +12,7 @@ layout: course
 
 ### (Senior) Area Chair
 
+- Annual Meeting of the Association for Computational Linguistics (ACL) 2025, 2026
 - Annual Conference on Neural Information Processing Systems (NeurIPS) 2025
 - International Conference on Learning Representations ([ICLR](https://neurips.cc/Conferences/2022)) 2025, 2026
 - International Conference on Machine Learning ([ICML](http://cvpr2023.thecvf.com/)) 2025, 2026
