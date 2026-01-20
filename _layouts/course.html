@@ -616,6 +616,8 @@
         color: #1e3a8a !important;
       }
 
+/* ========== 多级列表优化样式 ========== */
+
 /* Enhanced Lists styling */
       ul, ol {
         margin-bottom: 1.5em;
@@ -623,9 +625,8 @@
         list-style: none;
       }
 
-      /* 新代码 - 优化的橙绿配色，字体颜色加深 */
-      /* Teaching/Experience list styling - 橙绿配色版本 */
-      ul li {
+      /* 一级无序列表样式 - 橙绿配色 */
+      ul > li {
         position: relative;
         margin-bottom: 0.8em;
         padding: 8px 15px;
@@ -633,45 +634,228 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         line-height: 1.6;
-        color: #0f172a !important; /* 加深基础字体颜色 */
+        color: #0f172a !important;
         border-left: 4px solid transparent;
-        font-weight: 500; /* 增加字体粗细 */
+        font-weight: 500;
       }
 
-      /* 奇数项（第1、3、5...项）- 绿色系 */
-      ul li:nth-child(odd) {
-        background-color: #f0fdf4; /* 更淡的绿色背景 */
-        border-left-color: #22c55e; /* 鲜艳的绿色边框 */
-        color: #052e16 !important; /* 深绿色字体 */
+      /* 奇数项 - 绿色系 */
+      ul > li:nth-child(odd) {
+        background-color: #f0fdf4;
+        border-left-color: #22c55e;
+        color: #052e16 !important;
       }
 
-      /* 偶数项（第2、4、6...项）- 橙色系 */
-      ul li:nth-child(even) {
-        background-color: #fff7ed; /* 淡橙色背景 */
-        border-left-color: #f97316; /* 鲜艳的橙色边框 */
-        color: #7c2d12 !important; /* 深橙色字体 */
+      /* 偶数项 - 橙色系 */
+      ul > li:nth-child(even) {
+        background-color: #fff7ed;
+        border-left-color: #f97316;
+        color: #7c2d12 !important;
       }
 
-      /* 奇数项悬停效果 - 加深的绿色 */
-      ul li:nth-child(odd):hover {
+      /* 一级列表悬停效果 */
+      ul > li:nth-child(odd):hover {
         transform: translateX(8px) translateY(-1px);
-        background-color: #dcfce7; /* 稍深的绿色背景 */
-        border-left-color: #16a34a; /* 深绿色边框 */
-        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2); /* 绿色阴影 */
-        color: #14532d !important; /* 更深的绿色字体 */
+        background-color: #dcfce7;
+        border-left-color: #16a34a;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        color: #14532d !important;
       }
 
-      /* 偶数项悬停效果 - 加深的橙色 */
-      ul li:nth-child(even):hover {
+      ul > li:nth-child(even):hover {
         transform: translateX(8px) translateY(-1px);
-        background-color: #fed7aa; /* 稍深的橙色背景 */
-        border-left-color: #ea580c; /* 深橙色边框 */
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2); /* 橙色阴影 */
-        color: #9a3412 !important; /* 更深的橙色字体 */
+        background-color: #fed7aa;
+        border-left-color: #ea580c;
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+        color: #9a3412 !important;
       }
       
-      /* Style for links within list items */
-      ul li a {
+      /* 二级无序列表容器 */
+      ul ul {
+        margin-top: 0.6em;
+        margin-bottom: 0.6em;
+        padding-left: 30px;
+        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        margin-left: 10px;
+        list-style: none;
+      }
+
+      /* 二级列表项 - 更小更轻的设计 */
+      ul ul > li {
+        padding: 5px 12px;
+        margin-bottom: 0.5em;
+        font-size: 0.95em;
+        font-weight: 400;
+        border-left-width: 3px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      }
+
+      /* 二级列表 - 淡化配色 */
+      ul ul > li:nth-child(odd) {
+        background-color: #f8fdf9;
+        border-left-color: #86efac;
+        color: #166534 !important;
+      }
+
+      ul ul > li:nth-child(even) {
+        background-color: #fffaf5;
+        border-left-color: #fdba74;
+        color: #9a3412 !important;
+      }
+
+      ul ul > li:hover {
+        transform: translateX(6px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      ul ul > li:nth-child(odd):hover {
+        background-color: #dcfce7;
+        border-left-color: #4ade80;
+      }
+
+      ul ul > li:nth-child(even):hover {
+        background-color: #ffedd5;
+        border-left-color: #fb923c;
+      }
+
+      /* 三级无序列表容器 */
+      ul ul ul {
+        padding-left: 25px;
+        border-left: 2px dotted rgba(100, 116, 139, 0.2);
+      }
+
+      /* 三级列表项 - 更小更简约 */
+      ul ul ul > li {
+        padding: 4px 10px;
+        margin-bottom: 0.4em;
+        font-size: 0.9em;
+        border-left-width: 2px;
+        box-shadow: none;
+        border-radius: 6px;
+      }
+
+      ul ul ul > li:nth-child(odd) {
+        background-color: rgba(34, 197, 94, 0.05);
+        border-left-color: #bbf7d0;
+        color: #15803d !important;
+      }
+
+      ul ul ul > li:nth-child(even) {
+        background-color: rgba(249, 115, 22, 0.05);
+        border-left-color: #fed7aa;
+        color: #9a3412 !important;
+      }
+
+      ul ul ul > li:hover {
+        transform: translateX(4px);
+        background-color: rgba(59, 130, 246, 0.08);
+      }
+
+      /* 有序列表的基本样式 */
+      ol {
+        counter-reset: item;
+      }
+
+      ol > li {
+        margin-bottom: 0.6em;
+        padding-left: 0.5em;
+        position: relative;
+      }
+
+      ol > li::before {
+        content: counter(item) ". ";
+        counter-increment: item;
+        font-weight: 600;
+        color: #3b82f6;
+        margin-right: 0.5em;
+      }
+
+      /* 嵌套的有序列表 */
+      ol ol {
+        margin-top: 0.6em;
+        margin-bottom: 0.6em;
+        padding-left: 35px;
+        counter-reset: subitem;
+      }
+
+      ol ol > li::before {
+        content: counter(item) "." counter(subitem) " ";
+        counter-increment: subitem;
+        color: #6366f1;
+      }
+
+      ol ol ol {
+        padding-left: 30px;
+        counter-reset: subsubitem;
+      }
+
+      ol ol ol > li::before {
+        content: counter(item) "." counter(subitem) "." counter(subsubitem) " ";
+        counter-increment: subsubitem;
+        color: #8b5cf6;
+      }
+
+      /* 混合嵌套：ul 中的 ol */
+      ul ol {
+        margin-top: 0.6em;
+        margin-bottom: 0.6em;
+        padding-left: 35px;
+        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        margin-left: 10px;
+        counter-reset: item;
+      }
+
+      ul ol > li {
+        padding: 5px 10px 5px 0;
+        margin-bottom: 0.4em;
+        font-size: 0.95em;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        font-weight: 400;
+        color: #374151 !important;
+      }
+
+      ul ol > li:hover {
+        background: rgba(59, 130, 246, 0.05);
+        border-radius: 4px;
+      }
+
+      ul ol > li::before {
+        content: counter(item) ". ";
+        counter-increment: item;
+        font-weight: 600;
+        color: #3b82f6;
+        margin-right: 0.5em;
+      }
+
+      /* 混合嵌套：ol 中的 ul */
+      ol ul {
+        margin-top: 0.6em;
+        margin-bottom: 0.6em;
+        padding-left: 30px;
+        border-left: 2px dashed rgba(100, 116, 139, 0.3);
+        margin-left: 10px;
+      }
+
+      ol ul > li {
+        padding: 5px 12px;
+        margin-bottom: 0.5em;
+        font-size: 0.95em;
+      }
+
+      ol ul > li:nth-child(odd) {
+        background-color: #f8fdf9;
+        border-left-color: #86efac;
+      }
+
+      ol ul > li:nth-child(even) {
+        background-color: #fffaf5;
+        border-left-color: #fdba74;
+      }
+
+      /* 列表内链接样式 */
+      ul li a, ol li a {
         color: #1e40af;
         font-weight: 500;
         text-decoration: none;
@@ -680,15 +864,9 @@
         transition: all 0.2s ease;
       }
 
-      ul li a:hover {
+      ul li a:hover, ol li a:hover {
         background-color: rgba(30, 64, 175, 0.1);
         color: #1e3a8a;
-      }
-
-      /* Ordered lists (for publications, etc.) */
-      ol li {
-        margin-bottom: 0.3em;
-        padding-left: 0.2em;
       }
 
       /* Enhanced Links styling with multiple hover effects */
@@ -840,6 +1018,15 @@
           width: 100%;
           opacity: 0.08;
         }
+
+        /* Mobile nested lists adjustments */
+        ul ul {
+          padding-left: 20px;
+        }
+
+        ul ul ul {
+          padding-left: 15px;
+        }
       }
 
       /* Dark mode support */
@@ -870,24 +1057,45 @@
         }
 
 /* Dark mode list adjustments */
-        ul li {
+        ul > li {
           background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
           border-left-color: #60a5fa;
-          color: #cbd5e1;
+          color: #cbd5e1 !important;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        ul li:hover {
+        ul > li:hover {
           background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
           border-left-color: #93c5fd;
           box-shadow: 0 4px 16px rgba(96, 165, 250, 0.25);
         }
 
-        ul li a {
+        ul ul > li {
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+          border-left-color: #3b82f6;
+          color: #94a3b8 !important;
+        }
+
+        ul ul > li:hover {
+          background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+          border-left-color: #60a5fa;
+        }
+
+        ul ul ul > li {
+          background: rgba(15, 23, 42, 0.5);
+          border-left-color: #475569;
+          color: #94a3b8 !important;
+        }
+
+        ul ul ul > li:hover {
+          background: rgba(30, 58, 138, 0.3);
+        }
+
+        ul li a, ol li a {
           color: #93c5fd;
         }
 
-        ul li a:hover {
+        ul li a:hover, ol li a:hover {
           background-color: rgba(147, 197, 253, 0.15);
           color: #dbeafe;
         }
@@ -1071,6 +1279,22 @@
         td:hover {
           background-color: rgba(96, 165, 250, 0.1);
           color: #f1f5f9;
+        }
+
+        ol > li::before {
+          color: #60a5fa;
+        }
+
+        ol ol > li::before {
+          color: #818cf8;
+        }
+
+        ol ol ol > li::before {
+          color: #a78bfa;
+        }
+
+        ul ol > li::before {
+          color: #60a5fa;
         }
       }
 
