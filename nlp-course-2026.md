@@ -10,9 +10,9 @@ This is a new course at UC Merced starting in Spring 2025. In this course, stude
 
 To offer useful, fundamental, and detailed NLP knowledge to students.
 
-## Staff Member
+## Staff Members
 
-Instructuor: Yiwei Wang
+Instructuor: Yiwei Wang (yiweiwang2@ucmerced.edu)
 
 TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
 
