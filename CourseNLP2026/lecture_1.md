@@ -324,8 +324,6 @@ Failing to respect these relationships leads to wasted resources and diminishing
 
 In summary, the KM scaling law should be interpreted as a statement about *capacity realization under matched resources*: it explains how performance improves when a single factor is allowed to scale while all others are no longer constraining. It does not imply that loss is inherently a function of only one variable, nor does it guarantee improvements from naive scaling in isolation.
 
-
-
 2. **Chinchilla Scaling Law (DeepMind)**:
    - **Mathematical formulation**:
      - $L(N,D) = E + \frac{A}{N^\alpha} + \frac{B}{D^\beta}$
