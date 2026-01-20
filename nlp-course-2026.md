@@ -4,17 +4,21 @@ layout: course
 
 # CSE 188: Natural Language Processing
 
-This is a new course of UC Merced starting at Spring 2025. In this course, students will learn the fundamentals about the modeling, theory, ethics, and systems aspects of the state-of-the-art natural langauge processing technology, as well as gain hands-on experience working with them.
+This is a new course at UC Merced starting in Spring 2025. In this course, students will learn the fundamentals of modeling, theory, ethics, and systems aspects of state-of-the-art natural language processing technologies, as well as gain hands-on experience working with them.
 
 ## The Goal of This Course
 
-Offering useful, fundemental, detailed NLP knowledge to students.
+To offer useful, fundamental, and detailed NLP knowledge to students.
 
 ## Staff Member
 
 Instructuor: Yiwei Wang
 
 TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
+
+## Course Modality
+
+Either onsite or virtual attendance is acceptable. Regardless of whether you attend lectures in person, you are required to join the course using the [Zoom link](https://ucmerced.zoom.us/my/ucmnlp). This is necessary for participating in the in-course question answering.
 
 ## Coursework
 
@@ -23,7 +27,9 @@ TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
 
 ### In-Course Question Answering
 
-In each class, students will be asked several questions. Each student can only answer each question one time. The student who correctly answers a question for the first time and explain the answer clearly to all the classmates will be granted 1 credit. The final scores will be calculated based on the accumulated credits throughout the whole semester. This score does not contribute to the final grading. In the final course, the students who get high scores in question answering will be highlighted as a reputation.
+In each class, students will be asked several questions. Each student may answer each question only once. The student who correctly answers a question first and explains the answer clearly to the class will be granted 1 credit. Final scores will be calculated based on accumulated credits throughout the semester. This score does not contribute to the final grade. At the end of the course, students who achieve high scores in question answering will be highlighted for recognition.
+
+The timestamp for in-course question answering is determined by the message time in the Zoom chat. The main content of your answer should be conveyed in your Zoom chat message.
 
 ### Final Projects
 
@@ -41,11 +47,12 @@ The final project scores will be calculated through 50% Instructor's rating + 50
 
 ### Having Questions?
 
-Please fill free to a row with your Question and Name in https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing
+Please feel free to add your question and name to the following spreadsheet: [Sheet of Students' Questions](
+https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing)
 
 ### Lab Sessions?
 
-This course does not have the in-person lab sessions. The students are suggested to use the lab session time to prepare the completion of the final projects remotely.
+This course does not have in-person lab sessions. Students are encouraged to use the lab session time to work remotely on their final projects.
 
 {% include_relative CourseNLP2026/lecture_1.md %}
 
