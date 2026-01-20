@@ -4,7 +4,7 @@ layout: course
 
 # CSE 188: Natural Language Processing
 
-This is a new course at UC Merced starting in Spring 2025. In this course, students will learn the fundamentals of modeling, theory, ethics, and systems aspects of state-of-the-art natural language processing technologies, as well as gain hands-on experience working with them.
+This is a new course at UC Merced starting in Spring 2026. In this course, students will learn the fundamentals of modeling, theory, ethics, and systems aspects of state-of-the-art natural language processing technologies, as well as gain hands-on experience working with them.
 
 ## The Goal of This Course
 
