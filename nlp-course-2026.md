@@ -10,6 +10,12 @@ This is a new course of UC Merced starting at Spring 2025. In this course, stude
 
 Offering useful, fundemental, detailed NLP knowledge to students.
 
+## Staff Member
+
+Instructuor: Yiwei Wang
+
+TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
+
 ## Coursework
 
 1. In-Course Question Answering
@@ -35,20 +41,24 @@ The final project scores will be calculated through 50% Instructor's rating + 50
 
 ### Having Questions?
 
-Students have two ways to ask questions
+Please fill free to a row with your Question and Name in https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing
 
-{% include_relative Course/lecture_1.md %}
+### Lab Sessions?
 
-{% include_relative Course/lecture_2.md %}
+This course does not have the in-person lab sessions. The students are suggested to use the lab session time to prepare the completion of the final projects remotely.
 
-{% include_relative Course/lecture_3.md %}
+{% include_relative CourseNLP2026/lecture_1.md %}
 
-{% include_relative Course/lecture_4.md %}
+{% include_relative CourseNLP2026/lecture_2.md %}
 
-{% include_relative Course/lecture_5.md %}
+{% include_relative CourseNLP2026/lecture_3.md %}
 
-{% include_relative Course/lecture_6.md %}
+{% include_relative CourseNLP2026/lecture_4.md %}
 
-{% include_relative Course/lecture_7.md %}
+{% include_relative CourseNLP2026/lecture_5.md %}
 
-{% include_relative Course/lecture_8.md %}
+{% include_relative CourseNLP2026/lecture_6.md %}
+
+{% include_relative CourseNLP2026/lecture_7.md %}
+
+{% include_relative CourseNLP2026/lecture_8.md %}
