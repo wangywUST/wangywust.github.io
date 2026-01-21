@@ -47,7 +47,7 @@ The final project scores will be calculated through 50% Instructor's rating + 50
 
 ## Having Questions?
 
-Please feel free to add your question and name to the following spreadsheet: [Sheet of Students' Questions](
+Please feel free to add your question, name, and your lab session id to the following spreadsheet: [Sheet of Students' Questions](
 https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing)
 
 ## Lab Sessions?
