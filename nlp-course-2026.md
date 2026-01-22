@@ -50,6 +50,8 @@ The final project scores will be calculated through 50% Instructor's rating + 50
 Please feel free to add your question, name, your lab session id, and your post date to the following spreadsheet: [Sheet of Students' Questions](
 https://docs.google.com/spreadsheets/d/1x5WKGrvoD1TY_S0WXEkHZoE1vvwjZejS8p5ALCo_J7s/edit?usp=sharing)
 
+If your question is not answered within one week after your post the question, please email the corresponding TA and cc me to get support. Hang Wu is responsible for lab session 02L, 03L, 04L, and Freeman is for 05L.
+
 ## Lab Sessions?
 
 This course does not have in-person lab sessions. Students are encouraged to use the lab session time to work remotely on their final projects.
