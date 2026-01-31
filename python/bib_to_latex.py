@@ -1,6 +1,7 @@
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
+import re
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
@@ -124,23 +125,19 @@ CONFERENCE_TIME_ORDER = [
     # 你可以根据需要添加更多的会议
 ]
 
-# 函数：转义 LaTeX 特殊字符
+# 函数：智能转义 LaTeX 特殊字符
 def escape_latex(text):
-    """转义 LaTeX 特殊字符"""
-    replacements = {
-        '%': r'\%',
-        '&': r'\&',
-        '$': r'\$',
-        '#': r'\#',
-        '_': r'\_',
-        '{': r'\{',
-        '}': r'\}',
-        '~': r'\textasciitilde{}',
-        '^': r'\textasciicircum{}',
-        '\\': r'\textbackslash{}',
-    }
-    for old, new in replacements.items():
-        text = text.replace(old, new)
+    """
+    只转义未转义的特殊字符
+    使用负向后顾断言 (?<!\\) 来避免重复转义
+    """
+    # 只转义前面没有反斜杠的特殊字符
+    text = re.sub(r'(?<!\\)%', r'\\%', text)
+    text = re.sub(r'(?<!\\)&', r'\\&', text)
+    text = re.sub(r'(?<!\\)\$', r'\\$', text)
+    text = re.sub(r'(?<!\\)#', r'\\#', text)
+    text = re.sub(r'(?<!\\)_', r'\\_', text)
+    
     return text
 
 # 函数：根据缩写表替换venue
@@ -186,7 +183,7 @@ def bib_to_paper_list(bib_file):
 
         authors_str = entry.get('author', 'Unknown')
         authors = format_author_names(authors_str)  # 改为 "First Name Last Name" 格式
-        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 转义特殊字符
+        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 智能转义
         year = entry.get('year', '')
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue = abbreviate_venue(venue)  # 使用缩写规则
@@ -222,7 +219,7 @@ def bib_to_paper_list_ccf(bib_file):
 
         authors_str = entry.get('author', 'Unknown')
         authors = format_author_names(authors_str)  # 改为 "First Name Last Name" 格式
-        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 转义特殊字符
+        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 智能转义
         year = entry.get('year', '')
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue_abbr = abbreviate_venue(venue)  # 使用缩写规则
