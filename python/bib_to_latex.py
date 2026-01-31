@@ -124,6 +124,25 @@ CONFERENCE_TIME_ORDER = [
     # 你可以根据需要添加更多的会议
 ]
 
+# 函数：转义 LaTeX 特殊字符
+def escape_latex(text):
+    """转义 LaTeX 特殊字符"""
+    replacements = {
+        '%': r'\%',
+        '&': r'\&',
+        '$': r'\$',
+        '#': r'\#',
+        '_': r'\_',
+        '{': r'\{',
+        '}': r'\}',
+        '~': r'\textasciitilde{}',
+        '^': r'\textasciicircum{}',
+        '\\': r'\textbackslash{}',
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
+
 # 函数：根据缩写表替换venue
 def abbreviate_venue(venue):
     for key, abbreviation in VENUE_ABBREVIATIONS.items():
@@ -167,7 +186,7 @@ def bib_to_paper_list(bib_file):
 
         authors_str = entry.get('author', 'Unknown')
         authors = format_author_names(authors_str)  # 改为 "First Name Last Name" 格式
-        title = entry.get('title', 'Title not available').rstrip('.')
+        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 转义特殊字符
         year = entry.get('year', '')
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue = abbreviate_venue(venue)  # 使用缩写规则
@@ -203,7 +222,7 @@ def bib_to_paper_list_ccf(bib_file):
 
         authors_str = entry.get('author', 'Unknown')
         authors = format_author_names(authors_str)  # 改为 "First Name Last Name" 格式
-        title = entry.get('title', 'Title not available').rstrip('.')
+        title = escape_latex(entry.get('title', 'Title not available').rstrip('.'))  # 转义特殊字符
         year = entry.get('year', '')
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue_abbr = abbreviate_venue(venue)  # 使用缩写规则
