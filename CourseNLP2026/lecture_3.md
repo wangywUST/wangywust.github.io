@@ -66,7 +66,7 @@ $$
 Visually, we can show the attention over a sequence of words as follows:
 
 <div style="text-align: center;">
-  <img src="./Course/attention_example.svg" width="50%">
+  <img src="./CourseNLP2026/attention_example.svg" width="50%">
   <p style="margin-top: 10px;">Attention Example</p>
 </div>
 
