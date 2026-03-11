@@ -79,9 +79,9 @@ Below is a comprehensive syllabus table for the course, organized by lecture top
 
 {% include_relative CourseNLP2026/lecture_3.md %}
 
-{% include_relative CourseNLP2026/lecture_4.md %}
-
 {% include_relative CourseNLP2026/lecture_5.md %}
+
+{% include_relative CourseNLP2026/lecture_4.md %}
 
 {% include_relative CourseNLP2026/lecture_6.md %}
 
