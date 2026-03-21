@@ -20,6 +20,8 @@ TA: Freeman Cheng (freemancheng@ucmerced.edu), Hang Wu (hangwu@ucmerced.edu)
 
 Either onsite or virtual attendance is acceptable. Regardless of whether you attend lectures in person, you are encouraged to join the course using the [Zoom link](https://ucmerced.zoom.us/my/ucmnlp). This is necessary for participating in the in-course question answering.
 
+Office Hour: 2:00 PM - 3:00 PM, Every Tuesday at SE2 214.
+
 ## Coursework
 
 1. In-Course Question Answering
