@@ -54,7 +54,7 @@ If your question is not answered within one week after your post the question, p
 
 ## Lab Sessions?
 
-This course does not have in-person lab sessions. Students are encouraged to use the lab session time to work remotely on their final projects.
+Students are encouraged to use the lab session time to work on their final projects.
 
 ## Course Syllabus
 
