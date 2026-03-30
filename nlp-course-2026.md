@@ -56,7 +56,7 @@ If your question is not answered within one week after your post the question, p
 
 ## Lab Sessions?
 
-Students are encouraged to use the lab session time to work on their final projects. The project-related questions are encouraged to ask the correponding TAs for research discussions.
+Students are encouraged to use the lab session time to work on their final projects. The project-related questions are encouraged to ask the correponding TAs or the instructor for research discussions.
 
 ## Course Syllabus
 
