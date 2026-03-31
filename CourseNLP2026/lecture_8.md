@@ -1,4 +1,4 @@
-# Lecture 7: Recent Advances in Natural Language Processing: Reasoning and Agents
+# Lecture 8: Recent Advances in Natural Language Processing: Reasoning and Agents
 
 ## Introduction  
 Large Language Models (LLMs) have rapidly progressed from mere text predictors to versatile AI systems capable of complex reasoning, tool use, and multi-modal understanding. This presentation explores three major recent directions in LLM development:
