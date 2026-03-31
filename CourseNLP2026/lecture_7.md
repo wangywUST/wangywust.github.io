@@ -289,6 +289,11 @@ Temperature scaling adjusts the sharpness of the probability distribution before
 - With $T < 1$, the distribution becomes sharper, making high-probability tokens more likely.
 - With $T > 1$, the distribution flattens, allowing for more diverse token selection.
 
+<div style="text-align: center;">
+  <img src="./CourseNLP2026/lecture_7_figure_1.png" width="100%">
+  <p style="margin-top: 10px;">Temperature Scaling</p>
+</div>
+
 **Advantages:**
 
 - Provides control over the randomness of the output.
