@@ -51,7 +51,7 @@ Reasoning in steps allows the model to tackle **multi-step logic, arithmetic, or
 The improvements show that prompting the model to “think out loud” mitigates errors from trying to do too much in one step. It also reduces hallucination in reasoning since each step can be checked against the problem.
 
 <div style="text-align: center;">
-  <img src="./Course/fig_2.jpg" width="50%">
+  <img src="./fig_2.jpg" width="50%">
   <p style="margin-top: 10px;">Chain-of-Thought vs Standard Prompting</p>
 </div>
 
