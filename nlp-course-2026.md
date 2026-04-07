@@ -73,7 +73,6 @@ Below is a comprehensive syllabus table for the course, organized by lecture top
 | 7 | Lecture 7 | Decoding Algorithms | • Greedy search<br>• Beam search<br>• Sampling methods (top-k, top-p)<br>• Temperature scaling | • Master various decoding strategies<br>• Understand trade-offs between methods<br>• Implement beam search algorithm<br>• Apply temperature for controlling randomness |
 | 8 | Lecture 8 | Advanced LLM Capabilities (Part 1) | • Chain-of-Thought (CoT) prompting<br>• Step-by-step reasoning<br>• Self-consistency<br>• Zero-shot vs few-shot CoT | • Apply CoT prompting techniques<br>• Improve reasoning on complex tasks<br>• Understand GSM8K and ARC benchmarks<br>• Implement self-consistency for better accuracy |
 | 9 | Lecture 9 | Advanced LLM Capabilities (Part 2) | • LLM agents and autonomy<br>• Tool use (Toolformer)<br>• ReAct framework<br>• Autonomous task completion | • Design LLM-based agents<br>• Integrate external tools with LLMs<br>• Implement ReAct reasoning+acting loop<br>• Understand agent architectures (AutoGPT, HuggingGPT) |
-| 10 | Lecture 10 | Vision-Language Models | • Multimodal LLMs<br>• Vision encoders (CLIP, ViT)<br>• Image captioning and VQA<br>• GPT-4V, MM1, Flamingo | • Understand vision-language model architectures<br>• Process images with text in unified models<br>• Apply VLMs to visual question answering<br>• Evaluate on multimodal benchmarks |
 
 {% include_relative CourseNLP2026/lecture_1.md %}
 
