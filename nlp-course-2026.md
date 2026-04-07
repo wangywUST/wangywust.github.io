@@ -63,6 +63,32 @@ Students are highly encouraged to showcase their work via a poster (in the .pdf 
 #### 4. Future Benefits
 While the poster is optional and does not affect your grade, active and high-quality participation will be highly valued by Yiwei Wang and may serve as a basis for future **letters of recommendation**.
 
+#### 5. Final Project Evaluation Criteria
+
+To help you succeed in your final projects, the evaluation will be centered around two primary dimensions used by major NLP conferences (like ACL and EMNLP): **Soundness** and **Excitement**.
+
+---
+
+##### 1. Soundness (Technical Integrity & Rigor)
+*Soundness evaluates whether your findings are trustworthy and scientifically valid.*
+
+* **Experimental Rigor:** * Did you use appropriate baselines? (e.g., comparing your method against standard Zero-shot or Few-shot prompts).
+    * Is the data size sufficient to support your claims?
+* **Ablation Studies:** * If you proposed a multi-step method, did you test the system with specific components removed to prove they actually add value?
+* **Error Analysis:** * A high-quality report doesn't just show numbers; it investigates *why* the model failed. Providing a qualitative analysis of incorrect samples is essential.
+* **Metric Choice:** * Are the evaluation metrics (e.g., Accuracy, F1, ROUGE, or Human Eval) logically aligned with the task goals?
+
+##### 2. Excitement (Innovation & Impact)
+*Excitement evaluates the novelty and the "interestingness" of your research.*
+
+* **Originality:** * Does the project go beyond a simple "plug-and-play" exercise? We value original insights into LLM behavior, new prompting strategies, or unique applications.
+* **Clarity of Communication:** * Is the report written clearly using the ACL LaTeX template? 
+    * Are the figures and tables intuitive and professional?
+* **Task Difficulty:** * Tackling a complex or under-explored problem (e.g., reasoning in specialized domains or efficiency optimization) generates more "excitement" than repeating well-known benchmarks.
+
+
+> **Instructor's Note:** Active engagement in the poster session—demonstrating either **soundness** in methodology or **excitement** for the topic—is a factor I consider when writing future **letters of recommendation**, although it will not influence the grading for this course.
+
 #### Useful Links
 
 [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj)
