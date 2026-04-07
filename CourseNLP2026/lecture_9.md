@@ -33,7 +33,7 @@ Keep to **6–8 sections**. A proven layout:
 
 
 <div style="text-align: center;">
-  <img src="./poster_cvpr18_netdissect.jpg" width="50%">
+  <img src="./CourseNLP2026/poster_example.jpg" width="100%">
   <p style="margin-top: 10px;">An example from https://github.com/zhoubolei/bolei_awesome_posters</p>
 </div>
 
