@@ -216,6 +216,11 @@ One of the most significant developments in the agent ecosystem during 2024–20
 
 **What MCP Does:** MCP defines a standardized client-server protocol that lets any AI host (Claude, ChatGPT, Cursor, etc.) communicate with any MCP server (GitHub, Gmail, databases, file systems, etc.) in a uniform way. The analogy often used is that MCP does for AI agents what USB-C did for device connectivity: one plug, all devices. Instead of building bespoke integrations, a developer writes one MCP server for, say, their company database, and any MCP-compatible AI tool can immediately use it.
 
+<div style="text-align: center;">
+  <img src="./CourseNLP2026/lecture_8_fig_3.png" width="90%">
+  <p style="margin-top: 10px;">Tool invocation with and without MCP. Without MCP, an AI application interacts with external tools and resources such as web services, databases, and local files through specific APIs. With MCP, the AI application functions as an MCP client that communicates with an MCP server using the MCP protocol, which provides a unified interface for tool access.</p>
+</div>
+
 **MCP Architecture (simplified):**
 ```
 User ──> Host (Claude / ChatGPT / Cursor)
