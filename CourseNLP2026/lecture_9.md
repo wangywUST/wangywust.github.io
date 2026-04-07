@@ -32,15 +32,10 @@ Before opening any design tool, confirm with the conference:
 Keep to **6–8 sections**. A proven layout:
 
 
-┌─────────────────────────────────────────┐
-│              TITLE BAR                  │
-│    Title · Authors · Affiliations       │
-├───────────┬─────────────┬───────────────┤
-│  Motivation│    Method  │   Results     │
-│ / Problem  │  / Model   │  (figures)    │
-├───────────┴─────────────┴───────────────┤
-│   Conclusion & Future Work  │  QR / Ref │
-└─────────────────────────────────────────┘
+<div style="text-align: center;">
+  <img src="./poster_cvpr18_netdissect.jpg" width="50%">
+  <p style="margin-top: 10px;">An example from https://github.com/zhoubolei/bolei_awesome_posters</p>
+</div>
 
 ### Section-by-section guide
 
