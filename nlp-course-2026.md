@@ -35,13 +35,35 @@ The timestamp for in-course question answering is determined by the message time
 
 ### Final Projects
 
-Every student should complete a final project related to LLMs and present it in the final classes. A project report should be completed before the presentation and submitted to [Final Project Google Form](TBD) The file should be named as "Your Name.pdf" The format should follow the [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj). Good examples are at [Project Report Examples](https://aclanthology.org/events/acl-2024/#2024acl-long)
+Every student is required to complete a final project related to **Large Language Models (LLMs)** and present it during the final classes. 
 
-The final project scores will be calculated through 50% Instructor's rating + 50% TAs' rating.
+#### 1. Submission Requirements
+* **Deadline:** The project report must be submitted via the [Final Project Google Form](https://forms.gle/5PkGoAaYzGFURGGH7) before **May 1st, 2026**.
+* **File Naming:** Please name your file as `Last Name, First Name.pdf`.
+* **Format:** Submissions must follow the [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj). 
+* **Examples:** You can find high-quality examples at the [ACL 2024 Project Reports](https://aclanthology.org/events/acl-2024/#2024acl-long) archive.
 
-### Useful Links
+#### 2. Grading Criteria
+The final project grade will be determined by:
+* **50%** Instructor’s rating
+* **50%** TAs’ rating
 
-<!-- [Final Project Google Folder](https://drive.google.com/drive/folders/1foBTff-e2GpbRGu97B125TFwSLKJX54l?usp=sharing) -->
+> **Note:** Only the final project report will be graded and counted toward your final course grade.
+
+---
+
+#### 3. Poster Presentation (Optional)
+Students are highly encouraged to showcase their work via a poster on this [Google Sheet](https://docs.google.com/spreadsheets/d/16QGQerK6jN9rloWvCNW3-q85itust8PNno8VMJIAhV8/edit?usp=sharing).
+
+* **How to Participate:** You may add your poster link to the last row of the sheet at any time by filling in the columns before "Question 1."
+* **Peer Engagement:** Students are encouraged to review their peers' posters and post questions in the final columns (e.g., Question 1).
+* **Interaction:** Poster owners are expected to answer these questions directly within the Google Sheet.
+* **In-Class Discussion:** During each lecture, **Yiwei Wang** will review the posters and questions with the class. Both existing and new questions are open for discussion.
+
+#### 4. Future Benefits
+While the poster is optional and does not affect your grade, active and high-quality participation will be highly valued by Yiwei Wang and may serve as a basis for future **letters of recommendation**.
+
+#### Useful Links
 
 [2025 ACL long paper template](https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj)
 
