@@ -198,6 +198,11 @@ These systems often maintain a *task list* and a memory, allowing the LLM to kee
 
 **HuggingGPT** (Microsoft, 2023) demonstrated an agent that uses an LLM (ChatGPT) as a controller to orchestrate multiple AI models on Hugging Face for complex tasks (e.g., a multi-step task involving image generation, object detection, and language). The LLM decides which specialized model to call at each step – a form of tool use where tools are other AI models.
 
+<div style="text-align: center;">
+  <img src="./CourseNLP2026/lecture_8_fig_1.png" width="50%">
+  <p style="margin-top: 10px;">HuggingGPT: In this concept, an LLM acts as a controller, managing and organizing the cooperation of expert models. The LLM first plans a list of tasks based on the user request and then assigns expert models to each task. After the experts execute the tasks, the LLM collects the results and responds to the user.</p>
+</div>
+
 **Generative Agents (Interactive Sims)** (Stanford, 2023) took autonomy in a different direction – they put multiple LLM-based agents in a simulated game environment (like The Sims) to see if they could exhibit believable, emergent behaviors. Each agent could make plans (e.g. “go to the cafe at 3pm to meet a friend”) and remember interactions. This showcases that when given long-term memory and goals, LLM agents can indeed act in an autonomous, adaptive manner over extended periods, not just single Q&A sessions.
 
 ### 2.5 The Model Context Protocol (MCP): Standardizing Tool Use
