@@ -58,7 +58,7 @@ Students are highly encouraged to showcase their work via a poster (in the .pdf 
 * **How to Participate:** You may add your poster link to the last row of the sheet at any time by filling in the columns before "Question 1." **Please do not overwrite existing rows; instead, add a new row at the bottom for each poster update.**
 * **Peer Engagement:** Students are encouraged to review their peers' posters and post questions in the final columns (e.g., Question 1).
 * **Interaction:** Poster owners are expected to answer these questions directly within the Google Sheet.
-* **In-Class Discussion:** During each lecture, **Yiwei Wang** will review the posters and questions with the class. Both existing and new questions are open for discussion.
+* **In-Class Discussion:** Starting April 13, 2026, **Yiwei Wang** will review the posters and their corresponding questions during each lecture. Both existing and new questions regarding project reports and posters are welcome for discussion with the class.
 
 #### 4. Future Benefits
 While the poster is optional and does not affect your grade, active and high-quality participation will be highly valued by Yiwei Wang and may serve as a basis for future **letters of recommendation**.
