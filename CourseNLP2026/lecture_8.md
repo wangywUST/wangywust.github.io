@@ -251,6 +251,11 @@ Each MCP server exposes three types of primitives:
 
 > "Claude Code reads a codebase, plans a sequence of actions, executes them using real development tools, evaluates the result, and adjusts its approach. The developer sets the objective and retains control over what gets committed, but the execution loop runs independently." — *Anthropic*
 
+<div style="text-align: center;">
+  <img src="./CourseNLP2026/lecture_8_fig_4.png" width="90%">
+  <p style="margin-top: 10px;">Claude Code's User Interface with VSCode</p>
+</div>
+
 **How it works technically:** Claude Code is given direct access to the developer's terminal, which means it can:
 - Run bash commands, `grep`, `git`, `make`, `pytest`, etc.
 - Read and edit files across the entire codebase.
