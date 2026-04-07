@@ -53,7 +53,7 @@ The final project grade will be determined by:
 ---
 
 #### 3. Poster Presentation (Optional)
-Students are highly encouraged to showcase their work via a poster on this [Google Sheet](https://docs.google.com/spreadsheets/d/16QGQerK6jN9rloWvCNW3-q85itust8PNno8VMJIAhV8/edit?usp=sharing).
+Students are highly encouraged to showcase their work via a poster (in the .pdf format) on this [Google Sheet](https://docs.google.com/spreadsheets/d/16QGQerK6jN9rloWvCNW3-q85itust8PNno8VMJIAhV8/edit?usp=sharing). You can find the nice examples of conference posters at [Dr. Bolei Zhou's Github Repo](https://github.com/zhoubolei/bolei_awesome_posters/tree/main).
 
 * **How to Participate:** You may add your poster link to the last row of the sheet at any time by filling in the columns before "Question 1." **Please do not overwrite existing rows; instead, add a new row at the bottom for each poster update.**
 * **Peer Engagement:** Students are encouraged to review their peers' posters and post questions in the final columns (e.g., Question 1).
