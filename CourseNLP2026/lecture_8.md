@@ -253,7 +253,7 @@ Each MCP server exposes three types of primitives:
 
 <div style="text-align: center;">
   <img src="./CourseNLP2026/lecture_8_fig_4.png" width="90%">
-  <p style="margin-top: 10px;">Claude Code's User Interface with VSCode</p>
+  <p style="margin-top: 10px;">Claude Code's User Interface with VS Code</p>
 </div>
 
 **How it works technically:** Claude Code is given direct access to the developer's terminal, which means it can:
