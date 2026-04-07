@@ -4,9 +4,8 @@
 Large Language Models (LLMs) have rapidly progressed from mere text predictors to versatile AI systems capable of complex reasoning, tool use, and multi-modal understanding. This presentation explores three major recent directions in LLM development:
 1. **Reasoning LLMs** – techniques that enable step-by-step logical problem solving.
 2. **Autonomous/Tool-Using Agents** – letting LLMs use external tools or act autonomously to complete tasks.
-3. **Vision-Language Models (VLMs)** – combining visual processing with language understanding.
 
-Each section delves into core concepts, examples (with inputs, intermediate reasoning, and outputs), comparative analyses, and notable research (papers & benchmarks like GSM8K, ARC, Toolformer, ReAct, MM1, GPT-4V). The goal is a deep conceptual understanding of how these advances make LLMs more powerful and general. We include tables, pseudocode, and illustrative figures (with placeholders) to clarify key ideas for a graduate-level audience familiar with transformer models and chat-based LLMs.
+Each section delves into core concepts, examples (with inputs, intermediate reasoning, and outputs), comparative analyses, and notable research (papers & benchmarks like GSM8K, ARC, Toolformer, ReAct, MM1, GPT-4V). The goal is a deep conceptual understanding of how these advances make LLMs more powerful and general. We include tables, pseudocode, and illustrative figures (with placeholders) to clarify key ideas for a undergraduate-level audience familiar with transformer models and chat-based LLMs.
 
 ## 1. Reasoning in LLMs: From Answers to **Chain-of-Thought**  
 Modern LLMs can do more than recite memorized facts – they can **reason** through complex tasks. *Reasoning LLMs* explicitly break down problems into intermediate steps before giving a final answer. This approach addresses the limitation of “one-shot” answering, especially for math, logic, or multi-step questions that standard LLM outputs often get wrong due to missing reasoning steps.
@@ -232,7 +231,7 @@ The agent paradigm is pushing us toward more **interactive AI**. Instead of just
 
 It also raises new research questions on how to ensure these agents remain reliable, safe, and efficient. Combining reasoning with action is a big step toward more general AI behavior.
 
-**Key Takeaway:** *Autonomous and tool-using agents extend LLMs beyond text prediction – they can interact with external systems and iteratively plan, making them far more capable on complex, real-world tasks than static prompts. This is a major frontier in 2024–2025 LLM research and applications.* The next section will look at another frontier: extending LLMs to **multimodal inputs, especially vision**, which further broadens what these models can do.
+**Key Takeaway:** *Autonomous and tool-using agents extend LLMs beyond text prediction – they can interact with external systems and iteratively plan, making them far more capable on complex, real-world tasks than static prompts. This is a major frontier in 2024–2025 LLM research and applications.*
 
 
 ## Conclusion  
@@ -242,21 +241,18 @@ Transformer-based NLP models have evolved from pure text predictors to **general
 
 - **Autonomous/Tool-Using Agents**: Giving LLMs the ability to use tools and act in a loop transforms them into interactive agents. They can fetch information, run computations, and perform multi-step workflows on their own, greatly extending their capabilities beyond what’s stored in their parameters ([[2302.04761] Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761#:~:text=achieve%20the%20best%20of%20both,with%20much%20larger%20models%2C%20without)). Frameworks like ReAct ([ReAct Prompting](https://www.promptingguide.ai/techniques/react#:~:text=ReAct%20is%20a%20general%20paradigm,involved%20to%20perform%20question%20answering)) demonstrate how reasoning and acting together yield more powerful systems, and projects like AutoGPT hint at the potential (and challenges) of AI agents pursuing open-ended goals.
 
-- **Vision-Language Models**: Integrating visual understanding with language allows AI to interpret and describe the world in rich detail. Modern VLMs can caption images, answer visual questions, and even reason about visual content, powered by advances like CLIP’s representations ([CLIP: Connecting text and images](https://openai.com/index/clip/#:~:text=We%20present%20a%20neural%20network,image)) and huge multimodal models like GPT-4V. This brings AI closer to human-like perception and understanding, enabling applications from aiding the visually impaired to analyzing scientific figures.
-
-These advancements do not exist in isolation – the most exciting systems combine all three. For example, a medical assistant AI might look at a patient’s X-ray (vision), reason through a diagnosis (CoT), and consult medical databases or calculators (tools) before giving an answer. Each component we discussed adds a layer of capability:
+These advancements do not exist in isolation – the most exciting systems combine all three. For example, a medical assistant AI might look at a patient’s medical report (textual input), reason through a diagnosis (CoT), and consult medical databases or calculators (tools) before giving an answer. Each component we discussed adds a layer of capability:
 - **Reasoning** gives depth (the “thinking” skill),
 - **Agents/Tools** give breadth and action (the “doing” skill),
-- **Vision multimodality** gives perception (the “seeing” skill).
 
 Together, they are pushing AI toward more **general intelligence** – systems that can perceive, think, and act.
 
 The research landscape in 2024-2025 is incredibly active. Notable papers like *Toolformer*, *ReAct*, *PaLM-E*, *Flamingo*, *BLIP-2*, *GPT-4 Technical Report*, *MM1*, etc., mark the milestones we discussed, and new ones are emerging constantly. Benchmarks continue to get tougher, and models continue to rise to the challenge – often rapidly outpacing prior state-of-the-art within months.
 
-For a graduate student studying these topics, key takeaways are:
+For a undergraduate student studying these topics, key takeaways are:
 - Prompt engineering and clever use of LLMs (like CoT and ReAct) can dramatically improve performance without changing model architecture.
 - There is a trend towards **interactivity** – making LLMs active agents rather than passive answerers.
-- Multimodality is breaking the barrier between text and the rest of the world, which will unlock far more applications (and also requires multidisciplinary knowledge of vision, NLP, etc.).
+- Multimodality is breaking the barrier between text and the rest of the world, which will unlock far more applications (and also requires multidisciplinary knowledge of, NLP, etc.).
 - Scale is not the only path; many of these advances achieve more by **using models smarter** (e.g., a 6B Toolformer doing what a 175B couldn’t because it lacked tools).
 
 In conclusion, the progress in these three areas – reasoning, agents, and VLMs – represents a significant step change in what AI systems can do. They are more **intelligent** in a practical sense: they can reason through hard problems, take actions to get information or affect the world, and understand multiple modalities. As research continues, we can expect future LLM-based systems to seamlessly integrate all these abilities, bringing us closer to AI that can see, think, and act in the world much like an human assistant would (albeit with superhuman knowledge and speed in certain aspects). It’s an exciting time, and the lines between “language model” and “general AI agent” are increasingly blurring.
