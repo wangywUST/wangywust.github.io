@@ -313,6 +313,11 @@ While Claude Code represents a professionally integrated, commercially supported
 - Development environments and shell execution.
 - Custom skill plugins ("ClawHub").
 
+<div style="text-align: center;">
+  <img src="./CourseNLP2026/lecture_8_fig_5.png" width="90%">
+  <p style="margin-top: 10px;">OpenClaw's System Architecture.</p>
+</div>
+
 The user interacts with their OpenClaw agent by simply sending a message — just like texting a friend. The agent deconstructs vague requests (e.g., "Write a web scraper for news and email it to me each morning") into executable sub-tasks, executes them in an isolated Docker container (for safety), and reports back.
 
 **Architecture:**
