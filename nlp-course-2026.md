@@ -55,7 +55,7 @@ The final project grade will be determined by:
 #### 3. Poster Presentation (Optional)
 Students are highly encouraged to showcase their work via a poster on this [Google Sheet](https://docs.google.com/spreadsheets/d/16QGQerK6jN9rloWvCNW3-q85itust8PNno8VMJIAhV8/edit?usp=sharing).
 
-* **How to Participate:** You may add your poster link to the last row of the sheet at any time by filling in the columns before "Question 1."
+* **How to Participate:** You may add your poster link to the last row of the sheet at any time by filling in the columns before "Question 1." **Please do not overwrite existing rows; instead, add a new row at the bottom for each poster update.**
 * **Peer Engagement:** Students are encouraged to review their peers' posters and post questions in the final columns (e.g., Question 1).
 * **Interaction:** Poster owners are expected to answer these questions directly within the Google Sheet.
 * **In-Class Discussion:** During each lecture, **Yiwei Wang** will review the posters and questions with the class. Both existing and new questions are open for discussion.
