@@ -5,7 +5,7 @@ Large Language Models (LLMs) have rapidly progressed from mere text predictors t
 1. **Reasoning LLMs** – techniques that enable step-by-step logical problem solving.
 2. **Autonomous/Tool-Using Agents** – letting LLMs use external tools or act autonomously to complete tasks.
 
-Each section delves into core concepts, examples (with inputs, intermediate reasoning, and outputs), comparative analyses, and notable research (papers & benchmarks like GSM8K, ARC, Toolformer, ReAct, MM1, GPT-4V). The goal is a deep conceptual understanding of how these advances make LLMs more powerful and general. We include tables, pseudocode, and illustrative figures (with placeholders) to clarify key ideas for a undergraduate-level audience familiar with transformer models and chat-based LLMs.
+Each section delves into core concepts, examples (with inputs, intermediate reasoning, and outputs), comparative analyses, and notable research (papers & benchmarks like GSM8K, ARC, Toolformer, ReAct, MM1, GPT-4V). The goal is a deep conceptual understanding of how these advances make LLMs more powerful and general. We include tables, pseudocode, and illustrative figures to clarify key ideas for a undergraduate-level audience familiar with transformer models and chat-based LLMs.
 
 ## 1. Reasoning in LLMs: From Answers to **Chain-of-Thought**  
 Modern LLMs can do more than recite memorized facts – they can **reason** through complex tasks. *Reasoning LLMs* explicitly break down problems into intermediate steps before giving a final answer. This approach addresses the limitation of “one-shot” answering, especially for math, logic, or multi-step questions that standard LLM outputs often get wrong due to missing reasoning steps.
