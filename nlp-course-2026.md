@@ -35,7 +35,7 @@ The timestamp for in-course question answering is determined by the message time
 
 ### Final Projects
 
-Every student is required to complete a final project related to **Large Language Models (LLMs)** and present it during the final classes. 
+Every student is required to complete a final project related to **Large Language Models (LLMs)** and present it during the final classes using a poster. 
 
 #### 1. Submission Requirements
 * **Deadline:** The project report must be submitted via the [Final Project Google Form](https://forms.gle/5PkGoAaYzGFURGGH7) before **May 1st, 2026**.

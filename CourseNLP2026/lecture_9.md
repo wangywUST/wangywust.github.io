@@ -166,4 +166,4 @@ Before sending to the printer:
 
 ---
 
-*Good luck at your conference. A great poster is a great conversation.*
+*Good luck at your future research. A great poster is a great conversation.*
