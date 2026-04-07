@@ -29,7 +29,7 @@ Before opening any design tool, confirm with the conference:
 
 ## 3. Content Structure
 
-Keep to **6–8 sections**. A proven layout:
+A proven layout:
 
 
 <div style="text-align: center;">
