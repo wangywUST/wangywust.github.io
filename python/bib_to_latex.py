@@ -72,6 +72,7 @@ CCF_RATINGS = {
     'ICDE': 'A',
     'WWW': 'A',
     'AAAI': 'A',
+    'ICLR': 'A',
     
     'CIKM': 'B',
     'WSDM': 'B',
