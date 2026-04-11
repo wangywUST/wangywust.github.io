@@ -200,7 +200,11 @@
 </li>
 
 <li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/fu2026contextnav.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">ContextNav: Towards Agentic Multimodal In-Context Learning</div>
       <div class="author">Honghao Fu, Yuan Ouyang, Kai-Wei Chang, Yiwei Wang, Zi Huang, Yujun Cai.</div>
