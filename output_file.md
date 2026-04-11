@@ -302,7 +302,11 @@
 </li>
 
 <li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/shen2025oida.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">AAAI</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">OIDA-QA: A Multimodal Benchmark for Analyzing the Opioid Industry Documents Archive</div>
       <div class="author">Xuan Shen, Brian Wingenroth, Zichao Wang, Jason Kuen, Wanrong Zhu, Ruiyi Zhang, Yiwei Wang, Lichun Ma, Anqi Liu, Hongfu Liu, Tong Sun, Kevin S. Hawkins, Kate Tasker, G. Caleb Alexander, Jiuxiang Gu.</div>
