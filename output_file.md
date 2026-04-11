@@ -270,7 +270,11 @@
 </li>
 
 <li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/shen2026fastcar.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Fastcar: Cache Attentive Replay for Fast Auto-Regressive Video Generation on the Edge</div>
       <div class="author">Xuan Shen, Weize Ma, Yufa Zhou, Enhao Tang, Yanyue Xie, Zhengang Li, Yifan Gong, Quanyi Wang, Henghui Ding, Yiwei Wang, Pu Zhao, Jun Lin, Jiuxiang Gu.</div>
