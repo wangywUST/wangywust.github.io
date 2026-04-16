@@ -1,551 +1,525 @@
-## Lecture 1: Overview of NLP
-
-1. [What is language?](#what-is-language)
-2. [What is a language model?](#what-is-a-language-model)
-3. [What are large language models?](#what-are-large-language-models)
-
-### What is Language?
-
-Language is a systematic means of communicating ideas or feelings using conventionalized signs, sounds, gestures, or marks.
-
-<div style="text-align: center;">
-  <img src="./CourseNLP2026/fig_1.jpg" width="50%">
-  <p style="margin-top: 10px;">More than 7,000 languages are spoken around the world today, shaping how we describe and perceive the world around us. Source: https://www.snexplores.org/article/lets-learn-about-the-science-of-language</p>
-</div>
-
-#### Text in Language
-
-Text represents the written form of language, converting speech and meaning into visual symbols. Key aspects include:
-
-##### Basic Units of Text
-
-Text can be broken down into hierarchical units:
-- Characters: The smallest meaningful units in writing systems
-- Words: Combinations of characters that carry meaning
-- Sentences: Groups of words expressing complete thoughts
-- Paragraphs: Collections of related sentences
-- Documents: Complete texts serving a specific purpose
-
-##### Text Properties
-
-Text demonstrates several key properties:
-- Linearity: Written symbols appear in sequence
-- Discreteness: Clear boundaries between units
-- Conventionality: Agreed-upon meanings within a language community
-- Structure: Follows grammatical and syntactic rules
-- Context: Meaning often depends on surrounding text
-
-Question 1: Could you give some examples in English that a word has two different meanings across two sentences?
-
-Based on the above properties shared by different langauges, the NLP researchers develop a unified Machine Learning technique to model language data -- Large Language Models. Let's start to learn this unfied language modeling technique.
-
-### What is a Language Model?
-
-#### Mathematical Definition
-
-A language model is fundamentally a probability distribution over sequences of words or tokens. Mathematically, it can be expressed as:
-
-$$P(w_1, w_2, ..., w_n) = \prod_i P(w_i|w_1, ..., w_{i-1})$$
-
-where:
-- $$w_1, w_2, ..., w_n$$ represents a sequence of words or tokens
-- The conditional probability of word $$w_i$$ given all previous words is:
-
-  $$P(w_i|w_1, ..., w_{i-1})$$
-
-For practical implementation, this often takes the form:
-
-$$P(w_t|context) = \text{softmax}(h(context) \cdot W)$$
-
-where:
-- Target word: $$w_t$$
-- Context encoding function: $$h(context)$$
-- Weight matrix: $$W$$
-- softmax normalizes the output into probabilities
-
-#### **Example 1: Sentence Probability Calculation**
-
-Consider the sentence: "I love chocolate."
-
-The language model predicts the following probabilities:
-- $$P(\text{'I'}) = 0.2$$  
-- $$P(\text{'love'}|\text{'I'}) = 0.4$$  
-- $$P(\text{'chocolate'}|\text{'I love'}) = 0.5$$  
-
-The total probability of the sentence is calculated as:  
-$$P(\text{'I love chocolate'}) = P(\text{'I'}) \cdot P(\text{'love'}|\text{'I'}) \cdot P(\text{'chocolate'}|\text{'I love'})$$  
-$$P(\text{'I love chocolate'}) = 0.2 \cdot 0.4 \cdot 0.5 = 0.04$$  
-
-Thus, the probability of the sentence "I love chocolate" is **0.04**.
+# Modern Digital Signal Processing
+## Chapter 1: Discrete-Time Signal Processing — Undergraduate Review
 
 ---
 
-#### **Example 2: Dialogue Probability Calculation**
-
-For the dialogue:  
-A: "Hello, how are you?"  
-B: "I'm fine, thank you."
-
-The model provides the following probabilities:
-- **Speaker A's Sentence:**  
-  1. $$P(\text{'Hello'}) = 0.3$$  
-  2. $$P(\text{','}|\text{'Hello'}) = 0.8$$  
-  3. $$P(\text{'how'}|\text{'Hello ,'}) = 0.5$$  
-  4. $$P(\text{'are'}|\text{'Hello , how'}) = 0.6$$  
-  5. $$P(\text{'you'}|\text{'Hello , how are'}) = 0.7$$  
-
-  $$P(\text{'Hello, how are you?'}) = 0.3 \cdot 0.8 \cdot 0.5 \cdot 0.6 \cdot 0.7 = 0.0504$$  
-
-- **Speaker B's Sentence:**  
-  1. $$P(\text{'I'}) = 0.4$$  
-  2. $$P(\text{'m'}|\text{'I'}) = 0.5$$  
-  3. $$P(\text{'fine'}|\text{'I m'}) = 0.6$$  
-  4. $$P(\text{','}|\text{'I m fine'}) = 0.7$$  
-  5. $$P(\text{'thank'}|\text{'I m fine ,'}) = 0.8$$  
-  6. $$P(\text{'you'}|\text{'I m fine , thank'}) = 0.9$$  
-
-  $$P(\text{'I\'m fine, thank you.'}) = 0.4 \cdot 0.5 \cdot 0.6 \cdot 0.7 \cdot 0.8 \cdot 0.9 = 0.06048$$  
-
-- **Total Probability for the Dialogue:**  
-  Combine the probabilities for both sentences:  
-  $$P(\text{'Hello, how are you? I\'m fine, thank you.'}) = P(\text{'Hello, how are you?'}) \cdot P(\text{'I\'m fine, thank you.'})$$  
-  $$P(\text{'Hello, how are you? I\'m fine, thank you.'}) = 0.0504 \cdot 0.06048 = 0.003048192$$  
-
-Thus, the total probability of the dialogue is approximately **0.00305**.
+## Table of Contents
+1. [Digital Signals and DSP Overview](#1-digital-signals-and-dsp-overview)
+2. [Filter Structures and Design](#2-filter-structures-and-design)
+3. [Transforms for Discrete-Time Signals](#3-transforms-for-discrete-time-signals)
+4. [Special Sequences and Corresponding Filters](#4-special-sequences-and-corresponding-filters)
 
 ---
 
-#### **Example 3: Partial Sentence Generation**
+## Course Overview
 
-Consider the sentence: "The dog barked loudly."
+This course extends undergraduate DSP to cover stochastic signals and advanced processing methods. The main topics are:
 
-The probabilities assigned by the language model are:
-- $$P(\text{'The'}) = 0.25$$  
-- $$P(\text{'dog'}|\text{'The'}) = 0.4$$  
-- $$P(\text{'barked'}|\text{'The dog'}) = 0.5$$  
-- $$P(\text{'loudly'}|\text{'The dog barked'}) = 0.6$$  
+- Foundations of discrete-time signal processing *(this chapter — review)*
+- Discrete random signal analysis (orthogonal transforms, parameter estimation)
+- Linear prediction and lattice filters
+- Linear modeling of random signals
+- Power spectral estimation
+- Optimal linear filtering: Wiener and Kalman filters
+- Adaptive filters
 
-Question 2: Calculate the total probability of the sentence $$P(\text{'The dog barked loudly'})$$ using the given probabilities.
+Optional/supplementary topics: multirate DSP, time-frequency analysis, spatial/MIMO processing, blind signal processing.
 
-### The Transformer Model: Revolutionizing Language Models
+---
 
-The emergence of the Transformer architecture marked a paradigm shift in how machines process and understand human language. Unlike its predecessors, which struggled with long-range patterns in text, this groundbreaking architecture introduced mechanisms that revolutionized natural language processing (NLP).
+## 1. Digital Signals and DSP Overview
 
-#### The Building Blocks of Language Understanding
+### 1.1 What is a Digital Signal?
 
-##### From Text to Machine-Readable Format
+A **digital signal** is a discrete-time, discrete-amplitude representation of a physical quantity. Common examples include:
 
-Before any sophisticated processing can occur, raw text must be converted into a format that machines can process. This happens in two crucial stages:
+- **Speech signals** — continuous pressure waves sampled at 8–44.1 kHz
+- **Image signals** — 2D arrays of pixel intensities
+- **Communication signals** — baseband sequences such as MPSK and M-QAM constellations (e.g., QPSK, 8-PSK, 16-QAM)
+- **Radar signals** — pulsed or frequency-diverse waveforms
 
-1. **Text Segmentation**
-The first challenge is breaking down text into meaningful units. Imagine building with LEGO blocks - just as you need individual blocks to create complex structures, language models need discrete pieces of text to work with. These pieces, called tokens, might be:
-- Complete words
-- Parts of words
-- Individual characters
-- Special symbols
+> **[PLACEHOLDER: Speech signal waveform in time domain]**
+> *Figure: A speech signal shown as a discrete sequence*
 
-For instance, the phrase "artificial intelligence" might become ["art", "ificial", "intel", "ligence"], allowing the model to recognize patterns even in unfamiliar words.
+> **[PLACEHOLDER: MPSK and M-QAM constellation diagrams]**
+> *Figure: Baseband communication signals — MPSK (M=4, M=8) and 16-QAM constellation maps*
 
-2. **Numerical Representation**
-Once we have our text pieces, each token gets transformed into a numerical vector - essentially a long list of numbers. Think of this as giving each word or piece its own unique mathematical "fingerprint" that captures its meaning and relationships with other words.
+> **[PLACEHOLDER: Radar signal waveform (frequency diversity)]**
+> *Figure: Radar signal with frequency diversity*
 
-##### Adding Sequential Understanding
+### 1.2 Applications of Signal Processing
 
-One of the most innovative aspects of Transformers is how they handle word order. Rather than treating text like a bag of unrelated words, the architecture adds precise positional information to each token's representation.
+DSP is foundational to virtually every modern technology domain:
 
-Consider how the meaning changes in these sentences:
-- "The cat chased the mouse"
-- "The mouse chased the cat"
+- **Wireless communications** — signal generation, compression, modulation/demodulation, channel estimation, equalization, source/channel coding (e.g., OFDM systems)
+- **Multimedia** — audio/video filtering, enhancement, compression, recognition, synthesis
+- **Radar and sonar** — filtering, detection, feature extraction, tracking, target recognition
+- **Biomedical engineering** — diagnostic monitoring, remote medicine
+- **Geophysics and meteorology** — seismic recording, weather signal processing
+- **Automatic control**
 
-The words are identical, but their positions completely change the meaning. The Transformer's positional encoding system ensures this crucial information isn't lost.
+> **[PLACEHOLDER: OFDM system block diagram]**
+> *Figure: OFDM transceiver — transmitter chain: encoding → interleaving → modulation → pilot insertion → S/P → IFFT → P/S → CP insertion → DAC → RF TX; receiver chain is symmetric*
 
-#### The Heart of the System: Information Processing
+### 1.3 General DSP System Pipeline
 
-##### Context Through Self-Attention
+A continuous-time bandlimited signal $x(t)$ is:
+1. **Anti-aliasing filtered** (lowpass filter, cutoff at $f_s/2$)
+2. **Sampled** by an A/D converter at rate $f_s \geq 2B$ (Nyquist–Shannon theorem)
+3. **Processed** by a discrete-time system with impulse response $h(n)$ via convolution
+4. **Reconstructed** by a D/A converter if a continuous output is needed
 
-The true magic of Transformers lies in their attention mechanism. Unlike humans who must read text sequentially, Transformers can simultaneously analyze relationships between all words in a text. This is similar to how you might solve a complex puzzle:
+> **[PLACEHOLDER: Speech digitization diagram showing time-domain and frequency-domain views at each stage]**
+> *Figure: Digitization pipeline for speech — input → anti-aliasing LPF → A/D converter → sampled signal, shown in both time and frequency domains*
 
-1. First, you look at all the pieces simultaneously
-2. Then, you identify which pieces are most likely to connect
-3. Finally, you use these relationships to build the complete picture
+This gives rise to two fundamental problems that form the backbone of DSP:
 
-In language, this means the model can:
-- Resolve pronouns ("She picked up her book" - who is "her" referring to?)
-- Understand idiomatic expressions ("kicked the bucket" means something very different from "kicked the ball")
-- Grasp long-distance dependencies ("The keys, which I thought I had left on the kitchen counter yesterday morning, were actually in my coat pocket")
+1. **Describing discrete-time systems**: difference equations, time-domain responses, frequency-domain responses, structural realizations → **Filters**
+2. **Describing and analyzing discrete-time signals efficiently**: z-transform, DTFT, DFT/FFT → **Transforms**
 
-#### Real-World Applications and Impact
+---
 
-The Transformer architecture has enabled breakthrough applications in:
-
-1. **Cross-Language Communication**
-- Real-time translation systems
-- Multilingual document processing
-
-2. **Content Creation and Analysis**
-- Automated report generation
-- Text summarization
-- Content recommendations
+## 2. Filter Structures and Design
 
-3. **Specialized Industry Applications**
-- Legal document analysis
-- Medical record processing
-- Scientific literature review
-
-#### The Road Ahead
-
-As this architecture continues to evolve, we're seeing:
-- More efficient processing methods
-- Better handling of specialized domains
-- Improved understanding of contextual nuances
-- Enhanced ability to work with multimodal inputs
-
-The Transformer architecture represents more than just a technical advancement - it's a fundamental shift in how machines can understand and process human language. Its impact continues to grow as researchers and developers find new ways to apply and improve upon its core principles.
-
-The true power of Transformers lies not just in their technical capabilities, but in how they've opened new possibilities for human-machine interaction and understanding. As we continue to refine and build upon this architecture, we're moving closer to systems that can truly understand and engage with human language in all its complexity and nuance.
-
-### What are large language models?
-
-Large language models are transformers with billions to trillions of parameters, trained on massive amounts of text data. These models have several distinguishing characteristics:
-
-1. **Scale**: Models contain billions of parameters and are trained on hundreds of billions of tokens
-2. **Architecture**: Based on the Transformer architecture with self-attention mechanisms
-3. **Emergent abilities**: Complex capabilities that emerge with scale
-4. **Few-shot learning**: Ability to adapt to new tasks with few examples
-
-- **Definition**: Large Language Models are artificial intelligence systems trained on vast amounts of text data, containing hundreds of billions of parameters. Unlike traditional AI models, they can understand and generate human-like text across a wide range of tasks and domains.
-
-- **Scale and Architecture**:
-  - Typically contain >1B parameters (Some exceed 500B)
-  - Built on Transformer architecture with attention mechanisms
-  - Require massive computational resources for training
-  - Examples: GPT-3 (175B), PaLM (540B), LLaMA (65B)
-
-- **Key Capabilities**:
-  - Natural language understanding and generation
-  - Task adaptation without fine-tuning
-  - Complex reasoning and problem solving
-  - Knowledge storage and retrieval
-  - Multi-turn conversation
-
-## Historical Evolution
-
-### 1. Statistical Language Models (SLM) - 1990s
-- **Core Technology**: Used statistical methods to predict next words based on previous context
-- **Key Features**: 
-  - N-gram models (bigram, trigram)
-  - Markov assumption for word prediction
-  - Used in early IR and NLP applications
-- **Limitations**:
-  - Curse of dimensionality
-  - Data sparsity issues
-  - Limited context window
-  - Required smoothing techniques
-
-### 2. Neural Language Models (NLM) - 2013
-- **Core Technology**: Neural networks for language modeling
-- **Key Advances**:
-  - Distributed word representations
-  - Multi-layer perceptron and RNN architectures
-  - End-to-end learning
-  - Better feature extraction
-- **Impact**:
-  - Word2vec and similar embedding models
-  - Improved generalization
-  - Reduced need for feature engineering
-
-### 3. Pre-trained Language Models (PLM) - 2018
-- **Core Technology**: Transformer-based models with pre-training
-- **Key Innovations**:
-  - BERT and bidirectional context modeling
-  - GPT and autoregressive modeling
-  - Transfer learning approach
-  - Fine-tuning paradigm
-- **Benefits**:
-  - Context-aware representations
-  - Better task performance
-  - Reduced need for task-specific data
-  - More efficient training
-
-### 4. Large Language Models (LLM) - 2020+
-- **Core Technology**: Scaled-up Transformer models
-- **Major Breakthroughs**:
-  - Emergence of new abilities with scale
-  - Few-shot and zero-shot learning
-  - General-purpose problem solving
-  - Human-like interaction capabilities
-- **Key Examples**:
-  - GPT-3: First demonstration of powerful in-context learning
-  - ChatGPT: Advanced conversational abilities
-  - GPT-4: Multimodal capabilities and improved reasoning
-  - PaLM: Enhanced multilingual and reasoning capabilities
-
-## Key Features of LLMs
-
-### Scaling Laws
-
-1. **KM Scaling Law (OpenAI)**:
-   - Describes relationship between model performance (measured by cross entropy loss $L$) and three factors:
-     - Model size ($N$)
-     - Dataset size ($D$)
-     - Computing power ($C$)
-   - Mathematical formulations:
-     - $L(N) = \left(\frac{N_c}{N}\right)^{\alpha_N}$, where $\alpha_N \sim 0.076$, $N_c \sim 8.8 \times 10^{13}$
-     - $L(D) = \left(\frac{D_c}{D}\right)^{\alpha_D}$, where $\alpha_D \sim 0.095$, $D_c \sim 5.4 \times 10^{13}$
-     - $L(C) = \left(\frac{C_c}{C}\right)^{\alpha_C}$, where $\alpha_C \sim 0.050$, $C_c \sim 3.1 \times 10^8$
-   - Predicts diminishing returns as model/data/compute scale increases
-   - Helps optimize resource allocation for training
-
-The KM scaling law does **not** claim that the training loss of a large language model is determined by a single variable such as model size, data size, or compute alone. Instead, it describes a *resource-limited regime* in which **one factor becomes the dominant bottleneck while the others are sufficiently large**. In large-scale language model training, model performance is jointly constrained by three resources: model capacity $N$, dataset size $D$, and total compute $C$. At any concrete training configuration, the final achievable loss is effectively governed by the *most limiting* of these three factors.
-
-The commonly cited formulations  
-$$
-L(N) = \left(\frac{N_c}{N}\right)^{\alpha_N}, \quad
-L(D) = \left(\frac{D_c}{D}\right)^{\alpha_D}, \quad
-L(C) = \left(\frac{C_c}{C}\right)^{\alpha_C}
-$$
-should therefore be understood as **conditional scaling relationships**, not unconditional ones. For example, the expression $L(N)$ holds only under the assumption that the dataset size and compute budget are already sufficient to fully utilize a model of size $N$. Formally, this corresponds to the regime
-$$
-D \ge D^\*(N), \quad C \ge C^\*(N),
-$$
-where $D^\*(N)$ and $C^\*(N)$ denote the minimum data and compute required for a model of size $N$ to reach its capacity-limited performance. If these conditions are not met, increasing $N$ alone will not meaningfully reduce loss, because the optimization is instead constrained by insufficient data or compute.
-
-More generally, the effective training loss can be approximated as
-$$
-L(N, D, C) \;\approx\; \max\big( L_N(N),\; L_D(D),\; L_C(C) \big),
-$$
-meaning that performance is controlled by whichever resource currently forms the tightest bottleneck. Only when model size is the limiting factor do we observe the clean power-law decay described by $L(N)$; analogous interpretations apply to $L(D)$ and $L(C)$.
-
-From this perspective, the KM scaling law reveals a *shortest-board effect* rather than a single-variable causal rule. It characterizes the **upper-bound performance trajectory** achievable under well-balanced resource scaling, not the outcome of arbitrary training setups. Consequently, meaningful performance improvements require model size, data, and compute to scale *in concert*, following approximate proportional relationships such as
-$$
-D^\*(N) \propto N, \quad C^\*(N) \propto N^{1.3}.
-$$
-Failing to respect these relationships leads to wasted resources and diminishing or nonexistent returns.
-
-In summary, the KM scaling law should be interpreted as a statement about *capacity realization under matched resources*: it explains how performance improves when a single factor is allowed to scale while all others are no longer constraining. It does not imply that loss is inherently a function of only one variable, nor does it guarantee improvements from naive scaling in isolation.
-
-2. **Chinchilla Scaling Law (DeepMind)**:
-   - **Mathematical formulation**:
-     - $L(N,D) = E + \frac{A}{N^\alpha} + \frac{B}{D^\beta}$
-     - where $E = 1.69$, $A = 406.4$, $B = 410.7$, $\alpha = 0.34$, $\beta = 0.28$
-   - **Optimal compute allocation**:
-     - $N_{opt}(C) = G\left(\frac{C}{6}\right)^a$
-     - $D_{opt}(C) = G^{-1}\left(\frac{C}{6}\right)^b$
-     - where $a = \frac{\alpha}{\alpha+\beta}$, $b = \frac{\beta}{\alpha+\beta}$
-   - Suggests equal scaling of model and data size
-   - More efficient compute utilization than KM scaling law
-   - Demonstrated superior performance with smaller models trained on more data
-
-### Emergent Abilities
-
-1. **In-context Learning**
-   - **Definition**: Ability to learn from examples in the prompt
-   - **Characteristics**:
-     - No parameter updates required
-     - Few-shot and zero-shot capabilities
-     - Task adaptation through demonstrations
-   - **Emergence Point**: 
-     - GPT-3 showed first strong results
-
-Question 3: Design a few-shot prompt that can classify the film topic by the film name. It must be able to correctly classify more than 5 films proposed by other students. Using ChatGPT as the test LLM.
-
-2. **Instruction Following**
-   - **Definition**: Ability to understand and execute natural language instructions
-   - **Requirements**:
-     - Instruction tuning
-     - Multi-task training
-     - Natural language task descriptions
-
-3. **Step-by-step Reasoning**
-   - **Definition**: Ability to break down complex problems
-   - **Techniques**:
-     - Chain-of-thought prompting
-     - Self-consistency methods
-     - Intermediate step generation
-   - **Benefits**:
-     - Better problem solving
-     - More reliable answers
-     - Transparent reasoning process
-
-## Technical Elements
-
-### Architecture
-
-1. **Transformer Base**
-   - **Components**:
-     - Multi-head attention mechanism
-     - Feed-forward neural networks
-     - Layer normalization
-     - Positional encoding
-   - **Variations**:
-     - Decoder-only (GPT-style)
-     - Encoder-decoder (T5-style)
-     - Modifications for efficiency
-
-2. **Scaling Considerations**
-   - **Hardware Requirements**:
-     - Distributed training systems
-     - Memory optimization
-     - Parallel processing
-   - **Architecture Choices**:
-     - Layer count
-     - Hidden dimension size
-     - Attention head configuration
-
-### Training Process
-
-1. **Pre-training**
-   - **Data Preparation**:
-     - Web text
-     - Books
-     - Code
-     - Scientific papers
-   - **Objectives**:
-     - Next token prediction
-     - Masked language modeling
-     - Multiple auxiliary tasks
-
-2. **Adaptation Methods**
-   - **Instruction Tuning**:
-     - Natural language task descriptions
-     - Multi-task learning
-     - Task generalization
-   - **RLHF**:
-     - Human preference learning
-     - Safety alignment
-     - Behavior optimization
-
-### Utilization Techniques
-
-1. **Prompting Strategies**
-   - **Basic Prompting**:
-     - Direct instructions
-     - Few-shot examples
-     - Zero-shot prompts
-   - **Advanced Methods**:
-     - Chain-of-thought
-     - Self-consistency
-     - Tool augmentation
-
-2. **Application Patterns**
-   - **Task Types**:
-     - Generation
-     - Classification
-     - Question answering
-     - Coding
-   - **Integration Methods**:
-     - API endpoints
-     - Model serving
-     - Application backends
-
-## Major Milestones
-
-### ChatGPT (2022)
-1. **Technical Achievements**
-   - Advanced dialogue capabilities
-   - Robust safety measures
-   - Consistent persona
-   - Tool integration
-
-2. **Impact**
-   - Widespread adoption
-   - New application paradigms
-   - Industry transformation
-   - Public AI awareness
-
-### GPT-4 (2023)
-1. **Key Advances**
-   - Multimodal understanding
-   - Enhanced reliability
-   - Better reasoning
-   - Improved safety
-
-2. **Technical Features**
-   - Predictable scaling
-   - Vision capabilities
-   - Longer context window
-   - Advanced system prompting
-
-## Challenges and Future Directions
-
-### Current Challenges
-
-1. **Computational Resources**
-   - **Training Costs**:
-     - Massive energy requirements
-     - Expensive hardware needs
-     - Limited accessibility
-   - **Infrastructure Needs**:
-     - Specialized facilities
-     - Cooling systems
-     - Power management
-
-2. **Data Requirements**
-   - **Quality Issues**:
-     - Data cleaning
-     - Content filtering
-     - Bias mitigation
-   - **Privacy Concerns**:
-     - Personal information
-     - Copyright issues
-     - Regulatory compliance
-
-3. **Safety and Alignment**
-   - **Technical Challenges**:
-     - Hallucination prevention
-     - Truthfulness
-     - Bias detection
-   - **Ethical Considerations**:
-     - Harm prevention
-     - Fairness
-     - Transparency
-
-### Future Directions
-
-1. **Improved Efficiency**
-   - **Architecture Innovation**:
-     - Sparse attention
-     - Parameter efficiency
-     - Memory optimization
-   - **Training Methods**:
-     - Better scaling laws
-     - Efficient fine-tuning
-     - Reduced compute needs
-
-2. **Enhanced Capabilities**
-   - **Multimodal Understanding**:
-     - Vision-language integration
-     - Audio processing
-     - Sensor data interpretation
-   - **Reasoning Abilities**:
-     - Logical deduction
-     - Mathematical problem solving
-     - Scientific reasoning
-
-3. **Safety Development**
-   - **Alignment Techniques**:
-     - Value learning
-     - Preference optimization
-     - Safety bounds
-   - **Evaluation Methods**:
-     - Robustness testing
-     - Safety metrics
-     - Bias assessment
-
-## Summary
-
-- LLMs represent a fundamental shift in AI capabilities
-- Scale and architecture drive emergent abilities
-- Continuing rapid development in capabilities
-- Balance between advancement and safety
-- Growing impact on society and technology
-- Need for responsible development and deployment
-
-## References and Further Reading
-- Scaling Laws Papers
-- Emergent Abilities Research
-- Safety and Alignment Studies
-- Technical Documentation
-- Industry Reports
-
-Paper Reading: [A Survey of Large Language Models](https://arxiv.org/pdf/2303.18223)
+### 2.1 FIR Filter Implementations
+
+An FIR (Finite Impulse Response) filter of order $M$ has transfer function:
+
+$$H(z) = \sum_{n=0}^{M} h(n) z^{-n}$$
+
+with frequency response:
+
+$$H(e^{j\omega}) = \sum_{n=0}^{M} h(n) e^{-j\omega n}$$
+
+#### 2.1.1 Direct Form (Transversal Filter)
+
+The output is a weighted sum of the current and past $M$ inputs:
+
+$$y(n) = \sum_{m=0}^{M} h(m)\, x(n - m)$$
+
+This is implemented as a tapped delay line. Computationally straightforward but requires $M+1$ multiplications per output sample.
+
+> **[PLACEHOLDER: Transversal (direct form) FIR filter signal flow graph]**
+> *Figure: Direct-form FIR — shift register of $z^{-1}$ delays, each output tapped and multiplied by $h[m]$, summed to produce $y[n]$*
+
+#### 2.1.2 Cascade (Factored) Form
+
+$H(z)$ is factored into second-order sections (biquads):
+
+$$H(z) = \prod_{k=1}^{M_s} H_k(z), \quad H_k(z) = b_{0k} + b_{1k}z^{-1} + b_{2k}z^{-2}$$
+
+Each section is implemented as a small FIR. This is numerically more robust than the direct form for high-order filters.
+
+> **[PLACEHOLDER: Cascade FIR filter structure diagram]**
+> *Figure: Cascade implementation — series of second-order FIR sections*
+
+#### 2.1.3 Recursive (IIR-based) Realization and Comb Filter
+
+A uniform averaging filter (moving average):
+
+$$h(n) = \begin{cases} 1/N & n = 0, 1, \ldots, N-1 \\ 0 & \text{otherwise} \end{cases}$$
+
+has transfer function:
+
+$$H(z) = \frac{1}{N}\sum_{n=0}^{N-1}z^{-n} = \frac{1}{N} \cdot \frac{1 - z^{-N}}{1 - z^{-1}}$$
+
+This can be decomposed as $H(z) = H_1(z) \cdot H_2(z)$ where:
+- $H_1(z) = \frac{1-z^{-N}}{N}$ — an FIR **comb filter** (zeros at $N$-th roots of unity)
+- $H_2(z) = \frac{1}{1-z^{-1}}$ — a first-order IIR accumulator
+
+The pole-zero cancellation preserves the FIR nature, while the recursive structure reduces computation from $N$ to 2 operations per sample.
+
+#### 2.1.4 Frequency Sampling Form
+
+When the DFT values $H(k)$ are known, $H(z)$ can be written as:
+
+$$H(z) = \frac{1 - z^{-N}}{N} \sum_{k=0}^{N-1} \frac{H(k)}{1 - W_N^{-k} z^{-1}}, \quad W_N = e^{-j2\pi/N}$$
+
+This combines a comb filter ($1 - z^{-N}$) cascaded with a bank of first-order resonators tuned to the DFT frequencies. Useful when the desired frequency response is specified at discrete frequencies.
+
+> **[PLACEHOLDER: Frequency sampling FIR structure diagram]**
+> *Figure: Frequency-sampling realization — comb filter feeding a parallel bank of first-order resonators*
+
+---
+
+### 2.2 IIR Filter Implementations
+
+An IIR (Infinite Impulse Response) filter has both poles and zeros:
+
+$$H(z) = \frac{\sum_{k=0}^{N} a_k z^{-k}}{1 + \sum_{k=1}^{N} b_k z^{-k}}$$
+
+#### 2.2.1 Direct Form I
+
+Implements the difference equation directly with two separate delay chains — one for the input $x(n)$ (FIR part) and one for the output $y(n)$ (IIR part). Requires $2N$ delay elements.
+
+> **[PLACEHOLDER: Direct Form I IIR filter signal flow graph]**
+> *Figure: Direct Form I — left delay chain for input terms $x(n-k)$, right delay chain for feedback terms $y(n-k)$*
+
+#### 2.2.2 Direct Form II (Canonical Form)
+
+Merges the two delay chains by exploiting linearity. Requires only $N$ delay elements — the minimum possible (canonical form). The intermediate state variable is $u(n)$.
+
+$$u(n) = x(n) - \sum_{k=1}^{N} b_k u(n-k)$$
+$$y(n) = \sum_{k=0}^{N} a_k u(n-k)$$
+
+> **[PLACEHOLDER: Direct Form II IIR filter signal flow graph]**
+> *Figure: Direct Form II — single shared delay chain, feedback on the left, feedforward on the right*
+
+#### 2.2.3 Cascade Form
+
+$H(z)$ is factored into second-order sections:
+
+$$H(z) = \prod_{k=1}^{N/2} \frac{a_{0k} + a_{1k}z^{-1} + a_{2k}z^{-2}}{1 + b_{1k}z^{-1} + b_{2k}z^{-2}}$$
+
+Each biquad is implemented as a Direct Form II section. Cascade form is numerically superior to high-order direct forms because coefficient sensitivity is localized.
+
+> **[PLACEHOLDER: IIR cascade form signal flow graph]**
+> *Figure: IIR cascade — series of biquad (second-order) sections*
+
+#### 2.2.4 Parallel Form
+
+$H(z)$ is expanded via partial fractions:
+
+$$H(z) = C + \sum_{k=1}^{N/2} \frac{a_{0k} + a_{1k}z^{-1}}{1 + b_{1k}z^{-1} + b_{2k}z^{-2}}$$
+
+The parallel form generally has the best numerical performance because the poles of each section are independent, and round-off errors do not accumulate.
+
+> **[PLACEHOLDER: IIR parallel form signal flow graph]**
+> *Figure: Parallel IIR — constant $C$ plus parallel bank of second-order sections*
+
+---
+
+### 2.3 Filter Design
+
+The goal of filter design is to find coefficients $h(n)$ (FIR) or $\{a_k, b_k\}$ (IIR) such that the frequency response $|H(e^{j\omega})|$ approximates a desired response $|H_d(\nu)|$.
+
+Common ideal magnitude responses:
+- **(a) Lowpass**: passband $[0, \nu_1]$, stopband $[\nu_1, 1]$
+- **(b) Highpass**: stopband $[0, \nu_1]$, passband $[\nu_1, 1]$
+- **(c) Bandpass**: passband $[\nu_1, \nu_2]$
+- **(d) Bandstop**: stopband $[\nu_1, \nu_2]$
+
+> **[PLACEHOLDER: Four ideal filter magnitude response plots (lowpass, highpass, bandpass, bandstop)]**
+> *Figure: Ideal filter shapes — (a) lowpass, (b) highpass, (c) bandpass, (d) bandstop*
+
+**Practical filters** have transition bands and ripple:
+
+- Passband ripple $\delta_1$: $1 - \delta_1 \leq |H(e^{j\omega})| \leq 1 + \delta_1$ for $\omega \leq \omega_c$
+- Stopband attenuation $\delta_2$: $|H(e^{j\omega})| \leq \delta_2$ for $\omega \geq \omega_{st}$
+
+> **[PLACEHOLDER: Practical filter frequency response with passband ripple and stopband attenuation labeled]**
+> *Figure: Practical filter spec — passband, transition band, stopband, with ripple tolerances $\delta_1$ and $\delta_2$*
+
+A rough estimate of required filter order for equiripple FIR design:
+
+$$N \approx \frac{-20\log_{10}\sqrt{\delta_1 \delta_2} - 13}{14.6 \cdot F_{st}}$$
+
+where $F_{st} = (\omega_{st} - \omega_c)/(2\pi)$ is the normalized transition bandwidth.
+
+#### 2.3.1 FIR Filter Design Methods
+
+1. **Linear phase property**: FIR filters can have *exactly* linear phase (constant group delay), which is critical for applications like audio and data communications. This requires $h(n)$ to be either **even-symmetric** ($h(n) = h(N-1-n)$) or **odd-symmetric** ($h(n) = -h(N-1-n)$).
+
+2. **Window method**: Start with the ideal (infinite-length) impulse response $h_d(n)$, then truncate using a window $w(n)$:
+   $$h(n) = w(n) \cdot h_d(n)$$
+   Window choice (rectangular, Hann, Hamming, Blackman, Kaiser) trades off transition width vs. stopband attenuation.
+
+3. **Frequency sampling method**: Specify the desired response at $N$ DFT frequencies, compute the IDFT to get $h(n)$. Transition band samples can be optimized to reduce ripple.
+
+4. **Chebyshev (equiripple) approximation**: Minimize the maximum error $\|H(e^{j\omega}) - H_d(e^{j\omega})\|_\infty$ over specified frequency bands. The Parks-McClellan algorithm (based on the Remez exchange algorithm) gives the optimal solution. Requires computer-aided design tools.
+
+#### 2.3.2 IIR Filter Design Methods
+
+1. **Analog prototype design**: Design a classical analog filter (Butterworth, Chebyshev I/II, Elliptic) in the $s$-domain.
+2. **Impulse invariance method**: Map the analog prototype to digital by matching the impulse response at sample points. Prone to aliasing; only suitable for lowpass/bandpass designs.
+3. **Bilinear z-transform method**: Map $s \to \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}$. No aliasing, but introduces nonlinear frequency warping — pre-warp the critical frequencies to compensate.
+4. **Frequency transformation method**: Design a digital lowpass prototype, then apply a digital frequency transformation to obtain highpass, bandpass, or bandstop designs.
+
+---
+
+## 3. Transforms for Discrete-Time Signals
+
+### 3.1 DTFT and z-Transform
+
+The **Discrete-Time Fourier Transform (DTFT)** generalizes the continuous Fourier transform to discrete sequences:
+
+$$X(e^{j\omega}) = \sum_{n=-\infty}^{\infty} x(n)\, e^{-j\omega n}$$
+
+$$x(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})\, e^{j\omega n}\, d\omega$$
+
+The **z-Transform** is the generalization to the complex plane:
+
+$$X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}$$
+
+**Key relationship**: The DTFT is the z-transform evaluated on the unit circle:
+
+$$X(e^{j\omega}) = X(z)\big|_{z = e^{j\omega}}$$
+
+This is valid only when the ROC (Region of Convergence) of $X(z)$ includes the unit circle.
+
+#### DTFT Properties
+
+| Property | Time Domain | ↔ | Frequency Domain |
+|---|---|---|---|
+| Linearity | $ax(n) + by(n)$ | ↔ | $aX(e^{j\omega}) + bY(e^{j\omega})$ |
+| Time shift | $x(n - n_0)$ | ↔ | $e^{-j\omega n_0} X(e^{j\omega})$ |
+| Frequency shift | $e^{j\omega_0 n} x(n)$ | ↔ | $X(e^{j(\omega - \omega_0)})$ |
+| Modulation | $x(n)\cos\omega_0 n$ | ↔ | $\frac{1}{2}[X(e^{j(\omega-\omega_0)}) + X(e^{j(\omega+\omega_0)})]$ |
+| Conjugate | $x^*(n)$ | ↔ | $X^*(e^{-j\omega})$ |
+| Time reversal | $x(-n)$ | ↔ | $X(e^{-j\omega})$ |
+| Convolution | $x(n) * y(n)$ | ↔ | $X(e^{j\omega})Y(e^{j\omega})$ |
+| Correlation | $\sum_k x(k)y(n+k)$ | ↔ | $X(e^{j\omega})Y(e^{-j\omega})$ |
+| Multiplication | $x(n)y(n)$ | ↔ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\theta})Y(e^{-j(\omega-\theta)})d\theta$ |
+| Freq. differentiation | $nx(n)$ | ↔ | $j\frac{d}{d\omega}X(e^{j\omega})$ |
+| Parseval's theorem | $\sum_{n=-\infty}^{\infty} x(n)y^*(n)$ | $=$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})Y^*(e^{j\omega})d\omega$ |
+
+#### z-Transform Properties
+
+| Property | Time Sequence | ↔ | z-Transform | ROC |
+|---|---|---|---|---|
+| Linearity | $ax(n)+by(n)$ | ↔ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
+| Time shift | $x(n-K)$ | ↔ | $z^{-K}X(z)$ | $\text{ROC}_x$ (excl. $z=0$ if $K>0$) |
+| z-domain scaling | $\alpha^n x(n)$ | ↔ | $X(z/\alpha)$ | $|\alpha|r_1 < |z| < |\alpha|r_2$ |
+| Conjugate | $x^*(n)$ | ↔ | $X^*(z^*)$ | $\text{ROC}_x$ |
+| Time reversal | $x(-n)$ | ↔ | $X(1/z)$ | $1/r_2 < |z| < 1/r_1$ |
+| Convolution | $x(n)*y(n)$ | ↔ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
+| Correlation | $x(n)*y(-n)$ | ↔ | $X(z)Y(z^{-1})$ | — |
+| z-domain diff. | $nx(n)$ | ↔ | $-z\frac{d}{dz}X(z)$ | $\text{ROC}_x$ |
+| Initial value | $x(0)$ (causal) | — | $\lim_{z\to\infty} X(z)$ | — |
+| Parseval | $\sum x(n)y^*(n)$ | $=$ | $\frac{1}{2\pi j}\oint X(v)Y^*(1/v^*)v^{-1}dv$ | — |
+
+#### Common z-Transform Pairs
+
+| Sequence | z-Transform | ROC |
+|---|---|---|
+| $\delta(n)$ | $1$ | All $z$ |
+| $\alpha^n u(n)$ | $\frac{1}{1-\alpha z^{-1}}$ | $|z| > |\alpha|$ |
+| $-\alpha^n u(-n-1)$ | $\frac{1}{1-\alpha z^{-1}}$ | $|z| < |\alpha|$ |
+| $[\alpha^n u(n) - \alpha^n u(n-N)]$ | $\frac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $|z| > 0$ |
+| $\alpha^{|n|}$ | $\frac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $|\alpha| < |z| < 1/|\alpha|$ |
+
+---
+
+### 3.2 DFT (Discrete Fourier Transform)
+
+For a finite-length sequence of length $N$, the DTFT is continuous in frequency. The DFT samples it at $N$ equally spaced points on the unit circle:
+
+$$X(k) = \sum_{n=0}^{N-1} x(n) W_N^{nk}, \quad k = 0, 1, \ldots, N-1$$
+
+$$x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k) W_N^{-nk}, \quad n = 0, 1, \ldots, N-1$$
+
+where $W_N = e^{-j2\pi/N}$.
+
+**Key points:**
+- The DFT is related to the DFS (Discrete Fourier Series) of a periodically extended sequence
+- $X(k)$ represents the spectrum sampled at frequencies $\omega_k = 2\pi k/N$
+- The DFT is the workhorse of spectral analysis and fast convolution
+
+Key DFT properties include linearity, circular shift, circular convolution (time-domain multiplication ↔ frequency-domain circular convolution), conjugate symmetry for real inputs, and Parseval's theorem.
+
+---
+
+### 3.3 FFT (Fast Fourier Transform)
+
+The naive DFT computation requires $O(N^2)$ operations. The FFT exploits two properties of $W_N$:
+
+1. **Periodicity**: $W_N^{r+N} = W_N^r$
+2. **Symmetry**: $W_N^{r+N/2} = -W_N^r$
+
+Using a **divide-and-conquer** strategy, an $N$-point DFT is split into smaller DFTs, reducing complexity to $O(N \log_2 N)$.
+
+#### Radix-2 Decimation-in-Time (DIT) FFT
+
+Split $x(n)$ into **even-indexed** and **odd-indexed** subsequences:
+
+$$X(k) = \sum_{n \text{ even}} x(n)W_N^{nk} + \sum_{n \text{ odd}} x(n)W_N^{nk} = U(k) + W_N^k V(k)$$
+
+$$X(k+N/2) = U(k) - W_N^k V(k)$$
+
+This "butterfly" structure is applied recursively. For $N = 2^m$:
+- **Multiplications**: $\frac{N}{2}\log_2 N$
+- **Additions**: $N\log_2 N$
+
+For $N = 1024$: naive DFT needs ~$10^6$ multiplications; FFT needs only ~$5000$.
+
+> **[PLACEHOLDER: N=8 DIT-FFT butterfly diagram (first decomposition stage)]**
+> *Figure: 8-point DIT FFT — input split into even/odd groups, each fed to a 4-point DFT, combined via butterfly operations with twiddle factors $W_8^k$*
+
+#### Radix-2 Decimation-in-Frequency (DIF) FFT
+
+Split $x(n)$ into **first half** and **second half**:
+
+$$X(2k) = \sum_{n=0}^{N/2-1}[x(n) + x(n+N/2)]W_{N/2}^{nk}$$
+$$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]W_N^n W_{N/2}^{nk}$$
+
+#### Bit-Reversal Permutation
+
+In DIT-FFT, the input must be reordered in **bit-reversed** order before the butterfly stages (or equivalently, the output in DIF-FFT is bit-reversed). For example, with $N=8$: index $6$ (binary `110`) maps to index $3$ (binary `011`).
+
+#### FFT Variants
+
+- **Radix-4 FFT**: Groups of 4; reduces multiplicative count further
+- **Split-radix FFT**: Best known operation count for power-of-2 $N$
+- **Mixed-radix FFT**: Handles arbitrary $N$ by factoring $N = N_1 \times N_2 \times \cdots$
+
+#### FFT for Spectral Analysis
+
+The DFT/FFT maps a time-domain sequence to its frequency content. Practical considerations:
+- **Frequency resolution**: $\Delta f = f_s / N$ — more points → finer resolution
+- **Spectral leakage**: Caused by finite observation window; mitigated by windowing
+- **Zero-padding**: Increases DFT size beyond the signal length for interpolated display (does not add true resolution)
+
+---
+
+## 4. Special Sequences and Corresponding Filters
+
+### 4.1 Allpass Sequences and Allpass Filters
+
+An **allpass filter** has unit magnitude response at all frequencies:
+
+$$|H_{ap}(e^{j\omega})| = 1 \quad \forall\, \omega$$
+
+This implies:
+
+$$H_{ap}(e^{j\omega}) H_{ap}^*(e^{j\omega}) = 1$$
+$$h_{ap}(n) * h_{ap}^*(-n) = \delta(n)$$
+$$H_{ap}(z) H_{ap}^*(1/z^*) = 1$$
+
+**Pole-zero structure**: For a rational allpass filter, every pole at $z = c$ is paired with a zero at $z = 1/c^*$ (its conjugate reciprocal). Poles inside the unit circle have corresponding zeros outside, and vice versa.
+
+**First-order allpass**:
+
+$$H_{ap1}(z) = \frac{z^{-1} - c^*}{1 - c z^{-1}}$$
+
+**General $N$-th order allpass**:
+
+$$H_{ap2}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^*}{1 - \alpha_k z^{-1}}$$
+
+**General form** (with $A(z) = 1 + a_1 z^{-1} + \cdots + a_N z^{-N}$):
+
+$$H_{ap}(z) = z^M \frac{A^*(1/z^*)}{z^{N-M} A(z)} = \frac{z^{-N} + a_1^* z^{-N+1} + \cdots + a_N^*}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
+
+The numerator is the "conjugate-reversed" polynomial of the denominator.
+
+**Use case**: Allpass filters are used for phase equalization (correcting phase distortion while preserving magnitude) and as building blocks in lattice filters and filter banks.
+
+> **[PLACEHOLDER: Pole-zero diagram for first-order allpass filter]**
+> *Figure: Allpass pole at $z=c$ (inside unit circle) with zero at $z=1/c^*$ (outside unit circle)*
+
+---
+
+### 4.2 Minimum-Phase Sequences and Filters
+
+A causal, stable filter $H_m(z)$ is **minimum-phase** if and only if:
+
+1. It is **stable** (ROC includes the unit circle)
+2. It is **causal** (right-sided sequence)
+3. **All zeros are inside or on the unit circle**
+
+Among all stable, causal filters with the same magnitude response, the minimum-phase filter has the smallest phase lag at every frequency and the fastest energy buildup in its impulse response.
+
+**Key Theorem (Minimum-Phase/Allpass Decomposition)**:
+
+> *Any stable, non-minimum-phase filter $H(z)$ can be uniquely decomposed as:*
+> $$H(z) = H_{ap}(z) \cdot H_m(z)$$
+> *where $H_m(z)$ is minimum-phase and $H_{ap}(z)$ is allpass.*
+
+**Construction**: 
+- All poles and zeros inside or on the unit circle → assign to $H_m(z)$
+- For each zero at $z = c$ outside the unit circle: add a zero at $z = 1/c^*$ to $H_m(z)$ (moving it inside), and add a corresponding allpass factor with pole at $z = 1/c^*$ and zero at $z = c$ to $H_{ap}(z)$
+
+> **[PLACEHOLDER: Pole-zero diagram showing decomposition H(z) = H_ap(z) × H_m(z)]**
+> *Figure: Decomposition — original H(z) with zeros inside and outside unit circle → allpass H_ap(z) plus minimum-phase H_m(z)*
+
+---
+
+### 4.3 Linear-Phase Sequences and Filters
+
+An FIR filter has **generalized linear phase** if:
+
+$$H(e^{j\omega}) = e^{j\beta} e^{-j\alpha\omega} A(e^{j\omega})$$
+
+where $A(e^{j\omega})$ is real-valued. This requires the impulse response to satisfy a symmetry condition.
+
+The z-transform satisfies:
+
+$$H(z) = \pm z^{-N} H(1/z)$$
+
+**Strict linear phase** (real $h(n)$): even symmetry $h(n) = h(N-1-n)$.
+
+#### Four Types of Linear-Phase FIR Filters
+
+Classified by symmetry type and whether $N$ (length) is odd or even:
+
+| Type | Symmetry | Length $N+1$ | Phase | $H(e^{j\omega})$ form |
+|------|----------|----------|-------|-----------------------|
+| **I** | Even ($h(n)=h(N{-}1{-}n)$) | **Odd** | $\varphi(\omega) = -\omega\frac{N-1}{2}$ | $\sum_{n=0}^{(N-1)/2} a(n)\cos n\omega$ |
+| **II** | Even | **Even** | $\varphi(\omega) = -\omega\frac{N-1}{2}$ | $\sum_{n=1}^{N/2} b(n)\cos[(n-\frac{1}{2})\omega]$ |
+| **III** | Odd ($h(n)=-h(N{-}1{-}n)$) | **Odd** | $\varphi(\omega) = -\omega\frac{N-1}{2} - \frac{\pi}{2}$ | $\sum_{n=1}^{(N-1)/2} c(n)\sin n\omega$ |
+| **IV** | Odd | **Even** | $\varphi(\omega) = -\omega\frac{N-1}{2} - \frac{\pi}{2}$ | $\sum_{n=1}^{N/2} d(n)\sin[(n-\frac{1}{2})\omega]$ |
+
+> **[PLACEHOLDER: Four-panel figure showing h(n), a/b/c/d(n), and H(ω) for each of the four linear-phase FIR types]**
+> *Figure: All four types of linear-phase FIR filters — impulse response symmetry, reduced coefficients, and magnitude response shape*
+
+#### Applicable Filter Types per Class
+
+| Type | Lowpass | Highpass | Bandpass | Bandstop |
+|------|---------|----------|----------|----------|
+| I | ✓ | ✓ | ✓ | ✓ |
+| II | ✓ | ✗ | ✓ | ✗ |
+| III | ✗ | ✗ | ✓ | ✗ |
+| IV | ✗ | ✓ | ✓ | ✗ |
+
+**Explanation of constraints**:
+- **Type II**: forced zero at $\omega = \pi$ (i.e., $z = -1$) due to the half-sample delay structure → cannot be highpass or bandstop
+- **Type III**: forced zeros at both $\omega = 0$ and $\omega = \pi$ → only useful for bandpass (e.g., differentiators, Hilbert transformers)
+- **Type IV**: forced zero at $\omega = 0$ → cannot be lowpass or bandstop; useful for highpass and Hilbert transformers
+
+---
+
+### 4.4 Conjugate-Symmetric and Positive Semi-Definite Sequences
+
+A sequence $r(n)$ is **Hermitian (conjugate-symmetric)** if:
+
+$$r(n) = r^*(-n)$$
+
+Its DTFT $R(e^{j\omega})$ is **real-valued**:
+
+$$R(e^{j\omega}) = R^*(e^{j\omega}) \in \mathbb{R}$$
+
+Its z-transform satisfies:
+
+$$R(z) = R^*(1/z^*)$$
+
+A Hermitian sequence is **positive semi-definite** if additionally $R(e^{j\omega}) \geq 0$ for all $\omega$. Such sequences are precisely **autocorrelation sequences** — they arise as $r(n) = \sum_k x(k) x^*(k-n)$ for some signal $x(n)$.
+
+**Spectral factorization**: If $R(z)$ is a rational positive semi-definite sequence, it can be factored as:
+
+$$R(z) = H_m(z) H_m^*(1/z^*)$$
+
+where $H_m(z)$ is minimum-phase. On the unit circle:
+
+$$R(e^{j\omega}) = |H_m(e^{j\omega})|^2$$
+
+**Theorem (Zero pairing for positive semi-definite sequences)**:
+If $r(n)$ is positive semi-definite with rational z-transform, then zeros on the unit circle occur in **conjugate pairs** (even multiplicity), and zeros off the unit circle occur in **quadruples** $\{z_0,\, z_0^*,\, 1/z_0,\, 1/z_0^*\}$.
+
+This spectral factorization theorem is fundamental to Wiener filter theory, linear prediction, and power spectral estimation covered in later chapters.
+
+---
+
+## Summary: Chapter 1 Key Results
+
+| Concept | Key Property | Application |
+|---|---|---|
+| FIR direct form | $y(n) = \sum_m h(m)x(n-m)$ | Simple, always stable |
+| IIR Direct Form II | Canonical (minimum delays) | Efficient implementation |
+| IIR Parallel Form | Best numerical properties | High-order stable filters |
+| DTFT | Spectrum on unit circle | Frequency analysis |
+| z-Transform | Generalizes DTFT to complex plane | System analysis, filter design |
+| DFT | Sampled DTFT for finite sequences | Numerical computation |
+| FFT | $O(N\log N)$ DFT algorithm | Fast convolution, spectral analysis |
+| Allpass filter | $\|H_{ap}(e^{j\omega})\| = 1$ | Phase equalization |
+| Minimum-phase | All zeros inside unit circle | Causal inverse, minimum delay |
+| Linear-phase FIR | Symmetric $h(n)$ | Distortion-free filtering |
+| Positive semi-definite | $R(e^{j\omega}) \geq 0$ | Autocorrelation, spectral factorization |
