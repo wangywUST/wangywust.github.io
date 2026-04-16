@@ -38,8 +38,7 @@ A **digital signal** is a discrete-time, discrete-amplitude representation of a 
 - **Communication signals** — baseband sequences such as MPSK and M-QAM constellations (e.g., QPSK, 8-PSK, 16-QAM)
 - **Radar signals** — pulsed or frequency-diverse waveforms
 
-A **digital signal** is a discrete-time, discrete-amplitude representation of a
-physical quantity. Three representative examples are shown below:
+A **digital signal** is a discrete-time, discrete-amplitude representation of a physical quantity. Three representative examples are shown below:
 
 > **[PLACEHOLDER: Speech signal waveform]**
 > *Figure 1.1: A speech signal — continuous pressure waves sampled at a fixed rate,
@@ -53,8 +52,7 @@ physical quantity. Three representative examples are shown below:
 > *Figure 1.3: A frequency-diverse radar signal — shows how the carrier frequency
 > shifts across pulses to improve target discrimination*
 
-Other common digital signals include image signals (2D pixel arrays), audio, and
-biomedical recordings such as ECG.
+Other common digital signals include image signals (2D pixel arrays), audio, and biomedical recordings such as ECG.
 
 ### 1.2 Applications of Signal Processing
 
