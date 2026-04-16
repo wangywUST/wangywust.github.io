@@ -300,10 +300,10 @@ This is valid only when the ROC (Region of Convergence) of $X(z)$ includes the u
 | Sequence | z-Transform | ROC |
 |---|---|---|
 | $\delta(n)$ | $1$ | All $z$ |
-| $\alpha^n u(n)$ | $\frac{1}{1-\alpha z^{-1}}$ | $|z| > |\alpha|$ |
-| $-\alpha^n u(-n-1)$ | $\frac{1}{1-\alpha z^{-1}}$ | $|z| < |\alpha|$ |
-| $[\alpha^n u(n) - \alpha^n u(n-N)]$ | $\frac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $|z| > 0$ |
-| $\alpha^{|n|}$ | $\frac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $|\alpha| < |z| < 1/|\alpha|$ |
+| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert > \lvert\alpha\rvert$ |
+| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert < \lvert\alpha\rvert$ |
+| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $\lvert z\rvert > 0$ |
+| $\alpha^{\lvert n\rvert}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $\lvert\alpha\rvert < \lvert z\rvert < 1/\lvert\alpha\rvert$ |
 
 ---
 
