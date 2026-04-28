@@ -8,7 +8,7 @@
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mitigating Coordinate Prediction Bias from Positional Encoding Failures</div>
       <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Kai Han, Jing Tang.</div>
-      <div class="periodical"><em>Findings of the Association for Computational Linguistics: ACL 2026, 2026.</em></div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em></div>
       <div class="links" style="margin-top: -5px;">
         <a href="https://wangywust.github.io/pdfs/tao2026mitigating.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
