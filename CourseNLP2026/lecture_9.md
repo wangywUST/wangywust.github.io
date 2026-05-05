@@ -167,3 +167,19 @@ Before sending to the printer:
 ---
 
 *Good luck at your future research. A great poster is a great conversation.*
+
+# Top 6 students who have great performance in the In-Class Question Answering:
+
+Perez Rugama, Freysell (3)
+
+Huefner, Benjamin (2)
+
+Pulido-Alaniz, Daniel (2)
+
+Liu, Joshua (1)
+
+Singh, Gurkarn (1)
+
+Yadav, Pranav (1)
+
+This is to acknowledge the above students' active participation in this course's learning about NLP's knowledge and their great intelligence on the fast and correct reponses to the in-class questions.
