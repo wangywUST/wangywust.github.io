@@ -79,7 +79,7 @@
 
     .top-title {
       min-width: 0;
-      font-size: 24px;
+      font-size: 32px;
       line-height: 1.08;
       font-weight: 500;
       text-align: center;
@@ -160,44 +160,73 @@
       object-fit: contain;
     }
 
-    .stats {
+    .work-list {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
+      gap: 8px;
       padding: 0 40px 18px;
     }
 
-    .stat {
-      min-height: 72px;
+    .work-item {
       display: grid;
-      align-content: center;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.88);
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.9);
       border-left: 5px solid var(--blue);
-      box-shadow: 0 12px 26px rgba(11, 45, 91, 0.08);
+      box-shadow: 0 10px 22px rgba(11, 45, 91, 0.07);
     }
 
-    .stat:nth-child(2) {
+    .work-item:nth-child(2) {
       border-color: var(--gold);
     }
 
-    .stat:nth-child(3) {
+    .work-item:nth-child(3) {
+      border-color: var(--coral);
+    }
+
+    .work-item:nth-child(4) {
       border-color: var(--green);
     }
 
-    .stat strong {
+    .work-item:nth-child(5) {
+      border-color: var(--navy);
+      background: rgba(11, 45, 91, 0.94);
+    }
+
+    .work-kind {
+      color: var(--blue);
+      font-size: 12px;
+      line-height: 1.1;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .work-item:nth-child(5) .work-kind,
+    .work-item:nth-child(5) .work-title {
+      color: #fff;
+    }
+
+    .work-item:nth-child(5) .work-keywords {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .work-title {
+      margin: 0;
       color: var(--navy);
-      font-size: 26px;
-      line-height: 1;
+      font-size: 14px;
+      line-height: 1.15;
       font-weight: 800;
     }
 
-    .stat span {
-      margin-top: 5px;
+    .work-keywords {
+      display: block;
+      margin-top: 3px;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.15;
-      font-weight: 700;
+      font-size: 10px;
+      line-height: 1.2;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -399,7 +428,7 @@
       }
 
       .top-title {
-        font-size: 17px;
+        font-size: 22px;
       }
 
       .venue {
@@ -440,22 +469,28 @@
         max-height: 22px;
       }
 
-      .stats {
+      .work-list {
         gap: 7px;
         padding: 0 18px 10px;
       }
 
-      .stat {
-        min-height: 46px;
-        padding: 8px;
+      .work-item {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 7px;
+        padding: 6px 7px;
       }
 
-      .stat strong {
-        font-size: 17px;
+      .work-kind {
+        font-size: 7px;
       }
 
-      .stat span {
-        font-size: 8px;
+      .work-title {
+        font-size: 7.8px;
+      }
+
+      .work-keywords {
+        margin-top: 2px;
+        font-size: 5.6px;
       }
 
       .section {
@@ -541,8 +576,7 @@
 
     <section class="hero">
       <div>
-        <p class="eyebrow">Yiwei Wang at CVPR 2026</p>
-        <h1>4 Papers<br>+ 1 Tutorial</h1>
+        <p class="eyebrow">Yiwei Wang's Work at CVPR 2026</p>
         <p class="hero-copy">Multimodal reasoning, video LLMs, diffusion generalization, object-centric representation, and creative sound generation.</p>
       </div>
       <aside class="identity" aria-label="Yiwei Wang">
@@ -552,19 +586,27 @@
       </aside>
     </section>
 
-    <section class="stats" aria-label="Highlights">
-      <div class="stat">
-        <strong>4</strong>
-        <span>CVPR papers</span>
-      </div>
-      <div class="stat">
-        <strong>1</strong>
-        <span>CVPR tutorial</span>
-      </div>
-      <div class="stat">
-        <strong>5</strong>
-        <span>Research threads</span>
-      </div>
+    <section class="work-list" aria-label="Papers and tutorial list">
+      <article class="work-item">
+        <div class="work-kind">Paper 01</div>
+        <p class="work-title">EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation <span class="work-keywords">Audio-visual generation | Creative Foley | Event control</span></p>
+      </article>
+      <article class="work-item">
+        <div class="work-kind">Paper 02</div>
+        <p class="work-title">Finding Distributed Object-Centric Properties in Self-Supervised Transformers <span class="work-keywords">Self-supervised ViTs | Object discovery | Representation analysis</span></p>
+      </article>
+      <article class="work-item">
+        <div class="work-kind">Paper 03</div>
+        <p class="work-title">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs <span class="work-keywords">Video LLMs | Temporal encoding | Training-free stabilizer</span></p>
+      </article>
+      <article class="work-item">
+        <div class="work-kind">Paper 04</div>
+        <p class="work-title">Improving Diffusion Generalization with Weak-to-Strong Segmented Guidance <span class="work-keywords">Diffusion models | Generalization | Segmented guidance</span></p>
+      </article>
+      <article class="work-item">
+        <div class="work-kind">Tutorial</div>
+        <p class="work-title">From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning <span class="work-keywords">World models | Multi-modal reasoning | Perception to simulation</span></p>
+      </article>
     </section>
 
     <section class="section">
