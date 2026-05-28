@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CVPR 2026 Tutorial Poster</title>
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+  <style>
+    :root {
+      --blue-900: #0b2d5b;
+      --blue-800: #123f73;
+      --blue-700: #1d5fa7;
+      --blue-300: #b8d8ff;
+      --blue-100: #e8f3ff;
+      --blue-50: #f5faff;
+      --heading-ink: var(--blue-900);
+      --ink: #000;
+      --muted: var(--blue-800);
+      --paper: var(--blue-50);
+      --headline-size: clamp(21px, 2.95vw, 24px);
+      --heading-weight: 400;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--blue-100);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .poster {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: min(900px, calc(100vw - 32px), calc((100vh - 32px) * 3 / 4));
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: 0;
+      box-shadow: 0 30px 76px rgba(11, 45, 91, 0.2);
+      isolation: isolate;
+    }
+
+    .poster::before {
+      content: none;
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(29, 95, 167, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 95, 167, 0.1) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+      opacity: 0.28;
+      z-index: -2;
+    }
+
+    .top-band {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 64px;
+      padding: 10px 40px 10px 200px;
+      background: var(--blue-300);
+      color: var(--blue-900);
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .top-band-logo {
+      position: absolute;
+      left: 34px;
+      width: 142px;
+      height: 48px;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(15%) sepia(60%) saturate(1650%) hue-rotate(186deg) brightness(88%) contrast(98%);
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 14px;
+      padding: 20px 40px 34px;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      min-width: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      color: var(--heading-ink);
+    }
+
+    .cvpr-mark {
+      display: inline;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .event {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: var(--headline-size);
+      font-weight: var(--heading-weight);
+      line-height: 1.12;
+    }
+
+    .event-title {
+      color: inherit;
+      font-size: var(--headline-size);
+      font-weight: var(--heading-weight);
+      line-height: 1.12;
+    }
+
+    .event-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: inherit;
+      font-size: clamp(18px, 2.65vw, 21px);
+      font-weight: 400;
+      line-height: 1.16;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    .event-meta i {
+      width: 22px;
+      color: var(--blue-800);
+      font-size: 0.86em;
+      text-align: center;
+    }
+
+    .event .venue {
+      width: fit-content;
+      margin-top: 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+    }
+
+    .title-wrap {
+      align-self: center;
+      margin-top: 0;
+      color: var(--heading-ink);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 620px;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      font-weight: var(--heading-weight);
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .time {
+      width: fit-content;
+      margin-top: 28px;
+      padding: 18px 24px;
+      border-radius: 999px;
+      background: rgba(232, 243, 255, 0.93);
+      color: var(--blue-900);
+      font-size: 23px;
+      font-weight: 400;
+      box-shadow: 0 16px 34px rgba(11, 45, 91, 0.18);
+    }
+
+    .accent {
+      display: flex;
+      align-items: center;
+      width: 420px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(29, 95, 167, 0.38);
+      margin-top: 14px;
+    }
+
+    .accent i {
+      display: block;
+      width: 176px;
+      height: 100%;
+      border-radius: inherit;
+      background: rgba(11, 45, 91, 0.72);
+    }
+
+    .people-panel {
+      align-self: stretch;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      gap: 18px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .section-title {
+      margin: 0 0 4px;
+      color: var(--blue-900);
+      font-size: 22px;
+      line-height: 1.12;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+
+    .person {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      min-height: 144px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .person-media {
+      min-width: 0;
+      width: 110px;
+      height: 140px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 140px;
+      border-radius: 0;
+      object-fit: cover;
+      box-shadow: 0 10px 18px rgba(11, 45, 91, 0.15);
+    }
+
+    .logo {
+      display: grid;
+      place-items: center start;
+      width: min(148px, 100%);
+      min-height: 58px;
+      margin-top: 8px;
+      border-radius: 0;
+      background: transparent;
+      background-color: transparent;
+      overflow: visible;
+      box-shadow: none;
+    }
+
+    .logo img {
+      max-width: 138px;
+      max-height: 50px;
+      object-fit: contain;
+      background: transparent;
+      background-color: transparent;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-row img {
+      width: auto;
+      max-width: 58px;
+      max-height: 50px;
+    }
+
+    .logo-text {
+      color: var(--blue-800);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 600;
+      text-align: left;
+      letter-spacing: 0;
+      background: transparent;
+      background-color: transparent;
+    }
+
+    .logo-text.small {
+      font-size: 19px;
+    }
+
+    .person-copy {
+      min-width: 0;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 0;
+    }
+
+    .name {
+      display: block;
+      color: var(--blue-900);
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 600;
+      padding-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .person-title {
+      display: block;
+      max-width: 100%;
+      margin-top: 5px;
+      color: var(--blue-800);
+      font-size: 14px;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    @media (max-width: 980px) {
+      :root {
+        --headline-size: clamp(16px, 4.1vw, 20px);
+      }
+
+      body {
+        padding: 10px;
+      }
+
+      .poster {
+        width: min(100vw - 20px, calc((100vh - 20px) * 3 / 4), 900px);
+        border-radius: 0;
+      }
+
+      .content {
+        gap: 9px;
+        padding: 12px 20px 20px;
+      }
+
+      .top-band {
+        min-height: 48px;
+        padding: 7px 16px 7px 108px;
+      }
+
+      .top-band-logo {
+        left: 18px;
+        width: 78px;
+        height: 30px;
+      }
+
+      .cvpr-mark {
+        font-size: var(--headline-size);
+      }
+
+      .title-wrap {
+        margin-top: 0;
+      }
+
+      h1 {
+        line-height: 1.05;
+      }
+
+      .time {
+        margin-top: 20px;
+        padding: 12px 16px;
+        font-size: 16px;
+      }
+
+      .people-panel {
+        padding: 0;
+        gap: 10px;
+        border-radius: 0;
+      }
+
+      .section-title {
+        font-size: 17px;
+      }
+
+      .people-grid {
+        gap: 11px 12px;
+      }
+
+      .person {
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 9px;
+        min-height: 96px;
+        padding: 0;
+        border-radius: 0;
+      }
+
+      .person-media {
+        width: 68px;
+        height: 88px;
+      }
+
+      .avatar {
+        width: 68px;
+        height: 88px;
+        border-radius: 0;
+      }
+
+      .logo {
+        width: min(90px, 100%);
+        min-height: 40px;
+        margin-top: 5px;
+        border-radius: 0;
+      }
+
+      .logo img {
+        max-width: 86px;
+        max-height: 34px;
+      }
+
+      .logo-row {
+        gap: 6px;
+      }
+
+      .logo-row img {
+        max-width: 38px;
+        max-height: 34px;
+      }
+
+      .logo-text {
+        font-size: 18px;
+      }
+
+      .logo-text.small {
+        font-size: 12px;
+      }
+
+      .name {
+        font-size: 13px;
+      }
+
+      .person-title {
+        margin-top: 3px;
+        font-size: 9.5px;
+        line-height: 1.12;
+      }
+
+      .person-copy {
+        height: 88px;
+        padding-top: 0;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <main class="poster" aria-label="CVPR tutorial poster">
+    <div class="top-band">
+      <img class="top-band-logo" src="assets/images/cvpr-navbar-logo.svg" alt="CVPR">
+      <span class="event-title">2026 Tutorial</span>
+    </div>
+    <div class="content">
+      <section class="left">
+        <div>
+          <div class="brand">
+            <div class="event">
+              <div class="title-wrap">
+                <h1>From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning</h1>
+              </div>
+              <span class="event-meta"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i>June 3rd, 2026, 2 PM, GMT-7</span>
+              <span class="event-meta venue"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Room 301/302, Colorado Convention Center, Denver, U.S. </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="accent"><i></i></div>
+      </section>
+
+      <aside class="people-panel">
+        <h2 class="section-title">Organizers and Speakers</h2>
+        <div class="people-grid">
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/yujuncai.png" alt="Yujun Cai">
+            </div>
+            <div class="person-copy">
+              <span class="name">Yujun Cai</span>
+              <span class="person-title">Staff Research Scientist / Lecturer</span>
+              <div class="logo logo-row">
+                <img src="assets/images/ant.svg" alt="Ant Group logo">
+                <img src="assets/images/uq.svg" alt="University of Queensland logo">
+              </div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/jianfeicai.jpg" alt="Jianfei Cai">
+            </div>
+            <div class="person-copy">
+              <span class="name">Jianfei Cai</span>
+              <span class="person-title">Full Professor</span>
+              <div class="logo"><img src="assets/images/monash.svg" alt="Monash University logo"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/yiweiwang.jpg" alt="Yiwei Wang">
+            </div>
+            <div class="person-copy">
+              <span class="name">Yiwei Wang</span>
+              <span class="person-title">Assistant Professor</span>
+              <div class="logo"><img src="assets/images/uc-merced.svg" alt="University of California, Merced logo"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/minghsuanyang.jpg" alt="Ming-Hsuan Yang">
+            </div>
+            <div class="person-copy">
+              <span class="name">Ming-Hsuan Yang</span>
+              <span class="person-title">Full Professor</span>
+              <div class="logo"><img src="assets/images/uc-merced.svg" alt="University of California, Merced logo"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="people-grid">
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/kaiweichang.jpg" alt="Kai-Wei Chang">
+            </div>
+            <div class="person-copy">
+              <span class="name">Kai-Wei Chang</span>
+              <span class="person-title">Full Professor</span>
+              <div class="logo"><img src="assets/images/ucla.svg" alt="UCLA logo"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/mingyu.jpg" alt="Ming-Yu Liu">
+            </div>
+            <div class="person-copy">
+              <span class="name">Ming-Yu Liu</span>
+              <span class="person-title">Vice President of Research</span>
+              <div class="logo"><img src="assets/images/nvidia.svg" alt="NVIDIA logo"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/hangqi.jpg" alt="Hang Qi">
+            </div>
+            <div class="person-copy">
+              <span class="name">Hang Qi</span>
+              <span class="person-title">Staff Research Engineer</span>
+              <div class="logo"><img src="assets/images/google.svg" alt="Google logo"></div>
+            </div>
+          </div>
+          <div class="person">
+            <div class="person-media">
+              <img class="avatar" src="assets/images/avatars/dankon.png" alt="Dan Kondratyuk">
+            </div>
+            <div class="person-copy">
+              <span class="name">Dan Kondratyuk</span>
+              <span class="person-title">Co-Founder</span>
+              <div class="logo"><img src="assets/images/rekursive.svg" alt="Rekursive AI logo"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
