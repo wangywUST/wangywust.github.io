@@ -146,6 +146,76 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Depth-Breadth Synergy in RLVR: Unlocking LLM Reasoning Gains with Adaptive Exploration</div>
+      <div class="author">Zhicheng Yang, Zhijiang Guo, Yinya Huang, Yongxin Wang, Dongchun Xie, Hanhui Li, Yiwei Wang, Xiaodan Liang, Jing Tang.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yang2026depthbreadth.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">AuTAgent: A Reinforcement Learning Framework for Tool-Augmented Audio Reasoning</div>
+      <div class="author">Siqian Tong, Li Xuan, Yiwei Wang, Baolong Bi, Yujun Cai, Shenghua Liu, Yuchen He, HAO Chengpeng.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/tong2026autagent.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning</div>
+      <div class="author">Baolong Bi, Shenghua Liu, Yiwei Wang, Siqian Tong, Lingrui Mei, Yuyao Ge, Yilong Xu, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/bi2026reward.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">MIMO-LP: A Multi-Input Multi-Output Framework for Subgraph-based Link Prediction</div>
+      <div class="author">Yixin Song, Guangchi Liu, Xiangyu Xu, Shaofeng Li, Zhen Ling, Yiwei Wang, Yujun Cai.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/song2026mimolp.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Accordion-Thinking: Self-Regulated Step Summaries for Efficient and Readable LLM Reasoning</div>
+      <div class="author">Zhicheng Yang, Zhijiang Guo, Yinya Huang, Yongxin Wang, Wenlei Shi, Yiwei Wang, Xiaodan Liang, Jing Tang.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yang2026accordion.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs</div>
       <div class="author">Bowen Sun, Yujun Cai, Ming-Hsuan Yang, Hang Wu, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026.</em></div>
