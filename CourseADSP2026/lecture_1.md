@@ -569,8 +569,9 @@ Each branch is an independent second-order section computed in parallel.
 
 **Practical filter specification**:
 
-$$1 - \delta_1 \leq |H(e^{j\omega})| \leq 1 + \delta_1 \quad \text{(passband, } \omega \leq \omega_p\text{)}$$
-$$|H(e^{j\omega})| \leq \delta_2 \quad \text{(stopband, } \omega \geq \omega_s\text{)}$$
+$$1 - \delta_1 \leq |H(e^{j\omega})| \leq 1 + \delta_1 \quad (\text{passband},\ \omega \leq \omega_p)$$
+
+$$|H(e^{j\omega})| \leq \delta_2 \quad (\text{stopband},\ \omega \geq \omega_s)$$
 
 In dB: passband ripple $R_p = -20\log_{10}(1-\delta_1)$ dB; stopband attenuation $A_s = -20\log_{10}(\delta_2)$ dB.
 
