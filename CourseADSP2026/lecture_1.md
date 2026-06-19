@@ -69,7 +69,9 @@ $$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
 Radar signals are specially designed waveforms transmitted and received after reflection from a target. Two common types:
 
 **Linear frequency modulation (LFM / chirp)**: The instantaneous frequency increases linearly with time:
+
 $$x(t) = \text{rect}\!\left(\frac{t}{T}\right) e^{j\pi \mu t^2}, \quad \mu = B/T \text{ (chirp rate)}$$
+
 After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a long pulse (high energy) is compressed to a short pulse (high resolution) via matched filtering.
 
 **Frequency-diversity radar**: Successive pulses use different carrier frequencies to improve target discrimination and reduce scintillation. The transmitted waveform exhibits a stepped-frequency pattern.
@@ -229,12 +231,15 @@ The **z-transform** generalizes the DTFT to the complex plane:
 $$\boxed{X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}, \quad z \in \mathbb{C}}$$
 
 The **Region of Convergence (ROC)** is the set of $z$ values for which the sum converges absolutely:
+
 $$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} |x(n)|\, |z|^{-n} < \infty \right\}$$
 
 The ROC takes the form of an annulus $r_1 < |z| < r_2$ (two-sided sequences), $|z| > r_1$ (right-sided/causal), or $|z| < r_2$ (left-sided).
 
 **Inverse z-transform** via contour integration:
+
 $$x(n) = \frac{1}{2\pi j} \oint_C X(z) z^{n-1}\, dz$$
+
 where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-transforms are computed via **partial fraction expansion**.
 
 ### 2.2.2 Main Properties of the z-Transform
@@ -343,9 +348,11 @@ $$\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk} = X(k)$$
 Direct DFT computation requires $O(N^2)$ complex multiplications and additions. The FFT exploits two fundamental properties of the twiddle factor $W_N = e^{-j2\pi/N}$:
 
 **Periodicity**:
+
 $$W_N^{r+N} = W_N^r$$
 
 **Symmetry**:
+
 $$W_N^{r+N/2} = -W_N^r, \qquad W_N^{N/2} = -1, \qquad W_{2N}^{2r} = W_N^r$$
 
 Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively split into two $N/2$-point DFTs, reducing complexity from $O(N^2)$ to $O(N\log_2 N)$.
@@ -355,14 +362,17 @@ Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively
 #### Decimation-in-Time (DIT) FFT
 
 Split $x(n)$ into even-indexed and odd-indexed subsequences:
+
 $$x_1(n) = x(2n), \quad x_2(n) = x(2n+1), \quad n = 0, 1, \ldots, N/2-1$$
 
 Then:
+
 $$X(k) = \underbrace{\sum_{n=0}^{N/2-1} x(2n)\, W_{N/2}^{nk}}_{U(k)} + W_N^k \underbrace{\sum_{n=0}^{N/2-1} x(2n+1)\, W_{N/2}^{nk}}_{V(k)}$$
 
 Using the symmetry $W_N^{k+N/2} = -W_N^k$, the **butterfly equations** are:
 
 $$\boxed{X(k) = U(k) + W_N^k V(k)} \qquad k = 0, 1, \ldots, N/2-1$$
+
 $$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
 
 Apply recursively for $m = \log_2 N$ stages.
@@ -375,6 +385,7 @@ Apply recursively for $m = \log_2 N$ stages.
 Split $x(n)$ into the first half and second half:
 
 $$X(2k) = \sum_{n=0}^{N/2-1}[x(n) + x(n+N/2)]\, W_{N/2}^{nk}$$
+
 $$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]\, W_N^n\, W_{N/2}^{nk}$$
 
 **Comparison**:
@@ -519,6 +530,7 @@ Implements the difference equation with two separate delay chains — one for in
 Merge the two delay chains by sharing a single intermediate state variable $u(n)$:
 
 $$u(n) = x(n) - \sum_{k=1}^{N} b_k\, u(n-k)$$
+
 $$y(n) = \sum_{k=0}^{N} a_k\, u(n-k)$$
 
 - Delay elements: $N$ — the minimum possible (**canonical form**)
@@ -628,7 +640,9 @@ IIR filter design typically proceeds from a classical analog (continuous-time) f
 Map an analog filter $H_a(s)$ to a digital filter $H(z)$ by matching the impulse response at sample instants: $h(n) = T_s\, h_a(nT_s)$. Poles at $s_k$ in $H_a(s)$ map to poles at $z_k = e^{s_k T_s}$ in $H(z)$.
 
 **Limitation — spectral aliasing**: The frequency response satisfies:
+
 $$H(e^{j\omega}) = \sum_{k=-\infty}^{\infty} H_a\!\left(j\frac{\omega + 2\pi k}{T_s}\right)$$
+
 Replicas from adjacent periods overlap. Suitable only for **lowpass and bandpass** designs where the analog prototype is sufficiently bandlimited.
 
 **② Bilinear z-Transform**
@@ -643,7 +657,7 @@ $$\Omega = \frac{2}{T_s}\tan\!\left(\frac{\omega}{2}\right) \qquad \Longleftrigh
 
 **Advantage**: No aliasing — the entire analog axis $(-\infty, +\infty)$ is compressed onto $(-\pi, \pi)$.
 
-**Limitation — frequency warping**: The nonlinear $\Omega$–$\omega$ relationship distorts the frequency axis. Critical frequencies must be **pre-warped** before designing the analog prototype:
+**Limitation — frequency warping**: The nonlinear $\Omega$-$\omega$ relationship distorts the frequency axis. Critical frequencies must be **pre-warped** before designing the analog prototype:
 
 $$\Omega_c = \frac{2}{T_s}\tan\!\left(\frac{\omega_c}{2}\right) \qquad \text{(pre-warping)}$$
 
@@ -680,15 +694,19 @@ An **allpass filter** has unit magnitude response at all frequencies:
 $$|H_{ap}(e^{j\omega})| = 1 \quad \forall\, \omega$$
 
 This implies:
+
 $$H_{ap}(e^{j\omega})\, H_{ap}^*(e^{j\omega}) = 1, \qquad h_{ap}(n) * h_{ap}^*(-n) = \delta(n)$$
+
 $$\boxed{H_{ap}(z)\, H_{ap}^*(1/z^*) = 1}$$
 
 **Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^*$ (outside the unit circle) — the **conjugate reciprocal** location.
 
 **First-order allpass** ($|\alpha| < 1$, $\alpha \in \mathbb{C}$):
+
 $$H_{ap1}(z) = \frac{z^{-1} - \alpha^*}{1 - \alpha\, z^{-1}}$$
 
 **General $N$-th order allpass**:
+
 $$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^*}{1 - \alpha_k\, z^{-1}} = \frac{z^{-N} + a_1^* z^{-N+1} + \cdots + a_N^*}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
 
 The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
@@ -704,7 +722,11 @@ The **group delay** of a filter is:
 
 $$\tau(\omega) = -\frac{d}{d\omega}\angle H(e^{j\omega})$$
 
-For the first-order real allpass filter $H_{ap}(z) = \dfrac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$ with $|\alpha| < 1$, $\alpha \in \mathbb{R}$, the phase response is:
+For the first-order real allpass filter
+
+$$H_{ap}(z) = \frac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$$
+
+where $|\alpha| < 1$ and $\alpha \in \mathbb{R}$, the phase response is:
 
 $$\angle H_{ap}(e^{j\omega}) = \omega - 2\arctan\!\left(\frac{\alpha \sin\omega}{1 - \alpha\cos\omega}\right) - \pi$$
 
@@ -743,7 +765,9 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
 ### 4.2.2 Theorem 1.1: Minimum-Phase / Allpass Decomposition
 
 > **Theorem 1.1**: Any causal, stable system $H(z)$ can be **uniquely** decomposed as:
+>
 > $$\boxed{H(z) = H_{ap}(z) \cdot H_m(z)}$$
+>
 > where $H_m(z)$ is minimum-phase and $H_{ap}(z)$ is allpass.
 
 **Proof by construction**:
@@ -782,11 +806,13 @@ $$H(e^{j\omega}) = e^{j\beta}\, e^{-j\alpha\omega}\, A(e^{j\omega})$$
 where $A(e^{j\omega})$ is **real-valued** (amplitude function), $\alpha$ is the **constant group delay** (samples), and $\beta \in \{0, \pm\pi/2\}$.
 
 The z-transform satisfies (for real $h(n)$):
+
 $$H(z) = \pm z^{-(N-1)} H(1/z)$$
 
 If $z_0$ is a zero of $H(z)$, then $1/z_0$ is also a zero — zeros off the unit circle come in reciprocal pairs.
 
 **Strict linear phase** ($\beta = 0$, real $h(n)$): requires **even symmetry**:
+
 $$h(n) = h(N-1-n), \quad n = 0, 1, \ldots, N-1$$
 
 Group delay is constant: $\tau(\omega) = \alpha = (N-1)/2$ samples.
@@ -849,14 +875,17 @@ Classified by symmetry type (even or odd) and filter length (odd or even):
 ### 4.4.1 Autocorrelation Sequences and Power Spectral Non-Negativity
 
 A sequence $r(n)$ is **Hermitian (conjugate-symmetric)** if:
+
 $$r(n) = r^*(-n)$$
 
 Its DTFT is **real-valued**: $R(e^{j\omega}) \in \mathbb{R}$, and its z-transform satisfies $R(z) = R^*(1/z^*)$.
 
 A Hermitian sequence is **positive semi-definite** if additionally:
+
 $$R(e^{j\omega}) \geq 0 \quad \forall\, \omega$$
 
 **Connection to autocorrelation**: The autocorrelation of a signal $x(n)$ is:
+
 $$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^*(k-n) = x(n) * x^*(-n)$$
 
 Its DTFT is the **power spectral density**: $P_x(e^{j\omega}) = |X(e^{j\omega})|^2 \geq 0$.
