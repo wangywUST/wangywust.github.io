@@ -28,6 +28,7 @@ A **digital signal** is a discrete-time, discrete-amplitude representation of a 
 A speech signal is a **one-dimensional time-domain discrete sequence**. A continuous pressure wave $x_a(t)$ is sampled at rate $f_s$ (typically 8 kHz for telephony, 44.1 kHz for audio) to produce $x(n) = x_a(nT_s)$ where $T_s = 1/f_s$.
 
 > ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/fig_1_1.png>)
+>
 > *Figure 1.1: A speech signal sampled at a fixed rate, shown as a discrete sequence in the time domain. Voiced segments (vowels) exhibit quasi-periodic structure; unvoiced segments (fricatives) appear noise-like.*
 
 ### 1.1.2 Image Signals
@@ -37,6 +38,7 @@ An image signal is a **two-dimensional discrete sequence** $x(m, n)$, where $(m,
 $$x(m, n), \quad m = 0, 1, \ldots, M-1;\; n = 0, 1, \ldots, N-1$$
 
 > ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/fig_1_2.jpg>)
+>
 > *Figure 1.2: An image signal — 2D pixel array. Each element $x(m,n)$ stores intensity (grayscale) or a color vector.*
 
 ### 1.1.3 Video Signals
