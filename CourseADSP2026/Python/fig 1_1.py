@@ -126,6 +126,6 @@ patch_u = mpatches.Patch(color='#d73027', alpha=0.6, label='Unvoiced (fricative)
 ax.legend(handles=[patch_v, patch_u], loc='lower right', fontsize=9, framealpha=0.8)
 
 plt.tight_layout()
-plt.savefig('../Fig/fig 1_1.pdf',
+plt.savefig('../Fig/fig_1_1.pdf',
             dpi=180, bbox_inches='tight', facecolor='white')
 print("Saved.")
