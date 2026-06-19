@@ -36,7 +36,7 @@ An image signal is a **two-dimensional discrete sequence** $x(m, n)$, where $(m,
 
 $$x(m, n), \quad m = 0, 1, \ldots, M-1;\; n = 0, 1, \ldots, N-1$$
 
-> ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/fig 1_2.jpg>)
+> ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/fig_1_2.jpg>)
 > *Figure 1.2: An image signal — 2D pixel array. Each element $x(m,n)$ stores intensity (grayscale) or a color vector.*
 
 ### 1.1.3 Video Signals
