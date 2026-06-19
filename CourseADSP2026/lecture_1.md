@@ -27,7 +27,7 @@ A **digital signal** is a discrete-time, discrete-amplitude representation of a 
 
 A speech signal is a **one-dimensional time-domain discrete sequence**. A continuous pressure wave $x_a(t)$ is sampled at rate $f_s$ (typically 8 kHz for telephony, 44.1 kHz for audio) to produce $x(n) = x_a(nT_s)$ where $T_s = 1/f_s$.
 
-> <img src="Fig/fig_1_1.png" alt="Figure 1.1 speech waveform" style="width: 100%;" />
+> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/fig_1_1.pdf>)
 > *Figure 1.1: A speech signal sampled at a fixed rate, shown as a discrete sequence in the time domain. Voiced segments (vowels) exhibit quasi-periodic structure; unvoiced segments (fricatives) appear noise-like.*
 
 ### 1.1.2 Image Signals
