@@ -117,7 +117,7 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 
 ### 1.3.2 Sampling Theorem and Bandlimited Condition
 
-**Nyquist–Shannon Sampling Theorem**: A continuous-time signal $x_a(t)$ with bandwidth $B$ Hz (i.e., $X_a(f) = 0$ for $|f| > B$) can be perfectly reconstructed from its samples $x(n) = x_a(nT_s)$ if and only if:
+**Nyquist–Shannon Sampling Theorem**: A continuous-time signal $x_a(t)$ with bandwidth $B$ Hz (i.e., $X_a(f) = 0$ for $\lvert f\rvert > B$) can be perfectly reconstructed from its samples $x(n) = x_a(nT_s)$ if and only if:
 
 $$f_s = \frac{1}{T_s} \geq 2B$$
 
@@ -188,9 +188,9 @@ $$\boxed{x(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})\, e^{j\omega n}\
 
 **Physical meaning — DTFT as z-transform on the unit circle**:
 
-The z-transform is $X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}$. Setting $z = e^{j\omega}$ (i.e., evaluating on the unit circle $|z| = 1$):
+The z-transform is $X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}$. Setting $z = e^{j\omega}$ (i.e., evaluating on the unit circle $\lvert z\rvert = 1$):
 
-$$X(e^{j\omega}) = X(z)\big|_{z = e^{j\omega}}$$
+$$X(e^{j\omega}) = X(z)\big\rvert_{z = e^{j\omega}}$$
 
 The DTFT exists when the ROC of $X(z)$ includes the unit circle.
 
@@ -216,7 +216,7 @@ The DTFT exists when the ROC of $X(z)$ includes the unit circle.
 
 **Energy form of Parseval's theorem** (setting $y = x$):
 
-$$\sum_{n=-\infty}^{\infty} |x(n)|^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} |X(e^{j\omega})|^2\, d\omega$$
+$$\sum_{n=-\infty}^{\infty} \lvert x(n)\rvert^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \lvert X(e^{j\omega})\rvert^2\, d\omega$$
 
 Total energy is preserved between the time and frequency domains.
 
@@ -232,9 +232,9 @@ $$\boxed{X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}, \quad z \in \mathbb{C}}
 
 The **Region of Convergence (ROC)** is the set of $z$ values for which the sum converges absolutely:
 
-$$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} |x(n)|\, |z|^{-n} < \infty \right\}$$
+$$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} < \infty \right\}$$
 
-The ROC takes the form of an annulus $r_1 < |z| < r_2$ (two-sided sequences), $|z| > r_1$ (right-sided/causal), or $|z| < r_2$ (left-sided).
+The ROC takes the form of an annulus $r_1 < \lvert z\rvert < r_2$ (two-sided sequences), $\lvert z\rvert > r_1$ (right-sided/causal), or $\lvert z\rvert < r_2$ (left-sided).
 
 **Inverse z-transform** via contour integration:
 
@@ -248,9 +248,9 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 |----------|--------------|---|-------------|-----|
 | Linearity | $ax(n)+by(n)$ | $\leftrightarrow$ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Time shift | $x(n-K)$ | $\leftrightarrow$ | $z^{-K}X(z)$ | $\text{ROC}_x$ (modified at $z=0,\infty$) |
-| z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $|\alpha|\,r_1 < |z| < |\alpha|\,r_2$ |
+| z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 < \lvert z\rvert < \lvert\alpha\rvert\,r_2$ |
 | Conjugate | $x^*(n)$ | $\leftrightarrow$ | $X^*(z^*)$ | $\text{ROC}_x$ |
-| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 < |z| < 1/r_1$ |
+| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 < \lvert z\rvert < 1/r_1$ |
 | Convolution | $x(n)*y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
 | z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
@@ -262,14 +262,14 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Sequence $x(n)$ | z-Transform $X(z)$ | ROC |
 |-----------------|-------------------|-----|
 | $\delta(n)$ | $1$ | All $z$ |
-| $u(n)$ (unit step) | $\dfrac{1}{1-z^{-1}}$ | $|z| > 1$ |
-| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $|z| > |\alpha|$ |
-| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $|z| < |\alpha|$ |
-| $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $|z| > |\alpha|$ |
-| $r^n \cos(\omega_0 n) u(n)$ | $\dfrac{1-r\cos\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $|z| > r$ |
-| $r^n \sin(\omega_0 n) u(n)$ | $\dfrac{r\sin\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $|z| > r$ |
-| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $|z| > 0$ |
-| $\alpha^{|n|}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $|\alpha| < |z| < 1/|\alpha|$ |
+| $u(n)$ (unit step) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert > 1$ |
+| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert > \lvert\alpha\rvert$ |
+| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert < \lvert\alpha\rvert$ |
+| $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $\lvert z\rvert > \lvert\alpha\rvert$ |
+| $r^n \cos(\omega_0 n) u(n)$ | $\dfrac{1-r\cos\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert > r$ |
+| $r^n \sin(\omega_0 n) u(n)$ | $\dfrac{r\sin\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert > r$ |
+| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $\lvert z\rvert > 0$ |
+| $\alpha^{\lvert n\rvert}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $\lvert\alpha\rvert < \lvert z\rvert < 1/\lvert\alpha\rvert$ |
 
 ### 2.2.4 Relationship Between the z-Transform and the Laplace Transform
 
@@ -283,9 +283,9 @@ where $r = e^{\sigma T_s}$ and $\omega = \Omega T_s = \Omega / f_s$.
 
 | Laplace / s-domain | z-Transform / z-domain |
 |-------------------|----------------------|
-| Left half-plane ($\sigma < 0$) | Interior of unit circle ($|z| < 1$) |
-| Right half-plane ($\sigma > 0$) | Exterior of unit circle ($|z| > 1$) |
-| Imaginary axis ($\sigma = 0$, $s = j\Omega$) | Unit circle ($|z| = 1$) |
+| Left half-plane ($\sigma < 0$) | Interior of unit circle ($\lvert z\rvert < 1$) |
+| Right half-plane ($\sigma > 0$) | Exterior of unit circle ($\lvert z\rvert > 1$) |
+| Imaginary axis ($\sigma = 0$, $s = j\Omega$) | Unit circle ($\lvert z\rvert = 1$) |
 | Stable causal: poles in left half-plane | Stable causal: poles inside unit circle |
 | Analog frequency $\Omega$ (rad/s) | Digital frequency $\omega = \Omega T_s$ (rad/sample) |
 
@@ -331,7 +331,7 @@ $$\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk} = X(k)$$
 | Circular convolution | $x(n) \circledast y(n)$ | $X(k)\cdot Y(k)$ |
 | Multiplication | $x(n)\cdot y(n)$ | $\frac{1}{N} X(k) \circledast Y(k)$ |
 | Conjugate symmetry | $x(n)$ real | $X(N-k) = X^*(k)$ |
-| Parseval's theorem | — | $\sum_{n=0}^{N-1}|x(n)|^2 = \frac{1}{N}\sum_{k=0}^{N-1}|X(k)|^2$ |
+| Parseval's theorem | — | $\sum_{n=0}^{N-1}\lvert x(n)\rvert^2 = \frac{1}{N}\sum_{k=0}^{N-1}\lvert X(k)\rvert^2$ |
 
 **Primary uses**:
 1. **Spectral analysis**: Estimates frequency content of a finite-duration signal
@@ -581,9 +581,9 @@ Each branch is an independent second-order section computed in parallel.
 
 **Practical filter specification**:
 
-$$1 - \delta_1 \leq |H(e^{j\omega})| \leq 1 + \delta_1 \quad (\text{passband},\ \omega \leq \omega_p)$$
+$$1 - \delta_1 \leq \lvert H(e^{j\omega})\rvert \leq 1 + \delta_1 \quad (\text{passband},\ \omega \leq \omega_p)$$
 
-$$|H(e^{j\omega})| \leq \delta_2 \quad (\text{stopband},\ \omega \geq \omega_s)$$
+$$\lvert H(e^{j\omega})\rvert \leq \delta_2 \quad (\text{stopband},\ \omega \geq \omega_s)$$
 
 In dB: passband ripple $R_p = -20\log_{10}(1-\delta_1)$ dB; stopband attenuation $A_s = -20\log_{10}(\delta_2)$ dB.
 
@@ -629,7 +629,7 @@ Specify the desired response at $N$ DFT frequencies and compute the IDFT to obta
 
 **③ Chebyshev (Equiripple) Approximation**
 
-Minimizes the maximum frequency-domain error $\|H(e^{j\omega}) - H_d(e^{j\omega})\|_\infty$ over specified bands. The **Parks-McClellan algorithm** (Remez exchange) finds the optimal equiripple solution. For equal specifications, equiripple designs require lower filter order than window-based designs.
+Minimizes the maximum frequency-domain error $\lVert H(e^{j\omega}) - H_d(e^{j\omega})\rVert_\infty$ over specified bands. The **Parks-McClellan algorithm** (Remez exchange) finds the optimal equiripple solution. For equal specifications, equiripple designs require lower filter order than window-based designs.
 
 ### 3.3.3 IIR Filter Design: Impulse Invariance, Bilinear Transform, Frequency Transformation
 
@@ -691,7 +691,7 @@ The parameter $\alpha$ (and $a_1, a_2$ for bandpass/bandstop) is determined by t
 
 An **allpass filter** has unit magnitude response at all frequencies:
 
-$$|H_{ap}(e^{j\omega})| = 1 \quad \forall\, \omega$$
+$$\lvert H_{ap}(e^{j\omega})\rvert = 1 \quad \forall\, \omega$$
 
 This implies:
 
@@ -701,7 +701,7 @@ $$\boxed{H_{ap}(z)\, H_{ap}^*(1/z^*) = 1}$$
 
 **Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^*$ (outside the unit circle) — the **conjugate reciprocal** location.
 
-**First-order allpass** ($|\alpha| < 1$, $\alpha \in \mathbb{C}$):
+**First-order allpass** ($\lvert\alpha\rvert < 1$, $\alpha \in \mathbb{C}$):
 
 $$H_{ap1}(z) = \frac{z^{-1} - \alpha^*}{1 - \alpha\, z^{-1}}$$
 
@@ -726,7 +726,7 @@ For the first-order real allpass filter
 
 $$H_{ap}(z) = \frac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$$
 
-where $|\alpha| < 1$ and $\alpha \in \mathbb{R}$, the phase response is:
+where $\lvert\alpha\rvert < 1$ and $\alpha \in \mathbb{R}$, the phase response is:
 
 $$\angle H_{ap}(e^{j\omega}) = \omega - 2\arctan\!\left(\frac{\alpha \sin\omega}{1 - \alpha\cos\omega}\right) - \pi$$
 
@@ -734,15 +734,15 @@ Differentiating and negating:
 
 $$\tau(\omega) = -\frac{d}{d\omega}\angle H_{ap}(e^{j\omega}) = \frac{1 - \alpha^2}{1 - 2\alpha\cos\omega + \alpha^2}$$
 
-$$\boxed{\tau(\omega) = \frac{1 - |\alpha|^2}{|1 - \alpha e^{-j\omega}|^2} > 0 \quad \forall\,\omega}$$
+$$\boxed{\tau(\omega) = \frac{1 - \lvert\alpha\rvert^2}{\lvert 1 - \alpha e^{-j\omega}\rvert^2} > 0 \quad \forall\,\omega}$$
 
 **Proof that $\tau(\omega) > 0$**:
-- Numerator: $1 - \alpha^2 > 0$ since $|\alpha| < 1$
-- Denominator: $|1 - \alpha e^{-j\omega}|^2 > 0$ since the pole $\alpha$ is not on the unit circle
+- Numerator: $1 - \alpha^2 > 0$ since $\lvert\alpha\rvert < 1$
+- Denominator: $\lvert 1 - \alpha e^{-j\omega}\rvert^2 > 0$ since the pole $\alpha$ is not on the unit circle
 
 **General $N$-th order result**: The group delay of any stable allpass filter is always positive:
 
-$$\tau(\omega) = \sum_{k=1}^{N} \frac{1 - |\alpha_k|^2}{|1 - \alpha_k e^{-j\omega}|^2} > 0 \quad \forall\,\omega$$
+$$\tau(\omega) = \sum_{k=1}^{N} \frac{1 - \lvert\alpha_k\rvert^2}{\lvert 1 - \alpha_k e^{-j\omega}\rvert^2} > 0 \quad \forall\,\omega$$
 
 This is a sum of positive terms. An allpass filter is a pure **phase-lag device**: it introduces causal group delay at every frequency without altering the magnitude response. This makes allpass filters ideal for **phase equalization**.
 
@@ -759,7 +759,7 @@ A causal, stable filter $H_m(z)$ is **minimum-phase** if and only if:
 
 Among all causal, stable filters with the same magnitude response, the minimum-phase filter has:
 - The smallest phase lag at every frequency
-- The fastest energy buildup: $\sum_{n=0}^{k}|h_m(n)|^2 \geq \sum_{n=0}^{k}|h(n)|^2$ for all $k$
+- The fastest energy buildup: $\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2$ for all $k$
 - A **causal, stable inverse** $1/H_m(z)$ (all zeros inside the unit circle → all inverse poles inside)
 
 ### 4.2.2 Theorem 1.1: Minimum-Phase / Allpass Decomposition
@@ -775,8 +775,8 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
 Given $H(z)$ with poles $\{p_k\}$ (all inside the unit circle) and zeros $\{z_k\}$ (some possibly outside):
 
 **Step 1** — Partition zeros:
-- $\mathcal{Z}_{in} = \{z_k : |z_k| \leq 1\}$: zeros inside or on the unit circle
-- $\mathcal{Z}_{out} = \{z_k : |z_k| > 1\}$: zeros outside the unit circle
+- $\mathcal{Z}_{in} = \{z_k : \lvert z_k\rvert \leq 1\}$: zeros inside or on the unit circle
+- $\mathcal{Z}_{out} = \{z_k : \lvert z_k\rvert > 1\}$: zeros outside the unit circle
 
 **Step 2** — Construct $H_m(z)$:
 - Assign all poles $\{p_k\}$ to $H_m(z)$
@@ -788,7 +788,7 @@ The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase
 **Step 3** — Construct $H_{ap}(z) = H(z)/H_m(z)$:
 - For each $c \in \mathcal{Z}_{out}$: $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^*$ (inside) — exactly one allpass factor $\dfrac{z^{-1} - c^*}{1 - c\, z^{-1}}$
 
-**Verification**: $|H(e^{j\omega})| = |H_{ap}(e^{j\omega})| \cdot |H_m(e^{j\omega})| = 1 \cdot |H_m(e^{j\omega})|$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
+**Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
 > **[PLACEHOLDER: Pole-zero diagram: H(z) with zeros inside and outside unit circle → H_ap(z) (zeros outside, poles inside) × H_m(z) (all zeros inside)]**
 > *Figure 4.2: Minimum-phase/allpass decomposition — zeros outside the unit circle are reflected inside (with allpass compensation) to form the minimum-phase factor.*
@@ -837,7 +837,7 @@ Classified by symmetry type (even or odd) and filter length (odd or even):
 | III | $\displaystyle 2\sum_{n=1}^{(N-1)/2} c(n)\sin(n\omega)$, where $c(n) = h\!\left(\tfrac{N-1}{2} - n\right)$ |
 | IV | $\displaystyle 2\sum_{n=1}^{N/2} d(n)\sin\!\left[\!\left(n-\tfrac{1}{2}\right)\omega\right]$, where $d(n) = h\!\left(\tfrac{N}{2} - n\right)$ |
 
-> **[PLACEHOLDER: Four-panel figure — (top) $h(n)$ impulse responses for Types I–IV with symmetry; (bottom) typical amplitude responses $|A(e^{j\omega})|$]**
+> **[PLACEHOLDER: Four-panel figure — (top) $h(n)$ impulse responses for Types I–IV with symmetry; (bottom) typical amplitude responses $\lvert A(e^{j\omega})\rvert$]**
 > *Figure 4.3: Four types of linear-phase FIR filters.*
 
 ### 4.3.3 Applicable Filter Types per Class
@@ -888,14 +888,16 @@ $$R(e^{j\omega}) \geq 0 \quad \forall\, \omega$$
 
 $$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^*(k-n) = x(n) * x^*(-n)$$
 
-Its DTFT is the **power spectral density**: $P_x(e^{j\omega}) = |X(e^{j\omega})|^2 \geq 0$.
+Its DTFT is the **power spectral density**:
+
+$$P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2 \geq 0$$
 
 Autocorrelation sequences are therefore **always positive semi-definite**. The autocorrelation matrix $\mathbf{R} = [r_x(i-j)]_{i,j}$ is a **Hermitian Toeplitz positive semi-definite matrix** — the central object in Wiener filtering (Chapter 6) and linear prediction (Chapter 3).
 
 ### 4.4.2 Theorem 1.2: Zero Pairing in Rational Positive Semi-Definite Sequences
 
 > **Theorem 1.2**: Let $R(z)$ be the rational z-transform of a positive semi-definite sequence with real-valued coefficients. Then:
-> 1. **Zeros on the unit circle** ($|z_0| = 1$): occur in **conjugate pairs** $(z_0,\, z_0^*)$, each with **even multiplicity**
+> 1. **Zeros on the unit circle** ($\lvert z_0\rvert = 1$): occur in **conjugate pairs** $(z_0,\, z_0^*)$, each with **even multiplicity**
 > 2. **Zeros off the unit circle**: occur in **quadruples** $\{z_0,\; z_0^*,\; 1/z_0,\; 1/z_0^*\}$
 
 **Explanation**:
@@ -906,7 +908,7 @@ Autocorrelation sequences are therefore **always positive semi-definite**. The a
 
 $$\boxed{R(z) = \sigma^2\, H_m(z)\, H_m^*(1/z^*)}$$
 
-On the unit circle: $R(e^{j\omega}) = \sigma^2|H_m(e^{j\omega})|^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\{z_0, z_0^*, 1/z_0, 1/z_0^*\}$ splits as $\{1/z_0, 1/z_0^*\} \to H_m(z)$ and $\{z_0, z_0^*\} \to H_m^*(1/z^*)$.
+On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\{z_0, z_0^*, 1/z_0, 1/z_0^*\}$ splits as $\{1/z_0, 1/z_0^*\} \to H_m(z)$ and $\{z_0, z_0^*\} \to H_m^*(1/z^*)$.
 
 This spectral factorization theorem is **fundamental** to:
 - **Wiener filter theory** (Chapter 6): whitening the input requires the minimum-phase spectral factor
@@ -929,7 +931,7 @@ This spectral factorization theorem is **fundamental** to:
 | IIR Direct Form II | $N$ delays (canonical) | Efficient IIR realization |
 | IIR Parallel Form | Independent poles; best numerical stability | High-order stable filters |
 | Bilinear transform | Alias-free; pre-warp critical frequencies | IIR design from analog prototype |
-| Allpass filter | $\|H_{ap}\|=1$; group delay $\tau(\omega) > 0$ always | Phase equalization |
+| Allpass filter | $\lVert H_{ap}\rVert=1$; group delay $\tau(\omega) > 0$ always | Phase equalization |
 | Min-phase decomposition | $H(z) = H_{ap}(z)\,H_m(z)$, unique | Causal inversion, equalization |
 | Linear-phase FIR | $h(n) = \pm h(N-1-n)$; four types | Distortion-free filtering |
 | Type I | Even symmetry, odd $N$; no forced zeros | All filter types |
