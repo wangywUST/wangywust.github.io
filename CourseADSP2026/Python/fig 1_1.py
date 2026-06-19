@@ -102,7 +102,7 @@ ax.text((seg2_end+seg3_end)/2, ymax, 'Voiced /o/\n(quasi-periodic)', color='#216
 # ── Axes labels & ticks ───────────────────────────────────────────────────────
 ax.set_xlabel(r'Sample index  $n$', fontsize=11)
 ax.set_ylabel(r'Amplitude  $x(n)$', fontsize=11)
-ax.set_title(r'Figure 1.1 — Speech signal sampled at $f_s = 8\,\mathrm{kHz}$  '
+ax.set_title(r'Speech signal sampled at $f_s = 8\,\mathrm{kHz}$  '
              r'(discrete-time sequence)',
              fontsize=11.5, pad=28)
 
