@@ -119,6 +119,10 @@ Radar signals are specially designed waveforms transmitted and received after re
 
 $$x(t) = \text{rect}\!\left(\frac{t}{T}\right) e^{j\pi \mu t^2}, \quad \mu = B/T \text{ (chirp rate)}$$
 
+> **Notation — the rect function**: $\text{rect}(\cdot)$ is the *rectangular (boxcar) window function*,
+> $$\text{rect}(u) = \begin{cases} 1, & |u| \le \tfrac{1}{2} \\ 0, & |u| > \tfrac{1}{2} \end{cases}$$
+> i.e. a "brick-wall" gate that is 1 inside $[-\tfrac12, \tfrac12]$ and 0 everywhere else (the value exactly at the edges, $u=\pm\tfrac12$, is a convention and is often taken as $1$, $0$, or $\tfrac12$ depending on the textbook — it doesn't matter physically since it's a single point). Substituting $u = t/T$ rescales the gate to width $T$: $\text{rect}(t/T) = 1$ for $-T/2 \le t \le T/2$ and $0$ outside it. Its role here is purely to *window* the otherwise infinite-duration chirp $e^{j\pi\mu t^2}$ down to one finite pulse of duration $T$ — i.e., it is the mathematical way of saying "the radar transmits this chirp for $T$ seconds, then stops." Without the rect factor, the formula would describe a chirp that exists for all time; with it, $x(t)$ is a single, time-limited radar pulse, which is what is actually transmitted.
+
 After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a long pulse (high energy) is compressed to a short pulse (high resolution) via matched filtering.
 
 **Frequency-diversity radar**: Successive pulses use different carrier frequencies to improve target discrimination and reduce scintillation. The transmitted waveform exhibits a stepped-frequency pattern.
