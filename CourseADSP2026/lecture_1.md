@@ -465,7 +465,8 @@ Implemented as a **tapped delay line**: a shift register of $M$ unit delays, eac
 - Additions per sample: $M$
 - Delay elements: $M$
 
-> **[PLACEHOLDER: Transversal FIR signal flow graph — delay chain $z^{-1}$, multipliers $h(0),\ldots,h(M)$, adder tree]**
+> ![Figure 3.1](<./CourseADSP2026/Fig/fig_3_1.png>)
+>
 > *Figure 3.1: Direct-form (transversal) FIR filter.*
 
 **Symmetric exploitation**: For linear-phase FIR with $h(n) = h(M-n)$, paired coefficients are equal, nearly halving the number of distinct multiplications.
