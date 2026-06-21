@@ -104,4 +104,4 @@ fig.suptitle("Baseband Communication Signals — Constellation Diagrams",
              fontsize=13, fontweight="bold", y=0.995)
 fig.tight_layout(rect=[0, 0, 1, 0.97])
 
-fig.savefig("../Fig/fig_1_2.png", dpi=200, bbox_inches="tight")
+fig.savefig("../Fig/fig_1_3.png", dpi=200, bbox_inches="tight")
