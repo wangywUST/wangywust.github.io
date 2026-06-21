@@ -63,7 +63,8 @@ $$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
 - **16-QAM** ($M=16$): 16 points on a square grid, 4 bits/symbol
 - **64-QAM** ($M=64$): 64 points, 6 bits/symbol
 
-> **[PLACEHOLDER: Constellation diagrams for QPSK, 8-PSK, 16-QAM, 64-QAM]**
+> ![Figure 1.3 image pixel](<./CourseADSP2026/Fig/fig_1_3.jpg>)
+>
 > *Figure 1.3: Baseband communication signals — constellation maps. Each point represents one symbol carrying $\log_2 M$ bits. Higher-order constellations achieve greater spectral efficiency but require higher SNR.*
 
 ### 1.1.5 Radar Signals
