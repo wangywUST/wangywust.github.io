@@ -120,7 +120,7 @@ Radar signals are specially designed waveforms transmitted and received after re
 $$x(t) = \text{rect}\!\left(\frac{t}{T}\right) e^{j\pi \mu t^2}, \quad \mu = B/T \text{ (chirp rate)}$$
 
 > **Notation — the rect function**: $\text{rect}(\cdot)$ is the *rectangular (boxcar) window function*,
-> $$\text{rect}(u) = \begin{cases} 1, & |u| \le \tfrac{1}{2} \\ 0, & |u| > \tfrac{1}{2} \end{cases}$$
+> $$\text{rect}(u) = \begin{cases} 1, & |u| \le \tfrac{1}{2} \\ 0, & |u| \gt \tfrac{1}{2} \end{cases}$$
 > i.e. a "brick-wall" gate that is 1 inside $[-\tfrac12, \tfrac12]$ and 0 everywhere else (the value exactly at the edges, $u=\pm\tfrac12$, is a convention and is often taken as $1$, $0$, or $\tfrac12$ depending on the textbook — it doesn't matter physically since it's a single point). Substituting $u = t/T$ rescales the gate to width $T$: $\text{rect}(t/T) = 1$ for $-T/2 \le t \le T/2$ and $0$ outside it. Its role here is purely to *window* the otherwise infinite-duration chirp $e^{j\pi\mu t^2}$ down to one finite pulse of duration $T$ — i.e., it is the mathematical way of saying "the radar transmits this chirp for $T$ seconds, then stops." Without the rect factor, the formula would describe a chirp that exists for all time; with it, $x(t)$ is a single, time-limited radar pulse, which is what is actually transmitted.
 
 After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a long pulse (high energy) is compressed to a short pulse (high resolution) via matched filtering.
@@ -171,7 +171,7 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 
 2. **A/D conversion**: Samples $x_a(t)$ at rate $f_s \geq 2B$ and quantizes to $b$ bits.
 
-   > **Why $f_s \geq 2B$, and not $f_s \geq B$?** A common error is to assume that since the highest frequency component is $B$ Hz, sampling once per "half-cycle" — i.e. at rate $f_s = B$ — should suffice. This overlooks that any *real-valued* signal has a two-sided spectrum: writing $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$ shows that a real sinusoid is built from a conjugate *pair* of complex exponentials at $+f$ and $-f$. Consequently $X_a(f) = 0$ for $|f|>B$ means the spectrum truly occupies $[-B,B]$ — a total width of $2B$, not $B$. The replication argument above already used this: the baseband copy spans $[-f_s/2, f_s/2]$, so avoiding overlap with the neighboring replica requires the *full* $2B$-wide occupied band to fit inside one period, i.e. $f_s \geq 2B$.
+   > **Why $f_s \geq 2B$, and not $f_s \geq B$?** A common error is to assume that since the highest frequency component is $B$ Hz, sampling once per "half-cycle" — i.e. at rate $f_s = B$ — should suffice. This overlooks that any *real-valued* signal has a two-sided spectrum: writing $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$ shows that a real sinusoid is built from a conjugate *pair* of complex exponentials at $+f$ and $-f$. Consequently $X_a(f) = 0$ for $|f|\gt B$ means the spectrum truly occupies $[-B,B]$ — a total width of $2B$, not $B$. The replication argument above already used this: the baseband copy spans $[-f_s/2, f_s/2]$, so avoiding overlap with the neighboring replica requires the *full* $2B$-wide occupied band to fit inside one period, i.e. $f_s \geq 2B$.
    >
    > A concrete failure mode at $f_s = B$: consider $x_a(t) = \cos(2\pi Bt)$, a signal sitting right at the band edge. Sampling at $t = n/B$ gives $x(n) = \cos(2\pi B \cdot n/B) = \cos(2\pi n) = 1$ for every $n$ — a constant sequence, regardless of the sinusoid's true amplitude or phase. One sample per cycle can never distinguish "the wave went up and came back down" from "the wave never moved"; at least two samples per cycle (two different phases within one period) are needed to pin down a sinusoid, which is exactly the origin of the factor of 2.
    >
@@ -188,13 +188,13 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 
 ### 1.3.2 Sampling Theorem and Bandlimited Condition
 
-**Nyquist–Shannon Sampling Theorem**: A continuous-time signal $x_a(t)$ with bandwidth $B$ Hz (i.e., $X_a(f) = 0$ for $\lvert f\rvert > B$) can be perfectly reconstructed from its samples $x(n) = x_a(nT_s)$ if and only if:
+**Nyquist–Shannon Sampling Theorem**: A continuous-time signal $x_a(t)$ with bandwidth $B$ Hz (i.e., $X_a(f) = 0$ for $\lvert f\rvert \gt B$) can be perfectly reconstructed from its samples $x(n) = x_a(nT_s)$ if and only if:
 
 $$f_s = \frac{1}{T_s} \geq 2B$$
 
 The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**.
 
-> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula, $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$: any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum, $X_a(-f) = X_a^*(f)$ — the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means $X_a(f) = 0$ for $|f| > B$ — the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
+> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula, $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$: any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum, $X_a(-f) = X_a^*(f)$ — the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means $X_a(f) = 0$ for $|f| \gt B$ — the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
 >
 > Geometrically, $e^{j2\pi ft}$ is a unit phasor in the complex (I/Q) plane rotating at angular rate $2\pi f$: positive $f$ means counter-clockwise rotation, negative $f$ means clockwise. A real signal is the projection of this rotating phasor onto the real axis, and that projection alone cannot distinguish a counter-clockwise rotation from a clockwise one — both project identically onto the real axis. Hence a real signal must carry both rotation directions ($\pm f$) to be represented faithfully. For a genuinely *complex*-valued signal (e.g. the I/Q baseband signal in a digital receiver, or an analytic signal), $+f$ and $-f$ are no longer forced to be conjugate partners — they become independent, physically meaningful quantities (e.g. the sign of a Doppler shift indicates approach vs. recession).
 
@@ -204,15 +204,15 @@ $$\omega = 2\pi f T_s = \frac{2\pi f}{f_s}$$
 
 Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \in [-f_s/2,\; f_s/2]$.
 
-**If $f_s < 2B$ (undersampling)**: Spectral replicas overlap → **aliasing** — high-frequency components masquerade as low-frequency ones, irreversibly corrupting the signal.
+**If $f_s \lt 2B$ (undersampling)**: Spectral replicas overlap → **aliasing** — high-frequency components masquerade as low-frequency ones, irreversibly corrupting the signal.
 
 > ![Figure 1.7](<./CourseADSP2026/Fig/fig_1_7.png>)
 >
-> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_c(F)$ bandlimited to $B$; (b) discrete-time spectrum when $F_s > 2B$ (no aliasing); (c) discrete-time spectrum when $F_s < 2B$ (aliasing).*
+> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_c(F)$ bandlimited to $B$; (b) discrete-time spectrum when $F_s \gt 2B$ (no aliasing); (c) discrete-time spectrum when $F_s \lt 2B$ (aliasing).*
 
 ### 1.3.3 Bandpass Signals and the Bandpass Sampling Theorem
 
-§1.3.2 implicitly assumed a **baseband (lowpass) signal**: $X_a(f) = 0$ for $|f| > B$, spectrum centered at $f = 0$. Many real signals instead are **bandpass**: their energy sits in a band $[f_1, f_2]$ away from $f = 0$ (plus its conjugate mirror $[-f_2, -f_1]$) — narrowband sonar/radar returns, AM/FM radio, and IF-stage receiver signals are typical examples. The conventional bandwidth is the width of the *positive-frequency* interval, $B = f_2 - f_1$, *not* $f_2$ itself.
+§1.3.2 implicitly assumed a **baseband (lowpass) signal**: $X_a(f) = 0$ for $|f| \gt B$, spectrum centered at $f = 0$. Many real signals instead are **bandpass**: their energy sits in a band $[f_1, f_2]$ away from $f = 0$ (plus its conjugate mirror $[-f_2, -f_1]$) — narrowband sonar/radar returns, AM/FM radio, and IF-stage receiver signals are typical examples. The conventional bandwidth is the width of the *positive-frequency* interval, $B = f_2 - f_1$, *not* $f_2$ itself.
 
 **Naively applying §1.3.2** would suggest $f_s \geq 2f_2$ — sampling at twice the highest frequency present — which is wasteful when $f_2 \gg B$. The **bandpass sampling theorem** (also called IF sampling, or deliberate undersampling) shows that the true minimum sampling rate depends only on the bandwidth $B$, not on how far the band sits from $f = 0$: there exists an integer $n$, $1 \leq n \leq \lfloor f_2/B \rfloor$, such that
 
@@ -220,7 +220,7 @@ $$\frac{2f_2}{n} \;\leq\; f_s \;\leq\; \frac{2f_1}{n-1}$$
 
 (for $n=1$ this reduces to the baseband condition $f_s \geq 2f_2$). When $f_2$ is an integer multiple of $B$ (the band is "harmonically aligned"), the theoretical minimum $f_s = 2B$ is achievable exactly — the *same* floor as for a baseband signal of bandwidth $B$.
 
-> **Why is the floor still $2B$, not $B$?** It is tempting to think that replicating a single band of width $B$ at spacing $f_s = B$ tiles it edge-to-edge with no gap, so $f_s = B$ should suffice. This overlooks the conjugate mirror band: a real bandpass signal occupies $[f_1, f_2]$ **and** $[-f_2, -f_1]$ — two separate intervals on the frequency axis, each of width $B$, total occupied measure $2B$ (exactly the two-sided argument from §1.3.2, now applied to a shifted band). Sampling at rate $f_s$ is equivalent to wrapping the frequency axis onto a circle of circumference $f_s$ (taking frequency modulo $f_s$); for alias-free recovery this wrap must be injective on the occupied support. If $f_s < 2B$, the occupied measure ($2B$) exceeds the circle's circumference ($f_s$), so by a simple pigeonhole argument the wrap **cannot** be injective — overlap is unavoidable no matter where the band sits.
+> **Why is the floor still $2B$, not $B$?** It is tempting to think that replicating a single band of width $B$ at spacing $f_s = B$ tiles it edge-to-edge with no gap, so $f_s = B$ should suffice. This overlooks the conjugate mirror band: a real bandpass signal occupies $[f_1, f_2]$ **and** $[-f_2, -f_1]$ — two separate intervals on the frequency axis, each of width $B$, total occupied measure $2B$ (exactly the two-sided argument from §1.3.2, now applied to a shifted band). Sampling at rate $f_s$ is equivalent to wrapping the frequency axis onto a circle of circumference $f_s$ (taking frequency modulo $f_s$); for alias-free recovery this wrap must be injective on the occupied support. If $f_s \lt 2B$, the occupied measure ($2B$) exceeds the circle's circumference ($f_s$), so by a simple pigeonhole argument the wrap **cannot** be injective — overlap is unavoidable no matter where the band sits.
 >
 > Concretely, at $f_s = B$: the positive band's own replicas $[f_1+kB,\, f_2+kB]$ already tile the *entire* frequency axis with zero gaps (each replica has width exactly $B$, spaced exactly $B$ apart). The mirror band's replicas, sitting on that same comb, then have nowhere to land except squarely on top of the positive band's replicas — total, unavoidable overlap. At $f_s = 2B$ (achievable when $f_2 = nB$), the positive-band and mirror-band replicas instead tile the axis in a perfect alternating pattern — one period of width $2B$ holding exactly one positive-band replica plus one mirror-band replica, edge-to-edge, zero overlap. This is the tightest possible packing.
 
@@ -354,9 +354,9 @@ $$\boxed{X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}, \quad z \in \mathbb{C}}
 
 The **Region of Convergence (ROC)** is the set of $z$ values for which the sum converges absolutely:
 
-$$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} < \infty \right\}$$
+$$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} \lt \infty \right\}$$
 
-The ROC takes the form of an annulus $r_1 < \lvert z\rvert < r_2$ (two-sided sequences), $\lvert z\rvert > r_1$ (right-sided/causal), or $\lvert z\rvert < r_2$ (left-sided).
+The ROC takes the form of an annulus $r_1 \lt \lvert z\rvert \lt r_2$ (two-sided sequences), $\lvert z\rvert \gt r_1$ (right-sided/causal), or $\lvert z\rvert \lt r_2$ (left-sided).
 
 **Inverse z-transform** via contour integration:
 
@@ -370,9 +370,9 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 |----------|--------------|---|-------------|-----|
 | Linearity | $ax(n)+by(n)$ | $\leftrightarrow$ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Time shift | $x(n-K)$ | $\leftrightarrow$ | $z^{-K}X(z)$ | $\text{ROC}_x$ (modified at $z=0,\infty$) |
-| z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 < \lvert z\rvert < \lvert\alpha\rvert\,r_2$ |
+| z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 \lt \lvert z\rvert \lt \lvert\alpha\rvert\,r_2$ |
 | Conjugate | $x^*(n)$ | $\leftrightarrow$ | $X^*(z^*)$ | $\text{ROC}_x$ |
-| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 < \lvert z\rvert < 1/r_1$ |
+| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 \lt \lvert z\rvert \lt 1/r_1$ |
 | Convolution | $x(n)*y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
 | z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
@@ -384,14 +384,14 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Sequence $x(n)$ | z-Transform $X(z)$ | ROC |
 |-----------------|-------------------|-----|
 | $\delta(n)$ | $1$ | All $z$ |
-| $u(n)$ (unit step) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert > 1$ |
-| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert > \lvert\alpha\rvert$ |
-| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert < \lvert\alpha\rvert$ |
-| $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $\lvert z\rvert > \lvert\alpha\rvert$ |
-| $r^n \cos(\omega_0 n) u(n)$ | $\dfrac{1-r\cos\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert > r$ |
-| $r^n \sin(\omega_0 n) u(n)$ | $\dfrac{r\sin\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert > r$ |
-| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $\lvert z\rvert > 0$ |
-| $\alpha^{\lvert n\rvert}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $\lvert\alpha\rvert < \lvert z\rvert < 1/\lvert\alpha\rvert$ |
+| $u(n)$ (unit step) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert \gt 1$ |
+| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
+| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \lt \lvert\alpha\rvert$ |
+| $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
+| $r^n \cos(\omega_0 n) u(n)$ | $\dfrac{1-r\cos\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert \gt r$ |
+| $r^n \sin(\omega_0 n) u(n)$ | $\dfrac{r\sin\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert \gt r$ |
+| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $\lvert z\rvert \gt 0$ |
+| $\alpha^{\lvert n\rvert}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $\lvert\alpha\rvert \lt \lvert z\rvert \lt 1/\lvert\alpha\rvert$ |
 
 ### 2.2.4 Relationship Between the z-Transform and the Laplace Transform
 
@@ -405,8 +405,8 @@ where $r = e^{\sigma T_s}$ and $\omega = \Omega T_s = \Omega / f_s$.
 
 | Laplace / s-domain | z-Transform / z-domain |
 |-------------------|----------------------|
-| Left half-plane ($\sigma < 0$) | Interior of unit circle ($\lvert z\rvert < 1$) |
-| Right half-plane ($\sigma > 0$) | Exterior of unit circle ($\lvert z\rvert > 1$) |
+| Left half-plane ($\sigma \lt 0$) | Interior of unit circle ($\lvert z\rvert \lt 1$) |
+| Right half-plane ($\sigma \gt 0$) | Exterior of unit circle ($\lvert z\rvert \gt 1$) |
 | Imaginary axis ($\sigma = 0$, $s = j\Omega$) | Unit circle ($\lvert z\rvert = 1$) |
 | Stable causal: poles in left half-plane | Stable causal: poles inside unit circle |
 | Analog frequency $\Omega$ (rad/s) | Digital frequency $\omega = \Omega T_s$ (rad/sample) |
@@ -548,7 +548,7 @@ In DIT-FFT, the input sequence must be reordered in **bit-reversed** order befor
 | 6 | 110 | 011 | 3 |
 | 7 | 111 | 111 | 7 |
 
-The permutation can be performed in-place with an $O(N)$ algorithm: compare each index with its bit-reverse and swap if $n < \text{br}(n)$.
+The permutation can be performed in-place with an $O(N)$ algorithm: compare each index with its bit-reverse and swap if $n \lt \text{br}(n)$.
 
 **FFT variants**:
 - **Radix-4 FFT**: Groups of 4; further reduces multiplicative count
@@ -726,9 +726,9 @@ $$h(n) = w(n) \cdot h_d(n), \qquad n = 0, 1, \ldots, M$$
 $$\boxed{M \approx \frac{A_s - 7.95}{2.285\,\Delta\omega}} \qquad \text{(filter order)}$$
 
 $$\boxed{\beta = \begin{cases}
-0.1102\,(A_s - 8.7) & A_s > 50 \\
+0.1102\,(A_s - 8.7) & A_s \gt 50 \\
 0.5842\,(A_s - 21)^{0.4} + 0.07886\,(A_s - 21) & 21 \leq A_s \leq 50 \\
-0 & A_s < 21
+0 & A_s \lt 21
 \end{cases}}$$
 
 Given $A_s$ and $\Delta\omega$, both $M$ and $\beta$ are fully determined.
@@ -808,7 +808,7 @@ $$\boxed{H_{ap}(z)\, H_{ap}^*(1/z^*) = 1}$$
 
 **Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^*$ (outside the unit circle) — the **conjugate reciprocal** location.
 
-**First-order allpass** ($\lvert\alpha\rvert < 1$, $\alpha \in \mathbb{C}$):
+**First-order allpass** ($\lvert\alpha\rvert \lt 1$, $\alpha \in \mathbb{C}$):
 
 $$H_{ap1}(z) = \frac{z^{-1} - \alpha^*}{1 - \alpha\, z^{-1}}$$
 
@@ -834,7 +834,7 @@ For the first-order real allpass filter
 
 $$H_{ap}(z) = \frac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$$
 
-where $\lvert\alpha\rvert < 1$ and $\alpha \in \mathbb{R}$, the phase response is:
+where $\lvert\alpha\rvert \lt 1$ and $\alpha \in \mathbb{R}$, the phase response is:
 
 $$\angle H_{ap}(e^{j\omega}) = \omega - 2\arctan\!\left(\frac{\alpha \sin\omega}{1 - \alpha\cos\omega}\right) - \pi$$
 
@@ -842,15 +842,15 @@ Differentiating and negating:
 
 $$\tau(\omega) = -\frac{d}{d\omega}\angle H_{ap}(e^{j\omega}) = \frac{1 - \alpha^2}{1 - 2\alpha\cos\omega + \alpha^2}$$
 
-$$\boxed{\tau(\omega) = \frac{1 - \lvert\alpha\rvert^2}{\lvert 1 - \alpha e^{-j\omega}\rvert^2} > 0 \quad \forall\,\omega}$$
+$$\boxed{\tau(\omega) = \frac{1 - \lvert\alpha\rvert^2}{\lvert 1 - \alpha e^{-j\omega}\rvert^2} \gt 0 \quad \forall\,\omega}$$
 
-**Proof that $\tau(\omega) > 0$**:
-- Numerator: $1 - \alpha^2 > 0$ since $\lvert\alpha\rvert < 1$
-- Denominator: $\lvert 1 - \alpha e^{-j\omega}\rvert^2 > 0$ since the pole $\alpha$ is not on the unit circle
+**Proof that $\tau(\omega) \gt 0$**:
+- Numerator: $1 - \alpha^2 \gt 0$ since $\lvert\alpha\rvert \lt 1$
+- Denominator: $\lvert 1 - \alpha e^{-j\omega}\rvert^2 \gt 0$ since the pole $\alpha$ is not on the unit circle
 
 **General $N$-th order result**: The group delay of any stable allpass filter is always positive:
 
-$$\tau(\omega) = \sum_{k=1}^{N} \frac{1 - \lvert\alpha_k\rvert^2}{\lvert 1 - \alpha_k e^{-j\omega}\rvert^2} > 0 \quad \forall\,\omega$$
+$$\tau(\omega) = \sum_{k=1}^{N} \frac{1 - \lvert\alpha_k\rvert^2}{\lvert 1 - \alpha_k e^{-j\omega}\rvert^2} \gt 0 \quad \forall\,\omega$$
 
 This is a sum of positive terms. An allpass filter is a pure **phase-lag device**: it introduces causal group delay at every frequency without altering the magnitude response. This makes allpass filters ideal for **phase equalization**.
 
@@ -862,7 +862,7 @@ This is a sum of positive terms. An allpass filter is a pure **phase-lag device*
 
 A causal, stable filter $H_m(z)$ is **minimum-phase** if and only if:
 1. **Stable**: ROC includes the unit circle (all poles inside)
-2. **Causal**: $h_m(n) = 0$ for $n < 0$
+2. **Causal**: $h_m(n) = 0$ for $n \lt 0$
 3. **All zeros inside or on the unit circle**
 
 Among all causal, stable filters with the same magnitude response, the minimum-phase filter has:
@@ -892,7 +892,7 @@ Given $H(z)$ with poles $\{p_k\}$ (all inside the unit circle) and zeros $\{z_k\
 
 **Step 1** — Partition zeros:
 - $\mathcal{Z}_{in} = \{z_k : \lvert z_k\rvert \leq 1\}$: zeros inside or on the unit circle
-- $\mathcal{Z}_{out} = \{z_k : \lvert z_k\rvert > 1\}$: zeros outside the unit circle
+- $\mathcal{Z}_{out} = \{z_k : \lvert z_k\rvert \gt 1\}$: zeros outside the unit circle
 
 **Step 2** — Construct $H_m(z)$:
 - Assign all poles $\{p_k\}$ to $H_m(z)$
@@ -1045,7 +1045,7 @@ This spectral factorization theorem is **fundamental** to:
 | IIR Direct Form II | $N$ delays (canonical) | Efficient IIR realization |
 | IIR Parallel Form | Independent poles; best numerical stability | High-order stable filters |
 | Bilinear transform | Alias-free; pre-warp critical frequencies | IIR design from analog prototype |
-| Allpass filter | $\lVert H_{ap}\rVert=1$; group delay $\tau(\omega) > 0$ always | Phase equalization |
+| Allpass filter | $\lVert H_{ap}\rVert=1$; group delay $\tau(\omega) \gt 0$ always | Phase equalization |
 | Min-phase decomposition | $H(z) = H_{ap}(z)\,H_m(z)$, unique | Causal inversion, equalization |
 | Linear-phase FIR | $h(n) = \pm h(N-1-n)$; four types | Distortion-free filtering |
 | Type I | Even symmetry, odd $N$; no forced zeros | All filter types |
