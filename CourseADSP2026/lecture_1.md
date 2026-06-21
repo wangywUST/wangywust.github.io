@@ -135,6 +135,10 @@ Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \i
 
 **If $f_s < 2B$ (undersampling)**: Spectral replicas overlap → **aliasing** — high-frequency components masquerade as low-frequency ones, irreversibly corrupting the signal.
 
+> ![Figure 1.7](<./CourseADSP2026/Fig/fig_1_7.png>)
+>
+> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_c(F)$ bandlimited to $B$; (b) discrete-time spectrum when $F_s > 2B$ (no aliasing); (c) discrete-time spectrum when $F_s < 2B$ (aliasing).*
+
 ### 1.3.3 The Two Fundamental Problems of DSP
 
 The DSP pipeline gives rise to two core problems:
@@ -226,6 +230,10 @@ $$\sum_{n=-\infty}^{\infty} \lvert x(n)\rvert^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi
 
 Total energy is preserved between the time and frequency domains.
 
+> ![Figure 2.1](<./CourseADSP2026/Fig/fig_2_1.png>)
+>
+> *Figure 2.1: LTI system operation in the frequency domain — multiplying the input spectrum by the frequency response yields the output spectrum, shown for an aperiodic input (top) and a periodic input (bottom).*
+
 ---
 
 ## 2.2 z-Transform
@@ -297,9 +305,9 @@ where $r = e^{\sigma T_s}$ and $\omega = \Omega T_s = \Omega / f_s$.
 
 **Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (i.e., $[-f_s/2,\; f_s/2]$), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
 
-> ![Figure 2.1](<./CourseADSP2026/Fig/fig_2_1.jpg>)
+> ![Figure 2.2](<./CourseADSP2026/Fig/fig_2_2.jpg>)
 >
-> *Figure 2.1: s-plane to z-plane mapping via $z = e^{sT_s}$.*
+> *Figure 2.2: s-plane to z-plane mapping via $z = e^{sT_s}$.*
 
 ---
 
@@ -384,9 +392,9 @@ $$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
 
 Apply recursively for $m = \log_2 N$ stages.
 
-> ![Figure 2.2](<./CourseADSP2026/Fig/fig_2_2.jpg>)
+> ![Figure 2.3](<./CourseADSP2026/Fig/fig_2_3.jpg>)
 >
-> *Figure 2.2: 8-point DIT-FFT signal flow graph.*
+> *Figure 2.3: 8-point DIT-FFT signal flow graph.*
 
 #### Decimation-in-Frequency (DIF) FFT
 
@@ -754,6 +762,14 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
 - The fastest energy buildup: $\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2$ for all $k$
 - A **causal, stable inverse** $1/H_m(z)$ (all zeros inside the unit circle → all inverse poles inside)
 
+> ![Figure 4.2](<./CourseADSP2026/Fig/fig_4_2.png>)
+>
+> *Figure 4.2: Pole-zero, magnitude, phase, and group-delay plots for minimum-phase, maximum-phase, and two mixed-phase systems sharing the same magnitude response — the minimum-phase system has the smallest phase lag (group delay) at every frequency.*
+
+> ![Figure 4.3](<./CourseADSP2026/Fig/fig_4_3.png>)
+>
+> *Figure 4.3: Impulse responses (top) and energy-delay curves $\sum_{n=0}^{k}\lvert h(n)\rvert^2$ (bottom) for the same four systems — the minimum-phase system achieves the fastest energy buildup at every $k$.*
+
 ### 4.2.2 Theorem 1.1: Minimum-Phase / Allpass Decomposition
 
 > **Theorem 1.1**: Any causal, stable system $H(z)$ can be **uniquely** decomposed as:
@@ -782,9 +798,9 @@ The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase
 
 **Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
-> ![Figure 4.2](<./CourseADSP2026/Fig/fig_4_2.png>)
+> ![Figure 4.4](<./CourseADSP2026/Fig/fig_4_4.png>)
 >
-> *Figure 4.2: Minimum phase and all-pass decomposition.*
+> *Figure 4.4: Minimum phase and all-pass decomposition.*
 
 ---
 
