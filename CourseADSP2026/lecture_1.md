@@ -297,7 +297,8 @@ where $r = e^{\sigma T_s}$ and $\omega = \Omega T_s = \Omega / f_s$.
 
 **Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (i.e., $[-f_s/2,\; f_s/2]$), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
 
-> **[PLACEHOLDER: Side-by-side s-plane and z-plane showing the mapping $z = e^{sT_s}$: left half-plane maps to interior of unit circle; imaginary axis maps to unit circle; horizontal strips of width $2\pi/T_s$ map periodically onto the full z-plane]**
+> ![Figure 2.1](<./CourseADSP2026/Fig/fig_2_1.jpg>)
+>
 > *Figure 2.1: s-plane to z-plane mapping via $z = e^{sT_s}$.*
 
 ---
