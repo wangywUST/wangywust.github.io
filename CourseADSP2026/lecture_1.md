@@ -98,7 +98,8 @@ DSP methods underpin virtually every modern technology domain:
 | **Geophysics and meteorology** | Seismic data processing, weather signal analysis, oil exploration |
 | **Automatic control** | Digital PID controllers, state estimation (Kalman filter), adaptive systems |
 
-> **[PLACEHOLDER: OFDM transceiver block diagram]**
+> ![Figure 1.5](<./CourseADSP2026/Fig/fig_1_5.png>)
+>
 > *Figure 1.5: OFDM transceiver — Transmitter: data bits → channel coding → interleaving → QAM modulation → S/P → IFFT → P/S → CP insertion → DAC → RF TX. Receiver is the symmetric reverse chain.*
 
 ---
