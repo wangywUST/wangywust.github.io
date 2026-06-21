@@ -117,7 +117,8 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 3. **Discrete-time processing**: Convolution with $h(n)$, or more generally any digital signal processing algorithm.
 4. **D/A conversion and reconstruction filter**: Converts the discrete output back to a continuous signal.
 
-> **[PLACEHOLDER: DSP pipeline block diagram with time-domain and frequency-domain waveforms at each stage]**
+> ![Figure 1.6](<./CourseADSP2026/Fig/fig_1_6.png>)
+>
 > *Figure 1.6: General DSP system — pipeline from continuous input to continuous output, with frequency-domain illustrations at each stage.*
 
 ### 1.3.2 Sampling Theorem and Bandlimited Condition
