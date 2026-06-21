@@ -384,7 +384,8 @@ $$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
 
 Apply recursively for $m = \log_2 N$ stages.
 
-> **[PLACEHOLDER: 8-point DIT-FFT butterfly flow graph — 3 stages with twiddle factors $W_8^0, W_8^1, W_8^2, W_8^3$; bit-reversed input, natural output]**
+> ![Figure 2.2](<./CourseADSP2026/Fig/fig_2_2.jpg>)
+>
 > *Figure 2.2: 8-point DIT-FFT signal flow graph.*
 
 #### Decimation-in-Frequency (DIF) FFT
