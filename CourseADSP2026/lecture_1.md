@@ -720,7 +720,7 @@ $$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^*}{1 - \alpha_k\, z^{-1}} 
 
 The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
 
-> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/fig_4_1.png>)
+> ![Figure 4.1](<./CourseADSP2026/Fig/fig_4_1.png>)
 >
 > *Figure 4.1: Typical pole-zero patterns of a PZ (pole-zero) system, all-pass system: (a) complex-valued coefficients and (b) real-valued coefficients.*
 
@@ -800,8 +800,9 @@ The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase
 
 **Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
-> **[PLACEHOLDER: Pole-zero diagram: H(z) with zeros inside and outside unit circle → H_ap(z) (zeros outside, poles inside) × H_m(z) (all zeros inside)]**
-> *Figure 4.2: Minimum-phase/allpass decomposition — zeros outside the unit circle are reflected inside (with allpass compensation) to form the minimum-phase factor.*
+> ![Figure 4.2](<./CourseADSP2026/Fig/fig_4_2.png>)
+>
+> *Figure 4.2: Minimum phase and all-pass decomposition.*
 
 ---
 
