@@ -170,6 +170,15 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
    > **Why cutoff exactly at $f_s/2$?** Given that sampling at rate $f_s$ periodically *repeats* the analog spectrum, the discrete-time spectrum consists of shifted copies of the analog spectrum, $X_a(f - kf_s)$ for every integer $k$, spaced $f_s$ apart along the frequency axis. The baseband copy ($k=0$) occupies $[-f_s/2,\, f_s/2]$, and its nearest neighbor ($k=1$) occupies $[f_s/2,\, 3f_s/2]$ — so two adjacent replicas meet exactly at the midpoint between them, $f_s/2$. If the analog input still carries energy above $f_s/2$ at the moment it is sampled, that energy lands inside the span of the neighboring replica, and the two overlap. Once overlapped, the two contributions cannot be told apart by any downstream filter — this is aliasing, and it is irreversible by construction, not just inconvenient. So $f_s/2$ is not an arbitrary design choice; it is the largest frequency that can be let through *without guaranteeing overlap* with the next replica, i.e. it is the **Nyquist frequency** (also called the folding frequency, since this is the point about which spectral content "folds back" on top of itself). The AAF's role is to physically enforce — before sampling ever happens — the bandlimiting condition $B \le f_s/2$ that the Nyquist–Shannon theorem (§1.3.2 below) requires for perfect reconstruction, regardless of whether the original analog signal already happened to satisfy it.
 
 2. **A/D conversion**: Samples $x_a(t)$ at rate $f_s \geq 2B$ and quantizes to $b$ bits.
+
+   > **Why $f_s \geq 2B$, and not $f_s \geq B$?** A common error is to assume that since the highest frequency component is $B$ Hz, sampling once per "half-cycle" — i.e. at rate $f_s = B$ — should suffice. This overlooks that any *real-valued* signal has a two-sided spectrum: writing $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$ shows that a real sinusoid is built from a conjugate *pair* of complex exponentials at $+f$ and $-f$. Consequently $X_a(f) = 0$ for $|f|>B$ means the spectrum truly occupies $[-B,B]$ — a total width of $2B$, not $B$. The replication argument above already used this: the baseband copy spans $[-f_s/2, f_s/2]$, so avoiding overlap with the neighboring replica requires the *full* $2B$-wide occupied band to fit inside one period, i.e. $f_s \geq 2B$.
+   >
+   > A concrete failure mode at $f_s = B$: consider $x_a(t) = \cos(2\pi Bt)$, a signal sitting right at the band edge. Sampling at $t = n/B$ gives $x(n) = \cos(2\pi B \cdot n/B) = \cos(2\pi n) = 1$ for every $n$ — a constant sequence, regardless of the sinusoid's true amplitude or phase. One sample per cycle can never distinguish "the wave went up and came back down" from "the wave never moved"; at least two samples per cycle (two different phases within one period) are needed to pin down a sinusoid, which is exactly the origin of the factor of 2.
+   >
+   > **Why "$b$" bits — a free parameter, not a derived constant.** Unlike $f_s \geq 2B$, which is a hard mathematical necessity (violating it causes irreversible aliasing), the number of quantization bits $b$ is an engineering *choice*: it sets the number of amplitude levels to $2^b$, trading quantization noise against bit rate/storage. The one quantitative rule of thumb is that each additional bit improves the signal-to-quantization-noise ratio by about 6 dB:
+   > $$\text{SQNR} \approx 6.02\,b + 1.76\ \text{(dB)}$$
+   > Typical choices reflect this trade-off rather than a derivation: $b=8$ for telephony (G.711), $b=16$ for CD audio, $b=24$ for studio recording.
+
 3. **Discrete-time processing**: Convolution with $h(n)$, or more generally any digital signal processing algorithm.
 4. **D/A conversion and reconstruction filter**: Converts the discrete output back to a continuous signal.
 
@@ -183,7 +192,13 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 
 $$f_s = \frac{1}{T_s} \geq 2B$$
 
-The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**. The relationship between analog frequency $f$ and digital frequency $\omega$ is:
+The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**.
+
+> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula, $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$: any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum, $X_a(-f) = X_a^*(f)$ — the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means $X_a(f) = 0$ for $|f| > B$ — the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
+>
+> Geometrically, $e^{j2\pi ft}$ is a unit phasor in the complex (I/Q) plane rotating at angular rate $2\pi f$: positive $f$ means counter-clockwise rotation, negative $f$ means clockwise. A real signal is the projection of this rotating phasor onto the real axis, and that projection alone cannot distinguish a counter-clockwise rotation from a clockwise one — both project identically onto the real axis. Hence a real signal must carry both rotation directions ($\pm f$) to be represented faithfully. For a genuinely *complex*-valued signal (e.g. the I/Q baseband signal in a digital receiver, or an analytic signal), $+f$ and $-f$ are no longer forced to be conjugate partners — they become independent, physically meaningful quantities (e.g. the sign of a Doppler shift indicates approach vs. recession).
+
+The relationship between analog frequency $f$ and digital frequency $\omega$ is:
 
 $$\omega = 2\pi f T_s = \frac{2\pi f}{f_s}$$
 
@@ -195,7 +210,50 @@ Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \i
 >
 > *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_c(F)$ bandlimited to $B$; (b) discrete-time spectrum when $F_s > 2B$ (no aliasing); (c) discrete-time spectrum when $F_s < 2B$ (aliasing).*
 
-### 1.3.3 The Two Fundamental Problems of DSP
+### 1.3.3 Bandpass Signals and the Bandpass Sampling Theorem
+
+§1.3.2 implicitly assumed a **baseband (lowpass) signal**: $X_a(f) = 0$ for $|f| > B$, spectrum centered at $f = 0$. Many real signals instead are **bandpass**: their energy sits in a band $[f_1, f_2]$ away from $f = 0$ (plus its conjugate mirror $[-f_2, -f_1]$) — narrowband sonar/radar returns, AM/FM radio, and IF-stage receiver signals are typical examples. The conventional bandwidth is the width of the *positive-frequency* interval, $B = f_2 - f_1$, *not* $f_2$ itself.
+
+**Naively applying §1.3.2** would suggest $f_s \geq 2f_2$ — sampling at twice the highest frequency present — which is wasteful when $f_2 \gg B$. The **bandpass sampling theorem** (also called IF sampling, or deliberate undersampling) shows that the true minimum sampling rate depends only on the bandwidth $B$, not on how far the band sits from $f = 0$: there exists an integer $n$, $1 \leq n \leq \lfloor f_2/B \rfloor$, such that
+
+$$\frac{2f_2}{n} \;\leq\; f_s \;\leq\; \frac{2f_1}{n-1}$$
+
+(for $n=1$ this reduces to the baseband condition $f_s \geq 2f_2$). When $f_2$ is an integer multiple of $B$ (the band is "harmonically aligned"), the theoretical minimum $f_s = 2B$ is achievable exactly — the *same* floor as for a baseband signal of bandwidth $B$.
+
+> **Why is the floor still $2B$, not $B$?** It is tempting to think that replicating a single band of width $B$ at spacing $f_s = B$ tiles it edge-to-edge with no gap, so $f_s = B$ should suffice. This overlooks the conjugate mirror band: a real bandpass signal occupies $[f_1, f_2]$ **and** $[-f_2, -f_1]$ — two separate intervals on the frequency axis, each of width $B$, total occupied measure $2B$ (exactly the two-sided argument from §1.3.2, now applied to a shifted band). Sampling at rate $f_s$ is equivalent to wrapping the frequency axis onto a circle of circumference $f_s$ (taking frequency modulo $f_s$); for alias-free recovery this wrap must be injective on the occupied support. If $f_s < 2B$, the occupied measure ($2B$) exceeds the circle's circumference ($f_s$), so by a simple pigeonhole argument the wrap **cannot** be injective — overlap is unavoidable no matter where the band sits.
+>
+> Concretely, at $f_s = B$: the positive band's own replicas $[f_1+kB,\, f_2+kB]$ already tile the *entire* frequency axis with zero gaps (each replica has width exactly $B$, spaced exactly $B$ apart). The mirror band's replicas, sitting on that same comb, then have nowhere to land except squarely on top of the positive band's replicas — total, unavoidable overlap. At $f_s = 2B$ (achievable when $f_2 = nB$), the positive-band and mirror-band replicas instead tile the axis in a perfect alternating pattern — one period of width $2B$ holding exactly one positive-band replica plus one mirror-band replica, edge-to-edge, zero overlap. This is the tightest possible packing.
+>
+> ![Figure 1.8](<./CourseADSP2026/Fig/fig_1_8.png>)
+>
+> *Figure 1.8: Periodic replicas of a real bandpass signal's spectrum. Top ($f_s=B$): every position on the axis is doubly occupied by both the positive band and its mirror — unavoidable aliasing. Bottom ($f_s=2B$): positive-band and mirror-band replicas alternate perfectly, zero gap and zero overlap — the theoretical minimum rate.*
+
+The general lesson: the Nyquist floor is set by the **total occupied measure of the signal's full (two-sided) spectral support**, $f_s \geq (\text{total occupied measure})$, regardless of where on the frequency axis that support sits. For baseband signals this measure is $2B$ (§1.3.2); for bandpass signals it is likewise $2B$, where $B = f_2-f_1$ is the one-sided occupied width. Equivalently: a real signal carrying $2B$ Hz of total spectral occupancy needs $2B$ real samples/second no matter how the carrier is chosen — or, if down-converted to a complex (I/Q) baseband representation first, $B$ complex samples/second, which is the same $2B$ real numbers/second once I and Q are counted separately.
+
+### 1.3.4 Spectral Translation: Up-Conversion and the Apparent Doubling of Bandwidth
+
+A natural follow-up question: if a baseband signal $x(t)$ of bandwidth $B$ is **up-converted** to a carrier frequency $f_c$ — e.g. by mixing with a real carrier, $s(t) = x(t)\cos(2\pi f_ct)$ — does the resulting bandpass signal's bandwidth grow?
+
+By the modulation (frequency-shift) theorem,
+
+$$S(f) = \frac{1}{2}\big[X(f-f_c) + X(f+f_c)\big]$$
+
+Since $\cos(2\pi f_ct)$ itself has spectrum supported at $\pm f_c$ (Euler's formula again), multiplication produces **two** shifted copies of the *entire* original two-sided spectrum $X(f)$ — not half of it. $X(f)$ already spans $[-B,B]$ (total width $2B$, §1.3.2), so each shifted copy retains that full $2B$ width:
+
+- Positive-frequency lobe: $[f_c - B,\, f_c + B]$, width $2B$
+- Mirror lobe at $-f_c$: $[-f_c - B,\, -f_c + B]$, width $2B$
+
+> ![Figure 1.9](<./CourseADSP2026/Fig/fig_1_9.png>)
+>
+> *Figure 1.9: Top — baseband spectrum $|X(f)|$, occupying $[-B,B]$, total width $2B$. Bottom — after up-conversion to $f_c$, each lobe (upper + lower sideband combined) has exactly the same total width $2B$ as the original baseband spectrum; only its position on the axis has changed.*
+
+Using the bandpass-signal convention $B' = f_2-f_1$ from §1.3.3, the new one-sided bandwidth is $B' = 2B$ — numerically double the original baseband $B$. But note what changed and what did not: the physical spectral content is still exactly $2B$ Hz wide (it is literally the same shape, just translated); what changed is the *labeling convention*. For a baseband (lowpass) signal, "bandwidth $B$" by convention reports only the *radius* from the natural reference point $f=0$ — the highest frequency present — leaving the other half of the occupied span ($[-B,0]$) implicit. For a bandpass signal centered away from $0$, there is no natural "halving point" left to exploit, so the convention instead reports the *full* one-sided occupied width $f_2-f_1$. The same $2B$ Hz of physical spectrum is therefore reported as "$B$" under one convention and "$2B$" under the other — the doubling is a bookkeeping artifact of where the signal sits relative to $f=0$, not new information appearing out of nowhere.
+
+This is the textbook fact that **double-sideband (DSB) modulation occupies transmission bandwidth $2B$** for a baseband message of bandwidth $B$, because both the upper and lower sidebands are transmitted, and they are conjugate mirror images of each other — carrying no independent information, exactly as in §1.3.2's negative-frequency discussion, only now the redundant pair sits at $f_c$ instead of at $0$. **Single-sideband (SSB)** modulation removes one sideband (by filtering, or by mixing with a complex carrier $e^{j2\pi f_ct}$ instead of a real $\cos$) and recovers the original $B$-Hz efficiency, at the cost of more complex transmit/receive hardware.
+
+The practical consequence for sampling: if this DSB signal is bandpass-sampled directly (§1.3.3) without first down-converting, the relevant bandwidth parameter is the doubled $2B$, so the minimum rate becomes $f_s \geq 2(2B) = 4B$ — twice what would be needed for the baseband signal or for an SSB-modulated version of it.
+
+### 1.3.5 The Two Fundamental Problems of DSP
 
 The DSP pipeline gives rise to two core problems:
 
