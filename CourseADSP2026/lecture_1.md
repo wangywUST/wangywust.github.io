@@ -65,6 +65,26 @@ $$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, e^{j2\pi kn/N}}, \quad n = 0,
 
 $$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
 
+**Why the cyclic prefix works: from linear to circular convolution.** The physical channel can only perform *linear* convolution, $y(n) = \sum_l h(l)\,x(n-l) + w(n)$, whose output is $N+L-1$ samples long and pulls in values from *before* the block — i.e., from the tail of the previous OFDM symbol. The DFT, however, only diagonalizes *circular* convolution, $y(n) = \sum_l h(l)\,x(\langle n-l\rangle_N)$, where $x(n)$ is treated as periodic with period $N$ (this property is formalized later via the DFS/circular-convolution theorem in Part II). These are not the same operation. The entire job of the CP is to make the channel's linear convolution behave, once the CP is discarded, *exactly* like a circular convolution of $x(n)$ with $h(n)$.
+
+*Worked example ($N=4$, two-tap channel).* Let the channel have taps $h(0), h(1)$ (length $L=2$), so a CP of length $L_{cp}=L-1=1$ suffices. The transmitted sequence is the CP sample $s(-1)=x(3)$ followed by the block $s(0..3)=x(0..3)$. The channel produces $y(n)=h(0)s(n)+h(1)s(n-1)$; after the receiver discards $s(-1)$:
+
+$$y(0) = h(0)x(0) + h(1)x(3), \qquad y(1) = h(0)x(1) + h(1)x(0),$$
+$$y(2) = h(0)x(2) + h(1)x(1), \qquad y(3) = h(0)x(3) + h(1)x(2).$$
+
+Compare with the circular convolution $y_{\text{circ}}(n) = \sum_l h(l)\,x(\langle n-l\rangle_4)$: e.g. $y_{\text{circ}}(0) = h(0)x(0) + h(1)x(\langle -1\rangle_4) = h(0)x(0)+h(1)x(3)$, identical to $y(0)$ above, and likewise for $n=1,2,3$. So the $N$ retained samples are, term for term, the circular convolution of $x(n)$ and $h(n)$ — and the DFT convolution theorem then gives $Y(k)=H(k)X(k)$ directly.
+
+This match depends entirely on the guard samples being an **exact copy** of $x(N-1), x(N-2), \ldots$ — not zero-padding. If $s(-1)$ were $0$ instead of $x(3)$, $y(0)$ would become $h(0)x(0)+h(1)\cdot 0$, which does **not** equal $y_{\text{circ}}(0)=h(0)x(0)+h(1)x(3)$. Only the literal copy of the tail reproduces the periodic wrap-around that circular convolution assumes; this is why it is a *cyclic prefix* and not merely a blank guard interval.
+
+**Two distinct impairments from multipath, fixed by two different mechanisms.** Delay spread in the channel — multiple echoes arriving with different delays — causes two separable problems:
+
+| Impairment | Cause | How the CP fixes it |
+|---|---|---|
+| **Inter-symbol interference (ISI)** | Echoes carrying the *previous* symbol's tail bleed into the current symbol's receive window | *Guard time*: if $L_{cp} \geq$ the channel's maximum delay spread, the stale energy decays entirely within the discarded CP interval and never reaches the $N$ retained samples. Any guard interval — even zeros — would achieve this. |
+| **Inter-carrier interference (ICI) / loss of subcarrier orthogonality** | Within a single symbol, *linear* convolution lacks the periodic boundary condition that the complex exponentials $e^{j2\pi kn/N}$ need to remain eigenfunctions of the channel operator, so energy leaks between subcarriers | *Exact tail copy*: converts the in-block operation into a true circular convolution, under which each $e^{j2\pi kn/N}$ passes through unchanged in shape (only scaled by $H(k)$), so no energy crosses subcarriers. Zero-padding alone would not prevent this. |
+
+The two fixes are independent: sufficient *length* protects against ISI, while the exact *duplication* of the tail protects against ICI. Both are necessary — a long-enough zero guard band would still leave a linear-convolution boundary artifact inside the block, smearing the $N$ orthogonal subcarriers into each other even with no inter-symbol contamination at all. It is the combination of the two that yields the clean, crosstalk-free model $Y(k)=H(k)X(k)+W(k)$ used throughout this section, and with it the simple one-tap equalizer $\hat{X}(k) = Y(k)/H(k)$ in place of a much harder time-domain deconvolution.
+
 **Constellation diagrams**: The modulation alphabet is visualized as a constellation. Common examples:
 - **QPSK** ($M=4$): 4 points on a circle, 2 bits/symbol
 - **8-PSK** ($M=8$): 8 points on a circle, 3 bits/symbol
