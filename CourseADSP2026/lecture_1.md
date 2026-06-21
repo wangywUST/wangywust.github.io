@@ -529,7 +529,8 @@ Implements the difference equation with two separate delay chains — one for in
 
 - Total delay elements: $2N$
 
-> **[PLACEHOLDER: Direct Form I signal flow graph — input delay chain with multipliers $a_k$, output delay chain with multipliers $b_k$]**
+> ![Figure 3.5](<./CourseADSP2026/Fig/fig_3_5.png>)
+>
 > *Figure 3.5: Direct Form I IIR filter.*
 
 ### 3.2.2 Direct Form II — Canonical Form
@@ -718,8 +719,9 @@ $$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^*}{1 - \alpha_k\, z^{-1}} 
 
 The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
 
-> **[PLACEHOLDER: Pole-zero diagram for a first-order allpass filter: pole at $z=\alpha$ inside unit circle, zero at $z=1/\alpha^*$ outside]**
-> *Figure 4.1: Allpass filter pole-zero structure.*
+> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/fig_4_1.png>)
+>
+> *Figure 4.1: Typical pole-zero patterns of a PZ (pole-zero) system, all-pass system: (a) complex-valued coefficients and (b) real-valued coefficients.*
 
 **Use cases**: Phase equalization (correcting phase distortion without altering magnitude), building blocks in lattice filters and filter banks, Schur-Cohn stability testing.
 
