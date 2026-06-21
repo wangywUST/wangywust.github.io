@@ -63,7 +63,7 @@ $$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
 - **16-QAM** ($M=16$): 16 points on a square grid, 4 bits/symbol
 - **64-QAM** ($M=64$): 64 points, 6 bits/symbol
 
-> ![Figure 1.3 image pixel](<./CourseADSP2026/Fig/fig_1_3.png>)
+> ![Figure 1.3](<./CourseADSP2026/Fig/fig_1_3.png>)
 >
 > *Figure 1.3: Baseband communication signals — constellation maps. Each point represents one symbol carrying $\log_2 M$ bits. Higher-order constellations achieve greater spectral efficiency but require higher SNR.*
 
@@ -79,7 +79,8 @@ After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a l
 
 **Frequency-diversity radar**: Successive pulses use different carrier frequencies to improve target discrimination and reduce scintillation. The transmitted waveform exhibits a stepped-frequency pattern.
 
-> **[PLACEHOLDER: LFM radar waveform — time-domain showing increasing frequency, frequency-domain showing constant amplitude spectrum]**
+> ![Figure 1.4](<./CourseADSP2026/Fig/fig_1_4.png>)
+>
 > *Figure 1.4: Radar signals — (left) LFM chirp with linearly increasing instantaneous frequency; (right) frequency-diverse radar with stepped carrier frequencies across pulses.*
 
 ---
