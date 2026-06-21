@@ -483,7 +483,8 @@ Complex conjugate zero pairs are combined into each real biquad. Each biquad is 
 
 **Advantages**: Numerically more robust than the direct form for high-order filters (coefficient sensitivity is localized to each section); individual zeros are easily modified.
 
-> **[PLACEHOLDER: Cascade FIR structure — series of second-order biquad sections]**
+> ![Figure 3.2](<./CourseADSP2026/Fig/fig_3_2.png>)
+>
 > *Figure 3.2: Cascade FIR implementation.*
 
 ### 3.1.3 Recursive Realization and Comb Filter
@@ -501,9 +502,6 @@ $$H(z) = \underbrace{\frac{1-z^{-N}}{N}}_{\displaystyle H_1(z):\ \text{comb filt
 
 The pole-zero cancellation preserves the FIR character, while the recursive structure reduces computation from $N$ operations to **only 2 per sample**, regardless of $N$.
 
-> **[PLACEHOLDER: Signal flow graph of recursive FIR: input → comb $H_1(z)$ → accumulator $H_2(z)$ → output, with feedback loop]**
-> *Figure 3.3: Recursive FIR via comb filter and accumulator — pole-zero cancellation preserves the FIR response.*
-
 ### 3.1.4 Frequency-Sampling Form
 
 When the desired DFT values $H(k)$ are specified, the transfer function is:
@@ -511,9 +509,6 @@ When the desired DFT values $H(k)$ are specified, the transfer function is:
 $$H(z) = \frac{1 - z^{-N}}{N} \sum_{k=0}^{N-1} \frac{H(k)}{1 - W_N^{-k} z^{-1}}, \qquad W_N = e^{-j2\pi/N}$$
 
 This is a **comb filter** cascaded with a **bank of $N$ first-order resonators**, each tuned to a DFT frequency $\omega_k = 2\pi k/N$. Transition-band samples can be optimized to minimize stopband ripple.
-
-> **[PLACEHOLDER: Frequency-sampling FIR: comb filter $(1-z^{-N})/N$ feeding parallel resonator bank]**
-> *Figure 3.4: Frequency-sampling FIR implementation.*
 
 ---
 
@@ -531,9 +526,9 @@ Implements the difference equation with two separate delay chains — one for in
 
 - Total delay elements: $2N$
 
-> ![Figure 3.5](<./CourseADSP2026/Fig/fig_3_5.png>)
+> ![Figure 3.3](<./CourseADSP2026/Fig/fig_3_3.png>)
 >
-> *Figure 3.5: Direct Form I IIR filter.*
+> *Figure 3.3: Direct Form I IIR filter.*
 
 ### 3.2.2 Direct Form II — Canonical Form
 
@@ -545,9 +540,9 @@ $$y(n) = \sum_{k=0}^{N} a_k\, u(n-k)$$
 
 - Delay elements: $N$ — the minimum possible (**canonical form**)
 
-> ![Figure 3.6](<./CourseADSP2026/Fig/fig_3_6.png>)
+> ![Figure 3.4](<./CourseADSP2026/Fig/fig_3_4.png>)
 >
-> *Figure 3.6: All-pole system realization (direct form).*
+> *Figure 3.4: All-pole system realization (direct form).*
 
 **Transposed Direct Form II**: Reversing the signal flow graph (transpose) yields different accumulation order and superior finite-precision performance.
 
@@ -559,9 +554,6 @@ $$H(z) = \prod_{k=1}^{\lfloor N/2 \rfloor} H_k(z), \qquad H_k(z) = \frac{a_{0k} 
 
 Each biquad is implemented as Direct Form II. Coefficient sensitivity is localized; the format used by virtually all practical implementations (e.g., MATLAB `sos` format).
 
-> **[PLACEHOLDER: IIR cascade form — series of Direct-Form-II biquad sections]**
-> *Figure 3.7: IIR cascade implementation.*
-
 ### 3.2.4 Parallel Form
 
 Expand $H(z)$ via partial-fraction decomposition:
@@ -571,9 +563,6 @@ $$H(z) = C + \sum_{k=1}^{\lfloor N/2 \rfloor} \frac{a_{0k} + a_{1k}z^{-1}}{1 + b
 Each branch is an independent second-order section computed in parallel.
 
 **Advantages**: Best finite-precision performance — round-off errors in each section do not accumulate across branches. Suitable for highly parallel hardware.
-
-> **[PLACEHOLDER: IIR parallel form — constant $C$ plus bank of parallel second-order sections]**
-> *Figure 3.8: IIR parallel implementation.*
 
 ---
 
@@ -587,9 +576,6 @@ Each branch is an independent second-order section computed in parallel.
 - **Bandpass**: passband $[\omega_1, \omega_2]$
 - **Bandstop**: stopband $[\omega_1, \omega_2]$
 
-> **[PLACEHOLDER: Four ideal magnitude responses (lowpass, highpass, bandpass, bandstop) vs $\omega \in [0,\pi]$]**
-> *Figure 3.9: Ideal (brickwall) filter shapes.*
-
 **Practical filter specification**:
 
 $$1 - \delta_1 \leq \lvert H(e^{j\omega})\rvert \leq 1 + \delta_1 \quad (\text{passband},\ \omega \leq \omega_p)$$
@@ -597,9 +583,6 @@ $$1 - \delta_1 \leq \lvert H(e^{j\omega})\rvert \leq 1 + \delta_1 \quad (\text{p
 $$\lvert H(e^{j\omega})\rvert \leq \delta_2 \quad (\text{stopband},\ \omega \geq \omega_s)$$
 
 In dB: passband ripple $R_p = -20\log_{10}(1-\delta_1)$ dB; stopband attenuation $A_s = -20\log_{10}(\delta_2)$ dB.
-
-> **[PLACEHOLDER: Practical filter frequency response with passband, transition band, stopband, and tolerances $\delta_1$, $\delta_2$, $\omega_p$, $\omega_s$ labeled]**
-> *Figure 3.10: Practical filter specification.*
 
 ### 3.3.2 FIR Filter Design: Window Method, Frequency-Sampling Method, Kaiser Formula
 
@@ -684,9 +667,6 @@ Design a digital lowpass prototype $H_{lp}(z')$, then apply a digital-domain fre
 | Lowpass → Bandstop | $z'^{-1} \to \dfrac{z^{-2} - a_1 z^{-1} + a_2}{a_2 z^{-2} - a_1 z^{-1} + 1}$ | Notch transformation |
 
 The parameter $\alpha$ (and $a_1, a_2$ for bandpass/bandstop) is determined by the desired cutoff frequencies.
-
-> **[PLACEHOLDER: Comparison of IIR design methods: (a) impulse invariance — aliased frequency mapping; (b) bilinear transform — warped but alias-free frequency mapping]**
-> *Figure 3.11: IIR design method comparison.*
 
 ---
 
@@ -849,9 +829,6 @@ Classified by symmetry type (even or odd) and filter length (odd or even):
 | II | $\displaystyle 2\sum_{n=1}^{N/2} b(n)\cos\!\left[\!\left(n-\tfrac{1}{2}\right)\omega\right]$, where $b(n) = h\!\left(\tfrac{N}{2} - n\right)$ |
 | III | $\displaystyle 2\sum_{n=1}^{(N-1)/2} c(n)\sin(n\omega)$, where $c(n) = h\!\left(\tfrac{N-1}{2} - n\right)$ |
 | IV | $\displaystyle 2\sum_{n=1}^{N/2} d(n)\sin\!\left[\!\left(n-\tfrac{1}{2}\right)\omega\right]$, where $d(n) = h\!\left(\tfrac{N}{2} - n\right)$ |
-
-> **[PLACEHOLDER: Four-panel figure — (top) $h(n)$ impulse responses for Types I–IV with symmetry; (bottom) typical amplitude responses $\lvert A(e^{j\omega})\rvert$]**
-> *Figure 4.3: Four types of linear-phase FIR filters.*
 
 ### 4.3.3 Applicable Filter Types per Class
 
