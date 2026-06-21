@@ -543,8 +543,9 @@ $$y(n) = \sum_{k=0}^{N} a_k\, u(n-k)$$
 
 - Delay elements: $N$ — the minimum possible (**canonical form**)
 
-> **[PLACEHOLDER: Direct Form II signal flow graph — single shared delay chain; feedback on left, feedforward on right]**
-> *Figure 3.6: Direct Form II IIR filter — canonical structure.*
+> ![Figure 3.6](<./CourseADSP2026/Fig/fig_3_6.png>)
+>
+> *Figure 3.6: All-pole system realization (direct form).*
 
 **Transposed Direct Form II**: Reversing the signal flow graph (transpose) yields different accumulation order and superior finite-precision performance.
 
