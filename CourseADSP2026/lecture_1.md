@@ -534,7 +534,7 @@ The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coeffi
 
 | Property | Condition | Result |
 |----------|-----------|--------|
-| Linearity | — | $\text{DFT}\{ax+by\} = aX+bY$ |
+| Linearity | — | $\operatorname{DFT}\!\left\{a x(n)+b y(n)\right\} = aX(k)+bY(k)$ |
 | Circular shift | $x(\langle n-m\rangle_N)$ | $W_N^{mk} X(k)$ |
 | Circular convolution | $x(n) \circledast y(n)$ | $X(k)\cdot Y(k)$ |
 | Multiplication | $x(n)\cdot y(n)$ | $\frac{1}{N} X(k) \circledast Y(k)$ |
