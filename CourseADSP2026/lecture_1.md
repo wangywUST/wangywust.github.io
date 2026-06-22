@@ -473,11 +473,62 @@ $$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$$
 
 ### 2.3.2 Relationship Between DFT and DFS
 
-The DFT of a finite-length sequence $x(n)$, $0 \leq n \leq N-1$, equals one period of the **Discrete Fourier Series (DFS)** of its periodic extension $\tilde{x}(n) = x(\langle n \rangle_N)$:
+The DFT and the DFS are closely related but apply to different objects: the DFT operates on a *finite-length* sequence; the DFS operates on an *infinite periodic* sequence. Understanding the bridge between them is essential for correctly interpreting circular convolution, time-domain aliasing, and the DFT convolution theorem.
 
-$$\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk} = X(k)$$
+#### Step 1 — The DFS: transform for periodic sequences
 
-**Key implication**: circular convolution in time $\leftrightarrow$ pointwise multiplication in the DFT domain. To compute linear convolution of sequences of lengths $L_1$ and $L_2$ using the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding) to avoid time-domain aliasing.
+The **Discrete Fourier Series (DFS)** is the frequency-domain representation of a sequence $\tilde{x}(n)$ that is periodic with period $N$, i.e., $\tilde{x}(n + N) = \tilde{x}(n)$ for all $n \in \mathbb{Z}$.
+
+Because $\tilde{x}(n)$ repeats every $N$ samples, it can be decomposed exactly into $N$ complex exponentials with frequencies $\omega_k = 2\pi k/N$:
+
+$$\boxed{\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk}} \qquad \text{(DFS analysis, } k \in \mathbb{Z}\text{)}$$
+
+$$\boxed{\tilde{x}(n) = \frac{1}{N}\sum_{k=0}^{N-1} \tilde{X}(k)\, W_N^{-nk}} \qquad \text{(DFS synthesis, } n \in \mathbb{Z}\text{)}$$
+
+Two important structural facts:
+
+1. **Both sides are periodic with period $N$.** The time-domain sequence $\tilde{x}(n)$ is periodic by assumption. The frequency-domain coefficients $\tilde{X}(k)$ are also periodic: $\tilde{X}(k+N) = \tilde{X}(k)$. This can be verified directly — replacing $k$ by $k+N$ in the analysis formula gives $W_N^{n(k+N)} = W_N^{nk} \cdot W_N^{nN} = W_N^{nk} \cdot 1 = W_N^{nk}$, so the sum is unchanged. The DFS thus describes a *doubly periodic* object: infinite in both time and frequency, with period $N$ in both domains.
+
+2. **The DFS sum only needs one period.** Even though $\tilde{x}(n)$ extends over all integers, the analysis sum only runs over one period $n = 0, \ldots, N-1$ (any consecutive $N$ samples give the same result). This is the key fact exploited in Step 3 below.
+
+#### Step 2 — Periodic extension of a finite-length sequence
+
+Given a finite-length sequence $x(n)$ supported on $0 \leq n \leq N-1$, define its **periodic extension** with period $N$:
+
+$$\tilde{x}(n) \triangleq x(\langle n \rangle_N), \qquad \langle n \rangle_N \triangleq n \bmod N$$
+
+The operator $\langle \cdot \rangle_N$ wraps any integer $n$ into the range $[0, N-1]$ by taking the remainder after dividing by $N$. In other words, $\tilde{x}(n)$ tiles the finite block $x(0), x(1), \ldots, x(N-1)$ infinitely in both directions:
+
+$$\ldots,\; \underbrace{x(0),\, x(1),\, \ldots,\, x(N-1)}_{\text{original block}},\; \underbrace{x(0),\, x(1),\, \ldots,\, x(N-1)}_{\text{copy}},\; \ldots$$
+
+On the canonical interval $0 \leq n \leq N-1$, the two sequences agree exactly: $\tilde{x}(n) = x(n)$.
+
+#### Step 3 — DFT equals one period of the DFS
+
+Now compute the DFS coefficients of $\tilde{x}(n)$:
+
+$$\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk}$$
+
+On the summation interval $0 \leq n \leq N-1$, we have $\tilde{x}(n) = x(n)$ (from Step 2). Substituting:
+
+$$\tilde{X}(k) = \sum_{n=0}^{N-1} x(n)\, W_N^{nk} = X(k)$$
+
+The right-hand side is exactly the DFT definition from §2.3.1. Therefore:
+
+$$\boxed{\tilde{X}(k) = X(k), \quad k = 0, 1, \ldots, N-1}$$
+
+The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coefficients* $\tilde{X}(k)$. The DFT isolates and works with just this one representative period, while the DFS describes the full periodic structure in both domains.
+
+#### Summary: DFT vs. DFS at a glance
+
+| | **DFS** | **DFT** |
+|---|---|---|
+| Input | Infinite periodic sequence $\tilde{x}(n)$, period $N$ | Finite-length sequence $x(n)$, $0 \leq n \leq N-1$ |
+| Output | Infinite periodic coefficients $\tilde{X}(k)$, period $N$ | $N$ complex numbers $X(k)$, $k = 0, \ldots, N-1$ |
+| Relationship | Both domains periodic; extends over all $n, k \in \mathbb{Z}$ | One period of the DFS: $X(k) = \tilde{X}(k)$ for $k = 0,\ldots, N-1$ |
+| Role | Theoretical framework; explains circular convolution | Practical numerical tool; computed by the FFT |
+
+**Key implication**: Since the DFT is just one period of the DFS, and the DFS diagonalizes *periodic* (circular) convolution, the DFT likewise diagonalizes circular convolution — giving the convolution theorem $x(n) \circledast y(n) \xleftrightarrow{\text{DFT}} X(k) \cdot Y(k)$. To compute *linear* convolution of sequences of lengths $L_1$ and $L_2$ via the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding); otherwise the periodic wrap-around causes the tails of the linear convolution to fold back onto the result — a phenomenon called **time-domain aliasing**.
 
 ### 2.3.3 Main Properties and Uses of the DFT
 
