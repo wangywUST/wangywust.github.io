@@ -423,7 +423,7 @@ where each variable carries a distinct physical meaning:
 
 - $z = r\,e^{j\omega}$ is the **complex frequency variable** of the z-transform ($z \in \mathbb{C}$), expressed in polar form:
   - $r = \lvert z\rvert = e^{\sigma T_s}$: the **magnitude** of $z$, encoding the growth/decay rate after sampling. $r < 1$ (inside the unit circle) $\leftrightarrow$ $\sigma < 0$ (stable); $r > 1$ (outside) $\leftrightarrow$ $\sigma > 0$ (unstable); $r = 1$ (on the unit circle) $\leftrightarrow$ $\sigma = 0$ (marginally stable, pure sinusoidal response).
-  - $\omega = \angle z = \Omega T_s = \Omega / f_s$: the **digital angular frequency** (units: rad/sample), the discrete-time counterpart of $\Omega$. It is obtained by normalizing $\Omega$ by the sampling period; it is $2\pi$-periodic by construction, with $\omega \in [-\pi, \pi]$ corresponding to the analog band $\Omega \in [-f_s/2,\, f_s/2]$ (one full traversal of the Nyquist interval).
+  - $\omega = \angle z = \Omega T_s = \Omega / f_s$: the **digital angular frequency** (units: rad/sample), the discrete-time counterpart of $\Omega$. It is obtained by normalizing $\Omega$ by the sampling period; it is $2\pi$-periodic by construction, with $\omega \in [-\pi, \pi]$ corresponding to the analog band $\Omega \in [-\pi/T_s,\, \pi/T_s]$ (rad/s), or equivalently $f \in [-f_s/2,\, f_s/2]$ (Hz) (one full traversal of the Nyquist interval).
 
 **Key correspondences**:
 
@@ -435,7 +435,7 @@ where each variable carries a distinct physical meaning:
 | Stable causal: poles in left half-plane | Stable causal: poles inside unit circle |
 | Analog frequency $\Omega$ (rad/s) | Digital frequency $\omega = \Omega T_s$ (rad/sample) |
 
-**Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (i.e., $[-f_s/2,\; f_s/2]$), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
+**Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (rad/s), equivalently as analog cyclic frequency $f$ traverses $[-f_s/2,\; f_s/2]$ (Hz), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
 
 > ![Figure 2.2](<./CourseADSP2026/Fig/fig_2_2.jpg>)
 >
