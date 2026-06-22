@@ -45,7 +45,7 @@ $$x(m, n), \quad m = 0, 1, \ldots, M-1;\; n = 0, 1, \ldots, N-1$$
 
 A video signal is a **dynamic image sequence**: a series of image frames $x_k(m,n)$ indexed by frame number $k$, captured at a frame rate (typically 25, 30, or 60 fps). Video introduces temporal correlation in addition to spatial correlation, requiring 3D signal processing.
 
-$$\text{Video:} \quad \{x_k(m,n)\}_{k=0}^{K-1}, \quad k = \text{frame index}$$
+$$\text{Video:} \quad \lbrace x_k(m,n)\rbrace_{k=0}^{K-1}, \quad k = \text{frame index}$$
 
 The large data volume of uncompressed video (e.g., 1080p at 30 fps $\approx$ 1.5 Gbps) motivates video compression standards such as H.264, H.265/HEVC, and AV1.
 
@@ -368,7 +368,7 @@ $$\boxed{X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}, \quad z \in \mathbb{C}}
 
 The **Region of Convergence (ROC)** is the set of $z$ values for which the sum converges absolutely:
 
-$$\text{ROC} = \left\{ z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} \lt \infty \right\}$$
+$$\text{ROC} = \lbrace z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} \lt \infty \rbrace$$
 
 The ROC takes the form of an annulus $r_1 \lt \lvert z\rvert \lt r_2$ (two-sided sequences), $\lvert z\rvert \gt r_1$ (right-sided/causal), or $\lvert z\rvert \lt r_2$ (left-sided).
 
@@ -416,8 +416,8 @@ $$s = \sigma + j\Omega \xrightarrow{z = e^{sT_s}} z = e^{\sigma T_s}\, e^{j\Omeg
 where each variable carries a distinct physical meaning:
 
 - $s = \sigma + j\Omega$ is the **complex frequency variable** of the Laplace transform ($s \in \mathbb{C}$), whose real and imaginary parts are independent:
-  - $\sigma = \operatorname{Re}(s)$: the **damping factor** (units: Np/s). $\sigma < 0$ → exponentially decaying signal; $\sigma > 0$ → exponentially growing signal; $\sigma = 0$ → pure sinusoid (sustained oscillation).
-  - $\Omega = \operatorname{Im}(s)$: the **analog angular frequency** (units: rad/s), i.e., the rate of oscillation in continuous time.
+  - $\sigma = \mathrm{Re}(s)$: the **damping factor** (units: Np/s). $\sigma < 0$ → exponentially decaying signal; $\sigma > 0$ → exponentially growing signal; $\sigma = 0$ → pure sinusoid (sustained oscillation).
+  - $\Omega = \mathrm{Im}(s)$: the **analog angular frequency** (units: rad/s), i.e., the rate of oscillation in continuous time.
 
 - $T_s$: the **sampling period** (units: s/sample). Its reciprocal $f_s = 1/T_s$ is the **sampling rate** (units: Hz = samples/s).
 
@@ -665,8 +665,8 @@ The permutation can be performed in-place with an $O(N)$ algorithm: compare each
 > **Guiding question**: How do we characterize a discrete-time system and design it to perform a desired signal transformation?
 
 A **discrete-time LTI (Linear Time-Invariant) system** is any processor that maps an input sequence $x(n)$ to an output sequence $y(n)$ while satisfying two properties:
-- **Linearity**: $\mathcal{H}\{ax_1(n) + bx_2(n)\} = a\mathcal{H}\{x_1(n)\} + b\mathcal{H}\{x_2(n)\}$
-- **Time-invariance**: if $y(n) = \mathcal{H}\{x(n)\}$, then $\mathcal{H}\{x(n-k)\} = y(n-k)$ for any integer $k$
+- **Linearity**: $\mathcal{H}\lbrace ax_1(n) + bx_2(n)\rbrace = a\mathcal{H}\lbrace x_1(n)\rbrace + b\mathcal{H}\lbrace x_2(n)\rbrace$
+- **Time-invariance**: if $y(n) = \mathcal{H}\lbrace x(n)\rbrace$, then $\mathcal{H}\lbrace x(n-k)\rbrace = y(n-k)$ for any integer $k$
 
 These two properties together guarantee that an LTI system is *completely characterized* by a single function — its **impulse response** $h(n)$ — and that system behavior in frequency is described by the **frequency response** $H(e^{j\omega})$. The difference equation is the computational recipe for implementing the system.
 
@@ -693,7 +693,7 @@ $$\sum_{k=0}^{N} b_k\, y(n-k) = \sum_{k=0}^{M} a_k\, x(n-k)$$
 | All $b_k = 0$ for $k \geq 1$ | **FIR** | $y(n) = \sum_{k=0}^{M} a_k\, x(n-k)$ — pure feedforward |
 | At least one $b_k \neq 0$ | **IIR** | Full LCCDE with feedback |
 
-The z-transform of the LCCDE (assuming zero initial conditions) gives the **transfer function** directly. Taking $\mathcal{Z}\{\cdot\}$ of both sides and using the shift property $\mathcal{Z}\{x(n-k)\} = z^{-k} X(z)$:
+The z-transform of the LCCDE (assuming zero initial conditions) gives the **transfer function** directly. Taking $\mathcal{Z}\lbrace\cdot\rbrace$ of both sides and using the shift property $\mathcal{Z}\lbrace x(n-k)\rbrace = z^{-k} X(z)$:
 
 $$\left(\sum_{k=0}^{N} b_k\, z^{-k}\right) Y(z) = \left(\sum_{k=0}^{M} a_k\, z^{-k}\right) X(z)$$
 
@@ -708,7 +708,7 @@ $$\boxed{H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} a_k\, z^{-k}}{\sum_{k=0
 
 **Definition**: The **impulse response** $h(n)$ is the output of the system when the input is a unit impulse:
 
-$$h(n) = \mathcal{H}\{\delta(n)\} \quad \text{(with zero initial conditions)}$$
+$$h(n) = \mathcal{H}\lbrace\delta(n)\rbrace \quad \text{(with zero initial conditions)}$$
 
 **Why $h(n)$ completely determines the system**: Any input signal can be decomposed into a weighted sum of shifted impulses (the sifting property):
 
@@ -1146,14 +1146,14 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
 
 **Proof by construction**:
 
-Given $H(z)$ with poles $\{p_k\}$ (all inside the unit circle) and zeros $\{z_k\}$ (some possibly outside):
+Given $H(z)$ with poles $\lbrace p_k\rbrace$ (all inside the unit circle) and zeros $\lbrace z_k\rbrace$ (some possibly outside):
 
 **Step 1** — Partition zeros:
-- $\mathcal{Z}_{in} = \{z_k : \lvert z_k\rvert \leq 1\}$: zeros inside or on the unit circle
-- $\mathcal{Z}_{out} = \{z_k : \lvert z_k\rvert \gt 1\}$: zeros outside the unit circle
+- $\mathcal{Z}_{in} = \lbrace z_k : \lvert z_k\rvert \leq 1\rbrace$: zeros inside or on the unit circle
+- $\mathcal{Z}_{out} = \lbrace z_k : \lvert z_k\rvert \gt 1\rbrace$: zeros outside the unit circle
 
 **Step 2** — Construct $H_m(z)$:
-- Assign all poles $\{p_k\}$ to $H_m(z)$
+- Assign all poles $\lbrace p_k\rbrace$ to $H_m(z)$
 - Assign all zeros in $\mathcal{Z}_{in}$ to $H_m(z)$
 - For each zero $c \in \mathcal{Z}_{out}$: add a zero at $1/c^*$ (its conjugate reciprocal, inside the unit circle) to $H_m(z)$
 
@@ -1178,7 +1178,7 @@ A filter has **generalized linear phase** if:
 
 $$H(e^{j\omega}) = e^{j\beta}\, e^{-j\alpha\omega}\, A(e^{j\omega})$$
 
-where $A(e^{j\omega})$ is **real-valued** (amplitude function), $\alpha$ is the **constant group delay** (samples), and $\beta \in \{0, \pm\pi/2\}$.
+where $A(e^{j\omega})$ is **real-valued** (amplitude function), $\alpha$ is the **constant group delay** (samples), and $\beta \in \lbrace 0, \pm\pi/2\rbrace$.
 
 The z-transform satisfies (for real $h(n)$):
 
@@ -1274,7 +1274,7 @@ It is a **Hermitian Toeplitz positive semi-definite matrix** — the central obj
 
 > **Theorem 1.2**: Let $R(z)$ be the rational z-transform of a positive semi-definite sequence with real-valued coefficients. Then:
 > 1. **Zeros on the unit circle** ($\lvert z_0\rvert = 1$): occur in **conjugate pairs** $(z_0,\, z_0^*)$, each with **even multiplicity**
-> 2. **Zeros off the unit circle**: occur in **quadruples** $\{z_0,\; z_0^*,\; 1/z_0,\; 1/z_0^*\}$
+> 2. **Zeros off the unit circle**: occur in **quadruples** $\lbrace z_0,\; z_0^*,\; 1/z_0,\; 1/z_0^*\rbrace$
 
 **Explanation**:
 - Hermitian symmetry ($R(z) = R^*(1/z^*)$, real coefficients): if $z_0$ is a zero, then so are $z_0^*$, $1/z_0$, and $1/z_0^*$
@@ -1284,7 +1284,7 @@ It is a **Hermitian Toeplitz positive semi-definite matrix** — the central obj
 
 $$\boxed{R(z) = \sigma^2\, H_m(z)\, H_m^*(1/z^*)}$$
 
-On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\{z_0, z_0^*, 1/z_0, 1/z_0^*\}$ splits as $\{1/z_0, 1/z_0^*\} \to H_m(z)$ and $\{z_0, z_0^*\} \to H_m^*(1/z^*)$.
+On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\lbrace z_0, z_0^*, 1/z_0, 1/z_0^*\rbrace$ splits as $\lbrace 1/z_0, 1/z_0^*\rbrace \to H_m(z)$ and $\lbrace z_0, z_0^*\rbrace \to H_m^*(1/z^*)$.
 
 This spectral factorization theorem is **fundamental** to:
 - **Wiener filter theory** (Chapter 6): whitening the input requires the minimum-phase spectral factor
