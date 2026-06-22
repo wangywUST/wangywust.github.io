@@ -194,7 +194,19 @@ $$f_s = \frac{1}{T_s} \geq 2B$$
 
 The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**.
 
-> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula, $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$: any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum, $X_a(-f) = X_a^*(f)$ — the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means $X_a(f) = 0$ for $\lvert f\rvert \gt B$ — the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
+> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula,
+>
+> $$\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$$
+>
+> any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum,
+>
+> $$X_a(-f) = X_a^*(f)$$
+>
+> so the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means
+>
+> $$X_a(f) = 0 \quad \text{for } \lvert f\rvert \gt B$$
+>
+> the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
 >
 > Geometrically, $e^{j2\pi ft}$ is a unit phasor in the complex (I/Q) plane rotating at angular rate $2\pi f$: positive $f$ means counter-clockwise rotation, negative $f$ means clockwise. A real signal is the projection of this rotating phasor onto the real axis, and that projection alone cannot distinguish a counter-clockwise rotation from a clockwise one — both project identically onto the real axis. Hence a real signal must carry both rotation directions ($\pm f$) to be represented faithfully. For a genuinely *complex*-valued signal (e.g. the I/Q baseband signal in a digital receiver, or an analytic signal), $+f$ and $-f$ are no longer forced to be conjugate partners — they become independent, physically meaningful quantities (e.g. the sign of a Doppler shift indicates approach vs. recession).
 
