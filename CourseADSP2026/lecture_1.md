@@ -459,7 +459,13 @@ $$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, W_N^{-nk}} \qquad n = 0, 1, \
 
 where $W_N = e^{-j2\pi/N}$ is the **twiddle factor**.
 
-The DFT can be written in matrix form $\mathbf{X} = \mathbf{W}_N \mathbf{x}$, where $[\mathbf{W}_N]_{kn} = W_N^{kn}$ is the $N\times N$ DFT matrix. The inverse uses $\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$.
+The DFT can be written in matrix form:
+
+$$\mathbf{X} = \mathbf{W}_N \mathbf{x}$$
+
+where $[\mathbf{W}_N]_{kn} = W_N^{kn}$ is the $N\times N$ DFT matrix. The inverse uses:
+
+$$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$$
 
 ### 2.3.2 Relationship Between DFT and DFS
 
