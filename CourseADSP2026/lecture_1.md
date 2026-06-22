@@ -331,19 +331,19 @@ $$u(n) = \sum_{k=0}^{\infty} \delta(n-k), \qquad \delta(n) = u(n) - u(n-1)$$
 
 The step is the running sum of the impulse; the impulse is the first difference of the step — a discrete-time analogy of integration and differentiation.
 
-> **Why $u(n)$ has no DTFT in the ordinary sense**: The absolute sum $\sum_{n=0}^{\infty}|u(n)| = \infty$ diverges, so the DTFT does not exist as a conventional integral. $u(n)$ is instead handled via the z-transform (ROC: $|z|>1$, §2.2.3) or via distribution theory (adding a Dirac delta at $\omega=0$ to the formal DTFT).
+> **Why $u(n)$ has no DTFT in the ordinary sense**: The absolute sum $\sum_{n=0}^{\infty}\lvert u(n)\rvert = \infty$ diverges, so the DTFT does not exist as a conventional integral. $u(n)$ is instead handled via the z-transform (ROC: $\lvert z\rvert>1$, §2.2.3) or via distribution theory (adding a Dirac delta at $\omega=0$ to the formal DTFT).
 
 ### 1.5.3 Real Exponential Sequence $\alpha^n u(n)$
 
 $$\alpha^n u(n) = \begin{cases} \alpha^n, & n \geq 0 \\ 0, & n < 0 \end{cases}$$
 
-| $|\alpha|$ | Behavior |
+| $\lvert\alpha\rvert$ | Behavior |
 |------------|----------|
-| $|\alpha| < 1$ | Decays to zero — stable causal system |
-| $|\alpha| = 1$ | Sustained oscillation (or DC for $\alpha=1$) |
-| $|\alpha| > 1$ | Grows without bound — unstable |
+| $\lvert\alpha\rvert < 1$ | Decays to zero — stable causal system |
+| $\lvert\alpha\rvert = 1$ | Sustained oscillation (or DC for $\alpha=1$) |
+| $\lvert\alpha\rvert > 1$ | Grows without bound — unstable |
 
-This is the prototype impulse response of a first-order causal IIR filter. Its z-transform $\dfrac{1}{1-\alpha z^{-1}}$ (ROC: $|z|>|\alpha|$) is the single most-used entry in the z-transform table (§2.2.3).
+This is the prototype impulse response of a first-order causal IIR filter. Its z-transform $\dfrac{1}{1-\alpha z^{-1}}$ (ROC: $\lvert z\rvert>\lvert\alpha\rvert$) is the single most-used entry in the z-transform table (§2.2.3).
 
 ---
 
@@ -813,31 +813,31 @@ Even though the difference equation has only two terms, the impulse response is 
 >
 > $$H(z) = \frac{1}{1 - az^{-1}} = \frac{z}{z - a}$$
 >
-> The denominator is linear in $z$, so it has exactly **one root — the pole at $z = a$**. There is also a zero at $z = 0$ (the origin), but a zero at the origin contributes no frequency-selective behavior: its distance from any point $e^{j\omega}$ on the unit circle is always $|e^{j\omega} - 0| = 1$ — a constant. So all the filter's frequency shaping comes from the single pole alone.
+> The denominator is linear in $z$, so it has exactly **one root — the pole at $z = a$**. There is also a zero at $z = 0$ (the origin), but a zero at the origin contributes no frequency-selective behavior: its distance from any point $e^{j\omega}$ on the unit circle is always $\lvert e^{j\omega} - 0\rvert = 1$ — a constant. So all the filter's frequency shaping comes from the single pole alone.
 >
 > **② Geometric interpretation of the frequency response**
 >
 > Evaluating $H(z)$ on the unit circle ($z = e^{j\omega}$):
 >
-> $$|H(e^{j\omega})| = \frac{1}{|e^{j\omega} - a|}$$
+> $$\lvert H(e^{j\omega})\rvert = \frac{1}{\lvert e^{j\omega} - a\rvert}$$
 >
-> The denominator $|e^{j\omega} - a|$ is the **Euclidean distance** in the complex plane from the unit-circle point $e^{j\omega}$ to the pole $z = a$. As $\omega$ sweeps from $0$ to $\pi$, this distance changes, and the magnitude response is **large wherever the unit circle passes closest to the pole** and small where it is farthest away.
+> The denominator $\lvert e^{j\omega} - a\rvert$ is the **Euclidean distance** in the complex plane from the unit-circle point $e^{j\omega}$ to the pole $z = a$. As $\omega$ sweeps from $0$ to $\pi$, this distance changes, and the magnitude response is **large wherever the unit circle passes closest to the pole** and small where it is farthest away.
 >
 > ```
 >       Im
 >        |         pole at z=a (positive real → near z=+1 → near ω=0)
 >        |      ↑ large gain at ω=0 (DC)
 >  ------+------●------------ Re
->        |   (a,0)    z=+1 is close to the pole → small distance → large |H|
+>        |   (a,0)    z=+1 is close to the pole → small distance → large magnitude
 >        |
->        |       z=−1 is far from the pole → large distance → small |H|
+>        |       z=−1 is far from the pole → large distance → small magnitude
 > ```
 >
 > **③ Lowpass filter: $0 < a < 1$ (pole on the positive real axis)**
 >
 > The pole sits close to the point $z = +1$ (which corresponds to DC, $\omega = 0$):
 >
-> | Frequency | Unit-circle point | Distance to pole $a$ | $|H|$ |
+> | Frequency | Unit-circle point | Distance to pole $a$ | $\lvert H\rvert$ |
 > |-----------|-------------------|-----------------------|-------|
 > | DC ($\omega = 0$) | $e^{j0} = +1$ | $1 - a$ (small, since $a \approx 1$) | **large** |
 > | Nyquist ($\omega = \pi$) | $e^{j\pi} = -1$ | $1 + a$ (large) | **small** |
@@ -848,16 +848,16 @@ Even though the difference equation has only two terms, the impulse response is 
 >
 > The pole now sits close to $z = -1$ (which corresponds to the Nyquist frequency, $\omega = \pi$):
 >
-> | Frequency | Unit-circle point | Distance to pole $a < 0$ | $|H|$ |
+> | Frequency | Unit-circle point | Distance to pole $a < 0$ | $\lvert H\rvert$ |
 > |-----------|-------------------|---------------------------|-------|
-> | DC ($\omega = 0$) | $+1$ | $1 - a = 1 + |a|$ (large) | **small** |
-> | Nyquist ($\omega = \pi$) | $-1$ | $\lvert{-1 - a}\rvert = 1 - |a|$ (small, since $a \approx -1$) | **large** |
+> | DC ($\omega = 0$) | $+1$ | $1 - a = 1 + \lvert a\rvert$ (large) | **small** |
+> | Nyquist ($\omega = \pi$) | $-1$ | $\lvert{-1 - a}\rvert = 1 - \lvert a\rvert$ (small, since $a \approx -1$) | **large** |
 >
 > High frequencies are amplified, low frequencies are suppressed → **highpass behavior**. Symmetrically, as $a \to -1$, the filter sharpens at the Nyquist end.
 >
 > **⑤ Why more efficient than FIR**
 >
-> An FIR filter with $M$ taps achieves its frequency selectivity by choosing $M+1$ coefficients — more taps means sharper cutoff, but always at the cost of $M+1$ multiplications per sample. A single-pole IIR requires **exactly 1 multiplication and 1 addition per sample**, regardless of how sharp the desired rolloff is: sharpening is achieved by pushing $|a|$ closer to $1$ — a change to a single number, not an increase in computation. This is the fundamental computational advantage of poles over taps: a pole close to the unit circle creates a tall, narrow peak in $|H(e^{j\omega})|$ essentially for free.
+> An FIR filter with $M$ taps achieves its frequency selectivity by choosing $M+1$ coefficients — more taps means sharper cutoff, but always at the cost of $M+1$ multiplications per sample. A single-pole IIR requires **exactly 1 multiplication and 1 addition per sample**, regardless of how sharp the desired rolloff is: sharpening is achieved by pushing $\lvert a\rvert$ closer to $1$ — a change to a single number, not an increase in computation. This is the fundamental computational advantage of poles over taps: a pole close to the unit circle creates a tall, narrow peak in $\lvert H(e^{j\omega})\rvert$ essentially for free.
 
 > ![Figure 3.0a](<./CourseADSP2026/Fig/fig_3_0a.png>)
 >
@@ -865,7 +865,7 @@ Even though the difference equation has only two terms, the impulse response is 
 
 **BIBO stability from $h(n)$**: The system is bounded-input bounded-output (BIBO) stable if and only if $h(n)$ is absolutely summable:
 
-$$\sum_{n=-\infty}^{\infty} |h(n)| < \infty$$
+$$\sum_{n=-\infty}^{\infty} \lvert h(n)\rvert < \infty$$
 
 For rational $H(z)$, this is equivalent to all poles lying strictly inside the unit circle. FIR filters have all poles at the origin and are therefore **unconditionally stable** regardless of coefficient values — no stability check is ever required.
 
@@ -877,7 +877,7 @@ The **frequency response** $H(e^{j\omega})$ is the DTFT of the impulse response:
 
 $$\boxed{H(e^{j\omega}) = \sum_{n=-\infty}^{\infty} h(n)\, e^{-j\omega n}}$$
 
-Equivalently, it is the transfer function $H(z)$ evaluated on the unit circle: $H(e^{j\omega}) = H(z)\big|_{z = e^{j\omega}}$.
+Equivalently, it is the transfer function $H(z)$ evaluated on the unit circle: $H(e^{j\omega}) = H(z)\big\rvert_{z = e^{j\omega}}$.
 
 **Physical meaning**: $H(e^{j\omega})$ is the complex gain the filter applies to a pure complex sinusoid $e^{j\omega n}$. If $x(n) = e^{j\omega n}$, then:
 
@@ -887,11 +887,11 @@ The sinusoid passes through *unchanged in shape*, multiplied only by the complex
 
 **Decomposing the frequency response** into magnitude and phase:
 
-$$H(e^{j\omega}) = |H(e^{j\omega})|\, e^{j\angle H(e^{j\omega})}$$
+$$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
 
 | Component | Definition | Physical meaning |
 |---|---|---|
-| **Magnitude response** | $|H(e^{j\omega})|$ | Gain applied to frequency $\omega$; squaring gives power gain |
+| **Magnitude response** | $\lvert H(e^{j\omega})\rvert$ | Gain applied to frequency $\omega$; squaring gives power gain |
 | **Phase response** | $\angle H(e^{j\omega})$ | Phase shift (in radians) applied to frequency $\omega$ |
 | **Group delay** | $\tau(\omega) = -\dfrac{d}{d\omega}\angle H(e^{j\omega})$ | Delay (in samples) experienced by the envelope of a narrowband signal near frequency $\omega$ |
 
@@ -913,11 +913,11 @@ Poles near the unit circle create **resonance peaks** — the magnitude rises sh
 
 > ![Figure 3.0b](<./CourseADSP2026/Fig/fig_3_0b.png>)
 >
-> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $|H(e^{j\omega})|$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for a linear-phase FIR; nonlinear for a typical IIR. Group delay (negative slope of phase) is flat for the FIR and frequency-varying for the IIR.*
+> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for a linear-phase FIR; nonlinear for a typical IIR. Group delay (negative slope of phase) is flat for the FIR and frequency-varying for the IIR.*
 
 **The connection between poles/zeros and frequency response**: The magnitude at any frequency $\omega$ can be read geometrically from the pole-zero plot:
 
-$$|H(e^{j\omega})| = |a_0| \cdot \frac{\prod_k |e^{j\omega} - z_k|}{\prod_k |e^{j\omega} - p_k|}$$
+$$\lvert H(e^{j\omega})\rvert = \lvert a_0\rvert \cdot \frac{\prod_k \lvert e^{j\omega} - z_k\rvert}{\prod_k \lvert e^{j\omega} - p_k\rvert}$$
 
 where $z_k$ are zeros and $p_k$ are poles. As the evaluation point $e^{j\omega}$ sweeps around the unit circle, the magnitude is the product of distances to all zeros divided by the product of distances to all poles. A pole *close to* the unit circle at angle $\omega_0$ makes the denominator small near $\omega_0$, creating a magnitude peak. A zero *on* the unit circle at angle $\omega_0$ makes the numerator zero at $\omega_0$, creating a notch.
 
