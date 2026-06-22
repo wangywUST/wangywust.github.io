@@ -620,7 +620,17 @@ For $N = 2^m$:
 
 ### 2.4.4 Bit-Reversal Permutation
 
-In DIT-FFT, the input sequence must be reordered in **bit-reversed** order before the butterfly stages. The bit-reversed index is obtained by reversing the $m$-bit binary representation of $n$:
+> **Why DIT requires bit-reversed input.** Recall that DIT (Decimation-in-Time, §2.4.2) splits the input **recursively by even/odd indices** at each stage:
+> - Stage 1: separate by bit 0 (even/odd) → two groups of $N/2$
+> - Stage 2: within each group, separate by bit 1 → four groups of $N/4$
+> - $\vdots$
+> - Stage $m$: separate by bit $m-1$ → $N$ individual samples
+>
+> After $m = \log_2 N$ stages of LSB-first sorting, the element originally at index $n$ ends up at the position whose binary representation is $n$'s bits **written in reverse order**. This bit-reversed ordering is therefore not an arbitrary pre-processing step — it is the **natural outcome of DIT's recursive even/odd decomposition**, baked into the algorithm itself.
+>
+> By contrast, **DIF** (Decimation-in-Frequency, §2.4.2) splits the *output* spectrum first (even/odd frequency bins), so the *output* ends up in bit-reversed order while the input remains in natural order — a perfect input/output duality between DIT and DIF.
+
+In **DIT-FFT** (Decimation-in-Time FFT), the input sequence must therefore be reordered into **bit-reversed** order before the butterfly stages can proceed. The bit-reversed index is obtained by reversing the $m$-bit binary representation of $n$:
 
 | Index $n$ | Binary ($m=3$) | Bit-reversed | Reordered index |
 |-----------|---------------|-------------|-----------------|
