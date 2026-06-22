@@ -575,6 +575,167 @@ The permutation can be performed in-place with an $O(N)$ algorithm: compare each
 
 ---
 
+## 3.0 Characterizing Discrete-Time Systems
+
+> **Guiding question**: How do we characterize a discrete-time system and design it to perform a desired signal transformation?
+
+A **discrete-time LTI (Linear Time-Invariant) system** is any processor that maps an input sequence $x(n)$ to an output sequence $y(n)$ while satisfying two properties:
+- **Linearity**: $\mathcal{H}\{ax_1(n) + bx_2(n)\} = a\mathcal{H}\{x_1(n)\} + b\mathcal{H}\{x_2(n)\}$
+- **Time-invariance**: if $y(n) = \mathcal{H}\{x(n)\}$, then $\mathcal{H}\{x(n-k)\} = y(n-k)$ for any integer $k$
+
+These two properties together guarantee that an LTI system is *completely characterized* by a single function — its **impulse response** $h(n)$ — and that system behavior in frequency is described by the **frequency response** $H(e^{j\omega})$. The difference equation is the computational recipe for implementing the system.
+
+---
+
+### 3.0.1 The Difference Equation — Computational Recipe for a Filter
+
+The most general form of a causal LTI digital filter is the **$N$-th order Linear Constant-Coefficient Difference Equation (LCCDE)**:
+
+$$\boxed{y(n) = \underbrace{-\sum_{k=1}^{N} b_k\, y(n-k)}_{\text{feedback (IIR part)}} + \underbrace{\sum_{k=0}^{M} a_k\, x(n-k)}_{\text{feedforward (FIR part)}}}$$
+
+or in the equivalent symmetric form (dividing through and setting $b_0 = 1$):
+
+$$\sum_{k=0}^{N} b_k\, y(n-k) = \sum_{k=0}^{M} a_k\, x(n-k)$$
+
+**What each term means physically**: At each time step $n$, the new output $y(n)$ is formed by two contributions: (i) a weighted sum of the current and past $M$ *inputs* $x(n), x(n-1), \ldots, x(n-M)$ — the **feedforward path**, which "looks backward" through the input — and (ii) a weighted sum of the past $N$ *outputs* $y(n-1), \ldots, y(n-N)$ — the **feedback path**, which feeds the system's own past decisions back into the computation.
+
+> **Why does feedback matter so much?** Feedback is what makes a filter's impulse response potentially infinite. A single tap of feedback — even just $y(n) = a\,y(n-1) + x(n)$ — means the output at time $n$ depends on $y(n-1)$, which depended on $y(n-2)$, and so on: the influence of a single input impulse propagates indefinitely into the future. Remove all feedback (set all $b_k = 0$, $k \geq 1$), and the equation collapses to a pure weighted sum of inputs — the impulse response is finite by construction.
+
+**The FIR/IIR split directly from the difference equation:**
+
+| Condition | Filter type | Equation reduces to |
+|---|---|---|
+| All $b_k = 0$ for $k \geq 1$ | **FIR** | $y(n) = \sum_{k=0}^{M} a_k\, x(n-k)$ — pure feedforward |
+| At least one $b_k \neq 0$ | **IIR** | Full LCCDE with feedback |
+
+The z-transform of the LCCDE (assuming zero initial conditions) gives the **transfer function** directly. Taking $\mathcal{Z}\{\cdot\}$ of both sides and using the shift property $\mathcal{Z}\{x(n-k)\} = z^{-k} X(z)$:
+
+$$\left(\sum_{k=0}^{N} b_k\, z^{-k}\right) Y(z) = \left(\sum_{k=0}^{M} a_k\, z^{-k}\right) X(z)$$
+
+$$\boxed{H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} a_k\, z^{-k}}{\sum_{k=0}^{N} b_k\, z^{-k}} = \frac{A(z)}{B(z)}}$$
+
+**FIR**: denominator $B(z) = 1$ (constant); $H(z)$ is a polynomial — all poles are at the origin $z = 0$.
+**IIR**: $B(z)$ is a nontrivial polynomial; $H(z)$ is rational — poles can be anywhere in the $z$-plane.
+
+---
+
+### 3.0.2 The Impulse Response — Complete Characterization of an LTI System
+
+**Definition**: The **impulse response** $h(n)$ is the output of the system when the input is a unit impulse:
+
+$$h(n) = \mathcal{H}\{\delta(n)\} \quad \text{(with zero initial conditions)}$$
+
+**Why $h(n)$ completely determines the system**: Any input signal can be decomposed into a weighted sum of shifted impulses (the sifting property):
+
+$$x(n) = \sum_{k=-\infty}^{\infty} x(k)\, \delta(n-k)$$
+
+By linearity, the system responds to each $x(k)\,\delta(n-k)$ with $x(k)\,h(n-k)$ (scaled + shifted impulse response). By time-invariance, those shifted responses are exact copies. Summing over all $k$:
+
+$$\boxed{y(n) = x(n) * h(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k)}$$
+
+This is the **convolution sum** — the universal input-output relationship for any LTI system, regardless of structure. Knowing $h(n)$ means knowing the system's response to *every* possible input.
+
+> **Intuitive picture**: $h(n)$ is the system's "memory trace" — the record of how long and how strongly the system rings after being struck by a single unit impulse. A short, decaying $h(n)$ means the system forgets its input quickly. A long $h(n)$ means the system "remembers" the input for many samples — either because the designer deliberately chose many taps (FIR), or because feedback causes the response to decay slowly (IIR).
+
+**Computing $h(n)$ from the difference equation**: Set $x(n) = \delta(n)$ and solve the LCCDE with zero initial conditions. For an FIR filter:
+
+$$h(n) = \sum_{k=0}^{M} a_k\, \delta(n-k) = \begin{cases} a_n & 0 \leq n \leq M \\ 0 & \text{otherwise} \end{cases}$$
+
+The impulse response *is* the coefficient sequence. For an IIR filter, the feedback generates an infinite tail. **Canonical example** — first-order recursive filter $y(n) = a\,y(n-1) + x(n)$, $|a| < 1$:
+
+$$h(n) = a^n\, u(n) = \begin{cases} a^n & n \geq 0 \\ 0 & n < 0 \end{cases}$$
+
+Even though the difference equation has only two terms, the impulse response is a geometrically decaying infinite sequence. This single pole at $z = a$ can approximate a sharp lowpass or highpass filter far more efficiently than an FIR would.
+
+> ![Figure 3.0a](<./CourseADSP2026/Fig/fig_3_0a.png>)
+>
+> *Figure 3.0a: Impulse responses contrasted. (Left) FIR: $h(n)$ has finite support — the 8-tap example has exactly 8 nonzero values and decays to zero in finite time. (Right) IIR: first-order recursive filter with $a = 0.8$; $h(n) = 0.8^n u(n)$ decays exponentially but is theoretically nonzero for all $n \geq 0$. The practical consequence: the FIR requires 8 multiplications per sample; the IIR achieves a similarly shaped frequency response with 2.*
+
+**BIBO stability from $h(n)$**: The system is bounded-input bounded-output (BIBO) stable if and only if $h(n)$ is absolutely summable:
+
+$$\sum_{n=-\infty}^{\infty} |h(n)| < \infty$$
+
+For rational $H(z)$, this is equivalent to all poles lying strictly inside the unit circle. FIR filters have all poles at the origin and are therefore **unconditionally stable** regardless of coefficient values — no stability check is ever required.
+
+---
+
+### 3.0.3 The Frequency Response — What the Filter Does in the Frequency Domain
+
+The **frequency response** $H(e^{j\omega})$ is the DTFT of the impulse response:
+
+$$\boxed{H(e^{j\omega}) = \sum_{n=-\infty}^{\infty} h(n)\, e^{-j\omega n}}$$
+
+Equivalently, it is the transfer function $H(z)$ evaluated on the unit circle: $H(e^{j\omega}) = H(z)\big|_{z = e^{j\omega}}$.
+
+**Physical meaning**: $H(e^{j\omega})$ is the complex gain the filter applies to a pure complex sinusoid $e^{j\omega n}$. If $x(n) = e^{j\omega n}$, then:
+
+$$y(n) = H(e^{j\omega})\, e^{j\omega n}$$
+
+The sinusoid passes through *unchanged in shape*, multiplied only by the complex constant $H(e^{j\omega})$ — this is the defining property of an eigenfunction of an LTI system. Because real sinusoids $\cos(\omega n)$ and $\sin(\omega n)$ are superpositions of $e^{\pm j\omega n}$, the filter's effect on any sinusoidal input is completely described by $H(e^{j\omega})$.
+
+**Decomposing the frequency response** into magnitude and phase:
+
+$$H(e^{j\omega}) = |H(e^{j\omega})|\, e^{j\angle H(e^{j\omega})}$$
+
+| Component | Definition | Physical meaning |
+|---|---|---|
+| **Magnitude response** | $|H(e^{j\omega})|$ | Gain applied to frequency $\omega$; squaring gives power gain |
+| **Phase response** | $\angle H(e^{j\omega})$ | Phase shift (in radians) applied to frequency $\omega$ |
+| **Group delay** | $\tau(\omega) = -\dfrac{d}{d\omega}\angle H(e^{j\omega})$ | Delay (in samples) experienced by the envelope of a narrowband signal near frequency $\omega$ |
+
+> **Why group delay matters more than phase**: In most signal processing contexts, a constant phase shift $e^{-j\omega n_0}$ merely time-delays all frequencies equally by $n_0$ samples — perfectly acceptable. What causes waveform distortion is *frequency-dependent* delay: different frequency components arriving at different times, smearing the signal in time. Group delay $\tau(\omega)$ directly quantifies this frequency-dependent delay. A filter with **constant group delay** (linear phase response) delays all frequencies equally and therefore transmits waveforms without shape distortion — the key motivation for linear-phase FIR design.
+
+**Reading the frequency response plot**: The frequency axis runs over one period $\omega \in [0, \pi]$ for a real-coefficient filter (by conjugate symmetry, $H(e^{-j\omega}) = H^*(e^{j\omega})$, so the range $[\pi, 2\pi]$ is redundant). $\omega = 0$ is DC; $\omega = \pi$ is the Nyquist frequency $f_s/2$.
+
+**FIR frequency response — a polynomial in $e^{-j\omega}$**:
+
+$$H(e^{j\omega}) = \sum_{n=0}^{M} h(n)\, e^{-j\omega n} = h(0) + h(1)e^{-j\omega} + \cdots + h(M)e^{-j\omega M}$$
+
+This is a trigonometric polynomial in $e^{-j\omega}$, capable of approximating any desired magnitude shape over $[0,\pi]$ given sufficiently large $M$.
+
+**IIR frequency response — a rational function of $e^{-j\omega}$**:
+
+$$H(e^{j\omega}) = \frac{a_0 + a_1 e^{-j\omega} + \cdots + a_N e^{-j\omega N}}{1 + b_1 e^{-j\omega} + \cdots + b_N e^{-j\omega N}}$$
+
+Poles near the unit circle create **resonance peaks** — the magnitude rises sharply near the pole angle. Zeros on the unit circle create **exact nulls** — the magnitude is identically zero at the zero angle. The interaction of poles and zeros shapes the frequency response with great efficiency: an IIR filter of order $N = 6$ can achieve stopband attenuation that an FIR filter would need $M \approx 100$ taps to match.
+
+> ![Figure 3.0b](<./CourseADSP2026/Fig/fig_3_0b.png>)
+>
+> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $|H(e^{j\omega})|$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for a linear-phase FIR; nonlinear for a typical IIR. Group delay (negative slope of phase) is flat for the FIR and frequency-varying for the IIR.*
+
+**The connection between poles/zeros and frequency response**: The magnitude at any frequency $\omega$ can be read geometrically from the pole-zero plot:
+
+$$|H(e^{j\omega})| = |a_0| \cdot \frac{\prod_k |e^{j\omega} - z_k|}{\prod_k |e^{j\omega} - p_k|}$$
+
+where $z_k$ are zeros and $p_k$ are poles. As the evaluation point $e^{j\omega}$ sweeps around the unit circle, the magnitude is the product of distances to all zeros divided by the product of distances to all poles. A pole *close to* the unit circle at angle $\omega_0$ makes the denominator small near $\omega_0$, creating a magnitude peak. A zero *on* the unit circle at angle $\omega_0$ makes the numerator zero at $\omega_0$, creating a notch.
+
+---
+
+### 3.0.4 FIR vs. IIR — The Fundamental Design Choice
+
+Every filter design begins with choosing between FIR and IIR. The difference equation, impulse response, and frequency response all reflect this architectural choice:
+
+| Property | FIR | IIR |
+|---|---|---|
+| Difference equation | Pure feedforward: $y(n) = \sum_{k} a_k x(n-k)$ | Feedback + feedforward: $y(n) = -\sum b_k y(n-k) + \sum a_k x(n-k)$ |
+| Transfer function $H(z)$ | Polynomial (all poles at $z=0$) | Rational (poles can be anywhere) |
+| Impulse response | Finite: $h(n) = 0$ for $n > M$ | Infinite: $h(n) \neq 0$ for all $n \geq 0$ |
+| Stability | Unconditional (no poles on/outside unit circle possible) | Must verify all poles inside unit circle |
+| Linear phase | Achievable exactly (symmetric $h(n)$) | Not achievable exactly |
+| Filter order for sharp cutoff | High (hundreds of taps) | Low (4–12 for Butterworth/Chebyshev) |
+| Arithmetic cost per sample | $O(M+1)$ — high for sharp specs | $O(N)$ — low |
+| Suitable analog prototype | No natural counterpart | Yes (Butterworth, Chebyshev, Elliptic) |
+| Primary design methods | Window, Parks-McClellan, frequency-sampling | Bilinear transform, impulse invariance |
+| Typical application | Audio EQ, communications pulse shaping, linear-phase requirements | Anti-aliasing, data acquisition, where order efficiency matters |
+
+**Practical decision guide**:
+- **Choose FIR** when the application requires exactly linear phase (distortion-free signal transmission, matched filtering in radar/sonar, image processing) or when guaranteed stability is essential and the computational cost of many taps is acceptable.
+- **Choose IIR** when filter order and computational efficiency are the primary constraints, phase distortion is tolerable (or can be corrected separately with an allpass equalizer), and the filter resembles a classical analog prototype (Butterworth, Chebyshev, Elliptic).
+
+> **Worked example**: Suppose you need a lowpass filter with passband $[0, 0.2\pi]$, stopband $[\geq 0.25\pi]$, stopband attenuation $\geq 60$ dB. Using the Kaiser formula (§3.3.2), the FIR order is approximately $M \approx (60 - 7.95)/(2.285 \times 0.05\pi) \approx 145$ taps. An equivalent Elliptic IIR filter achieves the same specifications with order $N = 5$ — a reduction of $28\times$ in coefficient count. But the IIR introduces frequency-dependent group delay; if you need to cascade it with a linear-phase processor, you must also design an allpass phase equalizer or accept the distortion.
+
+---
+
 ## 3.1 FIR Filter Implementations
 
 An **FIR (Finite Impulse Response)** filter of order $M$ has transfer function:
