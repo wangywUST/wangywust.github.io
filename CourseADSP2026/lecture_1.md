@@ -626,7 +626,7 @@ For $N = 2^m$:
 > - $\vdots$
 > - Stage $m$: separate by bit $m-1$ → $N$ individual samples
 >
-> After $m = \log_2 N$ stages of LSB-first sorting, the element originally at index $n$ ends up at the position whose binary representation is $n$'s bits **written in reverse order**. This bit-reversed ordering is therefore not an arbitrary pre-processing step — it is the **natural outcome of DIT's recursive even/odd decomposition**, baked into the algorithm itself.
+> Because each stage sorts by one bit, starting from the **rightmost bit** (bit 0, which determines even/odd) and moving leftward to bit $m-1$, after all $m$ stages the element originally at index $n$ ends up at the position whose binary representation is $n$'s bits **written in reverse order**. This bit-reversed ordering is therefore not an arbitrary pre-processing step — it is the **natural outcome of DIT's recursive even/odd decomposition**, baked into the algorithm itself.
 >
 > By contrast, **DIF** (Decimation-in-Frequency, §2.4.2) splits the *output* spectrum first (even/odd frequency bins), so the *output* ends up in bit-reversed order while the input remains in natural order — a perfect input/output duality between DIT and DIF.
 
