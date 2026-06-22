@@ -391,7 +391,7 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
 | z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
 | Initial value | $x(0)$, causal $x$ | — | $\lim_{z\to\infty} X(z)$ | — |
-| Parseval | $\sum_n x(n)y^*(n)$ | $=$ | $\frac{1}{2\pi j}\oint X(v)Y^*(1/v^*)v^{-1}dv$ | — |
+| Parseval | $\sum_n x(n)y^\ast(n)$ | $=$ | $\frac{1}{2\pi j}\oint X(v)Y^\ast(1/v^\ast)v^{-1}\,dv$ | — |
 
 ### 2.2.3 Common z-Transform Pairs
 
