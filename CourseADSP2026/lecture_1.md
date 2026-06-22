@@ -422,7 +422,7 @@ where each variable carries a distinct physical meaning:
 - $T_s$: the **sampling period** (units: s/sample). Its reciprocal $f_s = 1/T_s$ is the **sampling rate** (units: Hz = samples/s).
 
 - $z = r\,e^{j\omega}$ is the **complex frequency variable** of the z-transform ($z \in \mathbb{C}$), expressed in polar form:
-  - $r = |z| = e^{\sigma T_s}$: the **magnitude** of $z$, encoding the growth/decay rate after sampling. $r < 1$ (inside the unit circle) $\leftrightarrow$ $\sigma < 0$ (stable); $r > 1$ (outside) $\leftrightarrow$ $\sigma > 0$ (unstable); $r = 1$ (on the unit circle) $\leftrightarrow$ $\sigma = 0$ (marginally stable, pure sinusoidal response).
+  - $r = \lvert z\rvert = e^{\sigma T_s}$: the **magnitude** of $z$, encoding the growth/decay rate after sampling. $r < 1$ (inside the unit circle) $\leftrightarrow$ $\sigma < 0$ (stable); $r > 1$ (outside) $\leftrightarrow$ $\sigma > 0$ (unstable); $r = 1$ (on the unit circle) $\leftrightarrow$ $\sigma = 0$ (marginally stable, pure sinusoidal response).
   - $\omega = \angle z = \Omega T_s = \Omega / f_s$: the **digital angular frequency** (units: rad/sample), the discrete-time counterpart of $\Omega$. It is obtained by normalizing $\Omega$ by the sampling period; it is $2\pi$-periodic by construction, with $\omega \in [-\pi, \pi]$ corresponding to the analog band $\Omega \in [-f_s/2,\, f_s/2]$ (one full traversal of the Nyquist interval).
 
 **Key correspondences**:
