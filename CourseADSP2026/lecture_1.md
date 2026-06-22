@@ -752,7 +752,7 @@ This is the **convolution sum** — the universal input-output relationship for 
 
 $$h(n) = \sum_{k=0}^{M} a_k\, \delta(n-k) = \begin{cases} a_n & 0 \leq n \leq M \\ 0 & \text{otherwise} \end{cases}$$
 
-The impulse response *is* the coefficient sequence. For an IIR filter, the feedback generates an infinite tail. **Canonical example** — first-order recursive filter $y(n) = a\,y(n-1) + x(n)$, $|a| < 1$:
+The impulse response *is* the coefficient sequence. For an IIR filter, the feedback generates an infinite tail. **Canonical example** — first-order recursive filter $y(n) = a\,y(n-1) + x(n)$, $\lvert a\rvert < 1$:
 
 $$h(n) = a^n\, u(n) = \begin{cases} a^n & n \geq 0 \\ 0 & n < 0 \end{cases}$$
 
