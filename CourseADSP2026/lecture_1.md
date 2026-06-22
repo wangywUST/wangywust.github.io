@@ -322,7 +322,9 @@ The z-transform is $X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}$. Setting $z = 
 
 $$X(e^{j\omega}) = X(z)\big\rvert_{z = e^{j\omega}}$$
 
-The DTFT exists when the ROC of $X(z)$ includes the unit circle.
+The DTFT exists when the ROC (Region of Convergence) of $X(z)$ includes the unit circle.
+
+*Note: The DTFT is obtained by evaluating the Z-transform on the unit circle ($z = e^{j\omega}$, $\lvert z\rvert = 1$). The ROC is the region in the complex $z$-plane where the Z-transform sum $\sum_n x(n)z^{-n}$ converges to a finite value. A **pole** is a value of $z$ at which $X(z) \to \infty$ (denominator of the rational $X(z)$ equals zero); the ROC therefore never contains any pole. For a causal stable system, all poles lie strictly inside the unit circle, so the ROC extends outward from the outermost pole and includes the unit circle — hence the DTFT exists. If any pole lies on or outside the unit circle, the ROC excludes the unit circle and the DTFT does not exist.*
 
 **Key structural properties**:
 - $X(e^{j\omega})$ is **$2\pi$-periodic**: $X(e^{j(\omega+2\pi)}) = X(e^{j\omega})$
