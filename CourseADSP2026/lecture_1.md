@@ -717,7 +717,7 @@ $$\sum_{k=0}^{N} b_k\, y(n-k) = \sum_{k=0}^{M} a_k\, x(n-k)$$
 | Condition | Filter type | Equation reduces to |
 |---|---|---|
 | All $b_k = 0$ for $k \geq 1$ | **FIR** | $y(n) = \sum_{k=0}^{M} a_k\, x(n-k)$ — pure feedforward |
-| At least one $b_k \neq 0$ | **IIR** | Full LCCDE with feedback |
+| At least one $b_k \neq 0$ | **IIR** | Full **Linear Constant-Coefficient Difference Equation (LCCDE)** with feedback: $y(n) = -\sum_{k=1}^{N} b_k\,y(n-k) + \sum_{k=0}^{M} a_k\,x(n-k)$ |
 
 The z-transform of the LCCDE (assuming zero initial conditions) gives the **transfer function** directly. Taking $\mathcal{Z}\lbrace\cdot\rbrace$ of both sides and using the shift property $\mathcal{Z}\lbrace x(n-k)\rbrace = z^{-k} X(z)$:
 
