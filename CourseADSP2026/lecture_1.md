@@ -7,6 +7,7 @@
 ## Table of Contents
 
 1. [Part I: Digital Signals and DSP Overview](#part-i-digital-signals-and-dsp-overview)
+   - [§1.5 Elementary Sequences (δ, u, αⁿu)](#15-elementary-sequences-fundamental-building-blocks)
 2. [Part II: Transforms for Discrete-Time Signals](#part-ii-transforms-for-discrete-time-signals)
 3. [Part III: Digital Filter Structures and Design](#part-iii-digital-filter-structures-and-design)
 4. [Part IV: Special Sequences and Corresponding Filters](#part-iv-special-sequences-and-corresponding-filters)
@@ -300,6 +301,52 @@ This chapter reviews these foundations as preparation for the **stochastic signa
 
 ---
 
+## 1.5 Elementary Sequences (Fundamental Building Blocks)
+
+Three sequences serve as the universal building blocks of discrete-time signal processing. Every other sequence and system property is ultimately expressed in terms of these.
+
+### 1.5.1 Unit Impulse $\delta(n)$
+
+$$\delta(n) = \begin{cases} 1, & n = 0 \\ 0, & n \neq 0 \end{cases}$$
+
+**Sifting property** — the reason $\delta(n)$ is fundamental:
+
+$$\sum_{n=-\infty}^{\infty} x(n)\,\delta(n-k) = x(k)$$
+
+A shifted impulse $\delta(n-k)$ "picks out" the single value $x(k)$. Equivalently, *any* sequence decomposes into a superposition of weighted, shifted impulses:
+
+$$\boxed{x(n) = \sum_{k=-\infty}^{\infty} x(k)\,\delta(n-k)}$$
+
+This decomposition is the starting point for deriving the convolution sum: if a system is LTI, its response to $x(n)$ is fully determined by its response to a single $\delta(n)$ (the impulse response $h(n)$).
+
+### 1.5.2 Unit Step $u(n)$
+
+$$\boxed{u(n) = \begin{cases} 1, & n \geq 0 \\ 0, & n < 0 \end{cases}}$$
+
+> **Convention**: $u(0) = 1$ (the step "turns on" at $n = 0$). This differs from the continuous-time Heaviside function, where $u(0)$ is sometimes left ambiguous or set to $\tfrac{1}{2}$; in discrete time there is no such ambiguity.
+
+**Relationship between $u(n)$ and $\delta(n)$**:
+
+$$u(n) = \sum_{k=0}^{\infty} \delta(n-k), \qquad \delta(n) = u(n) - u(n-1)$$
+
+The step is the running sum of the impulse; the impulse is the first difference of the step — a discrete-time analogy of integration and differentiation.
+
+> **Why $u(n)$ has no DTFT in the ordinary sense**: The absolute sum $\sum_{n=0}^{\infty}|u(n)| = \infty$ diverges, so the DTFT does not exist as a conventional integral. $u(n)$ is instead handled via the z-transform (ROC: $|z|>1$, §2.2.3) or via distribution theory (adding a Dirac delta at $\omega=0$ to the formal DTFT).
+
+### 1.5.3 Real Exponential Sequence $\alpha^n u(n)$
+
+$$\alpha^n u(n) = \begin{cases} \alpha^n, & n \geq 0 \\ 0, & n < 0 \end{cases}$$
+
+| $|\alpha|$ | Behavior |
+|------------|----------|
+| $|\alpha| < 1$ | Decays to zero — stable causal system |
+| $|\alpha| = 1$ | Sustained oscillation (or DC for $\alpha=1$) |
+| $|\alpha| > 1$ | Grows without bound — unstable |
+
+This is the prototype impulse response of a first-order causal IIR filter. Its z-transform $\dfrac{1}{1-\alpha z^{-1}}$ (ROC: $|z|>|\alpha|$) is the single most-used entry in the z-transform table (§2.2.3).
+
+---
+
 # Part II: Transforms for Discrete-Time Signals
 
 > 📖 Textbook §2.2 (Transform-Domain Representation, §2.2.1–§2.2.4)
@@ -398,7 +445,7 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Sequence $x(n)$ | z-Transform $X(z)$ | ROC |
 |-----------------|-------------------|-----|
 | $\delta(n)$ | $1$ | All $z$ |
-| $u(n)$ (unit step) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert \gt 1$ |
+| $u(n)$ (unit step, see §1.5.2) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert \gt 1$ |
 | $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
 | $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \lt \lvert\alpha\rvert$ |
 | $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
