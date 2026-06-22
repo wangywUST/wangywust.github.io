@@ -463,7 +463,11 @@ The DFT can be written in matrix form:
 
 $$\mathbf{X} = \mathbf{W}_N \mathbf{x}$$
 
-where $[\mathbf{W}_N]_{kn} = W_N^{kn}$ is the $N\times N$ DFT matrix. The inverse uses:
+where the matrix entries are:
+
+$$[\mathbf{W}_N]_{kn} = W_N^{kn}, \qquad k,n = 0, 1, \ldots, N-1$$
+
+Thus $\mathbf{W}_N$ is the $N\times N$ DFT matrix. The inverse uses:
 
 $$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$$
 
@@ -1197,7 +1201,11 @@ Its DTFT is the **power spectral density**:
 
 $$P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2 \geq 0$$
 
-Autocorrelation sequences are therefore **always positive semi-definite**. The autocorrelation matrix $\mathbf{R} = [r_x(i-j)]_{i,j}$ is a **Hermitian Toeplitz positive semi-definite matrix** — the central object in Wiener filtering (Chapter 6) and linear prediction (Chapter 3).
+Autocorrelation sequences are therefore **always positive semi-definite**. The autocorrelation matrix is:
+
+$$\mathbf{R} = [r_x(i-j)]_{i,j}$$
+
+It is a **Hermitian Toeplitz positive semi-definite matrix** — the central object in Wiener filtering (Chapter 6) and linear prediction (Chapter 3).
 
 ### 4.4.2 Theorem 1.2: Zero Pairing in Rational Positive Semi-Definite Sequences
 
