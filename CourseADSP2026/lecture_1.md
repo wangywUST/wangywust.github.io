@@ -528,7 +528,7 @@ The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coeffi
 | Relationship | Both domains periodic; extends over all $n, k \in \mathbb{Z}$ | One period of the DFS: $X(k) = \tilde{X}(k)$ for $k = 0,\ldots, N-1$ |
 | Role | Theoretical framework; explains circular convolution | Practical numerical tool; computed by the FFT |
 
-**Key implication**: Since the DFT is just one period of the DFS, and the DFS diagonalizes *periodic* (circular) convolution, the DFT likewise diagonalizes circular convolution — giving the convolution theorem $x(n) \circledast y(n) \xleftrightarrow{\text{DFT}} X(k) \cdot Y(k)$. To compute *linear* convolution of sequences of lengths $L_1$ and $L_2$ via the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding); otherwise the periodic wrap-around causes the tails of the linear convolution to fold back onto the result — a phenomenon called **time-domain aliasing**.
+**Key implication**: Since the DFT is just one period of the DFS, and the DFS diagonalizes *periodic* (circular) convolution, the DFT likewise diagonalizes circular convolution — giving the convolution theorem $x(n) \circledast y(n) \overset{\text{DFT}}{\longleftrightarrow} X(k) \cdot Y(k)$. To compute *linear* convolution of sequences of lengths $L_1$ and $L_2$ via the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding); otherwise the periodic wrap-around causes the tails of the linear convolution to fold back onto the result — a phenomenon called **time-domain aliasing**.
 
 ### 2.3.3 Main Properties and Uses of the DFT
 
