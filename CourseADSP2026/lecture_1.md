@@ -643,7 +643,33 @@ In **DIT-FFT** (Decimation-in-Time FFT), the input sequence must therefore be re
 | 6 | 110 | 011 | 3 |
 | 7 | 111 | 111 | 7 |
 
-Here $\text{br}(n)$ denotes the **bit-reversed index** of $n$: if $n = (b_{m-1}\cdots b_1 b_0)_2$ is the $m$-bit binary representation of $n$, then $\text{br}(n) = (b_0 b_1 \cdots b_{m-1})_2$ is obtained by mirroring those bits. For example with $m=3$: $\text{br}(1) = \text{br}(001_2) = 100_2 = 4$ and $\text{br}(3) = \text{br}(011_2) = 110_2 = 6$, consistent with the table above.
+Here $\operatorname{br}(n)$ denotes the **bit-reversed index** of $n$. If the $m$-bit binary representation of $n$ is
+
+$$
+n = (b_{m-1}\cdots b_1 b_0)_2,
+$$
+
+then
+
+$$
+\operatorname{br}(n) = (b_0 b_1 \cdots b_{m-1})_2,
+$$
+
+which is obtained by mirroring those bits.
+
+For example, when $m=3$:
+
+$$
+\operatorname{br}(1) = \operatorname{br}(001_2) = 100_2 = 4,
+$$
+
+and
+
+$$
+\operatorname{br}(3) = \operatorname{br}(011_2) = 110_2 = 6,
+$$
+
+consistent with the table above.
 
 The permutation can be performed in-place with an $O(N)$ algorithm: compare each index with its bit-reverse and swap if $n \lt \text{br}(n)$. The condition $n < \text{br}(n)$ ensures each pair is swapped exactly once; indices satisfying $\text{br}(n) = n$ (such as $0$ and $7$ in the $N=8$ example) are already in their correct positions and require no action.
 
