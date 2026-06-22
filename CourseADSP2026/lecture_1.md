@@ -805,6 +805,60 @@ $$h(n) = a^n\, u(n) = \begin{cases} a^n & n \geq 0 \\ 0 & n < 0 \end{cases}$$
 
 Even though the difference equation has only two terms, the impulse response is a geometrically decaying infinite sequence. This single pole at $z = a$ can approximate a sharp lowpass or highpass filter far more efficiently than an FIR would.
 
+> **Deep dive: why one pole, and why can it be both lowpass and highpass?**
+>
+> **① Why just one pole**
+>
+> The first-order recursive filter $y(n) = ay(n-1) + x(n)$ has transfer function:
+>
+> $$H(z) = \frac{1}{1 - az^{-1}} = \frac{z}{z - a}$$
+>
+> The denominator is linear in $z$, so it has exactly **one root — the pole at $z = a$**. There is also a zero at $z = 0$ (the origin), but a zero at the origin contributes no frequency-selective behavior: its distance from any point $e^{j\omega}$ on the unit circle is always $|e^{j\omega} - 0| = 1$ — a constant. So all the filter's frequency shaping comes from the single pole alone.
+>
+> **② Geometric interpretation of the frequency response**
+>
+> Evaluating $H(z)$ on the unit circle ($z = e^{j\omega}$):
+>
+> $$|H(e^{j\omega})| = \frac{1}{|e^{j\omega} - a|}$$
+>
+> The denominator $|e^{j\omega} - a|$ is the **Euclidean distance** in the complex plane from the unit-circle point $e^{j\omega}$ to the pole $z = a$. As $\omega$ sweeps from $0$ to $\pi$, this distance changes, and the magnitude response is **large wherever the unit circle passes closest to the pole** and small where it is farthest away.
+>
+> ```
+>       Im
+>        |         pole at z=a (positive real → near z=+1 → near ω=0)
+>        |      ↑ large gain at ω=0 (DC)
+>  ------+------●------------ Re
+>        |   (a,0)    z=+1 is close to the pole → small distance → large |H|
+>        |
+>        |       z=−1 is far from the pole → large distance → small |H|
+> ```
+>
+> **③ Lowpass filter: $0 < a < 1$ (pole on the positive real axis)**
+>
+> The pole sits close to the point $z = +1$ (which corresponds to DC, $\omega = 0$):
+>
+> | Frequency | Unit-circle point | Distance to pole $a$ | $|H|$ |
+> |-----------|-------------------|-----------------------|-------|
+> | DC ($\omega = 0$) | $e^{j0} = +1$ | $1 - a$ (small, since $a \approx 1$) | **large** |
+> | Nyquist ($\omega = \pi$) | $e^{j\pi} = -1$ | $1 + a$ (large) | **small** |
+>
+> Low frequencies are amplified, high frequencies are suppressed → **lowpass behavior**. The closer $a$ is to $1$, the smaller the DC-pole distance, the higher and sharper the low-frequency peak.
+>
+> **④ Highpass filter: $-1 < a < 0$ (pole on the negative real axis)**
+>
+> The pole now sits close to $z = -1$ (which corresponds to the Nyquist frequency, $\omega = \pi$):
+>
+> | Frequency | Unit-circle point | Distance to pole $a < 0$ | $|H|$ |
+> |-----------|-------------------|---------------------------|-------|
+> | DC ($\omega = 0$) | $+1$ | $1 - a = 1 + |a|$ (large) | **small** |
+> | Nyquist ($\omega = \pi$) | $-1$ | $\lvert{-1 - a}\rvert = 1 - |a|$ (small, since $a \approx -1$) | **large** |
+>
+> High frequencies are amplified, low frequencies are suppressed → **highpass behavior**. Symmetrically, as $a \to -1$, the filter sharpens at the Nyquist end.
+>
+> **⑤ Why more efficient than FIR**
+>
+> An FIR filter with $M$ taps achieves its frequency selectivity by choosing $M+1$ coefficients — more taps means sharper cutoff, but always at the cost of $M+1$ multiplications per sample. A single-pole IIR requires **exactly 1 multiplication and 1 addition per sample**, regardless of how sharp the desired rolloff is: sharpening is achieved by pushing $|a|$ closer to $1$ — a change to a single number, not an increase in computation. This is the fundamental computational advantage of poles over taps: a pole close to the unit circle creates a tall, narrow peak in $|H(e^{j\omega})|$ essentially for free.
+
 > ![Figure 3.0a](<./CourseADSP2026/Fig/fig_3_0a.png>)
 >
 > *Figure 3.0a: Impulse responses contrasted. (Left) FIR: $h(n)$ has finite support — the 8-tap example has exactly 8 nonzero values and decays to zero in finite time. (Right) IIR: first-order recursive filter with $a = 0.8$; $h(n) = 0.8^n u(n)$ decays exponentially but is theoretically nonzero for all $n \geq 0$. The practical consequence: the FIR requires 8 multiplications per sample; the IIR achieves a similarly shaped frequency response with 2.*
