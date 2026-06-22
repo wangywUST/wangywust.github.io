@@ -413,7 +413,17 @@ The z-transform is the **discrete-time counterpart** of the Laplace transform. T
 
 $$s = \sigma + j\Omega \xrightarrow{z = e^{sT_s}} z = e^{\sigma T_s}\, e^{j\Omega T_s} = r\, e^{j\omega}$$
 
-where $r = e^{\sigma T_s}$ and $\omega = \Omega T_s = \Omega / f_s$.
+where each variable carries a distinct physical meaning:
+
+- $s = \sigma + j\Omega$ is the **complex frequency variable** of the Laplace transform ($s \in \mathbb{C}$), whose real and imaginary parts are independent:
+  - $\sigma = \operatorname{Re}(s)$: the **damping factor** (units: Np/s). $\sigma < 0$ → exponentially decaying signal; $\sigma > 0$ → exponentially growing signal; $\sigma = 0$ → pure sinusoid (sustained oscillation).
+  - $\Omega = \operatorname{Im}(s)$: the **analog angular frequency** (units: rad/s), i.e., the rate of oscillation in continuous time.
+
+- $T_s$: the **sampling period** (units: s/sample). Its reciprocal $f_s = 1/T_s$ is the **sampling rate** (units: Hz = samples/s).
+
+- $z = r\,e^{j\omega}$ is the **complex frequency variable** of the z-transform ($z \in \mathbb{C}$), expressed in polar form:
+  - $r = |z| = e^{\sigma T_s}$: the **magnitude** of $z$, encoding the growth/decay rate after sampling. $r < 1$ (inside the unit circle) $\leftrightarrow$ $\sigma < 0$ (stable); $r > 1$ (outside) $\leftrightarrow$ $\sigma > 0$ (unstable); $r = 1$ (on the unit circle) $\leftrightarrow$ $\sigma = 0$ (marginally stable, pure sinusoidal response).
+  - $\omega = \angle z = \Omega T_s = \Omega / f_s$: the **digital angular frequency** (units: rad/sample), the discrete-time counterpart of $\Omega$. It is obtained by normalizing $\Omega$ by the sampling period; it is $2\pi$-periodic by construction, with $\omega \in [-\pi, \pi]$ corresponding to the analog band $\Omega \in [-f_s/2,\, f_s/2]$ (one full traversal of the Nyquist interval).
 
 **Key correspondences**:
 
