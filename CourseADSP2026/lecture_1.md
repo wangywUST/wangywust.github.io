@@ -471,7 +471,7 @@ Thus $\mathbf{W}_N$ is the $N\times N$ DFT matrix. The inverse uses:
 
 $$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$$
 
-### 2.3.2 Relationship Between DFT and DFS
+### 2.3.2 Relationship Between DFT and DFS (Discrete Fourier Series)
 
 The DFT and the DFS are closely related but apply to different objects: the DFT operates on a *finite-length* sequence; the DFS operates on an *infinite periodic* sequence. Understanding the bridge between them is essential for correctly interpreting circular convolution, time-domain aliasing, and the DFT convolution theorem.
 
