@@ -14,6 +14,132 @@
 
 ---
 
+## Notation and Variable Definitions
+
+All symbols used in this chapter are collected below. Where one symbol carries different meanings in different sections, the context is explicitly noted.
+
+### Time, Frequency, and Index Variables
+
+| Symbol | Definition | Unit |
+|--------|-----------|------|
+| $t$ | Continuous time | s |
+| $n$ | Discrete time index ($n \in \mathbb{Z}$) | sample |
+| $f$ | Analog cyclic frequency | Hz |
+| $f_s = 1/T_s$ | Sampling rate | Hz |
+| $f_c$ | Carrier frequency (§1.1.4, §1.3.4) | Hz |
+| $f_1,\, f_2$ | Lower/upper band edges of a bandpass signal | Hz |
+| $T_s = 1/f_s$ | Sampling period | s/sample |
+| $B$ | Signal bandwidth (one-sided baseband) | Hz |
+| $\Omega = 2\pi f$ | Analog angular frequency | rad/s |
+| $\omega = \Omega T_s \in [-\pi,\pi]$ | Digital angular frequency | rad/sample |
+| $\omega_k = 2\pi k/N$ | $k$-th DFT frequency bin | rad/sample |
+| $\omega_c$ | Digital cutoff frequency | rad/sample |
+| $\omega_p,\,\omega_s$ | Passband/stopband edge frequencies | rad/sample |
+| $\omega_0$ | Fixed oscillation frequency in exponential sequences | rad/sample |
+| $\Delta\omega = \omega_s - \omega_p$ | Filter transition bandwidth | rad/sample |
+| $k$ | DFT bin index; OFDM subcarrier index; summation index (context determines) | — |
+| $l$ | Multipath channel tap index | — |
+| $m$ | Image row index (§1.1.2); FIR coefficient index (§3.1.1) | — |
+| $q$ | Integer subsampling factor in bandpass sampling theorem (§1.3.3) | — |
+
+### Signals and Sequences
+
+| Symbol | Definition |
+|--------|-----------|
+| $x_a(t)$ | Continuous-time (analog) input signal |
+| $y_a(t)$ | Continuous-time (analog) output signal |
+| $p(t) = \sum_{n}\delta(t-nT_s)$ | Ideal Dirac comb (impulse train) used in sampling model |
+| $x_s(t) = x_a(t)\cdot p(t)$ | Ideally sampled signal |
+| $x(n) = x_a(nT_s)$ | Discrete-time sequence (uniform samples of $x_a$) |
+| $y(n)$ | Discrete-time output sequence |
+| $h(n)$ | Impulse response of a discrete-time LTI system |
+| $h_d(n)$ | Ideal (desired) impulse response in FIR window design |
+| $h_{ap}(n)$ | Impulse response of an allpass filter |
+| $h_m(n)$ | Impulse response of a minimum-phase filter |
+| $r_x(n) = x(n)*x^*(-n)$ | Autocorrelation sequence of $x(n)$ |
+| $\tilde{x}(n) = x(\langle n\rangle_N)$ | Periodic extension of finite-length $x(n)$, period $N$ |
+| $\delta(n)$ | Unit impulse: $1$ at $n=0$, $0$ elsewhere |
+| $u(n)$ | Unit step: $1$ for $n\ge 0$, $0$ for $n<0$ |
+| $\alpha^n u(n)$ | Causal exponential sequence with scalar base $\alpha$ |
+| $x(m,n)$ | 2D image signal (intensity at pixel row $m$, column $n$) |
+| $x_k(m,n)$ | $k$-th video frame |
+| $w(n)$ | **(a)** Window function in FIR design (§3.3.2); **(b)** Additive time-domain noise in channel model (§1.1.4) — context determines |
+
+### Transforms and Spectral Functions
+
+| Symbol | Definition |
+|--------|-----------|
+| $X_a(f)$ | Continuous Fourier transform of $x_a(t)$ |
+| $X_s(f)$ | Fourier transform of sampled signal $x_s(t)$; periodic copies of $X_a(f)$ at spacing $f_s$ |
+| $X(e^{j\omega}) = \sum_n x(n)e^{-j\omega n}$ | DTFT of $x(n)$ |
+| $X(z) = \sum_n x(n)z^{-n}$ | z-Transform of $x(n)$, $z\in\mathbb{C}$ |
+| $X(k) = \sum_{n=0}^{N-1}x(n)W_N^{nk}$ | $k$-th DFT coefficient (§2.3); also QAM symbol on subcarrier $k$ in OFDM (§1.1.4) |
+| $\tilde{X}(k)$ | DFS coefficient of periodic sequence $\tilde{x}(n)$ |
+| $H(e^{j\omega})$ | System frequency response (DTFT of $h(n)$) |
+| $H(z)$ | System transfer function (z-transform of $h(n)$) |
+| $W_N = e^{-j2\pi/N}$ | DFT twiddle factor |
+| $\mathbf{W}_N$ | $N\times N$ DFT matrix, $[\mathbf{W}_N]_{kn} = W_N^{kn}$ |
+| $R(e^{j\omega})$ | DTFT of autocorrelation $r_x(n)$ |
+| $R(z)$ | z-Transform of autocorrelation $r_x(n)$ |
+| $P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2$ | Power spectral density (PSD) of $x(n)$ |
+| $\mathbf{R} = [r_x(i-j)]_{i,j}$ | Autocorrelation matrix (Hermitian Toeplitz) |
+
+### Laplace and z-Domain Variables
+
+| Symbol | Definition |
+|--------|-----------|
+| $s = \sigma + j\Omega$ | Complex Laplace frequency variable |
+| $\sigma = \mathrm{Re}(s)$ | Damping factor (Np/s); $\sigma<0$: decaying, $\sigma>0$: growing |
+| $z = re^{j\omega}$ | Complex z-domain variable (polar form) |
+| $r = \lvert z\rvert = e^{\sigma T_s}$ | Magnitude of $z$ |
+| $z = e^{sT_s}$ | s-plane to z-plane mapping |
+| $\mathrm{ROC}$ | Region of Convergence: $\{z\in\mathbb{C}:\sum_n\lvert x(n)\rvert\lvert z\rvert^{-n}<\infty\}$ |
+| $\langle n\rangle_N = n\bmod N$ | Modulo-$N$ reduction of integer $n$ |
+
+### LTI System and Filter Parameters
+
+| Symbol | Definition |
+|--------|-----------|
+| $N$ | **(a)** DFT/FFT length; OFDM subcarrier count (§2.3, §1.1.4); **(b)** IIR filter order (§3.0, §3.2); **(c)** Length of FIR filter (§3.1.3); always stated in context |
+| $M$ | **(a)** FIR filter order (taps $= M+1$, §3.1); **(b)** Image height in pixels (§1.1.2); **(c)** Modulation constellation size (§1.1.4) |
+| $a_k$ | Feedforward (numerator) coefficients of LCCDE |
+| $b_k$ | Feedback (denominator) coefficients of LCCDE ($b_0=1$ by convention) |
+| $A(z) = \sum_{k=0}^{M}a_k z^{-k}$ | Numerator polynomial of $H(z)$ |
+| $B(z) = \sum_{k=0}^{N}b_k z^{-k}$ | Denominator polynomial of $H(z)$ |
+| $v(n)$ | Internal state variable in IIR Direct Form II (§3.2.2); distinct from unit step $u(n)$ |
+| $\delta_1,\,\delta_2$ | Passband ripple / stopband attenuation (linear scale) |
+| $R_p,\,A_s$ | Passband ripple / stopband attenuation (dB) |
+| $\alpha$ | **(a)** Base of exponential sequence $\alpha^n u(n)$ and pole of first-order IIR/allpass, $\lvert\alpha\rvert<1$ (§1.5.3, §3.2, §4.1); **(b)** Constant group delay in samples (§4.3.1 only — local meaning, distinct from (a)) |
+| $\beta$ | **(a)** Kaiser window shape parameter (§3.3.2); **(b)** Linear-phase FIR phase offset $\beta\in\{0,\pm\pi/2\}$ (§4.3.1 only) |
+| $r$ | **(a)** Magnitude $\lvert z\rvert$ of the z-domain variable; **(b)** Decay parameter in sequences $r^n\cos(\omega_0 n)u(n)$ (§2.2.3) |
+
+### Allpass, Minimum-Phase, and Spectral Factorization
+
+| Symbol | Definition |
+|--------|-----------|
+| $H_{ap}(z)$ | Allpass filter transfer function: $\lvert H_{ap}(e^{j\omega})\rvert=1\ \forall\omega$ |
+| $H_m(z)$ | Minimum-phase filter / minimum-phase factor in decomposition |
+| $\alpha_k$ | $k$-th pole of allpass filter, $\lvert\alpha_k\rvert<1$ |
+| $\tau(\omega) = -d(\angle H)/d\omega$ | Group delay |
+| $\sigma^2$ | Scalar gain in spectral factorization $R(z)=\sigma^2 H_m(z)H_m^*(1/z^*)$ |
+
+### OFDM and Multipath Channel Model (§1.1.4)
+
+| Symbol | Definition |
+|--------|-----------|
+| $N$ | Number of OFDM subcarriers |
+| $k$ | Subcarrier index, $k=0,\ldots,N-1$ |
+| $X(k)$ | QAM symbol placed on subcarrier $k$ (also: DFT of $x(n)$ in §2.3) |
+| $Y(k)$ | Received signal on subcarrier $k$ after FFT |
+| $H(k)$ | Channel frequency response at subcarrier $k$ |
+| $W(k)$ | Additive noise on subcarrier $k$ (frequency domain) |
+| $\hat{X}(k) = Y(k)/H(k)$ | One-tap equalized symbol estimate |
+| $h(l)$ | Discrete channel impulse response tap at delay $l$ |
+| $L$ | Number of resolvable channel taps |
+| $L_{\mathrm{cp}} = L-1$ | Minimum cyclic prefix length |
+
+---
+
 # Part I: Digital Signals and DSP Overview
 
 > 📖 Textbook §1.1 (Random Signals overview); §2.1 (Discrete-Time Signals)
@@ -221,17 +347,17 @@ Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \i
 
 > ![Figure 1.7](<./CourseADSP2026/Fig/fig_1_7.png>)
 >
-> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_c(F)$ bandlimited to $B$; (b) discrete-time spectrum when $F_s \gt 2B$ (no aliasing); (c) discrete-time spectrum when $F_s \lt 2B$ (aliasing).*
+> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_a(f)$ bandlimited to $B$; (b) discrete-time spectrum when $f_s \gt 2B$ (no aliasing); (c) discrete-time spectrum when $f_s \lt 2B$ (aliasing).*
 
 ### 1.3.3 Bandpass Signals and the Bandpass Sampling Theorem
 
 §1.3.2 implicitly assumed a **baseband (lowpass) signal**: $X_a(f) = 0$ for $\lvert f\rvert \gt B$, spectrum centered at $f = 0$. Many real signals instead are **bandpass**: their energy sits in a band $[f_1, f_2]$ away from $f = 0$ (plus its conjugate mirror $[-f_2, -f_1]$) — narrowband sonar/radar returns, AM/FM radio, and IF-stage receiver signals are typical examples. The conventional bandwidth is the width of the *positive-frequency* interval, $B = f_2 - f_1$, *not* $f_2$ itself.
 
-**Naively applying §1.3.2** would suggest $f_s \geq 2f_2$ — sampling at twice the highest frequency present — which is wasteful when $f_2 \gg B$. The **bandpass sampling theorem** (also called IF sampling, or deliberate undersampling) shows that the true minimum sampling rate depends only on the bandwidth $B$, not on how far the band sits from $f = 0$: there exists an integer $n$, $1 \leq n \leq \lfloor f_2/B \rfloor$, such that
+**Naively applying §1.3.2** would suggest $f_s \geq 2f_2$ — sampling at twice the highest frequency present — which is wasteful when $f_2 \gg B$. The **bandpass sampling theorem** (also called IF sampling, or deliberate undersampling) shows that the true minimum sampling rate depends only on the bandwidth $B$, not on how far the band sits from $f = 0$: there exists an integer $q$, $1 \leq q \leq \lfloor f_2/B \rfloor$, such that
 
-$$\frac{2f_2}{n} \;\leq\; f_s \;\leq\; \frac{2f_1}{n-1}$$
+$$\frac{2f_2}{q} \;\leq\; f_s \;\leq\; \frac{2f_1}{q-1}$$
 
-(for $n=1$ this reduces to the baseband condition $f_s \geq 2f_2$). When $f_2$ is an integer multiple of $B$ (the band is "harmonically aligned"), the theoretical minimum $f_s = 2B$ is achievable exactly — the *same* floor as for a baseband signal of bandwidth $B$.
+(for $q=1$ this reduces to the baseband condition $f_s \geq 2f_2$). When $f_2$ is an integer multiple of $B$ (the band is "harmonically aligned"), the theoretical minimum $f_s = 2B$ is achievable exactly — the *same* floor as for a baseband signal of bandwidth $B$.
 
 > **Why is the floor still $2B$, not $B$?** It is tempting to think that replicating a single band of width $B$ at spacing $f_s = B$ tiles it edge-to-edge with no gap, so $f_s = B$ should suffice. This overlooks the conjugate mirror band: a real bandpass signal occupies $[f_1, f_2]$ **and** $[-f_2, -f_1]$ — two separate intervals on the frequency axis, each of width $B$, total occupied measure $2B$ (exactly the two-sided argument from §1.3.2, now applied to a shifted band). Sampling at rate $f_s$ is equivalent to wrapping the frequency axis onto a circle of circumference $f_s$ (taking frequency modulo $f_s$); for alias-free recovery this wrap must be injective on the occupied support. If $f_s \lt 2B$, the occupied measure ($2B$) exceeds the circle's circumference ($f_s$), so by a simple pigeonhole argument the wrap **cannot** be injective — overlap is unavoidable no matter where the band sits.
 >
@@ -1069,11 +1195,11 @@ Implements the difference equation with two separate delay chains — one for in
 
 ### 3.2.2 Direct Form II — Canonical Form
 
-Merge the two delay chains by sharing a single intermediate state variable $u(n)$:
+Merge the two delay chains by sharing a single intermediate state variable $v(n)$ (distinct from the unit step $u(n)$):
 
-$$u(n) = x(n) - \sum_{k=1}^{N} b_k\, u(n-k)$$
+$$v(n) = x(n) - \sum_{k=1}^{N} b_k\, v(n-k)$$
 
-$$y(n) = \sum_{k=0}^{N} a_k\, u(n-k)$$
+$$y(n) = \sum_{k=0}^{N} a_k\, v(n-k)$$
 
 - Delay elements: $N$ — the minimum possible (**canonical form**)
 
