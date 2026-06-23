@@ -869,6 +869,38 @@ $$\sum_{n=-\infty}^{\infty} \lvert h(n)\rvert < \infty$$
 
 For rational $H(z)$, this is equivalent to all poles lying strictly inside the unit circle. FIR filters have all poles at the origin and are therefore **unconditionally stable** regardless of coefficient values — no stability check is ever required.
 
+> **Why poles inside the unit circle ↔ absolute summability: the full argument**
+>
+> **Step 1 — What is a pole?** A *rational* transfer function is one expressible as a ratio of polynomials in $z^{-1}$ (or equivalently $z$):
+> $$H(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
+> The **poles** $\{p_1, p_2, \ldots, p_N\}$ are the roots of the denominator polynomial $A(z)$ — the values of $z$ at which $H(z) \to \infty$. They fully determine the system's natural (unforced) behavior: how the system "rings" after an impulse.
+>
+> **Step 2 — Partial fraction expansion turns $H(z)$ into geometric sequences.** For a causal system with $N$ distinct poles, the partial fraction expansion gives:
+> $$H(z) = \sum_{k=1}^{N} \frac{A_k}{1 - p_k z^{-1}} + (\text{FIR terms if } M \geq N)$$
+> Taking the inverse z-transform of each term (using the pair $\frac{1}{1 - pz^{-1}} \xleftrightarrow{\mathcal{Z}} p^n u(n)$ for a causal system):
+> $$h(n) = \left(\sum_{k=1}^{N} A_k\, p_k^n\right) u(n) + (\text{finite-length FIR part})$$
+> Each pole $p_k$ contributes a **geometric sequence** $p_k^n$ to the impulse response. The stability question reduces to: when is $\sum_{n=0}^{\infty} |p_k^n| = \sum_{n=0}^{\infty} |p_k|^n$ finite?
+>
+> **Step 3 — The geometric series test decides stability.** This is a standard geometric series:
+> $$\sum_{n=0}^{\infty} |p_k|^n = \begin{cases} \dfrac{1}{1 - |p_k|} < \infty & \text{if } |p_k| < 1 \quad \checkmark \text{ stable} \\ \text{diverges} & \text{if } |p_k| \geq 1 \quad \text{✗ unstable} \end{cases}$$
+> The three cases have a direct physical picture:
+>
+> | Pole location | $|p_k|$ | Impulse response contribution | Stability |
+> |---|---|---|---|
+> | Strictly inside unit circle | $< 1$ | Exponential decay: $\lvert p_k\rvert^n \to 0$ | **BIBO stable** |
+> | On the unit circle | $= 1$ | Sustained oscillation (no decay): e.g., $e^{j\omega_0 n}$ | **Marginally stable** (BIBO unstable — a bounded input at resonance produces unbounded output) |
+> | Outside unit circle | $> 1$ | Exponential growth: $\lvert p_k\rvert^n \to \infty$ | **Unstable** |
+>
+> Since $h(n)$ is a sum of such geometric terms, the whole system is BIBO stable if and only if **every** pole satisfies $|p_k| < 1$ — i.e., all poles lie strictly inside the unit circle $|z| = 1$.
+>
+> **Step 4 — Geometric picture in the z-plane.** The unit circle $|z| = 1$ plays the same role for discrete-time systems that the imaginary axis plays for continuous-time systems in the s-plane (left half-plane = stable, right half-plane = unstable). The mapping $z = e^{sT_s}$ transforms: left half-plane $\text{Re}(s) < 0 \;\Leftrightarrow\; |e^{sT_s}| = e^{\text{Re}(s)T_s} < 1 \;\Leftrightarrow\; |z| < 1$. So stability boundaries are directly analogous; the unit circle is simply the discrete-time version of the imaginary axis.
+>
+> **Step 5 — ROC perspective (equivalent characterization).** For a causal system, the ROC of $H(z)$ is the exterior of a disk: $\text{ROC} = \{|z| > r_{\max}\}$ where $r_{\max} = \max_k |p_k|$ is the magnitude of the outermost pole. The DTFT $H(e^{j\omega})$ exists (and $h(n)$ is absolutely summable) if and only if the unit circle $|z| = 1$ is inside the ROC — i.e., $r_{\max} < 1$ — which is exactly the condition that all poles lie strictly inside the unit circle.
+>
+> **FIR special case.** An FIR filter $H(z) = \sum_{n=0}^{M} h(n) z^{-n}$ has denominator $A(z) = z^M$ (after multiplying through) — a single pole of multiplicity $M$ at the **origin** $z = 0$. Since $|0| = 0 < 1$, all FIR poles are trivially inside the unit circle, so FIR filters are unconditionally stable regardless of coefficient values.
+
+
+
 ---
 
 ### 3.0.3 The Frequency Response — What the Filter Does in the Frequency Domain
