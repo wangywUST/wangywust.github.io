@@ -178,55 +178,85 @@ The large data volume of uncompressed video (e.g., 1080p at 30 fps $\approx$ 1.5
 
 ### 1.1.4 Communication Signals
 
-**Background: why does the channel "do" convolution at all?** It is tempting to picture the channel as a simple wire that just hands the receiver an attenuated, delayed copy of whatever was transmitted — i.e. $y(n) = a\,x(n-d) + w(n)$. That picture is not wrong, but it is the special case of a channel with a *single* propagation path. In practice, the transmitted signal almost always reaches the receiver via *several* distinct physical paths — a direct line-of-sight path plus a handful of reflections (off the ground, walls, the sea surface/seabed for an underwater acoustic link, etc.). Each path $l$ has its own geometric length, and therefore its own propagation delay, and its own attenuation/phase shift from reflection and absorption loss; call that path's net (complex) gain $h(l)$. The receiver does not see any one path in isolation — it sees the *sum* of all of them, each one a delayed, scaled copy of the same transmitted signal:
+The purpose of a digital communication system is not to reproduce a waveform for its own sake. The transmitter starts with **information bits**, converts them into a physical signal that can travel through a channel, and the receiver tries to recover the **same information bits** from a distorted, noisy observation.
 
-$$y(n) = \underbrace{h(0)x(n)}_{\text{path }0} + \underbrace{h(1)x(n-1)}_{\text{path }1} + \underbrace{h(2)x(n-2)}_{\text{path }2} + \cdots + w(n) = \sum_l h(l)\,x(n-l) + w(n)$$
+For one block of an OFDM system, the signal-processing chain is:
 
-This "delay, weight, and add" operation is, by definition, convolution. (A useful mental picture: speaking in a room with an echo — the microphone captures not just your direct voice but several delayed, attenuated copies of it bouncing off the walls and ceiling, all summed together.)
+$$\text{bits} \rightarrow \text{QAM symbols } X(k) \rightarrow \text{IFFT} \rightarrow \text{time samples } x(n) \rightarrow \text{CP insertion} \rightarrow \text{channel}$$
 
-More fundamentally, this is not something the channel "chooses" to do — it is a consequence of two physically reasonable assumptions. Any discrete signal can be decomposed into a weighted sum of shifted unit impulses, $x(n) = \sum_k x(k)\,\delta(n-k)$. If the channel is **linear** (multiple superimposed waves add without interacting — true of EM (Electromagnetic) and acoustic propagation at ordinary power levels) and **time-invariant** (the multipath geometry — delays and gains — does not change appreciably over the duration of one symbol, i.e. a quasi-static channel), then its response to a shifted impulse $\delta(n-k)$ is just a shifted copy of its impulse response, $h(n-k)$, and by linearity its response to the full signal is the sum of these shifted, scaled responses:
+and at the receiver:
 
-$$y(n) = \sum_k x(k)\,h(n-k) = x(n) \ast h(n)$$
+$$\text{received samples} \rightarrow \text{CP removal} \rightarrow \text{FFT} \rightarrow Y(k) \rightarrow \text{equalization} \rightarrow \hat{X}(k) \rightarrow \text{QAM demodulation} \rightarrow \widehat{\text{bits}}.$$
 
-In other words, *any* LTI channel — multipath or not — necessarily produces an output that is the convolution of the input with its impulse response $h(n)$; $h(n)$ is simply the packaged record of every propagation path's delay and gain. The OFDM channel model below inherits exactly this structure, with $L$ denoting the number of resolvable channel taps (the discrete-time length of the multipath spread).
+So the final goal is to recover the bits. Inside the OFDM receiver, the important intermediate goal is to recover the transmitted subcarrier symbols $X(k)$, because those symbols are the objects that directly encode the bits. The time-domain sequence $x(n)$ is the waveform we create in order to send those symbols through the physical channel.
 
-*Note: Before the equations below, it helps to have the intuitive picture in mind. An OFDM system does not send one fast stream of bits over a single wide channel — it splits the data into $N$ slower streams and sends each one over its own narrow frequency lane (a "subcarrier"). To put bits onto a single subcarrier, a small group of bits is first mapped to one complex number called a symbol — this mapping is what "modulation" (e.g., QAM) means. A symbol can be pictured as a point on a 2D plane (in-phase/quadrature, or I/Q); the full set of possible points is called a constellation (QPSK has 4 points, 16-QAM has 16, and so on — more points per constellation packs in more bits per symbol, but pushes the points closer together and makes the system more sensitive to noise). Placing one such symbol on each of the $N$ subcarriers and taking an IFFT produces the time-domain sequence $x(n)$ below — it is literally many narrowband QAM signals added together. Finally, the cyclic prefix (CP) is a short copy of the tail of $x(n)$, glued onto its front before transmission. Its job is to absorb the smearing caused by multipath echoes, so that after the receiver discards it, the messy convolution in time collapses into a simple per-subcarrier multiplication in frequency — exactly the clean relationship $Y(k) = H(k)X(k) + W(k)$ shown next. Here $k = 0, 1, \ldots, N-1$ indexes the subcarrier; $X(k)$ is the transmitted symbol placed on subcarrier $k$ before the IFFT (the QAM constellation point carrying that subcarrier's bits); $H(k)$ is the channel's frequency response at subcarrier $k$ — a single complex number (gain and phase) describing how that narrow frequency lane is attenuated and rotated by the physical channel; $W(k)$ is the additive noise on subcarrier $k$ after the FFT (typically modeled as complex Gaussian, inherited from thermal noise in the time domain); and $Y(k)$ is what the receiver actually observes — the noisy, channel-distorted version of $X(k)$. Because the relationship is a simple multiplication rather than a convolution, the receiver can recover an estimate of $X(k)$ by one-tap equalization, $\hat{X}(k) = Y(k)/H(k)$, instead of solving a much harder time-domain deconvolution problem.*
+**From bits to symbols.** A modulation scheme such as QPSK or QAM maps a small group of bits to one complex number. That complex number is called a **symbol**. The set of possible symbols is the **constellation**. For example, QPSK has 4 constellation points and carries 2 bits per symbol; 16-QAM has 16 points and carries 4 bits per symbol.
 
-Modern digital communication uses discrete baseband sequences. Key examples:
-
-**OFDM baseband sequence**: An Orthogonal Frequency Division Multiplexing system maps bits onto $N$ subcarriers via modulation (e.g., QAM), applies an $N$-point IFFT to produce the time-domain discrete sequence $x(n)$, and appends a cyclic prefix (CP) to combat multipath.
-
-Explicitly, with $X(k)$ the QAM symbol carried on subcarrier $k$, the transmitted baseband sample sequence is the $N$-point IDFT of the symbol block:
+In OFDM, one symbol $X(k)$ is placed on each subcarrier $k = 0, 1, \ldots, N-1$. The $N$ frequency-domain symbols are then converted into $N$ time-domain samples by an inverse DFT:
 
 $$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, e^{j2\pi kn/N}}, \quad n = 0, 1, \ldots, N-1$$
 
-(the IFFT is simply the fast algorithm that computes this sum). The receiver discards the cyclic prefix, takes an $N$-point FFT of the remaining samples to recover $X(k)$, and the received signal after FFT demodulation is:
+The IFFT is the fast algorithm that computes this inverse DFT. Conceptually, $x(n)$ is the sum of many narrowband subcarrier waves, each carrying its own symbol $X(k)$.
+
+**What is multipath?** A wireless, acoustic, or underwater channel usually does not deliver only one clean copy of the transmitted signal. The receiver often hears several copies: a direct path plus reflected paths from walls, ground, buildings, the sea surface, the seabed, or other objects. Each path has its own delay and attenuation/phase shift.
+
+In discrete time, this means the received sample is a weighted sum of delayed copies of the transmitted samples:
+
+$$y(n) = \underbrace{h(0)x(n)}_{\text{path }0} + \underbrace{h(1)x(n-1)}_{\text{path }1} + \underbrace{h(2)x(n-2)}_{\text{path }2} + \cdots + w(n)$$
+
+or, more compactly,
+
+$$y(n) = \sum_l h(l)\,x(n-l) + w(n) = h(n) \ast x(n) + w(n).$$
+
+This is why a communication channel is modeled as convolution. The impulse response $h(n)$ packages the channel's path delays and gains; $w(n)$ models additive noise. The number of significant taps is denoted by $L$, and the channel's delay spread is roughly the time span over which those taps are nonzero.
+
+A useful mental picture is speaking in a room with echoes. The microphone records the direct voice plus delayed, weaker reflected copies. Multipath is the communication-channel version of that same phenomenon.
+
+**Why OFDM helps.** Directly undoing the time-domain convolution $h(n)\ast x(n)$ can be difficult. OFDM is designed so that, after CP removal and an FFT, the channel becomes a simple per-subcarrier multiplication:
 
 $$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
 
-**Why the cyclic prefix works: from linear to circular convolution.** The physical channel can only perform *linear* convolution, $y(n) = \sum_l h(l)\,x(n-l) + w(n)$, whose output is $N+L-1$ samples long and pulls in values from *before* the block — i.e., from the tail of the previous OFDM symbol.
+Here:
+- $X(k)$ is the transmitted QAM symbol on subcarrier $k$.
+- $H(k)$ is the channel frequency response on subcarrier $k$.
+- $W(k)$ is the noise observed on subcarrier $k$ after the FFT.
+- $Y(k)$ is the receiver's frequency-domain observation.
 
-> *Why is the channel restricted to linear convolution in the first place?* The channel is a real, continuously operating physical system — multipath propagation: a direct path plus several delayed, attenuated, phase-shifted echoes. It filters whatever signal is actually flowing through it in continuous time, and it has no concept of an "OFDM symbol block." Chopping the bitstream into length-$N$ blocks is purely a digital bookkeeping convention on the transmitter/receiver side (needed so the IFFT/FFT can be applied), not a physical property of the propagation medium. So when evaluating $y(n)$ for $n$ near the start of the current block, the convolution sum $\sum_l h(l)\,x(n-l)$ genuinely needs samples $x(-1), x(-2), \ldots$ from *before* index $0$ — and the channel, having no notion of periodicity, supplies whatever was *actually transmitted* just before: the tail of the previous OFDM symbol (or, once a CP is inserted, the CP itself). This is exactly linear convolution: it "honestly" pulls in real transmission history. Circular convolution, by contrast, is a purely mathematical construct that *assumes* $x(n)$ repeats with period $N$ — i.e., that the sample "before $x(0)$" is the *current* block's own $x(N-1)$, rather than whatever was genuinely sent earlier. Nothing about real wave propagation enforces that assumption; it becomes true of the channel's output only once we deliberately engineer it — which is precisely the job of the CP, as the worked example below shows.
+If $H(k)$ is known or estimated using pilots, the receiver can use a one-tap equalizer:
 
-The DFT, however, only diagonalizes *circular* convolution, $y(n) = \sum_l h(l)\,x(\langle n-l\rangle_N)$, where $x(n)$ is treated as periodic with period $N$ (this property is formalized later via the DFS/circular-convolution theorem in Part II). These are not the same operation. The entire job of the CP is to make the channel's linear convolution behave, once the CP is discarded, *exactly* like a circular convolution of $x(n)$ with $h(n)$.
+$$\hat{X}(k) = \frac{Y(k)}{H(k)}.$$
+
+Then $\hat{X}(k)$ is mapped back to bits by QAM demodulation. This is the sense in which the receiver "recovers $X(k)$": it does not want $x(n)$ as the final product; it wants the symbols $X(k)$ because they carry the information bits.
+
+**Why the cyclic prefix works: from linear to circular convolution.** The physical channel performs *linear* convolution:
+
+$$y(n) = \sum_l h(l)\,x(n-l) + w(n).$$
+
+For a length-$N$ OFDM block and a channel of length $L$, linear convolution pulls in samples from before the block. Near the start of the current block, terms such as $x(-1), x(-2), \ldots$ are needed. The real channel has no concept of OFDM block boundaries, so it uses whatever was actually transmitted before the current block.
+
+The DFT, however, cleanly diagonalizes *circular* convolution:
+
+$$y(n) = \sum_l h(l)\,x(\langle n-l\rangle_N),$$
+
+where $x(n)$ is treated as periodic with period $N$. These are not the same operation. The cyclic prefix makes them match over the $N$ samples kept by the receiver.
 
 *Worked example ($N=4$, two-tap channel).* Let the channel have taps $h(0), h(1)$ (length $L=2$), so a CP of length $L_{cp}=L-1=1$ suffices. The transmitted sequence is the CP sample $s(-1)=x(3)$ followed by the block $s(0..3)=x(0..3)$. The channel produces $y(n)=h(0)s(n)+h(1)s(n-1)$; after the receiver discards $s(-1)$:
 
 $$y(0) = h(0)x(0) + h(1)x(3), \qquad y(1) = h(0)x(1) + h(1)x(0),$$
 $$y(2) = h(0)x(2) + h(1)x(1), \qquad y(3) = h(0)x(3) + h(1)x(2).$$
 
-Compare with the circular convolution $y_{\text{circ}}(n) = \sum_l h(l)\,x(\langle n-l\rangle_4)$: e.g. $y_{\text{circ}}(0) = h(0)x(0) + h(1)x(\langle -1\rangle_4) = h(0)x(0)+h(1)x(3)$, identical to $y(0)$ above, and likewise for $n=1,2,3$. So the $N$ retained samples are, term for term, the circular convolution of $x(n)$ and $h(n)$ — and the DFT convolution theorem then gives $Y(k)=H(k)X(k)$ directly.
+Compare with the circular convolution $y_{\text{circ}}(n) = \sum_l h(l)\,x(\langle n-l\rangle_4)$: e.g. $y_{\text{circ}}(0) = h(0)x(0) + h(1)x(\langle -1\rangle_4) = h(0)x(0)+h(1)x(3)$, identical to $y(0)$ above, and likewise for $n=1,2,3$. So the $N$ retained samples are, term for term, the circular convolution of $x(n)$ and $h(n)$. The DFT convolution theorem then gives $Y(k)=H(k)X(k)$ directly.
 
-This match depends entirely on the guard samples being an **exact copy** of $x(N-1), x(N-2), \ldots$ — not zero-padding. If $s(-1)$ were $0$ instead of $x(3)$, $y(0)$ would become $h(0)x(0)+h(1)\cdot 0$, which does **not** equal $y_{\text{circ}}(0)=h(0)x(0)+h(1)x(3)$. Only the literal copy of the tail reproduces the periodic wrap-around that circular convolution assumes; this is why it is a *cyclic prefix* and not merely a blank guard interval.
+This match depends on the guard samples being an **exact copy** of $x(N-1), x(N-2), \ldots$, not zero-padding. If $s(-1)$ were $0$ instead of $x(3)$, $y(0)$ would become $h(0)x(0)+h(1)\cdot 0$, which does **not** equal $y_{\text{circ}}(0)=h(0)x(0)+h(1)x(3)$. Only the literal copy of the tail reproduces the periodic wrap-around that circular convolution assumes. This is why it is a *cyclic prefix* and not merely a blank guard interval.
 
-**Two distinct impairments from multipath, fixed by two different mechanisms.** Delay spread in the channel — multiple echoes arriving with different delays — causes two separable problems:
+**Two distinct impairments from multipath, fixed by two different mechanisms.** Delay spread in the channel, meaning multiple echoes arriving with different delays, causes two separable problems:
 
 | Impairment | Cause | How the CP fixes it |
 |---|---|---|
-| **Inter-symbol interference (ISI)** | Echoes carrying the *previous* symbol's tail bleed into the current symbol's receive window | *Guard time*: if $L_{cp} \geq$ the channel's maximum delay spread, the stale energy decays entirely within the discarded CP interval and never reaches the $N$ retained samples. Any guard interval — even zeros — would achieve this. |
+| **Inter-symbol interference (ISI)** | Echoes carrying the *previous* symbol's tail bleed into the current symbol's receive window | *Guard time*: if $L_{cp} \geq$ the channel's maximum delay spread, the stale energy decays entirely within the discarded CP interval and never reaches the $N$ retained samples. Any guard interval, even zeros, would achieve this. |
 | **Inter-carrier interference (ICI) / loss of subcarrier orthogonality** | Within a single symbol, *linear* convolution lacks the periodic boundary condition that the complex exponentials $e^{j2\pi kn/N}$ need to remain eigenfunctions of the channel operator, so energy leaks between subcarriers | *Exact tail copy*: converts the in-block operation into a true circular convolution, under which each $e^{j2\pi kn/N}$ passes through unchanged in shape (only scaled by $H(k)$), so no energy crosses subcarriers. Zero-padding alone would not prevent this. |
 
-The two fixes are independent: sufficient *length* protects against ISI, while the exact *duplication* of the tail protects against ICI. Both are necessary — a long-enough zero guard band would still leave a linear-convolution boundary artifact inside the block, smearing the $N$ orthogonal subcarriers into each other even with no inter-symbol contamination at all. It is the combination of the two that yields the clean, crosstalk-free model $Y(k)=H(k)X(k)+W(k)$ used throughout this section, and with it the simple one-tap equalizer $\hat{X}(k) = Y(k)/H(k)$ in place of a much harder time-domain deconvolution.
+The two fixes are independent: sufficient *length* protects against ISI, while the exact *duplication* of the tail protects against ICI. Both are necessary. A long-enough zero guard band would still leave a linear-convolution boundary artifact inside the block, smearing the $N$ orthogonal subcarriers into each other even with no inter-symbol contamination at all. The combination of enough length and exact tail copying yields the clean model $Y(k)=H(k)X(k)+W(k)$ and the simple one-tap equalizer $\hat{X}(k) = Y(k)/H(k)$.
 
 **Constellation diagrams**: The modulation alphabet is visualized as a constellation. Common examples:
 - **QPSK** ($M=4$): 4 points on a circle, 2 bits/symbol
