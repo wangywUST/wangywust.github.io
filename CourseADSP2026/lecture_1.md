@@ -7,7 +7,7 @@
 ## Table of Contents
 
 1. [Part I: Digital Signals and DSP Overview](#part-i-digital-signals-and-dsp-overview)
-   - [§1.5 Elementary Sequences (δ, u, αⁿu)](#15-elementary-sequences-fundamental-building-blocks)
+   - [§1.5 Elementary Sequences (δ, u, αⁿu, e^jω₀n)](#15-elementary-sequences-fundamental-building-blocks)
 2. [Part II: Transforms for Discrete-Time Signals](#part-ii-transforms-for-discrete-time-signals)
 3. [Part III: Digital Filter Structures and Design](#part-iii-digital-filter-structures-and-design)
 4. [Part IV: Special Sequences and Corresponding Filters](#part-iv-special-sequences-and-corresponding-filters)
@@ -470,6 +470,44 @@ $$\alpha^n u(n) = \begin{cases} \alpha^n, & n \geq 0 \\ 0, & n < 0 \end{cases}$$
 | $\lvert\alpha\rvert > 1$ | Grows without bound — unstable |
 
 This is the prototype impulse response of a first-order causal IIR filter. Its z-transform $\dfrac{1}{1-\alpha z^{-1}}$ (ROC: $\lvert z\rvert>\lvert\alpha\rvert$) is the single most-used entry in the z-transform table (§2.2.3).
+
+### 1.5.4 Complex Exponential Sequence $e^{j\omega_0 n}$
+
+$$x(n) = e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)$$
+
+where $\omega_0 \in [-\pi, \pi]$ is the digital angular frequency (rad/sample). The real and imaginary parts are the discrete cosine and sine sequences respectively.
+
+**Correspondence to analog frequency:**
+
+Sampling the continuous-time complex exponential $e^{j\Omega_0 t}$ at rate $f_s = 1/T_s$ gives:
+
+$$e^{j\Omega_0 t}\big|_{t=nT_s} = e^{j\Omega_0 T_s n} = e^{j\omega_0 n}, \qquad \omega_0 = \Omega_0 T_s = \frac{2\pi f_0}{f_s}$$
+
+Higher analog frequencies map to larger $\omega_0$; lower analog frequencies map to smaller $\omega_0$. The digital frequency range $\omega_0 \in [-\pi, \pi]$ corresponds exactly to the analog Nyquist interval $f_0 \in [-f_s/2,\, f_s/2]$.
+
+| $\omega_0$ | Analog frequency | Sequence behavior |
+|---|---|---|
+| $0$ | $0$ Hz (DC) | $x(n) = 1$ (constant) |
+| $\pi/2$ | $f_s/4$ | Period of 4 samples |
+| $\pi$ | $f_s/2$ (Nyquist) | $x(n) = (-1)^n$ (fastest oscillation) |
+
+**Role as basis functions:**
+
+The DTFT inverse formula decomposes any sequence into a continuum of complex exponentials:
+
+$$x(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})\, e^{j\omega n}\, d\omega$$
+
+$X(e^{j\omega})$ is the spectral weight — the amplitude and phase of each frequency component. The role of $e^{j\omega_0 n}$ in discrete-time exactly parallels that of $e^{j\Omega t}$ in continuous-time Fourier analysis:
+
+| Analog domain | Digital domain |
+|---|---|
+| Basis function $e^{j\Omega t}$, $\Omega \in (-\infty, +\infty)$ | Basis function $e^{j\omega n}$, $\omega \in [-\pi, \pi]$ |
+| Spectral weight $X_a(\Omega)$ | Spectral weight $X(e^{j\omega})$ |
+| Frequency axis unbounded | Frequency axis folded into $[-\pi, \pi]$ |
+
+**The root cause of aliasing:**
+
+$e^{j\omega_0 n}$ is $2\pi$-periodic: $e^{j(\omega_0 + 2\pi)n} = e^{j\omega_0 n}$. Consequently, analog frequencies $f_0$ and $f_0 + kf_s$ (differing by any integer multiple of $f_s$) map to the same digital frequency $\omega_0$ and become indistinguishable after sampling. This is the fundamental cause of **aliasing**, and explains why an anti-aliasing lowpass filter with cutoff $f_c = f_s/2$ (i.e., $\omega_c = \pi$) must be applied before sampling.
 
 ---
 
