@@ -78,7 +78,7 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $H(e^{j\omega})$ | System frequency response (DTFT of $h(n)$) |
 | $H(z)$ | System transfer function (z-transform of $h(n)$) |
 | $W_N = e^{-j2\pi/N}$ | DFT twiddle factor |
-| $\mathbf{W}_N$ | $N\times N$ DFT matrix, $\left(\mathbf{W}_N\right)_{k,n} = W_N^{kn}$ |
+| $\mathbf{W}_N$ | $N\times N$ DFT matrix, $\mathbf{W}_N = [W_N^{kn}]_{k,n=0}^{N-1}$ |
 | $R(e^{j\omega})$ | DTFT of autocorrelation $r_x(n)$ |
 | $R(z)$ | z-Transform of autocorrelation $r_x(n)$ |
 | $P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2$ | Power spectral density (PSD) of $x(n)$ |
