@@ -29,31 +29,41 @@ T = 1.0                 # pulse duration
 B = 20.0                # swept bandwidth (Hz)
 mu = B / T               # chirp rate
 fs = 2000
-t = np.linspace(-T / 2, T / 2, fs)
+t = np.linspace(0, 1.25 * T, fs)
+pulse_mask = t <= T
 
-chirp = np.cos(np.pi * mu * t ** 2)          # real part of the LFM signal
-f_inst = mu * t                              # instantaneous frequency, linear in t
+chirp_untruncated = np.cos(np.pi * mu * t ** 2)
+chirp = np.where(pulse_mask, chirp_untruncated, 0.0)  # rectangularly truncated waveform
+f_inst = np.where(pulse_mask, mu * t, np.nan)         # only defined inside the pulse
 
 ax1.plot(t, chirp, color="#1f4e8c", linewidth=0.9)
 ax1.axhline(0, color="gray", linewidth=0.5, zorder=0)
-ax1.set_xlim(-T / 2, T / 2)
+ax1.axvline(T, color="gray", linewidth=0.8, linestyle=":", zorder=0)
+ax1.axvspan(T, t[-1], color="gray", alpha=0.08, zorder=-1)
+ax1.set_xlim(0, t[-1])
 ax1.set_ylim(-1.3, 1.3)
 ax1.set_xlabel("Time $t$")
 ax1.set_ylabel("Amplitude", color="#1f4e8c")
 ax1.tick_params(axis="y", labelcolor="#1f4e8c")
-ax1.set_title("LFM Chirp: Time Domain", fontsize=12)
+ax1.set_title("LFM Chirp: Truncated Time Domain", fontsize=12)
 
 ax1b = ax1.twinx()
 ax1b.plot(t, f_inst, color="#c0392b", linewidth=1.8, linestyle="--")
 ax1b.set_ylabel(r"Instantaneous frequency $f_i(t)=\mu t$", color="#c0392b")
 ax1b.tick_params(axis="y", labelcolor="#c0392b")
-ax1b.set_ylim(-B * 0.7, B * 0.7)
+ax1b.set_ylim(0, B * 1.1)
 
 ax1.text(
     0.03, 0.95,
-    r"$x(t)=\mathrm{rect}\!\left(\frac{t}{T}\right)e^{j\pi\mu t^2}$",
+    r"$x(t)=\mathrm{rect}\!\left(\frac{t-T/2}{T}\right)e^{j\pi\mu t^2}$",
     transform=ax1.transAxes, fontsize=10, va="top", ha="left",
     bbox=dict(boxstyle="round", fc="white", ec="gray", alpha=0.85),
+)
+
+ax1.text(
+    T + 0.02 * T, -1.12,
+    "truncated",
+    fontsize=9, color="gray", va="bottom", ha="left",
 )
 
 # =====================================================================
@@ -86,7 +96,7 @@ centers = np.array([i * (pulse_width + gap) + pulse_width / 2 for i in range(n_p
 ax2.step(centers, freqs, where="mid", color="#c0392b", linewidth=1.2,
           linestyle=":", zorder=1)
 
-ax2.set_xlim(-0.3, n_pulses * (pulse_width + gap))
+ax2.set_xlim(0, n_pulses * (pulse_width + gap))
 ax2.set_ylim(0, freqs[-1] + 8)
 ax2.set_xlabel("Pulse index $k$")
 ax2.set_ylabel("Carrier frequency $f_k$")
