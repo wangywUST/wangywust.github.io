@@ -56,7 +56,7 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $h_d(n)$ | Ideal (desired) impulse response in FIR window design |
 | $h_{ap}(n)$ | Impulse response of an allpass filter |
 | $h_m(n)$ | Impulse response of a minimum-phase filter |
-| $r_x(n) = x(n)*x^*(-n)$ | Autocorrelation sequence of $x(n)$ |
+| $r_x(n) = x(n)\ast x^{*}(-n)$ | Autocorrelation sequence of $x(n)$ |
 | $\tilde{x}(n) = x(\langle n\rangle_N)$ | Periodic extension of finite-length $x(n)$, period $N$ |
 | $\delta(n)$ | Unit impulse: $1$ at $n=0$, $0$ elsewhere |
 | $u(n)$ | Unit step: $1$ for $n\ge 0$, $0$ for $n<0$ |
@@ -186,7 +186,7 @@ This "delay, weight, and add" operation is, by definition, convolution. (A usefu
 
 More fundamentally, this is not something the channel "chooses" to do — it is a consequence of two physically reasonable assumptions. Any discrete signal can be decomposed into a weighted sum of shifted unit impulses, $x(n) = \sum_k x(k)\,\delta(n-k)$. If the channel is **linear** (multiple superimposed waves add without interacting — true of EM (Electromagnetic) and acoustic propagation at ordinary power levels) and **time-invariant** (the multipath geometry — delays and gains — does not change appreciably over the duration of one symbol, i.e. a quasi-static channel), then its response to a shifted impulse $\delta(n-k)$ is just a shifted copy of its impulse response, $h(n-k)$, and by linearity its response to the full signal is the sum of these shifted, scaled responses:
 
-$$y(n) = \sum_k x(k)\,h(n-k) = x(n) * h(n)$$
+$$y(n) = \sum_k x(k)\,h(n-k) = x(n) \ast h(n)$$
 
 In other words, *any* LTI channel — multipath or not — necessarily produces an output that is the convolution of the input with its impulse response $h(n)$; $h(n)$ is simply the packaged record of every propagation path's delay and gain. The OFDM channel model below inherits exactly this structure, with $L$ denoting the number of resolvable channel taps (the discrete-time length of the multipath spread).
 
@@ -511,10 +511,10 @@ The DTFT exists when the ROC (Region of Convergence) of $X(z)$ includes the unit
 | Time shift | $x(n - n_0)$ | $\leftrightarrow$ | $e^{-j\omega n_0} X(e^{j\omega})$ |
 | Frequency shift | $e^{j\omega_0 n} x(n)$ | $\leftrightarrow$ | $X(e^{j(\omega - \omega_0)})$ |
 | Modulation | $x(n)\cos\omega_0 n$ | $\leftrightarrow$ | $\frac{1}{2}[X(e^{j(\omega-\omega_0)}) + X(e^{j(\omega+\omega_0)})]$ |
-| Conjugate | $x^*(n)$ | $\leftrightarrow$ | $X^*(e^{-j\omega})$ |
+| Conjugate | $x^{*}(n)$ | $\leftrightarrow$ | $X^{*}(e^{-j\omega})$ |
 | Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(e^{-j\omega})$ |
-| Convolution | $x(n) * y(n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y(e^{j\omega})$ |
-| Correlation | $\sum_k x(k)y^*(k-n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y^*(e^{j\omega})$ |
+| Convolution | $x(n) \ast y(n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y(e^{j\omega})$ |
+| Correlation | $\sum_k x(k)y^{*}(k-n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y^{*}(e^{j\omega})$ |
 | Multiplication | $x(n)y(n)$ | $\leftrightarrow$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\theta})Y(e^{j(\omega-\theta)})d\theta$ |
 | Frequency differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $j\dfrac{d}{d\omega}X(e^{j\omega})$ |
 | Parseval's theorem | $\sum_{n} x(n)y^*(n)$ | $=$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})Y^*(e^{j\omega})d\omega$ |
@@ -558,9 +558,9 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Linearity | $ax(n)+by(n)$ | $\leftrightarrow$ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Time shift | $x(n-K)$ | $\leftrightarrow$ | $z^{-K}X(z)$ | $\text{ROC}_x$ (modified at $z=0,\infty$) |
 | z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 \lt \lvert z\rvert \lt \lvert\alpha\rvert\,r_2$ |
-| Conjugate | $x^*(n)$ | $\leftrightarrow$ | $X^*(z^*)$ | $\text{ROC}_x$ |
+| Conjugate | $x^{*}(n)$ | $\leftrightarrow$ | $X^{*}(z^{*})$ | $\text{ROC}_x$ |
 | Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 \lt \lvert z\rvert \lt 1/r_1$ |
-| Convolution | $x(n)*y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
+| Convolution | $x(n)\ast y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
 | z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
 | Initial value | $x(0)$, causal $x$ | — | $\lim_{z\to\infty} X(z)$ | — |
@@ -915,7 +915,7 @@ $$x(n) = \sum_{k=-\infty}^{\infty} x(k)\, \delta(n-k)$$
 
 By linearity, the system responds to each $x(k)\,\delta(n-k)$ with $x(k)\,h(n-k)$ (scaled + shifted impulse response). By time-invariance, those shifted responses are exact copies. Summing over all $k$:
 
-$$\boxed{y(n) = x(n) * h(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k)}$$
+$$\boxed{y(n) = x(n) \ast h(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k)}$$
 
 This is the **convolution sum** — the universal input-output relationship for any LTI system, regardless of structure. Knowing $h(n)$ means knowing the system's response to *every* possible input.
 
@@ -1349,9 +1349,9 @@ $$\lvert H_{ap}(e^{j\omega})\rvert = 1 \quad \forall\, \omega$$
 
 This implies:
 
-$$H_{ap}(e^{j\omega})\, H_{ap}^*(e^{j\omega}) = 1, \qquad h_{ap}(n) * h_{ap}^*(-n) = \delta(n)$$
+$$H_{ap}(e^{j\omega})\, H_{ap}^{*}(e^{j\omega}) = 1, \qquad h_{ap}(n) \ast h_{ap}^{*}(-n) = \delta(n)$$
 
-$$\boxed{H_{ap}(z)\, H_{ap}^*(1/z^*) = 1}$$
+$$\boxed{H_{ap}(z)\, H_{ap}^{*}(1/z^{*}) = 1}$$
 
 **Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^*$ (outside the unit circle) — the **conjugate reciprocal** location.
 
@@ -1547,7 +1547,7 @@ $$R(e^{j\omega}) \geq 0 \quad \forall\, \omega$$
 
 **Connection to autocorrelation**: The autocorrelation of a signal $x(n)$ is:
 
-$$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^*(k-n) = x(n) * x^*(-n)$$
+$$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^{*}(k-n) = x(n) \ast x^{*}(-n)$$
 
 Its DTFT is the **power spectral density**:
 
