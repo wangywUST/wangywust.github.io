@@ -30,7 +30,7 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $f_1,\, f_2$ | Lower/upper band edges of a bandpass signal | Hz |
 | $T_s = 1/f_s$ | Sampling period | s/sample |
 | $B$ | Signal bandwidth (one-sided baseband) | Hz |
-| $\Omega = 2\pi f$ | Analog angular frequency | rad/s |
+| $\Omega = 2\pi f \in [-\pi/T_s,\,\pi/T_s]$ | Analog angular frequency | rad/s |
 | $\omega = \Omega T_s \in [-\pi,\pi]$ | Digital angular frequency | rad/sample |
 | $\omega_k = 2\pi k/N$ | $k$-th DFT frequency bin | rad/sample |
 | $\omega_c$ | Digital cutoff frequency | rad/sample |
