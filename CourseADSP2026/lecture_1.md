@@ -192,7 +192,57 @@ So the final goal is to recover the bits. Inside the OFDM receiver, the importan
 
 **From bits to symbols.** A modulation scheme such as QPSK or QAM maps a small group of bits to one complex number. That complex number is called a **symbol**. The set of possible symbols is the **constellation**. For example, QPSK has 4 constellation points and carries 2 bits per symbol; 16-QAM has 16 points and carries 4 bits per symbol.
 
-In OFDM, one symbol $X(k)$ is placed on each subcarrier $k = 0, 1, \ldots, N-1$. The $N$ frequency-domain symbols are then converted into $N$ time-domain samples by an inverse DFT:
+In OFDM, a **carrier** is a sinusoidal wave used to carry information at a particular frequency. Instead of using one wide carrier, OFDM divides the available bandwidth into $N$ narrow frequency lanes called **subcarriers**. One symbol $X(k)$ is placed on each subcarrier $k = 0, 1, \ldots, N-1$.
+
+The number $N$ is therefore both the number of DFT subcarriers and the FFT/IFFT length. It is a design parameter, not something determined by the IDFT formula alone. In practical systems, not every DFT bin must carry user data; some bins may be reserved for pilots, guard bands, or a DC null. But mathematically the length-$N$ OFDM block provides $N$ orthogonal frequency slots. If the available bandwidth is approximately $B$ and adjacent subcarriers are spaced by $\Delta f$, then roughly
+
+$$N \approx \frac{B}{\Delta f}.$$
+
+The subcarrier spacing $\Delta f$ is tied to the useful OFDM symbol duration $T_u$ by the orthogonality condition
+
+$$\Delta f = \frac{1}{T_u}.$$
+
+Here $T_u$ is the duration of the $N$ useful time-domain samples before adding the cyclic prefix. To see why this relation appears, write the $k$-th continuous-time subcarrier as
+
+$$\phi_k(t)=e^{j2\pi k\Delta f t}, \quad 0 \leq t < T_u.$$
+
+Two different subcarriers $k$ and $m$ are orthogonal if their inner product over one OFDM symbol is zero:
+
+$$\int_0^{T_u} \phi_k(t)\phi_m^*(t)\,dt
+= \int_0^{T_u} e^{j2\pi (k-m)\Delta f t}\,dt = 0,\quad k\neq m.$$
+
+Evaluating the integral gives
+
+$$\frac{e^{j2\pi (k-m)\Delta f T_u}-1}{j2\pi (k-m)\Delta f}.$$
+
+For this to be zero, the numerator must vanish:
+
+$$e^{j2\pi (k-m)\Delta f T_u}=1.$$
+
+Thus $(k-m)\Delta f T_u$ must be an integer. The smallest spacing that makes every neighboring pair orthogonal is therefore $\Delta f = 1/T_u$. This is the mathematical reason why symbol duration and subcarrier count are connected: for a fixed bandwidth $B$,
+
+$$N \approx \frac{B}{\Delta f} = B T_u.$$
+
+A longer OFDM symbol allows smaller subcarrier spacing and therefore more subcarriers in the same bandwidth. A shorter OFDM symbol requires wider subcarrier spacing and therefore fewer subcarriers.
+
+The same result appears in the discrete-time IDFT. If the sampling rate is $F_s$, then $N$ useful samples occupy
+
+$$T_u = \frac{N}{F_s},$$
+
+and the DFT frequency spacing is
+
+$$\Delta f = \frac{F_s}{N}.$$
+
+Therefore $T_u\Delta f = 1$. The DFT basis functions
+
+$$e^{j2\pi kn/N}, \quad n=0,1,\ldots,N-1,$$
+
+are orthogonal because
+
+$$\sum_{n=0}^{N-1} e^{j2\pi kn/N}e^{-j2\pi mn/N}
+= \sum_{n=0}^{N-1} e^{j2\pi (k-m)n/N}=0,\quad k\neq m.$$
+
+The $N$ frequency-domain symbols are then converted into $N$ time-domain samples by an inverse DFT:
 
 $$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, e^{j2\pi kn/N}}, \quad n = 0, 1, \ldots, N-1$$
 
