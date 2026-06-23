@@ -225,6 +225,26 @@ $$N \approx \frac{B}{\Delta f} = B T_u.$$
 
 A longer OFDM symbol allows smaller subcarrier spacing and therefore more subcarriers in the same bandwidth. A shorter OFDM symbol requires wider subcarrier spacing and therefore fewer subcarriers.
 
+This does **not** mean that increasing $N$ automatically increases the data rate. If every active subcarrier uses the same $M$-ary constellation, then each subcarrier carries $\log_2 M$ bits per OFDM symbol. Ignoring pilots, coding, guard bands, and the cyclic prefix, one OFDM symbol carries approximately
+
+$$N\log_2 M \text{ bits}.$$
+
+But the useful symbol duration is approximately
+
+$$T_u \approx \frac{N}{B}.$$
+
+Thus the ideal uncoded data rate is
+
+$$R \approx \frac{N\log_2 M}{T_u}
+= \frac{N\log_2 M}{N/B}
+= B\log_2 M.$$
+
+The factor $N$ cancels. More subcarriers do not create extra bandwidth or free throughput by themselves. Their main value is that each subcarrier becomes narrower, so the channel over that subcarrier is closer to flat fading and can be equalized by a simple one-tap correction. Larger $N$ also increases $T_u$, which can reduce the relative overhead of a fixed cyclic prefix:
+
+$$\text{CP overhead} = \frac{T_{cp}}{T_u+T_{cp}}.$$
+
+The tradeoff is that larger $N$ also means a longer OFDM symbol, greater latency and FFT size, and more sensitivity to frequency offset, Doppler shift, or any channel variation within one symbol. Smaller $N$ gives shorter symbols and lower computation, but each subcarrier is wider and more likely to experience frequency-selective fading.
+
 The same result appears in the discrete-time IDFT. If the sampling rate is $F_s$, then $N$ useful samples occupy
 
 $$T_u = \frac{N}{F_s},$$
