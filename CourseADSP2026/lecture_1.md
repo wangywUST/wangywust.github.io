@@ -1589,26 +1589,26 @@ Every filter design begins with choosing between FIR and IIR. The difference equ
 >
 > **FIR: why there are no poles to worry about.**
 > An FIR transfer function is a finite polynomial in $z^{-1}$:
-> $$H(z) = \sum_{n=0}^{M} h(n]\, z^{-n}$$
-> Multiplying through by $z^M$ gives a polynomial of degree $M$ in $z$, whose only "poles" are $M$ copies at $z = 0$ (the origin). Since $|0| = 0 < 1$, they are always strictly inside the unit circle — no matter what the coefficients $h(n)$ are. FIR filters have no feedback: the output depends on a finite window of past inputs and nothing cycles back. Without a feedback loop there is no mechanism to generate poles at arbitrary locations, so unconditional stability is a structural guarantee, not a property that must be verified case by case.
+> $$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n}$$
+> Multiplying through by $z^M$ gives a polynomial of degree $M$ in $z$, whose only "poles" are $M$ copies at $z = 0$ (the origin). Since $\lvert 0\rvert = 0 < 1$, they are always strictly inside the unit circle - no matter what the coefficients $h(n)$ are. FIR filters have no feedback: the output depends on a finite window of past inputs and nothing cycles back. Without a feedback loop there is no mechanism to generate poles at arbitrary locations, so unconditional stability is a structural guarantee, not a property that must be verified case by case.
 >
-> **IIR: why poles must be strictly inside the unit circle — and not merely "off" it.**
+> **IIR: why poles must be strictly inside the unit circle - and not merely "off" it.**
 > For a causal IIR system, each pole $p_k$ contributes a term proportional to $p_k^n$ to the impulse response $h(n)$:
 >
-> | Pole location | $|p_k|$ | Time-domain contribution | Stability verdict |
+> | Pole location | $\lvert p_k\rvert$ | Time-domain contribution | Stability verdict |
 > |---|---|---|---|
-> | Strictly inside unit circle | $< 1$ | $|p_k|^n \to 0$ — exponential decay | ✅ BIBO stable |
-> | On the unit circle | $= 1$ | $|p_k|^n = 1$ — sustained oscillation | ⚠️ Marginally stable (BIBO unstable: a bounded sinusoidal input at the resonant frequency produces unbounded output) |
-> | Outside unit circle | $> 1$ | $|p_k|^n \to \infty$ — exponential growth | ❌ Unstable |
+> | Strictly inside unit circle | $< 1$ | $\lvert p_k\rvert^n \to 0$ - exponential decay | ✅ BIBO stable |
+> | On the unit circle | $= 1$ | $\lvert p_k\rvert^n = 1$ - sustained oscillation | ⚠️ Marginally stable (BIBO unstable: a bounded sinusoidal input at the resonant frequency produces unbounded output) |
+> | Outside unit circle | $> 1$ | $\lvert p_k\rvert^n \to \infty$ - exponential growth | ❌ Unstable |
 >
-> The critical point: **"outside the unit circle" is the worst case, not a safe one.** A pole at $|p| = 1.01$ already causes the output to grow without bound. "Not on the unit circle" is not sufficient — only $|p_k| < 1$ for every pole guarantees BIBO stability.
+> The critical point: **"outside the unit circle" is the worst case, not a safe one.** A pole at $\lvert p\rvert = 1.01$ already causes the output to grow without bound. "Not on the unit circle" is not sufficient - only $\lvert p_k\rvert < 1$ for every pole guarantees BIBO stability.
 >
 > **ROC perspective: the unified criterion.**
 > The most general stability condition, valid for any LTI system (causal or not), is:
-> $$\text{System is BIBO stable} \iff \text{ROC of } H(z) \text{ includes the unit circle } |z|=1$$
-> For a **causal** system, the ROC is the exterior of a disk: $\{z : |z| > r_{\max}\}$ where $r_{\max} = \max_k |p_k|$ is the outermost pole magnitude. The unit circle is inside this ROC precisely when $r_{\max} < 1$ — all poles strictly inside the unit circle.
+> $$\text{System is BIBO stable} \iff \text{ROC of } H(z) \text{ includes the unit circle } \lvert z\rvert=1$$
+> For a **causal** system, the ROC is the exterior of a disk: $\{z : \lvert z\rvert > r_{\max}\}$ where $r_{\max} = \max_k \lvert p_k\rvert$ is the outermost pole magnitude. The unit circle is inside this ROC precisely when $r_{\max} < 1$ - all poles strictly inside the unit circle.
 >
-> For an **anti-causal** system (left-sided sequences), the ROC is the interior of a disk: $\{z : |z| < r_{\min}\}$. In that case, poles *outside* the unit circle ($|p| > 1$) would place the unit circle inside the ROC, making the anti-causal system stable. But this is a mathematical curiosity: anti-causal systems require future input samples, so they can only be implemented offline (e.g., `filtfilt` in MATLAB, which runs the filter forward then backward to achieve zero-phase response). In real-time signal processing, all practical filters are causal, and the condition reduces simply to: **all poles strictly inside the unit circle**.
+> For an **anti-causal** system (left-sided sequences), the ROC is the interior of a disk: $\{z : \lvert z\rvert < r_{\min}\}$. In that case, poles *outside* the unit circle ($\lvert p\rvert > 1$) would place the unit circle inside the ROC, making the anti-causal system stable. But this is a mathematical curiosity: anti-causal systems require future input samples, so they can only be implemented offline (e.g., `filtfilt` in MATLAB, which runs the filter forward then backward to achieve zero-phase response). In real-time signal processing, all practical filters are causal, and the condition reduces simply to: **all poles strictly inside the unit circle**.
 
 **Practical decision guide**:
 - **Choose FIR** when the application requires exactly linear phase (distortion-free signal transmission, matched filtering in radar/sonar, image processing) or when guaranteed stability is essential and the computational cost of many taps is acceptable.
