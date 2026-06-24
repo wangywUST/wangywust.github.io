@@ -1948,7 +1948,9 @@ A causal, stable filter $H_m(z)$ is **minimum-phase** if and only if:
 
 Among all causal, stable filters with the same magnitude response, the minimum-phase filter has:
 - The smallest phase lag at every frequency
-- The fastest energy buildup: $\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2$ for all $k$
+- The fastest energy buildup: among all causal, stable filters $H(z)$ sharing
+  the same magnitude response $|H(e^{j\omega})| = |H_m(e^{j\omega})|$,
+  $$\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2 \quad \forall\, k$$
 - A **causal, stable inverse** $1/H_m(z)$ (all zeros inside the unit circle → all inverse poles inside)
 
 > ![Figure 4.2](<./CourseADSP2026/Fig/fig_4_2.png>)
