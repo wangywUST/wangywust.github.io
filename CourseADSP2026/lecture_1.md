@@ -849,9 +849,45 @@ The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coeffi
 
 **Root cause: the DFT implicitly treats every signal as periodic.**
 
-When you take the $N$-point DFT of two sequences, multiply in the frequency domain, and apply the IDFT, the result is an $N$-point **circular** convolution — not a linear convolution. Behind the scenes the DFT periodically extends both $x(n)$ and $h(n)$ with period $N$, convolves in that periodic world, and returns one period of the output. The precise relationship between the two convolutions is:
+When you take the $N$-point DFT of two sequences, multiply in the frequency domain, and apply the IDFT, the result is an $N$-point **circular** convolution — not a linear convolution. Behind the scenes the DFT periodically extends both $x(n)$ and $h(n)$ with period $N$, convolves in that periodic world, and returns one period of the output.
 
-$$y_{\text{circ}}(n) = \sum_{r=-\infty}^{\infty} y_{\text{lin}}(n - rN)$$
+To see why, we first define the two types of convolution precisely and show how each is computed.
+
+---
+
+**Definition 1 — Linear convolution** $y_{\text{lin}}(n)$
+
+Given a finite-length input $x(n)$ of length $L_1$ (nonzero for $0 \leq n \leq L_1-1$) and a finite-length filter $h(n)$ of length $L_2$ (nonzero for $0 \leq n \leq L_2-1$), their **linear (aperiodic) convolution** is the standard convolution sum over all integers:
+
+$$y_{\text{lin}}(n) = (x \ast h)(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k) = \sum_{k=0}^{L_1-1} x(k)\, h(n-k)$$
+
+The second equality holds because $x(k) = 0$ outside $[0, L_1-1]$. The output $y_{\text{lin}}(n)$ is nonzero only for $0 \leq n \leq L_1 + L_2 - 2$, so its length is exactly $L_1 + L_2 - 1$. No periodicity is assumed; the sequences live on the entire integer line $\mathbb{Z}$.
+
+**How to compute** $y_{\text{lin}}(n)$: slide $h(n)$ past $x(n)$ one sample at a time, multiply element-wise, and sum — the standard "flip-and-drag" operation. For sequences of length $L_1$ and $L_2$, this requires $L_1 \cdot L_2$ multiplications by direct computation, or $O(N \log N)$ multiplications via the DFT (with sufficient zero-padding, as discussed below).
+
+---
+
+**Definition 2 — Circular (periodic) convolution** $y_{\text{circ}}(n)$
+
+Given two finite-length sequences $x(n)$ and $h(n)$, both viewed modulo $N$ (i.e., periodically extended with period $N$), the **$N$-point circular convolution** is:
+
+$$y_{\text{circ}}(n) = \bigl(x \circledast_N h\bigr)(n) = \sum_{k=0}^{N-1} x(k)\, h\!\left(\langle n - k \rangle_N\right), \qquad n = 0, 1, \ldots, N-1$$
+
+where $\langle m \rangle_N = m \bmod N$ denotes the **modulo-$N$** reduction, i.e., $h$ is treated as periodic with period $N$ so that $h(-1)$ wraps to $h(N-1)$, $h(-2)$ wraps to $h(N-2)$, and so on. The result $y_{\text{circ}}(n)$ has exactly $N$ samples.
+
+Equivalently, using the periodic extension $\tilde{h}(n) = h(\langle n \rangle_N)$:
+
+$$y_{\text{circ}}(n) = \sum_{k=0}^{N-1} x(k)\, \tilde{h}(n - k)$$
+
+**How to compute** $y_{\text{circ}}(n)$: the same flip-and-sum as linear convolution, but the shift of $h$ wraps around modulo $N$ instead of extending to $\pm\infty$. In practice, one never computes circular convolution directly in the time domain — the point is to use the DFT: compute $X(k) = \mathrm{DFT}\{x\}$, $H(k) = \mathrm{DFT}\{h\}$, form $Y(k) = X(k) \cdot H(k)$ (pointwise), and recover $y_{\text{circ}}(n) = \mathrm{IDFT}\{Y\}$. This is the DFT convolution theorem, and it works because the $N$-point DFT diagonalizes exactly the $N$-point circular convolution.
+
+---
+
+**Relationship between the two convolutions**
+
+The precise connection is:
+
+$$\boxed{y_{\text{circ}}(n) = \sum_{r=-\infty}^{\infty} y_{\text{lin}}(n - rN), \qquad n = 0, 1, \ldots, N-1}$$
 
 That is, the circular convolution equals the linear convolution **aliased (summed) with period $N$**. If the linear convolution fits inside $N$ samples — i.e., $L_1 + L_2 - 1 \leq N$ — adjacent periodic copies do not overlap and the two are identical. The moment $N < L_1 + L_2 - 1$, the copies overlap and corrupt each other. This is **time-domain aliasing**: the direct dual of frequency-domain aliasing caused by undersampling, now arising from insufficient DFT length.
 
