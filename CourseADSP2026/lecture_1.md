@@ -845,6 +845,96 @@ The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coeffi
 
 **Key implication**: Since the DFT is just one period of the DFS, and the DFS diagonalizes *periodic* (circular) convolution, the DFT likewise diagonalizes circular convolution — giving the convolution theorem $x(n) \circledast y(n) \overset{\text{DFT}}{\longleftrightarrow} X(k) \cdot Y(k)$. To compute *linear* convolution of sequences of lengths $L_1$ and $L_2$ via the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding); otherwise the periodic wrap-around causes the tails of the linear convolution to fold back onto the result — a phenomenon called **time-domain aliasing**.
 
+#### When Does Time-Domain Aliasing Occur?
+
+**Root cause: the DFT implicitly treats every signal as periodic.**
+
+When you take the $N$-point DFT of two sequences, multiply in the frequency domain, and apply the IDFT, the result is an $N$-point **circular** convolution — not a linear convolution. Behind the scenes the DFT periodically extends both $x(n)$ and $h(n)$ with period $N$, convolves in that periodic world, and returns one period of the output. The precise relationship between the two convolutions is:
+
+$$y_{\text{circ}}(n) = \sum_{r=-\infty}^{\infty} y_{\text{lin}}(n - rN)$$
+
+That is, the circular convolution equals the linear convolution **aliased (summed) with period $N$**. If the linear convolution fits inside $N$ samples — i.e., $L_1 + L_2 - 1 \leq N$ — adjacent periodic copies do not overlap and the two are identical. The moment $N < L_1 + L_2 - 1$, the copies overlap and corrupt each other. This is **time-domain aliasing**: the direct dual of frequency-domain aliasing caused by undersampling, now arising from insufficient DFT length.
+
+**Condition for aliasing to occur:**
+
+$$\boxed{N < L_1 + L_2 - 1}$$
+
+**Correct procedure:** zero-pad both sequences to length $N \geq L_1 + L_2 - 1$, compute DFT $\to$ pointwise multiply $\to$ IDFT, and keep the first $L_1 + L_2 - 1$ output samples.
+
+---
+
+#### Numerical Example: What Goes Wrong When $N$ Is Too Small
+
+Let:
+$$x(n) = [1,\; 2,\; 3], \quad L_1 = 3$$
+$$h(n) = [1,\; 1],     \quad L_2 = 2$$
+
+The required minimum DFT length is $L_1 + L_2 - 1 = 4$.
+
+**Step 1 — Reference: true linear convolution**
+
+$$y_{\text{lin}} = x \ast h = [1,\; 3,\; 5,\; 3] \qquad \text{(length 4)}$$
+
+Point-by-point:
+
+| $n$ | $y_{\text{lin}}(n) = \sum_k x(k)\,h(n-k)$ |
+|-----|---------------------------------------------|
+| 0 | $x(0)h(0) = 1$ |
+| 1 | $x(0)h(1)+x(1)h(0) = 1+2 = 3$ |
+| 2 | $x(1)h(1)+x(2)h(0) = 2+3 = 5$ |
+| 3 | $x(2)h(1) = 3$ |
+
+---
+
+**Step 2 — $N = 3$ DFT (too short — aliasing expected)**
+
+$N = 3 < 4$, so the condition is violated. Zero-pad $h$ to length 3: $h \to [1, 1, 0]$. Compute the 3-point DFT of each, multiply, then apply the 3-point IDFT. The result is the 3-point circular convolution:
+
+$$y_{\text{circ},\,N=3} = [4,\; 3,\; 5]$$
+
+Comparing with the linear convolution:
+
+| $n$ | $y_{\text{lin}}(n)$ | $y_{\text{circ},\,N=3}(n)$ | Correct? |
+|-----|---------------------|----------------------------|----------|
+| 0 | 1 | **4** | ✗ |
+| 1 | 3 | 3 | ✓ (coincidence) |
+| 2 | 5 | 5 | ✓ |
+| 3 | 3 | (absent — folded away) | ✗ |
+
+**Why is $y_{\text{circ}}(0) = 4$ instead of 1?**
+
+The $N=3$ circular convolution sums the linear convolution with its period-3 shift:
+$$y_{\text{circ}}(n) = y_{\text{lin}}(n) + y_{\text{lin}}(n - 3)$$
+
+At $n = 0$: $\;y_{\text{lin}}(0) + y_{\text{lin}}(-3) = 1 + y_{\text{lin}}(3) = 1 + 3 = 4$.
+
+The value that should appear at $n = 3$ **wraps around** and adds onto $n = 0$. That is time-domain aliasing.
+
+---
+
+**Step 3 — $N = 4$ DFT (exactly sufficient — no aliasing)**
+
+$N = 4 \geq L_1 + L_2 - 1 = 4$. Zero-pad: $x \to [1,2,3,0]$, $h \to [1,1,0,0]$. Compute the 4-point DFT of each, multiply, apply the 4-point IDFT:
+
+$$y_{\text{circ},\,N=4} = [1,\; 3,\; 5,\; 3]$$
+
+This matches the linear convolution exactly. ✓
+
+---
+
+**Summary**
+
+| Scenario | Linear conv. length | DFT length $N$ | Outcome |
+|----------|---------------------|----------------|---------|
+| $N \geq L_1+L_2-1$ | $L_1+L_2-1$ | Sufficient | Circular conv. $=$ linear conv. ✓ |
+| $N < L_1+L_2-1$ | Overflows $N$ | Insufficient | Tail wraps around — **time-domain aliasing** ✗ |
+
+Correct pipeline for DFT-based linear convolution:
+
+$$x(n)\xrightarrow{\text{zero-pad to }N} \xrightarrow{\mathrm{DFT}} X(k) \quad\Big|\quad h(n)\xrightarrow{\text{zero-pad to }N} \xrightarrow{\mathrm{DFT}} H(k) \;\longrightarrow\; Y(k)=X(k)H(k) \xrightarrow{\mathrm{IDFT}} y(n)$$
+
+Retain the first $L_1 + L_2 - 1$ samples of $y(n)$; that is $x(n) \ast h(n)$.
+
 ### 2.3.3 Main Properties and Uses of the DFT
 
 | Property | Condition | Result |
