@@ -1466,9 +1466,13 @@ $$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
 >
 > For signal transmission, group delay is the critical quantity because we care about the shape of the signal envelope (i.e., the information), not the phase of individual carrier cycles. Phase delay and group delay coincide only when the phase response is exactly linear.
 
-> **What "phase response" actually means**: The phase response $\angle H(e^{j\omega})$ is the phase shift the filter applies to each frequency component. For a single-frequency input $e^{j\omega n}$, the output is $|H(e^{j\omega})| \cdot e^{j(\omega n + \angle H(e^{j\omega}))}$. This phase offset $\angle H(e^{j\omega})$ is not a one-time event at $n = 0$ — it applies uniformly across the entire time axis. Every sample of every frequency component carries this accumulated phase offset.
+> **What "phase response" actually means**: The phase response $\angle H(e^{j\omega})$ is the phase shift the filter applies to each frequency component. For a single-frequency input $e^{j\omega n}$, the output is
+>
+> $$\lvert H(e^{j\omega})\rvert \cdot e^{j(\omega n + \angle H(e^{j\omega}))}.$$
+>
+> This phase offset $\angle H(e^{j\omega})$ is not a one-time event at $n = 0$ - it applies uniformly across the entire time axis. Every sample of every frequency component carries this accumulated phase offset.
 
-> **Why linear phase equals pure time delay**: Consider a signal delayed by exactly $\alpha$ samples. Each frequency component $e^{j\omega n}$ becomes $e^{j\omega(n-\alpha)} = e^{j\omega n} \cdot e^{-j\omega\alpha}$. The phase shift accumulated at frequency $\omega$ is $-\omega\alpha$ — proportional to $\omega$. This means *higher frequencies accumulate proportionally larger phase shifts*, which is precisely what a linear phase response $\angle H(e^{j\omega}) = -\alpha\omega$ describes. Linear phase and pure time delay are therefore two descriptions of the same thing.
+> **Why linear phase equals pure time delay**: Consider a signal delayed by exactly $\alpha$ samples. Each frequency component $e^{j\omega n}$ becomes $e^{j\omega(n-\alpha)} = e^{j\omega n} \cdot e^{-j\omega\alpha}$. The phase shift accumulated at frequency $\omega$ is $-\omega\alpha$ - proportional to $\omega$. This means *higher frequencies accumulate proportionally larger phase shifts*, which is precisely what a linear phase response $\angle H(e^{j\omega}) = -\alpha\omega$ describes. Linear phase and pure time delay are therefore two descriptions of the same thing.
 >
 > Importantly, a constant phase response (same phase shift for all frequencies) does **not** correspond to a uniform time delay. A fixed phase angle represents a shorter time delay for high-frequency components (whose period is short) and a longer time delay for low-frequency components (whose period is long). This frequency-dependent distortion is often overlooked.
 >
