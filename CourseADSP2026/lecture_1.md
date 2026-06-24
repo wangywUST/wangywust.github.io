@@ -1697,7 +1697,7 @@ which requires exactly **2 multiplications and 2 additions** per sample, indepen
 
 A subtlety: the difference equation contains a feedback term $y(n-1)$, which would normally imply an IIR filter (infinite impulse response). The key is that $H_2(z) = 1/(1-z^{-1})$ introduces a pole at $z = 1$, but $H_1(z) = (1-z^{-N})/N$ places one of its $N$ zeros *exactly* at $z = 1$ as well. The pole and zero cancel in the product $H(z) = H_1(z) \cdot H_2(z)$, leaving a system that is mathematically equivalent to the original $N$-tap FIR — finite impulse response is preserved. In finite-precision arithmetic, this cancellation is only approximate, so care is needed; but in exact arithmetic the system is purely FIR.
 
-**The comb filter $H_1(z)$** places $N$ zeros uniformly around the unit circle at $z = e^{j2\pi k/N}$, $k = 0, 1, \ldots, N-1$ — the $N$-th roots of unity. Its frequency response $|H_1(e^{j\omega})| = |1 - e^{-j\omega N}|/N$ produces $N$ equally-spaced notches, the "teeth" of the comb. The zero at $k=0$ (i.e., $z=1$, DC) is the one cancelled by the accumulator pole.
+**The comb filter $H_1(z)$** places $N$ zeros uniformly around the unit circle at $z = e^{j2\pi k/N}$, $k = 0, 1, \ldots, N-1$ — the $N$-th roots of unity. Its frequency response $\lvert H_1(e^{j\omega})\rvert = \lvert 1 - e^{-j\omega N}\rvert/N$ produces $N$ equally-spaced notches, the "teeth" of the comb. The zero at $k=0$ (i.e., $z=1$, DC) is the one cancelled by the accumulator pole.
 
 ### 3.1.4 Frequency-Sampling Form
 
@@ -1727,6 +1727,10 @@ Implements the difference equation with two separate delay chains — one for in
 >
 > *Figure 3.3: Direct Form I IIR filter.*
 
+> ![Figure 3.4](<./CourseADSP2026/Fig/fig_3_4.png>)
+>
+> *Figure 3.4: All-pole system realization (direct form).*
+
 ### 3.2.2 Direct Form II — Canonical Form
 
 Merge the two delay chains by sharing a single intermediate state variable $v(n)$ (distinct from the unit step $u(n)$):
@@ -1736,10 +1740,6 @@ $$v(n) = x(n) - \sum_{k=1}^{N} b_k\, v(n-k)$$
 $$y(n) = \sum_{k=0}^{N} a_k\, v(n-k)$$
 
 - Delay elements: $N$ — the minimum possible (**canonical form**)
-
-> ![Figure 3.4](<./CourseADSP2026/Fig/fig_3_4.png>)
->
-> *Figure 3.4: All-pole system realization (direct form).*
 
 **Transposed Direct Form II**: Reversing the signal flow graph (transpose) yields different accumulation order and superior finite-precision performance.
 
