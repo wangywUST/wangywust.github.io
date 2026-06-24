@@ -879,7 +879,7 @@ Equivalently, using the periodic extension $\tilde{h}(n) = h(\langle n \rangle_N
 
 $$y_{\text{circ}}(n) = \sum_{k=0}^{N-1} x(k)\, \tilde{h}(n - k)$$
 
-**How to compute** $y_{\text{circ}}(n)$: the same flip-and-sum as linear convolution, but the shift of $h$ wraps around modulo $N$ instead of extending to $\pm\infty$. In practice, one never computes circular convolution directly in the time domain — the point is to use the DFT: compute $X(k) = \mathrm{DFT}\{x\}$, $H(k) = \mathrm{DFT}\{h\}$, form $Y(k) = X(k) \cdot H(k)$ (pointwise), and recover $y_{\text{circ}}(n) = \mathrm{IDFT}\{Y\}$. This is the DFT convolution theorem, and it works because the $N$-point DFT diagonalizes exactly the $N$-point circular convolution.
+**How to compute** $y_{\text{circ}}(n)$: the same flip-and-sum as linear convolution, but the shift of $h$ wraps around modulo $N$ instead of extending to $\pm\infty$. In practice, one never computes circular convolution directly in the time domain — the point is to use the DFT: compute $X(k) = \mathrm{DFT}\lbrace x\rbrace$, $H(k) = \mathrm{DFT}\lbrace h\rbrace$, form $Y(k) = X(k) \cdot H(k)$ (pointwise), and recover $y_{\text{circ}}(n) = \mathrm{IDFT}\lbrace Y\rbrace$. This is the DFT convolution theorem, and it works because the $N$-point DFT diagonalizes exactly the $N$-point circular convolution.
 
 ---
 
