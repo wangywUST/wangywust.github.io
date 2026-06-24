@@ -1959,7 +1959,7 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
 
 > ![Figure 4.3](<./CourseADSP2026/Fig/fig_4_3.png>)
 >
-> *Figure 4.3: Impulse responses (top) and energy-delay curves $\sum_{n=0}^{k}\lvert h(n)\rvert^2$ (bottom) for the same four systems — the minimum-phase system achieves the fastest energy buildup at every $k$.*
+> *Figure 4.3: Impulse responses for four systems — all systems share equal total energy, and the minimum-phase system achieves the fastest energy dissipation (smallest tail energy) at every $n$.*
 
 ### 4.2.2 Theorem 1.1: Minimum-Phase / Allpass Decomposition
 
