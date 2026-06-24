@@ -665,7 +665,9 @@ Total energy is preserved between the time and frequency domains.
 
 > ![Figure 2.1](<./CourseADSP2026/Fig/fig_2_1.png>)
 >
-> *Figure 2.1: LTI system operation in the frequency domain — multiplying the input spectrum by the frequency response yields the output spectrum, shown for an aperiodic input (top) and a periodic input (bottom).*
+> *Figure 2.1: Frequency-domain view of an LTI system: the output spectrum equals the input spectrum multiplied point-wise by the system frequency response $H(e^{j\omega})$.  
+> **Top (aperiodic input):** $Y(e^{j\omega}) = X(e^{j\omega})\cdot H(e^{j\omega})$ — continuous DTFT spectra.  
+> **Bottom (periodic input):** $Y_k = X_k\cdot H(e^{j\omega_k})$ — discrete Fourier series (DFS) coefficients evaluated at $\omega_k = 2\pi k/N$.*
 
 ---
 
