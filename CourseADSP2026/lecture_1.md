@@ -866,9 +866,10 @@ $$\boxed{N < L_1 + L_2 - 1}$$
 #### Numerical Example: What Goes Wrong When $N$ Is Too Small
 
 Let:
-$$x(n) = [1,\; 2,\; 3], \quad\quad\quad\quad L_1 = 3$$
 
-$$h(n) = [1,\; 1], \quad\quad\quad\quad L_2 = 2$$
+$$x(n) = [1,\; 2,\; 3], \quad\quad L_1 = 3$$
+
+$$h(n) = [1,\; 1], \quad\quad L_2 = 2$$
 
 The required minimum DFT length is $L_1 + L_2 - 1 = 4$.
 
