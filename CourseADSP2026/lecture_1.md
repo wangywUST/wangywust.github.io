@@ -1660,7 +1660,13 @@ $$H(z) = h(0)\prod_{k=1}^{\lfloor M/2 \rfloor} H_k(z), \qquad H_k(z) = 1 + b_{1k
 
 Complex conjugate zero pairs are combined into each real biquad. Each biquad is a 3-tap transversal FIR.
 
-**Advantages**: Numerically more robust than the direct form for high-order filters (coefficient sensitivity is localized to each section); individual zeros are easily modified.
+**Advantages over the direct form.**
+
+In the direct form, $H(z)$ is expressed as a single polynomial of degree $M$. All $M$ zeros are simultaneously determined by all $M+1$ coefficients — that is, every coefficient affects every zero. When coefficients are quantized to finite precision (e.g., 16-bit fixed-point), small perturbations in any $h(k)$ shift *all* zeros, and the sensitivity of polynomial roots to coefficient perturbations grows rapidly with degree: a high-order polynomial is a numerically ill-conditioned map from coefficients to roots.
+
+The cascade form avoids this by factoring $H(z)$ into independent biquads. Each biquad $H_k(z)$ has only **two zeros**, determined entirely by its own three coefficients $(1, b_{1k}, b_{2k})$. Quantization errors in section $k$ perturb only the two zeros of that section; all other zeros are unaffected. This is what **"coefficient sensitivity is localized to each section"** means: the ill-conditioning of a degree-$M$ polynomial is replaced by $\lfloor M/2 \rfloor$ independent degree-2 problems, each well-conditioned.
+
+The same structure makes zero placement **directly editable**: to move a conjugate zero pair, only $b_{1k}$ and $b_{2k}$ of the corresponding biquad need to change. In the direct form, moving a single zero requires recomputing all $M+1$ coefficients by re-expanding the full polynomial.
 
 > ![Figure 3.2](<./CourseADSP2026/Fig/fig_3_2.png>)
 >
@@ -1680,6 +1686,18 @@ $$H(z) = \underbrace{\frac{1-z^{-N}}{N}}_{\displaystyle H_1(z):\ \text{comb filt
 - $H_2(z)$: **first-order IIR accumulator** — pole at $z=1$ cancels the corresponding comb zero
 
 The pole-zero cancellation preserves the FIR character, while the recursive structure reduces computation from $N$ operations to **only 2 per sample**, regardless of $N$.
+
+**Why this works — and why the result is still FIR.**
+
+The direct-form moving average requires computing a fresh sum of $N$ terms for every output sample. The recursive form exploits the fact that the window shifts by one sample at a time: the new sum equals the old sum, plus the new input, minus the sample that just left the window. This leads to the difference equation:
+
+$$y(n) = y(n-1) + \frac{1}{N}\bigl[x(n) - x(n-N)\bigr]$$
+
+which requires exactly **2 multiplications and 2 additions** per sample, independent of $N$.
+
+A subtlety: the difference equation contains a feedback term $y(n-1)$, which would normally imply an IIR filter (infinite impulse response). The key is that $H_2(z) = 1/(1-z^{-1})$ introduces a pole at $z = 1$, but $H_1(z) = (1-z^{-N})/N$ places one of its $N$ zeros *exactly* at $z = 1$ as well. The pole and zero cancel in the product $H(z) = H_1(z) \cdot H_2(z)$, leaving a system that is mathematically equivalent to the original $N$-tap FIR — finite impulse response is preserved. In finite-precision arithmetic, this cancellation is only approximate, so care is needed; but in exact arithmetic the system is purely FIR.
+
+**The comb filter $H_1(z)$** places $N$ zeros uniformly around the unit circle at $z = e^{j2\pi k/N}$, $k = 0, 1, \ldots, N-1$ — the $N$-th roots of unity. Its frequency response $|H_1(e^{j\omega})| = |1 - e^{-j\omega N}|/N$ produces $N$ equally-spaced notches, the "teeth" of the comb. The zero at $k=0$ (i.e., $z=1$, DC) is the one cancelled by the accumulator pole.
 
 ### 3.1.4 Frequency-Sampling Form
 
