@@ -56,7 +56,7 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $h_d(n)$ | Ideal (desired) impulse response in FIR window design |
 | $h_{ap}(n)$ | Impulse response of an allpass filter |
 | $h_m(n)$ | Impulse response of a minimum-phase filter |
-| $r_x(n) = x(n)\ast x^{*}(-n)$ | Autocorrelation sequence of $x(n)$ |
+| $r_x(n) = x(n)\ast x^{\ast}(-n)$ | Autocorrelation sequence of $x(n)$ |
 | $\tilde{x}(n) = x(\langle n\rangle_N)$ | Periodic extension of finite-length $x(n)$, period $N$ |
 | $\delta(n)$ | Unit impulse: $1$ at $n=0$, $0$ elsewhere |
 | $u(n)$ | Unit step: $1$ for $n\ge 0$, $0$ for $n<0$ |
@@ -121,7 +121,7 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $H_m(z)$ | Minimum-phase filter / minimum-phase factor in decomposition |
 | $\alpha_k$ | $k$-th pole of allpass filter, $\lvert\alpha_k\rvert<1$ |
 | $\tau(\omega) = -d(\angle H)/d\omega$ | Group delay |
-| $\sigma^2$ | Scalar gain in spectral factorization $R(z)=\sigma^2 H_m(z)H_m^*(1/z^*)$ |
+| $\sigma^2$ | Scalar gain in spectral factorization $R(z)=\sigma^2 H_m(z)H_m^{\ast}(1/z^{\ast})$ |
 
 ### OFDM and Multipath Channel Model (§1.1.4)
 
@@ -208,7 +208,7 @@ $$\phi_k(t)=e^{j2\pi k\Delta f t}, \quad 0 \leq t < T_u.$$
 
 Two different subcarriers $k$ and $m$ are orthogonal if their inner product over one OFDM symbol is zero:
 
-$$\int_0^{T_u} \phi_k(t)\phi_m^*(t)\,dt
+$$\int_0^{T_u} \phi_k(t)\phi_m^{\ast}(t)\,dt
 = \int_0^{T_u} e^{j2\pi (k-m)\Delta f t}\,dt = 0,\quad k\neq m.$$
 
 Evaluating the integral gives
@@ -427,7 +427,7 @@ The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**.
 >
 > any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum,
 >
-> $$X_a(-f) = X_a^*(f)$$
+> $$X_a(-f) = X_a^{\ast}(f)$$
 >
 > so the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means
 >
@@ -639,7 +639,7 @@ The DTFT exists when the ROC (Region of Convergence) of $X(z)$ includes the unit
 
 **Key structural properties**:
 - $X(e^{j\omega})$ is **$2\pi$-periodic**: $X(e^{j(\omega+2\pi)}) = X(e^{j\omega})$
-- For real $x(n)$: $X(e^{-j\omega}) = X^*(e^{j\omega})$ — conjugate symmetry, so the magnitude spectrum is even and the phase spectrum is odd
+- For real $x(n)$: $X(e^{-j\omega}) = X^{\ast}(e^{j\omega})$ — conjugate symmetry, so the magnitude spectrum is even and the phase spectrum is odd
 
 ### 2.1.2 Main Properties of the DTFT
 
@@ -649,13 +649,13 @@ The DTFT exists when the ROC (Region of Convergence) of $X(z)$ includes the unit
 | Time shift | $x(n - n_0)$ | $\leftrightarrow$ | $e^{-j\omega n_0} X(e^{j\omega})$ |
 | Frequency shift | $e^{j\omega_0 n} x(n)$ | $\leftrightarrow$ | $X(e^{j(\omega - \omega_0)})$ |
 | Modulation | $x(n)\cos\omega_0 n$ | $\leftrightarrow$ | $\frac{1}{2}[X(e^{j(\omega-\omega_0)}) + X(e^{j(\omega+\omega_0)})]$ |
-| Conjugate | $x^{*}(n)$ | $\leftrightarrow$ | $X^{*}(e^{-j\omega})$ |
+| Conjugate | $x^{\ast}(n)$ | $\leftrightarrow$ | $X^{\ast}(e^{-j\omega})$ |
 | Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(e^{-j\omega})$ |
 | Convolution | $x(n) \ast y(n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y(e^{j\omega})$ |
-| Correlation | $\sum_k x(k)y^{*}(k-n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y^{*}(e^{j\omega})$ |
+| Correlation | $\sum_k x(k)y^{\ast}(k-n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y^{\ast}(e^{j\omega})$ |
 | Multiplication | $x(n)y(n)$ | $\leftrightarrow$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\theta})Y(e^{j(\omega-\theta)})d\theta$ |
 | Frequency differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $j\dfrac{d}{d\omega}X(e^{j\omega})$ |
-| Parseval's theorem | $\sum_{n} x(n)y^*(n)$ | $=$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})Y^*(e^{j\omega})d\omega$ |
+| Parseval's theorem | $\sum_{n} x(n)y^{\ast}(n)$ | $=$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})Y^{\ast}(e^{j\omega})d\omega$ |
 
 **Energy form of Parseval's theorem** (setting $y = x$):
 
@@ -698,7 +698,7 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Linearity | $ax(n)+by(n)$ | $\leftrightarrow$ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Time shift | $x(n-K)$ | $\leftrightarrow$ | $z^{-K}X(z)$ | $\text{ROC}_x$ (modified at $z=0,\infty$) |
 | z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 \lt \lvert z\rvert \lt \lvert\alpha\rvert\,r_2$ |
-| Conjugate | $x^{*}(n)$ | $\leftrightarrow$ | $X^{*}(z^{*})$ | $\text{ROC}_x$ |
+| Conjugate | $x^{\ast}(n)$ | $\leftrightarrow$ | $X^{\ast}(z^{\ast})$ | $\text{ROC}_x$ |
 | Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 \lt \lvert z\rvert \lt 1/r_1$ |
 | Convolution | $x(n)\ast y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
 | Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
@@ -782,7 +782,7 @@ $$[\mathbf{W}_N]_{kn} = W_N^{kn}, \qquad k,n = 0, 1, \ldots, N-1$$
 
 Thus $\mathbf{W}_N$ is the $N\times N$ DFT matrix. The inverse uses:
 
-$$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^*$$
+$$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^{\ast}$$
 
 ### 2.3.2 Relationship Between DFT and DFS (Discrete Fourier Series)
 
@@ -851,7 +851,7 @@ The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coeffi
 | Circular shift | $x(\langle n-m\rangle_N)$ | $W_N^{mk} X(k)$ |
 | Circular convolution | $x(n) \circledast y(n)$ | $X(k)\cdot Y(k)$ |
 | Multiplication | $x(n)\cdot y(n)$ | $\frac{1}{N} X(k) \circledast Y(k)$ |
-| Conjugate symmetry | $x(n)$ real | $X(N-k) = X^*(k)$ |
+| Conjugate symmetry | $x(n)$ real | $X(N-k) = X^{\ast}(k)$ |
 | Parseval's theorem | — | $\sum_{n=0}^{N-1}\lvert x(n)\rvert^2 = \frac{1}{N}\sum_{k=0}^{N-1}\lvert X(k)\rvert^2$ |
 
 **Primary uses**:
@@ -1199,7 +1199,7 @@ $$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
 
 > **Why group delay matters more than phase**: In most signal processing contexts, a constant phase shift $e^{-j\omega n_0}$ merely time-delays all frequencies equally by $n_0$ samples — perfectly acceptable. What causes waveform distortion is *frequency-dependent* delay: different frequency components arriving at different times, smearing the signal in time. Group delay $\tau(\omega)$ directly quantifies this frequency-dependent delay. A filter with **constant group delay** (linear phase response) delays all frequencies equally and therefore transmits waveforms without shape distortion — the key motivation for linear-phase FIR design.
 
-**Reading the frequency response plot**: The frequency axis runs over one period $\omega \in [0, \pi]$ for a real-coefficient filter (by conjugate symmetry, $H(e^{-j\omega}) = H^*(e^{j\omega})$, so the range $[\pi, 2\pi]$ is redundant). $\omega = 0$ is DC; $\omega = \pi$ is the Nyquist frequency $f_s/2$.
+**Reading the frequency response plot**: The frequency axis runs over one period $\omega \in [0, \pi]$ for a real-coefficient filter (by conjugate symmetry, $H(e^{-j\omega}) = H^{\ast}(e^{j\omega})$, so the range $[\pi, 2\pi]$ is redundant). $\omega = 0$ is DC; $\omega = \pi$ is the Nyquist frequency $f_s/2$.
 
 **FIR frequency response — a polynomial in $e^{-j\omega}$**:
 
@@ -1489,19 +1489,19 @@ $$\lvert H_{ap}(e^{j\omega})\rvert = 1 \quad \forall\, \omega$$
 
 This implies:
 
-$$H_{ap}(e^{j\omega})\, H_{ap}^{*}(e^{j\omega}) = 1, \qquad h_{ap}(n) \ast h_{ap}^{*}(-n) = \delta(n)$$
+$$H_{ap}(e^{j\omega})\, H_{ap}^{\ast}(e^{j\omega}) = 1, \qquad h_{ap}(n) \ast h_{ap}^{\ast}(-n) = \delta(n)$$
 
-$$\boxed{H_{ap}(z)\, H_{ap}^{*}(1/z^{*}) = 1}$$
+$$\boxed{H_{ap}(z)\, H_{ap}^{\ast}(1/z^{\ast}) = 1}$$
 
-**Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^*$ (outside the unit circle) — the **conjugate reciprocal** location.
+**Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^{\ast}$ (outside the unit circle) — the **conjugate reciprocal** location.
 
 **First-order allpass** ($\lvert\alpha\rvert \lt 1$, $\alpha \in \mathbb{C}$):
 
-$$H_{ap1}(z) = \frac{z^{-1} - \alpha^*}{1 - \alpha\, z^{-1}}$$
+$$H_{ap1}(z) = \frac{z^{-1} - \alpha^{\ast}}{1 - \alpha\, z^{-1}}$$
 
 **General $N$-th order allpass**:
 
-$$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^*}{1 - \alpha_k\, z^{-1}} = \frac{z^{-N} + a_1^* z^{-N+1} + \cdots + a_N^*}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
+$$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^{\ast}}{1 - \alpha_k\, z^{-1}} = \frac{z^{-N} + a_1^{\ast} z^{-N+1} + \cdots + a_N^{\ast}}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
 
 The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
 
@@ -1584,12 +1584,12 @@ Given $H(z)$ with poles $\lbrace p_k\rbrace$ (all inside the unit circle) and ze
 **Step 2** — Construct $H_m(z)$:
 - Assign all poles $\lbrace p_k\rbrace$ to $H_m(z)$
 - Assign all zeros in $\mathcal{Z}_{in}$ to $H_m(z)$
-- For each zero $c \in \mathcal{Z}_{out}$: add a zero at $1/c^*$ (its conjugate reciprocal, inside the unit circle) to $H_m(z)$
+- For each zero $c \in \mathcal{Z}_{out}$: add a zero at $1/c^{\ast}$ (its conjugate reciprocal, inside the unit circle) to $H_m(z)$
 
 The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase.
 
 **Step 3** — Construct $H_{ap}(z) = H(z)/H_m(z)$:
-- For each $c \in \mathcal{Z}_{out}$: $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^*$ (inside) — exactly one allpass factor $\dfrac{z^{-1} - c^*}{1 - c\, z^{-1}}$
+- For each $c \in \mathcal{Z}_{out}$: $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^{\ast}$ (inside) — exactly one allpass factor $\dfrac{z^{-1} - c^{\ast}}{1 - c\, z^{-1}}$
 
 **Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
@@ -1677,9 +1677,9 @@ Classified by symmetry type (even or odd) and filter length (odd or even):
 
 A sequence $r(n)$ is **Hermitian (conjugate-symmetric)** if:
 
-$$r(n) = r^*(-n)$$
+$$r(n) = r^{\ast}(-n)$$
 
-Its DTFT is **real-valued**: $R(e^{j\omega}) \in \mathbb{R}$, and its z-transform satisfies $R(z) = R^*(1/z^*)$.
+Its DTFT is **real-valued**: $R(e^{j\omega}) \in \mathbb{R}$, and its z-transform satisfies $R(z) = R^{\ast}(1/z^{\ast})$.
 
 A Hermitian sequence is **positive semi-definite** if additionally:
 
@@ -1687,7 +1687,7 @@ $$R(e^{j\omega}) \geq 0 \quad \forall\, \omega$$
 
 **Connection to autocorrelation**: The autocorrelation of a signal $x(n)$ is:
 
-$$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^{*}(k-n) = x(n) \ast x^{*}(-n)$$
+$$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^{\ast}(k-n) = x(n) \ast x^{\ast}(-n)$$
 
 Its DTFT is the **power spectral density**:
 
@@ -1702,18 +1702,18 @@ It is a **Hermitian Toeplitz positive semi-definite matrix** — the central obj
 ### 4.4.2 Theorem 1.2: Zero Pairing in Rational Positive Semi-Definite Sequences
 
 > **Theorem 1.2**: Let $R(z)$ be the rational z-transform of a positive semi-definite sequence with real-valued coefficients. Then:
-> 1. **Zeros on the unit circle** ($\lvert z_0\rvert = 1$): occur in **conjugate pairs** $(z_0,\, z_0^*)$, each with **even multiplicity**
-> 2. **Zeros off the unit circle**: occur in **quadruples** $\lbrace z_0,\; z_0^*,\; 1/z_0,\; 1/z_0^*\rbrace$
+> 1. **Zeros on the unit circle** ($\lvert z_0\rvert = 1$): occur in **conjugate pairs** $(z_0,\, z_0^{\ast})$, each with **even multiplicity**
+> 2. **Zeros off the unit circle**: occur in **quadruples** $\lbrace z_0,\; z_0^{\ast},\; 1/z_0,\; 1/z_0^{\ast}\rbrace$
 
 **Explanation**:
-- Hermitian symmetry ($R(z) = R^*(1/z^*)$, real coefficients): if $z_0$ is a zero, then so are $z_0^*$, $1/z_0$, and $1/z_0^*$
+- Hermitian symmetry ($R(z) = R^{\ast}(1/z^{\ast})$, real coefficients): if $z_0$ is a zero, then so are $z_0^{\ast}$, $1/z_0$, and $1/z_0^{\ast}$
 - Non-negativity $R(e^{j\omega}) \geq 0$: zeros on the unit circle must have even multiplicity, otherwise $R(e^{j\omega})$ would change sign
 
 **Spectral Factorization**: Any rational positive semi-definite sequence factors uniquely as:
 
-$$\boxed{R(z) = \sigma^2\, H_m(z)\, H_m^*(1/z^*)}$$
+$$\boxed{R(z) = \sigma^2\, H_m(z)\, H_m^{\ast}(1/z^{\ast})}$$
 
-On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\lbrace z_0, z_0^*, 1/z_0, 1/z_0^*\rbrace$ splits as $\lbrace 1/z_0, 1/z_0^*\rbrace \to H_m(z)$ and $\lbrace z_0, z_0^*\rbrace \to H_m^*(1/z^*)$.
+On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\lbrace z_0, z_0^{\ast}, 1/z_0, 1/z_0^{\ast}\rbrace$ splits as $\lbrace 1/z_0, 1/z_0^{\ast}\rbrace \to H_m(z)$ and $\lbrace z_0, z_0^{\ast}\rbrace \to H_m^{\ast}(1/z^{\ast})$.
 
 This spectral factorization theorem is **fundamental** to:
 - **Wiener filter theory** (Chapter 6): whitening the input requires the minimum-phase spectral factor
@@ -1742,7 +1742,7 @@ This spectral factorization theorem is **fundamental** to:
 | Type I | Even symmetry, odd $N$; no forced zeros | All filter types |
 | Type II | Even symmetry, even $N$; zero at $\omega=\pi$ | Lowpass and bandpass only |
 | Positive semi-definite | $R(e^{j\omega}) \geq 0$; zeros in quadruples off unit circle | Autocorrelation structure |
-| Spectral factorization | $R(z) = \sigma^2 H_m(z)H_m^*(1/z^*)$ | Wiener filter, linear prediction |
+| Spectral factorization | $R(z) = \sigma^2 H_m(z)H_m^{\ast}(1/z^{\ast})$ | Wiener filter, linear prediction |
 
 ### Looking Ahead
 
