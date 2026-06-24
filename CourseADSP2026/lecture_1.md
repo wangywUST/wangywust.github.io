@@ -1318,7 +1318,7 @@ This is the **convolution sum** — the universal input-output relationship for 
 
 > **Intuitive picture**: $h(n)$ is the system's "memory trace" — the record of how long and how strongly the system rings after being struck by a single unit impulse. A short, decaying $h(n)$ means the system forgets its input quickly. A long $h(n)$ means the system "remembers" the input for many samples — either because the designer deliberately chose many taps (FIR), or because feedback causes the response to decay slowly (IIR).
 
-**Computing $h(n)$ from the difference equation**: Set $x(n) = \delta(n)$ and solve the LCCDE with zero initial conditions. For an FIR filter:
+**Computing $h(n)$ from the difference equation**: Set $x(n) = \delta(n)$ and solve the LCCDE with zero initial conditions. For an FIR filter, **where $M$ is the filter order and $M+1$ is the number of taps**: each tap corresponds to one coefficient $a_k$ ($k = 0, 1, \ldots, M$) multiplying a delayed copy of the input $x(n-k)$. The filter order $M$ determines both the length of the impulse response and the computational cost: every output sample requires exactly $M+1$ multiplications and $M$ additions, one per tap.
 
 $$h(n) = \sum_{k=0}^{M} a_k\, \delta(n-k) = \begin{cases} a_n & 0 \leq n \leq M \\ 0 & \text{otherwise} \end{cases}$$
 
