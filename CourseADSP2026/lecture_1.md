@@ -890,9 +890,71 @@ Point-by-point:
 
 **Step 2 — $N = 3$ DFT (too short — aliasing expected)**
 
-$N = 3 < 4$, so the condition is violated. Zero-pad $h$ to length 3: $h \to [1, 1, 0]$. Compute the 3-point DFT of each, multiply, then apply the 3-point IDFT. The result is the 3-point circular convolution:
+$N = 3 < 4$, so the condition is violated. Zero-pad $h$ to length 3: $h \to [1, 1, 0]$. The claim is:
+
+$$x(n) \circledast h(n) \;\xleftrightarrow{\;\text{DFT}\;}\; X(k) \cdot H(k)$$
+
+We verify this by carrying out the full DFT $\to$ pointwise multiply $\to$ IDFT pipeline numerically and checking that it matches the time-domain circular convolution.
+
+Let $W_3 = e^{-j2\pi/3}$. The numerical values needed are:
+
+$$e^{-j2\pi/3} = -\tfrac{1}{2} - j\tfrac{\sqrt{3}}{2}, \qquad e^{-j4\pi/3} = -\tfrac{1}{2} + j\tfrac{\sqrt{3}}{2}$$
+
+**2a — Compute $X(k)$**
+
+$$X(k) = \sum_{n=0}^{2} x(n)\,e^{-j2\pi kn/3}$$
+
+$$X(0) = 1 + 2 + 3 = 6$$
+
+$$X(1) = 1 + 2\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2} + j\tfrac{\sqrt3}{2}$$
+
+$$X(2) = 1 + 2\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2} - j\tfrac{\sqrt3}{2}$$
+
+Note $X(2) = X^*(1)$, as expected for a real input sequence.
+
+**2b — Compute $H(k)$**
+
+$$H(0) = 1 + 1 + 0 = 2$$
+
+$$H(1) = 1 + 1\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) + 0 = \tfrac{1}{2} - j\tfrac{\sqrt3}{2}$$
+
+$$H(2) = 1 + 1\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) + 0 = \tfrac{1}{2} + j\tfrac{\sqrt3}{2}$$
+
+**2c — Pointwise multiply $Y(k) = X(k) \cdot H(k)$**
+
+$$Y(0) = 6 \times 2 = 12$$
+
+$$Y(1) = \left(-\tfrac{3}{2}+j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{4}+j^2\!\left(-\tfrac{3}{4}\right) + j\!\left(\tfrac{3\sqrt3}{4}+\tfrac{\sqrt3}{4}\right) = j\sqrt{3}$$
+
+$$Y(2) = \left(-\tfrac{3}{2}-j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -j\sqrt{3}$$
+
+($Y(2) = Y^*(1)$, consistent with a real output sequence.)
+
+**2d — IDFT: $y(n) = \tfrac{1}{3}\sum_{k=0}^{2} Y(k)\,e^{j2\pi kn/3}$**
+
+$$y(0) = \frac{1}{3}\!\left[12 + j\sqrt3 + (-j\sqrt3)\right] = \frac{12}{3} = \mathbf{4}$$
+
+For $y(1)$, using $e^{j2\pi/3} = -\frac{1}{2}+j\frac{\sqrt3}{2}$ and $e^{j4\pi/3} = -\frac{1}{2}-j\frac{\sqrt3}{2}$:
+
+$$Y(1)\cdot e^{j2\pi/3} = j\sqrt3\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2}-j\tfrac{\sqrt3}{2}$$
+
+$$Y(2)\cdot e^{j4\pi/3} = -j\sqrt3\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2}+j\tfrac{\sqrt3}{2}$$
+
+$$y(1) = \frac{1}{3}\!\left[12 + \left(-\tfrac{3}{2}-j\tfrac{\sqrt3}{2}\right) + \left(-\tfrac{3}{2}+j\tfrac{\sqrt3}{2}\right)\right] = \frac{9}{3} = \mathbf{3}$$
+
+For $y(2)$, using $e^{j4\pi/3}$ and $e^{j8\pi/3} = e^{j2\pi/3}$ (periodicity):
+
+$$Y(1)\cdot e^{j4\pi/3} = j\sqrt3\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = \tfrac{3}{2}-j\tfrac{\sqrt3}{2}$$
+
+$$Y(2)\cdot e^{j8\pi/3} = -j\sqrt3\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = \tfrac{3}{2}+j\tfrac{\sqrt3}{2}$$
+
+$$y(2) = \frac{1}{3}\!\left[12 + \tfrac{3}{2} - j\tfrac{\sqrt3}{2} + \tfrac{3}{2} + j\tfrac{\sqrt3}{2}\right] = \frac{15}{3} = \mathbf{5}$$
+
+The full pipeline gives:
 
 $$y_{\text{circ},\,N=3} = [4,\; 3,\; 5]$$
+
+This numerically confirms $X(k)\cdot H(k) \xrightarrow{\text{IDFT}} x(n)\circledast h(n)$.
 
 Comparing with the linear convolution:
 
@@ -905,12 +967,12 @@ Comparing with the linear convolution:
 
 **Why is $y_{\text{circ}}(0) = 4$ instead of 1?**
 
-The $N=3$ circular convolution sums the linear convolution with its period-3 shift:
+The $N=3$ circular convolution equals the linear convolution aliased with period 3:
 $$y_{\text{circ}}(n) = y_{\text{lin}}(n) + y_{\text{lin}}(n - 3)$$
 
-At $n = 0$: $\;y_{\text{lin}}(0) + y_{\text{lin}}(-3) = 1 + y_{\text{lin}}(3) = 1 + 3 = 4$.
+At $n = 0$: $\;y_{\text{lin}}(0) + y_{\text{lin}}(0-3) = 1 + y_{\text{lin}}(3) = 1 + 3 = 4$.
 
-The value that should appear at $n = 3$ **wraps around** and adds onto $n = 0$. That is time-domain aliasing.
+The value that should appear at $n = 3$ **wraps around** and adds onto $n = 0$. That is time-domain aliasing. The DFT pipeline produces this automatically because it treats both sequences as period-3, so the modulo-$N$ wrap-around is built into the IDFT basis functions $e^{j2\pi kn/3}$ — no manual folding required.
 
 ---
 
