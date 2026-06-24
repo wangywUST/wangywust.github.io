@@ -1522,7 +1522,7 @@ Poles near the unit circle create **resonance peaks** — the magnitude rises sh
 
 > ![Figure 3.0b](<./CourseADSP2026/Fig/fig_3_0b.png>)
 >
-> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for a linear-phase FIR; nonlinear for a typical IIR. Group delay (negative slope of phase) is flat for the FIR and frequency-varying for the IIR.*
+> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for an FIR with symmetric coefficients $h(n) = h(M-n)$; nonlinear for a typical IIR and for non-symmetric FIR. Group delay $\tau(\omega) = -d\angle H/d\omega$: flat (constant $(M/2)$ samples) for a symmetric-coefficient FIR; frequency-varying for IIR and non-symmetric FIR.*
 
 **The connection between poles/zeros and frequency response**: The magnitude at any frequency $\omega$ can be read geometrically from the pole-zero plot:
 
@@ -1542,7 +1542,7 @@ Every filter design begins with choosing between FIR and IIR. The difference equ
 | Transfer function $H(z)$ | Polynomial (all poles at $z=0$) | Rational (poles can be anywhere) |
 | Impulse response | Finite: $h(n) = 0$ for $n > M$ | Infinite: $h(n) \neq 0$ for all $n \geq 0$ |
 | Stability | Unconditional (no poles on/outside unit circle possible) | Must verify all poles inside unit circle |
-| Linear phase | Achievable exactly (symmetric $h(n)$) | Not achievable exactly |
+| Linear phase | Achievable exactly **if and only if** $h(n)$ is symmetric ($h(n)=h(M-n)$) or anti-symmetric ($h(n)=-h(M-n)$); non-symmetric FIR has nonlinear phase just like IIR | Not achievable exactly |
 | Filter order for sharp cutoff | High (hundreds of taps) | Low (4–12 for Butterworth/Chebyshev) |
 | Arithmetic cost per sample | $O(M+1)$ — high for sharp specs | $O(N)$ — low |
 | Suitable analog prototype | No natural counterpart | Yes (Butterworth, Chebyshev, Elliptic) |
@@ -1563,7 +1563,15 @@ An **FIR (Finite Impulse Response)** filter of order $M$ has transfer function:
 
 $$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n} = h(0) + h(1)z^{-1} + \cdots + h(M)z^{-M}$$
 
-All $M+1$ poles are at the origin $z=0$. FIR filters are **unconditionally stable** and can achieve exactly linear phase.
+All $M+1$ poles are at the origin $z=0$. FIR filters are **unconditionally stable**. They **can** achieve exactly linear phase, but only when the coefficients satisfy a symmetry condition — this is not automatic for all FIR filters.
+
+> **Why symmetry gives linear phase.** Suppose $h(n) = h(M-n)$ (even symmetry). Factor out the centre-of-symmetry phase $e^{-j\omega M/2}$ from the frequency response:
+> $$H(e^{j\omega}) = \sum_{n=0}^{M} h(n)\,e^{-j\omega n} = e^{-j\omega M/2} \underbrace{\sum_{n=0}^{M} h(n)\,e^{-j\omega(n-M/2)}}_{A(\omega)\,\in\,\mathbb{R}}$$
+> Because $h(n)=h(M-n)$, each term $e^{-j\omega(n-M/2)}$ is paired with $e^{+j\omega(n-M/2)}$, so the imaginary parts cancel and $A(\omega)$ is **real**. Therefore:
+> $$\angle H(e^{j\omega}) = -\frac{M}{2}\,\omega + \begin{cases} 0 & A(\omega)>0 \\ \pi & A(\omega)<0 \end{cases}$$
+> The phase is strictly linear in $\omega$ (the $\pm\pi$ jump is a constant, not a function of $\omega$). Group delay:
+> $$\tau(\omega) = -\frac{d}{d\omega}\angle H(e^{j\omega}) = \frac{M}{2} \quad \text{(constant, independent of }\omega\text{)}$$
+> If $h(n)$ is **not** symmetric, $A(\omega)$ acquires a nonzero imaginary part that varies with $\omega$, and $\tau(\omega)$ is no longer constant — a non-symmetric FIR has frequency-varying group delay just like an IIR.
 
 ### 3.1.1 Direct Form — Transversal Filter
 
@@ -1581,7 +1589,7 @@ Implemented as a **tapped delay line**: a shift register of $M$ unit delays, eac
 >
 > *Figure 3.1: Direct-form (transversal) FIR filter.*
 
-**Symmetric exploitation**: For linear-phase FIR with $h(n) = h(M-n)$, paired coefficients are equal, nearly halving the number of distinct multiplications.
+**Symmetric exploitation**: When $h(n) = h(M-n)$ (the condition that also guarantees linear phase, as shown above), paired coefficients are equal, nearly halving the number of distinct multiplications.
 
 ### 3.1.2 Cascade Form
 
