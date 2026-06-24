@@ -1456,6 +1456,30 @@ $$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
 
 > **Why group delay matters more than phase**: In most signal processing contexts, a constant phase shift $e^{-j\omega n_0}$ merely time-delays all frequencies equally by $n_0$ samples — perfectly acceptable. What causes waveform distortion is *frequency-dependent* delay: different frequency components arriving at different times, smearing the signal in time. Group delay $\tau(\omega)$ directly quantifies this frequency-dependent delay. A filter with **constant group delay** (linear phase response) delays all frequencies equally and therefore transmits waveforms without shape distortion — the key motivation for linear-phase FIR design.
 
+> **Clarifying three easily confused concepts**:
+>
+> | Concept | Definition | Meaning |
+> |---|---|---|
+> | Phase response | $\angle H(e^{j\omega})$ | Phase angle (radians) added by the filter to frequency $\omega$ |
+> | Phase delay | $-\dfrac{\angle H(e^{j\omega})}{\omega}$ | How many samples the **carrier** of frequency $\omega$ is delayed |
+> | Group delay | $-\dfrac{d\angle H}{d\omega}$ | How many samples the **envelope** (information) near frequency $\omega$ is delayed |
+>
+> For signal transmission, group delay is the critical quantity because we care about the shape of the signal envelope (i.e., the information), not the phase of individual carrier cycles. Phase delay and group delay coincide only when the phase response is exactly linear.
+
+> **What "phase response" actually means**: The phase response $\angle H(e^{j\omega})$ is the phase shift the filter applies to each frequency component. For a single-frequency input $e^{j\omega n}$, the output is $|H(e^{j\omega})| \cdot e^{j(\omega n + \angle H(e^{j\omega}))}$. This phase offset $\angle H(e^{j\omega})$ is not a one-time event at $n = 0$ — it applies uniformly across the entire time axis. Every sample of every frequency component carries this accumulated phase offset.
+
+> **Why linear phase equals pure time delay**: Consider a signal delayed by exactly $\alpha$ samples. Each frequency component $e^{j\omega n}$ becomes $e^{j\omega(n-\alpha)} = e^{j\omega n} \cdot e^{-j\omega\alpha}$. The phase shift accumulated at frequency $\omega$ is $-\omega\alpha$ — proportional to $\omega$. This means *higher frequencies accumulate proportionally larger phase shifts*, which is precisely what a linear phase response $\angle H(e^{j\omega}) = -\alpha\omega$ describes. Linear phase and pure time delay are therefore two descriptions of the same thing.
+>
+> Importantly, a constant phase response (same phase shift for all frequencies) does **not** correspond to a uniform time delay. A fixed phase angle represents a shorter time delay for high-frequency components (whose period is short) and a longer time delay for low-frequency components (whose period is long). This frequency-dependent distortion is often overlooked.
+>
+> | Phase response shape | Group delay | Physical effect |
+> |---|---|---|
+> | Linear: $\angle H = -\alpha\omega$ | $\tau = \alpha$ (constant) | Pure time shift of $\alpha$ samples — waveform shape preserved ✓ |
+> | Nonlinear | $\tau(\omega)$ varies with $\omega$ | Different frequencies delayed by different amounts — waveform distorted ✗ |
+> | Constant (flat) | $\tau = 0$ | Zero group delay — but phase delay is frequency-dependent, causing distortion ✗ |
+
+> **What "constant" group delay means in practice**: For a linear-phase FIR filter of length $N$, the group delay is the constant $\alpha = (N-1)/2$ samples — a fixed number determined entirely by filter length, independent of time $n$ and independent of signal content. The effect on the output signal is a rigid time-axis shift: if $x(n)$ is the input and $y(n)$ is the output, then $y(n) = x(n - \alpha)$ (ignoring magnitude shaping). This shift applies to every sample across the entire signal duration — it is not a transient startup effect. Since all frequency components are shifted by the same $\alpha$ samples, the waveform shape is exactly preserved. By contrast, an IIR filter with frequency-varying group delay $\tau(\omega)$ shifts different frequency components by different amounts; when the components recombine, their relative timing is disrupted and the waveform shape changes — distortion that persists throughout the entire signal, not just at the beginning.
+
 **Reading the frequency response plot**: The frequency axis runs over one period $\omega \in [0, \pi]$ for a real-coefficient filter (by conjugate symmetry, $H(e^{-j\omega}) = H^{\ast}(e^{j\omega})$, so the range $[\pi, 2\pi]$ is redundant). $\omega = 0$ is DC; $\omega = \pi$ is the Nyquist frequency $f_s/2$.
 
 **FIR frequency response — a polynomial in $e^{-j\omega}$**:
