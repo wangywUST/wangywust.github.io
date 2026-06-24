@@ -1014,11 +1014,76 @@ The value that should appear at $n = 3$ **wraps around** and adds onto $n = 0$. 
 
 **Step 3 — $N = 4$ DFT (exactly sufficient — no aliasing)**
 
-$N = 4 \geq L_1 + L_2 - 1 = 4$. Zero-pad: $x \to [1,2,3,0]$, $h \to [1,1,0,0]$. Compute the 4-point DFT of each, multiply, apply the 4-point IDFT:
+$N = 4 \geq L_1 + L_2 - 1 = 4$, so the no-aliasing condition is exactly met. Zero-pad both sequences to length 4:
+
+$$x \;\to\; [1,\;2,\;3,\;0], \qquad h \;\to\; [1,\;1,\;0,\;0]$$
+
+The 4-point twiddle factor is $W_4 = e^{-j2\pi/4} = e^{-j\pi/2} = -j$, giving the convenient integer powers:
+
+$$W_4^0 = 1,\quad W_4^1 = -j,\quad W_4^2 = -1,\quad W_4^3 = j$$
+
+**3a — Compute $X(k) = \sum_{n=0}^{3} x(n)\,W_4^{nk}$**
+
+$$X(0) = 1 + 2 + 3 + 0 = 6$$
+
+$$X(1) = 1\cdot 1 + 2\cdot(-j) + 3\cdot(-1) + 0\cdot j = 1 - 2j - 3 = -2 - 2j$$
+
+$$X(2) = 1\cdot 1 + 2\cdot(-1) + 3\cdot 1 + 0\cdot(-1) = 1 - 2 + 3 = 2$$
+
+$$X(3) = 1\cdot 1 + 2\cdot j + 3\cdot(-1) + 0\cdot(-j) = 1 + 2j - 3 = -2 + 2j$$
+
+Note $X(3) = X^*(1)$, as expected for a real input sequence.
+
+**3b — Compute $H(k) = \sum_{n=0}^{3} h(n)\,W_4^{nk}$**
+
+$$H(0) = 1 + 1 + 0 + 0 = 2$$
+
+$$H(1) = 1\cdot 1 + 1\cdot(-j) + 0 + 0 = 1 - j$$
+
+$$H(2) = 1\cdot 1 + 1\cdot(-1) + 0 + 0 = 0$$
+
+$$H(3) = 1\cdot 1 + 1\cdot j + 0 + 0 = 1 + j$$
+
+Again $H(3) = H^*(1)$, consistent with a real impulse response.
+
+**3c — Pointwise multiply $Y(k) = X(k)\cdot H(k)$**
+
+$$Y(0) = 6\times 2 = 12$$
+
+$$Y(1) = (-2 - 2j)(1 - j) = -2 + 2j - 2j + 2j^2 = -2 - 2 = -4$$
+
+$$Y(2) = 2\times 0 = 0$$
+
+$$Y(3) = (-2 + 2j)(1 + j) = -2 - 2j + 2j + 2j^2 = -2 - 2 = -4$$
+
+Check: $Y(3) = Y^*(1) = (-4)^* = -4$ ✓
+
+**3d — IDFT: $y(n) = \dfrac{1}{4}\displaystyle\sum_{k=0}^{3} Y(k)\,W_4^{-nk}$**
+
+The inverse twiddle factors are $W_4^{-1} = j$, giving $W_4^{-nk} = j^{nk}$:
+
+$$y(0) = \tfrac{1}{4}\!\left[12 + (-4) + 0 + (-4)\right] = \tfrac{4}{4} = \mathbf{1}$$
+
+$$y(1) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot j + 0\cdot(-1) + (-4)\cdot(-j)\right] = \tfrac{1}{4}\!\left[12 - 4j + 4j\right] = \tfrac{12}{4} = \mathbf{3}$$
+
+$$y(2) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot(-1) + 0\cdot 1 + (-4)\cdot(-1)\right] = \tfrac{1}{4}\!\left[12 + 4 + 0 + 4\right] = \tfrac{20}{4} = \mathbf{5}$$
+
+$$y(3) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot(-j) + 0\cdot(-1) + (-4)\cdot j\right] = \tfrac{1}{4}\!\left[12 + 4j - 4j\right] = \tfrac{12}{4} = \mathbf{3}$$
+
+The full pipeline gives:
 
 $$y_{\text{circ},\,N=4} = [1,\; 3,\; 5,\; 3]$$
 
-This matches the linear convolution exactly. ✓
+Comparing with the linear convolution:
+
+| $n$ | $y_{\text{lin}}(n)$ | $y_{\text{circ},\,N=4}(n)$ | Correct? |
+|-----|---------------------|----------------------------|----------|
+| 0 | 1 | **1** | ✓ |
+| 1 | 3 | **3** | ✓ |
+| 2 | 5 | **5** | ✓ |
+| 3 | 3 | **3** | ✓ |
+
+This matches the linear convolution exactly. ✓  Because $N = L_1 + L_2 - 1 = 4$, the zero-padded $x(n)$ and $h(n)$ have no periodic wrap-around overlap: the last sample of the linear convolution ($n=3$) lands precisely in the last slot of the $N=4$ period and does **not** fold onto $n=0$. The imaginary parts cancel perfectly in the IDFT (all $Y(k)$ are real, as $Y(1)=Y(3)=-4$), which is a further confirmation that the result is a valid real sequence.
 
 ---
 
