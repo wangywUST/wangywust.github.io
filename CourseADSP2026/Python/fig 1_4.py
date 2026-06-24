@@ -73,11 +73,12 @@ ax1.text(
 n_pulses = 6
 pulse_width = 0.6
 gap = 0.4
+initial_gap = 0.35
 freqs = np.arange(1, n_pulses + 1) * 8   # f_1, f_2, ..., f_K (stepped carriers)
 colors = plt.cm.viridis(np.linspace(0.15, 0.85, n_pulses))
 
 for i, f in enumerate(freqs):
-    t0 = i * (pulse_width + gap)
+    t0 = initial_gap + i * (pulse_width + gap)
 
     # pulse envelope (rectangle) at its carrier frequency level
     rect = patches.Rectangle(
@@ -92,19 +93,24 @@ for i, f in enumerate(freqs):
     ax2.plot(tt, f + osc, color="black", linewidth=0.7, zorder=3)
 
 # dotted staircase guide connecting successive carrier frequencies
-centers = np.array([i * (pulse_width + gap) + pulse_width / 2 for i in range(n_pulses)])
-ax2.step(centers, freqs, where="mid", color="#c0392b", linewidth=1.2,
-          linestyle=":", zorder=1)
+centers = np.array([
+    initial_gap + i * (pulse_width + gap) + pulse_width / 2
+    for i in range(n_pulses)
+])
+step_x = np.concatenate(([0, initial_gap], centers))
+step_y = np.concatenate(([0, 0], freqs))
+ax2.step(step_x, step_y, where="mid", color="#c0392b", linewidth=1.2,
+         linestyle=":", zorder=1)
 
-ax2.set_xlim(0, n_pulses * (pulse_width + gap))
+ax2.set_xlim(0, initial_gap + n_pulses * (pulse_width + gap))
 ax2.set_ylim(0, freqs[-1] + 8)
 ax2.set_xlabel("Pulse index $k$")
 ax2.set_ylabel("Carrier frequency $f_k$")
 ax2.set_title("Frequency-Diversity Radar: Stepped Carriers", fontsize=12)
 ax2.set_xticks(centers)
 ax2.set_xticklabels([f"Pulse {i + 1}" for i in range(n_pulses)], fontsize=8, rotation=30)
-ax2.set_yticks(freqs)
-ax2.set_yticklabels([f"$f_{{{i+1}}}$" for i in range(n_pulses)])
+ax2.set_yticks(np.concatenate(([0], freqs)))
+ax2.set_yticklabels(["0"] + [f"$f_{{{i+1}}}$" for i in range(n_pulses)])
 
 fig.suptitle(
     "Figure 1.4: Radar Signals \u2014 LFM Chirp vs. Frequency-Diversity Waveform",
