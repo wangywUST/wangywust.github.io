@@ -892,7 +892,7 @@ Point-by-point:
 
 $N = 3 < 4$, so the condition is violated. Zero-pad $h$ to length 3: $h \to [1, 1, 0]$. The claim is:
 
-$$x(n) \circledast h(n) \;\xleftrightarrow{\;\text{DFT}\;}\; X(k) \cdot H(k)$$
+$$x(n) \circledast h(n) \;\overset{\text{DFT}}{\longleftrightarrow}\; X(k) \cdot H(k)$$
 
 We verify this by carrying out the full DFT $\to$ pointwise multiply $\to$ IDFT pipeline numerically and checking that it matches the time-domain circular convolution.
 
