@@ -89,12 +89,14 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | Symbol | Definition |
 |--------|-----------|
 | $s = \sigma + j\Omega$ | Complex Laplace frequency variable |
-| $\sigma = \mathrm{Re}(s)$ | Damping factor (Np/s); $\sigma<0$: decaying, $\sigma>0$: growing |
+| $\sigma = \mathrm{Re}(s)$ | Damping factor (unit: Np/s, Neper per second$^{\dagger}$); $\sigma<0$: exponential decay, $\sigma>0$: exponential growth, $\sigma=0$: pure sinusoid (imaginary axis) |
 | $z = re^{j\omega}$ | Complex z-domain variable (polar form) |
 | $r = \lvert z\rvert = e^{\sigma T_s}$ | Magnitude of $z$ |
 | $z = e^{sT_s}$ | s-plane to z-plane mapping |
 | $\mathrm{ROC}$ | Region of Convergence: $\{z\in\mathbb{C}:\sum_n\lvert x(n)\rvert\lvert z\rvert^{-n}<\infty\}$ |
 | $\langle n\rangle_N = n\bmod N$ | Modulo-$N$ reduction of integer $n$ |
+
+> $^{\dagger}$**Neper (Np)** is a logarithmic unit for amplitude ratios based on the natural logarithm: $1\,\text{Np} = \ln(A_1/A_2)$, corresponding to an amplitude ratio of $e \approx 2.718$. Conversion: $1\,\text{Np} = 20/\ln(10)\,\text{dB} \approx 8.686\,\text{dB}$. In the Laplace domain, $s = \sigma + j\Omega$ corresponds to the time-domain signal $e^{st} = e^{\sigma t}e^{j\Omega t}$: the real part $\sigma$ (Np/s) sets the exponential growth/decay rate of the amplitude, while the imaginary part $\Omega$ (rad/s) sets the oscillation frequency. For example, $\sigma = -2\,\text{Np/s}$ means the amplitude decays to $e^{-2} \approx 13.5\%$ of its initial value per second.
 
 ### LTI System and Filter Parameters
 
