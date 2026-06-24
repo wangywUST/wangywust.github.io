@@ -1527,6 +1527,38 @@ Poles near the unit circle create **resonance peaks** — the magnitude rises sh
 > ![Figure 3.0b](<./CourseADSP2026/Fig/fig_3_0b.png>)
 >
 > *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for an FIR with symmetric coefficients $h(n) = h(M-n)$; nonlinear for a typical IIR and for non-symmetric FIR. Group delay $\tau(\omega) = -d\angle H/d\omega$: flat (constant $(M/2)$ samples) for a symmetric-coefficient FIR; frequency-varying for IIR and non-symmetric FIR.*
+>
+> **FIR design** — Hamming-windowed sinc lowpass, order $M = 48$, cutoff $\omega_c = 0.4\pi$ rad/sample. The transfer function is $H_{\mathrm{FIR}}(z) = \sum_{n=0}^{48} h(n)\,z^{-n}$. Because $h(n) = h(48-n)$, only 25 independent values exist; the full 49-tap sequence is:
+>
+> | $n$ | $h(n)$ | $n$ | $h(n)$ | $n$ | $h(n)$ |
+> |-----|-------------|-----|-------------|-----|-------------|
+> | 0 | −0.0010105 | 9 | −0.0000000 | 18 | +0.0437174 |
+> | 1 | −0.0006837 | 10 | −0.0091149 | 19 | −0.0000000 |
+> | 2 | +0.0008148 | 11 | −0.0069172 | 20 | −0.0711164 |
+> | 3 | +0.0016603 | 12 | +0.0084310 | 21 | −0.0602652 |
+> | 4 | −0.0000000 | 13 | +0.0165365 | 22 | +0.0922096 |
+> | 5 | −0.0027931 | 14 | −0.0000000 | 23 | +0.3019550 |
+> | 6 | −0.0022351 | 15 | −0.0241183 | **24** | **+0.4005514** |
+> | 7 | +0.0028651 | 16 | −0.0180330 | — | $h(n) = h(48-n)$ |
+> | 8 | +0.0058735 | 17 | +0.0219482 | — | for $n > 24$ |
+>
+> The zeros at $h(4), h(9), h(14), \ldots$ arise from the sinc nulls at integer multiples of $1/\omega_c$. The group delay is exactly $M/2 = 24$ samples at all frequencies.
+>
+> **IIR design** — 4th-order Butterworth lowpass, cutoff $\omega_c = 0.4\pi$ rad/sample, designed via the bilinear transform ($s \to \frac{2}{T}\frac{z-1}{z+1}$, $T=1$). The transfer function is:
+>
+> $$H_{\mathrm{IIR}}(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2} + b_3 z^{-3} + b_4 z^{-4}}{1 + a_1 z^{-1} + a_2 z^{-2} + a_3 z^{-3} + a_4 z^{-4}}$$
+>
+> | Coefficient | Value |
+> |-------------|--------------|
+> | $b_0 = b_4$ | +0.04658291 |
+> | $b_1 = b_3$ | +0.18633163 |
+> | $b_2$ | +0.27949744 |
+> | $a_1$ | −0.78209520 |
+> | $a_2$ | +0.67997853 |
+> | $a_3$ | −0.18267570 |
+> | $a_4$ | +0.03011888 |
+>
+> The numerator coefficients follow the binomial pattern $\binom{4}{k}$ (scaled), reflecting four cascaded first-order sections in the analog prototype. The denominator poles lie inside the unit circle, guaranteeing BIBO stability; their proximity to the unit circle near $\omega_c$ produces the group delay peak visible in the bottom panel.*
 
 **The connection between poles/zeros and frequency response**: The magnitude at any frequency $\omega$ can be read geometrically from the pole-zero plot:
 
