@@ -1460,7 +1460,33 @@ $$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
 
 **FIR frequency response — a polynomial in $e^{-j\omega}$**:
 
-$$H(e^{j\omega}) = \sum_{n=0}^{M} h(n)\, e^{-j\omega n} = h(0) + h(1)e^{-j\omega} + \cdots + h(M)e^{-j\omega M}$$
+*Derivation.* Start from the general DTFT definition applied to the impulse response $h(n)$:
+
+$$H(e^{j\omega}) \;=\; \sum_{n=-\infty}^{\infty} h(n)\, e^{-j\omega n}$$
+
+A causal FIR filter of order $M$ has $h(n) = 0$ for $n < 0$ and $n > M$ (finite support). The infinite sum therefore collapses to a finite sum over $n = 0, 1, \ldots, M$:
+
+$$H(e^{j\omega}) \;=\; \sum_{n=0}^{M} h(n)\, e^{-j\omega n}$$
+
+Expanding term by term:
+
+$$\boxed{H(e^{j\omega}) = h(0) + h(1)\,e^{-j\omega} + h(2)\,e^{-j2\omega} + \cdots + h(M)\,e^{-j\omega M}}$$
+
+**Why "polynomial"?** Substitute $\zeta = e^{-j\omega}$:
+
+$$H(\zeta) = h(0) + h(1)\,\zeta + h(2)\,\zeta^{2} + \cdots + h(M)\,\zeta^{M} = \sum_{n=0}^{M} h(n)\,\zeta^{n}$$
+
+This is a standard polynomial of degree $M$ in $\zeta$. Since $\zeta = e^{-j\omega}$ lies on the unit circle, $H$ is a *trigonometric* polynomial in $\omega$ — a finite Fourier series with exactly $M+1$ terms and no infinite tail.
+
+**Connection to the z-transform.** The z-transform of $h(n)$ is:
+
+$$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n}$$
+
+Evaluating on the unit circle $z = e^{j\omega}$ (i.e., $z^{-1} = e^{-j\omega} = \zeta$) recovers the DTFT exactly:
+
+$$H(e^{j\omega}) = H(z)\big|_{z=e^{j\omega}}$$
+
+The DTFT is therefore the z-transform restricted to the unit circle. This is always valid for an FIR filter because $H(z)$ converges everywhere except possibly $z = 0$ (all poles of a FIR are at the origin).
 
 This is a trigonometric polynomial in $e^{-j\omega}$, capable of approximating any desired magnitude shape over $[0,\pi]$ given sufficiently large $M$.
 
