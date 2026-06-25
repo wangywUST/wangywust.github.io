@@ -1203,12 +1203,23 @@ In the **Bayesian framework**, the parameter $\boldsymbol{\theta}$ is treated as
 
 $$f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x}) = \frac{f_x(\mathbf{x}\mid\boldsymbol{\theta})\, f_\theta(\boldsymbol{\theta})}{f_x(\mathbf{x})}$$
 
-(Bayes' theorem). The form of the optimal Bayesian estimate depends on the **cost function** chosen:
+(Bayes' theorem). The form of the optimal Bayesian estimate depends on the **cost function** chosen.
 
-| Cost Function | Optimal Estimate |
-|-------------|-----------------|
-| **Quadratic:** $C(\hat{\theta}, \theta) = \lvert\hat{\theta} - \theta\rvert^2$ | **MMSE:** $\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\lbrace \boldsymbol{\theta}\mid\mathbf{x}\rbrace$ (posterior mean) |
-| **Uniform (0-1 loss):** $C = 0$ if $\lvert\hat{\theta}-\theta\rvert < \epsilon$, else $1$ | **MAP:** $\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x})$ (posterior mode) |
+**Quadratic cost:**
+
+$$C(\hat{\theta}, \theta) = \lvert\hat{\theta} - \theta\rvert^2$$
+
+The optimal estimate is the **MMSE** estimate (posterior mean):
+
+$$\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\lbrace \boldsymbol{\theta}\mid\mathbf{x}\rbrace$$
+
+**Uniform (0-1) loss:**
+
+$$C = \begin{cases} 0, & \lvert\hat{\theta}-\theta\rvert < \epsilon \\ 1, & \text{otherwise} \end{cases}$$
+
+The optimal estimate is the **MAP** estimate (posterior mode):
+
+$$\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x})$$
 
 **Relationship to ML:** MAP reduces to ML when the prior $f_\theta(\boldsymbol{\theta})$ is **uniform** (no prior preference for any value of $\boldsymbol{\theta}$) — ML is a special case of MAP with an uninformative (flat) prior.
 
