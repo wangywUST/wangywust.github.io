@@ -149,4 +149,4 @@ ax.legend(loc='upper right', fontsize=8.5, framealpha=0.9, edgecolor='#ccc',
           bbox_to_anchor=(0.61, 0.99))
 
 # ── Save ───────────────────────────────────────────────────────────────────────
-fig.savefig("../Fig/fig_3_0b.png", dpi=320, bbox_inches="tight")
+fig.savefig("../Fig/Chapter_1/fig_3_0b.png", dpi=320, bbox_inches="tight")

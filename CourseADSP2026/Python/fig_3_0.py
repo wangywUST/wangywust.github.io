@@ -155,4 +155,4 @@ fig.text(
     style="italic"
 )
 
-fig.savefig("../Fig/fig_3_0a.png", dpi=220, bbox_inches="tight")
+fig.savefig("../Fig/Chapter_1/fig_3_0a.png", dpi=220, bbox_inches="tight")

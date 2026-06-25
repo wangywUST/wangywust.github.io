@@ -155,7 +155,7 @@ A **digital signal** is a discrete-time, discrete-amplitude representation of a 
 
 A speech signal is a **one-dimensional time-domain discrete sequence**. A continuous pressure wave $x_a(t)$ is sampled at rate $f_s$ (typically 8 kHz for telephony, 44.1 kHz for audio) to produce $x(n) = x_a(nT_s)$ where $T_s = 1/f_s$.
 
-> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/fig_1_1.png>)
+> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/Chapter_1/fig_1_1.png>)
 >
 > *Figure 1.1: A speech signal sampled at a fixed rate, shown as a discrete sequence in the time domain. Voiced segments (vowels) exhibit quasi-periodic structure; unvoiced segments (fricatives) appear noise-like.*
 
@@ -165,7 +165,7 @@ An image signal is a **two-dimensional discrete sequence** $x(m, n)$, where $(m,
 
 $$x(m, n), \quad m = 0, 1, \ldots, M-1;\; n = 0, 1, \ldots, N-1$$
 
-> ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/fig_1_2.jpg>)
+> ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/Chapter_1/fig_1_2.jpg>)
 >
 > *Figure 1.2: An image signal — 2D pixel array. Each element $x(m,n)$ stores intensity (grayscale) or a color vector.*
 
@@ -335,7 +335,7 @@ The two fixes are independent: sufficient *length* protects against ISI, while t
 - **16-QAM** ($M=16$): 16 points on a square grid, 4 bits/symbol
 - **64-QAM** ($M=64$): 64 points, 6 bits/symbol
 
-> ![Figure 1.3](<./CourseADSP2026/Fig/fig_1_3.png>)
+> ![Figure 1.3](<./CourseADSP2026/Fig/Chapter_1/fig_1_3.png>)
 >
 > *Figure 1.3: Baseband communication signals — constellation maps. Each point represents one symbol carrying $\log_2 M$ bits. Higher-order constellations achieve greater spectral efficiency but require higher SNR.*
 
@@ -355,7 +355,7 @@ After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a l
 
 **Frequency-diversity radar**: Successive pulses use different carrier frequencies to improve target discrimination and reduce scintillation. The transmitted waveform exhibits a stepped-frequency pattern.
 
-> ![Figure 1.4](<./CourseADSP2026/Fig/fig_1_4.png>)
+> ![Figure 1.4](<./CourseADSP2026/Fig/Chapter_1/fig_1_4.png>)
 >
 > *Figure 1.4: Radar signals — (left) LFM chirp with linearly increasing instantaneous frequency; (right) frequency-diverse radar with stepped carrier frequencies across pulses.*
 
@@ -410,7 +410,7 @@ $$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightar
 3. **Discrete-time processing**: Convolution with $h(n)$, or more generally any digital signal processing algorithm.
 4. **D/A conversion and reconstruction filter**: Converts the discrete output back to a continuous signal.
 
-> ![Figure 1.6](<./CourseADSP2026/Fig/fig_1_6.png>)
+> ![Figure 1.6](<./CourseADSP2026/Fig/Chapter_1/fig_1_6.png>)
 >
 > *Figure 1.6: General DSP system — pipeline from continuous input to continuous output, with frequency-domain illustrations at each stage.*
 
@@ -446,7 +446,7 @@ Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \i
 
 **If $f_s \lt 2B$ (undersampling)**: Spectral replicas overlap → **aliasing** — high-frequency components masquerade as low-frequency ones, irreversibly corrupting the signal.
 
-> ![Figure 1.7](<./CourseADSP2026/Fig/fig_1_7.png>)
+> ![Figure 1.7](<./CourseADSP2026/Fig/Chapter_1/fig_1_7.png>)
 >
 > *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_a(f)$ bandlimited to $B$; (b) discrete-time spectrum when $f_s \gt 2B$ (no aliasing); (c) discrete-time spectrum when $f_s \lt 2B$ (aliasing).*
 
@@ -664,7 +664,7 @@ $$\sum_{n=-\infty}^{\infty} \lvert x(n)\rvert^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi
 
 Total energy is preserved between the time and frequency domains.
 
-> ![Figure 2.1](<./CourseADSP2026/Fig/fig_2_1.png>)
+> ![Figure 2.1](<./CourseADSP2026/Fig/Chapter_1/fig_2_1.png>)
 >
 > *Figure 2.1: Frequency-domain view of an LTI system: the output spectrum equals the input spectrum multiplied point-wise by the system frequency response $H(e^{j\omega})$.  
 > **Top (aperiodic input):** $Y(e^{j\omega}) = X(e^{j\omega})\cdot H(e^{j\omega})$ — continuous DTFT spectra.  
@@ -751,7 +751,7 @@ where each variable carries a distinct physical meaning:
 
 **Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (rad/s), equivalently as analog cyclic frequency $f$ traverses $[-f_s/2,\; f_s/2]$ (Hz), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
 
-> ![Figure 2.2](<./CourseADSP2026/Fig/fig_2_2.jpg>)
+> ![Figure 2.2](<./CourseADSP2026/Fig/Chapter_1/fig_2_2.jpg>)
 >
 > *Figure 2.2: s-plane to z-plane mapping via $z = e^{sT_s}$.*
 
@@ -1154,7 +1154,7 @@ $$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
 
 Apply recursively for $m = \log_2 N$ stages.
 
-> ![Figure 2.3](<./CourseADSP2026/Fig/fig_2_3.jpg>)
+> ![Figure 2.3](<./CourseADSP2026/Fig/Chapter_1/fig_2_3.jpg>)
 >
 > *Figure 2.3: 8-point DIT-FFT signal flow graph.*
 
@@ -1381,7 +1381,7 @@ Even though the difference equation has only two terms, the impulse response is 
 >
 > An FIR filter with $M$ taps achieves its frequency selectivity by choosing $M+1$ coefficients — more taps means sharper cutoff, but always at the cost of $M+1$ multiplications per sample. A single-pole IIR requires **exactly 1 multiplication and 1 addition per sample**, regardless of how sharp the desired rolloff is: sharpening is achieved by pushing $\lvert a\rvert$ closer to $1$ — a change to a single number, not an increase in computation. This is the fundamental computational advantage of poles over taps: a pole close to the unit circle creates a tall, narrow peak in $\lvert H(e^{j\omega})\rvert$ essentially for free.
 
-> ![Figure 3.0a](<./CourseADSP2026/Fig/fig_3_0a.png>)
+> ![Figure 3.0a](<./CourseADSP2026/Fig/Chapter_1/fig_3_0a.png>)
 >
 > *Figure 3.0a: Impulse responses contrasted. (Left) FIR: $h(n)$ has finite support — the 8-tap example has exactly 8 nonzero values and decays to zero in finite time. (Right) IIR: first-order recursive filter with $a = 0.8$; $h(n) = 0.8^n u(n)$ decays exponentially but is theoretically nonzero for all $n \geq 0$. The practical consequence: the FIR requires 8 multiplications per sample; the IIR achieves a similarly shaped frequency response with 2.*
 
@@ -1523,7 +1523,7 @@ $$H(e^{j\omega}) = \frac{a_0 + a_1 e^{-j\omega} + \cdots + a_N e^{-j\omega N}}{1
 
 Poles near the unit circle create **resonance peaks** — the magnitude rises sharply near the pole angle. Zeros on the unit circle create **exact nulls** — the magnitude is identically zero at the zero angle. The interaction of poles and zeros shapes the frequency response with great efficiency: an IIR filter of order $N = 6$ can achieve stopband attenuation that an FIR filter would need $M \approx 100$ taps to match.
 
-> ![Figure 3.0b](<./CourseADSP2026/Fig/fig_3_0b.png>)
+> ![Figure 3.0b](<./CourseADSP2026/Fig/Chapter_1/fig_3_0b.png>)
 >
 > *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for an FIR with symmetric coefficients $h(n) = h(M-n)$; nonlinear for a typical IIR and for non-symmetric FIR. Group delay $\tau(\omega) = -d\angle H/d\omega$: flat (constant $(M/2)$ samples) for a symmetric-coefficient FIR; frequency-varying for IIR and non-symmetric FIR.*
 >
@@ -1645,7 +1645,7 @@ Implemented as a **tapped delay line**: a shift register of $M$ unit delays, eac
 - Additions per sample: $M$
 - Delay elements: $M$
 
-> ![Figure 3.1](<./CourseADSP2026/Fig/fig_3_1.png>)
+> ![Figure 3.1](<./CourseADSP2026/Fig/Chapter_1/fig_3_1.png>)
 >
 > *Figure 3.1: Direct-form (transversal) FIR filter.*
 
@@ -1667,7 +1667,7 @@ The cascade form avoids this by factoring $H(z)$ into independent biquads. Each 
 
 The same structure makes zero placement **directly editable**: to move a conjugate zero pair, only $b_{1k}$ and $b_{2k}$ of the corresponding biquad need to change. In the direct form, moving a single zero requires recomputing all $M+1$ coefficients by re-expanding the full polynomial.
 
-> ![Figure 3.2](<./CourseADSP2026/Fig/fig_3_2.png>)
+> ![Figure 3.2](<./CourseADSP2026/Fig/Chapter_1/fig_3_2.png>)
 >
 > *Figure 3.2: Cascade FIR implementation.*
 
@@ -1722,11 +1722,11 @@ Implements the difference equation with two separate delay chains — one for in
 
 - Total delay elements: $2N$
 
-> ![Figure 3.3](<./CourseADSP2026/Fig/fig_3_3.png>)
+> ![Figure 3.3](<./CourseADSP2026/Fig/Chapter_1/fig_3_3.png>)
 >
 > *Figure 3.3: Direct Form I IIR filter.*
 
-> ![Figure 3.4](<./CourseADSP2026/Fig/fig_3_4.png>)
+> ![Figure 3.4](<./CourseADSP2026/Fig/Chapter_1/fig_3_4.png>)
 >
 > *Figure 3.4: All-pole system realization (direct form).*
 
@@ -1898,7 +1898,7 @@ $$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^{\ast}}{1 - \alpha_k\, z^{
 
 The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
 
-> ![Figure 4.1](<./CourseADSP2026/Fig/fig_4_1.png>)
+> ![Figure 4.1](<./CourseADSP2026/Fig/Chapter_1/fig_4_1.png>)
 >
 > *Figure 4.1: Typical pole-zero patterns of a PZ (pole-zero) system, all-pass system: (a) complex-valued coefficients and (b) real-valued coefficients.*
 
@@ -1952,11 +1952,11 @@ Among all causal, stable filters with the same magnitude response, the minimum-p
   $$\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2 \quad \forall\, k$$
 - A **causal, stable inverse** $1/H_m(z)$ (all zeros inside the unit circle → all inverse poles inside)
 
-> ![Figure 4.2](<./CourseADSP2026/Fig/fig_4_2.png>)
+> ![Figure 4.2](<./CourseADSP2026/Fig/Chapter_1/fig_4_2.png>)
 >
 > *Figure 4.2: Pole-zero, magnitude, phase, and group-delay plots for minimum-phase, maximum-phase, and two mixed-phase systems sharing the same magnitude response — the minimum-phase system has the smallest phase lag (group delay) at every frequency.*
 
-> ![Figure 4.3](<./CourseADSP2026/Fig/fig_4_3.png>)
+> ![Figure 4.3](<./CourseADSP2026/Fig/Chapter_1/fig_4_3.png>)
 >
 > *Figure 4.3: Impulse responses for four systems — all systems share equal total energy, and the minimum-phase system achieves the fastest energy dissipation (smallest tail energy) at every $n$.*
 
@@ -1990,7 +1990,7 @@ The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase
 
 **Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
-> ![Figure 4.4](<./CourseADSP2026/Fig/fig_4_4.png>)
+> ![Figure 4.4](<./CourseADSP2026/Fig/Chapter_1/fig_4_4.png>)
 >
 > *Figure 4.4: Minimum phase and all-pass decomposition.*
 

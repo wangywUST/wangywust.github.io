@@ -114,4 +114,4 @@ fig.suptitle(
     fontsize=13, y=1.03,
 )
 fig.tight_layout()
-fig.savefig("../Fig/fig_1_4.png", dpi=220, bbox_inches="tight")
+fig.savefig("../Fig/Chapter_1/fig_1_4.png", dpi=220, bbox_inches="tight")
