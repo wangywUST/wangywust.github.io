@@ -134,7 +134,7 @@ In engineering, we must handle random phenomena — the amplitude of acoustic no
 
 > **Definition 2.1 (Random Variable).** A *random variable* $x(\zeta)$ is a function that assigns a real number $x$ to every outcome $\zeta \in S$, satisfying: (1) the set $\lbrace x(\zeta) \le x\rbrace$ is an event in $S$ for every $x$; (2) $\Pr\lbrace x(\zeta)=\pm\infty\rbrace=0$.
 
-> ![Figure 1.1](./CourseADSP2026/Fig/Chapter_2/fig_3_1.png)
+> ![Figure 1.1](./CourseADSP2026/Fig/Chapter_2/fig_1_1.png)
 >
 > *Figure 1.1 (Textbook Fig. 3.1, p. 76): Graphical illustration of the random variable mapping — the abstract sample space $S$ on the left is mapped to the real line $\mathbb{R}$ on the right. Each outcome $\zeta_k$ (an abstract event) gets assigned a numerical value $x(\zeta_k)$.*
 
@@ -191,7 +191,7 @@ $$\gamma_x^{(m)} = \sum_{k=0}^{m} \binom{m}{k} (-1)^k \mu_x^k\, r_x^{(m-k)}$$
 
 ### Variance and Standard Deviation
 
-$$\boxed{\sigma_x^2 \triangleq \gamma_x^{(2)} = E\lbrace |x(\zeta) - \mu_x|^2\rbrace = E\lbrace x^2\rbrace - \mu_x^2}$$
+$$\boxed{\sigma_x^2 \triangleq \gamma_x^{(2)} = E\lbrace \lvert x(\zeta) - \mu_x\rvert^2\rbrace = E\lbrace x^2\rbrace - \mu_x^2}$$
 
 The variance $\sigma_x^2$ measures the **spread** of the distribution around the mean. The **standard deviation** $\sigma_x = \sqrt{\sigma_x^2}$ has the same physical units as $x(\zeta)$.
 
@@ -201,7 +201,7 @@ The variance $\sigma_x^2$ measures the **spread** of the distribution around the
 
 ### Higher-Order Descriptors
 
-> ![Figure 1.2](./CourseADSP2026/Fig/Chapter_2/fig_3_2.png)
+> ![Figure 1.2](./CourseADSP2026/Fig/Chapter_2/fig_1_2.png)
 >
 > *Figure 1.2 (Textbook Fig. 3.2, p. 78): Illustration of mean, variance, skewness, and kurtosis for two different distributions. (a) Mean: the "balance point" of the density. (b) Variance: the spread. (c) Skewness: the asymmetry around the mean. (d) Kurtosis: the relative peakedness compared to a Gaussian.*
 
@@ -221,7 +221,7 @@ The $-3$ normalization makes the kurtosis zero for a Gaussian. Distributions wit
 
 **Chebyshev's Inequality:** A universal (distribution-free) bound on how far a random variable can stray from its mean:
 
-$$\Pr\lbrace |x(\zeta) - \mu_x| \ge k\sigma_x\rbrace \le \frac{1}{k^2}, \qquad k > 0$$
+$$\Pr\lbrace \lvert x(\zeta) - \mu_x\rvert \ge k\sigma_x\rbrace \le \frac{1}{k^2}, \qquad k > 0$$
 
 ---
 
@@ -243,9 +243,9 @@ $$\gamma_{x_1 x_2} = E\lbrace (x_1 - \mu_{x_1})(x_2 - \mu_{x_2})^*\rbrace = r_{x
 
 The **correlation coefficient** (normalized to $[-1, 1]$):
 
-$$\rho_{x_1 x_2} = \frac{\gamma_{x_1 x_2}}{\sigma_{x_1} \sigma_{x_2}}, \qquad |\rho_{x_1 x_2}| \le 1$$
+$$\rho_{x_1 x_2} = \frac{\gamma_{x_1 x_2}}{\sigma_{x_1} \sigma_{x_2}}, \qquad \lvert\rho_{x_1 x_2}\rvert \le 1$$
 
-$|\rho| = 1$ indicates a perfect linear relationship; $|\rho| = 0$ indicates **uncorrelated** variables.
+$\lvert\rho\rvert = 1$ indicates a perfect linear relationship; $\lvert\rho\rvert = 0$ indicates **uncorrelated** variables.
 
 ### Independence vs. Uncorrelated
 
@@ -259,7 +259,7 @@ Two random variables are:
 
 ## 1.4 Common Random Variable Distributions
 
-> ![Figure 1.3](./CourseADSP2026/Fig/Chapter_2/fig_3_3.png)
+> ![Figure 1.3](./CourseADSP2026/Fig/Chapter_2/fig_1_3.png)
 >
 > *Figure 1.3 (Textbook Fig. 3.3, p. 81): PDF plots of three common distributions — Uniform (flat top, bounded support), Gaussian (bell-shaped, infinite support), and Bernoulli/Exponential. The Gaussian plays a central role because of the Central Limit Theorem.*
 
@@ -303,7 +303,7 @@ A **discrete-time stochastic process** (or random sequence) is a family of rando
 
 The complete collection of all possible sequences $\lbrace x(n, \zeta)\rbrace$ for all $\zeta \in S$ is called the **ensemble**. Each individual sequence $x(n, \zeta_k)$ for a specific $\zeta_k$ is one **realization** (or sample function) of the process.
 
-> ![Figure 2.1](./CourseADSP2026/Fig/Chapter_2/fig_3_7.png)
+> ![Figure 2.1](./CourseADSP2026/Fig/Chapter_2/fig_2_1.png)
 >
 > *Figure 2.1 (Textbook Fig. 3.7, p. 98): Graphical description of a random sequence. The abstract sample space $S$ (left) maps to an ensemble of deterministic sequences (right). Each row is one realization $x(n, \zeta_k)$ that could be observed in practice. At a fixed time $n_0$ (vertical slice), we have a random variable $x(n_0, \zeta)$.*
 
@@ -328,7 +328,7 @@ There are four possible interpretations of $x(n, \zeta)$, depending on whether $
 
 $$\mu_x(n) = E\lbrace x(n)\rbrace = \int_{-\infty}^{+\infty} x\, f_x(x; n)\, dx$$
 
-$$\sigma_x^2(n) = E\lbrace |x(n) - \mu_x(n)|^2\rbrace = E\lbrace |x(n)|^2\rbrace - |\mu_x(n)|^2$$
+$$\sigma_x^2(n) = E\lbrace \lvert x(n) - \mu_x(n)\rvert^2\rbrace = E\lbrace \lvert x(n)\rvert^2\rbrace - \lvert\mu_x(n)\rvert^2$$
 
 Both $\mu_x(n)$ and $\sigma_x^2(n)$ are, in general, functions of time $n$.
 
@@ -348,7 +348,7 @@ $$r_{xy}(n_1, n_2) = E\lbrace x(n_1)\, y^*(n_2)\rbrace$$
 
 $$\gamma_{xy}(n_1, n_2) = E\lbrace [x(n_1) - \mu_x(n_1)][y(n_2) - \mu_y(n_2)]^*\rbrace$$
 
-$$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)} \quad \text{(normalized, } |\rho|\le 1\text{)}$$
+$$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)} \quad \text{(normalized, } \lvert\rho\rvert\le 1\text{)}$$
 
 ### Special Process Types Defined by Their Statistics
 
@@ -369,7 +369,7 @@ If all kth-order joint distributions of a process $x(n)$ are jointly Gaussian fo
 
 Its joint density for any $k$-sample snapshot $\mathbf{x} = [x(n_1), \ldots, x(n_k)]^T$ is:
 
-$$f_x(\mathbf{x}; n_1, \ldots, n_k) = \frac{1}{(2\pi)^{k/2}|\mathbf{R}|^{1/2}} \exp\!\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^H \mathbf{R}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
+$$f_x(\mathbf{x}; n_1, \ldots, n_k) = \frac{1}{(2\pi)^{k/2}\lvert\mathbf{R}\rvert^{1/2}} \exp\!\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^H \mathbf{R}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
 
 where $\boldsymbol{\mu}$ is the mean vector and $\mathbf{R}$ is the covariance matrix at those time indices.
 
@@ -402,7 +402,7 @@ For most engineering applications, a weaker form of stationarity is both suffici
 
 **Consequence:** For a WSS process, the two-dimensional autocorrelation collapses to a one-dimensional function of lag $l$ alone. The autocovariance is then:
 
-$$\gamma_x(l) = r_x(l) - |\mu_x|^2$$
+$$\gamma_x(l) = r_x(l) - \lvert\mu_x\rvert^2$$
 
 The **two jointly WSS processes** $x(n)$ and $y(n)$ have a cross-correlation that depends only on lag:
 
@@ -415,9 +415,9 @@ $$r_{xy}(l) = E\lbrace x(n)\, y^*(n-l)\rbrace$$
 For a WSS process $x(n)$, the autocorrelation sequence $r_x(l)$ satisfies:
 
 **Property 1 (Maximum at zero lag):**
-$$\boxed{r_x(0) = \sigma_x^2 + |\mu_x|^2 \ge 0 \quad \text{and} \quad r_x(0) \ge |r_x(l)| \quad \text{for all } l}$$
+$$\boxed{r_x(0) = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0 \quad \text{and} \quad r_x(0) \ge \lvert r_x(l)\rvert \quad \text{for all } l}$$
 
-$r_x(0)$ is the **total average power** — the DC component $|\mu_x|^2$ plus the AC power $\sigma_x^2$. The autocorrelation is always maximum at zero lag.
+$r_x(0)$ is the **total average power** — the DC component $\lvert\mu_x\rvert^2$ plus the AC power $\sigma_x^2$. The autocorrelation is always maximum at zero lag.
 
 **Property 2 (Conjugate symmetry):**
 $$r_x^*(-l) = r_x(l)$$
@@ -479,9 +479,9 @@ Any time average is itself a random variable (it depends on which realization $\
 
 **Physical interpretation:** Ergodicity says that a single typical realization, observed long enough, visits all "states" of the process with the same frequency as the full ensemble would at any fixed time. A random sequence is ergodic in the mean if:
 
-$$\lim_{N\to\infty} E\!\left\lbrace \left|\frac{1}{2N+1}\sum_{n=-N}^{N} x(n) - \mu_x\right|^2\right\rbrace = 0 \qquad \text{(mean-square convergence)}$$
+$$\lim_{N\to\infty} E\!\left\lbrace \left\lvert\frac{1}{2N+1}\sum_{n=-N}^{N} x(n) - \mu_x\right\rvert^2\right\rbrace = 0 \qquad \text{(mean-square convergence)}$$
 
-This requires that the **autocovariance sequence decays** sufficiently fast: $\sum_{l=-\infty}^{\infty} |\gamma_x(l)| < \infty$.
+This requires that the **autocovariance sequence decays** sufficiently fast: $\sum_{l=-\infty}^{\infty} \lvert\gamma_x(l)\rvert < \infty$.
 
 > **Stationarity vs. Ergodicity:**
 > - **Stationarity** ensures that the statistics of $x(n)$ do not change over time.
@@ -517,7 +517,7 @@ White noise is the fundamental **building block** for constructing more complex 
 
 ## 2.8 Power Spectral Density (Wiener–Khinchin Theorem)
 
-For a zero-mean WSS process with absolutely summable autocorrelation $\sum_l |r_x(l)| < \infty$, the **power spectral density (PSD)** is defined as the DTFT of the autocorrelation sequence:
+For a zero-mean WSS process with absolutely summable autocorrelation $\sum_l \lvert r_x(l)\rvert < \infty$, the **power spectral density (PSD)** is defined as the DTFT of the autocorrelation sequence:
 
 $$\boxed{R_x(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_x(l)\, e^{-j\omega l}} \qquad \text{(Wiener–Khinchin theorem)}$$
 
@@ -527,7 +527,7 @@ $$r_x(l) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, e^{j\omega l}\, d\
 
 The total average power equals the area under the PSD:
 
-$$E\lbrace |x(n)|^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
+$$E\lbrace \lvert x(n)\rvert^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
 
 ### Properties of the PSD
 
@@ -546,7 +546,7 @@ The z-transform of the autocorrelation sequence:
 
 $$R_x(z) = \sum_{l=-\infty}^{\infty} r_x(l)\, z^{-l}$$
 
-On the unit circle: $R_x(e^{j\omega}) = R_x(z)\big|_{z=e^{j\omega}}$.
+On the unit circle: $R_x(e^{j\omega}) = R_x(z)\big\vert_{z=e^{j\omega}}$.
 
 From the conjugate symmetry $r_x(l) = r_x^*(-l)$, for real $r_x(l)$:
 
@@ -554,7 +554,7 @@ $$R_x(z) = R_x\!\left(\frac{1}{z}\right)$$
 
 This **palindrome property** will be central to spectral factorization (§2.4): the poles and zeros of $R_x(z)$ appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$.
 
-**Example.** Consider $r_x(l) = a^{|l|}$, $|a| < 1$. Then:
+**Example.** Consider $r_x(l) = a^{\lvert l\rvert}$, $\lvert a\rvert < 1$. Then:
 
 $$R_x(e^{j\omega}) = \frac{1-a^2}{1 + a^2 - 2a\cos\omega}$$
 
@@ -566,7 +566,7 @@ $$R_{xy}(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_{xy}(l)\, e^{-j\omega l}$$
 
 Note: $R_{xy}(e^{j\omega})$ is **complex-valued** in general. The **coherence function** and **magnitude-squared coherence (MSC)**:
 
-$$G_{xy}(e^{j\omega}) = \frac{R_{xy}(e^{j\omega})}{\sqrt{R_x(e^{j\omega}) R_y(e^{j\omega})}}, \qquad 0 \le |G_{xy}(e^{j\omega})|^2 \le 1$$
+$$G_{xy}(e^{j\omega}) = \frac{R_{xy}(e^{j\omega})}{\sqrt{R_x(e^{j\omega}) R_y(e^{j\omega})}}, \qquad 0 \le \lvert G_{xy}(e^{j\omega})\rvert^2 \le 1$$
 
 MSC $= 1$ means perfect linear correlation at that frequency; MSC $= 0$ means no correlation. MSC generalizes the concept of a correlation coefficient to the frequency domain.
 
@@ -584,7 +584,7 @@ The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
 
 $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
 
-> ![Figure 2.2](./CourseADSP2026/Fig/Chapter_2/fig_3_9.png)
+> ![Figure 2.2](./CourseADSP2026/Fig/Chapter_2/fig_2_2.png)
 >
 > *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
 
@@ -600,7 +600,7 @@ $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad
 
 When a random process $x(n)$ is applied as the input to a BIBO-stable LTI system with impulse response $h(n)$, each realization $x(n, \zeta_k)$ produces a deterministic output $y(n, \zeta_k) = h(n) * x(n, \zeta_k)$. The collection of all output realizations forms the **output stochastic process** $y(n)$.
 
-The fundamental theorem guarantees well-posedness: if $x(n)$ is stationary with $E\lbrace |x(n)|\rbrace < \infty$ and the system is BIBO-stable ($\sum_n |h(n)| < \infty$), then the output $y(n)$ converges absolutely with probability 1 and is also stationary.
+The fundamental theorem guarantees well-posedness: if $x(n)$ is stationary with $E\lbrace \lvert x(n)\rvert\rbrace < \infty$ and the system is BIBO-stable ($\sum_n \lvert h(n)\rvert < \infty$), then the output $y(n)$ converges absolutely with probability 1 and is also stationary.
 
 ### Output Mean
 
@@ -628,7 +628,7 @@ where $r_h(l) = h(l) * h^*(-l) = \sum_n h(n) h^*(n-l)$ is the **system correlati
 
 $$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
-> ![Figure 3.1](./CourseADSP2026/Fig/Chapter_2/fig_3_10.png)
+> ![Figure 3.1](./CourseADSP2026/Fig/Chapter_2/fig_3_1.png)
 >
 > *Figure 3.1 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^*(-l)$ (whose combined impulse response is $r_h(l) = h(l)*h^*(-l)$), yielding the output autocorrelation $r_y(l)$.*
 
@@ -638,7 +638,7 @@ $$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
 Setting $l = 0$ in the output autocorrelation formula:
 
-$$\boxed{P_y = E\lbrace |y(n)|^2\rbrace = r_y(0) = \sum_{k=-\infty}^{\infty} r_h(k)\, r_x(-k) = \mathbf{h}^H \mathbf{R}_x \mathbf{h}}$$
+$$\boxed{P_y = E\lbrace \lvert y(n)\rvert^2\rbrace = r_y(0) = \sum_{k=-\infty}^{\infty} r_h(k)\, r_x(-k) = \mathbf{h}^H \mathbf{R}_x \mathbf{h}}$$
 
 where the last expression is the **quadratic form** for FIR filters with coefficient vector $\mathbf{h} = [h(0), \ldots, h(M-1)]^T$.
 
@@ -650,7 +650,7 @@ Taking the DTFT/z-transform of the time-domain relationships gives the elegant f
 
 **Key result for the output PSD:**
 
-$$\boxed{R_y(e^{j\omega}) = |H(e^{j\omega})|^2\, R_x(e^{j\omega})}$$
+$$\boxed{R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2\, R_x(e^{j\omega})}$$
 
 **In the z-domain:**
 
@@ -670,19 +670,19 @@ $$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\om
 | Auto | $r_y(l) = h(l)*h^*(-l)*r_x(l)$ | $R_y = \lvert H\rvert^2 R_x$ | $R_y(z) = H(z)H^*(1/z^*)R_x(z)$ |
 | Power | $P_y = \mathbf{h}^H\mathbf{R}_x\mathbf{h}$ | $P_y = \frac{1}{2\pi}\int\lvert H\rvert^2 R_x d\omega$ | — |
 
-> **Key insight from $R_y(e^{j\omega}) = |H(e^{j\omega})|^2 R_x(e^{j\omega})$:**
+> **Key insight from $R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2 R_x(e^{j\omega})$:**
 >
-> The output PSD is the input PSD **weighted** by the squared magnitude response of the filter. The filter **shapes** the spectrum. This is the fundamental reason for "colored noise" — white noise ($R_x = \sigma_w^2$, flat) passed through a filter $H(z)$ produces "colored" noise $R_y = \sigma_w^2 |H(e^{j\omega})|^2$ with a spectral shape matching $|H|^2$.
+> The output PSD is the input PSD **weighted** by the squared magnitude response of the filter. The filter **shapes** the spectrum. This is the fundamental reason for "colored noise" — white noise ($R_x = \sigma_w^2$, flat) passed through a filter $H(z)$ produces "colored" noise $R_y = \sigma_w^2 \lvert H(e^{j\omega})\rvert^2$ with a spectral shape matching $\lvert H\rvert^2$.
 >
-> Conversely: if we know $R_x$ and $R_y$, we can identify $|H(e^{j\omega})|^2 = R_y/R_x$ — this is the foundation of **blind deconvolution** and system identification. However, we can only recover the **magnitude** of $H$, not its phase, from the autocorrelations alone. To recover the phase, we need the **cross-spectrum** $R_{xy}$.
+> Conversely: if we know $R_x$ and $R_y$, we can identify $\lvert H(e^{j\omega})\rvert^2 = R_y/R_x$ — this is the foundation of **blind deconvolution** and system identification. However, we can only recover the **magnitude** of $H$, not its phase, from the autocorrelations alone. To recover the phase, we need the **cross-spectrum** $R_{xy}$.
 
 ### Output Variance Calculation Example
 
-**Example:** White noise $w(n) \sim \mathrm{WN}(0, \sigma_w^2)$ is filtered by $H(z) = 1/(1 - a z^{-1})$, $|a| < 1$ (a first-order IIR).
+**Example:** White noise $w(n) \sim \mathrm{WN}(0, \sigma_w^2)$ is filtered by $H(z) = 1/(1 - a z^{-1})$, $\lvert a\rvert < 1$ (a first-order IIR).
 
-Output PSD: $R_y(e^{j\omega}) = \sigma_w^2 |H(e^{j\omega})|^2 = \frac{\sigma_w^2}{|1 - ae^{-j\omega}|^2} = \frac{\sigma_w^2}{1 + a^2 - 2a\cos\omega}$
+Output PSD: $R_y(e^{j\omega}) = \sigma_w^2 \lvert H(e^{j\omega})\rvert^2 = \frac{\sigma_w^2}{\lvert 1 - ae^{-j\omega}\rvert^2} = \frac{\sigma_w^2}{1 + a^2 - 2a\cos\omega}$
 
-Output autocorrelation: $r_y(l) = \frac{\sigma_w^2}{1-a^2}\, a^{|l|}$
+Output autocorrelation: $r_y(l) = \frac{\sigma_w^2}{1-a^2}\, a^{\lvert l\rvert}$
 
 Output power: $r_y(0) = \frac{\sigma_w^2}{1 - a^2}$
 
@@ -706,7 +706,7 @@ The answer is **yes** for any rational PSD satisfying the Paley–Wiener conditi
 
 From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\lbrace z_0, z_0^*\rbrace$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\lbrace z_0,\ z_0^*,\ 1/z_0,\ 1/z_0^*\rbrace$.
 
-On the unit circle ($|z_0| = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0$ for $|z_0|=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
+On the unit circle ($\lvert z_0\rvert = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0$ for $\lvert z_0\rvert=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
 
 ## 4.3 Minimum-Phase Spectral Factor
 
@@ -716,7 +716,7 @@ On the unit circle ($|z_0| = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0
 >
 > where $H_+(z)$ is **minimum-phase** (all zeros and poles strictly inside the unit circle), and $\sigma_0^2 > 0$ is a real positive scalar.
 
-On the unit circle: $R_x(e^{j\omega}) = \sigma_0^2 |H_+(e^{j\omega})|^2$.
+On the unit circle: $R_x(e^{j\omega}) = \sigma_0^2 \lvert H_+(e^{j\omega})\rvert^2$.
 
 **Construction:** From each quadruple $\lbrace z_0, z_0^*, 1/z_0, 1/z_0^*\rbrace$:
 - Assign the **inner pair** $\lbrace 1/z_0^*, 1/z_0^{**}\rbrace = \lbrace 1/z_0^*\rbrace$ to $H_+(z)$ (inside the unit circle)
@@ -766,7 +766,7 @@ For stability, all poles of $H(z)$ (roots of $A(z)$) must lie strictly inside th
 
 ### Power Spectral Density
 
-$$R_x(e^{j\omega}) = \sigma_w^2 \left|\frac{B(e^{j\omega})}{A(e^{j\omega})}\right|^2 = \sigma_w^2 \frac{|B(e^{j\omega})|^2}{|A(e^{j\omega})|^2}$$
+$$R_x(e^{j\omega}) = \sigma_w^2 \left\lvert\frac{B(e^{j\omega})}{A(e^{j\omega})}\right\rvert^2 = \sigma_w^2 \frac{\lvert B(e^{j\omega})\rvert^2}{\lvert A(e^{j\omega})\rvert^2}$$
 
 ### Yule-Walker Equations for ARMA
 
@@ -812,7 +812,7 @@ $$\sigma_w^2 = r_x(0) + \sum_{k=1}^{p} a_k\, r_x(k) = r_x(0) + \mathbf{a}^T\math
 
 ### Power Spectral Density of AR($p$)
 
-$$\boxed{R_x(e^{j\omega}) = \frac{\sigma_w^2}{|A(e^{j\omega})|^2} = \frac{\sigma_w^2}{\left|1 + \sum_{k=1}^p a_k e^{-j\omega k}\right|^2}}$$
+$$\boxed{R_x(e^{j\omega}) = \frac{\sigma_w^2}{\lvert A(e^{j\omega})\rvert^2} = \frac{\sigma_w^2}{\left\lvert1 + \sum_{k=1}^p a_k e^{-j\omega k}\right\rvert^2}}$$
 
 The AR spectrum has **peaks at frequencies near the poles** of $H(z)$. This makes AR models excellent for processes with **sharp spectral peaks** (narrowband resonances), such as voiced speech, sonar echoes at discrete angles, or vibration resonance modes.
 
@@ -830,19 +830,19 @@ $$\boxed{x(n) = w(n) + \sum_{k=1}^{q} b_k\, w(n-k) = B(z)\, w(n), \qquad w(n) \s
 
 ### Power Spectral Density of MA($q$)
 
-$$R_x(e^{j\omega}) = \sigma_w^2\, |B(e^{j\omega})|^2 = \sigma_w^2 \left|1 + \sum_{k=1}^{q} b_k e^{-j\omega k}\right|^2$$
+$$R_x(e^{j\omega}) = \sigma_w^2\, \lvert B(e^{j\omega})\rvert^2 = \sigma_w^2 \left\lvert1 + \sum_{k=1}^{q} b_k e^{-j\omega k}\right\rvert^2$$
 
 The MA spectrum has **notches at frequencies near the zeros** of $B(z)$.
 
 ### Autocorrelation of MA($q$)
 
-A crucial property: the autocorrelation of an MA($q$) process is **exactly zero for lags $|l| > q$**:
+A crucial property: the autocorrelation of an MA($q$) process is **exactly zero for lags $\lvert l\rvert > q$**:
 
-$$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-|l|} b_k b_{k+|l|}^* & |l| \le q \\ 0 & |l| > q \end{cases}$$
+$$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-\lvert l\rvert} b_k b_{k+\lvert l\rvert}^* & \lvert l\rvert \le q \\ 0 & \lvert l\rvert > q \end{cases}$$
 
 (where $b_0 = 1$). This **finite memory** property makes MA processes well-suited for modeling processes where sample-to-sample dependence dies out quickly.
 
-**Non-uniqueness:** Unlike AR models, MA models are not unique — the same PSD $|B(e^{j\omega})|^2$ can be generated by the minimum-phase factorization $H_+(z)$ or any all-pass-modified version $H_+(z) \cdot H_{ap}(z)$. The **minimum-phase MA** model is unique, but there are $2^q$ possible MA models (each zero of $B(z)$ can be inside or outside the unit circle). This non-uniqueness makes MA estimation harder than AR estimation.
+**Non-uniqueness:** Unlike AR models, MA models are not unique — the same PSD $\lvert B(e^{j\omega})\rvert^2$ can be generated by the minimum-phase factorization $H_+(z)$ or any all-pass-modified version $H_+(z) \cdot H_{ap}(z)$. The **minimum-phase MA** model is unique, but there are $2^q$ possible MA models (each zero of $B(z)$ can be inside or outside the unit circle). This non-uniqueness makes MA estimation harder than AR estimation.
 
 ---
 
@@ -916,9 +916,9 @@ $$\boldsymbol{\Sigma}_w = E\lbrace \mathbf{w}\mathbf{w}^H\rbrace = \mathbf{Q}_x^
 The transformed vector $\mathbf{w}$ has:
 - **Zero mean:** $E\lbrace \mathbf{w}\rbrace = \mathbf{0}$
 - **Uncorrelated components:** $E\lbrace w_i w_j^*\rbrace = 0$ for $i \ne j$
-- **Component variances equal to eigenvalues:** $E\lbrace |w_i|^2\rbrace = \lambda_i$
+- **Component variances equal to eigenvalues:** $E\lbrace \lvert w_i\rvert^2\rbrace = \lambda_i$
 
-> ![Figure 6.1](./CourseADSP2026/Fig/Chapter_2/fig_3_11.png)
+> ![Figure 6.1](./CourseADSP2026/Fig/Chapter_2/fig_6_1.png)
 >
 > *Figure 6.1 (Textbook Fig. 3.11, p. 126): Geometric interpretation of the KL (orthonormal) transformation in two dimensions. The original coordinate axes ($x_1$, $x_2$) are rotated to align with the eigenvectors $\mathbf{q}_1$, $\mathbf{q}_2$ of $\boldsymbol{\Sigma}_x$ (principal axes of the distribution). The elongated ellipse in the original frame becomes an axis-aligned ellipse in the $\mathbf{w}$-frame; the eigenvalues $\lambda_1 \ge \lambda_2$ give the variance along each principal axis.*
 
@@ -934,7 +934,7 @@ $$E_K = E\!\left\lbrace \|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\rbrace = \sum_
 
 To minimize $E_K$, retain the $K$ eigenvectors with the **largest** eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_M$. This is **Principal Component Analysis (PCA)** — the KL transform is the optimal linear dimensionality reduction in the MSE sense.
 
-> ![Figure 6.2](./CourseADSP2026/Fig/Chapter_2/fig_3_13.png)
+> ![Figure 6.2](./CourseADSP2026/Fig/Chapter_2/fig_6_2.png)
 >
 > *Figure 6.2 (Textbook Fig. 3.13, p. 132): Signal compression using the DKLT. The transmitter applies the KL transform to $x(n)$, retains only the $K$ largest-energy components via a reduced-basis selection scheme, and transmits the coded signal $\hat{w}(n)$. The receiver reconstructs $\hat{x}(n)$ via the inverse DKLT. If $K \ll M$, significant compression is achieved with bounded MSE $= \sum_{i=K+1}^{M}\lambda_i$.*
 
@@ -955,7 +955,7 @@ $$\mathbf{y} = \boldsymbol{\Lambda}_x^{-1/2} \mathbf{Q}_x^H (\mathbf{x} - \bolds
 
 The result: $\boldsymbol{\Sigma}_y = \mathbf{I}$ — all components have unit variance, are uncorrelated, and are isotropically distributed (hence the name). This transformation is also called **whitening**, because it transforms a colored random vector into an uncorrelated, unit-variance vector (analogous to white noise).
 
-> ![Figure 6.3](./CourseADSP2026/Fig/Chapter_2/fig_3_12.png)
+> ![Figure 6.3](./CourseADSP2026/Fig/Chapter_2/fig_6_3.png)
 >
 > *Figure 6.3 (Textbook Fig. 3.12, p. 127): Isotropic (whitening) transformation in two dimensions. After the KL rotation (Figure 6.1), an additional axis-scaling step $\boldsymbol{\Lambda}_x^{-1/2}$ normalizes the variance in each direction to 1. The resulting distribution becomes a circle — isotropic, invariant to any further rotation.*
 
@@ -1021,7 +1021,7 @@ An estimator is **unbiased** if $b(\hat{\theta}_i) = 0$ — on average, it hits 
 
 ### Variance and MSE
 
-$$\text{var}(\hat{\theta}_i) = E\lbrace |\hat{\theta}_i - E\lbrace \hat{\theta}_i\rbrace|^2\rbrace, \qquad \text{MSE}(\hat{\theta}_i) = E\lbrace |\hat{\theta}_i - \theta_i|^2\rbrace$$
+$$\text{var}(\hat{\theta}_i) = E\lbrace \lvert\hat{\theta}_i - E\lbrace \hat{\theta}_i\rbrace\rvert^2\rbrace, \qquad \text{MSE}(\hat{\theta}_i) = E\lbrace \lvert\hat{\theta}_i - \theta_i\rvert^2\rbrace$$
 
 $$\text{MSE} = \text{var}(\hat{\theta}_i) + b^2(\hat{\theta}_i)$$
 
@@ -1045,7 +1045,7 @@ The CRLB gives a performance benchmark: if we can achieve $\text{var}(\hat{\thet
 
 An estimator $\hat{\theta}(x_1, \ldots, x_N)$ is **mean-square consistent** if:
 
-$$\lim_{N\to\infty} E\lbrace |\hat{\theta}_N - \theta|^2\rbrace = 0$$
+$$\lim_{N\to\infty} E\lbrace \lvert\hat{\theta}_N - \theta\rvert^2\rbrace = 0$$
 
 This requires both bias $\to 0$ and variance $\to 0$ as $N \to \infty$. A consistent estimator becomes arbitrarily accurate with enough data.
 
@@ -1059,21 +1059,21 @@ Given $N$ samples $\lbrace x(0), x(1), \ldots, x(N-1)\rbrace$ of an ergodic WSS 
 
 $$\hat{\mu}_x = \frac{1}{N}\sum_{n=0}^{N-1} x(n)$$
 
-This is unbiased ($E\lbrace \hat{\mu}_x\rbrace = \mu_x$) and consistent (variance $\to 0$ as $N\to\infty$, provided $\sum_{l=-\infty}^{\infty}|\gamma_x(l)| < \infty$).
+This is unbiased ($E\lbrace \hat{\mu}_x\rbrace = \mu_x$) and consistent (variance $\to 0$ as $N\to\infty$, provided $\sum_{l=-\infty}^{\infty}\lvert\gamma_x(l)\rvert < \infty$).
 
 ### Sample Autocorrelation — Biased Estimate
 
-$$\hat{r}_x(l) = \frac{1}{N}\sum_{n=0}^{N-1-|l|} x(n+|l|)\, x^*(n), \qquad |l| \le N-1$$
+$$\hat{r}_x(l) = \frac{1}{N}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^*(n), \qquad \lvert l\rvert \le N-1$$
 
-The division by $N$ (not $N-|l|$) makes this a **biased** estimate:
+The division by $N$ (not $N-\lvert l\rvert$) makes this a **biased** estimate:
 
-$$E\lbrace \hat{r}_x(l)\rbrace = \frac{N - |l|}{N}\, r_x(l) \ne r_x(l)$$
+$$E\lbrace \hat{r}_x(l)\rbrace = \frac{N - \lvert l\rvert}{N}\, r_x(l) \ne r_x(l)$$
 
 But it is **asymptotically unbiased** as $N \to \infty$, and — more importantly — the resulting $N \times N$ estimated autocorrelation matrix $\hat{\mathbf{R}}_x$ is guaranteed to be **positive semi-definite** (nonnegative eigenvalues). This is crucial for stability in filter design.
 
 ### Sample Autocorrelation — Unbiased Estimate
 
-$$\hat{r}_x^{(\text{unb})}(l) = \frac{1}{N-|l|}\sum_{n=0}^{N-1-|l|} x(n+|l|)\, x^*(n)$$
+$$\hat{r}_x^{(\text{unb})}(l) = \frac{1}{N-\lvert l\rvert}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^*(n)$$
 
 This is unbiased but may yield a non-positive-definite matrix — leading to unstable models. It also has higher variance at large lags (few samples available).
 
@@ -1128,7 +1128,7 @@ When $\mathbf{W} = \boldsymbol{\Sigma}_e^{-1}$ (inverse of the error covariance)
 
 ### Orthogonality Principle
 
-We seek the linear estimator $\hat{\boldsymbol{\theta}} = \mathbf{W}\mathbf{x} + \mathbf{b}$ that minimizes the mean-squared error $E\lbrace |\hat{\theta}_i - \theta_i|^2\rbrace$. The optimal estimator satisfies the **orthogonality principle**:
+We seek the linear estimator $\hat{\boldsymbol{\theta}} = \mathbf{W}\mathbf{x} + \mathbf{b}$ that minimizes the mean-squared error $E\lbrace \lvert\hat{\theta}_i - \theta_i\rvert^2\rbrace$. The optimal estimator satisfies the **orthogonality principle**:
 
 $$E\lbrace (\hat{\theta}_i - \theta_i)\, x(n)^*\rbrace = 0 \quad \text{for all } n$$
 
@@ -1190,7 +1190,7 @@ The choice of window (PHAT, SCOT, Roth processor) prewhitens the cross-spectrum 
 
 In the **Bayesian framework**, the parameter $\boldsymbol{\theta}$ is treated as a **random variable** with a known **prior distribution** $f_\theta(\boldsymbol{\theta})$ that encodes any prior knowledge before observing $\mathbf{x}$. After observing $\mathbf{x}$, the **posterior distribution** is:
 
-$$f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x}) = \frac{f_x(\mathbf{x}|\boldsymbol{\theta})\, f_\theta(\boldsymbol{\theta})}{f_x(\mathbf{x})}$$
+$$f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x}) = \frac{f_x(\mathbf{x}\mid\boldsymbol{\theta})\, f_\theta(\boldsymbol{\theta})}{f_x(\mathbf{x})}$$
 
 (Bayes' theorem). The form of the optimal Bayesian estimate depends on the **cost function** chosen:
 
