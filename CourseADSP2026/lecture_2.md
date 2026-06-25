@@ -475,7 +475,9 @@ Any time average is itself a random variable (it depends on which realization $\
 
 > **Definition 2.5 (Ergodic in the Mean).** $x(n)$ is ergodic in the mean if $\langle x(n)\rangle = E\lbrace x(n)\rbrace$, i.e., time averaging equals ensemble averaging.
 
-> **Definition 2.6 (Ergodic in Correlation).** $x(n)$ is ergodic in correlation if $\langle x(n)x^*(n-l)\rangle = E\lbrace x(n)x^*(n-l)\rbrace = r_x(l)$.
+> **Definition 2.6 (Ergodic in Correlation).** $x(n)$ is ergodic in correlation if
+>
+> $$\langle x(n)x^{\ast}(n-l)\rangle = E\lbrace x(n)x^{\ast}(n-l)\rbrace = r_x(l).$$
 
 **Physical interpretation:** Ergodicity says that a single typical realization, observed long enough, visits all "states" of the process with the same frequency as the full ensemble would at any fixed time. A random sequence is ergodic in the mean if:
 
