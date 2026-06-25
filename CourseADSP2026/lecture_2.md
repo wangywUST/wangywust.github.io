@@ -49,7 +49,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $\boldsymbol{\mu}_x = E\lbrace \mathbf{x}\rbrace$ | Mean vector |
 | $\mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace$ | Correlation matrix ($M\times M$, Hermitian non-negative definite) |
 | $\boldsymbol{\Sigma}_x = E\lbrace (\mathbf{x}-\boldsymbol{\mu}_x)(\mathbf{x}-\boldsymbol{\mu}_x)^H\rbrace$ | Covariance matrix |
-| $r_{x_i x_j} = E\lbrace x_i x_j^*\rbrace$ | Cross-correlation between $x_i$ and $x_j$ |
+| $r_{x_i x_j} = E\lbrace x_i x_j^{\ast}\rbrace$ | Cross-correlation between $x_i$ and $x_j$ |
 | $\gamma_{x_i x_j}$ | Cross-covariance between $x_i$ and $x_j$ |
 | $\rho_{x_i x_j} = \gamma_{x_i x_j}/(\sigma_{x_i}\sigma_{x_j})$ | Correlation coefficient, $\lvert\rho\rvert\le 1$ |
 
@@ -60,14 +60,14 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $x(n) \equiv x(n,\zeta)$ | Discrete-time stochastic process (random sequence) |
 | $\mu_x(n) = E\lbrace x(n)\rbrace$ | Mean function (may be time-varying) |
 | $\sigma_x^2(n) = E\lbrace \lvert x(n)-\mu_x(n)\rvert^2\rbrace$ | Variance function |
-| $r_{xx}(n_1, n_2) = E\lbrace x(n_1)x^*(n_2)\rbrace$ | Autocorrelation function |
+| $r_{xx}(n_1, n_2) = E\lbrace x(n_1)x^{\ast}(n_2)\rbrace$ | Autocorrelation function |
 | $\gamma_{xx}(n_1, n_2)$ | Autocovariance function |
-| $r_{xy}(n_1, n_2) = E\lbrace x(n_1)y^*(n_2)\rbrace$ | Cross-correlation function |
+| $r_{xy}(n_1, n_2) = E\lbrace x(n_1)y^{\ast}(n_2)\rbrace$ | Cross-correlation function |
 | $\gamma_{xy}(n_1, n_2)$ | Cross-covariance function |
 | $\rho_{xy}(n_1,n_2)$ | Normalized cross-correlation coefficient |
-| $r_x(l) = E\lbrace x(n+l)x^*(n)\rbrace$ | WSS autocorrelation (function of lag $l$ only) |
+| $r_x(l) = E\lbrace x(n+l)x^{\ast}(n)\rbrace$ | WSS autocorrelation (function of lag $l$ only) |
 | $\gamma_x(l) = r_x(l) - \lvert\mu_x\rvert^2$ | WSS autocovariance |
-| $r_{xy}(l) = E\lbrace x(n)y^*(n-l)\rbrace$ | WSS cross-correlation |
+| $r_{xy}(l) = E\lbrace x(n)y^{\ast}(n-l)\rbrace$ | WSS cross-correlation |
 
 ### Power Spectral Density and z-Domain
 
@@ -235,11 +235,11 @@ $$f_{x_1}(x_1) = \int_{-\infty}^{+\infty} f_{x_1 x_2}(x_1, x_2)\, dx_2$$
 
 The **cross-correlation** between $x_1(\zeta)$ and $x_2(\zeta)$:
 
-$$r_{x_1 x_2} = E\lbrace x_1(\zeta)\, x_2^*(\zeta)\rbrace = \int\!\!\int x_1 x_2^*\, f_{x_1 x_2}(x_1, x_2)\, dx_1\, dx_2$$
+$$r_{x_1 x_2} = E\lbrace x_1(\zeta)\, x_2^{\ast}(\zeta)\rbrace = \int\!\!\int x_1 x_2^{\ast}\, f_{x_1 x_2}(x_1, x_2)\, dx_1\, dx_2$$
 
 The **cross-covariance** (centered version):
 
-$$\gamma_{x_1 x_2} = E\lbrace (x_1 - \mu_{x_1})(x_2 - \mu_{x_2})^*\rbrace = r_{x_1 x_2} - \mu_{x_1}\mu_{x_2}^*$$
+$$\gamma_{x_1 x_2} = E\lbrace (x_1 - \mu_{x_1})(x_2 - \mu_{x_2})^{\ast}\rbrace = r_{x_1 x_2} - \mu_{x_1}\mu_{x_2}^{\ast}$$
 
 The **correlation coefficient** (normalized to $[-1, 1]$):
 
@@ -251,7 +251,7 @@ $\lvert\rho\rvert = 1$ indicates a perfect linear relationship; $\lvert\rho\rver
 
 Two random variables are:
 - **Statistically independent** if $f_{x_1 x_2}(x_1, x_2) = f_{x_1}(x_1) f_{x_2}(x_2)$ — the full joint density factors.
-- **Uncorrelated** if $\gamma_{x_1 x_2} = 0$, equivalently $r_{x_1 x_2} = \mu_{x_1}\mu_{x_2}^*$ — only the second-order moment factors.
+- **Uncorrelated** if $\gamma_{x_1 x_2} = 0$, equivalently $r_{x_1 x_2} = \mu_{x_1}\mu_{x_2}^{\ast}$ — only the second-order moment factors.
 
 > **Important distinction:** Independence implies uncorrelated. The converse is **not** true in general — uncorrelated random variables can still be statistically dependent through higher-order moments. The **only exception** is the Gaussian distribution: for jointly Gaussian random variables, uncorrelated implies independence.
 
@@ -334,9 +334,9 @@ Both $\mu_x(n)$ and $\sigma_x^2(n)$ are, in general, functions of time $n$.
 
 ### Autocorrelation and Autocovariance
 
-$$\boxed{r_{xx}(n_1, n_2) = E\lbrace x(n_1)\, x^*(n_2)\rbrace}$$
+$$\boxed{r_{xx}(n_1, n_2) = E\lbrace x(n_1)\, x^{\ast}(n_2)\rbrace}$$
 
-$$\gamma_{xx}(n_1, n_2) = E\lbrace [x(n_1)-\mu_x(n_1)][x(n_2)-\mu_x(n_2)]^*\rbrace = r_{xx}(n_1, n_2) - \mu_x(n_1)\mu_x^*(n_2)$$
+$$\gamma_{xx}(n_1, n_2) = E\lbrace [x(n_1)-\mu_x(n_1)][x(n_2)-\mu_x(n_2)]^{\ast}\rbrace = r_{xx}(n_1, n_2) - \mu_x(n_1)\mu_x^{\ast}(n_2)$$
 
 The autocorrelation $r_{xx}(n_1, n_2)$ is a function on a **two-dimensional** grid of time indices.
 
@@ -344,9 +344,9 @@ The autocorrelation $r_{xx}(n_1, n_2)$ is a function on a **two-dimensional** gr
 
 For two processes $x(n)$ and $y(n)$ defined on the same probability space:
 
-$$r_{xy}(n_1, n_2) = E\lbrace x(n_1)\, y^*(n_2)\rbrace$$
+$$r_{xy}(n_1, n_2) = E\lbrace x(n_1)\, y^{\ast}(n_2)\rbrace$$
 
-$$\gamma_{xy}(n_1, n_2) = E\lbrace [x(n_1) - \mu_x(n_1)][y(n_2) - \mu_y(n_2)]^*\rbrace$$
+$$\gamma_{xy}(n_1, n_2) = E\lbrace [x(n_1) - \mu_x(n_1)][y(n_2) - \mu_y(n_2)]^{\ast}\rbrace$$
 
 $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)} \quad \text{(normalized, } \lvert\rho\rvert\le 1\text{)}$$
 
@@ -398,7 +398,7 @@ For most engineering applications, a weaker form of stationarity is both suffici
 > 2. Its variance is constant: $\text{var}[x(n)] = \sigma_x^2$ for all $n$
 > 3. Its autocorrelation depends only on the lag $l = n_1 - n_2$:
 >
-> $$\boxed{r_x(n_1, n_2) = r_x(n_1 - n_2) = r_x(l) = E\lbrace x(n+l)\, x^*(n)\rbrace}$$
+> $$\boxed{r_x(n_1, n_2) = r_x(n_1 - n_2) = r_x(l) = E\lbrace x(n+l)\, x^{\ast}(n)\rbrace}$$
 
 **Consequence:** For a WSS process, the two-dimensional autocorrelation collapses to a one-dimensional function of lag $l$ alone. The autocovariance is then:
 
@@ -406,7 +406,7 @@ $$\gamma_x(l) = r_x(l) - \lvert\mu_x\rvert^2$$
 
 The **two jointly WSS processes** $x(n)$ and $y(n)$ have a cross-correlation that depends only on lag:
 
-$$r_{xy}(l) = E\lbrace x(n)\, y^*(n-l)\rbrace$$
+$$r_{xy}(l) = E\lbrace x(n)\, y^{\ast}(n-l)\rbrace$$
 
 > **SSS vs. WSS:** SSS implies WSS, but WSS does not generally imply SSS. The exception is Gaussian processes: for them, WSS $\Leftrightarrow$ SSS, because a Gaussian distribution is completely determined by its first- and second-order moments.
 
@@ -420,13 +420,13 @@ $$\boxed{r_x(0) = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0 \quad \text{and} \quad 
 $r_x(0)$ is the **total average power** — the DC component $\lvert\mu_x\rvert^2$ plus the AC power $\sigma_x^2$. The autocorrelation is always maximum at zero lag.
 
 **Property 2 (Conjugate symmetry):**
-$$r_x^*(-l) = r_x(l)$$
+$$r_x^{\ast}(-l) = r_x(l)$$
 
 For real-valued $x(n)$, this simplifies to $r_x(-l) = r_x(l)$ — the autocorrelation is an **even function**.
 
 **Property 3 (Nonnegative definiteness):** For any $M > 0$ and any vector $\boldsymbol{\alpha} \in \mathbb{R}^M$:
 
-$$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^* \alpha_l\, r_x(k-l) \ge 0$$
+$$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast} \alpha_l\, r_x(k-l) \ge 0$$
 
 This ensures that the **power spectral density is nonnegative** at all frequencies (proved below in §2.2.6).
 
@@ -440,10 +440,10 @@ $$\mathbf{x}(n) = [x(n),\ x(n-1),\ \ldots,\ x(n-M+1)]^T$$
 
 The $M\times M$ correlation matrix $\mathbf{R}_x = E\lbrace \mathbf{x}(n)\mathbf{x}^H(n)\rbrace$ is:
 
-$$\mathbf{R}_x = \begin{bmatrix} r_x(0) & r_x(1) & r_x(2) & \cdots & r_x(M-1) \\ r_x^*(1) & r_x(0) & r_x(1) & \cdots & r_x(M-2) \\ r_x^*(2) & r_x^*(1) & r_x(0) & \cdots & r_x(M-3) \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ r_x^*(M-1) & r_x^*(M-2) & r_x^*(M-3) & \cdots & r_x(0) \end{bmatrix}$$
+$$\mathbf{R}_x = \begin{bmatrix} r_x(0) & r_x(1) & r_x(2) & \cdots & r_x(M-1) \\ r_x^{\ast}(1) & r_x(0) & r_x(1) & \cdots & r_x(M-2) \\ r_x^{\ast}(2) & r_x^{\ast}(1) & r_x(0) & \cdots & r_x(M-3) \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ r_x^{\ast}(M-1) & r_x^{\ast}(M-2) & r_x^{\ast}(M-3) & \cdots & r_x(0) \end{bmatrix}$$
 
 This matrix is:
-- **Hermitian**: $\mathbf{R}_x = \mathbf{R}_x^H$ (because $r_x(l) = r_x^*(-l)$)
+- **Hermitian**: $\mathbf{R}_x = \mathbf{R}_x^H$ (because $r_x(l) = r_x^{\ast}(-l)$)
 - **Toeplitz**: each diagonal (parallel to the main diagonal) has identical entries (because $r_x$ depends only on the lag)
 - **Non-negative definite**: $\mathbf{v}^H \mathbf{R}_x \mathbf{v} \ge 0$ for any vector $\mathbf{v}$ (because of Property 3)
 
@@ -501,7 +501,7 @@ The simplest possible random sequence is one with no temporal structure:
 
 > **Definition 2.7 (White Noise).** A process $w(n)$ is a (second-order) white noise with mean $\mu_w$ and variance $\sigma_w^2$, written $w(n) \sim \mathrm{WN}(\mu_w, \sigma_w^2)$, if and only if:
 >
-> $$\boxed{r_w(l) = E\lbrace w(n)w^*(n-l)\rbrace = \sigma_w^2\, \delta(l)}$$
+> $$\boxed{r_w(l) = E\lbrace w(n)w^{\ast}(n-l)\rbrace = \sigma_w^2\, \delta(l)}$$
 
 The autocorrelation is nonzero **only at zero lag** — any two different samples are uncorrelated. Equivalently, the **power spectral density is flat**:
 
@@ -533,7 +533,7 @@ $$E\lbrace \lvert x(n)\rvert^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi}
 
 ### Properties of the PSD
 
-**Property 1 (Real-valued):** $R_x(e^{j\omega}) \in \mathbb{R}$ for all $\omega$ (because $r_x(l) = r_x^*(-l)$ implies its DTFT is real). For real-valued $x(n)$, additionally $R_x(e^{j\omega}) = R_x(e^{-j\omega})$ — the PSD is an even function.
+**Property 1 (Real-valued):** $R_x(e^{j\omega}) \in \mathbb{R}$ for all $\omega$ (because $r_x(l) = r_x^{\ast}(-l)$ implies its DTFT is real). For real-valued $x(n)$, additionally $R_x(e^{j\omega}) = R_x(e^{-j\omega})$ — the PSD is an even function.
 
 **Property 2 (Non-negative):**
 $$R_x(e^{j\omega}) \ge 0 \quad \forall\omega$$
@@ -550,7 +550,7 @@ $$R_x(z) = \sum_{l=-\infty}^{\infty} r_x(l)\, z^{-l}$$
 
 On the unit circle: $R_x(e^{j\omega}) = R_x(z)\big\vert_{z=e^{j\omega}}$.
 
-From the conjugate symmetry $r_x(l) = r_x^*(-l)$, for real $r_x(l)$:
+From the conjugate symmetry $r_x(l) = r_x^{\ast}(-l)$, for real $r_x(l)$:
 
 $$R_x(z) = R_x\!\left(\frac{1}{z}\right)$$
 
@@ -600,7 +600,7 @@ $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad
 
 ### Setup
 
-When a random process $x(n)$ is applied as the input to a BIBO-stable LTI system with impulse response $h(n)$, each realization $x(n, \zeta_k)$ produces a deterministic output $y(n, \zeta_k) = h(n) * x(n, \zeta_k)$. The collection of all output realizations forms the **output stochastic process** $y(n)$.
+When a random process $x(n)$ is applied as the input to a BIBO-stable LTI system with impulse response $h(n)$, each realization $x(n, \zeta_k)$ produces a deterministic output $y(n, \zeta_k) = h(n) \ast x(n, \zeta_k)$. The collection of all output realizations forms the **output stochastic process** $y(n)$.
 
 The fundamental theorem guarantees well-posedness: if $x(n)$ is stationary with $E\lbrace \lvert x(n)\rvert\rbrace < \infty$ and the system is BIBO-stable ($\sum_n \lvert h(n)\rvert < \infty$), then the output $y(n)$ converges absolutely with probability 1 and is also stationary.
 
@@ -670,7 +670,7 @@ $$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\om
 
 | Quantity | Time Domain | Frequency Domain | z-Domain |
 |----------|------------|-----------------|---------|
-| Output | $y(n) = h(n) * x(n)$ | — | — |
+| Output | $y(n) = h(n) \ast x(n)$ | — | — |
 | Cross (yx) | $r_{yx}(l) = h(l) \ast r_x(l)$ | $R_{yx} = H R_x$ | $R_{yx}(z) = H(z) R_x(z)$ |
 | Cross (xy) | $r_{xy}(l) = h^{\ast}(-l) \ast r_x(l)$ | $R_{xy} = H^{\ast} R_x$ | $R_{xy}(z) = H^{\ast}(1/z^{\ast})R_x(z)$ |
 | Auto | $r_y(l) = h(l)\ast h^{\ast}(-l)\ast r_x(l)$ | $R_y = \lvert H\rvert^2 R_x$ | $R_y(z) = H(z)H^{\ast}(1/z^{\ast})R_x(z)$ |
@@ -776,7 +776,7 @@ $$R_x(e^{j\omega}) = \sigma_w^2 \left\lvert\frac{B(e^{j\omega})}{A(e^{j\omega})}
 
 ### Yule-Walker Equations for ARMA
 
-Multiplying the ARMA difference equation by $x^*(n-l)$ and taking expectations, one can show that for lags $l > q$, the moving-average terms vanish and only the AR coefficients appear:
+Multiplying the ARMA difference equation by $x^{\ast}(n-l)$ and taking expectations, one can show that for lags $l > q$, the moving-average terms vanish and only the AR coefficients appear:
 
 $$r_x(l) + \sum_{k=1}^{p} a_k r_x(l-k) = 0, \qquad l > q$$
 
@@ -796,7 +796,7 @@ The filter is $H(z) = 1/A(z)$ where $A(z) = 1 + \sum_{k=1}^p a_k z^{-k}$.
 
 ### Yule-Walker Equations for AR
 
-Multiplying the AR equation by $x^*(n-l)$ and taking expectations:
+Multiplying the AR equation by $x^{\ast}(n-l)$ and taking expectations:
 
 $$r_x(l) + \sum_{k=1}^{p} a_k\, r_x(l-k) = \sigma_w^2\, \delta(l), \qquad l = 0, 1, \ldots, p$$
 
@@ -844,7 +844,7 @@ The MA spectrum has **notches at frequencies near the zeros** of $B(z)$.
 
 A crucial property: the autocorrelation of an MA($q$) process is **exactly zero for lags $\lvert l\rvert > q$**:
 
-$$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-\lvert l\rvert} b_k b_{k+\lvert l\rvert}^* & \lvert l\rvert \le q \\ 0 & \lvert l\rvert > q \end{cases}$$
+$$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-\lvert l\rvert} b_k b_{k+\lvert l\rvert}^{\ast} & \lvert l\rvert \le q \\ 0 & \lvert l\rvert > q \end{cases}$$
 
 (where $b_0 = 1$). This **finite memory** property makes MA processes well-suited for modeling processes where sample-to-sample dependence dies out quickly.
 
@@ -921,7 +921,7 @@ $$\boldsymbol{\Sigma}_w = E\lbrace \mathbf{w}\mathbf{w}^H\rbrace = \mathbf{Q}_x^
 
 The transformed vector $\mathbf{w}$ has:
 - **Zero mean:** $E\lbrace \mathbf{w}\rbrace = \mathbf{0}$
-- **Uncorrelated components:** $E\lbrace w_i w_j^*\rbrace = 0$ for $i \ne j$
+- **Uncorrelated components:** $E\lbrace w_i w_j^{\ast}\rbrace = 0$ for $i \ne j$
 - **Component variances equal to eigenvalues:** $E\lbrace \lvert w_i\rvert^2\rbrace = \lambda_i$
 
 > ![Figure 6.1](./CourseADSP2026/Fig/Chapter_2/fig_6_1.png)
@@ -1065,11 +1065,16 @@ Given $N$ samples $\lbrace x(0), x(1), \ldots, x(N-1)\rbrace$ of an ergodic WSS 
 
 $$\hat{\mu}_x = \frac{1}{N}\sum_{n=0}^{N-1} x(n)$$
 
-This is unbiased ($E\lbrace \hat{\mu}_x\rbrace = \mu_x$) and consistent (variance $\to 0$ as $N\to\infty$, provided $\sum_{l=-\infty}^{\infty}\lvert\gamma_x(l)\rvert < \infty$).
+This estimate has two key properties:
+
+- **Unbiased:** $E\lbrace \hat{\mu}_x\rbrace = \mu_x$.
+- **Consistent:** its variance satisfies $\operatorname{var}(\hat{\mu}_x)\to 0$ as $N\to\infty$, provided
+
+$$\sum_{l=-\infty}^{\infty}\lvert\gamma_x(l)\rvert < \infty.$$
 
 ### Sample Autocorrelation — Biased Estimate
 
-$$\hat{r}_x(l) = \frac{1}{N}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^*(n), \qquad \lvert l\rvert \le N-1$$
+$$\hat{r}_x(l) = \frac{1}{N}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^{\ast}(n), \qquad \lvert l\rvert \le N-1$$
 
 The division by $N$ (not $N-\lvert l\rvert$) makes this a **biased** estimate:
 
@@ -1079,7 +1084,7 @@ But it is **asymptotically unbiased** as $N \to \infty$, and — more importantl
 
 ### Sample Autocorrelation — Unbiased Estimate
 
-$$\hat{r}_x^{(\text{unb})}(l) = \frac{1}{N-\lvert l\rvert}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^*(n)$$
+$$\hat{r}_x^{(\text{unb})}(l) = \frac{1}{N-\lvert l\rvert}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^{\ast}(n)$$
 
 This is unbiased but may yield a non-positive-definite matrix — leading to unstable models. It also has higher variance at large lags (few samples available).
 
@@ -1136,7 +1141,7 @@ When $\mathbf{W} = \boldsymbol{\Sigma}_e^{-1}$ (inverse of the error covariance)
 
 We seek the linear estimator $\hat{\boldsymbol{\theta}} = \mathbf{W}\mathbf{x} + \mathbf{b}$ that minimizes the mean-squared error $E\lbrace \lvert\hat{\theta}_i - \theta_i\rvert^2\rbrace$. The optimal estimator satisfies the **orthogonality principle**:
 
-$$E\lbrace (\hat{\theta}_i - \theta_i)\, x(n)^*\rbrace = 0 \quad \text{for all } n$$
+$$E\lbrace (\hat{\theta}_i - \theta_i)\, x^{\ast}(n)\rbrace = 0 \quad \text{for all } n$$
 
 **Physical meaning:** The estimation error must be **uncorrelated with every observation** $x(n)$. If any observation were correlated with the error, we could improve the estimate by using that observation more aggressively. At the optimum, we have already extracted all the information that the observations carry.
 
