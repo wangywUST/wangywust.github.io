@@ -1985,7 +1985,9 @@ Given $H(z)$ with poles $\lbrace p_k\rbrace$ (all inside the unit circle) and ze
 The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase.
 
 **Step 3** — Construct $H_{ap}(z) = H(z)/H_m(z)$:
-- For each $c \in \mathcal{Z}_{out}$: $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^{\ast}$ (inside) — exactly one allpass factor $\dfrac{z^{-1} - c^{\ast}}{1 - c\, z^{-1}}$
+- For each $c \in \mathcal{Z}_{out}$, $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^{\ast}$ (inside) - exactly one allpass factor:
+
+  $$\dfrac{z^{-1} - c^{\ast}}{1 - c\, z^{-1}}$$
 
 **Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
 
