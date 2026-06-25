@@ -26,30 +26,30 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 | Symbol | Definition |
 |--------|-----------|
-| $S = \{\zeta_1, \zeta_2, \ldots\}$ | Sample space (universal set of all outcomes) |
+| $S = \lbrace \zeta_1, \zeta_2, \ldots\rbrace$ | Sample space (universal set of all outcomes) |
 | $\zeta$ | A random outcome (element of the abstract probability space) |
 | $x(\zeta)$ | Random variable: a mapping from outcome $\zeta$ to a real number $x$ |
-| $F_x(x) \triangleq \Pr\{x(\zeta) \le x\}$ | Cumulative distribution function (CDF) |
+| $F_x(x) \triangleq \Pr\lbrace x(\zeta) \le x\rbrace$ | Cumulative distribution function (CDF) |
 | $f_x(x) = dF_x(x)/dx$ | Probability density function (PDF) |
-| $p_k = \Pr\{x(\zeta) = x_k\}$ | Probability mass function (PMF), for discrete-valued RVs |
-| $\mu_x = E\{x(\zeta)\}$ | Mean (first moment) of the random variable $x(\zeta)$ |
-| $\sigma_x^2 = E\{\lvert x - \mu_x\rvert^2\}$ | Variance (second central moment) |
+| $p_k = \Pr\lbrace x(\zeta) = x_k\rbrace$ | Probability mass function (PMF), for discrete-valued RVs |
+| $\mu_x = E\lbrace x(\zeta)\rbrace$ | Mean (first moment) of the random variable $x(\zeta)$ |
+| $\sigma_x^2 = E\lbrace \lvert x - \mu_x\rvert^2\rbrace$ | Variance (second central moment) |
 | $\sigma_x$ | Standard deviation |
-| $r_x^{(m)} = E\{x^m(\zeta)\}$ | $m$-th order moment |
-| $\gamma_x^{(m)} = E\{(x-\mu_x)^m\}$ | $m$-th order central moment |
+| $r_x^{(m)} = E\lbrace x^m(\zeta)\rbrace$ | $m$-th order moment |
+| $\gamma_x^{(m)} = E\lbrace (x-\mu_x)^m\rbrace$ | $m$-th order central moment |
 | $\tilde{\kappa}_x^{(3)}$ | Skewness (normalized 3rd central moment) |
 | $\tilde{\kappa}_x^{(4)}$ | Kurtosis (normalized 4th central moment $-3$) |
-| $\Phi_x(\xi) = E\{e^{j\xi x(\zeta)}\}$ | Characteristic function |
+| $\Phi_x(\xi) = E\lbrace e^{j\xi x(\zeta)}\rbrace$ | Characteristic function |
 
 ### Random Vectors
 
 | Symbol | Definition |
 |--------|-----------|
 | $\mathbf{x}(\zeta) = [x_1(\zeta),\ldots,x_M(\zeta)]^T$ | Random vector of dimension $M$ |
-| $\boldsymbol{\mu}_x = E\{\mathbf{x}\}$ | Mean vector |
-| $\mathbf{R}_x = E\{\mathbf{x}\mathbf{x}^H\}$ | Correlation matrix ($M\times M$, Hermitian non-negative definite) |
-| $\boldsymbol{\Sigma}_x = E\{(\mathbf{x}-\boldsymbol{\mu}_x)(\mathbf{x}-\boldsymbol{\mu}_x)^H\}$ | Covariance matrix |
-| $r_{x_i x_j} = E\{x_i x_j^*\}$ | Cross-correlation between $x_i$ and $x_j$ |
+| $\boldsymbol{\mu}_x = E\lbrace \mathbf{x}\rbrace$ | Mean vector |
+| $\mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace$ | Correlation matrix ($M\times M$, Hermitian non-negative definite) |
+| $\boldsymbol{\Sigma}_x = E\lbrace (\mathbf{x}-\boldsymbol{\mu}_x)(\mathbf{x}-\boldsymbol{\mu}_x)^H\rbrace$ | Covariance matrix |
+| $r_{x_i x_j} = E\lbrace x_i x_j^*\rbrace$ | Cross-correlation between $x_i$ and $x_j$ |
 | $\gamma_{x_i x_j}$ | Cross-covariance between $x_i$ and $x_j$ |
 | $\rho_{x_i x_j} = \gamma_{x_i x_j}/(\sigma_{x_i}\sigma_{x_j})$ | Correlation coefficient, $\lvert\rho\rvert\le 1$ |
 
@@ -58,16 +58,16 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | Symbol | Definition |
 |--------|-----------|
 | $x(n) \equiv x(n,\zeta)$ | Discrete-time stochastic process (random sequence) |
-| $\mu_x(n) = E\{x(n)\}$ | Mean function (may be time-varying) |
-| $\sigma_x^2(n) = E\{\lvert x(n)-\mu_x(n)\rvert^2\}$ | Variance function |
-| $r_{xx}(n_1, n_2) = E\{x(n_1)x^*(n_2)\}$ | Autocorrelation function |
+| $\mu_x(n) = E\lbrace x(n)\rbrace$ | Mean function (may be time-varying) |
+| $\sigma_x^2(n) = E\lbrace \lvert x(n)-\mu_x(n)\rvert^2\rbrace$ | Variance function |
+| $r_{xx}(n_1, n_2) = E\lbrace x(n_1)x^*(n_2)\rbrace$ | Autocorrelation function |
 | $\gamma_{xx}(n_1, n_2)$ | Autocovariance function |
-| $r_{xy}(n_1, n_2) = E\{x(n_1)y^*(n_2)\}$ | Cross-correlation function |
+| $r_{xy}(n_1, n_2) = E\lbrace x(n_1)y^*(n_2)\rbrace$ | Cross-correlation function |
 | $\gamma_{xy}(n_1, n_2)$ | Cross-covariance function |
 | $\rho_{xy}(n_1,n_2)$ | Normalized cross-correlation coefficient |
-| $r_x(l) = E\{x(n+l)x^*(n)\}$ | WSS autocorrelation (function of lag $l$ only) |
+| $r_x(l) = E\lbrace x(n+l)x^*(n)\rbrace$ | WSS autocorrelation (function of lag $l$ only) |
 | $\gamma_x(l) = r_x(l) - \lvert\mu_x\rvert^2$ | WSS autocovariance |
-| $r_{xy}(l) = E\{x(n)y^*(n-l)\}$ | WSS cross-correlation |
+| $r_{xy}(l) = E\lbrace x(n)y^*(n-l)\rbrace$ | WSS cross-correlation |
 
 ### Power Spectral Density and z-Domain
 
@@ -89,10 +89,10 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 |--------|-----------|
 | $\mathbf{R}_x$ | Autocorrelation matrix of stationary $x(n)$: Hermitian, Toeplitz, non-negative definite |
 | $\mathbf{Q}_x = [\mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_M]$ | Eigenmatrix (unitary, columns are eigenvectors of $\mathbf{R}_x$) |
-| $\boldsymbol{\Lambda}_x = \mathrm{diag}\{\lambda_1, \ldots, \lambda_M\}$ | Diagonal matrix of eigenvalues, $\lambda_i \ge 0$ |
+| $\boldsymbol{\Lambda}_x = \mathrm{diag}\lbrace \lambda_1, \ldots, \lambda_M\rbrace$ | Diagonal matrix of eigenvalues, $\lambda_i \ge 0$ |
 | $\mathbf{R}_x = \mathbf{Q}_x \boldsymbol{\Lambda}_x \mathbf{Q}_x^H$ | Eigendecomposition of the correlation matrix |
 | $\mathbf{L}$ | Unit lower triangular matrix in LDL$^H$ decomposition |
-| $\mathbf{D}_L = \mathrm{diag}\{\xi_1,\ldots,\xi_M\}$ | Diagonal matrix with positive elements (LDL$^H$ decomposition) |
+| $\mathbf{D}_L = \mathrm{diag}\lbrace \xi_1,\ldots,\xi_M\rbrace$ | Diagonal matrix with positive elements (LDL$^H$ decomposition) |
 
 ### Linear Signal Models
 
@@ -110,8 +110,8 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | Symbol | Definition |
 |--------|-----------|
 | $\hat{\theta}$ | Estimate of the deterministic parameter $\theta$ |
-| $b(\hat{\theta}) = E\{\hat{\theta}\} - \theta$ | Bias of the estimator |
-| $\mathrm{MSE}(\hat{\theta}) = E\{\lvert\hat{\theta}-\theta\rvert^2\}$ | Mean-squared error |
+| $b(\hat{\theta}) = E\lbrace \hat{\theta}\rbrace - \theta$ | Bias of the estimator |
+| $\mathrm{MSE}(\hat{\theta}) = E\lbrace \lvert\hat{\theta}-\theta\rvert^2\rbrace$ | Mean-squared error |
 | $\mathrm{CRLB}$ | Cramér–Rao lower bound on the estimator variance |
 | $\mathbf{J}(\boldsymbol{\theta})$ | Fisher information matrix |
 | $\mathbf{A}^T, \mathbf{A}^H$ | Transpose and Hermitian (conjugate) transpose |
@@ -132,7 +132,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 In engineering, we must handle random phenomena — the amplitude of acoustic noise, the path delay of a radar return, the channel coefficient in a wireless link — in a quantitative way. The theory of probability begins with an abstract probability space $(S, \mathcal{F}, \Pr)$, where $S$ is the sample space of all possible outcomes $\zeta$. This abstraction is difficult to manipulate with calculus. A **random variable** solves this problem by mapping each abstract outcome to a number on the real line.
 
-> **Definition 2.1 (Random Variable).** A *random variable* $x(\zeta)$ is a function that assigns a real number $x$ to every outcome $\zeta \in S$, satisfying: (1) the set $\{x(\zeta) \le x\}$ is an event in $S$ for every $x$; (2) $\Pr\{x(\zeta)=\pm\infty\}=0$.
+> **Definition 2.1 (Random Variable).** A *random variable* $x(\zeta)$ is a function that assigns a real number $x$ to every outcome $\zeta \in S$, satisfying: (1) the set $\lbrace x(\zeta) \le x\rbrace$ is an event in $S$ for every $x$; (2) $\Pr\lbrace x(\zeta)=\pm\infty\rbrace=0$.
 
 > ![Figure 1.1](./CourseADSP2026/Fig/fig_3_1.png)
 >
@@ -142,7 +142,7 @@ In engineering, we must handle random phenomena — the amplitude of acoustic no
 
 ### Cumulative Distribution Function (CDF)
 
-$$\boxed{F_x(x) \triangleq \Pr\{x(\zeta) \le x\}}$$
+$$\boxed{F_x(x) \triangleq \Pr\lbrace x(\zeta) \le x\rbrace}$$
 
 Properties of any valid CDF:
 - $0 \le F_x(x) \le 1$
@@ -157,47 +157,47 @@ $$\boxed{f_x(x) \triangleq \frac{dF_x(x)}{dx}}$$
 
 The PDF is **not** a probability by itself; to get a probability, you must integrate it over an interval:
 
-$$\Pr\{x_1 < x(\zeta) \le x_2\} = F_x(x_2) - F_x(x_1) = \int_{x_1}^{x_2} f_x(x)\, dx$$
+$$\Pr\lbrace x_1 < x(\zeta) \le x_2\rbrace = F_x(x_2) - F_x(x_1) = \int_{x_1}^{x_2} f_x(x)\, dx$$
 
 Any valid PDF satisfies:
 $$f_x(x) \ge 0 \quad \text{and} \quad \int_{-\infty}^{+\infty} f_x(x)\, dx = 1$$
 
-For **discrete-valued** random variables, the **probability mass function (PMF)** $p_k = \Pr\{x(\zeta) = x_k\}$ replaces the PDF. We can unify both cases by allowing impulses in the PDF: $f_x(x) = \sum_k p_k \delta(x - x_k)$.
+For **discrete-valued** random variables, the **probability mass function (PMF)** $p_k = \Pr\lbrace x(\zeta) = x_k\rbrace$ replaces the PDF. We can unify both cases by allowing impulses in the PDF: $f_x(x) = \sum_k p_k \delta(x - x_k)$.
 
 ---
 
 ## 1.2 Statistical Averages (Moments)
 
-Rather than specifying the entire PDF, it is often sufficient to summarize a random variable by a few numerical descriptors — its **moments**. These are computed via the **expectation operator** $E\{\cdot\}$.
+Rather than specifying the entire PDF, it is often sufficient to summarize a random variable by a few numerical descriptors — its **moments**. These are computed via the **expectation operator** $E\lbrace \cdot\rbrace$.
 
 ### Mean (First Moment)
 
-$$\boxed{\mu_x = E\{x(\zeta)\} = \int_{-\infty}^{+\infty} x\, f_x(x)\, dx}$$
+$$\boxed{\mu_x = E\lbrace x(\zeta)\rbrace = \int_{-\infty}^{+\infty} x\, f_x(x)\, dx}$$
 
 The mean $\mu_x$ is the "center of gravity" of the density function $f_x(x)$ — the location around which the random variable tends to cluster.
 
-**Key property (linearity):** $E\{\alpha x(\zeta) + \beta\} = \alpha \mu_x + \beta$.
+**Key property (linearity):** $E\lbrace \alpha x(\zeta) + \beta\rbrace = \alpha \mu_x + \beta$.
 
 ### Moments and Central Moments
 
-The **$m$-th moment** is $r_x^{(m)} = E\{x^m(\zeta)\}$. In particular:
+The **$m$-th moment** is $r_x^{(m)} = E\lbrace x^m(\zeta)\rbrace$. In particular:
 - $r_x^{(0)} = 1$ (normalization)
 - $r_x^{(1)} = \mu_x$ (mean)
-- $r_x^{(2)} = E\{x^2\}$ (**mean-square value** — total average power if $x$ is a signal)
+- $r_x^{(2)} = E\lbrace x^2\rbrace$ (**mean-square value** — total average power if $x$ is a signal)
 
-The **$m$-th central moment** measures spread around the mean: $\gamma_x^{(m)} = E\{(x - \mu_x)^m\}$. The relationship between moments and central moments is:
+The **$m$-th central moment** measures spread around the mean: $\gamma_x^{(m)} = E\lbrace (x - \mu_x)^m\rbrace$. The relationship between moments and central moments is:
 
 $$\gamma_x^{(m)} = \sum_{k=0}^{m} \binom{m}{k} (-1)^k \mu_x^k\, r_x^{(m-k)}$$
 
 ### Variance and Standard Deviation
 
-$$\boxed{\sigma_x^2 \triangleq \gamma_x^{(2)} = E\{|x(\zeta) - \mu_x|^2\} = E\{x^2\} - \mu_x^2}$$
+$$\boxed{\sigma_x^2 \triangleq \gamma_x^{(2)} = E\lbrace |x(\zeta) - \mu_x|^2\rbrace = E\lbrace x^2\rbrace - \mu_x^2}$$
 
 The variance $\sigma_x^2$ measures the **spread** of the distribution around the mean. The **standard deviation** $\sigma_x = \sqrt{\sigma_x^2}$ has the same physical units as $x(\zeta)$.
 
-> **Physical meaning:** $\sigma_x^2$ is the AC power of the random variable (the DC component having been removed), while $r_x^{(2)} = E\{x^2\}$ is the total average power:
+> **Physical meaning:** $\sigma_x^2$ is the AC power of the random variable (the DC component having been removed), while $r_x^{(2)} = E\lbrace x^2\rbrace$ is the total average power:
 >
-> $$\underbrace{E\{x^2\}}_{\text{total power}} = \underbrace{\mu_x^2}_{\text{DC power}} + \underbrace{\sigma_x^2}_{\text{AC power}}$$
+> $$\underbrace{E\lbrace x^2\rbrace}_{\text{total power}} = \underbrace{\mu_x^2}_{\text{DC power}} + \underbrace{\sigma_x^2}_{\text{AC power}}$$
 
 ### Higher-Order Descriptors
 
@@ -207,7 +207,7 @@ The variance $\sigma_x^2$ measures the **spread** of the distribution around the
 
 **Skewness** characterizes the asymmetry of the distribution:
 
-$$\tilde{\kappa}_x^{(3)} \triangleq \frac{\gamma_x^{(3)}}{\sigma_x^3} = E\!\left\{\left(\frac{x - \mu_x}{\sigma_x}\right)^3\right\}$$
+$$\tilde{\kappa}_x^{(3)} \triangleq \frac{\gamma_x^{(3)}}{\sigma_x^3} = E\!\left\lbrace \left(\frac{x - \mu_x}{\sigma_x}\right)^3\right\rbrace$$
 
 - $\tilde{\kappa}_x^{(3)} = 0$: symmetric distribution
 - $\tilde{\kappa}_x^{(3)} > 0$: right-tailed (leans to the right)
@@ -221,7 +221,7 @@ The $-3$ normalization makes the kurtosis zero for a Gaussian. Distributions wit
 
 **Chebyshev's Inequality:** A universal (distribution-free) bound on how far a random variable can stray from its mean:
 
-$$\Pr\{|x(\zeta) - \mu_x| \ge k\sigma_x\} \le \frac{1}{k^2}, \qquad k > 0$$
+$$\Pr\lbrace |x(\zeta) - \mu_x| \ge k\sigma_x\rbrace \le \frac{1}{k^2}, \qquad k > 0$$
 
 ---
 
@@ -235,11 +235,11 @@ $$f_{x_1}(x_1) = \int_{-\infty}^{+\infty} f_{x_1 x_2}(x_1, x_2)\, dx_2$$
 
 The **cross-correlation** between $x_1(\zeta)$ and $x_2(\zeta)$:
 
-$$r_{x_1 x_2} = E\{x_1(\zeta)\, x_2^*(\zeta)\} = \int\!\!\int x_1 x_2^*\, f_{x_1 x_2}(x_1, x_2)\, dx_1\, dx_2$$
+$$r_{x_1 x_2} = E\lbrace x_1(\zeta)\, x_2^*(\zeta)\rbrace = \int\!\!\int x_1 x_2^*\, f_{x_1 x_2}(x_1, x_2)\, dx_1\, dx_2$$
 
 The **cross-covariance** (centered version):
 
-$$\gamma_{x_1 x_2} = E\{(x_1 - \mu_{x_1})(x_2 - \mu_{x_2})^*\} = r_{x_1 x_2} - \mu_{x_1}\mu_{x_2}^*$$
+$$\gamma_{x_1 x_2} = E\lbrace (x_1 - \mu_{x_1})(x_2 - \mu_{x_2})^*\rbrace = r_{x_1 x_2} - \mu_{x_1}\mu_{x_2}^*$$
 
 The **correlation coefficient** (normalized to $[-1, 1]$):
 
@@ -287,7 +287,7 @@ Used to model phase angles (uniformly on $[0, 2\pi]$) and to generate other dist
 
 ### Bernoulli Distribution
 
-A discrete-valued distribution with $p_1 = \Pr\{x = +1\} = 1/2$, $p_2 = \Pr\{x = -1\} = 1/2$. Models binary random variables such as coin-flip outcomes. Used as the excitation for Bernoulli white noise.
+A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2 = \Pr\lbrace x = -1\rbrace = 1/2$. Models binary random variables such as coin-flip outcomes. Used as the excitation for Bernoulli white noise.
 
 ---
 
@@ -301,7 +301,7 @@ A **discrete-time stochastic process** (or random sequence) is a family of rando
 
 > **Definition 2.2 (Random Sequence).** A function $x(n, \zeta)$, $n \in \mathbb{Z}$, is a random sequence if, for any fixed time $n_0$, the quantity $x(n_0, \zeta)$ is a random variable.
 
-The complete collection of all possible sequences $\{x(n, \zeta)\}$ for all $\zeta \in S$ is called the **ensemble**. Each individual sequence $x(n, \zeta_k)$ for a specific $\zeta_k$ is one **realization** (or sample function) of the process.
+The complete collection of all possible sequences $\lbrace x(n, \zeta)\rbrace$ for all $\zeta \in S$ is called the **ensemble**. Each individual sequence $x(n, \zeta_k)$ for a specific $\zeta_k$ is one **realization** (or sample function) of the process.
 
 > ![Figure 2.1](./CourseADSP2026/Fig/fig_3_7.png)
 >
@@ -326,17 +326,17 @@ There are four possible interpretations of $x(n, \zeta)$, depending on whether $
 
 ### Mean and Variance
 
-$$\mu_x(n) = E\{x(n)\} = \int_{-\infty}^{+\infty} x\, f_x(x; n)\, dx$$
+$$\mu_x(n) = E\lbrace x(n)\rbrace = \int_{-\infty}^{+\infty} x\, f_x(x; n)\, dx$$
 
-$$\sigma_x^2(n) = E\{|x(n) - \mu_x(n)|^2\} = E\{|x(n)|^2\} - |\mu_x(n)|^2$$
+$$\sigma_x^2(n) = E\lbrace |x(n) - \mu_x(n)|^2\rbrace = E\lbrace |x(n)|^2\rbrace - |\mu_x(n)|^2$$
 
 Both $\mu_x(n)$ and $\sigma_x^2(n)$ are, in general, functions of time $n$.
 
 ### Autocorrelation and Autocovariance
 
-$$\boxed{r_{xx}(n_1, n_2) = E\{x(n_1)\, x^*(n_2)\}}$$
+$$\boxed{r_{xx}(n_1, n_2) = E\lbrace x(n_1)\, x^*(n_2)\rbrace}$$
 
-$$\gamma_{xx}(n_1, n_2) = E\{[x(n_1)-\mu_x(n_1)][x(n_2)-\mu_x(n_2)]^*\} = r_{xx}(n_1, n_2) - \mu_x(n_1)\mu_x^*(n_2)$$
+$$\gamma_{xx}(n_1, n_2) = E\lbrace [x(n_1)-\mu_x(n_1)][x(n_2)-\mu_x(n_2)]^*\rbrace = r_{xx}(n_1, n_2) - \mu_x(n_1)\mu_x^*(n_2)$$
 
 The autocorrelation $r_{xx}(n_1, n_2)$ is a function on a **two-dimensional** grid of time indices.
 
@@ -344,9 +344,9 @@ The autocorrelation $r_{xx}(n_1, n_2)$ is a function on a **two-dimensional** gr
 
 For two processes $x(n)$ and $y(n)$ defined on the same probability space:
 
-$$r_{xy}(n_1, n_2) = E\{x(n_1)\, y^*(n_2)\}$$
+$$r_{xy}(n_1, n_2) = E\lbrace x(n_1)\, y^*(n_2)\rbrace$$
 
-$$\gamma_{xy}(n_1, n_2) = E\{[x(n_1) - \mu_x(n_1)][y(n_2) - \mu_y(n_2)]^*\}$$
+$$\gamma_{xy}(n_1, n_2) = E\lbrace [x(n_1) - \mu_x(n_1)][y(n_2) - \mu_y(n_2)]^*\rbrace$$
 
 $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)} \quad \text{(normalized, } |\rho|\le 1\text{)}$$
 
@@ -356,7 +356,7 @@ $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)}
 |------|-----------|-------------|
 | **Independent** | All sample values are mutually independent | $f_x(x_1,\ldots,x_k; n_1,\ldots,n_k) = \prod_i f_i(x_i; n_i)$ |
 | **Uncorrelated** | Zero cross-covariance for $n_1 \ne n_2$ | $\gamma_x(n_1, n_2) = \sigma_x^2(n_1)\delta(n_1-n_2)$ |
-| **Orthogonal** | Zero cross-correlation for $n_1 \ne n_2$ | $r_x(n_1, n_2) = E\{\lvert x(n_1)\rvert^2\}\delta(n_1-n_2)$ |
+| **Orthogonal** | Zero cross-correlation for $n_1 \ne n_2$ | $r_x(n_1, n_2) = E\lbrace \lvert x(n_1)\rvert^2\rbrace\delta(n_1-n_2)$ |
 | **Gaussian** | All finite-order joint distributions are Gaussian | Fully characterized by mean and correlation |
 
 > **Relationship between the types:** Independent $\Rightarrow$ uncorrelated $\Rightarrow$ orthogonal (for zero-mean processes). The converses do not hold in general, but for **Gaussian** processes, uncorrelated $\Leftrightarrow$ independent.
@@ -394,11 +394,11 @@ SSS is a very strong condition — it requires all statistics at all orders to b
 For most engineering applications, a weaker form of stationarity is both sufficient and practically verifiable:
 
 > **Definition 2.4 (Wide-Sense Stationarity).** A random signal $x(n)$ is **wide-sense stationary (WSS)** if:
-> 1. Its mean is constant: $E\{x(n)\} = \mu_x$ for all $n$
+> 1. Its mean is constant: $E\lbrace x(n)\rbrace = \mu_x$ for all $n$
 > 2. Its variance is constant: $\text{var}[x(n)] = \sigma_x^2$ for all $n$
 > 3. Its autocorrelation depends only on the lag $l = n_1 - n_2$:
 >
-> $$\boxed{r_x(n_1, n_2) = r_x(n_1 - n_2) = r_x(l) = E\{x(n+l)\, x^*(n)\}}$$
+> $$\boxed{r_x(n_1, n_2) = r_x(n_1 - n_2) = r_x(l) = E\lbrace x(n+l)\, x^*(n)\rbrace}$$
 
 **Consequence:** For a WSS process, the two-dimensional autocorrelation collapses to a one-dimensional function of lag $l$ alone. The autocovariance is then:
 
@@ -406,7 +406,7 @@ $$\gamma_x(l) = r_x(l) - |\mu_x|^2$$
 
 The **two jointly WSS processes** $x(n)$ and $y(n)$ have a cross-correlation that depends only on lag:
 
-$$r_{xy}(l) = E\{x(n)\, y^*(n-l)\}$$
+$$r_{xy}(l) = E\lbrace x(n)\, y^*(n-l)\rbrace$$
 
 > **SSS vs. WSS:** SSS implies WSS, but WSS does not generally imply SSS. The exception is Gaussian processes: for them, WSS $\Leftrightarrow$ SSS, because a Gaussian distribution is completely determined by its first- and second-order moments.
 
@@ -438,7 +438,7 @@ For a WSS process, we frequently work with the **autocorrelation matrix** formed
 
 $$\mathbf{x}(n) = [x(n),\ x(n-1),\ \ldots,\ x(n-M+1)]^T$$
 
-The $M\times M$ correlation matrix $\mathbf{R}_x = E\{\mathbf{x}(n)\mathbf{x}^H(n)\}$ is:
+The $M\times M$ correlation matrix $\mathbf{R}_x = E\lbrace \mathbf{x}(n)\mathbf{x}^H(n)\rbrace$ is:
 
 $$\mathbf{R}_x = \begin{bmatrix} r_x(0) & r_x(1) & r_x(2) & \cdots & r_x(M-1) \\ r_x^*(1) & r_x(0) & r_x(1) & \cdots & r_x(M-2) \\ r_x^*(2) & r_x^*(1) & r_x(0) & \cdots & r_x(M-3) \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ r_x^*(M-1) & r_x^*(M-2) & r_x^*(M-3) & \cdots & r_x(0) \end{bmatrix}$$
 
@@ -464,7 +464,7 @@ A fundamental practical problem: in real applications, we never observe the enti
 ### Ensemble Averages vs. Time Averages
 
 **Ensemble average** (theoretical): freeze time $n_0$, average over all $\zeta$:
-$$\mu_x(n_0) = E\{x(n_0)\} \quad \text{(requires the ensemble)}$$
+$$\mu_x(n_0) = E\lbrace x(n_0)\rbrace \quad \text{(requires the ensemble)}$$
 
 **Time average** (practical): fix the realization $\zeta_k$, average over time:
 $$\langle x(n)\rangle = \lim_{N\to\infty} \frac{1}{2N+1} \sum_{n=-N}^{N} x(n, \zeta_k) \quad \text{(only one realization needed)}$$
@@ -473,13 +473,13 @@ Any time average is itself a random variable (it depends on which realization $\
 
 ### Ergodic Processes
 
-> **Definition 2.5 (Ergodic in the Mean).** $x(n)$ is ergodic in the mean if $\langle x(n)\rangle = E\{x(n)\}$, i.e., time averaging equals ensemble averaging.
+> **Definition 2.5 (Ergodic in the Mean).** $x(n)$ is ergodic in the mean if $\langle x(n)\rangle = E\lbrace x(n)\rbrace$, i.e., time averaging equals ensemble averaging.
 
-> **Definition 2.6 (Ergodic in Correlation).** $x(n)$ is ergodic in correlation if $\langle x(n)x^*(n-l)\rangle = E\{x(n)x^*(n-l)\} = r_x(l)$.
+> **Definition 2.6 (Ergodic in Correlation).** $x(n)$ is ergodic in correlation if $\langle x(n)x^*(n-l)\rangle = E\lbrace x(n)x^*(n-l)\rbrace = r_x(l)$.
 
 **Physical interpretation:** Ergodicity says that a single typical realization, observed long enough, visits all "states" of the process with the same frequency as the full ensemble would at any fixed time. A random sequence is ergodic in the mean if:
 
-$$\lim_{N\to\infty} E\!\left\{\left|\frac{1}{2N+1}\sum_{n=-N}^{N} x(n) - \mu_x\right|^2\right\} = 0 \qquad \text{(mean-square convergence)}$$
+$$\lim_{N\to\infty} E\!\left\lbrace \left|\frac{1}{2N+1}\sum_{n=-N}^{N} x(n) - \mu_x\right|^2\right\rbrace = 0 \qquad \text{(mean-square convergence)}$$
 
 This requires that the **autocovariance sequence decays** sufficiently fast: $\sum_{l=-\infty}^{\infty} |\gamma_x(l)| < \infty$.
 
@@ -487,7 +487,7 @@ This requires that the **autocovariance sequence decays** sufficiently fast: $\s
 > - **Stationarity** ensures that the statistics of $x(n)$ do not change over time.
 > - **Ergodicity** additionally ensures that any single realization, observed long enough, reflects those statistics.
 >
-> WSS does **not** imply ergodicity. Example: $x(n) = c$, where $c$ is a random constant drawn once and then held fixed forever. $x(n)$ is WSS (mean $E\{c\}$ is constant, autocorrelation $r_x(l) = E\{c^2\}$ doesn't depend on $l$), but it is **not** ergodic in the mean — the time average of any single realization is just $c$ itself, not $E\{c\}$.
+> WSS does **not** imply ergodicity. Example: $x(n) = c$, where $c$ is a random constant drawn once and then held fixed forever. $x(n)$ is WSS (mean $E\lbrace c\rbrace$ is constant, autocorrelation $r_x(l) = E\lbrace c^2\rbrace$ doesn't depend on $l$), but it is **not** ergodic in the mean — the time average of any single realization is just $c$ itself, not $E\lbrace c\rbrace$.
 
 In practice, however, almost all stationary processes encountered in engineering applications are also ergodic. So from now on we will use ensemble averages and time averages interchangeably when the process is WSS.
 
@@ -499,7 +499,7 @@ The simplest possible random sequence is one with no temporal structure:
 
 > **Definition 2.7 (White Noise).** A process $w(n)$ is a (second-order) white noise with mean $\mu_w$ and variance $\sigma_w^2$, written $w(n) \sim \mathrm{WN}(\mu_w, \sigma_w^2)$, if and only if:
 >
-> $$\boxed{r_w(l) = E\{w(n)w^*(n-l)\} = \sigma_w^2\, \delta(l)}$$
+> $$\boxed{r_w(l) = E\lbrace w(n)w^*(n-l)\rbrace = \sigma_w^2\, \delta(l)}$$
 
 The autocorrelation is nonzero **only at zero lag** — any two different samples are uncorrelated. Equivalently, the **power spectral density is flat**:
 
@@ -527,7 +527,7 @@ $$r_x(l) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, e^{j\omega l}\, d\
 
 The total average power equals the area under the PSD:
 
-$$E\{|x(n)|^2\} = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
+$$E\lbrace |x(n)|^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
 
 ### Properties of the PSD
 
@@ -552,7 +552,7 @@ From the conjugate symmetry $r_x(l) = r_x^*(-l)$, for real $r_x(l)$:
 
 $$R_x(z) = R_x\!\left(\frac{1}{z}\right)$$
 
-This **palindrome property** will be central to spectral factorization (§2.4): the poles and zeros of $R_x(z)$ appear in **reciprocal pairs** $\{z_0, 1/z_0\}$.
+This **palindrome property** will be central to spectral factorization (§2.4): the poles and zeros of $R_x(z)$ appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$.
 
 **Example.** Consider $r_x(l) = a^{|l|}$, $|a| < 1$. Then:
 
@@ -600,11 +600,11 @@ $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad
 
 When a random process $x(n)$ is applied as the input to a BIBO-stable LTI system with impulse response $h(n)$, each realization $x(n, \zeta_k)$ produces a deterministic output $y(n, \zeta_k) = h(n) * x(n, \zeta_k)$. The collection of all output realizations forms the **output stochastic process** $y(n)$.
 
-The fundamental theorem guarantees well-posedness: if $x(n)$ is stationary with $E\{|x(n)|\} < \infty$ and the system is BIBO-stable ($\sum_n |h(n)| < \infty$), then the output $y(n)$ converges absolutely with probability 1 and is also stationary.
+The fundamental theorem guarantees well-posedness: if $x(n)$ is stationary with $E\lbrace |x(n)|\rbrace < \infty$ and the system is BIBO-stable ($\sum_n |h(n)| < \infty$), then the output $y(n)$ converges absolutely with probability 1 and is also stationary.
 
 ### Output Mean
 
-$$\boxed{\mu_y = E\{y(n)\} = \sum_{k=-\infty}^{\infty} h(k)\, E\{x(n-k)\} = \mu_x \sum_{k=-\infty}^{\infty} h(k) = \mu_x\, H(e^{j0})}$$
+$$\boxed{\mu_y = E\lbrace y(n)\rbrace = \sum_{k=-\infty}^{\infty} h(k)\, E\lbrace x(n-k)\rbrace = \mu_x \sum_{k=-\infty}^{\infty} h(k) = \mu_x\, H(e^{j0})}$$
 
 The DC component of the output is the input DC scaled by the filter's DC gain $H(e^{j0})$.
 
@@ -612,7 +612,7 @@ The DC component of the output is the input DC scaled by the filter's DC gain $H
 
 Postmultiply both sides of $y(n) = \sum_k h(k) x(n-k)$ by $x^*(n-l)$ and take expectation:
 
-$$r_{yx}(l) = E\{y(n)\, x^*(n-l)\} = \sum_{k} h(k)\, E\{x(n-k)\, x^*(n-l)\} = \sum_k h(k)\, r_x(l-k)$$
+$$r_{yx}(l) = E\lbrace y(n)\, x^*(n-l)\rbrace = \sum_{k} h(k)\, E\lbrace x(n-k)\, x^*(n-l)\rbrace = \sum_k h(k)\, r_x(l-k)$$
 
 $$\boxed{r_{yx}(l) = h(l) * r_x(l)}$$
 
@@ -638,7 +638,7 @@ $$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
 Setting $l = 0$ in the output autocorrelation formula:
 
-$$\boxed{P_y = E\{|y(n)|^2\} = r_y(0) = \sum_{k=-\infty}^{\infty} r_h(k)\, r_x(-k) = \mathbf{h}^H \mathbf{R}_x \mathbf{h}}$$
+$$\boxed{P_y = E\lbrace |y(n)|^2\rbrace = r_y(0) = \sum_{k=-\infty}^{\infty} r_h(k)\, r_x(-k) = \mathbf{h}^H \mathbf{R}_x \mathbf{h}}$$
 
 where the last expression is the **quadratic form** for FIR filters with coefficient vector $\mathbf{h} = [h(0), \ldots, h(M-1)]^T$.
 
@@ -704,7 +704,7 @@ The answer is **yes** for any rational PSD satisfying the Paley–Wiener conditi
 
 ## 4.2 Pole-Zero Structure of the PSD
 
-From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\{z_0, 1/z_0\}$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\{z_0, z_0^*\}$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\{z_0,\ z_0^*,\ 1/z_0,\ 1/z_0^*\}$.
+From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\lbrace z_0, z_0^*\rbrace$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\lbrace z_0,\ z_0^*,\ 1/z_0,\ 1/z_0^*\rbrace$.
 
 On the unit circle ($|z_0| = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0$ for $|z_0|=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
 
@@ -718,9 +718,9 @@ On the unit circle ($|z_0| = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0
 
 On the unit circle: $R_x(e^{j\omega}) = \sigma_0^2 |H_+(e^{j\omega})|^2$.
 
-**Construction:** From each quadruple $\{z_0, z_0^*, 1/z_0, 1/z_0^*\}$:
-- Assign the **inner pair** $\{1/z_0^*, 1/z_0^{**}\} = \{1/z_0^*\}$ to $H_+(z)$ (inside the unit circle)
-- The **outer pair** $\{z_0, z_0^*\}$ goes to $H_+^*(1/z^*)$ automatically
+**Construction:** From each quadruple $\lbrace z_0, z_0^*, 1/z_0, 1/z_0^*\rbrace$:
+- Assign the **inner pair** $\lbrace 1/z_0^*, 1/z_0^{**}\rbrace = \lbrace 1/z_0^*\rbrace$ to $H_+(z)$ (inside the unit circle)
+- The **outer pair** $\lbrace z_0, z_0^*\rbrace$ goes to $H_+^*(1/z^*)$ automatically
 
 **Physical meaning of $H_+(z)$:** The minimum-phase spectral factor $H_+(z)$ is the **causal shaping filter** that generates the process $x(n)$ from white noise:
 
@@ -774,7 +774,7 @@ Multiplying the ARMA difference equation by $x^*(n-l)$ and taking expectations, 
 
 $$r_x(l) + \sum_{k=1}^{p} a_k r_x(l-k) = 0, \qquad l > q$$
 
-This is a system of linear equations in the unknown AR coefficients $\{a_k\}$ that becomes exploitable for ARMA estimation (Chapter 4).
+This is a system of linear equations in the unknown AR coefficients $\lbrace a_k\rbrace$ that becomes exploitable for ARMA estimation (Chapter 4).
 
 ---
 
@@ -907,16 +907,16 @@ The covariance matrix $\boldsymbol{\Sigma}_x$ is Hermitian and non-negative defi
 
 $$\boldsymbol{\Sigma}_x = \mathbf{Q}_x \boldsymbol{\Lambda}_x \mathbf{Q}_x^H$$
 
-where $\mathbf{Q}_x = [\mathbf{q}_1, \ldots, \mathbf{q}_M]$ is the unitary eigenmatrix (columns are orthonormal eigenvectors) and $\boldsymbol{\Lambda}_x = \mathrm{diag}\{\lambda_1, \ldots, \lambda_M\}$ has real non-negative eigenvalues.
+where $\mathbf{Q}_x = [\mathbf{q}_1, \ldots, \mathbf{q}_M]$ is the unitary eigenmatrix (columns are orthonormal eigenvectors) and $\boldsymbol{\Lambda}_x = \mathrm{diag}\lbrace \lambda_1, \ldots, \lambda_M\rbrace$ has real non-negative eigenvalues.
 
 Choose the **KL transform matrix** $\mathbf{A} = \mathbf{Q}_x$, i.e., $\mathbf{w} = \mathbf{Q}_x^H (\mathbf{x} - \boldsymbol{\mu}_x)$. Then:
 
-$$\boldsymbol{\Sigma}_w = E\{\mathbf{w}\mathbf{w}^H\} = \mathbf{Q}_x^H \boldsymbol{\Sigma}_x \mathbf{Q}_x = \boldsymbol{\Lambda}_x = \mathrm{diag}\{\lambda_1, \ldots, \lambda_M\}$$
+$$\boldsymbol{\Sigma}_w = E\lbrace \mathbf{w}\mathbf{w}^H\rbrace = \mathbf{Q}_x^H \boldsymbol{\Sigma}_x \mathbf{Q}_x = \boldsymbol{\Lambda}_x = \mathrm{diag}\lbrace \lambda_1, \ldots, \lambda_M\rbrace$$
 
 The transformed vector $\mathbf{w}$ has:
-- **Zero mean:** $E\{\mathbf{w}\} = \mathbf{0}$
-- **Uncorrelated components:** $E\{w_i w_j^*\} = 0$ for $i \ne j$
-- **Component variances equal to eigenvalues:** $E\{|w_i|^2\} = \lambda_i$
+- **Zero mean:** $E\lbrace \mathbf{w}\rbrace = \mathbf{0}$
+- **Uncorrelated components:** $E\lbrace w_i w_j^*\rbrace = 0$ for $i \ne j$
+- **Component variances equal to eigenvalues:** $E\lbrace |w_i|^2\rbrace = \lambda_i$
 
 > ![Figure 6.1](./CourseADSP2026/Fig/fig_3_11.png)
 >
@@ -930,7 +930,7 @@ $$\hat{\mathbf{x}} = \boldsymbol{\mu}_x + \sum_{i=1}^{K} w_i \mathbf{q}_i, \qqua
 
 The resulting MSE is:
 
-$$E_K = E\!\left\{\|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\} = \sum_{i=K+1}^{M} \lambda_i$$
+$$E_K = E\!\left\lbrace \|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\rbrace = \sum_{i=K+1}^{M} \lambda_i$$
 
 To minimize $E_K$, retain the $K$ eigenvectors with the **largest** eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_M$. This is **Principal Component Analysis (PCA)** — the KL transform is the optimal linear dimensionality reduction in the MSE sense.
 
@@ -994,7 +994,7 @@ where $c(0) = 1/\sqrt{2}$, $c(k) = 1$ for $k \ge 1$.
 
 ### Advantages over KL Transform
 
-- **Fixed basis:** The cosine functions $\{\cos((2n+1)k\pi/(2N))\}$ do not depend on the signal statistics.
+- **Fixed basis:** The cosine functions $\lbrace \cos((2n+1)k\pi/(2N))\rbrace$ do not depend on the signal statistics.
 - **Real-valued:** Unlike the DFT (which uses complex exponentials), the DCT operates entirely in the real domain — more efficient for real signals.
 - **Fast algorithm:** Can be computed as an $N$-point or $2N$-point FFT in $O(N\log N)$ time.
 - **Near-optimal for correlated signals:** Within 1–2 dB of the optimal KL transform for typical image/audio signals.
@@ -1015,13 +1015,13 @@ Let $\boldsymbol{\theta} = [\theta_1, \ldots, \theta_P]^T$ be a vector of **unkn
 
 ### Bias
 
-$$b(\hat{\theta}_i) = E\{\hat{\theta}_i\} - \theta_i$$
+$$b(\hat{\theta}_i) = E\lbrace \hat{\theta}_i\rbrace - \theta_i$$
 
 An estimator is **unbiased** if $b(\hat{\theta}_i) = 0$ — on average, it hits the correct value. Otherwise it is **biased**. An estimator is **asymptotically unbiased** if $b(\hat{\theta}_i) \to 0$ as $N \to \infty$.
 
 ### Variance and MSE
 
-$$\text{var}(\hat{\theta}_i) = E\{|\hat{\theta}_i - E\{\hat{\theta}_i\}|^2\}, \qquad \text{MSE}(\hat{\theta}_i) = E\{|\hat{\theta}_i - \theta_i|^2\}$$
+$$\text{var}(\hat{\theta}_i) = E\lbrace |\hat{\theta}_i - E\lbrace \hat{\theta}_i\rbrace|^2\rbrace, \qquad \text{MSE}(\hat{\theta}_i) = E\lbrace |\hat{\theta}_i - \theta_i|^2\rbrace$$
 
 $$\text{MSE} = \text{var}(\hat{\theta}_i) + b^2(\hat{\theta}_i)$$
 
@@ -1037,7 +1037,7 @@ A fundamental limit on how accurately any **unbiased** estimator can perform:
 >
 > where $\mathbf{J}(\boldsymbol{\theta})$ is the **Fisher information matrix** with elements:
 >
-> $$J_{ij}(\boldsymbol{\theta}) = E\!\left\{\frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i}\cdot\frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_j}\right\} = -E\!\left\{\frac{\partial^2 \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i \partial \theta_j}\right\}$$
+> $$J_{ij}(\boldsymbol{\theta}) = E\!\left\lbrace \frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i}\cdot\frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_j}\right\rbrace = -E\!\left\lbrace \frac{\partial^2 \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i \partial \theta_j}\right\rbrace$$
 
 The CRLB gives a performance benchmark: if we can achieve $\text{var}(\hat{\theta}) = [\mathbf{J}^{-1}]_{ii}$, the estimator is **efficient** (achieves the MVUE — minimum variance unbiased estimator). In general, achieving the CRLB requires the score function to have a specific form related to the estimator.
 
@@ -1045,7 +1045,7 @@ The CRLB gives a performance benchmark: if we can achieve $\text{var}(\hat{\thet
 
 An estimator $\hat{\theta}(x_1, \ldots, x_N)$ is **mean-square consistent** if:
 
-$$\lim_{N\to\infty} E\{|\hat{\theta}_N - \theta|^2\} = 0$$
+$$\lim_{N\to\infty} E\lbrace |\hat{\theta}_N - \theta|^2\rbrace = 0$$
 
 This requires both bias $\to 0$ and variance $\to 0$ as $N \to \infty$. A consistent estimator becomes arbitrarily accurate with enough data.
 
@@ -1055,11 +1055,11 @@ This requires both bias $\to 0$ and variance $\to 0$ as $N \to \infty$. A consis
 
 ### Sample Mean
 
-Given $N$ samples $\{x(0), x(1), \ldots, x(N-1)\}$ of an ergodic WSS process:
+Given $N$ samples $\lbrace x(0), x(1), \ldots, x(N-1)\rbrace$ of an ergodic WSS process:
 
 $$\hat{\mu}_x = \frac{1}{N}\sum_{n=0}^{N-1} x(n)$$
 
-This is unbiased ($E\{\hat{\mu}_x\} = \mu_x$) and consistent (variance $\to 0$ as $N\to\infty$, provided $\sum_{l=-\infty}^{\infty}|\gamma_x(l)| < \infty$).
+This is unbiased ($E\lbrace \hat{\mu}_x\rbrace = \mu_x$) and consistent (variance $\to 0$ as $N\to\infty$, provided $\sum_{l=-\infty}^{\infty}|\gamma_x(l)| < \infty$).
 
 ### Sample Autocorrelation — Biased Estimate
 
@@ -1067,7 +1067,7 @@ $$\hat{r}_x(l) = \frac{1}{N}\sum_{n=0}^{N-1-|l|} x(n+|l|)\, x^*(n), \qquad |l| \
 
 The division by $N$ (not $N-|l|$) makes this a **biased** estimate:
 
-$$E\{\hat{r}_x(l)\} = \frac{N - |l|}{N}\, r_x(l) \ne r_x(l)$$
+$$E\lbrace \hat{r}_x(l)\rbrace = \frac{N - |l|}{N}\, r_x(l) \ne r_x(l)$$
 
 But it is **asymptotically unbiased** as $N \to \infty$, and — more importantly — the resulting $N \times N$ estimated autocorrelation matrix $\hat{\mathbf{R}}_x$ is guaranteed to be **positive semi-definite** (nonnegative eigenvalues). This is crucial for stability in filter design.
 
@@ -1109,8 +1109,8 @@ where $\mathbf{H}^\dagger = (\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T$ is the **
 
 ### Properties of the LS Estimate
 
-1. **Unbiased:** $E\{\hat{\boldsymbol{\theta}}_{\mathrm{LS}}\} = \boldsymbol{\theta}$ (if errors have zero mean).
-2. **Error covariance:** $\boldsymbol{\Sigma}_{\hat{\theta}} = E\{(\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})(\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})^T\} = \sigma_e^2 (\mathbf{H}^T\mathbf{H})^{-1}$ (if errors are IID with variance $\sigma_e^2$).
+1. **Unbiased:** $E\lbrace \hat{\boldsymbol{\theta}}_{\mathrm{LS}}\rbrace = \boldsymbol{\theta}$ (if errors have zero mean).
+2. **Error covariance:** $\boldsymbol{\Sigma}_{\hat{\theta}} = E\lbrace (\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})(\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})^T\rbrace = \sigma_e^2 (\mathbf{H}^T\mathbf{H})^{-1}$ (if errors are IID with variance $\sigma_e^2$).
 3. **Gauss-Markov theorem:** Among all **linear unbiased** estimators, the LS estimate is the Best Linear Unbiased Estimator (BLUE) when errors are IID — it has the smallest variance for each parameter.
 4. **Minimum achieved cost:** $J(\hat{\boldsymbol{\theta}}_{\mathrm{LS}}) = \|\mathbf{x}\|^2 - \mathbf{x}^T\mathbf{H}(\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T\mathbf{x}$.
 
@@ -1128,9 +1128,9 @@ When $\mathbf{W} = \boldsymbol{\Sigma}_e^{-1}$ (inverse of the error covariance)
 
 ### Orthogonality Principle
 
-We seek the linear estimator $\hat{\boldsymbol{\theta}} = \mathbf{W}\mathbf{x} + \mathbf{b}$ that minimizes the mean-squared error $E\{|\hat{\theta}_i - \theta_i|^2\}$. The optimal estimator satisfies the **orthogonality principle**:
+We seek the linear estimator $\hat{\boldsymbol{\theta}} = \mathbf{W}\mathbf{x} + \mathbf{b}$ that minimizes the mean-squared error $E\lbrace |\hat{\theta}_i - \theta_i|^2\rbrace$. The optimal estimator satisfies the **orthogonality principle**:
 
-$$E\{(\hat{\theta}_i - \theta_i)\, x(n)^*\} = 0 \quad \text{for all } n$$
+$$E\lbrace (\hat{\theta}_i - \theta_i)\, x(n)^*\rbrace = 0 \quad \text{for all } n$$
 
 **Physical meaning:** The estimation error must be **uncorrelated with every observation** $x(n)$. If any observation were correlated with the error, we could improve the estimate by using that observation more aggressively. At the optimum, we have already extracted all the information that the observations carry.
 
@@ -1138,7 +1138,7 @@ This principle leads to the **Wiener-Hopf equations** (to be derived in detail i
 
 $$\mathbf{R}_x \mathbf{w}_{\mathrm{opt}} = \mathbf{r}_{\theta x}$$
 
-where $\mathbf{R}_x = E\{\mathbf{x}\mathbf{x}^H\}$ is the observation autocorrelation matrix and $\mathbf{r}_{\theta x} = E\{\theta\, \mathbf{x}^H\}$ is the cross-correlation between the desired signal and the observations.
+where $\mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace$ is the observation autocorrelation matrix and $\mathbf{r}_{\theta x} = E\lbrace \theta\, \mathbf{x}^H\rbrace$ is the cross-correlation between the desired signal and the observations.
 
 The LMMSE framework is the **bridge to Wiener filtering** (Chapter 6): when the parameter $\boldsymbol{\theta}$ is replaced by a random desired signal $d(n)$ and the observations are $\mathbf{x} = [x(n), x(n-1), \ldots]^T$, the LMMSE estimator becomes the FIR Wiener filter.
 
@@ -1160,7 +1160,7 @@ $$\boxed{\hat{\boldsymbol{\theta}}_{\mathrm{ML}} = \arg\max_{\boldsymbol{\theta}
 
 Under regularity conditions:
 - **Consistency:** $\hat{\boldsymbol{\theta}}_{\mathrm{ML}} \to \boldsymbol{\theta}$ in probability as $N \to \infty$.
-- **Asymptotic unbiasedness:** $E\{\hat{\boldsymbol{\theta}}_{\mathrm{ML}}\} \to \boldsymbol{\theta}$ as $N \to \infty$.
+- **Asymptotic unbiasedness:** $E\lbrace \hat{\boldsymbol{\theta}}_{\mathrm{ML}}\rbrace \to \boldsymbol{\theta}$ as $N \to \infty$.
 - **Asymptotic efficiency:** The ML estimate asymptotically achieves the CRLB — its covariance matrix approaches $\mathbf{J}^{-1}(\boldsymbol{\theta})$.
 - **Asymptotic normality:** $\sqrt{N}(\hat{\boldsymbol{\theta}}_{\mathrm{ML}} - \boldsymbol{\theta}) \xrightarrow{D} \mathcal{N}(\mathbf{0}, \mathbf{J}^{-1}(\boldsymbol{\theta}))$.
 
@@ -1196,7 +1196,7 @@ $$f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x}) = \frac{f_x(\mathbf{x}|\boldsymbo
 
 | Cost Function | Optimal Estimate |
 |-------------|-----------------|
-| **Quadratic:** $C(\hat{\theta}, \theta) = \lvert\hat{\theta} - \theta\rvert^2$ | **MMSE:** $\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\{\boldsymbol{\theta}\mid\mathbf{x}\}$ (posterior mean) |
+| **Quadratic:** $C(\hat{\theta}, \theta) = \lvert\hat{\theta} - \theta\rvert^2$ | **MMSE:** $\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\lbrace \boldsymbol{\theta}\mid\mathbf{x}\rbrace$ (posterior mean) |
 | **Uniform (0-1 loss):** $C = 0$ if $\lvert\hat{\theta}-\theta\rvert < \epsilon$, else $1$ | **MAP:** $\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x})$ (posterior mode) |
 
 **Relationship to ML:** MAP reduces to ML when the prior $f_\theta(\boldsymbol{\theta})$ is **uniform** (no prior preference for any value of $\boldsymbol{\theta}$) — ML is a special case of MAP with an uninformative (flat) prior.
@@ -1211,7 +1211,7 @@ $$f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x}) = \frac{f_x(\mathbf{x}|\boldsymbo
 |---------|-----------|------------------------------|
 | Random variable | Characterized by CDF/PDF; mean $\mu_x$, variance $\sigma_x^2$ | Foundation for all stochastic signal processing |
 | WSS process | $r_x(n_1,n_2) = r_x(l)$ (lag only); Hermitian Toeplitz $\mathbf{R}_x$ | Wiener filter (Ch. 6), Kalman filter (Ch. 6) |
-| Wiener-Khinchin | $R_x(e^{j\omega}) = \mathcal{F}\{r_x(l)\}$, $R_x(e^{j\omega}) \ge 0$ | Spectral estimation (Ch. 5) |
+| Wiener-Khinchin | $R_x(e^{j\omega}) = \mathcal{F}\lbrace r_x(l)\rbrace$, $R_x(e^{j\omega}) \ge 0$ | Spectral estimation (Ch. 5) |
 | White noise | $r_w(l) = \sigma_w^2\delta(l)$; flat PSD $R_w = \sigma_w^2$ | Driving noise for all linear models |
 | Random through filter | $R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2 R_x(e^{j\omega})$ | Spectrum shaping, channel modeling |
 | Spectral factorization | $R_x(z) = \sigma_0^2 H_+(z) H_+^*(1/z^*)$ | Innovations, Wiener filter design (Ch. 6) |
