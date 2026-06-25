@@ -612,29 +612,33 @@ The DC component of the output is the input DC scaled by the filter's DC gain $H
 
 ### Input-Output Cross-Correlation
 
-Postmultiply both sides of $y(n) = \sum_k h(k) x(n-k)$ by $x^*(n-l)$ and take expectation:
+Postmultiply both sides of $y(n) = \sum_k h(k) x(n-k)$ by $x^{\ast}(n-l)$ and take expectation:
 
-$$r_{yx}(l) = E\lbrace y(n)\, x^*(n-l)\rbrace = \sum_{k} h(k)\, E\lbrace x(n-k)\, x^*(n-l)\rbrace = \sum_k h(k)\, r_x(l-k)$$
+$$r_{yx}(l) = E\lbrace y(n)\, x^{\ast}(n-l)\rbrace = \sum_{k} h(k)\, E\lbrace x(n-k)\, x^{\ast}(n-l)\rbrace = \sum_k h(k)\, r_x(l-k)$$
 
-$$\boxed{r_{yx}(l) = h(l) * r_x(l)}$$
+$$\boxed{r_{yx}(l) = h(l) \ast r_x(l)}$$
 
-Similarly, $r_{xy}(l) = h^*(-l) * r_x(l)$.
+Similarly, $r_{xy}(l) = h^{\ast}(-l) \ast r_x(l)$.
 
 ### Output Autocorrelation
 
-Continuing the derivation by multiplying $y^*(n-l)$ from the right:
+Continuing the derivation by multiplying $y^{\ast}(n-l)$ from the right:
 
-$$r_y(l) = h(l) * r_{xy}(l) = h(l) * h^*(-l) * r_x(l) = r_h(l) * r_x(l)$$
+$$r_y(l) = h(l) \ast r_{xy}(l) = h(l) \ast h^{\ast}(-l) \ast r_x(l) = r_h(l) \ast r_x(l)$$
 
-where $r_h(l) = h(l) * h^*(-l) = \sum_n h(n) h^*(n-l)$ is the **system correlation sequence** (autocorrelation of the impulse response).
+where
 
-$$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
+$$r_h(l) = h(l) \ast h^{\ast}(-l) = \sum_n h(n)\, h^{\ast}(n-l)$$
+
+is the **system correlation sequence** (autocorrelation of the impulse response).
+
+$$\boxed{r_y(l) = r_h(l) \ast r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
 > ![Figure 3.1](./CourseADSP2026/Fig/Chapter_2/fig_3_1.png)
 >
-> *Figure 3.1 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^*(-l)$ (whose combined impulse response is $r_h(l) = h(l)*h^*(-l)$), yielding the output autocorrelation $r_y(l)$.*
+> *Figure 3.1 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^{\ast}(-l)$ (whose combined impulse response is $r_h(l) = h(l)\ast h^{\ast}(-l)$), yielding the output autocorrelation $r_y(l)$.*
 
-> **Interpretation of Figure 3.1:** The output autocorrelation is *not* simply $r_y(l) = h(l) * r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^*(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
+> **Interpretation of Figure 3.1:** The output autocorrelation is *not* simply $r_y(l) = h(l) \ast r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^{\ast}(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
 
 ### Output Power (Mean-Square Value)
 
@@ -667,9 +671,9 @@ $$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\om
 | Quantity | Time Domain | Frequency Domain | z-Domain |
 |----------|------------|-----------------|---------|
 | Output | $y(n) = h(n) * x(n)$ | — | — |
-| Cross (yx) | $r_{yx}(l) = h(l) * r_x(l)$ | $R_{yx} = H R_x$ | $R_{yx}(z) = H(z) R_x(z)$ |
-| Cross (xy) | $r_{xy}(l) = h^*(-l) * r_x(l)$ | $R_{xy} = H^* R_x$ | $R_{xy}(z) = H^*(1/z^*)R_x(z)$ |
-| Auto | $r_y(l) = h(l)*h^*(-l)*r_x(l)$ | $R_y = \lvert H\rvert^2 R_x$ | $R_y(z) = H(z)H^*(1/z^*)R_x(z)$ |
+| Cross (yx) | $r_{yx}(l) = h(l) \ast r_x(l)$ | $R_{yx} = H R_x$ | $R_{yx}(z) = H(z) R_x(z)$ |
+| Cross (xy) | $r_{xy}(l) = h^{\ast}(-l) \ast r_x(l)$ | $R_{xy} = H^{\ast} R_x$ | $R_{xy}(z) = H^{\ast}(1/z^{\ast})R_x(z)$ |
+| Auto | $r_y(l) = h(l)\ast h^{\ast}(-l)\ast r_x(l)$ | $R_y = \lvert H\rvert^2 R_x$ | $R_y(z) = H(z)H^{\ast}(1/z^{\ast})R_x(z)$ |
 | Power | $P_y = \mathbf{h}^H\mathbf{R}_x\mathbf{h}$ | $P_y = \frac{1}{2\pi}\int\lvert H\rvert^2 R_x d\omega$ | — |
 
 > **Key insight from $R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2 R_x(e^{j\omega})$:**
