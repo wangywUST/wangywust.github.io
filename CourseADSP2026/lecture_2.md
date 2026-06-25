@@ -8,13 +8,13 @@
 
 ## Table of Contents
 
-1. [§2.1 Random Variables](#21-random-variables)
-2. [§2.2 Stochastic Processes and Their Statistical Description](#22-stochastic-processes-and-their-statistical-description)
-3. [§2.3 Random Processes through Filters](#23-random-processes-through-filters)
-4. [§2.4 Spectral Factorization](#24-spectral-factorization)
-5. [§2.5 Special Types of Random Processes](#25-special-types-of-random-processes)
-6. [§2.6 Basic Orthogonal Transforms](#26-basic-orthogonal-transforms)
-7. [§2.7 Basic Parametric Estimation Methods](#27-basic-parametric-estimation-methods)
+1. [§1 Random Variables](#1-random-variables)
+2. [§2 Stochastic Processes and Their Statistical Description](#2-stochastic-processes-and-their-statistical-description)
+3. [§3 Random Processes through Filters](#3-random-processes-through-filters)
+4. [§4 Spectral Factorization](#4-spectral-factorization)
+5. [§5 Special Types of Random Processes](#5-special-types-of-random-processes)
+6. [§6 Basic Orthogonal Transforms](#6-basic-orthogonal-transforms)
+7. [§7 Basic Parametric Estimation Methods](#7-basic-parametric-estimation-methods)
 
 ---
 
@@ -122,11 +122,11 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 ---
 
-# §2.1 Random Variables
+# §1 Random Variables
 
 > 📖 Textbook §3.1 (Random Variables)
 
-## 2.1.1 Probability Distribution and Density Functions
+## 1.1 Probability Distribution and Density Functions
 
 ### Motivation: From Abstract Events to Numbers
 
@@ -134,9 +134,9 @@ In engineering, we must handle random phenomena — the amplitude of acoustic no
 
 > **Definition 2.1 (Random Variable).** A *random variable* $x(\zeta)$ is a function that assigns a real number $x$ to every outcome $\zeta \in S$, satisfying: (1) the set $\{x(\zeta) \le x\}$ is an event in $S$ for every $x$; (2) $\Pr\{x(\zeta)=\pm\infty\}=0$.
 
-> ![Figure 2.1](./CourseADSP2026/Fig/fig_3_1.png)
+> ![Figure 1.1](./CourseADSP2026/Fig/fig_3_1.png)
 >
-> *Figure 2.1 (Textbook Fig. 3.1, p. 76): Graphical illustration of the random variable mapping — the abstract sample space $S$ on the left is mapped to the real line $\mathbb{R}$ on the right. Each outcome $\zeta_k$ (an abstract event) gets assigned a numerical value $x(\zeta_k)$.*
+> *Figure 1.1 (Textbook Fig. 3.1, p. 76): Graphical illustration of the random variable mapping — the abstract sample space $S$ on the left is mapped to the real line $\mathbb{R}$ on the right. Each outcome $\zeta_k$ (an abstract event) gets assigned a numerical value $x(\zeta_k)$.*
 
 **Key insight:** once outcomes are mapped to numbers, we can apply integration and differentiation — the standard tools of analysis — to compute probabilities and expectations.
 
@@ -166,7 +166,7 @@ For **discrete-valued** random variables, the **probability mass function (PMF)*
 
 ---
 
-## 2.1.2 Statistical Averages (Moments)
+## 1.2 Statistical Averages (Moments)
 
 Rather than specifying the entire PDF, it is often sufficient to summarize a random variable by a few numerical descriptors — its **moments**. These are computed via the **expectation operator** $E\{\cdot\}$.
 
@@ -201,9 +201,9 @@ The variance $\sigma_x^2$ measures the **spread** of the distribution around the
 
 ### Higher-Order Descriptors
 
-> ![Figure 2.2](./CourseADSP2026/Fig/fig_3_2.png)
+> ![Figure 1.2](./CourseADSP2026/Fig/fig_3_2.png)
 >
-> *Figure 2.2 (Textbook Fig. 3.2, p. 78): Illustration of mean, variance, skewness, and kurtosis for two different distributions. (a) Mean: the "balance point" of the density. (b) Variance: the spread. (c) Skewness: the asymmetry around the mean. (d) Kurtosis: the relative peakedness compared to a Gaussian.*
+> *Figure 1.2 (Textbook Fig. 3.2, p. 78): Illustration of mean, variance, skewness, and kurtosis for two different distributions. (a) Mean: the "balance point" of the density. (b) Variance: the spread. (c) Skewness: the asymmetry around the mean. (d) Kurtosis: the relative peakedness compared to a Gaussian.*
 
 **Skewness** characterizes the asymmetry of the distribution:
 
@@ -225,7 +225,7 @@ $$\Pr\{|x(\zeta) - \mu_x| \ge k\sigma_x\} \le \frac{1}{k^2}, \qquad k > 0$$
 
 ---
 
-## 2.1.3 Joint Statistical Description of Two Random Variables
+## 1.3 Joint Statistical Description of Two Random Variables
 
 When two random variables $x_1(\zeta)$ and $x_2(\zeta)$ are defined on the same probability space, they are jointly described by the **joint PDF** $f_{x_1 x_2}(x_1, x_2)$. The individual (marginal) PDFs are recovered by integration:
 
@@ -257,11 +257,11 @@ Two random variables are:
 
 ---
 
-## 2.1.4 Common Random Variable Distributions
+## 1.4 Common Random Variable Distributions
 
-> ![Figure 2.3](./CourseADSP2026/Fig/fig_3_3.png)
+> ![Figure 1.3](./CourseADSP2026/Fig/fig_3_3.png)
 >
-> *Figure 2.3 (Textbook Fig. 3.3, p. 81): PDF plots of three common distributions — Uniform (flat top, bounded support), Gaussian (bell-shaped, infinite support), and Bernoulli/Exponential. The Gaussian plays a central role because of the Central Limit Theorem.*
+> *Figure 1.3 (Textbook Fig. 3.3, p. 81): PDF plots of three common distributions — Uniform (flat top, bounded support), Gaussian (bell-shaped, infinite support), and Bernoulli/Exponential. The Gaussian plays a central role because of the Central Limit Theorem.*
 
 ### Gaussian (Normal) Distribution
 
@@ -291,11 +291,11 @@ A discrete-valued distribution with $p_1 = \Pr\{x = +1\} = 1/2$, $p_2 = \Pr\{x =
 
 ---
 
-# §2.2 Stochastic Processes and Their Statistical Description
+# §2 Stochastic Processes and Their Statistical Description
 
 > 📖 Textbook §3.3 (Discrete-Time Stochastic Processes, §3.3.1–§3.3.6)
 
-## 2.2.1 Definition of a Stochastic Process
+## 2.1 Definition of a Stochastic Process
 
 A **discrete-time stochastic process** (or random sequence) is a family of random variables indexed by the discrete time $n$:
 
@@ -303,9 +303,9 @@ A **discrete-time stochastic process** (or random sequence) is a family of rando
 
 The complete collection of all possible sequences $\{x(n, \zeta)\}$ for all $\zeta \in S$ is called the **ensemble**. Each individual sequence $x(n, \zeta_k)$ for a specific $\zeta_k$ is one **realization** (or sample function) of the process.
 
-> ![Figure 2.4](./CourseADSP2026/Fig/fig_3_7.png)
+> ![Figure 2.1](./CourseADSP2026/Fig/fig_3_7.png)
 >
-> *Figure 2.4 (Textbook Fig. 3.7, p. 98): Graphical description of a random sequence. The abstract sample space $S$ (left) maps to an ensemble of deterministic sequences (right). Each row is one realization $x(n, \zeta_k)$ that could be observed in practice. At a fixed time $n_0$ (vertical slice), we have a random variable $x(n_0, \zeta)$.*
+> *Figure 2.1 (Textbook Fig. 3.7, p. 98): Graphical description of a random sequence. The abstract sample space $S$ (left) maps to an ensemble of deterministic sequences (right). Each row is one realization $x(n, \zeta_k)$ that could be observed in practice. At a fixed time $n_0$ (vertical slice), we have a random variable $x(n_0, \zeta)$.*
 
 There are four possible interpretations of $x(n, \zeta)$, depending on whether $n$ and $\zeta$ are fixed or variable:
 
@@ -320,7 +320,7 @@ There are four possible interpretations of $x(n, \zeta)$, depending on whether $
 
 ---
 
-## 2.2.2 Ensemble Averages (First- and Second-Order Statistics)
+## 2.2 Ensemble Averages (First- and Second-Order Statistics)
 
 **Ensemble averages** are defined by freezing time and averaging over all realizations:
 
@@ -363,7 +363,7 @@ $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)}
 
 ---
 
-## 2.2.3 Gaussian Random Sequences
+## 2.3 Gaussian Random Sequences
 
 If all kth-order joint distributions of a process $x(n)$ are jointly Gaussian for every $k$ and every choice of time indices $(n_1, \ldots, n_k)$, then $x(n)$ is called a **Gaussian random sequence**.
 
@@ -377,7 +377,7 @@ where $\boldsymbol{\mu}$ is the mean vector and $\mathbf{R}$ is the covariance m
 
 ---
 
-## 2.2.4 Stationarity
+## 2.4 Stationarity
 
 ### Strict-Sense Stationarity (SSS)
 
@@ -432,7 +432,7 @@ This ensures that the **power spectral density is nonnegative** at all frequenci
 
 ---
 
-## 2.2.5 Correlation Matrices of Stationary Processes
+## 2.5 Correlation Matrices of Stationary Processes
 
 For a WSS process, we frequently work with the **autocorrelation matrix** formed from an $M$-sample snapshot vector:
 
@@ -457,7 +457,7 @@ A "flat" power spectrum (white noise) gives all equal eigenvalues; a narrowband 
 
 ---
 
-## 2.2.6 Ergodicity
+## 2.6 Ergodicity
 
 A fundamental practical problem: in real applications, we never observe the entire ensemble — we have only **one realization** of the process. Can we still estimate ensemble averages from a single finite-length record?
 
@@ -493,7 +493,7 @@ In practice, however, almost all stationary processes encountered in engineering
 
 ---
 
-## 2.2.7 White Noise
+## 2.7 White Noise
 
 The simplest possible random sequence is one with no temporal structure:
 
@@ -515,7 +515,7 @@ White noise is the fundamental **building block** for constructing more complex 
 
 ---
 
-## 2.2.8 Power Spectral Density (Wiener–Khinchin Theorem)
+## 2.8 Power Spectral Density (Wiener–Khinchin Theorem)
 
 For a zero-mean WSS process with absolutely summable autocorrelation $\sum_l |r_x(l)| < \infty$, the **power spectral density (PSD)** is defined as the DTFT of the autocorrelation sequence:
 
@@ -584,17 +584,17 @@ The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
 
 $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
 
-> ![Figure 2.5](./CourseADSP2026/Fig/fig_3_9.png)
+> ![Figure 2.2](./CourseADSP2026/Fig/fig_3_9.png)
 >
-> *Figure 2.5 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
+> *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
 
 ---
 
-# §2.3 Random Processes through Filters
+# §3 Random Processes through Filters
 
 > 📖 Textbook §3.4 (Linear Systems with Stationary Random Inputs, §3.4.1–§3.4.2)
 
-## 2.3.1 Time-Domain Analysis
+## 3.1 Time-Domain Analysis
 
 ### Setup
 
@@ -628,11 +628,11 @@ where $r_h(l) = h(l) * h^*(-l) = \sum_n h(n) h^*(n-l)$ is the **system correlati
 
 $$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
-> ![Figure 2.6](./CourseADSP2026/Fig/fig_3_10.png)
+> ![Figure 3.1](./CourseADSP2026/Fig/fig_3_10.png)
 >
-> *Figure 2.6 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^*(-l)$ (whose combined impulse response is $r_h(l) = h(l)*h^*(-l)$), yielding the output autocorrelation $r_y(l)$.*
+> *Figure 3.1 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^*(-l)$ (whose combined impulse response is $r_h(l) = h(l)*h^*(-l)$), yielding the output autocorrelation $r_y(l)$.*
 
-> **Interpretation of Figure 2.6:** The output autocorrelation is *not* simply $r_y(l) = h(l) * r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^*(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
+> **Interpretation of Figure 3.1:** The output autocorrelation is *not* simply $r_y(l) = h(l) * r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^*(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
 
 ### Output Power (Mean-Square Value)
 
@@ -644,7 +644,7 @@ where the last expression is the **quadratic form** for FIR filters with coeffic
 
 ---
 
-## 2.3.2 Frequency-Domain Analysis
+## 3.2 Frequency-Domain Analysis
 
 Taking the DTFT/z-transform of the time-domain relationships gives the elegant frequency-domain formulas. All results are collected in Table 2.1.
 
@@ -690,11 +690,11 @@ This confirms that the variance of a first-order AR process driven by white nois
 
 ---
 
-# §2.4 Spectral Factorization
+# §4 Spectral Factorization
 
 > 📖 Textbook §2.4 (Minimum-Phase and System Invertibility) · §3.5.2 (Whitening and Innovations)
 
-## 2.4.1 The Central Question
+## 4.1 The Central Question
 
 The output PSD formula $R_y(z) = H(z) H^*(1/z^*) R_x(z)$ invites a reverse question:
 
@@ -702,13 +702,13 @@ The output PSD formula $R_y(z) = H(z) H^*(1/z^*) R_x(z)$ invites a reverse quest
 
 The answer is **yes** for any rational PSD satisfying the Paley–Wiener condition, and the factorization is **unique** if we require $H_+(z)$ to be minimum-phase (all zeros inside the unit circle). This is the **spectral factorization theorem**.
 
-## 2.4.2 Pole-Zero Structure of the PSD
+## 4.2 Pole-Zero Structure of the PSD
 
 From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\{z_0, 1/z_0\}$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\{z_0, z_0^*\}$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\{z_0,\ z_0^*,\ 1/z_0,\ 1/z_0^*\}$.
 
 On the unit circle ($|z_0| = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0$ for $|z_0|=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
 
-## 2.4.3 Minimum-Phase Spectral Factor
+## 4.3 Minimum-Phase Spectral Factor
 
 > **Theorem 2.1 (Spectral Factorization).** Any real-valued PSD $R_x(z)$ of a rational form can be uniquely factored as:
 >
@@ -730,7 +730,7 @@ Its inverse $1/H_+(z)$ is the **whitening filter** — it converts $x(n)$ back t
 
 $$\frac{1}{H_+(z)}\, R_x(z)\, \frac{1}{H_+^*(1/z^*)} = \frac{1}{H_+(z)}\, \sigma_0^2 H_+(z) H_+^*(1/z^*)\, \frac{1}{H_+^*(1/z^*)} = \sigma_0^2$$
 
-## 2.4.4 Innovations Representation
+## 4.4 Innovations Representation
 
 A **regular** (non-predictable) stationary process $x(n)$ admits an **innovations representation**:
 
@@ -744,13 +744,13 @@ where $e(n)$ is the **innovations process** (white noise with variance $\sigma_e
 
 ---
 
-# §2.5 Special Types of Random Processes
+# §5 Special Types of Random Processes
 
 > 📖 Textbook §4.1–§4.3 (Linear Signal Models: All-Pole, All-Zero, Pole-Zero); §3.3.6 (Harmonic Processes)
 
 The spectral factorization framework tells us that any regular WSS process can be represented as white noise filtered through a causal minimum-phase filter. Three important special cases correspond to specific filter structures:
 
-## 2.5.1 ARMA (Autoregressive Moving-Average) Processes
+## 5.1 ARMA (Autoregressive Moving-Average) Processes
 
 ### Definition
 
@@ -778,7 +778,7 @@ This is a system of linear equations in the unknown AR coefficients $\{a_k\}$ th
 
 ---
 
-## 2.5.2 AR (Autoregressive) Processes
+## 5.2 AR (Autoregressive) Processes
 
 ### Definition
 
@@ -820,7 +820,7 @@ The AR spectrum has **peaks at frequencies near the poles** of $H(z)$. This make
 
 ---
 
-## 2.5.3 MA (Moving-Average) Processes
+## 5.3 MA (Moving-Average) Processes
 
 ### Definition
 
@@ -846,7 +846,7 @@ $$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-|l|} b_k b_{k+|l|}^* & |l| \le
 
 ---
 
-## 2.5.4 ARMA, AR, MA: Summary and Comparison
+## 5.4 ARMA, AR, MA: Summary and Comparison
 
 | Property | AR($p$) | MA($q$) | ARMA($p$,$q$) |
 |----------|---------|---------|--------------|
@@ -860,11 +860,11 @@ $$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-|l|} b_k b_{k+|l|}^* & |l| \le
 
 ---
 
-# §2.6 Basic Orthogonal Transforms
+# §6 Basic Orthogonal Transforms
 
 > 📖 Textbook §3.5 (Whitening and Innovations; KL Transform: §3.5.1, §3.5.3)
 
-## §2.6.1 Hilbert Space and Orthogonal Transforms
+## 6.1 Hilbert Space and Orthogonal Transforms
 
 ### Hierarchy of Vector Spaces
 
@@ -895,7 +895,7 @@ An **orthogonal (unitary) transform** $\mathbf{y} = \mathbf{A}\mathbf{x}$ satisf
 
 ---
 
-## §2.6.2 KL Transform (Karhunen-Loève Transform)
+## 6.2 KL Transform (Karhunen-Loève Transform)
 
 ### Motivation
 
@@ -918,9 +918,9 @@ The transformed vector $\mathbf{w}$ has:
 - **Uncorrelated components:** $E\{w_i w_j^*\} = 0$ for $i \ne j$
 - **Component variances equal to eigenvalues:** $E\{|w_i|^2\} = \lambda_i$
 
-> ![Figure 2.7](./CourseADSP2026/Fig/fig_3_11.png)
+> ![Figure 6.1](./CourseADSP2026/Fig/fig_3_11.png)
 >
-> *Figure 2.7 (Textbook Fig. 3.11, p. 126): Geometric interpretation of the KL (orthonormal) transformation in two dimensions. The original coordinate axes ($x_1$, $x_2$) are rotated to align with the eigenvectors $\mathbf{q}_1$, $\mathbf{q}_2$ of $\boldsymbol{\Sigma}_x$ (principal axes of the distribution). The elongated ellipse in the original frame becomes an axis-aligned ellipse in the $\mathbf{w}$-frame; the eigenvalues $\lambda_1 \ge \lambda_2$ give the variance along each principal axis.*
+> *Figure 6.1 (Textbook Fig. 3.11, p. 126): Geometric interpretation of the KL (orthonormal) transformation in two dimensions. The original coordinate axes ($x_1$, $x_2$) are rotated to align with the eigenvectors $\mathbf{q}_1$, $\mathbf{q}_2$ of $\boldsymbol{\Sigma}_x$ (principal axes of the distribution). The elongated ellipse in the original frame becomes an axis-aligned ellipse in the $\mathbf{w}$-frame; the eigenvalues $\lambda_1 \ge \lambda_2$ give the variance along each principal axis.*
 
 ### Optimal Reduced-Basis Representation (PCA)
 
@@ -934,9 +934,9 @@ $$E_K = E\!\left\{\|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\} = \sum_{i=K+1}^{M}
 
 To minimize $E_K$, retain the $K$ eigenvectors with the **largest** eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_M$. This is **Principal Component Analysis (PCA)** — the KL transform is the optimal linear dimensionality reduction in the MSE sense.
 
-> ![Figure 2.8](./CourseADSP2026/Fig/fig_3_13.png)
+> ![Figure 6.2](./CourseADSP2026/Fig/fig_3_13.png)
 >
-> *Figure 2.8 (Textbook Fig. 3.13, p. 132): Signal compression using the DKLT. The transmitter applies the KL transform to $x(n)$, retains only the $K$ largest-energy components via a reduced-basis selection scheme, and transmits the coded signal $\hat{w}(n)$. The receiver reconstructs $\hat{x}(n)$ via the inverse DKLT. If $K \ll M$, significant compression is achieved with bounded MSE $= \sum_{i=K+1}^{M}\lambda_i$.*
+> *Figure 6.2 (Textbook Fig. 3.13, p. 132): Signal compression using the DKLT. The transmitter applies the KL transform to $x(n)$, retains only the $K$ largest-energy components via a reduced-basis selection scheme, and transmits the coded signal $\hat{w}(n)$. The receiver reconstructs $\hat{x}(n)$ via the inverse DKLT. If $K \ll M$, significant compression is achieved with bounded MSE $= \sum_{i=K+1}^{M}\lambda_i$.*
 
 ### Properties of the KL Transform (Advantages and Disadvantages)
 
@@ -955,13 +955,13 @@ $$\mathbf{y} = \boldsymbol{\Lambda}_x^{-1/2} \mathbf{Q}_x^H (\mathbf{x} - \bolds
 
 The result: $\boldsymbol{\Sigma}_y = \mathbf{I}$ — all components have unit variance, are uncorrelated, and are isotropically distributed (hence the name). This transformation is also called **whitening**, because it transforms a colored random vector into an uncorrelated, unit-variance vector (analogous to white noise).
 
-> ![Figure 2.9](./CourseADSP2026/Fig/fig_3_12.png)
+> ![Figure 6.3](./CourseADSP2026/Fig/fig_3_12.png)
 >
-> *Figure 2.9 (Textbook Fig. 3.12, p. 127): Isotropic (whitening) transformation in two dimensions. After the KL rotation (Figure 2.7), an additional axis-scaling step $\boldsymbol{\Lambda}_x^{-1/2}$ normalizes the variance in each direction to 1. The resulting distribution becomes a circle — isotropic, invariant to any further rotation.*
+> *Figure 6.3 (Textbook Fig. 3.12, p. 127): Isotropic (whitening) transformation in two dimensions. After the KL rotation (Figure 6.1), an additional axis-scaling step $\boldsymbol{\Lambda}_x^{-1/2}$ normalizes the variance in each direction to 1. The resulting distribution becomes a circle — isotropic, invariant to any further rotation.*
 
 ---
 
-## §2.6.3 Discrete Cosine Transform (DCT)
+## 6.3 Discrete Cosine Transform (DCT)
 
 ### Motivation
 
@@ -1003,11 +1003,11 @@ where $c(0) = 1/\sqrt{2}$, $c(k) = 1$ for $k \ge 1$.
 
 ---
 
-# §2.7 Basic Parametric Estimation Methods
+# §7 Basic Parametric Estimation Methods
 
 > 📖 Textbook §3.6 (Principles of Estimation Theory, §3.6.1–§3.6.3); §8.1–§8.2 (Least-Squares)
 
-## §2.7.1 Performance of Estimators
+## 7.1 Performance of Estimators
 
 ### The Estimation Problem
 
@@ -1051,7 +1051,7 @@ This requires both bias $\to 0$ and variance $\to 0$ as $N \to \infty$. A consis
 
 ---
 
-## §2.7.2 Sample Estimates of Random Signal Statistics (Method of Moments)
+## 7.2 Sample Estimates of Random Signal Statistics (Method of Moments)
 
 ### Sample Mean
 
@@ -1081,7 +1081,7 @@ This is unbiased but may yield a non-positive-definite matrix — leading to uns
 
 ---
 
-## §2.7.3 Least-Squares (LS) Estimation
+## 7.3 Least-Squares (LS) Estimation
 
 ### Problem Setup
 
@@ -1124,7 +1124,7 @@ When $\mathbf{W} = \boldsymbol{\Sigma}_e^{-1}$ (inverse of the error covariance)
 
 ---
 
-## §2.7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation
+## 7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation
 
 ### Orthogonality Principle
 
@@ -1144,7 +1144,7 @@ The LMMSE framework is the **bridge to Wiener filtering** (Chapter 6): when the 
 
 ---
 
-## §2.7.5 Maximum Likelihood (ML) Estimation
+## 7.5 Maximum Likelihood (ML) Estimation
 
 ### Definition
 
@@ -1186,7 +1186,7 @@ The choice of window (PHAT, SCOT, Roth processor) prewhitens the cross-spectrum 
 
 ---
 
-## §2.7.6 Bayesian Estimation (Introduction)
+## 7.6 Bayesian Estimation (Introduction)
 
 In the **Bayesian framework**, the parameter $\boldsymbol{\theta}$ is treated as a **random variable** with a known **prior distribution** $f_\theta(\boldsymbol{\theta})$ that encodes any prior knowledge before observing $\mathbf{x}$. After observing $\mathbf{x}$, the **posterior distribution** is:
 
