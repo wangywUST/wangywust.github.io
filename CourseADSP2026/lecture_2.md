@@ -247,6 +247,20 @@ $$\rho_{x_1 x_2} = \frac{\gamma_{x_1 x_2}}{\sigma_{x_1} \sigma_{x_2}}, \qquad \l
 
 $\lvert\rho\rvert = 1$ indicates a perfect linear relationship; $\lvert\rho\rvert = 0$ indicates **uncorrelated** variables.
 
+> **Proof that $|\rho| \le 1$ (Cauchy-Schwarz inequality).** The Cauchy-Schwarz inequality for expectations states that for any two random variables $U$ and $V$:
+>
+> $$|E\{UV\}|^2 \le E\{|U|^2\} \cdot E\{|V|^2\}$$
+>
+> Set $U = x_1 - \mu_{x_1}$ and $V = x_2 - \mu_{x_2}$. Then $E\{UV\} = \gamma_{x_1 x_2}$, $E\{|U|^2\} = \sigma_{x_1}^2$, and $E\{|V|^2\} = \sigma_{x_2}^2$. Substituting:
+>
+> $$|\gamma_{x_1 x_2}|^2 \le \sigma_{x_1}^2 \cdot \sigma_{x_2}^2$$
+>
+> Dividing both sides by $\sigma_{x_1}^2 \sigma_{x_2}^2$ and taking the square root:
+>
+> $$|\rho_{x_1 x_2}| = \frac{|\gamma_{x_1 x_2}|}{\sigma_{x_1}\sigma_{x_2}} \le 1$$
+>
+> **Equality conditions:** Equality holds if and only if $U = cV$ for some constant $c$, i.e., $x_1 - \mu_{x_1} = c(x_2 - \mu_{x_2})$ (a perfect linear relationship). If $c > 0$, then $\rho = +1$; if $c < 0$, then $\rho = -1$.
+
 ### Independence vs. Uncorrelated
 
 Two random variables are:
