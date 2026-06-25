@@ -134,9 +134,9 @@ In engineering, we must handle random phenomena — the amplitude of acoustic no
 
 > **Definition 2.1 (Random Variable).** A *random variable* $x(\zeta)$ is a function that assigns a real number $x$ to every outcome $\zeta \in S$, satisfying: (1) the set $\{x(\zeta) \le x\}$ is an event in $S$ for every $x$; (2) $\Pr\{x(\zeta)=\pm\infty\}=0$.
 
-> ![Figure 3.1 textbook](./CourseADSP2026/Fig/fig_3_1.png)
+> ![Figure 2.1](./CourseADSP2026/Fig/fig_3_1.png)
 >
-> *Figure 3.1 (Textbook p.76): Graphical illustration of the random variable mapping — the abstract sample space $S$ on the left is mapped to the real line $\mathbb{R}$ on the right. Each outcome $\zeta_k$ (an abstract event) gets assigned a numerical value $x(\zeta_k)$.*
+> *Figure 2.1 (Textbook Fig. 3.1, p. 76): Graphical illustration of the random variable mapping — the abstract sample space $S$ on the left is mapped to the real line $\mathbb{R}$ on the right. Each outcome $\zeta_k$ (an abstract event) gets assigned a numerical value $x(\zeta_k)$.*
 
 **Key insight:** once outcomes are mapped to numbers, we can apply integration and differentiation — the standard tools of analysis — to compute probabilities and expectations.
 
@@ -201,9 +201,9 @@ The variance $\sigma_x^2$ measures the **spread** of the distribution around the
 
 ### Higher-Order Descriptors
 
-> ![Figure 3.2 textbook](./CourseADSP2026/Fig/fig_3_2.png)
+> ![Figure 2.2](./CourseADSP2026/Fig/fig_3_2.png)
 >
-> *Figure 3.2 (Textbook p.78): Illustration of mean, variance, skewness, and kurtosis for two different distributions. (a) Mean: the "balance point" of the density. (b) Variance: the spread. (c) Skewness: the asymmetry around the mean. (d) Kurtosis: the relative peakedness compared to a Gaussian.*
+> *Figure 2.2 (Textbook Fig. 3.2, p. 78): Illustration of mean, variance, skewness, and kurtosis for two different distributions. (a) Mean: the "balance point" of the density. (b) Variance: the spread. (c) Skewness: the asymmetry around the mean. (d) Kurtosis: the relative peakedness compared to a Gaussian.*
 
 **Skewness** characterizes the asymmetry of the distribution:
 
@@ -259,9 +259,9 @@ Two random variables are:
 
 ## 2.1.4 Common Random Variable Distributions
 
-> ![Figure 3.3 textbook](./CourseADSP2026/Fig/fig_3_3.png)
+> ![Figure 2.3](./CourseADSP2026/Fig/fig_3_3.png)
 >
-> *Figure 3.3 (Textbook): PDF plots of common distributions — Uniform (left: flat top, bounded support), Gaussian (center: bell-shaped, infinite support), and Laplacian/Exponential (right: heavy tails). The Gaussian plays a central role because of the Central Limit Theorem.*
+> *Figure 2.3 (Textbook Fig. 3.3, p. 81): PDF plots of three common distributions — Uniform (flat top, bounded support), Gaussian (bell-shaped, infinite support), and Bernoulli/Exponential. The Gaussian plays a central role because of the Central Limit Theorem.*
 
 ### Gaussian (Normal) Distribution
 
@@ -303,9 +303,9 @@ A **discrete-time stochastic process** (or random sequence) is a family of rando
 
 The complete collection of all possible sequences $\{x(n, \zeta)\}$ for all $\zeta \in S$ is called the **ensemble**. Each individual sequence $x(n, \zeta_k)$ for a specific $\zeta_k$ is one **realization** (or sample function) of the process.
 
-> ![Figure 3.7 textbook](./CourseADSP2026/Fig/fig_3_7.png)
+> ![Figure 2.4](./CourseADSP2026/Fig/fig_3_7.png)
 >
-> *Figure 3.7 (Textbook p.98): Graphical description of a random sequence. The abstract sample space $S$ (left) maps to an ensemble of deterministic sequences (right). Each row is one realization $x(n, \zeta_k)$ that could be observed in practice. At a fixed time $n_0$ (vertical slice), we have a random variable $x(n_0, \zeta)$.*
+> *Figure 2.4 (Textbook Fig. 3.7, p. 98): Graphical description of a random sequence. The abstract sample space $S$ (left) maps to an ensemble of deterministic sequences (right). Each row is one realization $x(n, \zeta_k)$ that could be observed in practice. At a fixed time $n_0$ (vertical slice), we have a random variable $x(n_0, \zeta)$.*
 
 There are four possible interpretations of $x(n, \zeta)$, depending on whether $n$ and $\zeta$ are fixed or variable:
 
@@ -584,9 +584,9 @@ The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
 
 $$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
 
-> ![Figure 3.9 textbook](./CourseADSP2026/Fig/fig_3_9.png)
+> ![Figure 2.5](./CourseADSP2026/Fig/fig_3_9.png)
 >
-> *Figure 3.9 (Textbook p.112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing the amplitudes at discrete frequencies; (c) the continuous power spectrum with impulses.*
+> *Figure 2.5 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
 
 ---
 
@@ -628,11 +628,11 @@ where $r_h(l) = h(l) * h^*(-l) = \sum_n h(n) h^*(n-l)$ is the **system correlati
 
 $$\boxed{r_y(l) = r_h(l) * r_x(l) = \sum_{k} r_h(k)\, r_x(l-k)}$$
 
-> ![Figure 3.10 textbook](./CourseADSP2026/Fig/fig_3_10.png)
+> ![Figure 2.6](./CourseADSP2026/Fig/fig_3_10.png)
 >
-> *Figure 3.10 (Textbook p.117): Equivalent cascade interpretation of autocorrelation filtering. When $x(n)$ passes through $h(n)$, the autocorrelation $r_x(l)$ is "filtered" by a system whose impulse response is the autocorrelation of $h(n)$, producing $r_y(l)$.*
+> *Figure 2.6 (Textbook Fig. 3.10, p. 117): Equivalent cascade interpretation of autocorrelation filtering. The autocorrelation $r_x(l)$ of the input is "filtered" by a two-stage system $h(l)$ and $h^*(-l)$ (whose combined impulse response is $r_h(l) = h(l)*h^*(-l)$), yielding the output autocorrelation $r_y(l)$.*
 
-> **Interpretation of Figure 3.10:** The output autocorrelation is *not* simply $r_y(l) = h(l) * r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^*(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
+> **Interpretation of Figure 2.6:** The output autocorrelation is *not* simply $r_y(l) = h(l) * r_x(l)$. Intuitively: filtering $x(n)$ affects correlations at *both* endpoints of the lag. Formally, the autocorrelation is shaped by the **matched pair** of filters $h(l)$ and $h^*(-l)$ — one forward in time, one backward — whose combined effect is the autocorrelation of the impulse response $r_h(l)$.
 
 ### Output Power (Mean-Square Value)
 
@@ -918,9 +918,9 @@ The transformed vector $\mathbf{w}$ has:
 - **Uncorrelated components:** $E\{w_i w_j^*\} = 0$ for $i \ne j$
 - **Component variances equal to eigenvalues:** $E\{|w_i|^2\} = \lambda_i$
 
-> ![Figure 3.11 textbook](./CourseADSP2026/Fig/fig_3_11.png)
+> ![Figure 2.7](./CourseADSP2026/Fig/fig_3_11.png)
 >
-> *Figure 3.11 (Textbook p.126): Geometric interpretation of the KL (orthonormal) transformation in two dimensions. The original coordinate axes (x₁, x₂) are rotated to align with the principal axes of the distribution (the eigenvectors $\mathbf{q}_1$, $\mathbf{q}_2$ of $\boldsymbol{\Sigma}_x$). The distribution, originally an elongated ellipse in the x-frame, becomes a "standard" ellipse aligned with the axes in the w-frame. The eigenvalues $\lambda_1$, $\lambda_2$ give the variance along each principal axis.*
+> *Figure 2.7 (Textbook Fig. 3.11, p. 126): Geometric interpretation of the KL (orthonormal) transformation in two dimensions. The original coordinate axes ($x_1$, $x_2$) are rotated to align with the eigenvectors $\mathbf{q}_1$, $\mathbf{q}_2$ of $\boldsymbol{\Sigma}_x$ (principal axes of the distribution). The elongated ellipse in the original frame becomes an axis-aligned ellipse in the $\mathbf{w}$-frame; the eigenvalues $\lambda_1 \ge \lambda_2$ give the variance along each principal axis.*
 
 ### Optimal Reduced-Basis Representation (PCA)
 
@@ -934,9 +934,9 @@ $$E_K = E\!\left\{\|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\} = \sum_{i=K+1}^{M}
 
 To minimize $E_K$, retain the $K$ eigenvectors with the **largest** eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_M$. This is **Principal Component Analysis (PCA)** — the KL transform is the optimal linear dimensionality reduction in the MSE sense.
 
-> ![Figure 3.13 textbook](./CourseADSP2026/Fig/fig_3_13.png)
+> ![Figure 2.8](./CourseADSP2026/Fig/fig_3_13.png)
 >
-> *Figure 3.13 (Textbook p.132): Signal compression using the DKLT. The transmitter computes the KL transform, selects the $K$ largest-energy components $\hat{w}(n)$, and transmits them. The receiver reconstructs $\hat{x}(n)$ via the inverse DKLT. If $K \ll M$, significant compression is achieved.*
+> *Figure 2.8 (Textbook Fig. 3.13, p. 132): Signal compression using the DKLT. The transmitter applies the KL transform to $x(n)$, retains only the $K$ largest-energy components via a reduced-basis selection scheme, and transmits the coded signal $\hat{w}(n)$. The receiver reconstructs $\hat{x}(n)$ via the inverse DKLT. If $K \ll M$, significant compression is achieved with bounded MSE $= \sum_{i=K+1}^{M}\lambda_i$.*
 
 ### Properties of the KL Transform (Advantages and Disadvantages)
 
@@ -955,9 +955,9 @@ $$\mathbf{y} = \boldsymbol{\Lambda}_x^{-1/2} \mathbf{Q}_x^H (\mathbf{x} - \bolds
 
 The result: $\boldsymbol{\Sigma}_y = \mathbf{I}$ — all components have unit variance, are uncorrelated, and are isotropically distributed (hence the name). This transformation is also called **whitening**, because it transforms a colored random vector into an uncorrelated, unit-variance vector (analogous to white noise).
 
-> ![Figure 3.12 textbook](./CourseADSP2026/Fig/fig_3_12.png)
+> ![Figure 2.9](./CourseADSP2026/Fig/fig_3_12.png)
 >
-> *Figure 3.12 (Textbook p.127): Isotropic transformation in two dimensions. After the KL rotation (Figure 3.11), an additional axis-scaling step $\boldsymbol{\Lambda}_x^{-1/2}$ normalizes the variance in each direction to 1. The resulting distribution is a circle (isotropic), invariant to further rotations.*
+> *Figure 2.9 (Textbook Fig. 3.12, p. 127): Isotropic (whitening) transformation in two dimensions. After the KL rotation (Figure 2.7), an additional axis-scaling step $\boldsymbol{\Lambda}_x^{-1/2}$ normalizes the variance in each direction to 1. The resulting distribution becomes a circle — isotropic, invariant to any further rotation.*
 
 ---
 
