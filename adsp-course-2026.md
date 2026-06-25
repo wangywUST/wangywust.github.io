@@ -2,4 +2,4 @@
 layout: course
 ---
 
-{% include_relative CourseADSP2026/lecture_1.md %}
+{% include_relative CourseADSP2026/lecture_2.md %}
