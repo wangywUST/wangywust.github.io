@@ -102,7 +102,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $b_k$, $k=0,\ldots,q$ | MA (moving-average) coefficients |
 | $H(z)$ | Transfer function of the signal model filter |
 | $\sigma_w^2$ | Driving white-noise variance (model excitation power) |
-| $P_x(z) = \sigma_w^2 H(z)H^*(1/z^*)$ | Complex power spectral density (rational spectral density) |
+| $P_x(z) = \sigma_w^2 H(z)H^{\ast}(1/z^{\ast})$ | Complex power spectral density (rational spectral density) |
 | $H_+(z)$ | Minimum-phase spectral factor of $P_x(z)$ |
 
 ### Estimation Theory
@@ -660,11 +660,11 @@ $$\boxed{R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2\, R_x(e^{j\omega})}$$
 
 **In the z-domain:**
 
-$$R_y(z) = H(z)\, H^*\!\left(\frac{1}{z^*}\right)\, R_x(z)$$
+$$R_y(z) = H(z)\, H^{\ast}\!\left(\frac{1}{z^{\ast}}\right)\, R_x(z)$$
 
 **Cross-PSDs:**
 
-$$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\omega}) = H^*(e^{j\omega})\, R_x(e^{j\omega})$$
+$$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\omega}) = H^{\ast}(e^{j\omega})\, R_x(e^{j\omega})$$
 
 **Table 2.1: Second-order statistics of stationary random sequences through LTI systems**
 
@@ -702,31 +702,31 @@ This confirms that the variance of a first-order AR process driven by white nois
 
 ## 4.1 The Central Question
 
-The output PSD formula $R_y(z) = H(z) H^*(1/z^*) R_x(z)$ invites a reverse question:
+The output PSD formula $R_y(z) = H(z) H^{\ast}(1/z^{\ast}) R_x(z)$ invites a reverse question:
 
-> Given a non-negative PSD $R_x(z)$ (or equivalently, a positive semi-definite autocorrelation sequence $r_x(l)$), can we write it as $R_x(z) = H_+(z) H_+^*(1/z^*)$ for some **minimum-phase** filter $H_+(z)$?
+> Given a non-negative PSD $R_x(z)$ (or equivalently, a positive semi-definite autocorrelation sequence $r_x(l)$), can we write it as $R_x(z) = H_+(z) H_+^{\ast}(1/z^{\ast})$ for some **minimum-phase** filter $H_+(z)$?
 
 The answer is **yes** for any rational PSD satisfying the Paley–Wiener condition, and the factorization is **unique** if we require $H_+(z)$ to be minimum-phase (all zeros inside the unit circle). This is the **spectral factorization theorem**.
 
 ## 4.2 Pole-Zero Structure of the PSD
 
-From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\lbrace z_0, z_0^*\rbrace$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\lbrace z_0,\ z_0^*,\ 1/z_0,\ 1/z_0^*\rbrace$.
+From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\lbrace z_0, z_0^{\ast}\rbrace$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\lbrace z_0,\ z_0^{\ast},\ 1/z_0,\ 1/z_0^{\ast}\rbrace$.
 
-On the unit circle ($\lvert z_0\rvert = 1$), conjugate reciprocals coincide ($z_0^* = 1/z_0$ for $\lvert z_0\rvert=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
+On the unit circle ($\lvert z_0\rvert = 1$), conjugate reciprocals coincide ($z_0^{\ast} = 1/z_0$ for $\lvert z_0\rvert=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
 
 ## 4.3 Minimum-Phase Spectral Factor
 
 > **Theorem 2.1 (Spectral Factorization).** Any real-valued PSD $R_x(z)$ of a rational form can be uniquely factored as:
 >
-> $$\boxed{R_x(z) = \sigma_0^2\, H_+(z)\, H_+^*\!\left(\frac{1}{z^*}\right)}$$
+> $$\boxed{R_x(z) = \sigma_0^2\, H_+(z)\, H_+^{\ast}\!\left(\frac{1}{z^{\ast}}\right)}$$
 >
 > where $H_+(z)$ is **minimum-phase** (all zeros and poles strictly inside the unit circle), and $\sigma_0^2 > 0$ is a real positive scalar.
 
 On the unit circle: $R_x(e^{j\omega}) = \sigma_0^2 \lvert H_+(e^{j\omega})\rvert^2$.
 
-**Construction:** From each quadruple $\lbrace z_0, z_0^*, 1/z_0, 1/z_0^*\rbrace$:
-- Assign the **inner pair** $\lbrace 1/z_0^*, 1/z_0^{**}\rbrace = \lbrace 1/z_0^*\rbrace$ to $H_+(z)$ (inside the unit circle)
-- The **outer pair** $\lbrace z_0, z_0^*\rbrace$ goes to $H_+^*(1/z^*)$ automatically
+**Construction:** From each quadruple $\lbrace z_0, z_0^{\ast}, 1/z_0, 1/z_0^{\ast}\rbrace$:
+- Assign the **inner pair** $\lbrace 1/z_0^{\ast}, 1/z_0\rbrace$ to $H_+(z)$ (inside the unit circle)
+- The **outer pair** $\lbrace z_0, z_0^{\ast}\rbrace$ goes to $H_+^{\ast}(1/z^{\ast})$ automatically
 
 **Physical meaning of $H_+(z)$:** The minimum-phase spectral factor $H_+(z)$ is the **causal shaping filter** that generates the process $x(n)$ from white noise:
 
@@ -734,7 +734,7 @@ $$x(n) = H_+(z)\, w(n), \quad w(n) \sim \mathrm{WN}(0, \sigma_0^2)$$
 
 Its inverse $1/H_+(z)$ is the **whitening filter** — it converts $x(n)$ back to white noise, because
 
-$$\frac{1}{H_+(z)}\, R_x(z)\, \frac{1}{H_+^*(1/z^*)} = \frac{1}{H_+(z)}\, \sigma_0^2 H_+(z) H_+^*(1/z^*)\, \frac{1}{H_+^*(1/z^*)} = \sigma_0^2$$
+$$\frac{1}{H_+(z)}\, R_x(z)\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \frac{1}{H_+(z)}\, \sigma_0^2 H_+(z) H_+^{\ast}(1/z^{\ast})\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \sigma_0^2$$
 
 ## 4.4 Innovations Representation
 
@@ -1220,7 +1220,7 @@ $$f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x}) = \frac{f_x(\mathbf{x}\mid
 | Wiener-Khinchin | $R_x(e^{j\omega}) = \mathcal{F}\lbrace r_x(l)\rbrace$, $R_x(e^{j\omega}) \ge 0$ | Spectral estimation (Ch. 5) |
 | White noise | $r_w(l) = \sigma_w^2\delta(l)$; flat PSD $R_w = \sigma_w^2$ | Driving noise for all linear models |
 | Random through filter | $R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2 R_x(e^{j\omega})$ | Spectrum shaping, channel modeling |
-| Spectral factorization | $R_x(z) = \sigma_0^2 H_+(z) H_+^*(1/z^*)$ | Innovations, Wiener filter design (Ch. 6) |
+| Spectral factorization | $R_x(z) = \sigma_0^2 H_+(z) H_+^{\ast}(1/z^{\ast})$ | Innovations, Wiener filter design (Ch. 6) |
 | AR($p$) process | $x(n) = -\sum a_k x(n-k) + w(n)$; Yule-Walker $\mathbf{R}_x\mathbf{a} = -\mathbf{r}_x$ | AR spectrum estimation (Ch. 4–5), linear prediction (Ch. 3) |
 | MA($q$) process | $x(n) = B(z)w(n)$; $r_x(l) = 0$ for $\lvert l\rvert>q$ | Noise modeling, MA spectrum (Ch. 4) |
 | ARMA($p$,$q$) process | $B(z)/A(z)$ model; modified Yule-Walker | General spectral modeling (Ch. 4) |
