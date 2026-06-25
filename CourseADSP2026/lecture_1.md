@@ -7,7 +7,6 @@
 ## Table of Contents
 
 1. [Part I: Digital Signals and DSP Overview](#part-i-digital-signals-and-dsp-overview)
-   - [§1.5 Elementary Sequences (δ, u, αⁿu, e^jω₀n)](#15-elementary-sequences-fundamental-building-blocks)
 2. [Part II: Transforms for Discrete-Time Signals](#part-ii-transforms-for-discrete-time-signals)
 3. [Part III: Digital Filter Structures and Design](#part-iii-digital-filter-structures-and-design)
 4. [Part IV: Special Sequences and Corresponding Filters](#part-iv-special-sequences-and-corresponding-filters)
