@@ -33,7 +33,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $f_x(x) = dF_x(x)/dx$ | Probability density function (PDF) |
 | $p_k = \Pr\{x(\zeta) = x_k\}$ | Probability mass function (PMF), for discrete-valued RVs |
 | $\mu_x = E\{x(\zeta)\}$ | Mean (first moment) of the random variable $x(\zeta)$ |
-| $\sigma_x^2 = E\{|x - \mu_x|^2\}$ | Variance (second central moment) |
+| $\sigma_x^2 = E\{\lvert x - \mu_x\rvert^2\}$ | Variance (second central moment) |
 | $\sigma_x$ | Standard deviation |
 | $r_x^{(m)} = E\{x^m(\zeta)\}$ | $m$-th order moment |
 | $\gamma_x^{(m)} = E\{(x-\mu_x)^m\}$ | $m$-th order central moment |
@@ -51,7 +51,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $\boldsymbol{\Sigma}_x = E\{(\mathbf{x}-\boldsymbol{\mu}_x)(\mathbf{x}-\boldsymbol{\mu}_x)^H\}$ | Covariance matrix |
 | $r_{x_i x_j} = E\{x_i x_j^*\}$ | Cross-correlation between $x_i$ and $x_j$ |
 | $\gamma_{x_i x_j}$ | Cross-covariance between $x_i$ and $x_j$ |
-| $\rho_{x_i x_j} = \gamma_{x_i x_j}/(\sigma_{x_i}\sigma_{x_j})$ | Correlation coefficient, $|\rho|\le 1$ |
+| $\rho_{x_i x_j} = \gamma_{x_i x_j}/(\sigma_{x_i}\sigma_{x_j})$ | Correlation coefficient, $\lvert\rho\rvert\le 1$ |
 
 ### Random Processes (Sequences)
 
@@ -59,14 +59,14 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 |--------|-----------|
 | $x(n) \equiv x(n,\zeta)$ | Discrete-time stochastic process (random sequence) |
 | $\mu_x(n) = E\{x(n)\}$ | Mean function (may be time-varying) |
-| $\sigma_x^2(n) = E\{|x(n)-\mu_x(n)|^2\}$ | Variance function |
+| $\sigma_x^2(n) = E\{\lvert x(n)-\mu_x(n)\rvert^2\}$ | Variance function |
 | $r_{xx}(n_1, n_2) = E\{x(n_1)x^*(n_2)\}$ | Autocorrelation function |
 | $\gamma_{xx}(n_1, n_2)$ | Autocovariance function |
 | $r_{xy}(n_1, n_2) = E\{x(n_1)y^*(n_2)\}$ | Cross-correlation function |
 | $\gamma_{xy}(n_1, n_2)$ | Cross-covariance function |
 | $\rho_{xy}(n_1,n_2)$ | Normalized cross-correlation coefficient |
 | $r_x(l) = E\{x(n+l)x^*(n)\}$ | WSS autocorrelation (function of lag $l$ only) |
-| $\gamma_x(l) = r_x(l) - |\mu_x|^2$ | WSS autocovariance |
+| $\gamma_x(l) = r_x(l) - \lvert\mu_x\rvert^2$ | WSS autocovariance |
 | $r_{xy}(l) = E\{x(n)y^*(n-l)\}$ | WSS cross-correlation |
 
 ### Power Spectral Density and z-Domain
@@ -77,7 +77,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 | $R_x(z) = \sum_{l=-\infty}^{\infty} r_x(l) z^{-l}$ | Complex spectral density (z-transform of $r_x(l)$) |
 | $R_{xy}(e^{j\omega})$ | Cross-power spectral density |
 | $G_{xy}(e^{j\omega})$ | Coherence function |
-| $|G_{xy}(e^{j\omega})|^2$ | Magnitude-squared coherence (MSC) |
+| $\lvert G_{xy}(e^{j\omega})\rvert^2$ | Magnitude-squared coherence (MSC) |
 | $\sigma_w^2$ | Variance of white noise process |
 | $w(n) \sim \mathrm{WN}(\mu_w, \sigma_w^2)$ | White noise with mean $\mu_w$, variance $\sigma_w^2$ |
 | $w(n) \sim \mathrm{WGN}(\mu_w, \sigma_w^2)$ | White Gaussian noise |
@@ -111,7 +111,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 |--------|-----------|
 | $\hat{\theta}$ | Estimate of the deterministic parameter $\theta$ |
 | $b(\hat{\theta}) = E\{\hat{\theta}\} - \theta$ | Bias of the estimator |
-| $\mathrm{MSE}(\hat{\theta}) = E\{|\hat{\theta}-\theta|^2\}$ | Mean-squared error |
+| $\mathrm{MSE}(\hat{\theta}) = E\{\lvert\hat{\theta}-\theta\rvert^2\}$ | Mean-squared error |
 | $\mathrm{CRLB}$ | Cramér–Rao lower bound on the estimator variance |
 | $\mathbf{J}(\boldsymbol{\theta})$ | Fisher information matrix |
 | $\mathbf{A}^T, \mathbf{A}^H$ | Transpose and Hermitian (conjugate) transpose |
@@ -356,7 +356,7 @@ $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)}
 |------|-----------|-------------|
 | **Independent** | All sample values are mutually independent | $f_x(x_1,\ldots,x_k; n_1,\ldots,n_k) = \prod_i f_i(x_i; n_i)$ |
 | **Uncorrelated** | Zero cross-covariance for $n_1 \ne n_2$ | $\gamma_x(n_1, n_2) = \sigma_x^2(n_1)\delta(n_1-n_2)$ |
-| **Orthogonal** | Zero cross-correlation for $n_1 \ne n_2$ | $r_x(n_1, n_2) = E\{|x(n_1)|^2\}\delta(n_1-n_2)$ |
+| **Orthogonal** | Zero cross-correlation for $n_1 \ne n_2$ | $r_x(n_1, n_2) = E\{\lvert x(n_1)\rvert^2\}\delta(n_1-n_2)$ |
 | **Gaussian** | All finite-order joint distributions are Gaussian | Fully characterized by mean and correlation |
 
 > **Relationship between the types:** Independent $\Rightarrow$ uncorrelated $\Rightarrow$ orthogonal (for zero-mean processes). The converses do not hold in general, but for **Gaussian** processes, uncorrelated $\Leftrightarrow$ independent.
@@ -667,8 +667,8 @@ $$R_{yx}(e^{j\omega}) = H(e^{j\omega})\, R_x(e^{j\omega}), \qquad R_{xy}(e^{j\om
 | Output | $y(n) = h(n) * x(n)$ | — | — |
 | Cross (yx) | $r_{yx}(l) = h(l) * r_x(l)$ | $R_{yx} = H R_x$ | $R_{yx}(z) = H(z) R_x(z)$ |
 | Cross (xy) | $r_{xy}(l) = h^*(-l) * r_x(l)$ | $R_{xy} = H^* R_x$ | $R_{xy}(z) = H^*(1/z^*)R_x(z)$ |
-| Auto | $r_y(l) = h(l)*h^*(-l)*r_x(l)$ | $R_y = |H|^2 R_x$ | $R_y(z) = H(z)H^*(1/z^*)R_x(z)$ |
-| Power | $P_y = \mathbf{h}^H\mathbf{R}_x\mathbf{h}$ | $P_y = \frac{1}{2\pi}\int|H|^2 R_x d\omega$ | — |
+| Auto | $r_y(l) = h(l)*h^*(-l)*r_x(l)$ | $R_y = \lvert H\rvert^2 R_x$ | $R_y(z) = H(z)H^*(1/z^*)R_x(z)$ |
+| Power | $P_y = \mathbf{h}^H\mathbf{R}_x\mathbf{h}$ | $P_y = \frac{1}{2\pi}\int\lvert H\rvert^2 R_x d\omega$ | — |
 
 > **Key insight from $R_y(e^{j\omega}) = |H(e^{j\omega})|^2 R_x(e^{j\omega})$:**
 >
@@ -853,7 +853,7 @@ $$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-|l|} b_k b_{k+|l|}^* & |l| \le
 | Transfer function $H(z)$ | $1/A(z)$ (all-pole) | $B(z)$ (all-zero) | $B(z)/A(z)$ |
 | Poles | $p$ (inside unit circle) | None (0) | $p$ |
 | Zeros | None (0) | $q$ | $q$ |
-| Autocorrelation $r_x(l)$ | Infinite, exponentially decaying | **Exactly zero for $|l|>q$** | Infinite, decays to $0$ |
+| Autocorrelation $r_x(l)$ | Infinite, exponentially decaying | **Exactly zero for $\lvert l\rvert>q$** | Infinite, decays to $0$ |
 | PSD shape | Peaks (narrowband good) | Notches (wideband good) | Peaks and notches |
 | Estimation via | Yule-Walker / Levinson (efficient) | Spectral factorization / Durbin | Iterative / MYWE |
 | Universality | Can approximate any PSD with enough poles | Can approximate any PSD with enough zeros | Most general, fewest parameters needed |
@@ -1196,8 +1196,8 @@ $$f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x}) = \frac{f_x(\mathbf{x}|\boldsymbo
 
 | Cost Function | Optimal Estimate |
 |-------------|-----------------|
-| **Quadratic:** $C(\hat{\theta}, \theta) = |\hat{\theta} - \theta|^2$ | **MMSE:** $\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\{\boldsymbol{\theta}|\mathbf{x}\}$ (posterior mean) |
-| **Uniform (0-1 loss):** $C = 0$ if $|\hat{\theta}-\theta| < \epsilon$, else $1$ | **MAP:** $\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x})$ (posterior mode) |
+| **Quadratic:** $C(\hat{\theta}, \theta) = \lvert\hat{\theta} - \theta\rvert^2$ | **MMSE:** $\hat{\boldsymbol{\theta}}_{\mathrm{MMSE}} = E\{\boldsymbol{\theta}\mid\mathbf{x}\}$ (posterior mean) |
+| **Uniform (0-1 loss):** $C = 0$ if $\lvert\hat{\theta}-\theta\rvert < \epsilon$, else $1$ | **MAP:** $\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\theta\mid x}(\boldsymbol{\theta}\mid\mathbf{x})$ (posterior mode) |
 
 **Relationship to ML:** MAP reduces to ML when the prior $f_\theta(\boldsymbol{\theta})$ is **uniform** (no prior preference for any value of $\boldsymbol{\theta}$) — ML is a special case of MAP with an uninformative (flat) prior.
 
@@ -1213,10 +1213,10 @@ $$f_{\theta|x}(\boldsymbol{\theta}|\mathbf{x}) = \frac{f_x(\mathbf{x}|\boldsymbo
 | WSS process | $r_x(n_1,n_2) = r_x(l)$ (lag only); Hermitian Toeplitz $\mathbf{R}_x$ | Wiener filter (Ch. 6), Kalman filter (Ch. 6) |
 | Wiener-Khinchin | $R_x(e^{j\omega}) = \mathcal{F}\{r_x(l)\}$, $R_x(e^{j\omega}) \ge 0$ | Spectral estimation (Ch. 5) |
 | White noise | $r_w(l) = \sigma_w^2\delta(l)$; flat PSD $R_w = \sigma_w^2$ | Driving noise for all linear models |
-| Random through filter | $R_y(e^{j\omega}) = |H(e^{j\omega})|^2 R_x(e^{j\omega})$ | Spectrum shaping, channel modeling |
+| Random through filter | $R_y(e^{j\omega}) = \lvert H(e^{j\omega})\rvert^2 R_x(e^{j\omega})$ | Spectrum shaping, channel modeling |
 | Spectral factorization | $R_x(z) = \sigma_0^2 H_+(z) H_+^*(1/z^*)$ | Innovations, Wiener filter design (Ch. 6) |
 | AR($p$) process | $x(n) = -\sum a_k x(n-k) + w(n)$; Yule-Walker $\mathbf{R}_x\mathbf{a} = -\mathbf{r}_x$ | AR spectrum estimation (Ch. 4–5), linear prediction (Ch. 3) |
-| MA($q$) process | $x(n) = B(z)w(n)$; $r_x(l) = 0$ for $|l|>q$ | Noise modeling, MA spectrum (Ch. 4) |
+| MA($q$) process | $x(n) = B(z)w(n)$; $r_x(l) = 0$ for $\lvert l\rvert>q$ | Noise modeling, MA spectrum (Ch. 4) |
 | ARMA($p$,$q$) process | $B(z)/A(z)$ model; modified Yule-Walker | General spectral modeling (Ch. 4) |
 | Harmonic process | Line spectrum; $r_x(l) = \sum A_k^2\cos\omega_k l$ | Frequency estimation (Ch. 5) |
 | KL transform (DKLT) | $\mathbf{w} = \mathbf{Q}_x^H\mathbf{x}$; decorrelates; optimal MSE truncation | Dimensionality reduction; DCT approximation |
