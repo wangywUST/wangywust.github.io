@@ -433,6 +433,20 @@ $$\boxed{r_x(0) = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0 \quad \text{and} \quad 
 
 $r_x(0)$ is the **total average power** — the DC component $\lvert\mu_x\rvert^2$ plus the AC power $\sigma_x^2$. The autocorrelation is always maximum at zero lag.
 
+> **Proof.**
+>
+> *Part 1: $r_x(0) = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0$.*
+> By definition at lag $l=0$:
+>
+> $$r_x(0) = E\bigl\{x(n)\,x^{\ast}(n)\bigr\} = E\bigl\{\lvert x(n)\rvert^2\bigr\} = \operatorname{var}(x) + \lvert E\{x\}\rvert^2 = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0$$
+>
+> *Part 2: $r_x(0) \ge \lvert r_x(l)\rvert$ for all $l$.*
+> By the Cauchy–Schwarz inequality applied to expectations, $\lvert E\{u\,v^{\ast}\}\rvert^2 \le E\{\lvert u\rvert^2\}\cdot E\{\lvert v\rvert^2\}$. Setting $u = x(n+l)$ and $v = x(n)$:
+>
+> $$\lvert r_x(l)\rvert^2 = \bigl\lvert E\{x(n+l)\,x^{\ast}(n)\}\bigr\rvert^2 \;\le\; E\bigl\{\lvert x(n+l)\rvert^2\bigr\} \cdot E\bigl\{\lvert x(n)\rvert^2\bigr\} = r_x(0)^2$$
+>
+> Since $r_x(0) \ge 0$, taking square roots gives $r_x(0) \ge \lvert r_x(l)\rvert$. $\blacksquare$
+
 **Property 2 (Conjugate symmetry):**
 $$r_x^{\ast}(-l) = r_x(l)$$
 
