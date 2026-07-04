@@ -6,6 +6,48 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">HighlightBench: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents</div>
+      <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Yujun Cai, Yuyao Ge, Jiayu Yao, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/wang2026highlightbench.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Focusing by Contrastive Attention: Enhancing VLMs'  Visual Reasoning</div>
+      <div class="author">Yuyao Ge, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Xuanshan Zhou, Jiayu Yao, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/ge2026focusing.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">ViewFusion: Structured Spatial Thinking Chains for Multi-View Reasoning</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yifan Song, Jing Tang.</div>
+      <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/tao2026viewfusion.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Mitigating Coordinate Prediction Bias from Positional Encoding Failures</div>
       <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Kai Han, Jing Tang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em></div>
@@ -1344,6 +1386,20 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Learning progressive joint propagation for human motion prediction</div>
+      <div class="author">Yujun Cai, Lin Huang, Yiwei Wang, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Xu Yang, Yiheng Zhu, Xiaohui Shen, others.</div>
+      <div class="periodical"><em>Computer Vision--ECCV 2020: 16th European Conference, 2020.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/cai2020learning.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Active learning for node classification: The additional learning ability from unlabelled nodes</div>
       <div class="author">Juncheng Liu, Yiwei Wang, Bryan Hooi, Renchi Yang, Xiaokui Xiao.</div>
       <div class="periodical"><em>arXiv preprint arXiv:2012.07065, 2020.</em></div>
@@ -1363,20 +1419,6 @@
       <div class="periodical"><em>arXiv preprint arXiv:2009.10564, 2020.</em></div>
       <div class="links" style="margin-top: -5px;">
         <a href="https://wangywust.github.io/pdfs/wang2020graphcrop.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Learning progressive joint propagation for human motion prediction</div>
-      <div class="author">Yujun Cai, Lin Huang, Yiwei Wang, Tat-Jen Cham, Jianfei Cai, Junsong Yuan, Jun Liu, Xu Yang, Yiheng Zhu, Xiaohui Shen, others.</div>
-      <div class="periodical"><em>Computer Vision--ECCV 2020: 16th European Conference, 2020.</em></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/cai2020learning.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>

@@ -193,6 +193,7 @@ CONFERENCE_TIME_ORDER = [
     'NeurIPS',
     'EMNLP',
     'COLM',
+    'ECCV',
     'ACL',
     'ICML',
     'CVPR',
