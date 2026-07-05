@@ -2,7 +2,7 @@
 ## Chapter 5: Power Spectrum Estimation
 
 > 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005  
-> Chapters covered: Ch. 5 (Nonparametric Power Spectrum Estimation) · §9.2 (AR Spectral Estimation) · §9.3 (Pole-Zero Models) · §9.5 (Minimum-Variance Spectrum Estimation) · §9.6 (Harmonic Models and Frequency Estimation)
+> Chapters covered: Ch. 5 (Nonparametric Power Spectrum Estimation) · §9.2 (AR Spectral Estimation) · §9.3 (Pole-Zero Models) · §9.5 (Minimum-Variance Spectrum Estimation) · §9.6 (Harmonic Models and Frequency Estimations)
 
 ---
 
