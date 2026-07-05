@@ -1,0 +1,1315 @@
+# Modern Digital Signal Processing
+## Chapter 3: Linear Prediction and Lattice Filters
+
+> 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005  
+> Chapters covered: §6.5 (Linear Prediction) · Ch. 7 (Algorithms and Structures for Optimum Linear Filters, §7.1–§7.7) · §9.2.3 (Maximum Entropy Method / Burg Method) · §9.4.2 (Speech Modeling)
+
+---
+
+## Table of Contents
+
+1. [§1 Basic Linear Prediction Model and the Autocorrelation Method](#1-basic-linear-prediction-model-and-the-autocorrelation-method)
+2. [§2 Equivalence Between AR All-Pole Modeling and Linear Prediction](#2-equivalence-between-ar-all-pole-modeling-and-linear-prediction)
+3. [§3 Levinson-Durbin Recursive Algorithm](#3-levinson-durbin-recursive-algorithm)
+4. [§4 Three Equivalent Sets of Recursive Parameters](#4-three-equivalent-sets-of-recursive-parameters)
+5. [§5 Schur Recursive Algorithm](#5-schur-recursive-algorithm)
+6. [§6 General Levinson Recursion for Toeplitz Equations](#6-general-levinson-recursion-for-toeplitz-equations)
+7. [§7 Covariance Algorithm for Linear Prediction](#7-covariance-algorithm-for-linear-prediction)
+8. [§8 Forward/Backward Prediction and Lattice Filters](#8-forwardbackward-prediction-and-lattice-filters)
+9. [§9 Lattice Modeling and the Burg Algorithm](#9-lattice-modeling-and-the-burg-algorithm)
+10. [§10 Modified Covariance Algorithm](#10-modified-covariance-algorithm)
+11. [§11 Application Example: Linear Prediction in Speech Coding](#11-application-example-linear-prediction-in-speech-coding)
+
+---
+
+## Notation and Variable Definitions
+
+All symbols used in this chapter are collected below. The notation follows the conventions of Chapters 1 and 2: boldface lower-case letters denote vectors, boldface upper-case letters denote matrices, and superscript $H$ denotes Hermitian transpose.
+
+### Time Index, Data Length, and Model Order
+
+| Symbol | Definition |
+|--------|------------|
+| $n$ | Discrete-time sample index |
+| $N$ | Last sample index or data length parameter, depending on context |
+| $p$ | Linear prediction / AR model order |
+| $m$ | Intermediate recursive order, usually $m=0,1,\ldots,p$ |
+| $k$ | Lag index or coefficient index |
+| $l$ | Correlation lag index |
+| $N_i, N_f$ | Initial and final indices in finite-data least-squares criteria |
+
+### Signals, Predictors, and Errors
+
+| Symbol | Definition |
+|--------|------------|
+| $x(n)$ | Discrete-time signal or WSS random process to be predicted/modelled |
+| $\hat{x}(n)$ | Linear prediction estimate of $x(n)$ |
+| $w(n)$ | White-noise excitation / innovation sequence |
+| $e_p^f(n)$ | $p$-th order forward prediction error |
+| $e_p^b(n)$ | $p$-th order backward prediction error |
+| $\mathbf{x}_p(n)$ | Data vector, usually $[x(n-1),x(n-2),\ldots,x(n-p)]^T$ for forward prediction |
+| $\mathbf{a}_p$ | Direct-form forward prediction coefficient vector $[a_1^{(p)},\ldots,a_p^{(p)}]^T$ |
+| $\mathbf{b}_p$ | Direct-form backward prediction coefficient vector |
+| $A_p(z)$ | Forward prediction error filter (PEF) |
+| $B_p(z)$ | Backward prediction error filter (BPEF) |
+
+### Correlation Quantities
+
+| Symbol | Definition |
+|--------|------------|
+| $r_x(l)=E\{x(n)x^{\ast}(n-l)\}$ | Autocorrelation sequence of a WSS process |
+| $\hat r_x(l)$ | Estimated autocorrelation sequence from finite data |
+| $\mathbf{R}_p$ | $p\times p$ autocorrelation matrix, Hermitian Toeplitz in the WSS case |
+| $\mathbf{r}_p=[r_x(1),\ldots,r_x(p)]^T$ | Correlation vector used in the Yule-Walker / prediction equations |
+| $P_p$ | Minimum prediction error power at order $p$ |
+| $\sigma_p^2$ | Another common notation for $P_p$; in AR modeling it is the residual variance |
+| $\Phi(i,k)$ | Sample covariance term used in covariance and modified covariance methods |
+
+### Recursive and Lattice Parameters
+
+| Symbol | Definition |
+|--------|------------|
+| $\kappa_m$ or $k_m$ | Reflection coefficient / lattice coefficient / PARCOR coefficient at stage $m$ |
+| $\alpha_m$ | Prediction error update numerator in some Levinson-Durbin derivations |
+| $\mathbf{J}$ | Exchange matrix that reverses vector order |
+| $\xi_m^f(l)$ | Forward gapped correlation function in the Schur algorithm |
+| $\xi_m^b(l)$ | Backward gapped correlation function in the Schur algorithm |
+| $k_m^c$ | Ladder coefficient in a lattice-ladder optimum FIR filter |
+
+### Model Types
+
+| Symbol | Definition |
+|--------|------------|
+| AR($p$) | Autoregressive model of order $p$, also called an all-pole model |
+| AP($p$) | All-pole model of order $p$ |
+| PEF | Prediction error filter; for an AR process it is the whitening filter |
+| LPC | Linear predictive coding; speech coding method based on short-time all-pole modeling |
+
+---
+
+# §1 Basic Linear Prediction Model and the Autocorrelation Method
+
+> 📖 Textbook §6.5 (Linear Prediction); §7.1 (Fundamentals of Order-Recursive Algorithms)
+
+## 1.1 Why Linear Prediction Is Important
+
+Linear prediction is one of the central ideas in modern digital signal processing. The basic question is simple:
+
+> Can we estimate the current sample of a signal from a linear combination of its past samples?
+
+For a highly correlated signal, such as speech, radar clutter, narrowband interference, or a slowly varying sensor measurement, the answer is often yes. The current sample contains information that is already partly present in previous samples. Linear prediction extracts this redundancy.
+
+A one-step $p$-th order forward predictor estimates $x(n)$ using the previous $p$ samples:
+
+$$\hat{x}(n)=-\sum_{k=1}^{p} a_k^{\ast}x(n-k).$$
+
+The minus sign is a convention. It is chosen so that the prediction error filter has a compact polynomial form:
+
+$$\boxed{e_p^f(n)=x(n)-\hat{x}(n)=x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)}$$
+
+and therefore
+
+$$\boxed{A_p(z)=1+\sum_{k=1}^{p}a_k^{\ast}z^{-k}}.$$
+
+This means that linear prediction can be viewed in two equivalent ways:
+
+| Viewpoint | Meaning |
+|----------|---------|
+| Predictor | Use the past to estimate the current sample |
+| Error filter | Filter the signal by $A_p(z)$ so that predictable components are removed |
+
+The second viewpoint is especially important. If $A_p(z)$ removes all correlation that can be linearly predicted from the past, then its output is the innovation or residual part of the signal.
+
+> ![Figure 1.1](./CourseADSP2026/Fig/Chapter_3/fig_1_1_textbook_fig_6_16_p283.png)
+>
+> *Figure 1.1 (Textbook Fig. 6.16, p. 283): Linear signal estimation, forward linear prediction, and backward linear prediction. This figure is the most useful starting point for this chapter because it shows that prediction is a special case of linear signal estimation.*
+
+## 1.2 Linear Prediction as LMMSE Estimation
+
+Chapter 2 introduced the linear minimum mean-square-error (LMMSE) principle. For linear prediction, the desired response is $x(n)$ and the data vector is
+
+$$\mathbf{x}_p(n)=\begin{bmatrix}x(n-1)&x(n-2)&\cdots&x(n-p)\end{bmatrix}^T.$$
+
+The prediction error is
+
+$$e_p^f(n)=x(n)+\mathbf{a}_p^H\mathbf{x}_p(n).$$
+
+The optimal coefficient vector is the one that minimizes
+
+$$J(\mathbf{a}_p)=E\{|e_p^f(n)|^2\}.$$
+
+The LMMSE orthogonality principle says:
+
+> The optimal prediction error is orthogonal to every sample used by the predictor.
+
+Thus, for $i=1,2,\ldots,p$,
+
+$$E\{e_p^f(n)x^{\ast}(n-i)\}=0.$$
+
+Substituting the prediction error gives
+
+$$E\left\{\left[x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right]x^{\ast}(n-i)\right\}=0.$$
+
+For a WSS process, this becomes
+
+$$r_x(i)+\sum_{k=1}^{p}a_k^{\ast}r_x(i-k)=0, \qquad i=1,2,\ldots,p.$$
+
+In matrix form,
+
+$$\boxed{\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p^{\ast}}$$
+
+or, depending on whether the coefficient vector is conjugated in the chosen convention,
+
+$$\boxed{\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p}.$$
+
+The exact placement of complex conjugates is a notation issue. For real-valued signals, both forms reduce to the familiar Yule-Walker / Wiener-Hopf equations:
+
+$$\begin{bmatrix}
+r(0)&r(1)&\cdots&r(p-1)\\
+r(1)&r(0)&\cdots&r(p-2)\\
+\vdots&\vdots&\ddots&\vdots\\
+r(p-1)&r(p-2)&\cdots&r(0)
+\end{bmatrix}
+\begin{bmatrix}a_1\\a_2\\\vdots\\a_p\end{bmatrix}
+=-\begin{bmatrix}r(1)\\r(2)\\\vdots\\r(p)\end{bmatrix}.$$
+
+The matrix is Toeplitz: each diagonal is constant. This Toeplitz structure is the reason why Levinson-Durbin recursion can solve the system much faster than generic Gaussian elimination.
+
+## 1.3 Minimum Prediction Error Power
+
+After the optimal coefficients are found, the minimum prediction error power is
+
+$$\boxed{P_p=E\{|e_p^f(n)|^2\}=r_x(0)+\sum_{k=1}^{p}a_k^{\ast}r_x(k)}.$$
+
+In vector form,
+
+$$\boxed{P_p=r_x(0)+\mathbf{r}_p^H\mathbf{a}_p}.$$
+
+This expression has a clear interpretation:
+
+- $r_x(0)$ is the original signal power.
+- $\mathbf{r}_p^H\mathbf{a}_p$ is the amount of predictable power removed by the predictor.
+- $P_p$ is the leftover power that cannot be predicted linearly from the previous $p$ samples.
+
+If the signal is very predictable, $P_p$ is small. If the signal is white noise, all nonzero-lag autocorrelations are zero, so $\mathbf{a}_p=\mathbf{0}$ and $P_p=r_x(0)$. In that case prediction cannot improve anything.
+
+## 1.4 The Autocorrelation Method for Finite Data
+
+In theory, the autocorrelation sequence is an ensemble average:
+
+$$r_x(l)=E\{x(n)x^{\ast}(n-l)\}.$$
+
+In practice, we usually have only one finite data record:
+
+$$x(0),x(1),\ldots,x(N).$$
+
+The autocorrelation method estimates $r_x(l)$ by treating samples outside the observed interval as zero. A common estimate is
+
+$$\boxed{\hat r_x(l)=\sum_{n=l}^{N}x(n)x^{\ast}(n-l),\qquad l=0,1,\ldots,p.}$$
+
+Equivalently, this is the autocorrelation of a finite sequence that has been multiplied by a rectangular window.
+
+The resulting normal equations are still Toeplitz:
+
+$$\hat{\mathbf{R}}_p\hat{\mathbf{a}}_p=-\hat{\mathbf{r}}_p.$$
+
+This is the main advantage of the autocorrelation method: it preserves the Toeplitz structure, so the coefficients can be computed efficiently and stably by Levinson-Durbin recursion.
+
+### Important Practical Consequence: Stability
+
+For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle. Therefore, the corresponding all-pole synthesis filter
+
+$$H_p(z)=\frac{1}{A_p(z)}$$
+
+is stable.
+
+This stability property is one reason why the autocorrelation method is widely used in speech LPC and AR spectrum estimation.
+
+### Weakness of the Autocorrelation Method
+
+The zero-extension assumption is not always physically accurate. If the true signal does not actually become zero outside the observed interval, then the rectangular window creates artificial boundary effects. These boundary effects can bias the estimated autocorrelation and degrade model accuracy, especially for short records.
+
+This motivates the covariance and modified covariance methods, discussed later in §7 and §10.
+
+## 1.5 Windowing and Model Accuracy
+
+The autocorrelation method with zero extension is equivalent to using a rectangular data window. A rectangular window has strong sidelobes in frequency, which can create spectral leakage.
+
+A smoother window, such as a Hamming window, reduces sidelobes but broadens mainlobes. In the linear prediction context, this creates the same bias-resolution tradeoff encountered in spectrum estimation:
+
+| Window | Advantage | Disadvantage |
+|--------|-----------|--------------|
+| Rectangular | High resolution; simple; preserves more data energy | Strong sidelobes; boundary discontinuity |
+| Hamming | Lower sidelobes; smoother finite record | Lower resolution; broadened spectral peaks |
+
+The choice of window changes the estimated autocorrelation sequence and therefore changes the AR model.
+
+---
+
+# §2 Equivalence Between AR All-Pole Modeling and Linear Prediction
+
+> 📖 Textbook §6.5 (Linear Prediction); §9.2 (Estimation of All-Pole Models)
+
+## 2.1 The AR($p$) Model
+
+An autoregressive process of order $p$ is defined by
+
+$$\boxed{x(n)+\sum_{k=1}^{p}a_k x(n-k)=w(n)}$$
+
+where $w(n)$ is white noise with variance $\sigma_w^2$.
+
+In $z$-domain form,
+
+$$A_p(z)x(n) \longleftrightarrow w(n), \qquad A_p(z)=1+\sum_{k=1}^{p}a_k z^{-k}.$$
+
+The corresponding synthesis model is
+
+$$\boxed{x(n)=H_p(z)w(n),\qquad H_p(z)=\frac{1}{A_p(z)}.}$$
+
+Because $H_p(z)$ has only poles, AR modeling is also called all-pole modeling.
+
+## 2.2 Prediction Error Filter Equals Whitening Filter
+
+Compare the AR equation with the linear prediction error:
+
+$$e_p^f(n)=x(n)+\sum_{k=1}^{p}a_k x(n-k).$$
+
+For an exact AR($p$) process,
+
+$$\boxed{e_p^f(n)=w(n).}$$
+
+Therefore, the prediction error is the white-noise innovation. The prediction error filter $A_p(z)$ whitens the AR process.
+
+This is the key equivalence:
+
+> For an AR($p$) process, the optimal $p$-th order linear prediction error filter is the whitening filter.
+
+Thus the same coefficients appear in three places:
+
+| Object | Same polynomial |
+|--------|-----------------|
+| AR difference equation | $A_p(z)x(n)=w(n)$ |
+| Prediction error filter | $e_p^f(n)=A_p(z)x(n)$ |
+| All-pole synthesis filter | $x(n)=\dfrac{1}{A_p(z)}w(n)$ |
+
+## 2.3 Yule-Walker Equations from the AR Model
+
+Starting from
+
+$$x(n)+\sum_{k=1}^{p}a_kx(n-k)=w(n),$$
+
+multiply both sides by $x^{\ast}(n-i)$ and take expectation. Since the white-noise innovation is orthogonal to past samples, for $i=1,2,\ldots,p$,
+
+$$E\{w(n)x^{\ast}(n-i)\}=0.$$
+
+Therefore,
+
+$$r_x(i)+\sum_{k=1}^{p}a_k r_x(i-k)=0,\qquad i=1,2,\ldots,p.$$
+
+These are exactly the same equations as the optimal linear prediction equations.
+
+For $i=0$,
+
+$$r_x(0)+\sum_{k=1}^{p}a_k r_x(-k)=\sigma_w^2.$$
+
+This gives the innovation variance:
+
+$$\boxed{\sigma_w^2=P_p=r_x(0)+\sum_{k=1}^{p}a_k r_x^{\ast}(k).}$$
+
+## 2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction
+
+There are two related but distinct problems.
+
+### Statistical AR Modeling
+
+Here $x(n)$ is assumed to be a realization of a WSS random process. We model its second-order statistics by an AR process. The autocorrelation sequence $r_x(l)$ is the central object.
+
+The model is good if the AR spectrum
+
+$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{|A_p(e^{j\omega})|^2}}$$
+
+matches the true or estimated power spectral density.
+
+### Deterministic Linear Prediction
+
+Here $x(n)$ is treated as a finite deterministic data record. We choose coefficients to minimize a finite sum of squared errors. The central object is not the ensemble autocorrelation but the data matrix formed from the samples.
+
+The two formulations become equivalent when the finite-sample correlation estimates are used as approximations to ensemble correlations. This is why the same algorithms appear in both AR spectrum estimation and deterministic linear prediction.
+
+## 2.5 Why All-Pole Models Are Useful
+
+All-pole models are especially effective for signals with spectral peaks. A pole near the unit circle creates a sharp spectral peak at the corresponding frequency. Therefore, an all-pole model can represent narrowband resonances with relatively few parameters.
+
+Typical examples include:
+
+- speech vocal-tract resonances,
+- radar clutter resonances,
+- narrowband interference,
+- geophysical time series,
+- biomedical oscillatory signals.
+
+> ![Figure 2.1](./CourseADSP2026/Fig/Chapter_3/fig_9_3_textbook_fig_9_12_p452.png)
+>
+> *Figure 2.1 (Textbook Fig. 9.12, p. 452): Spectral-envelope matching property of all-pole models. All-pole models do not merely interpolate sample values; they provide a smooth resonant envelope that can capture spectral peaks.*
+
+---
+
+# §3 Levinson-Durbin Recursive Algorithm
+
+> 📖 Textbook §7.4 (Algorithms of Levinson and Levinson-Durbin); §7.1.3
+
+## 3.1 The Computational Problem
+
+The prediction coefficients are obtained from the Toeplitz system
+
+$$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p.$$
+
+A generic matrix solver requires $O(p^3)$ operations. But $\mathbf{R}_p$ is not a generic matrix. It is Hermitian Toeplitz:
+
+$$\mathbf{R}_p=\begin{bmatrix}
+r(0)&r(1)&\cdots&r(p-1)\\
+r^{\ast}(1)&r(0)&\cdots&r(p-2)\\
+\vdots&\vdots&\ddots&\vdots\\
+r^{\ast}(p-1)&r^{\ast}(p-2)&\cdots&r(0)
+\end{bmatrix}.$$
+
+Levinson-Durbin recursion exploits this structure and solves all orders $1,2,\ldots,p$ in $O(p^2)$ operations.
+
+The idea is not merely to solve one equation. It solves a nested sequence of problems:
+
+$$\mathbf{R}_1\mathbf{a}_1=-\mathbf{r}_1,$$
+
+$$\mathbf{R}_2\mathbf{a}_2=-\mathbf{r}_2,$$
+
+$$\cdots$$
+
+$$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p.$$
+
+Each solution is built from the previous-order solution.
+
+## 3.2 The Order-Recursive View
+
+Let
+
+$$A_m(z)=1+\sum_{k=1}^{m}a_k^{(m)}z^{-k}$$
+
+be the $m$-th order prediction error filter. The superscript $(m)$ means that the coefficient belongs to the order-$m$ predictor; it is not an exponent.
+
+Suppose we already know $A_{m-1}(z)$ and the prediction error power $P_{m-1}$. The question is:
+
+> What single new coefficient should be added to obtain the best order-$m$ predictor?
+
+The new coefficient is the reflection coefficient
+
+$$\kappa_m=a_m^{(m)}.$$
+
+It measures how much correlation remains between the forward and backward prediction errors at order $m-1$.
+
+## 3.3 Levinson-Durbin Recursion Formulas
+
+Initialize:
+
+$$P_0=r(0).$$
+
+For $m=1,2,\ldots,p$, compute the prediction-error correlation numerator:
+
+$$\alpha_m=r(m)+\sum_{k=1}^{m-1}a_k^{(m-1)}r(m-k).$$
+
+Then the reflection coefficient is
+
+$$\boxed{\kappa_m=-\frac{\alpha_m}{P_{m-1}}.}$$
+
+Update the coefficients:
+
+$$\boxed{a_m^{(m)}=\kappa_m}$$
+
+and for $k=1,2,\ldots,m-1$,
+
+$$\boxed{a_k^{(m)}=a_k^{(m-1)}+\kappa_m\left[a_{m-k}^{(m-1)}\right]^{\ast}.}$$
+
+Update the prediction error power:
+
+$$\boxed{P_m=P_{m-1}(1-|\kappa_m|^2).}$$
+
+These equations are the core of the Levinson-Durbin algorithm.
+
+## 3.4 Why the Error Recursion Makes Sense
+
+The update
+
+$$P_m=P_{m-1}(1-|\kappa_m|^2)$$
+
+is extremely informative.
+
+If $|\kappa_m|$ is close to zero, the new stage adds little predictive power, so $P_m\approx P_{m-1}$.
+
+If $|\kappa_m|$ is large, the new lag explains a significant part of the residual correlation, so the error power decreases strongly.
+
+If $|\kappa_m|<1$, then $P_m>0$. This connects numerical recursion, signal predictability, and filter stability.
+
+## 3.5 Reflection Coefficient as Partial Correlation
+
+The reflection coefficient is also called the partial autocorrelation coefficient (PARCOR). It measures the correlation between two samples after the effects of the intermediate samples have already been removed.
+
+For example, $\kappa_3$ is not simply the correlation between $x(n)$ and $x(n-3)$. It is the remaining correlation between them after the information in $x(n-1)$ and $x(n-2)$ has been accounted for.
+
+This interpretation is why reflection coefficients are useful for model-order selection. In an ideal AR($p$) process, the partial autocorrelation is nonzero up to lag $p$ and zero after lag $p$.
+
+## 3.6 Direct Form vs Recursive Structure
+
+The direct-form predictor uses $p$ taps at once. The recursive approach builds the predictor stage by stage. At every stage, the newly introduced reflection coefficient corrects both the forward and backward prediction errors.
+
+This stage-wise interpretation leads naturally to lattice filters.
+
+> ![Figure 3.1](./CourseADSP2026/Fig/Chapter_3/fig_3_1_textbook_fig_7_1_p337.png)
+>
+> *Figure 3.1 (Textbook Fig. 7.1, p. 337): Orthogonal order-recursive structure for linear MMSE estimation. This figure is useful for understanding why order-recursive algorithms can update an estimator by adding one orthogonalized component at a time.*
+
+> ![Figure 3.2](./CourseADSP2026/Fig/Chapter_3/fig_3_2_textbook_fig_7_2_p341.png)
+>
+> *Figure 3.2 (Textbook Fig. 7.2, p. 341): Gram-Schmidt orthogonalization. Levinson-type recursions can be interpreted as specialized orthogonalization procedures adapted to Toeplitz correlation matrices.*
+
+## 3.7 Algorithm Table
+
+| Step | Operation |
+|------|-----------|
+| 1 | Set $P_0=r(0)$ and start with no prediction coefficients |
+| 2 | For order $m$, compute $\alpha_m=r(m)+\sum_{k=1}^{m-1}a_k^{(m-1)}r(m-k)$ |
+| 3 | Compute reflection coefficient $\kappa_m=-\alpha_m/P_{m-1}$ |
+| 4 | Update direct-form coefficients by $a_k^{(m)}=a_k^{(m-1)}+\kappa_m[a_{m-k}^{(m-1)}]^\ast$ |
+| 5 | Set $a_m^{(m)}=\kappa_m$ |
+| 6 | Update $P_m=P_{m-1}(1-|\kappa_m|^2)$ |
+| 7 | Continue until $m=p$ |
+
+## 3.8 Simple First-Order Example
+
+For $p=1$, the normal equation is
+
+$$r(0)a_1=-r(1).$$
+
+Thus
+
+$$a_1=-\frac{r(1)}{r(0)}.$$
+
+The first reflection coefficient is
+
+$$\kappa_1=a_1=-\frac{r(1)}{r(0)}.$$
+
+The first-order prediction error power is
+
+$$P_1=r(0)(1-|\kappa_1|^2)=r(0)-\frac{|r(1)|^2}{r(0)}.$$
+
+This result says: the more strongly $x(n)$ is correlated with $x(n-1)$, the more the prediction error power is reduced.
+
+---
+
+# §4 Three Equivalent Sets of Recursive Parameters
+
+> 📖 Textbook §7.1–§7.3, §7.5, §7.7
+
+## 4.1 Three Equivalent Descriptions
+
+A stable minimum-phase prediction error filter can be represented in at least three equivalent ways:
+
+1. direct-form coefficients $a_1,\ldots,a_p$,
+2. reflection coefficients $\kappa_1,\ldots,\kappa_p$,
+3. prediction error powers $P_0,P_1,\ldots,P_p$.
+
+The same prediction model can be converted from one representation to another.
+
+> ![Figure 4.1](./CourseADSP2026/Fig/Chapter_3/fig_4_1_textbook_fig_7_4_p356.png)
+>
+> *Figure 4.1 (Textbook Fig. 7.4, p. 356): Direct-form structure for computing forward and backward prediction errors.*
+
+> ![Figure 4.2](./CourseADSP2026/Fig/Chapter_3/fig_4_2_textbook_fig_7_7_p361.png)
+>
+> *Figure 4.2 (Textbook Fig. 7.7, p. 361): Equivalent representations for minimum-phase linear prediction error filters. Autocorrelation values, reflection coefficients, direct-form coefficients, and error powers are different parameterizations of the same object.*
+
+## 4.2 Positive Definiteness, Reflection Coefficients, and Stability
+
+For a valid WSS process, the autocorrelation matrix must be nonnegative definite. If it is positive definite, the Levinson-Durbin recursion gives
+
+$$P_m>0,\qquad m=0,1,\ldots,p.$$
+
+Since
+
+$$P_m=P_{m-1}(1-|\kappa_m|^2),$$
+
+positive prediction error power implies
+
+$$\boxed{|\kappa_m|<1.}$$
+
+This condition has a filter interpretation:
+
+> The prediction error filter $A_p(z)$ is minimum phase if and only if all reflection coefficients satisfy $|\kappa_m|<1$.
+
+This is extremely useful because checking stability through roots of $A_p(z)$ can be expensive and numerically sensitive. Checking reflection coefficients is simple.
+
+## 4.3 Boundary Case: Zero on the Unit Circle
+
+If $|\kappa_m|=1$ for some stage, then
+
+$$P_m=0.$$
+
+This means that the signal becomes perfectly predictable at order $m$. The corresponding prediction error filter has a zero on the unit circle. In theory this may occur for deterministic sinusoidal components. In practice, for noisy data, exact equality is rare, but values very close to one indicate strong predictability or numerical ill-conditioning.
+
+## 4.4 Cholesky / LDL$^H$ Decomposition View
+
+The autocorrelation matrix has a factorization
+
+$$\boxed{\mathbf{R}_p=\mathbf{L}_p\mathbf{D}_p\mathbf{L}_p^H}$$
+
+where $\mathbf{L}_p$ is lower triangular and $\mathbf{D}_p$ is diagonal.
+
+The diagonal entries of $\mathbf{D}_p$ are prediction error powers:
+
+$$\mathbf{D}_p=\mathrm{diag}\{P_0,P_1,\ldots,P_{p-1}\}$$
+
+up to conventions of indexing.
+
+This means the Levinson-Durbin algorithm can be interpreted as a structured Cholesky factorization of a Toeplitz matrix.
+
+The key equivalence is:
+
+$$\mathbf{R}_p>0 \quad\Longleftrightarrow\quad P_m>0\ \text{for all }m \quad\Longleftrightarrow\quad |\kappa_m|<1\ \text{for all }m.$$
+
+## 4.5 Autocorrelation Extension and Maximum Entropy
+
+Suppose we know only
+
+$$r(0),r(1),\ldots,r(p).$$
+
+How should we extend the autocorrelation sequence to $r(p+1),r(p+2),\ldots$?
+
+There are infinitely many possible extensions. However, a valid extension must preserve nonnegative definiteness of every enlarged Toeplitz matrix.
+
+Levinson-Durbin gives a natural way to think about this. When we extend from order $p$ to order $p+1$, we are effectively choosing a new reflection coefficient $\kappa_{p+1}$. The extension is valid if
+
+$$|\kappa_{p+1}|\le 1.$$
+
+The maximum entropy extension chooses
+
+$$\kappa_{p+1}=\kappa_{p+2}=\cdots=0.$$
+
+This is equivalent to choosing an AR($p$) model. In other words, the AR($p$) model is the least committed extension: it preserves the known correlations but assumes no additional partial correlation beyond order $p$.
+
+## 4.6 Step-Up Recursion: Lattice to Direct Form
+
+Given reflection coefficients $\kappa_1,\ldots,\kappa_p$, we can recover direct-form coefficients using the step-up recursion.
+
+Initialize $A_0(z)=1$ and $P_0=r(0)$. For $m=1,2,\ldots,p$,
+
+$$a_m^{(m)}=\kappa_m,$$
+
+$$a_k^{(m)}=a_k^{(m-1)}+\kappa_m[a_{m-k}^{(m-1)}]^\ast,\qquad k=1,\ldots,m-1.$$
+
+This is exactly the coefficient update used inside Levinson-Durbin.
+
+## 4.7 Step-Down Recursion: Direct Form to Lattice
+
+Given a stable direct-form polynomial $A_p(z)$, we can recover the reflection coefficients by reversing the step-up recursion.
+
+At order $m$, the last coefficient is
+
+$$\kappa_m=a_m^{(m)}.$$
+
+Then for $k=1,\ldots,m-1$,
+
+$$\boxed{a_k^{(m-1)}=\frac{a_k^{(m)}-\kappa_m[a_{m-k}^{(m)}]^\ast}{1-|\kappa_m|^2}.}$$
+
+This recursion is also a stability test. If at any stage $|\kappa_m|\ge 1$, the polynomial is not minimum phase.
+
+## 4.8 Why Reflection Coefficients Are Numerically Attractive
+
+Reflection coefficients are bounded for stable models:
+
+$$|\kappa_m|<1.$$
+
+This boundedness makes them more robust under quantization than direct-form coefficients. A small perturbation in direct-form coefficients can move roots across the unit circle. A small perturbation in reflection coefficients is less likely to break stability as long as the perturbed values remain inside the unit disk.
+
+This is one of the practical reasons why lattice filters are common in speech processing and adaptive filtering.
+
+---
+
+# §5 Schur Recursive Algorithm
+
+> 📖 Textbook §7.6 (Algorithm of Schür)
+
+## 5.1 Goal of the Schur Algorithm
+
+The Levinson-Durbin algorithm computes both:
+
+- direct-form prediction coefficients $a_k^{(m)}$,
+- reflection coefficients $\kappa_m$.
+
+The Schur algorithm focuses on computing the reflection coefficients directly from the autocorrelation sequence without explicitly computing all direct-form coefficients.
+
+This is useful when the final implementation is a lattice filter, because the lattice filter only needs the reflection coefficients.
+
+## 5.2 Gapped Correlation Functions
+
+The Schur algorithm introduces two auxiliary sequences:
+
+$$\xi_m^f(l)=E\{x(n-l)[e_m^f(n)]^{\ast}\},$$
+
+$$\xi_m^b(l)=E\{x(n-l)[e_m^b(n)]^{\ast}\}.$$
+
+They are called gapped functions because orthogonality creates intervals of zeros. For example, the forward prediction error is orthogonal to the samples used by the forward predictor.
+
+The key recursion is
+
+$$\xi_m^f(l)=\xi_{m-1}^f(l)+\kappa_{m-1}^{\ast}\xi_{m-1}^b(l-1),$$
+
+$$\xi_m^b(l)=\kappa_{m-1}\xi_{m-1}^f(l)+\xi_{m-1}^b(l-1).$$
+
+The reflection coefficient is then obtained by
+
+$$\boxed{\kappa_m=-\frac{\xi_m^f(m+1)}{\xi_m^b(m)}.}$$
+
+## 5.3 Algorithmic Interpretation
+
+At stage $m$, the Schur algorithm asks:
+
+> After removing all predictable structure up to order $m$, what residual forward/backward correlation remains at the next lag?
+
+That residual correlation determines the next reflection coefficient.
+
+If the remaining correlation is small, $\kappa_m$ is small and the next lattice stage contributes little.
+
+If the remaining correlation is large, the next stage is important.
+
+## 5.4 Schur Algorithm Summary
+
+| Step | Operation |
+|------|-----------|
+| 1 | Input $r(0),r(1),\ldots,r(p)$ |
+| 2 | Initialize $\xi_0^f(l)=\xi_0^b(l)=r(l)$ |
+| 3 | Compute $\kappa_0=-\xi_0^f(1)/\xi_0^b(0)$ |
+| 4 | Use the lattice recursion to update $\xi_m^f(l)$ and $\xi_m^b(l)$ |
+| 5 | At each order, compute $\kappa_m=-\xi_m^f(m+1)/\xi_m^b(m)$ |
+| 6 | Stop at the desired order |
+
+> ![Figure 5.1](./CourseADSP2026/Fig/Chapter_3/fig_5_1_textbook_fig_7_8_p366.png)
+>
+> *Figure 5.1 (Textbook Fig. 7.8, p. 366): Tree decomposition for Schur-algorithm computations.*
+
+> ![Figure 5.2](./CourseADSP2026/Fig/Chapter_3/fig_5_2_textbook_fig_7_9_p367.png)
+>
+> *Figure 5.2 (Textbook Fig. 7.9, p. 367): Superlattice organization of the Schur algorithm. The input is the autocorrelation sequence; the output is the lattice-parameter sequence.*
+
+> ![Figure 5.3](./CourseADSP2026/Fig/Chapter_3/fig_5_3_textbook_fig_7_10_p368.png)
+>
+> *Figure 5.3 (Textbook Fig. 7.10, p. 368): Superladder structure used in the extended Schur algorithm for lattice-ladder filtering.*
+
+## 5.5 Relationship to Levinson-Durbin
+
+Both algorithms solve the same underlying Toeplitz prediction problem. The difference is what they compute along the way.
+
+| Algorithm | Main output | Best suited for |
+|----------|-------------|-----------------|
+| Levinson-Durbin | Direct coefficients and reflection coefficients | Direct-form AR modeling, LPC coefficient computation |
+| Schur | Reflection coefficients directly | Lattice implementations, stability testing, fixed-point systems |
+
+The Schur algorithm has good numerical properties because its internal quantities remain bounded by the signal power under positive-definite autocorrelation assumptions.
+
+---
+
+# §6 General Levinson Recursion for Toeplitz Equations
+
+> 📖 Textbook §7.3 (Order-Recursive Algorithms for Optimum FIR Filters); §7.7 (Triangularization and Inversion of Toeplitz Matrices)
+
+## 6.1 Beyond Linear Prediction
+
+The Levinson-Durbin recursion solves the special Toeplitz system
+
+$$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p,$$
+
+where the right-hand side is related to the autocorrelation sequence itself.
+
+In many applications, however, we need to solve a more general Toeplitz system:
+
+$$\boxed{\mathbf{R}_p\mathbf{c}_p=\mathbf{d}_p}$$
+
+where $\mathbf{d}_p$ is an arbitrary cross-correlation vector.
+
+Examples include:
+
+- optimum FIR Wiener filtering,
+- ARMA parameter estimation,
+- linear equalization,
+- smoothing and interpolation,
+- lattice-ladder filtering.
+
+## 6.2 The Optimum Nesting Property
+
+The key condition behind order-recursive algorithms is the optimum nesting property. When the filter order increases from $m$ to $m+1$, the new correlation matrix contains the old one as a principal submatrix:
+
+$$\mathbf{R}_{m+1}=\begin{bmatrix}
+\mathbf{R}_m & \mathbf{q}_m\\
+\mathbf{q}_m^H & r(0)
+\end{bmatrix}.$$
+
+This nesting makes it possible to express $\mathbf{R}_{m+1}^{-1}$ in terms of $\mathbf{R}_{m}^{-1}$ plus a rank-one correction.
+
+## 6.3 Partitioned Matrix Inversion View
+
+For a block matrix
+
+$$\mathbf{R}_{m+1}=\begin{bmatrix}
+\mathbf{R}_m & \mathbf{q}_m\\
+\mathbf{q}_m^H & \gamma
+\end{bmatrix},$$
+
+its inverse can be written using the Schur complement
+
+$$S_m=\gamma-\mathbf{q}_m^H\mathbf{R}_m^{-1}\mathbf{q}_m.$$
+
+The quantity $S_m$ is exactly an error power. In prediction language, it is the part of the new sample that cannot be predicted from the previous $m$ samples.
+
+Thus the matrix inversion lemma and the prediction interpretation are the same idea seen from two angles.
+
+## 6.4 General Levinson Recursion Idea
+
+To solve
+
+$$\mathbf{R}_m\mathbf{c}_m=\mathbf{d}_m,$$
+
+recursively, the general Levinson algorithm tracks two types of quantities:
+
+1. prediction vectors associated with the Toeplitz matrix,
+2. filter vectors associated with the arbitrary right-hand side $\mathbf{d}_m$.
+
+When the order increases, the prediction recursion provides the correction direction, and the cross-correlation recursion determines how much of that direction must be added to the current optimum filter.
+
+This is why many optimum FIR filtering structures contain both:
+
+- a lattice part, which orthogonalizes the input data,
+- a ladder part, which combines orthogonalized components to estimate the desired response.
+
+## 6.5 Complexity
+
+| Method | Complexity for order $p$ | Uses Toeplitz structure? |
+|--------|--------------------------|--------------------------|
+| Generic Gaussian elimination | $O(p^3)$ | No |
+| Levinson / Levinson-Durbin | $O(p^2)$ | Yes |
+| Schur recursion | $O(p^2)$ | Yes |
+| Fast specialized Toeplitz solvers | Often below $O(p^2)$ in special settings | Yes |
+
+The main message is that Toeplitz structure should never be ignored in large prediction/filtering problems.
+
+---
+
+# §7 Covariance Algorithm for Linear Prediction
+
+> 📖 Textbook §7.1; §9.2.1 (Direct Structures)
+
+## 7.1 Motivation
+
+The autocorrelation method assumes samples outside the data record are zero. This is convenient because it preserves Toeplitz structure and guarantees stable all-pole models. But the zero-extension assumption can distort short data records.
+
+The covariance method avoids this by evaluating the prediction error only over indices where all required samples are available.
+
+For a $p$-th order predictor and data $x(0),x(1),\ldots,x(N)$, use
+
+$$n=p,p+1,\ldots,N.$$
+
+Then every term $x(n-k)$ for $k=1,\ldots,p$ lies inside the observed data interval.
+
+## 7.2 Error Criterion
+
+The covariance-method criterion is
+
+$$\boxed{E_p=\sum_{n=p}^{N}\left|x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right|^2.}$$
+
+This is a deterministic least-squares problem.
+
+Differentiate with respect to the prediction coefficients to obtain the normal equations:
+
+$$\sum_{k=1}^{p}\Phi(i,k)a_k=-\Phi(i,0),\qquad i=1,2,\ldots,p,$$
+
+where
+
+$$\boxed{\Phi(i,k)=\sum_{n=p}^{N}x(n-i)x^{\ast}(n-k).}$$
+
+In matrix form,
+
+$$\boxed{\boldsymbol{\Phi}\mathbf{a}_p=-\boldsymbol{\phi}.}$$
+
+## 7.3 Why the Matrix Is Not Toeplitz
+
+The covariance matrix entries depend on both $i$ and $k$:
+
+$$\Phi(i,k)=\sum_{n=p}^{N}x(n-i)x^{\ast}(n-k).$$
+
+Although $x(n-i)$ and $x(n-k)$ differ by lag $i-k$, the summation limits do not shift with the lag. Therefore the result is not simply a function of $i-k$.
+
+So, unlike the autocorrelation method, the covariance method usually produces a non-Toeplitz matrix.
+
+## 7.4 Advantages and Disadvantages
+
+| Method | Advantage | Disadvantage |
+|--------|-----------|--------------|
+| Autocorrelation method | Toeplitz; efficient; guarantees stable AR model | Imposes zero extension / windowing |
+| Covariance method | Uses only valid data; often better for short records | Non-Toeplitz; more computation; no automatic stability guarantee |
+
+The covariance method is attractive when the data record is short and boundary distortion is serious. But because it does not guarantee a minimum-phase prediction error filter, one must check stability if the coefficients are used as an all-pole synthesis model.
+
+## 7.5 When to Use the Covariance Method
+
+Use the covariance method when:
+
+- the data record is short,
+- boundary assumptions are unreliable,
+- high-resolution spectrum estimation is desired,
+- computational cost is acceptable,
+- model stability can be checked or enforced separately.
+
+Use the autocorrelation method when:
+
+- stability is essential,
+- fast Toeplitz algorithms are desired,
+- the record is long enough that boundary effects are less important,
+- LPC-style robust parameter estimation is needed.
+
+---
+
+# §8 Forward/Backward Prediction and Lattice Filters
+
+> 📖 Textbook §7.5 (Lattice Structures for Optimum FIR Filters and Predictors)
+
+## 8.1 Forward and Backward Prediction Errors
+
+The forward prediction error estimates the present sample from the past:
+
+$$\boxed{e_m^f(n)=x(n)+\sum_{k=1}^{m}a_k^{(m)\ast}x(n-k).}$$
+
+The backward prediction error estimates the oldest sample from the newer samples:
+
+$$\boxed{e_m^b(n)=x(n-m)+\sum_{k=0}^{m-1}b_k^{(m)\ast}x(n-k).}$$
+
+For a WSS process, the forward and backward predictors are related by conjugate reversal:
+
+$$\boxed{\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.}$$
+
+The forward and backward error powers are equal:
+
+$$\boxed{E\{|e_m^f(n)|^2\}=E\{|e_m^b(n)|^2\}=P_m.}$$
+
+## 8.2 Lattice Recursions
+
+The lattice structure is based on two coupled recursions:
+
+$$\boxed{e_m^f(n)=e_{m-1}^f(n)+\kappa_m^{\ast}e_{m-1}^b(n-1)}$$
+
+$$\boxed{e_m^b(n)=e_{m-1}^b(n-1)+\kappa_m e_{m-1}^f(n)}.$$
+
+The initial condition is
+
+$$e_0^f(n)=e_0^b(n)=x(n).$$
+
+Each lattice stage removes the residual correlation between the current forward and backward errors.
+
+> ![Figure 8.1](./CourseADSP2026/Fig/Chapter_3/fig_8_1_textbook_fig_7_5_p357.png)
+>
+> *Figure 8.1 (Textbook Fig. 7.5, p. 357): All-zero lattice structure for forward and backward prediction error filters.*
+
+## 8.3 Intuition Behind the Lattice Stage
+
+At stage $m-1$, suppose we already removed all predictable structure up to lag $m-1$. The remaining correlation between $e_{m-1}^f(n)$ and $e_{m-1}^b(n-1)$ represents the new information at lag $m$.
+
+The reflection coefficient $\kappa_m$ is chosen to remove this remaining correlation. After the update, the new errors satisfy a stronger orthogonality condition.
+
+Thus each lattice stage performs a local decorrelation operation.
+
+## 8.4 All-Pole Lattice Synthesis
+
+The prediction error filter maps $x(n)$ to the residual $e_p^f(n)$. The inverse system maps the residual back to $x(n)$:
+
+$$x(n)=\frac{1}{A_p(z)}e_p^f(n).$$
+
+This inverse can also be implemented in lattice form.
+
+> ![Figure 8.2](./CourseADSP2026/Fig/Chapter_3/fig_8_2_textbook_fig_7_6_p359.png)
+>
+> *Figure 8.2 (Textbook Fig. 7.6, p. 359): All-pole lattice structure for recovering the input signal from the forward prediction error.*
+
+## 8.5 Advantages of Lattice Filters
+
+Lattice filters have several important advantages:
+
+1. **Modularity.** Increasing the model order adds one stage without redesigning the whole structure.
+2. **Stability monitoring.** Stability is checked by $|\kappa_m|<1$.
+3. **Numerical robustness.** Reflection coefficients are bounded for stable models.
+4. **Order-recursive implementation.** The same structure naturally supports model-order selection.
+5. **Reduced sensitivity to coefficient quantization.** Quantization of reflection coefficients is often safer than quantization of direct-form coefficients.
+
+## 8.6 Lattice-Ladder Structure
+
+For general optimum FIR filtering, prediction errors alone are not enough. We also need to estimate a desired response $y(n)$. A lattice-ladder filter does this by:
+
+- using the lattice section to generate orthogonalized backward prediction errors,
+- using the ladder section to combine those errors to estimate $y(n)$.
+
+The lattice part depends only on the input autocorrelation. The ladder coefficients depend on the cross-correlation between the input and the desired response.
+
+This separation is conceptually powerful:
+
+| Part | Role |
+|------|------|
+| Lattice | Decorrelates / orthogonalizes the input |
+| Ladder | Projects the desired response onto the orthogonalized components |
+
+---
+
+# §9 Lattice Modeling and the Burg Algorithm
+
+> 📖 Textbook §9.2.3 (Maximum Entropy Method); §9.2 lattice AP estimation
+
+## 9.1 Why Burg's Algorithm Was Introduced
+
+The autocorrelation method is stable but uses artificial zero extension. The covariance method uses the data more directly but does not guarantee stability.
+
+Burg's algorithm attempts to combine useful features of both:
+
+- it avoids explicit autocorrelation estimation,
+- it uses both forward and backward prediction errors,
+- it estimates reflection coefficients stage by stage,
+- it guarantees a stable all-pole model because $|\kappa_m|<1$ under its update.
+
+## 9.2 Forward and Backward Error Criterion
+
+At each order $m$, Burg's method minimizes the sum of forward and backward prediction error energies:
+
+$$\boxed{E_m^{fb}=\sum_{n=N_i}^{N_f}\left(|e_m^f(n)|^2+|e_m^b(n)|^2\right).}$$
+
+Using the lattice recursions,
+
+$$e_m^f(n)=e_{m-1}^f(n)+\kappa_m^{\ast}e_{m-1}^b(n-1),$$
+
+$$e_m^b(n)=e_{m-1}^b(n-1)+\kappa_m e_{m-1}^f(n),$$
+
+only one new parameter $\kappa_m$ is optimized at stage $m$.
+
+## 9.3 Burg Reflection Coefficient Update
+
+Minimizing $E_m^{fb}$ with respect to $\kappa_m^{\ast}$ gives
+
+$$\boxed{\kappa_m=-\frac{2\sum_n e_{m-1}^f(n)[e_{m-1}^b(n-1)]^{\ast}}{\sum_n |e_{m-1}^f(n)|^2+\sum_n |e_{m-1}^b(n-1)|^2}.}$$
+
+For real-valued signals this becomes
+
+$$\boxed{\kappa_m=-\frac{2\sum_n e_{m-1}^f(n)e_{m-1}^b(n-1)}{\sum_n [e_{m-1}^f(n)]^2+\sum_n [e_{m-1}^b(n-1)]^2}.}$$
+
+By the Cauchy-Schwarz inequality, this estimate satisfies
+
+$$|\kappa_m|\le 1.$$
+
+For non-degenerate data, $|\kappa_m|<1$, so the resulting all-pole model is stable.
+
+## 9.4 Burg Algorithm Steps
+
+| Step | Operation |
+|------|-----------|
+| 1 | Initialize $e_0^f(n)=e_0^b(n)=x(n)$ |
+| 2 | For $m=1,2,\ldots,p$, compute $\kappa_m$ from the forward/backward error formula |
+| 3 | Update $e_m^f(n)$ and $e_m^b(n)$ using the lattice recursions |
+| 4 | Update the residual variance, often by $\hat\sigma_m^2\approx\hat\sigma_{m-1}^2(1-|\kappa_m|^2)$ |
+| 5 | After the final stage, convert reflection coefficients to direct AR coefficients if needed |
+
+## 9.5 Burg, Forward Covariance, and Backward Covariance
+
+There are several related stage-wise lattice methods.
+
+### Forward Lattice Covariance Method
+
+Minimize only
+
+$$\sum_n |e_m^f(n)|^2.$$
+
+This gives a reflection coefficient based on forward error alone. It does not necessarily guarantee stability.
+
+### Backward Lattice Covariance Method
+
+Minimize only
+
+$$\sum_n |e_m^b(n)|^2.$$
+
+This is the backward counterpart and also does not necessarily guarantee stability.
+
+### Burg Method
+
+Minimize the combined forward/backward criterion:
+
+$$\sum_n \left(|e_m^f(n)|^2+|e_m^b(n)|^2\right).$$
+
+The combined criterion leads to a stable lattice model and is usually preferred for AR spectral estimation from short records.
+
+## 9.6 Itakura-Saito / Geometric Mean Variant
+
+Another estimate uses a geometric-mean normalization. In simplified notation,
+
+$$\kappa_m^{IS}\propto -\frac{\beta_m^{fb}}{\sqrt{E_m^fE_m^b}}.$$
+
+This can be viewed as replacing the arithmetic normalization in Burg's method with a geometric one. Both methods are designed to keep reflection coefficients within the unit disk under appropriate conditions.
+
+## 9.7 Maximum Entropy Interpretation
+
+Burg's method is closely connected to the maximum entropy principle.
+
+Suppose we know the first $p+1$ autocorrelation values
+
+$$r(0),r(1),\ldots,r(p).$$
+
+Among all regular Gaussian processes that match these known autocorrelation values, the AR($p$) process has maximum entropy.
+
+The reason is that the entropy can be expressed in terms of reflection coefficients. For known correlations up to order $p$, the maximum entropy extension chooses
+
+$$\kappa_m=0,\qquad m>p.$$
+
+Thus no additional partial correlation is assumed beyond what is supported by the known data. This leads exactly to an AR($p$) all-pole model.
+
+## 9.8 Strengths and Weaknesses of Burg's Algorithm
+
+| Aspect | Burg Algorithm |
+|--------|----------------|
+| Main strength | Stable all-pole model without explicit autocorrelation estimation |
+| Data usage | Uses both forward and backward errors |
+| Resolution | Often high for short records |
+| Implementation | Naturally lattice-based |
+| Weakness | Can produce spectral line splitting |
+| Weakness | Frequency estimates may be biased, especially at low SNR or with model mismatch |
+
+> ![Figure 9.1](./CourseADSP2026/Fig/Chapter_3/fig_9_1_textbook_fig_9_9_p450.png)
+>
+> *Figure 9.1 (Textbook Fig. 9.9, p. 450): Data segment from an AR(4) process with autocorrelation, partial autocorrelation, and periodogram. The partial autocorrelation plot is useful for understanding AR order and lattice coefficients.*
+
+> ![Figure 9.2](./CourseADSP2026/Fig/Chapter_3/fig_9_2_textbook_fig_9_10_p451.png)
+>
+> *Figure 9.2 (Textbook Fig. 9.10, p. 451): Comparison of theoretical and estimated AR spectra under different windowing assumptions.*
+
+> ![Figure 9.3](./CourseADSP2026/Fig/Chapter_3/fig_9_4_textbook_fig_9_14_p463.png)
+>
+> *Figure 9.3 (Textbook Fig. 9.14, p. 463): Monte Carlo comparison of all-pole PSD estimation techniques using short data records. This is useful when discussing autocorrelation, covariance, modified covariance, and Burg estimates.*
+
+---
+
+# §10 Modified Covariance Algorithm
+
+> 📖 Textbook §9.2.1 (Modified Covariance Method); §7.3.2 (Lattice-Ladder Structure)
+
+## 10.1 Motivation
+
+The covariance method minimizes only the forward prediction error:
+
+$$\sum_n |e_p^f(n)|^2.$$
+
+But for finite data, forward and backward errors are not statistically identical. The modified covariance method uses both errors at the final order $p$:
+
+$$\boxed{E_p^{fb}=\sum_{n=p}^{N}\left(|e_p^f(n)|^2+|e_p^b(n)|^2\right).}$$
+
+This is similar in spirit to Burg's method, but the optimization is different.
+
+## 10.2 Difference Between Burg and Modified Covariance
+
+The distinction is crucial.
+
+| Method | Optimization style | Parameter update |
+|--------|--------------------|------------------|
+| Burg | Sequential local minimization | One reflection coefficient at a time |
+| Modified covariance | Global minimization at fixed order $p$ | Solve one full set of coefficients |
+
+Burg's method is greedy: once it chooses $\kappa_1$, it keeps that decision while choosing $\kappa_2$, and so on.
+
+The modified covariance method optimizes the whole $p$-th order coefficient vector at once using both forward and backward errors.
+
+## 10.3 Modified Covariance Normal Equations
+
+Let the forward error be
+
+$$e_p^f(n)=x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k).$$
+
+For a WSS process, the backward error uses the conjugate-reversed coefficient structure. In finite-data least squares, the combined forward/backward criterion yields normal equations of the form
+
+$$\boxed{(\mathbf{X}_f^H\mathbf{X}_f+\mathbf{X}_b^H\mathbf{X}_b)\mathbf{a}_p=-\mathbf{g}.}$$
+
+Equivalently, using covariance sums,
+
+$$\sum_{k=1}^{p}\left[\Phi_f(i,k)+\Phi_b(i,k)\right]a_k=-\left[\phi_f(i)+\phi_b(i)\right].$$
+
+The precise matrix entries depend on how the data vectors are arranged, but the essential point is simple:
+
+> The normal matrix contains both forward and backward covariance information, so it is generally not Toeplitz.
+
+## 10.4 Advantages
+
+The modified covariance method often gives high-resolution spectral estimates. It is especially useful when:
+
+- the data record is short,
+- spectral peaks are close together,
+- boundary effects from zero extension are unacceptable,
+- a full least-squares solution is computationally feasible.
+
+Compared with the ordinary covariance method, the modified covariance method uses more error information and can reduce variance and spectral peak displacement.
+
+## 10.5 Disadvantages
+
+The modified covariance method is more expensive than the autocorrelation method because the normal matrix is not Toeplitz. It also does not automatically provide the simple stability guarantee of the autocorrelation method.
+
+Practical implementations often use specialized algorithms, such as Marple-type algorithms, to solve the modified covariance equations efficiently.
+
+## 10.6 Comparison of Main Linear Prediction Estimation Methods
+
+| Method | Error criterion | Toeplitz? | Stable AR guaranteed? | Typical use |
+|--------|----------------|-----------|-----------------------|-------------|
+| Autocorrelation | Forward error with zero extension | Yes | Yes | Robust LPC, stable AR modeling |
+| Covariance | Forward error on valid data interval | No | No | Short-record high-resolution modeling |
+| Modified covariance | Forward + backward error at final order | No | Not automatic | High-resolution AR spectrum estimation |
+| Burg | Sequential forward + backward lattice error | No explicit matrix | Yes | Stable short-record AR spectrum estimation |
+
+---
+
+# §11 Application Example: Linear Prediction in Speech Coding
+
+> 📖 Textbook §9.4.2 (Speech Modeling); §1.4 adaptive filtering applications
+
+## 11.1 Why Speech Is Predictable
+
+Speech is highly structured. Over short intervals, typically 10–30 ms, the vocal tract shape is approximately constant. During such a short-time frame, speech can be modeled as the output of an all-pole filter:
+
+$$s(n)=\frac{G}{A_p(z)}u(n),$$
+
+where:
+
+- $u(n)$ is the excitation,
+- $A_p(z)$ models the vocal-tract spectral envelope,
+- $G$ is a gain factor.
+
+Voiced sounds have quasi-periodic excitation due to vocal-fold vibration. Unvoiced sounds have noise-like excitation. In both cases, the vocal tract acts like a resonant filter.
+
+## 11.2 LPC Model
+
+Linear predictive coding estimates $A_p(z)$ from each short speech frame. The residual is
+
+$$e(n)=A_p(z)s(n).$$
+
+If the model is good, the residual contains mostly excitation information, while $A_p(z)$ contains the slowly varying vocal-tract envelope.
+
+This decomposition is the foundation of LPC speech coding:
+
+| Component | Meaning |
+|-----------|---------|
+| Prediction coefficients | Vocal-tract spectral envelope |
+| Residual energy / gain | Excitation strength |
+| Pitch period | Long-term periodicity for voiced speech |
+| Voicing decision | Whether excitation is pulse-like or noise-like |
+
+> ![Figure 11.1](./CourseADSP2026/Fig/Chapter_3/fig_11_1_textbook_fig_9_17_p465.png)
+>
+> *Figure 11.1 (Textbook Fig. 9.17, p. 465): Block diagram of an all-pole modeling processor for speech coding and recognition.*
+
+## 11.3 Three Coding Paradigms
+
+### Waveform Coding
+
+Waveform coding attempts to reproduce the waveform itself. Examples include PCM, DPCM, and ADPCM.
+
+Linear prediction helps waveform coding by reducing sample-to-sample redundancy. Instead of coding $x(n)$ directly, we code the prediction error:
+
+$$e(n)=x(n)-\hat{x}(n).$$
+
+If the prediction is good, $e(n)$ has smaller variance and requires fewer bits.
+
+### Parametric Coding
+
+Parametric coding transmits model parameters rather than waveform samples. In LPC vocoders, the encoder transmits:
+
+- prediction coefficients or reflection coefficients,
+- gain,
+- pitch period,
+- voiced/unvoiced decision.
+
+The decoder reconstructs speech by exciting the all-pole synthesis filter.
+
+### Hybrid Coding
+
+Hybrid coding combines waveform accuracy with model-based compression. Code-excited linear prediction (CELP) is the classic example conceptually, although detailed CELP standards and implementation details are beyond the scope of this lecture.
+
+## 11.4 Why Reflection Coefficients Are Useful in Speech
+
+Speech coders often transform LPC coefficients into more robust parameter sets before quantization. Reflection coefficients are useful because stability corresponds to
+
+$$|\kappa_m|<1.$$
+
+If quantization keeps all reflection coefficients inside the unit interval, then the decoded synthesis filter remains stable.
+
+This is safer than directly quantizing the polynomial coefficients $a_k$, where small coefficient errors can destabilize the all-pole filter.
+
+## 11.5 Speech Spectrum and All-Pole Envelope
+
+The all-pole model captures the broad spectral envelope of speech, especially formants. It does not need to reproduce every fine spectral harmonic. This distinction is important:
+
+- harmonics mainly come from the excitation,
+- formant envelope mainly comes from the vocal tract filter.
+
+Thus LPC separates source and filter in a computationally efficient way.
+
+> ![Figure 11.2](./CourseADSP2026/Fig/Chapter_3/fig_9_5_textbook_fig_9_15_p464.png)
+>
+> *Figure 11.2 (Textbook Fig. 9.15, p. 464): Nonparametric PSD estimation using linear prediction prewhitening. The same idea appears in speech processing: remove predictable spectral envelope, process residual, then recolor if needed.*
+
+---
+
+## Chapter 3 Summary
+
+| Topic | Key Idea | Why It Matters |
+|------|----------|----------------|
+| Linear prediction | Estimate $x(n)$ from past samples | Removes redundancy; foundation of LPC and AR modeling |
+| Prediction error filter | $A_p(z)x(n)=e_p(n)$ | Converts modeling into filtering |
+| AR equivalence | For AR($p$), prediction error is white noise | PEF is the whitening filter |
+| Autocorrelation method | Uses zero-extended autocorrelation estimates | Toeplitz and stable, but can suffer boundary bias |
+| Covariance method | Uses only valid data intervals | Better for short records, but non-Toeplitz and not automatically stable |
+| Levinson-Durbin | Order-recursive solution of Toeplitz prediction equations | Reduces complexity from $O(p^3)$ to $O(p^2)$ |
+| Reflection coefficients | Stage-wise partial correlations | Stability and lattice implementation |
+| Schur algorithm | Computes reflection coefficients directly | Useful for lattice filters and fixed-point implementation |
+| Lattice filters | Recursively update forward/backward errors | Modular, robust, stable parameterization |
+| Burg algorithm | Sequentially minimizes forward/backward errors | Stable high-resolution AR modeling without explicit autocorrelation |
+| Modified covariance | Globally minimizes forward/backward errors | High-resolution estimates, higher computation |
+| Speech LPC | All-pole short-time speech model | Efficient coding and spectral-envelope representation |
+
+---
+
+## Figure Source Checklist
+
+All figures displayed in this lecture are rendered from the uploaded textbook PDF, *Statistical and Adaptive Signal Processing* by Manolakis, Ingle, and Kogon.
+
+| Lecture Figure | Textbook Figure | Textbook Page | Role in Lecture |
+|----------------|-----------------|---------------|-----------------|
+| Figure 1.1 | Fig. 6.16 | p. 283 | Linear signal estimation, FLP, BLP |
+| Figure 2.1 | Fig. 9.12 | p. 452 | All-pole spectral envelope |
+| Figure 3.1 | Fig. 7.1 | p. 337 | Orthogonal order-recursive structure |
+| Figure 3.2 | Fig. 7.2 | p. 341 | Gram-Schmidt interpretation |
+| Figure 4.1 | Fig. 7.4 | p. 356 | Direct-form prediction errors |
+| Figure 4.2 | Fig. 7.7 | p. 361 | Equivalent representations |
+| Figure 5.1 | Fig. 7.8 | p. 366 | Schur tree decomposition |
+| Figure 5.2 | Fig. 7.9 | p. 367 | Schur superlattice |
+| Figure 5.3 | Fig. 7.10 | p. 368 | Schur superladder |
+| Figure 8.1 | Fig. 7.5 | p. 357 | All-zero lattice |
+| Figure 8.2 | Fig. 7.6 | p. 359 | All-pole lattice |
+| Figure 9.1 | Fig. 9.9 | p. 450 | AR data and PACF |
+| Figure 9.2 | Fig. 9.10 | p. 451 | Windowing effects in AR spectra |
+| Figure 9.3 | Fig. 9.14 | p. 463 | Comparison of AP PSD estimation methods |
+| Figure 11.1 | Fig. 9.17 | p. 465 | Speech all-pole modeling processor |
+| Figure 11.2 | Fig. 9.15 | p. 464 | Prewhitening / postcoloring concept |
+
+---
+
+## Suggested Teaching Flow
+
+1. Start with Figure 1.1 and emphasize that prediction is a special case of linear estimation.
+2. Derive the orthogonality condition and the Toeplitz normal equations.
+3. Explain AR modeling as the same mathematics viewed as a whitening problem.
+4. Introduce Levinson-Durbin as an efficient recursive solver, not as a mysterious formula.
+5. Interpret reflection coefficients as partial correlations.
+6. Use the stability equivalence $|\kappa_m|<1$ to motivate lattice filters.
+7. Compare autocorrelation, covariance, modified covariance, and Burg methods.
+8. End with speech LPC because it makes the whole chapter feel practical.
