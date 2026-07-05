@@ -136,7 +136,7 @@ $$e_p^f(n)=x(n)+\mathbf{a}_p^H\mathbf{x}_p(n).$$
 
 The optimal coefficient vector is the one that minimizes
 
-$$J(\mathbf{a}_p)=E\{|e_p^f(n)|^2\}.$$
+$$J(\mathbf{a}_p)=E\{\lvert e_p^f(n)\rvert^2\}.$$
 
 The LMMSE orthogonality principle says:
 
@@ -179,7 +179,7 @@ The matrix is Toeplitz: each diagonal is constant. This Toeplitz structure is th
 
 After the optimal coefficients are found, the minimum prediction error power is
 
-$$\boxed{P_p=E\{|e_p^f(n)|^2\}=r_x(0)+\sum_{k=1}^{p}a_k^{\ast}r_x(k)}.$$
+$$\boxed{P_p=E\{\lvert e_p^f(n)\rvert^2\}=r_x(0)+\sum_{k=1}^{p}a_k^{\ast}r_x(k)}.$$
 
 In vector form,
 
@@ -326,7 +326,7 @@ Here $x(n)$ is assumed to be a realization of a WSS random process. We model its
 
 The model is good if the AR spectrum
 
-$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{|A_p(e^{j\omega})|^2}}$$
+$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{\lvert A_p(e^{j\omega})\rvert^2}}$$
 
 matches the true or estimated power spectral density.
 
@@ -429,7 +429,7 @@ $$\boxed{a_k^{(m)}=a_k^{(m-1)}+\kappa_m\left[a_{m-k}^{(m-1)}\right]^{\ast}.}$$
 
 Update the prediction error power:
 
-$$\boxed{P_m=P_{m-1}(1-|\kappa_m|^2).}$$
+$$\boxed{P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2).}$$
 
 These equations are the core of the Levinson-Durbin algorithm.
 
@@ -437,15 +437,15 @@ These equations are the core of the Levinson-Durbin algorithm.
 
 The update
 
-$$P_m=P_{m-1}(1-|\kappa_m|^2)$$
+$$P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2)$$
 
 is extremely informative.
 
-If $|\kappa_m|$ is close to zero, the new stage adds little predictive power, so $P_m\approx P_{m-1}$.
+If $\lvert\kappa_m\rvert$ is close to zero, the new stage adds little predictive power, so $P_m\approx P_{m-1}$.
 
-If $|\kappa_m|$ is large, the new lag explains a significant part of the residual correlation, so the error power decreases strongly.
+If $\lvert\kappa_m\rvert$ is large, the new lag explains a significant part of the residual correlation, so the error power decreases strongly.
 
-If $|\kappa_m|<1$, then $P_m>0$. This connects numerical recursion, signal predictability, and filter stability.
+If $\lvert\kappa_m\rvert<1$, then $P_m>0$. This connects numerical recursion, signal predictability, and filter stability.
 
 ## 3.5 Reflection Coefficient as Partial Correlation
 
@@ -478,7 +478,7 @@ This stage-wise interpretation leads naturally to lattice filters.
 | 3 | Compute reflection coefficient $\kappa_m=-\alpha_m/P_{m-1}$ |
 | 4 | Update direct-form coefficients by $a_k^{(m)}=a_k^{(m-1)}+\kappa_m[a_{m-k}^{(m-1)}]^\ast$ |
 | 5 | Set $a_m^{(m)}=\kappa_m$ |
-| 6 | Update $P_m=P_{m-1}(1-|\kappa_m|^2)$ |
+| 6 | Update $P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2)$ |
 | 7 | Continue until $m=p$ |
 
 ## 3.8 Simple First-Order Example
@@ -497,7 +497,7 @@ $$\kappa_1=a_1=-\frac{r(1)}{r(0)}.$$
 
 The first-order prediction error power is
 
-$$P_1=r(0)(1-|\kappa_1|^2)=r(0)-\frac{|r(1)|^2}{r(0)}.$$
+$$P_1=r(0)(1-\lvert\kappa_1\rvert^2)=r(0)-\frac{\lvert r(1)\rvert^2}{r(0)}.$$
 
 This result says: the more strongly $x(n)$ is correlated with $x(n-1)$, the more the prediction error power is reduced.
 
@@ -533,21 +533,21 @@ $$P_m>0,\qquad m=0,1,\ldots,p.$$
 
 Since
 
-$$P_m=P_{m-1}(1-|\kappa_m|^2),$$
+$$P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2),$$
 
 positive prediction error power implies
 
-$$\boxed{|\kappa_m|<1.}$$
+$$\boxed{\lvert\kappa_m\rvert<1.}$$
 
 This condition has a filter interpretation:
 
-> The prediction error filter $A_p(z)$ is minimum phase if and only if all reflection coefficients satisfy $|\kappa_m|<1$.
+> The prediction error filter $A_p(z)$ is minimum phase if and only if all reflection coefficients satisfy $\lvert\kappa_m\rvert<1$.
 
 This is extremely useful because checking stability through roots of $A_p(z)$ can be expensive and numerically sensitive. Checking reflection coefficients is simple.
 
 ## 4.3 Boundary Case: Zero on the Unit Circle
 
-If $|\kappa_m|=1$ for some stage, then
+If $\lvert\kappa_m\rvert=1$ for some stage, then
 
 $$P_m=0.$$
 
@@ -571,7 +571,7 @@ This means the Levinson-Durbin algorithm can be interpreted as a structured Chol
 
 The key equivalence is:
 
-$$\mathbf{R}_p>0 \quad\Longleftrightarrow\quad P_m>0\ \text{for all }m \quad\Longleftrightarrow\quad |\kappa_m|<1\ \text{for all }m.$$
+$$\mathbf{R}_p>0 \quad\Longleftrightarrow\quad P_m>0\ \text{for all }m \quad\Longleftrightarrow\quad \lvert\kappa_m\rvert<1\ \text{for all }m.$$
 
 ## 4.5 Autocorrelation Extension and Maximum Entropy
 
@@ -585,7 +585,7 @@ There are infinitely many possible extensions. However, a valid extension must p
 
 Levinson-Durbin gives a natural way to think about this. When we extend from order $p$ to order $p+1$, we are effectively choosing a new reflection coefficient $\kappa_{p+1}$. The extension is valid if
 
-$$|\kappa_{p+1}|\le 1.$$
+$$\lvert\kappa_{p+1}\rvert\le 1.$$
 
 The maximum entropy extension chooses
 
@@ -615,15 +615,15 @@ $$\kappa_m=a_m^{(m)}.$$
 
 Then for $k=1,\ldots,m-1$,
 
-$$\boxed{a_k^{(m-1)}=\frac{a_k^{(m)}-\kappa_m[a_{m-k}^{(m)}]^\ast}{1-|\kappa_m|^2}.}$$
+$$\boxed{a_k^{(m-1)}=\frac{a_k^{(m)}-\kappa_m[a_{m-k}^{(m)}]^\ast}{1-\lvert\kappa_m\rvert^2}.}$$
 
-This recursion is also a stability test. If at any stage $|\kappa_m|\ge 1$, the polynomial is not minimum phase.
+This recursion is also a stability test. If at any stage $\lvert\kappa_m\rvert\ge 1$, the polynomial is not minimum phase.
 
 ## 4.8 Why Reflection Coefficients Are Numerically Attractive
 
 Reflection coefficients are bounded for stable models:
 
-$$|\kappa_m|<1.$$
+$$\lvert\kappa_m\rvert<1.$$
 
 This boundedness makes them more robust under quantization than direct-form coefficients. A small perturbation in direct-form coefficients can move roots across the unit circle. A small perturbation in reflection coefficients is less likely to break stability as long as the perturbed values remain inside the unit disk.
 
@@ -819,7 +819,7 @@ Then every term $x(n-k)$ for $k=1,\ldots,p$ lies inside the observed data interv
 
 The covariance-method criterion is
 
-$$\boxed{E_p=\sum_{n=p}^{N}\left|x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right|^2.}$$
+$$\boxed{E_p=\sum_{n=p}^{N}\left\lvert x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right\rvert^2.}$$
 
 This is a deterministic least-squares problem.
 
@@ -893,7 +893,7 @@ $$\boxed{\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.}$$
 
 The forward and backward error powers are equal:
 
-$$\boxed{E\{|e_m^f(n)|^2\}=E\{|e_m^b(n)|^2\}=P_m.}$$
+$$\boxed{E\{\lvert e_m^f(n)\rvert^2\}=E\{\lvert e_m^b(n)\rvert^2\}=P_m.}$$
 
 ## 8.2 Lattice Recursions
 
@@ -938,7 +938,7 @@ This inverse can also be implemented in lattice form.
 Lattice filters have several important advantages:
 
 1. **Modularity.** Increasing the model order adds one stage without redesigning the whole structure.
-2. **Stability monitoring.** Stability is checked by $|\kappa_m|<1$.
+2. **Stability monitoring.** Stability is checked by $\lvert\kappa_m\rvert<1$.
 3. **Numerical robustness.** Reflection coefficients are bounded for stable models.
 4. **Order-recursive implementation.** The same structure naturally supports model-order selection.
 5. **Reduced sensitivity to coefficient quantization.** Quantization of reflection coefficients is often safer than quantization of direct-form coefficients.
@@ -974,13 +974,13 @@ Burg's algorithm attempts to combine useful features of both:
 - it avoids explicit autocorrelation estimation,
 - it uses both forward and backward prediction errors,
 - it estimates reflection coefficients stage by stage,
-- it guarantees a stable all-pole model because $|\kappa_m|<1$ under its update.
+- it guarantees a stable all-pole model because $\lvert\kappa_m\rvert<1$ under its update.
 
 ## 9.2 Forward and Backward Error Criterion
 
 At each order $m$, Burg's method minimizes the sum of forward and backward prediction error energies:
 
-$$\boxed{E_m^{fb}=\sum_{n=N_i}^{N_f}\left(|e_m^f(n)|^2+|e_m^b(n)|^2\right).}$$
+$$\boxed{E_m^{fb}=\sum_{n=N_i}^{N_f}\left(\lvert e_m^f(n)\rvert^2+\lvert e_m^b(n)\rvert^2\right).}$$
 
 Using the lattice recursions,
 
@@ -994,7 +994,7 @@ only one new parameter $\kappa_m$ is optimized at stage $m$.
 
 Minimizing $E_m^{fb}$ with respect to $\kappa_m^{\ast}$ gives
 
-$$\boxed{\kappa_m=-\frac{2\sum_n e_{m-1}^f(n)[e_{m-1}^b(n-1)]^{\ast}}{\sum_n |e_{m-1}^f(n)|^2+\sum_n |e_{m-1}^b(n-1)|^2}.}$$
+$$\boxed{\kappa_m=-\frac{2\sum_n e_{m-1}^f(n)[e_{m-1}^b(n-1)]^{\ast}}{\sum_n \lvert e_{m-1}^f(n)\rvert^2+\sum_n \lvert e_{m-1}^b(n-1)\rvert^2}.}$$
 
 For real-valued signals this becomes
 
@@ -1002,9 +1002,9 @@ $$\boxed{\kappa_m=-\frac{2\sum_n e_{m-1}^f(n)e_{m-1}^b(n-1)}{\sum_n [e_{m-1}^f(n
 
 By the Cauchy-Schwarz inequality, this estimate satisfies
 
-$$|\kappa_m|\le 1.$$
+$$\lvert\kappa_m\rvert\le 1.$$
 
-For non-degenerate data, $|\kappa_m|<1$, so the resulting all-pole model is stable.
+For non-degenerate data, $\lvert\kappa_m\rvert<1$, so the resulting all-pole model is stable.
 
 ## 9.4 Burg Algorithm Steps
 
@@ -1013,7 +1013,7 @@ For non-degenerate data, $|\kappa_m|<1$, so the resulting all-pole model is stab
 | 1 | Initialize $e_0^f(n)=e_0^b(n)=x(n)$ |
 | 2 | For $m=1,2,\ldots,p$, compute $\kappa_m$ from the forward/backward error formula |
 | 3 | Update $e_m^f(n)$ and $e_m^b(n)$ using the lattice recursions |
-| 4 | Update the residual variance, often by $\hat\sigma_m^2\approx\hat\sigma_{m-1}^2(1-|\kappa_m|^2)$ |
+| 4 | Update the residual variance, often by $\hat\sigma_m^2\approx\hat\sigma_{m-1}^2(1-\lvert\kappa_m\rvert^2)$ |
 | 5 | After the final stage, convert reflection coefficients to direct AR coefficients if needed |
 
 ## 9.5 Burg, Forward Covariance, and Backward Covariance
@@ -1024,7 +1024,7 @@ There are several related stage-wise lattice methods.
 
 Minimize only
 
-$$\sum_n |e_m^f(n)|^2.$$
+$$\sum_n \lvert e_m^f(n)\rvert^2.$$
 
 This gives a reflection coefficient based on forward error alone. It does not necessarily guarantee stability.
 
@@ -1032,7 +1032,7 @@ This gives a reflection coefficient based on forward error alone. It does not ne
 
 Minimize only
 
-$$\sum_n |e_m^b(n)|^2.$$
+$$\sum_n \lvert e_m^b(n)\rvert^2.$$
 
 This is the backward counterpart and also does not necessarily guarantee stability.
 
@@ -1040,7 +1040,7 @@ This is the backward counterpart and also does not necessarily guarantee stabili
 
 Minimize the combined forward/backward criterion:
 
-$$\sum_n \left(|e_m^f(n)|^2+|e_m^b(n)|^2\right).$$
+$$\sum_n \left(\lvert e_m^f(n)\rvert^2+\lvert e_m^b(n)\rvert^2\right).$$
 
 The combined criterion leads to a stable lattice model and is usually preferred for AR spectral estimation from short records.
 
@@ -1101,11 +1101,11 @@ Thus no additional partial correlation is assumed beyond what is supported by th
 
 The covariance method minimizes only the forward prediction error:
 
-$$\sum_n |e_p^f(n)|^2.$$
+$$\sum_n \lvert e_p^f(n)\rvert^2.$$
 
 But for finite data, forward and backward errors are not statistically identical. The modified covariance method uses both errors at the final order $p$:
 
-$$\boxed{E_p^{fb}=\sum_{n=p}^{N}\left(|e_p^f(n)|^2+|e_p^b(n)|^2\right).}$$
+$$\boxed{E_p^{fb}=\sum_{n=p}^{N}\left(\lvert e_p^f(n)\rvert^2+\lvert e_p^b(n)\rvert^2\right).}$$
 
 This is similar in spirit to Burg's method, but the optimization is different.
 
@@ -1238,7 +1238,7 @@ Hybrid coding combines waveform accuracy with model-based compression. Code-exci
 
 Speech coders often transform LPC coefficients into more robust parameter sets before quantization. Reflection coefficients are useful because stability corresponds to
 
-$$|\kappa_m|<1.$$
+$$\lvert\kappa_m\rvert<1.$$
 
 If quantization keeps all reflection coefficients inside the unit interval, then the decoded synthesis filter remains stable.
 
@@ -1310,6 +1310,6 @@ All figures displayed in this lecture are rendered from the uploaded textbook PD
 3. Explain AR modeling as the same mathematics viewed as a whitening problem.
 4. Introduce Levinson-Durbin as an efficient recursive solver, not as a mysterious formula.
 5. Interpret reflection coefficients as partial correlations.
-6. Use the stability equivalence $|\kappa_m|<1$ to motivate lattice filters.
+6. Use the stability equivalence $\lvert\kappa_m\rvert<1$ to motivate lattice filters.
 7. Compare autocorrelation, covariance, modified covariance, and Burg methods.
 8. End with speech LPC because it makes the whole chapter feel practical.
