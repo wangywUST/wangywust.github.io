@@ -139,7 +139,7 @@ It is helpful to distinguish two related but different problems.
 
 For deterministic data, we often choose model coefficients to minimize a finite-data error energy:
 
-$$\sum_n |e(n)|^2.$$
+$$\sum_n \lvert e(n)\rvert^2.$$
 
 This is a least-squares problem. The data sequence is treated as fixed.
 
@@ -147,7 +147,7 @@ This is a least-squares problem. The data sequence is treated as fixed.
 
 For a random process, the ideal criterion is usually a mean-square quantity such as
 
-$$E\{|e(n)|^2\}.$$
+$$E\{\lvert e(n)\rvert^2\}.$$
 
 This expectation depends on the underlying probability law. In practice, we do not know the probability law, so we estimate correlations or use finite-data least-squares approximations.
 
@@ -205,7 +205,7 @@ $$r_w(l)=\sigma_w^2\delta(l),\qquad R_w(e^{j\omega})=\sigma_w^2.$$
 
 Because the input spectrum is flat, the shape of the output spectrum is entirely controlled by the filter:
 
-$$\boxed{R_x(e^{j\omega})=\sigma_w^2|H(e^{j\omega})|^2}.$$
+$$\boxed{R_x(e^{j\omega})=\sigma_w^2\lvert H(e^{j\omega})\rvert^2}.$$
 
 Similarly, the output autocorrelation is
 
@@ -306,7 +306,7 @@ This is why all-pole modeling and linear prediction are so closely related. If t
 
 Suppose a WSS process has a continuous PSD $R_x(e^{j\omega})$. If it can be written as
 
-$$R_x(e^{j\omega})=\sigma_w^2|H_{\min}(e^{j\omega})|^2,$$
+$$R_x(e^{j\omega})=\sigma_w^2\lvert H_{\min}(e^{j\omega})\rvert^2,$$
 
 where $H_{\min}(z)$ is stable, causal, and minimum phase, then $H_{\min}(z)$ is a spectral factor of $R_x$.
 
@@ -364,7 +364,7 @@ $$H(z)=d_0\frac{\prod_{k=1}^{Q}(1-z_kz^{-1})}{\prod_{k=1}^{P}(1-p_kz^{-1})}.$$
 
 The model becomes stationary when the synthesis filter is stable. For a causal rational model, this requires all poles to lie inside the unit circle:
 
-$$|p_k|<1,\qquad k=1,\ldots,P.$$
+$$\lvert p_k\rvert<1,\qquad k=1,\ldots,P.$$
 
 If we also want the inverse whitening filter to be stable, all zeros should lie inside the unit circle as well.
 
@@ -541,7 +541,7 @@ $$x(n)=\sum_{k=0}^{Q}d_kw(n-k).$$
 
 Because $x(n)$ depends only on a finite window of white-noise samples, the autocorrelation has finite duration:
 
-$$r_x(l)=0,\qquad |l|>Q.$$
+$$r_x(l)=0,\qquad \lvert l\rvert>Q.$$
 
 However, the PACS usually tails off.
 
@@ -625,7 +625,7 @@ $$A(z)x(n)=D(z)w(n).$$
 
 The PSD is
 
-$$\boxed{R_x(e^{j\omega})=\sigma_w^2\frac{|D(e^{j\omega})|^2}{|A(e^{j\omega})|^2}}.$$
+$$\boxed{R_x(e^{j\omega})=\sigma_w^2\frac{\lvert D(e^{j\omega})\rvert^2}{\lvert A(e^{j\omega})\rvert^2}}.$$
 
 The goal is to estimate
 
@@ -714,7 +714,7 @@ Once $\hat A(z)$ is known, form
 
 $$\hat c(n)=\hat A(z)x(n).$$
 
-Then estimate the autocorrelation $\hat r_c(l)$ of $\hat c(n)$. Since $c(n)$ should be MA($Q$), its autocorrelation should be zero for $|l|>Q$.
+Then estimate the autocorrelation $\hat r_c(l)$ of $\hat c(n)$. Since $c(n)$ should be MA($Q$), its autocorrelation should be zero for $\lvert l\rvert>Q$.
 
 The relation
 
@@ -802,7 +802,7 @@ $$H(z)=\frac{1}{A(z)}=\frac{1}{1+\sum_{k=1}^{P}a_kz^{-k}}.$$
 
 The PSD is
 
-$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{|A(e^{j\omega})|^2}}.$$
+$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{\lvert A(e^{j\omega})\rvert^2}}.$$
 
 The goal is to estimate $a_1,\ldots,a_P$ and $\sigma_w^2$.
 
@@ -861,7 +861,7 @@ In practice, $r_x(l)$ is unknown and is replaced by $\hat r_x(l)$.
 
 The covariance method minimizes the finite-data forward prediction error over a valid sample interval:
 
-$$E_P=\sum_{n=P}^{N-1}\left|x(n)+\sum_{k=1}^{P}a_kx(n-k)\right|^2.$$
+$$E_P=\sum_{n=P}^{N-1}\left\lvert x(n)+\sum_{k=1}^{P}a_kx(n-k)\right\rvert^2.$$
 
 Unlike the autocorrelation method, it does not use zero-valued samples outside the data record.
 
@@ -894,7 +894,7 @@ $$e^b(n)=x(n-P)+\sum_{k=1}^{P}a_k^\ast x(n-P+k).$$
 
 The combined criterion is
 
-$$\boxed{E_P^{fb}=\sum_n\left(|e^f(n)|^2+|e^b(n)|^2\right)}.$$
+$$\boxed{E_P^{fb}=\sum_n\left(\lvert e^f(n)\rvert^2+\lvert e^b(n)\rvert^2\right)}.$$
 
 Using both directions tends to reduce spectral bias. It is especially useful for narrowband signals and short data records.
 
@@ -917,7 +917,7 @@ At order $m$, it chooses a reflection coefficient $k_m$ that reduces the combine
 
 A key advantage is that if
 
-$$|k_m|<1\qquad \text{for all }m,$$
+$$\lvert k_m\rvert<1\qquad \text{for all }m,$$
 
 then the resulting AR model is stable.
 
@@ -993,7 +993,7 @@ $$H(z)=D(z)=d_0+d_1z^{-1}+\cdots+d_Qz^{-Q}.$$
 
 The PSD is
 
-$$\boxed{R_x(e^{j\omega})=\sigma_w^2|D(e^{j\omega})|^2}.$$
+$$\boxed{R_x(e^{j\omega})=\sigma_w^2\lvert D(e^{j\omega})\rvert^2}.$$
 
 Unlike AR modeling, MA modeling is not naturally a linear prediction problem in the observed samples. The excitation $w(n)$ is hidden.
 
@@ -1003,7 +1003,7 @@ This makes direct MA parameter estimation harder than AR parameter estimation.
 
 Because an MA($Q$) process depends only on $Q+1$ consecutive white-noise samples, its autocorrelation satisfies
 
-$$\boxed{r_x(l)=0,\qquad |l|>Q.}$$
+$$\boxed{r_x(l)=0,\qquad \lvert l\rvert>Q.}$$
 
 This property is the most important diagnostic for MA order selection.
 
@@ -1027,7 +1027,7 @@ The important subtlety is nonuniqueness. A given magnitude-squared spectrum can 
 
 ### Steps
 
-1. Estimate $r_x(l)$ for $|l|\le Q$.
+1. Estimate $r_x(l)$ for $\lvert l\rvert\le Q$.
 2. Form $R_x(z)$.
 3. Factor $R_x(z)$ into conjugate-reciprocal zero pairs.
 4. Select the zeros inside the unit circle to obtain the minimum-phase $D(z)$.
@@ -1090,11 +1090,11 @@ Once a model has been estimated, the PSD is obtained by substituting the estimat
 
 For an ARMA model,
 
-$$\boxed{\hat R_x(e^{j\omega})=\hat\sigma_w^2\frac{|\hat D(e^{j\omega})|^2}{|\hat A(e^{j\omega})|^2}}.$$
+$$\boxed{\hat R_x(e^{j\omega})=\hat\sigma_w^2\frac{\lvert \hat D(e^{j\omega})\rvert^2}{\lvert \hat A(e^{j\omega})\rvert^2}}.$$
 
 For an AR model,
 
-$$\boxed{\hat R_x(e^{j\omega})=\frac{\hat\sigma_w^2}{|\hat A(e^{j\omega})|^2}}.$$
+$$\boxed{\hat R_x(e^{j\omega})=\frac{\hat\sigma_w^2}{\lvert \hat A(e^{j\omega})\rvert^2}}.$$
 
 This is a parametric spectrum estimate.
 
@@ -1158,11 +1158,11 @@ $$e(n)=A(z)x(n),$$
 
 then
 
-$$R_e(e^{j\omega})=|A(e^{j\omega})|^2R_x(e^{j\omega}).$$
+$$R_e(e^{j\omega})=\lvert A(e^{j\omega})\rvert^2R_x(e^{j\omega}).$$
 
 Therefore,
 
-$$\boxed{\hat R_x(e^{j\omega})=\frac{\hat R_e(e^{j\omega})}{|A(e^{j\omega})|^2}}.$$
+$$\boxed{\hat R_x(e^{j\omega})=\frac{\hat R_e(e^{j\omega})}{\lvert A(e^{j\omega})\rvert^2}}.$$
 
 > ![Figure 7.2](./CourseADSP2026/Fig/Chapter_4/fig_8_2_textbook_fig_9_15_p469.png)
 >
@@ -1283,7 +1283,7 @@ A concise blackboard derivation can follow this sequence.
 
 ### Step 1: White Noise Through a Filter
 
-$$x(n)=h(n)\ast w(n),\qquad R_x(e^{j\omega})=\sigma_w^2|H(e^{j\omega})|^2.$$
+$$x(n)=h(n)\ast w(n),\qquad R_x(e^{j\omega})=\sigma_w^2\lvert H(e^{j\omega})\rvert^2.$$
 
 ### Step 2: Rational Model
 
@@ -1311,6 +1311,6 @@ This gives the MYWE method for the AR part.
 
 ### Step 5: PSD Estimate
 
-$$\hat R_x(e^{j\omega})=\hat\sigma_w^2\frac{|\hat D(e^{j\omega})|^2}{|\hat A(e^{j\omega})|^2}.$$
+$$\hat R_x(e^{j\omega})=\hat\sigma_w^2\frac{\lvert \hat D(e^{j\omega})\rvert^2}{\lvert \hat A(e^{j\omega})\rvert^2}.$$
 
 End the lecture by asking students: *Does the residual look white?* If the answer is no, the model is not finished.
