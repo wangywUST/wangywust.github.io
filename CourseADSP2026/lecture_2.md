@@ -568,13 +568,29 @@ where $\phi_k \sim \text{Uniform}[0, 2\pi]$ are mutually independent. The mean i
 
 $$r_x(l) = \frac{1}{2}\sum_{k=1}^{M} A_k^2 \cos(\omega_k l)$$
 
-The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
+Unlike the regular processes considered so far in §2.5, this autocorrelation **never decays** — it is a sum of undamped cosines — so $\sum_l \lvert r_x(l)\rvert = \infty$ and the absolute-summability assumption behind the ordinary DTFT no longer holds. The PSD therefore exists only in the **distributional (generalized-function) sense**: each nondecaying cosine transforms into a pair of Dirac impulses, and the continuous PSD *curve* degenerates into a **line spectrum** — power concentrated entirely on discrete "spectral lines" at $\pm\omega_k$:
 
-$$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
+$$R_x(e^{j\omega}) = \frac{\pi}{2} \sum_{k=1}^{M} A_k^2\, \big[\delta(\omega - \omega_k) + \delta(\omega + \omega_k)\big]$$
+
+The impulse strength on each line is proportional to the power $A_k^2/2$ of the corresponding sinusoid; a quick check confirms $r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\,d\omega = \frac{1}{2}\sum_k A_k^2$, the total average power, as it must.
+
+> **A line spectrum is not the opposite of a power spectrum — it *is* a power spectrum**, just a degenerate one whose density collapses onto isolated points. The Wiener–Khinchin relation $R_x = \text{DTFT}\{r_x\}$ still holds verbatim; all that changed is that a non-summable $r_x(l)$ forces the transform to contain impulses rather than a bounded continuous function. "Line spectrum" and "continuous spectrum" are thus two ends of the *same* PSD concept, not rival notions — and a general process can carry both at once (a continuous part plus superimposed lines). This distinction resurfaces in §4.1–§4.2: the impulsive (line) component is exactly the **predictable** part of the process, sits on the unit circle as zeros of the spectral density, and is what makes an ordinary spectral factorization break down.
 
 > ![Figure 2.2](./CourseADSP2026/Fig/Chapter_2/fig_2_2.png)
 >
-> *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
+> *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$, i.e. $A_1 = 1$ at $\omega_1 = 0.1\pi$ and $A_2 = 2$ at $\omega_2 = 1.5$. (a) A sample realization; (b) the line spectrum; (c) the corresponding power spectrum $R_x(e^{j\omega})$.*
+>
+> **Why (b) and (c) are drawn as two separate plots.** They encode the *same* second-order information but depict two *different* mathematical objects, plotted on different vertical scales — hence the different graphical conventions (thin bars vs. arrows).
+>
+> - **(b) Line spectrum — finite numbers.** Each real sinusoid $A_k\cos(\omega_k n)$ splits into two complex exponentials $\tfrac{A_k}{2}e^{\pm j\omega_k n}$, each carrying power $\lvert A_k/2\rvert^2 = \tfrac14 A_k^2$. The bar heights are those per-line *powers*: $\tfrac14 A_2^2 = 1$ at $\pm 1.5$ and $\tfrac14 A_1^2 = 0.25$ at $\pm 0.1\pi$. These are ordinary finite values (a discrete "frequency → power" table); they sum to $\tfrac12(A_1^2 + A_2^2) = 2.5 = r_x(0)$, the total average power.
+>
+> - **(c) Power spectrum — the PSD as impulses.** This is the actual $R_x(e^{j\omega}) = \tfrac{\pi}{2}\sum_k A_k^2[\delta(\omega-\omega_k)+\delta(\omega+\omega_k)]$. Its *function value* is $\infty$ on each line and $0$ elsewhere, so it cannot be drawn as finite bars — the arrows are the standard Dirac-$\delta$ notation, and their labeled heights denote the impulse **weights (areas)** $\tfrac{\pi}{2}A_k^2$: $2\pi$ at $\pm 1.5$ and $\pi/2$ at $\pm 0.1\pi$.
+>
+> **The two plots differ by a factor of $2\pi$**, which is exactly the point of showing both. Note $0.25 \times 2\pi = \pi/2$ and $1 \times 2\pi = 2\pi$: the (c) weights equal the (b) heights times $2\pi$. This is the normalization $r_x(0) = \tfrac{1}{2\pi}\int_{-\pi}^{\pi} R_x\,d\omega$ in action —
+> $$\underbrace{\tfrac14 A_k^2}_{\text{(b) per-line power}} \;\xrightarrow{\;\times 2\pi\;}\; \underbrace{\tfrac{\pi}{2}A_k^2}_{\text{(c) impulse weight}} \;\xrightarrow{\;\frac{1}{2\pi}\int\;}\; \text{power again.}$$
+> So (b) is the *engineering read-out* (which tones are present and how much power each holds — already the $\tfrac{1}{2\pi}$-integrated quantity, read off directly), while (c) embeds the same content in the unified PSD object $R_x(e^{j\omega})$ — the only form that plugs directly into the continuous-$\omega$ machinery (Wiener–Khinchin, the filtering relation $R_y = \lvert H\rvert^2 R_x$, the eigenvalue bounds). This is *not* an opposition between "line" and "power" spectrum: (b) and (c) are two representations of one degenerate PSD, one convenient for reading physics, the other for entering formulas.
+>
+> *(Caveat on the textbook label: (b) actually plots the per-line **power** $\tfrac14 A_k^2$, not the amplitude $\tfrac{A_k}{2}$. The two coincide at $\pm 1.5$ (both equal $1$) only by coincidence; at $\pm 0.1\pi$ the plotted value is the power $0.25$, not the amplitude $0.5$.)*
 
 ---
 
