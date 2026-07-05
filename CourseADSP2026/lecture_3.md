@@ -57,7 +57,7 @@ All symbols used in this chapter are collected below. The notation follows the c
 
 | Symbol | Definition |
 |--------|------------|
-| $r_x(l)=E\{x(n)x^{\ast}(n-l)\}$ | Autocorrelation sequence of a WSS process |
+| $r_x(l)=E\left\{x(n)x^{\ast}(n-l)\right\}$ | Autocorrelation sequence of a WSS process |
 | $\hat r_x(l)$ | Estimated autocorrelation sequence from finite data |
 | $\mathbf{R}_p$ | $p\times p$ autocorrelation matrix, Hermitian Toeplitz in the WSS case |
 | $\mathbf{r}_p=[r_x(1),\ldots,r_x(p)]^T$ | Correlation vector used in the Yule-Walker / prediction equations |
@@ -197,7 +197,7 @@ If the signal is very predictable, $P_p$ is small. If the signal is white noise,
 
 In theory, the autocorrelation sequence is an ensemble average:
 
-$$r_x(l)=E\{x(n)x^{\ast}(n-l)\}.$$
+$$r_x(l)=E\left\{x(n)x^{\ast}(n-l)\right\}.$$
 
 In practice, we usually have only one finite data record:
 
