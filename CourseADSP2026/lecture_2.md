@@ -1258,7 +1258,15 @@ This principle leads to the **Wiener-Hopf equations** (to be derived in detail i
 
 $$\mathbf{R}_x \mathbf{w}_{\mathrm{opt}} = \mathbf{r}_{\theta x}$$
 
-where $\mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace$ is the observation autocorrelation matrix and $\mathbf{r}_{\theta x} = E\lbrace \theta\, \mathbf{x}^H\rbrace$ is the cross-correlation between the desired signal and the observations.
+where
+
+$$
+\mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace,
+\qquad
+\mathbf{r}_{\theta x} = E\lbrace \theta\, \mathbf{x}^H\rbrace.
+$$
+
+Here, $\mathbf{R}_x$ is the observation autocorrelation matrix, and $\mathbf{r}_{\theta x}$ is the cross-correlation between the desired signal and the observations.
 
 The LMMSE framework is the **bridge to Wiener filtering** (Chapter 6): when the parameter $\boldsymbol{\theta}$ is replaced by a random desired signal $d(n)$ and the observations are $\mathbf{x} = [x(n), x(n-1), \ldots]^T$, the LMMSE estimator becomes the FIR Wiener filter.
 
