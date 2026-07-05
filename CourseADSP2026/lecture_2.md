@@ -309,6 +309,20 @@ $$\Pr\{F_x^{-1}(U) \le t\} = \Pr\{U \le F_x(t)\} = F_x(t),$$
 
 so $F_x^{-1}(U)$ indeed has CDF $F_x$. In simulations, this is why uniform random variables are often treated as the basic source of randomness.
 
+**Worked example — generating an exponential distribution.** Suppose we only have a generator for $U \sim \text{Uniform}[0,1]$ but want samples from an exponential distribution with rate $\lambda$, whose CDF is
+
+$$F_x(t) = 1 - e^{-\lambda t}, \qquad t \ge 0.$$
+
+Setting $U = F_x(t)$ and solving for $t$ gives the inverse function:
+
+$$U = 1 - e^{-\lambda t} \;\Longrightarrow\; e^{-\lambda t} = 1 - U \;\Longrightarrow\; F_x^{-1}(U) = -\frac{1}{\lambda}\ln(1 - U).$$
+
+Substituting into the identity above verifies the result:
+
+$$\Pr\{F_x^{-1}(U) \le t\} = \Pr\{U \le F_x(t)\} = 1 - e^{-\lambda t},$$
+
+which is exactly the exponential CDF, so $x = -\frac{1}{\lambda}\ln(1-U)$ is exponentially distributed. Intuitively, the CDF compresses the $x$-axis onto the probability scale $[0,1]$; the inverse runs this backward, stretching regions of high density (where $F_x$ rises steeply) so that more uniform samples land there. Since $1-U$ and $U$ are identically distributed, one often writes simply $x = -\ln(U)/\lambda$ in code.
+
 ### Bernoulli Distribution
 
 A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2 = \Pr\lbrace x = -1\rbrace = 1/2$. Models binary random variables such as coin-flip outcomes. Used as the excitation for Bernoulli white noise.
