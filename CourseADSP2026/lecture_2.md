@@ -524,6 +524,26 @@ $$\min_\omega R_x(e^{j\omega}) \le \lambda_i \le \max_\omega R_x(e^{j\omega}), \
 
 A "flat" power spectrum (white noise) gives all equal eigenvalues; a narrowband process gives widely spread eigenvalues. The **condition number** $\lambda_\text{max}/\lambda_\text{min}$ (eigenvalue spread) directly affects the convergence rate of adaptive algorithms (Chapter 7) — a large spread causes slow convergence with LMS.
 
+> **Where the bound comes from (Rayleigh-quotient derivation).** For any Hermitian matrix, the eigenvalues are the extreme and intermediate values of the **Rayleigh quotient**
+> $$\lambda_{\min} = \min_{\mathbf{v}\neq \mathbf{0}} \frac{\mathbf{v}^H \mathbf{R}_x \mathbf{v}}{\mathbf{v}^H \mathbf{v}}, \qquad \lambda_{\max} = \max_{\mathbf{v}\neq \mathbf{0}} \frac{\mathbf{v}^H \mathbf{R}_x \mathbf{v}}{\mathbf{v}^H \mathbf{v}},$$
+> and every $\lambda_i$ lies between these two. So it suffices to bound the quadratic form $\mathbf{v}^H \mathbf{R}_x \mathbf{v}$ for a unit vector $\mathbf{v}$ ($\mathbf{v}^H\mathbf{v}=1$). Writing it out with $(\mathbf{R}_x)_{kl}=r_x(k-l)$ and substituting the inverse-DTFT $r_x(m)=\frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\,e^{j\omega m}\,d\omega$:
+> $$\mathbf{v}^H \mathbf{R}_x \mathbf{v} = \sum_{k}\sum_{l} v_k^{\ast}\, r_x(k-l)\, v_l = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega}) \left\lvert \sum_k v_k\, e^{-j\omega k} \right\rvert^2 d\omega = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, \lvert V(e^{j\omega})\rvert^2\, d\omega,$$
+> where $V(e^{j\omega}) = \sum_k v_k e^{-j\omega k}$ is the DTFT of the coefficient vector. By Parseval, the weight $\lvert V(e^{j\omega})\rvert^2 \ge 0$ integrates to $\frac{1}{2\pi}\int_{-\pi}^{\pi}\lvert V\rvert^2 d\omega = \mathbf{v}^H\mathbf{v} = 1$. Hence $\mathbf{v}^H \mathbf{R}_x \mathbf{v}$ is a **weighted average of the PSD** with nonnegative weights summing to one — and any weighted average is trapped between the smallest and largest values being averaged:
+> $$\min_\omega R_x(e^{j\omega}) \;\le\; \mathbf{v}^H \mathbf{R}_x \mathbf{v} \;\le\; \max_\omega R_x(e^{j\omega}).$$
+> Since this holds for **every** unit vector — in particular for each eigenvector, where the quotient equals $\lambda_i$ — the bound holds for every eigenvalue. This is the discrete counterpart of the **Grenander–Szegő theorem**: as $M\to\infty$, the eigenvalues of the Toeplitz matrix $\mathbf{R}_x$ populate the interval $[\min_\omega R_x,\, \max_\omega R_x]$ and their empirical distribution converges to that of the PSD sampled on a uniform frequency grid.
+
+**Two extremes.** The bound becomes concrete at the endpoints of the "coloredness" scale:
+
+- **White noise** — the PSD is flat, $R_x(e^{j\omega}) = \sigma_x^2$ for all $\omega$, so $\min_\omega R_x = \max_\omega R_x$ and the enclosing interval collapses to a point. Every eigenvalue equals $\sigma_x^2$; equivalently $\mathbf{R}_x = \sigma_x^2 \mathbf{I}$, and the condition number is $\chi = 1$.
+- **Narrowband process** — the PSD has a tall peak and a deep trough, so $\max_\omega R_x \gg \min_\omega R_x$. The eigenvalues spread across a wide interval and $\chi = \lambda_{\max}/\lambda_{\min} \approx (\max_\omega R_x)/(\min_\omega R_x)$ is large. The eigenvalue spread is therefore just the **spectral dynamic range** of the input, read off the PSD curve directly.
+
+**Why this governs LMS convergence (preview of Chapter 7).** Steepest-descent and LMS minimize the mean-square error over a quadratic error surface whose curvature in each principal direction is set by the eigenvalues of $\mathbf{R}_x$. The level sets are ellipsoids with axis-length ratios $\sqrt{\lambda_{\max}/\lambda_{\min}}$:
+
+- When $\chi \approx 1$ (whitened input), the surface is a nearly spherical bowl — the gradient points almost straight at the minimum and convergence is fast, with a single effective time constant.
+- When $\chi \gg 1$ (colored input), the surface is a long, narrow ravine. A common step size must stay small enough for the steep direction (governed by $\lambda_{\max}$) to remain stable, which leaves progress along the shallow direction (governed by $\lambda_{\min}$) painfully slow. The slowest mode has a time constant $\propto 1/\lambda_{\min}$, so the overall convergence time scales with $\chi$.
+
+This is the core motivation for the remedies developed later: **normalized LMS** rescales the step to the instantaneous input power, **RLS** effectively applies $\mathbf{R}_x^{-1}$ and so removes the $\chi$-dependence entirely (at higher cost), and **pre-whitening / transform-domain LMS** reshapes the input spectrum toward flat before adaptation to shrink $\chi$ back toward 1.
+
 ---
 
 ## 2.6 Ergodicity
