@@ -399,6 +399,17 @@ $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)}
 
 > **Relationship between the types:** Independent $\Rightarrow$ uncorrelated $\Rightarrow$ orthogonal (for zero-mean processes). The converses do not hold in general, but for **Gaussian** processes, uncorrelated $\Leftrightarrow$ independent.
 
+> **Why "orthogonal" is introduced here and not at the random-variable level (§1.3).** The three notions differ only in how the mean is treated:
+>
+> $$r_{x}(n_1,n_2) = \underbrace{\gamma_x(n_1,n_2)}_{\text{covariance}} + \mu_x(n_1)\mu_x^{\ast}(n_2)$$
+>
+> - **Uncorrelated:** $\gamma_x(n_1,n_2)=0 \Rightarrow r_x(n_1,n_2)=\mu_x(n_1)\mu_x^{\ast}(n_2)$
+> - **Orthogonal:** $r_x(n_1,n_2)=0$
+>
+> So orthogonal $=$ uncorrelated **plus** $\mu_x(n_1)\mu_x^{\ast}(n_2)=0$ (at least one factor zero-mean). This is exactly why the "for zero-mean" qualifier attaches to the **uncorrelated $\Rightarrow$ orthogonal** step and not to independent $\Rightarrow$ uncorrelated.
+>
+> At the two-random-variable level of §1.3, we work with **centered** quantities — covariance, the correlation coefficient $\rho$, Cauchy–Schwarz, independence. Against that machinery, orthogonality is just "uncorrelated shifted by a mean product," carrying no new structural content, so §1.3 stops at *uncorrelated*. The term earns its own name only once random variables are viewed as vectors in a Hilbert space with inner product $\langle x,y\rangle = E\lbrace xy^{\ast}\rbrace$. That geometric view pays off specifically in the **process/estimation** setting: it gives white noise its diagonal structure $r_x(l)=\sigma_w^2\delta(l)$ (samples at distinct times are mutually orthogonal — the excitation primitive for every linear model in §4), and it underlies the **orthogonality principle** of LMMSE/Wiener estimation (§7.4, error $\perp$ observations). Since signal processing overwhelmingly deals with zero-mean processes, orthogonal and uncorrelated coincide in practice — leaving nothing to say about orthogonality at the pure RV stage, and making §2.2 the natural place to define it.
+
 ---
 
 ## 2.3 Gaussian Random Sequences
