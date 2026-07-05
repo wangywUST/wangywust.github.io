@@ -491,7 +491,13 @@ For real-valued $x(n)$, this simplifies to $r_x(-l) = r_x(l)$ — the autocorrel
 
 $$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast} \alpha_l\, r_x(k-l) \ge 0$$
 
-This ensures that the **power spectral density is nonnegative** at all frequencies (proved below in §2.2.6).
+This ensures that the **power spectral density is nonnegative** at all frequencies (proved below in §2.8, Property 2).
+
+> **Linear-algebra reading of Property 3.** The double sum is nothing but a **quadratic form**. Collect the lags into the $M \times M$ **autocorrelation matrix** $\mathbf{R}$ with entries $\mathbf{R}_{kl} = r_x(k-l)$; then
+> $$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast}\alpha_l\, r_x(k-l) \;=\; \boldsymbol{\alpha}^H \mathbf{R}\,\boldsymbol{\alpha} \;\ge\; 0,$$
+> where $\boldsymbol{\alpha}^H$ is the conjugate transpose. So Property 3 says exactly that **$\mathbf{R}$ is positive semidefinite** — equivalently, all its eigenvalues satisfy $\lambda_i \ge 0$. Combined with Properties 1–2, $\mathbf{R}$ is a **Hermitian, Toeplitz, positive-semidefinite** matrix (this is the matrix $\mathbf{R}_x$ built explicitly in §2.5). The presence of the conjugate $\alpha_k^{\ast}$ signals that $\boldsymbol{\alpha}$ should be taken in $\mathbb{C}^M$ rather than $\mathbb{R}^M$ for the guarantee to cover complex-valued processes and all frequencies.
+>
+> **Bridge to the PSD.** Choosing $\alpha_k = e^{j\omega k}$ turns the quadratic form into a Fejér-kernel-weighted sum of $r_x(m)e^{-j\omega m}$, which is $\ge 0$ for every $M$; letting $M \to \infty$ yields $R_x(e^{j\omega}) \ge 0$ directly. In other words, "$\mathbf{R}$ positive semidefinite" (time domain) and "PSD nonnegative everywhere" (frequency domain) are the same statement — the discrete form of **Bochner's theorem**, since the PSD is the DTFT of the autocorrelation sequence.
 
 ---
 
