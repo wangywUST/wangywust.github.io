@@ -1,5 +1,5 @@
 # Modern Digital Signal Processing
-## Chapter 3: Linear Prediction and Lattice Filters
+## Chapter 3: Linear Prediction and Lattice Filter
 
 > 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005  
 > Chapters covered: §6.5 (Linear Prediction) · Ch. 7 (Algorithms and Structures for Optimum Linear Filters, §7.1–§7.7) · §9.2.3 (Maximum Entropy Method / Burg Method) · §9.4.2 (Speech Modeling)
