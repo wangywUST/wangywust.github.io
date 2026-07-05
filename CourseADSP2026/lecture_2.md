@@ -491,17 +491,96 @@ For real-valued $x(n)$, this simplifies to $r_x(-l) = r_x(l)$ — the autocorrel
 
 $$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast} \alpha_l\, r_x(k-l) \ge 0$$
 
-This ensures that the **power spectral density is nonnegative** at all frequencies (proved below in §2.8, Property 2).
+This ensures that the **power spectral density is nonnegative** at all frequencies (proved in §2.5, Property 2).
 
 > **Linear-algebra reading of Property 3.** The double sum is nothing but a **quadratic form**. Collect the lags into the $M \times M$ **autocorrelation matrix** $\mathbf{R}$ with entries $\mathbf{R}_{kl} = r_x(k-l)$; then
 > $$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast}\alpha_l\, r_x(k-l) \;=\; \boldsymbol{\alpha}^H \mathbf{R}\,\boldsymbol{\alpha} \;\ge\; 0,$$
-> where $\boldsymbol{\alpha}^H$ is the conjugate transpose. So Property 3 says exactly that **$\mathbf{R}$ is positive semidefinite** — equivalently, all its eigenvalues satisfy $\lambda_i \ge 0$. Combined with Properties 1–2, $\mathbf{R}$ is a **Hermitian, Toeplitz, positive-semidefinite** matrix (this is the matrix $\mathbf{R}_x$ built explicitly in §2.5). The presence of the conjugate $\alpha_k^{\ast}$ signals that $\boldsymbol{\alpha}$ should be taken in $\mathbb{C}^M$ rather than $\mathbb{R}^M$ for the guarantee to cover complex-valued processes and all frequencies.
+> where $\boldsymbol{\alpha}^H$ is the conjugate transpose. So Property 3 says exactly that **$\mathbf{R}$ is positive semidefinite** — equivalently, all its eigenvalues satisfy $\lambda_i \ge 0$. Combined with Properties 1–2, $\mathbf{R}$ is a **Hermitian, Toeplitz, positive-semidefinite** matrix (this is the matrix $\mathbf{R}_x$ built explicitly in §2.6). The presence of the conjugate $\alpha_k^{\ast}$ signals that $\boldsymbol{\alpha}$ should be taken in $\mathbb{C}^M$ rather than $\mathbb{R}^M$ for the guarantee to cover complex-valued processes and all frequencies.
 >
-> **Bridge to the PSD.** Choosing $\alpha_k = e^{j\omega k}$ turns the quadratic form into a Fejér-kernel-weighted sum of $r_x(m)e^{-j\omega m}$, which is $\ge 0$ for every $M$; letting $M \to \infty$ yields $R_x(e^{j\omega}) \ge 0$ directly. In other words, "$\mathbf{R}$ positive semidefinite" (time domain) and "PSD nonnegative everywhere" (frequency domain) are the same statement — the discrete form of **Bochner's theorem**, since the PSD is the DTFT of the autocorrelation sequence.
+> **Bridge to the PSD.** Choosing $\alpha_k = e^{j\omega k}$ turns the quadratic form into a Fejér-kernel-weighted sum of $r_x(m)e^{-j\omega m}$, which is $\ge 0$ for every $M$; letting $M \to \infty$ yields $R_x(e^{j\omega}) \ge 0$ directly. In other words, "$\mathbf{R}$ positive semidefinite" (time domain) and "PSD nonnegative everywhere" (frequency domain) are the same statement — the discrete form of **Bochner's theorem**. The next section (§2.5) makes this precise: it defines the PSD as the DTFT of the autocorrelation sequence and establishes its properties.
 
 ---
 
-## 2.5 Correlation Matrices of Stationary Processes
+## 2.5 Power Spectral Density (Wiener–Khinchin Theorem)
+
+Section 2.4 built the autocorrelation sequence $r_x(l)$ and showed, through nonnegative definiteness (Property 3) and Bochner's theorem, that its frequency-domain image is real and nonnegative. We now define that image explicitly and collect its properties.
+
+For a zero-mean WSS process with absolutely summable autocorrelation $\sum_l \lvert r_x(l)\rvert < \infty$, the **power spectral density (PSD)** is defined as the DTFT of the autocorrelation sequence:
+
+$$\boxed{R_x(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_x(l)\, e^{-j\omega l}} \qquad \text{(Wiener–Khinchin theorem)}$$
+
+and the inverse relation:
+
+$$r_x(l) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, e^{j\omega l}\, d\omega$$
+
+The total average power equals the area under the PSD:
+
+$$E\lbrace \lvert x(n)\rvert^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
+
+### Properties of the PSD
+
+**Property 1 (Real-valued):** $R_x(e^{j\omega}) \in \mathbb{R}$ for all $\omega$ (because $r_x(l) = r_x^{\ast}(-l)$ implies its DTFT is real). For real-valued $x(n)$, additionally $R_x(e^{j\omega}) = R_x(e^{-j\omega})$ — the PSD is an even function.
+
+**Property 2 (Non-negative):**
+$$R_x(e^{j\omega}) \ge 0 \quad \forall\omega$$
+
+This follows from the nonnegative definiteness of $r_x(l)$ and has a physical meaning: power cannot be negative at any frequency. A useful derivation: apply a narrow bandpass filter $H(e^{j\omega}) = 1$ near $\omega_c$ and $0$ elsewhere; the output power is $\approx R_x(e^{j\omega_c})\cdot\Delta\omega/\pi \ge 0$, so $R_x(e^{j\omega_c}) \ge 0$.
+
+**Property 3 (Power interpretation):** $R_x(e^{j\omega})\, d\omega/(2\pi)$ is the fraction of total average power in the frequency band $[\omega, \omega+d\omega]$.
+
+### Complex Spectral Density (z-Domain)
+
+The z-transform of the autocorrelation sequence:
+
+$$R_x(z) = \sum_{l=-\infty}^{\infty} r_x(l)\, z^{-l}$$
+
+On the unit circle: $R_x(e^{j\omega}) = R_x(z)\big\vert_{z=e^{j\omega}}$.
+
+From the conjugate symmetry $r_x(l) = r_x^{\ast}(-l)$, for real $r_x(l)$:
+
+$$R_x(z) = R_x\!\left(\frac{1}{z}\right)$$
+
+This **palindrome property** will be central to spectral factorization (§4.2): the poles and zeros of $R_x(z)$ appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$.
+
+**Example.** Consider $r_x(l) = a^{\lvert l\rvert}$, $\lvert a\rvert < 1$. Then:
+
+$$R_x(e^{j\omega}) = \frac{1-a^2}{1 + a^2 - 2a\cos\omega}$$
+
+This is a **real, nonnegative, even** function of $\omega$, as required. At $\omega = 0$: $R_x(1) = \frac{1-a^2}{(1-a)^2} = \frac{1+a}{1-a}$, which is large when $a \to 1$ (low-frequency dominated, "colored" spectrum). At $\omega = \pi$: $R_x(-1) = \frac{1-a^2}{(1+a)^2} = \frac{1-a}{1+a}$, which is small — the process has little high-frequency content.
+
+### Cross-Power Spectral Density
+
+$$R_{xy}(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_{xy}(l)\, e^{-j\omega l}$$
+
+Note: $R_{xy}(e^{j\omega})$ is **complex-valued** in general. The **coherence function** and **magnitude-squared coherence (MSC)**:
+
+$$G_{xy}(e^{j\omega}) = \frac{R_{xy}(e^{j\omega})}{\sqrt{R_x(e^{j\omega}) R_y(e^{j\omega})}}, \qquad 0 \le \lvert G_{xy}(e^{j\omega})\rvert^2 \le 1$$
+
+MSC $= 1$ means perfect linear correlation at that frequency; MSC $= 0$ means no correlation. MSC generalizes the concept of a correlation coefficient to the frequency domain.
+
+### Harmonic Processes
+
+A **harmonic process** consists of a sum of sinusoids with random phases:
+
+$$x(n) = \sum_{k=1}^{M} A_k \cos(\omega_k n + \phi_k)$$
+
+where $\phi_k \sim \text{Uniform}[0, 2\pi]$ are mutually independent. The mean is zero, and the autocorrelation is:
+
+$$r_x(l) = \frac{1}{2}\sum_{k=1}^{M} A_k^2 \cos(\omega_k l)$$
+
+The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
+
+$$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
+
+> ![Figure 2.2](./CourseADSP2026/Fig/Chapter_2/fig_2_2.png)
+>
+> *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
+
+---
+
+## 2.6 Correlation Matrices of Stationary Processes
+
+Having described the second-order structure in the frequency domain (§2.5), we now return to the time domain and arrange the autocorrelation samples into a matrix. Its eigenvalues, as we will see below, are governed directly by the PSD just defined — the link that later controls adaptive-filter convergence.
 
 For a WSS process, we frequently work with the **autocorrelation matrix** formed from an $M$-sample snapshot vector:
 
@@ -518,7 +597,7 @@ This matrix is:
 
 > **Why does the Hermitian Toeplitz structure matter?** The Toeplitz structure means that $\mathbf{R}_x$ is fully specified by its first row $[r_x(0), r_x(1), \ldots, r_x(M-1)]$ — only $M$ numbers instead of $M^2$. This enables efficient algorithms like Levinson-Durbin (Chapter 3) to solve $\mathbf{R}_x \mathbf{a} = \mathbf{b}$ in $O(M^2)$ operations instead of the $O(M^3)$ needed for a general matrix.
 
-**Eigenvalue spread and spectral dynamic range (Theorem 3.5):** The eigenvalues $\lambda_i$ of $\mathbf{R}_x$ are bounded by the minimum and maximum of the PSD:
+**Eigenvalue spread and spectral dynamic range (Theorem 3.5):** The eigenvalues $\lambda_i$ of $\mathbf{R}_x$ are bounded by the minimum and maximum of the PSD (defined in §2.5):
 
 $$\min_\omega R_x(e^{j\omega}) \le \lambda_i \le \max_\omega R_x(e^{j\omega}), \quad i = 1, \ldots, M$$
 
@@ -546,7 +625,7 @@ This is the core motivation for the remedies developed later: **normalized LMS**
 
 ---
 
-## 2.6 Ergodicity
+## 2.7 Ergodicity
 
 A fundamental practical problem: in real applications, we never observe the entire ensemble — we have only **one realization** of the process. Can we still estimate ensemble averages from a single finite-length record?
 
@@ -584,7 +663,7 @@ In practice, however, almost all stationary processes encountered in engineering
 
 ---
 
-## 2.7 White Noise
+## 2.8 White Noise
 
 The simplest possible random sequence is one with no temporal structure:
 
@@ -602,82 +681,7 @@ The name "white" is analogous to white light: all frequencies contribute equally
 - **White Gaussian Noise (WGN)**: $w(n) \sim \mathrm{WGN}(\mu_w, \sigma_w^2)$ — additionally, $w(n)$ is Gaussian at each $n$.
 - **IID noise** (strict white noise): $w(n) \sim \mathrm{IID}(\mu_w, \sigma_w^2)$ — all samples are statistically independent and identically distributed. IID $\Rightarrow$ WN (because independence implies uncorrelated). WGN is IID.
 
-White noise is the fundamental **building block** for constructing more complex processes. By driving a linear filter with white noise, we can generate a process with any desired autocorrelation structure (§2.3) and spectral shape (§2.4).
-
----
-
-## 2.8 Power Spectral Density (Wiener–Khinchin Theorem)
-
-For a zero-mean WSS process with absolutely summable autocorrelation $\sum_l \lvert r_x(l)\rvert < \infty$, the **power spectral density (PSD)** is defined as the DTFT of the autocorrelation sequence:
-
-$$\boxed{R_x(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_x(l)\, e^{-j\omega l}} \qquad \text{(Wiener–Khinchin theorem)}$$
-
-and the inverse relation:
-
-$$r_x(l) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, e^{j\omega l}\, d\omega$$
-
-The total average power equals the area under the PSD:
-
-$$E\lbrace \lvert x(n)\rvert^2\rbrace = r_x(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R_x(e^{j\omega})\, d\omega$$
-
-### Properties of the PSD
-
-**Property 1 (Real-valued):** $R_x(e^{j\omega}) \in \mathbb{R}$ for all $\omega$ (because $r_x(l) = r_x^{\ast}(-l)$ implies its DTFT is real). For real-valued $x(n)$, additionally $R_x(e^{j\omega}) = R_x(e^{-j\omega})$ — the PSD is an even function.
-
-**Property 2 (Non-negative):**
-$$R_x(e^{j\omega}) \ge 0 \quad \forall\omega$$
-
-This follows from the nonnegative definiteness of $r_x(l)$ and has a physical meaning: power cannot be negative at any frequency. A useful derivation: apply a narrow bandpass filter $H(e^{j\omega}) = 1$ near $\omega_c$ and $0$ elsewhere; the output power is $\approx R_x(e^{j\omega_c})\cdot\Delta\omega/\pi \ge 0$, so $R_x(e^{j\omega_c}) \ge 0$.
-
-**Property 3 (Power interpretation):** $R_x(e^{j\omega})\, d\omega/(2\pi)$ is the fraction of total average power in the frequency band $[\omega, \omega+d\omega]$.
-
-### Complex Spectral Density (z-Domain)
-
-The z-transform of the autocorrelation sequence:
-
-$$R_x(z) = \sum_{l=-\infty}^{\infty} r_x(l)\, z^{-l}$$
-
-On the unit circle: $R_x(e^{j\omega}) = R_x(z)\big\vert_{z=e^{j\omega}}$.
-
-From the conjugate symmetry $r_x(l) = r_x^{\ast}(-l)$, for real $r_x(l)$:
-
-$$R_x(z) = R_x\!\left(\frac{1}{z}\right)$$
-
-This **palindrome property** will be central to spectral factorization (§2.4): the poles and zeros of $R_x(z)$ appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$.
-
-**Example.** Consider $r_x(l) = a^{\lvert l\rvert}$, $\lvert a\rvert < 1$. Then:
-
-$$R_x(e^{j\omega}) = \frac{1-a^2}{1 + a^2 - 2a\cos\omega}$$
-
-This is a **real, nonnegative, even** function of $\omega$, as required. At $\omega = 0$: $R_x(1) = \frac{1-a^2}{(1-a)^2} = \frac{1+a}{1-a}$, which is large when $a \to 1$ (low-frequency dominated, "colored" spectrum). At $\omega = \pi$: $R_x(-1) = \frac{1-a^2}{(1+a)^2} = \frac{1-a}{1+a}$, which is small — the process has little high-frequency content.
-
-### Cross-Power Spectral Density
-
-$$R_{xy}(e^{j\omega}) = \sum_{l=-\infty}^{\infty} r_{xy}(l)\, e^{-j\omega l}$$
-
-Note: $R_{xy}(e^{j\omega})$ is **complex-valued** in general. The **coherence function** and **magnitude-squared coherence (MSC)**:
-
-$$G_{xy}(e^{j\omega}) = \frac{R_{xy}(e^{j\omega})}{\sqrt{R_x(e^{j\omega}) R_y(e^{j\omega})}}, \qquad 0 \le \lvert G_{xy}(e^{j\omega})\rvert^2 \le 1$$
-
-MSC $= 1$ means perfect linear correlation at that frequency; MSC $= 0$ means no correlation. MSC generalizes the concept of a correlation coefficient to the frequency domain.
-
-### Harmonic Processes
-
-A **harmonic process** consists of a sum of sinusoids with random phases:
-
-$$x(n) = \sum_{k=1}^{M} A_k \cos(\omega_k n + \phi_k)$$
-
-where $\phi_k \sim \text{Uniform}[0, 2\pi]$ are mutually independent. The mean is zero, and the autocorrelation is:
-
-$$r_x(l) = \frac{1}{2}\sum_{k=1}^{M} A_k^2 \cos(\omega_k l)$$
-
-The PSD consists of **impulses** (line spectrum) at frequencies $\pm\omega_k$:
-
-$$R_x(e^{j\omega}) = \pi \sum_{k=-M}^{M} A_k^2\, \delta(\omega - \omega_k) \quad \text{(with sign convention)}$$
-
-> ![Figure 2.2](./CourseADSP2026/Fig/Chapter_2/fig_2_2.png)
->
-> *Figure 2.2 (Textbook Fig. 3.9, p. 112): Time and frequency-domain description of the harmonic process in Example 3.3.5 — $x(n) = \cos(0.1\pi n + \phi_1) + 2\sin(1.5n + \phi_2)$. (a) A sample realization; (b) the line spectrum showing impulse amplitudes at discrete frequencies $\pm 0.1\pi$ and $\pm 1.5$; (c) the corresponding continuous power spectrum.*
+White noise is the fundamental **building block** for constructing more complex processes. By driving a linear filter with white noise, we can generate a process with any desired autocorrelation structure and spectral shape — the subject of §3 (how a filter reshapes the input spectrum) and §4 (the AR/MA/ARMA signal models built on a white-noise excitation).
 
 ---
 
