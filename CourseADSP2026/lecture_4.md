@@ -156,7 +156,7 @@ The two viewpoints meet in practical algorithms:
 | Random-Process Ideal | Finite-Data Implementation |
 |---------------------|----------------------------|
 | Use $r_x(l)=E\{x(n)x^\ast(n-l)\}$ | Estimate $\hat r_x(l)$ from data |
-| Minimize $E\{|e(n)|^2\}$ | Minimize $\sum_n |e(n)|^2$ |
+| Minimize $E\{\lvert e(n)\rvert^2\}$ | Minimize $\sum_n \lvert e(n)\rvert^2$ |
 | Obtain theoretical AR/MA/ARMA coefficients | Obtain estimated coefficients $\hat a_k,\hat d_k$ |
 
 ## 0.4 The Three-Stage Modeling Process
@@ -942,7 +942,7 @@ This is why Burg-type methods are popular in parametric spectrum estimation.
 | Yule-Walker / autocorrelation | Match autocorrelation / minimize windowed prediction error | Toeplitz | Usually yes | General AR modeling; efficient computation |
 | Covariance | Minimize forward prediction error on valid data | Non-Toeplitz | No | Short data, high resolution |
 | Modified covariance | Minimize forward + backward errors | Non-Toeplitz | No, unless constrained | Narrowband spectra; reduced bias |
-| Burg | Stagewise forward/backward error minimization | Lattice recursion | Yes if $|k_m|<1$ | Stable high-resolution AR modeling |
+| Burg | Stagewise forward/backward error minimization | Lattice recursion | Yes if $\lvert k_m\rvert<1$ | Stable high-resolution AR modeling |
 
 A practical teaching summary is:
 
