@@ -299,6 +299,16 @@ Mean $\mu_x = (a+b)/2$; Variance $\sigma_x^2 = (b-a)^2/12$.
 
 Used to model phase angles (uniformly on $[0, 2\pi]$) and to generate other distributions via the **inverse-transform method**: if $U \sim \text{Uniform}[0,1]$, then $x = F_x^{-1}(U)$ has CDF $F_x$.
 
+The phase-angle example means that all angles in one full cycle are equally likely: no direction on the unit circle is preferred, so the probability of falling in an interval is proportional only to the interval length. For example, for $\Theta \sim \text{Uniform}[0,2\pi]$,
+
+$$\Pr\{ \alpha \le \Theta \le \beta \} = \frac{\beta-\alpha}{2\pi}, \qquad 0 \le \alpha \le \beta \le 2\pi.$$
+
+The inverse-transform method is a standard way to turn a uniform random number generator into samples from any desired distribution. Since the CDF $F_x(t)$ maps a value $t$ to a probability level in $[0,1]$, its inverse maps a probability level $U$ back to the corresponding value of $x$. Therefore,
+
+$$\Pr\{F_x^{-1}(U) \le t\} = \Pr\{U \le F_x(t)\} = F_x(t),$$
+
+so $F_x^{-1}(U)$ indeed has CDF $F_x$. In simulations, this is why uniform random variables are often treated as the basic source of randomness.
+
 ### Bernoulli Distribution
 
 A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2 = \Pr\lbrace x = -1\rbrace = 1/2$. Models binary random variables such as coin-flip outcomes. Used as the excitation for Bernoulli white noise.
