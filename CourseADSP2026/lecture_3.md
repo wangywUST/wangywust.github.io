@@ -380,7 +380,43 @@ This is the main advantage of the autocorrelation method: it preserves the Toepl
 
 ### Important Practical Consequence: Stability
 
-For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle. Therefore, the corresponding all-pole synthesis filter
+For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle. The reason is not merely that the normal equations have a unique solution; the stronger reason is that positive definiteness keeps every intermediate prediction problem strictly nondegenerate.
+
+To see the logic, run the Levinson-Durbin recursion order by order. At order $m$, the recursion updates the prediction error power by
+
+$$P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2),$$
+
+where $\kappa_m$ is the $m$-th reflection coefficient. If the autocorrelation matrix and its leading principal submatrices are positive definite, then the minimum prediction error power at every order is strictly positive:
+
+$$P_m>0,\qquad m=0,1,\ldots,p.$$
+
+Since $P_{m-1}>0$, the update formula forces
+
+$$1-\lvert\kappa_m\rvert^2>0
+\quad\Longrightarrow\quad
+\lvert\kappa_m\rvert<1.$$
+
+This is the key stability condition. In the lattice/Schur interpretation, each reflection coefficient is a step that grows the prediction error filter from order $m-1$ to order $m$. The Schur-Cohn stability result says that this step preserves the minimum-phase property exactly when
+
+$$\lvert\kappa_m\rvert<1.$$
+
+Starting from $A_0(z)=1$, which has no zeros and is trivially minimum phase, the recursion therefore builds
+
+$$A_1(z),A_2(z),\ldots,A_p(z)$$
+
+without ever moving a zero outside the unit circle. Hence $A_p(z)$ is minimum phase.
+
+Another way to say the same thing is:
+
+| Condition | Consequence |
+|----------|-------------|
+| $\hat{\mathbf{R}}_p$ positive definite | every finite-order prediction error power is positive |
+| $P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2)$ | every reflection coefficient satisfies $\lvert\kappa_m\rvert<1$ |
+| $\lvert\kappa_m\rvert<1$ for all stages | the prediction error filter $A_p(z)$ is minimum phase |
+
+If the matrix were only positive semidefinite, then some $P_m$ could become zero. In that boundary case $\lvert\kappa_m\rvert=1$, and the corresponding prediction error filter can have a zero on the unit circle. Positive definiteness excludes this boundary case.
+
+Therefore, the corresponding all-pole synthesis filter
 
 $$H_p(z)=\frac{1}{A_p(z)}$$
 
