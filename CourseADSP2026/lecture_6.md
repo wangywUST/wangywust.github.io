@@ -66,7 +66,7 @@ The notation below follows the previous lectures: bold lower-case letters denote
 | $\mathbf{d}=E\{\mathbf{x}y^\ast\}$ | Cross-correlation vector between the data and the desired response |
 | $P(c)$ | Mean-square error as a function of estimator coefficients |
 | $P_o$ | Minimum mean-square error (MMSE) |
-| $P_y=E\{\vert y\vert^2\}$ | Desired-response power |
+| $P_y=E\{\vert y\vert^2\}$ | Desired-response powers |
 
 ### Correlation and Spectral Quantities
 
