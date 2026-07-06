@@ -79,7 +79,7 @@ This chapter uses the notation of the previous lectures. The new emphasis is tha
 | $H(z)=D(z)/A(z)$ | Pole-zero synthesis model |
 | $\sigma_w^2$ | Variance of the white-noise excitation |
 | $\mathbf{R}_x$ | Autocorrelation matrix of a data vector |
-| $\mathbf{a}(\omega)$ or $\mathbf{v}(f)$ | Complex exponential steering vector |
+| $\mathbf{a}(\omega)\ \text{or}\ \mathbf{v}(f)$ | Complex exponential steering vector |
 | $\mathbf{Q}_s$ | Signal-subspace eigenvector matrix |
 | $\mathbf{Q}_n$ | Noise-subspace eigenvector matrix |
 | $\lambda_i$ | Eigenvalue of a correlation matrix |
