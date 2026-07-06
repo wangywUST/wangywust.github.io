@@ -388,6 +388,26 @@ The Levinson-Durbin recursion is an efficient algorithm for solving the Toeplitz
 
 $$0\rightarrow 1\rightarrow 2\rightarrow \cdots \rightarrow p.$$
 
+Here $A_p(z)$ is the $p$-th order prediction error filter. It is the filter that converts the original signal into the prediction residual:
+
+$$e_p^f(n)=A_p(z)x(n).$$
+
+For a $p$-th order predictor, this filter has the polynomial form
+
+$$A_p(z)=1+\sum_{k=1}^{p}a_k^{(p)}z^{-k}.$$
+
+The leading coefficient is $1$ because the prediction error always contains the current sample $x(n)$ itself:
+
+$$e_p^f(n)=x(n)+\sum_{k=1}^{p}a_k^{(p)}x(n-k).$$
+
+When $p=0$, no past samples are used. There is no predictor, so the prediction error is simply the original sample:
+
+$$e_0^f(n)=x(n).$$
+
+Therefore the filter that maps $x(n)$ to $e_0^f(n)$ is just the identity filter:
+
+$$A_0(z)=1.$$
+
 At intermediate order $m$, it has already found the best $m$-th order prediction error filter
 
 $$A_m(z)=1+\sum_{k=1}^{m}a_k^{(m)}z^{-k}.$$
