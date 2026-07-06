@@ -962,13 +962,87 @@ The direct-form predictor uses $p$ taps at once. The recursive approach builds t
 
 This stage-wise interpretation leads naturally to lattice filters.
 
+The sentence above is important. It means that the Levinson-Durbin recursion is not just an efficient way to compute a final list of direct-form coefficients. It also suggests a physical filter structure. Since the predictor is grown one order at a time, the implementation can also be built one section at a time. Each new section introduces one reflection coefficient $\kappa_m$, removes one more layer of residual correlation, and produces a higher-order prediction error. A cascade of these local order-update sections is exactly the idea behind a lattice filter.
+
+Equivalently, compare two ways of thinking about the same predictor:
+
+| View | What happens |
+|------|--------------|
+| Direct-form view | Use all $p$ coefficients $a_1^{(p)},\ldots,a_p^{(p)}$ at once to form the final prediction error |
+| Order-recursive view | Start from order $0$, add one new coefficient $\kappa_m$ at each stage, and update the error signals |
+| Lattice-filter view | Implement each order update as one local lattice section controlled by $\kappa_m$ |
+
+Thus the reflection coefficient has two meanings at the same time:
+
+1. statistically, $\kappa_m$ measures the remaining partial correlation after lower-order lags have already been accounted for;
+2. structurally, $\kappa_m$ is the parameter of the $m$-th lattice section.
+
+This is why the word "stage" matters. The $m$-th stage does not redesign the whole predictor. It only asks:
+
+> After stages $1,\ldots,m-1$ have removed the predictable structure up to lag $m-1$, how much residual correlation remains at lag $m$?
+
+The answer is encoded by $\kappa_m$. If $\kappa_m$ is small, the new stage contributes little. If $\kappa_m$ is large in magnitude, the new stage removes a substantial part of the remaining prediction error power.
+
 > ![Figure 3.1](./CourseADSP2026/Fig/Chapter_3/fig_3_1_textbook_fig_7_1_p337.png)
 >
 > *Figure 3.1 (Textbook Fig. 7.1, p. 337): Orthogonal order-recursive structure for linear MMSE estimation. This figure is useful for understanding why order-recursive algorithms can update an estimator by adding one orthogonalized component at a time.*
 
+Figure 3.1 shows the same idea in a more general linear-estimation setting. The original inputs $x_1,x_2,x_3,x_4$ are usually correlated with one another. The block labeled **Decorrelator** converts them into innovation variables $w_1,w_2,w_3,w_4$. An innovation is the part of a variable that cannot be linearly predicted from the variables that have already been processed.
+
+For example:
+
+- $w_1=x_1$ is the first available component.
+- $w_2$ is the part of $x_2$ that remains after the component predictable from $x_1$ has been removed.
+- $w_3$ is the part of $x_3$ that remains after the components predictable from $x_1$ and $x_2$ have been removed.
+- $w_4$ is the new information in $x_4$ after the earlier inputs have already been accounted for.
+
+So the decorrelator performs a step-by-step orthogonalization:
+
+$$x_1,x_2,x_3,x_4
+\quad\longrightarrow\quad
+w_1,w_2,w_3,w_4.$$
+
+The notation in Figure 3.1 can be read as follows.
+
+| Notation | Meaning |
+|----------|---------|
+| $x_i$ | The original input variables |
+| $w_i$ | Innovations, or orthogonalized new-information components |
+| $\hat y_i$ | Estimate of the desired output component $y_i$ |
+| $\mathbf{R}$ | Input autocorrelation or covariance matrix |
+| $\mathbf{d}$ | Cross-correlation vector between the input and the desired response |
+| $\mathbf{R}=\mathbf{L}\mathbf{D}\mathbf{L}^H$ | LDL$^H$ factorization of the correlation matrix |
+| $\mathbf{B}=\mathbf{L}^{-1}$ | Matrix representation of the decorrelator |
+| $\mathbf{k}=\mathbf{D}^{-1}\mathbf{B}\mathbf{d}$ | Optimum linear-combiner coefficients after decorrelation |
+| $b_j^{(m)}$ | Coefficients used inside the decorrelator at stage $m$ |
+| $k_i^\ast$ | Complex conjugate of the $i$-th combiner coefficient |
+| $(\cdot)^\ast$ | Complex conjugate |
+| $(\cdot)^H$ | Hermitian transpose, or conjugate transpose |
+
+The small processing element in the lower-left corner implements
+
+$$y_{\text{out}}=b x_{\text{in}}+a_{\text{in}}.$$
+
+It multiplies one input by a coefficient $b$, adds another input, and passes the result forward. Repeating this simple local operation creates the triangular decorrelator. This triangular, order-by-order structure is the conceptual ancestor of the lattice filter.
+
 > ![Figure 3.2](./CourseADSP2026/Fig/Chapter_3/fig_3_2_textbook_fig_7_2_p341.png)
 >
 > *Figure 3.2 (Textbook Fig. 7.2, p. 341): Gram-Schmidt orthogonalization. Levinson-type recursions can be interpreted as specialized orthogonalization procedures adapted to Toeplitz correlation matrices.*
+
+Figure 3.2 gives the geometric version of the same story. In ordinary Gram-Schmidt orthogonalization, a vector is decomposed into two parts:
+
+1. its projection onto the subspace already spanned by previous orthogonal vectors;
+2. the leftover component that is orthogonal to that subspace.
+
+The leftover component becomes the next innovation. In the $m=2$ drawing, $x_2$ is split into a component along $w_1$ and a new orthogonal component $w_2$. In the $m=3$ drawing, $x_3$ is split into components along $w_1$ and $w_2$, plus a new orthogonal component $w_3$.
+
+Levinson-Durbin can be viewed as a specialized Gram-Schmidt procedure for Toeplitz autocorrelation matrices. Lattice filters then turn this order-recursive orthogonalization into a signal-flow structure. Later, the all-zero lattice recursions will make this explicit:
+
+$$e_m^f(n)=e_{m-1}^f(n)+\kappa_m^{\ast}e_{m-1}^b(n-1),$$
+
+$$e_m^b(n)=e_{m-1}^b(n-1)+\kappa_m e_{m-1}^f(n).$$
+
+These equations say that the $m$-th lattice stage combines the previous forward and backward prediction errors using one parameter $\kappa_m$. The goal is local decorrelation: after the update, the order-$m$ errors contain less predictable structure than the order-$(m-1)$ errors.
 
 ## 3.7 Algorithm Table
 
