@@ -382,11 +382,40 @@ This is the main advantage of the autocorrelation method: it preserves the Toepl
 
 For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle. The reason is not merely that the normal equations have a unique solution; the stronger reason is that positive definiteness keeps every intermediate prediction problem strictly nondegenerate.
 
-To see the logic, run the Levinson-Durbin recursion order by order. At order $m$, the recursion updates the prediction error power by
+Here is the logic, with the symbols unpacked first.
+
+The Levinson-Durbin recursion is an efficient algorithm for solving the Toeplitz autocorrelation normal equations. Instead of solving only the final $p$-th order system, it builds the predictor one order at a time:
+
+$$0\rightarrow 1\rightarrow 2\rightarrow \cdots \rightarrow p.$$
+
+At intermediate order $m$, it has already found the best $m$-th order prediction error filter
+
+$$A_m(z)=1+\sum_{k=1}^{m}a_k^{(m)}z^{-k}.$$
+
+The notation means:
+
+| Symbol | Meaning |
+|--------|---------|
+| $m$ | current prediction order |
+| $P_m$ | minimum prediction error power using an $m$-th order predictor |
+| $P_{m-1}$ | minimum prediction error power from the previous order |
+| $\kappa_m$ | reflection coefficient introduced when going from order $m-1$ to order $m$ |
+
+For example, $P_0$ is the error power when no past sample is used. In the ensemble WSS case, $P_0=r_x(0)$. In the finite-data autocorrelation method, it is the zero-order residual energy of the windowed data. After adding one more prediction lag, the error power becomes $P_1$, then $P_2$, and so on.
+
+The reflection coefficient $\kappa_m$ measures how much predictable correlation remains after the lower-order predictor has already removed the effects of lags $1,\ldots,m-1$. It is also called a lattice coefficient or PARCOR coefficient. If $\lvert\kappa_m\rvert$ is small, the new lag contributes little. If $\lvert\kappa_m\rvert$ is large, the new lag removes a large fraction of the remaining error power.
+
+The Levinson-Durbin energy update is
 
 $$P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2),$$
 
-where $\kappa_m$ is the $m$-th reflection coefficient. If the autocorrelation matrix and its leading principal submatrices are positive definite, then the minimum prediction error power at every order is strictly positive:
+which says:
+
+> the order-$m$ prediction error power equals the order-$(m-1)$ error power times the remaining fraction $1-\lvert\kappa_m\rvert^2$.
+
+So the new stage cannot increase the prediction error power. It reduces the previous error power by the fraction $\lvert\kappa_m\rvert^2$.
+
+If the autocorrelation matrix and its leading principal submatrices are positive definite, then the minimum prediction error power at every order is strictly positive:
 
 $$P_m>0,\qquad m=0,1,\ldots,p.$$
 
