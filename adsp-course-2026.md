@@ -188,3 +188,29 @@ layout: course
 {% include_relative CourseADSP2026/lecture_7.md %}
 
 </details>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const lectureToggles = Array.from(document.querySelectorAll(".lecture-toggle"));
+
+    function showOnly(openLecture) {
+      lectureToggles.forEach(function (lecture) {
+        lecture.hidden = Boolean(openLecture && lecture !== openLecture);
+      });
+    }
+
+    lectureToggles.forEach(function (lecture) {
+      lecture.addEventListener("toggle", function () {
+        if (lecture.open) {
+          showOnly(lecture);
+          return;
+        }
+
+        const openLecture = lectureToggles.find(function (item) {
+          return item.open;
+        });
+        showOnly(openLecture);
+      });
+    });
+  });
+</script>
