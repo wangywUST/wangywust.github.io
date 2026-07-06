@@ -263,6 +263,13 @@ The finite parameter set usually looks like
 
 $$\{a_1,\ldots,a_P,d_1,\ldots,d_Q,\sigma_w^2\}.$$
 
+Here $A(z)=1+a_1z^{-1}+\cdots+a_Pz^{-P}$ is the denominator polynomial, so
+$a_1,\ldots,a_P$ describe the pole, or autoregressive, part of the model.
+Similarly, $D(z)=d_0+d_1z^{-1}+\cdots+d_Qz^{-Q}$ is the numerator polynomial,
+so $d_1,\ldots,d_Q$ describe the zero, or moving-average, part. The leading
+gain $d_0$ is often normalized to $1$ and absorbed into the driving-noise
+variance $\sigma_w^2$, which controls the overall power level of the process.
+
 Parametric models are less flexible than arbitrary impulse responses, but they are easier to estimate, interpret, and use.
 
 ## 1.3 Coloring and Whitening Filters
