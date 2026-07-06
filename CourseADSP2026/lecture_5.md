@@ -668,6 +668,26 @@ After estimating $a_1,\ldots,a_P$ and $\sigma_w^2$, the AR spectral estimate is
 
 $$\boxed{\hat R_x^{(AR)}(e^{j\omega})=\frac{\hat\sigma_w^2}{\left\vert 1+\sum_{k=1}^{P}\hat a_ke^{-j\omega k}\right\vert^2}.}$$
 
+This formula comes from the filtering interpretation of an AR process. The
+equation $A(z)x(n)=w(n)$ means that the prediction-error filter $A(z)$ whitens
+$x(n)$, while the inverse filter $H(z)=1/A(z)$ synthesizes $x(n)$ from white
+noise. Since white noise has flat PSD $R_w(e^{j\omega})=\sigma_w^2$, the LTI
+filtering rule gives
+
+$$R_x(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2R_w(e^{j\omega})
+=\frac{\sigma_w^2}{\vert A(e^{j\omega})\vert^2}.$$
+
+The comparison with nonparametric PSD estimates is a model check. A periodogram,
+Welch estimate, or Blackman-Tukey estimate is obtained more directly from the
+data and is usually denoted $\hat R_x(e^{j\omega})$. The AR curve
+$\hat R_x^{(AR)}(e^{j\omega})$ is different: it is the PSD implied by the fitted
+parameters $\hat a_1,\ldots,\hat a_P$ and $\hat\sigma_w^2$. If this model-implied
+spectrum matches the true PSD, or a trustworthy data-based PSD estimate, then
+the AR model is credible. If it does not match, the AR assumption, the order
+$P$, or the estimation method should be questioned.
+
+> **中文理解.** AR 谱不是“天然等于”从数据直接估计出来的 PSD。它是先拟合 AR 模型，再由模型推出的参数化 PSD。把它和 periodogram/Welch 等数据直接估计的 PSD 放在一起比较，是为了判断这个 AR 模型是否真的抓住了数据的频谱结构。
+
 ### 3.1.2 Why AR Methods Can Have High Resolution
 
 Poles near the unit circle produce sharp spectral peaks. Therefore, an AR model can represent narrowband resonances with only a few parameters.

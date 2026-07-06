@@ -721,6 +721,63 @@ $$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{\lvert A_p(e^{j\omega})\rvert^2}}$$
 
 matches the true or estimated power spectral density.
 
+Why does the AR spectrum have this form? Start from the AR($p$) difference
+equation
+
+$$x(n)+a_1x(n-1)+\cdots+a_px(n-p)=w(n),$$
+
+or
+
+$$A_p(z)x(n)=w(n),\qquad A_p(z)=1+\sum_{k=1}^{p}a_kz^{-k}.$$
+
+Thus
+
+$$x(n)=\frac{1}{A_p(z)}w(n).$$
+
+So an AR process can be viewed as white noise $w(n)$ passed through the
+all-pole synthesis filter
+
+$$H_p(z)=\frac{1}{A_p(z)}.$$
+
+For a WSS input passed through an LTI filter, the output PSD is the input PSD
+multiplied by the squared magnitude response:
+
+$$R_x(e^{j\omega})=\lvert H_p(e^{j\omega})\rvert^2R_w(e^{j\omega}).$$
+
+Since $w(n)$ is white noise, its PSD is flat:
+
+$$R_w(e^{j\omega})=\sigma_w^2.$$
+
+Therefore
+
+$$R_x(e^{j\omega})
+=\left\lvert\frac{1}{A_p(e^{j\omega})}\right\rvert^2\sigma_w^2
+=\frac{\sigma_w^2}{\lvert A_p(e^{j\omega})\rvert^2}.$$
+
+Intuitively, the white-noise input has equal power at all frequencies. The
+filter $1/A_p(z)$ then reshapes that flat spectrum. Frequencies where
+$\lvert A_p(e^{j\omega})\rvert$ is small are amplified, so the AR spectrum has
+peaks there. Frequencies where $\lvert A_p(e^{j\omega})\rvert$ is large are
+attenuated.
+
+It is important not to confuse two different spectra:
+
+| Quantity | How it is obtained | Meaning |
+|----------|--------------------|---------|
+| $\hat R_x(e^{j\omega})$ from a periodogram, Welch method, or correlation method | Estimated directly from the data | A nonparametric estimate of what the data spectrum looks like |
+| $\hat R_x^{(AR)}(e^{j\omega})=\hat\sigma_w^2/\lvert \hat A_p(e^{j\omega})\rvert^2$ | Computed after fitting AR coefficients $\hat a_1,\ldots,\hat a_p$ and residual variance $\hat\sigma_w^2$ | The PSD implied by the fitted AR model |
+
+Thus the AR spectrum is not automatically equal to the data-based PSD estimate.
+It is a parametric model spectrum. A good AR model is one whose implied spectrum
+matches the true PSD, or at least agrees well with a reliable data-based PSD
+estimate. In other words, we use the comparison
+
+$$\hat R_x^{(AR)}(e^{j\omega})\quad \text{versus}\quad \hat R_x(e^{j\omega})$$
+
+as a diagnostic for whether the AR assumption is reasonable.
+
+> **中文理解.** 这句话不是说“AR 谱本来就是从数据估计出来的 PSD，所以一定接近”。更准确地说，periodogram/Welch 等方法是直接从数据画出的 PSD 估计；AR 谱则是先假设数据满足 AR($p$) 模型，估计出 $\hat a_k$ 和 $\hat\sigma_w^2$，再由模型公式算出的 PSD。两条谱线接近，才说明这个 AR 模型对数据的谱结构解释得比较好。
+
 ### Deterministic Linear Prediction
 
 Here $x(n)$ is treated as a finite deterministic data record. We choose coefficients to minimize a finite sum of squared errors. The central object is not the ensemble autocorrelation but the data matrix formed from the samples.
