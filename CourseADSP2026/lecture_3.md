@@ -117,36 +117,6 @@ Concrete application scenarios with numerical signals:
   $$\Delta_x=\frac{2}{2^8}=0.0078125.$$
   So, in this simplified example, coding the residual can use about 5 bits per sample instead of 8 bits per sample for similar scalar quantization precision. The predictor coefficients are transmitted or updated much less frequently, usually once per short frame, not once per sample.
 
-- **Radar clutter suppression:** Suppose the return from one range bin over successive radar pulses is dominated by slowly varying ground clutter:
-  $$x(n-3)=10.1,\quad x(n-2)=10.4,\quad x(n-1)=10.6,\quad x(n)=10.8.$$
-  A first-order predictor
-  $$\hat{x}(n)=x(n-1)=10.6$$
-  gives a small residual
-  $$e(n)=10.8-10.6=0.2.$$
-  If a moving target suddenly enters the same range bin and the current sample becomes $x(n)=14.3$, the same predictor gives
-  $$e(n)=14.3-10.6=3.7.$$
-  The large residual is easier to detect than the raw return, because the predictable clutter has been mostly removed.
-
-- **Power-line or narrowband interference cancellation:** Suppose a sensor is contaminated by a nearly sinusoidal interference component with recent samples
-  $$x(n-2)=0.95,\quad x(n-1)=0.59,\quad x(n)=-0.01.$$
-  For a pure sinusoid, a useful second-order predictor has the form
-  $$\hat{x}(n)=2\cos(\omega_0)x(n-1)-x(n-2).$$
-  If $2\cos(\omega_0)\approx 1.62$, then
-  $$\hat{x}(n)=1.62(0.59)-0.95=0.0058.$$
-  The prediction error is
-  $$e(n)=-0.01-0.0058=-0.0158.$$
-  The small residual shows that most of the narrowband tone is predictable from the past two samples.
-
-- **Slowly varying sensor monitoring:** Suppose a temperature sensor reports
-  $$x(n-3)=24.0,\quad x(n-2)=24.1,\quad x(n-1)=24.1\ \text{degrees C}.$$
-  A simple local-average predictor is
-  $$\hat{x}(n)=0.5x(n-1)+0.3x(n-2)+0.2x(n-3)=24.08\ \text{degrees C}.$$
-  If the actual reading is $x(n)=24.2$, then
-  $$e(n)=24.2-24.08=0.12\ \text{degrees C},$$
-  which is normal. If the actual reading jumps to $x(n)=28.5$, then
-  $$e(n)=28.5-24.08=4.42\ \text{degrees C},$$
-  which may indicate a fault, event, or abrupt environmental change.
-
 For a highly correlated signal, such as speech, radar clutter, narrowband interference, or a slowly varying sensor measurement, the answer is often yes. The current sample contains information that is already partly present in previous samples. Linear prediction extracts this redundancy.
 
 A one-step $p$-th order forward predictor estimates $x(n)$ using the previous $p$ samples:
