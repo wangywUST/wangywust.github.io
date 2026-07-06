@@ -833,7 +833,30 @@ $$\cdots$$
 
 $$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p.$$
 
-Here $\mathbf{r}_m=[r(1),r(2),\ldots,r(m)]^T$ is an $m$-dimensional correlation vector. In the first-order case, $\mathbf{r}_1=[r(1)]$ is a one-entry vector, so it may look like the scalar $r(1)$.
+For the order-$m$ equation,
+
+$$\mathbf{R}_m\mathbf{a}_m=-\mathbf{r}_m,$$
+
+the shapes are
+
+$$
+\underbrace{\mathbf{R}_m}_{m\times m}
+\underbrace{\mathbf{a}_m}_{m\times 1}
+=
+-\underbrace{\mathbf{r}_m}_{m\times 1}.
+$$
+
+More explicitly,
+
+$$\mathbf{a}_m=[a_1^{(m)},a_2^{(m)},\ldots,a_m^{(m)}]^T,$$
+
+and
+
+$$\mathbf{r}_m=[r(1),r(2),\ldots,r(m)]^T.$$
+
+Thus the left-hand side $\mathbf{R}_m\mathbf{a}_m$ is an $m\times 1$ vector, matching the right-hand side $-\mathbf{r}_m$. In the first-order case, $\mathbf{R}_1$ is a $1\times 1$ matrix and $\mathbf{r}_1=[r(1)]$ is a one-entry vector, so the equation looks scalar:
+
+$$r(0)a_1=-r(1).$$
 
 Each solution is built from the previous-order solution.
 
