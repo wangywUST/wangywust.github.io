@@ -221,6 +221,16 @@ The interpretation is simple:
 - $H(z)$ introduces memory and spectral coloring,
 - $x(n)$ becomes correlated even though $w(n)$ is not.
 
+**Intuition.** This sentence means that, although the input $w(n)$ is white noise and samples at different times are uncorrelated, the filter mixes current and past noise samples into the output:
+
+$$x(n)=h(0)w(n)+h(1)w(n-1)+h(2)w(n-2)+\cdots$$
+
+For example,
+
+$$x(n)=w(n)+0.5w(n-1),\qquad x(n-1)=w(n-1)+0.5w(n-2).$$
+
+Here $x(n)$ and $x(n-1)$ both contain the same random variable $w(n-1)$, so they become correlated. In short, white noise itself has no memory, but the filter $H(z)$ has memory; that memory makes the output $x(n)$ a correlated random process.
+
 > ![Figure 1.1](./CourseADSP2026/Fig/Chapter_4/fig_0_1_textbook_fig_4_1_p150.png)
 >
 > *Figure 1.1 (Textbook Fig. 4.1, p. 150): Signal models with continuous and discrete power spectrum densities. White noise passed through an LTI system produces a continuous shaped PSD; a white harmonic process passed through a filter produces shaped spectral lines.*
