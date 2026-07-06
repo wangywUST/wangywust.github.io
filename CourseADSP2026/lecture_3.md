@@ -833,6 +833,8 @@ $$\cdots$$
 
 $$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p.$$
 
+Here $\mathbf{r}_m=[r(1),r(2),\ldots,r(m)]^T$ is an $m$-dimensional correlation vector. In the first-order case, $\mathbf{r}_1=[r(1)]$ is a one-entry vector, so it may look like the scalar $r(1)$.
+
 Each solution is built from the previous-order solution.
 
 ## 3.2 The Order-Recursive View
