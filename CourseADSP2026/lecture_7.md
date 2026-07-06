@@ -61,12 +61,12 @@ This chapter continues the notation of Chapters 3 and 6. In Chapter 6, the filte
 | $\tilde{\mathbf{c}}(n)=\mathbf{c}_o-\mathbf{c}(n)$ | Coefficient error vector in a stationary SOE |
 | $\mathbf{R}=E\{\mathbf{x}(n)\mathbf{x}^H(n)\}$ | Input correlation matrix |
 | $\mathbf{d}=E\{\mathbf{x}(n)y^\ast(n)\}$ | Cross-correlation vector between input and desired response |
-| $P(\mathbf{c})=E\{|y(n)-\mathbf{c}^H\mathbf{x}(n)|^2\}$ | Mean-square error surface |
+| $P(\mathbf{c})=E\{\vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\}$ | Mean-square error surface |
 | $P_o$ | Minimum mean-square error (MMSE) |
 | $P(n)$ | Instantaneous or time-indexed MSE / learning-curve quantity |
 | EMSE | Excess mean-square error above the Wiener MMSE |
 | $\mathcal{M}$ | Misadjustment, usually EMSE divided by $P_o$ |
-| MSD | Mean-square deviation of coefficients, $E\{\|\mathbf{c}(n)-\mathbf{c}_o(n)\|^2\}$ |
+| MSD | Mean-square deviation of coefficients, $E\{\lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\}$ |
 
 ### RLS Quantities
 
@@ -334,7 +334,7 @@ This difference is the reason that one cannot choose a step size by only asking 
 For a linear combiner or FIR adaptive filter, the MSE cost is
 
 $$
-P(\mathbf{c})=E\{|y(n)-\mathbf{c}^H\mathbf{x}(n)|^2\}.
+P(\mathbf{c})=E\{\vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\}.
 $$
 
 Expanding the square gives
@@ -348,7 +348,7 @@ $$
 where
 
 $$
-P_y=E\{|y(n)|^2\},\quad
+P_y=E\{\vert y(n)\vert^2\},\quad
 \mathbf{R}=E\{\mathbf{x}(n)\mathbf{x}^H(n)\},\quad
 \mathbf{d}=E\{\mathbf{x}(n)y^\ast(n)\}.
 $$
@@ -414,7 +414,7 @@ Thus each eigen-direction decays with its own factor $1-2\mu\lambda_i$.
 For convergence in every eigen-direction, we need
 
 $$
-|1-2\mu\lambda_i|<1
+\vert 1-2\mu\lambda_i\vert <1
 \quad \text{for all } i.
 $$
 
@@ -475,7 +475,7 @@ which requires $\mathbf{R}$ and $\mathbf{d}$. LMS replaces the exact gradient by
 For the instantaneous squared error
 
 $$
-|e(n)|^2=|y(n)-\mathbf{c}^H(n-1)\mathbf{x}(n)|^2,
+\vert e(n)\vert^2=\vert y(n)-\mathbf{c}^H(n-1)\mathbf{x}(n)\vert^2,
 $$
 
 the instantaneous negative-gradient direction is proportional to
@@ -594,7 +594,7 @@ $$
 A convenient conservative rule is based on the trace:
 
 $$
-\lambda_{\max}\le \operatorname{tr}(\mathbf{R})=E\{\|\mathbf{x}(n)\|^2\}.
+\lambda_{\max}\le \operatorname{tr}(\mathbf{R})=E\{\lVert\mathbf{x}(n)\rVert^2\}.
 $$
 
 Thus a simple practical bound is
@@ -670,7 +670,7 @@ A practical step-size choice must balance four constraints.
 
 A good engineering approach is:
 
-1. Estimate the average input power $E\{\|\mathbf{x}(n)\|^2\}$.
+1. Estimate the average input power $E\{\lVert\mathbf{x}(n)\rVert^2\}$.
 2. Choose a conservative initial $\mu$ well below the stability bound.
 3. Increase $\mu$ if convergence is too slow.
 4. Decrease $\mu$ if steady-state fluctuations or residual error are too large.
@@ -690,14 +690,14 @@ NLMS scales the update by the input-vector energy:
 
 $$
 \boxed{
-\mathbf{c}(n)=\mathbf{c}(n-1)+\frac{\tilde\mu}{\|\mathbf{x}(n)\|^2}\mathbf{x}(n)e^\ast(n).
+\mathbf{c}(n)=\mathbf{c}(n-1)+\frac{\tilde\mu}{\lVert\mathbf{x}(n)\rVert^2}\mathbf{x}(n)e^\ast(n).
 }
 $$
 
 To avoid division by a very small number, the practical form is
 
 $$
-\mathbf{c}(n)=\mathbf{c}(n-1)+\frac{\tilde\mu}{\epsilon+\|\mathbf{x}(n)\|^2}\mathbf{x}(n)e^\ast(n),
+\mathbf{c}(n)=\mathbf{c}(n-1)+\frac{\tilde\mu}{\epsilon+\lVert\mathbf{x}(n)\rVert^2}\mathbf{x}(n)e^\ast(n),
 $$
 
 where $\epsilon>0$ is a small regularization constant.
@@ -789,7 +789,7 @@ If the input correlation matrix is singular or nearly singular, some coefficient
 Leaky LMS adds a penalty on coefficient norm:
 
 $$
-J(n)=|e(n)|^2+\alpha\|\mathbf{c}(n)\|^2.
+J(n)=\vert e(n)\vert^2+\alpha\lVert\mathbf{c}(n)\rVert^2.
 $$
 
 A typical update is
@@ -845,7 +845,7 @@ $$
 e(n)=d(n)-\hat v_1(n).
 $$
 
-When the filter minimizes $E\{|e(n)|^2\}$, it suppresses the part of the primary-channel noise predictable from the reference input. The desired signal remains because it is not correlated with the reference noise.
+When the filter minimizes $E\{\vert e(n)\vert^2\}$, it suppresses the part of the primary-channel noise predictable from the reference input. The desired signal remains because it is not correlated with the reference noise.
 
 This is why the reference sensor must measure noise that is correlated with the interference but should not contain the desired signal.
 
@@ -959,7 +959,7 @@ RLS minimizes the exponentially weighted least-squares cost
 $$
 J_n(\mathbf{c})=
 \sum_{i=0}^{n}\lambda^{n-i}
-|y(i)-\mathbf{c}^H\mathbf{x}(i)|^2.
+\vert y(i)-\mathbf{c}^H\mathbf{x}(i)\vert^2.
 $$
 
 Here $0<\lambda\le 1$ is the forgetting factor.
@@ -1130,7 +1130,7 @@ Exponential forgetting is not the only way to localize the data. Sliding-window 
 
 $$
 J_n(\mathbf{c})=
-\sum_{i=n-L+1}^{n}|y(i)-\mathbf{c}^H\mathbf{x}(i)|^2.
+\sum_{i=n-L+1}^{n}\vert y(i)-\mathbf{c}^H\mathbf{x}(i)\vert^2.
 $$
 
 This gives equal weight to the recent window and zero weight to older samples.
@@ -1227,7 +1227,7 @@ There are three common approaches.
 A common tracking performance metric is the mean-square deviation
 
 $$
-D(n)=E\{\|\mathbf{c}(n)-\mathbf{c}_o(n)\|^2\}.
+D(n)=E\{\lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\}.
 $$
 
 Another is misadjustment, which measures excess output error relative to the irreducible error floor.
