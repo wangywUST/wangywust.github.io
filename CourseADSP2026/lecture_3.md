@@ -312,6 +312,46 @@ Equivalently, this is the autocorrelation of a finite sequence that has been mul
 
 The resulting normal equations are still Toeplitz:
 
+Why is the matrix still Toeplitz? The key point is that, after zero extension, the finite data record can be viewed as a sequence defined for all integer time indices, with samples outside the observed interval set to zero:
+
+$$x(n)=0,\qquad n<0\ \text{or}\ n>N.$$
+
+For a $p$th-order predictor, the prediction error is
+
+$$e(n)=x(n)+\sum_{k=1}^{p}a_kx(n-k).$$
+
+The autocorrelation method minimizes the total squared error
+
+$$J=\sum_n |e(n)|^2,$$
+
+where the summation may be taken over all $n$ because samples outside the observed interval are zero. The normal equations come from the orthogonality conditions
+
+$$\sum_n e(n)x^{\ast}(n-i)=0,\qquad i=1,\ldots,p.$$
+
+Substituting $e(n)$ gives
+
+$$
+\sum_n x(n)x^{\ast}(n-i)
++\sum_{k=1}^{p}a_k\sum_n x(n-k)x^{\ast}(n-i)=0.
+$$
+
+The coefficient matrix is determined by the inner sums
+
+$$\sum_n x(n-k)x^{\ast}(n-i).$$
+
+Let $m=n-k$. Then
+
+$$
+\sum_n x(n-k)x^{\ast}(n-i)
+=\sum_m x(m)x^{\ast}(m+k-i).
+$$
+
+This quantity depends only on the difference $i-k$, not on $i$ and $k$ separately. Therefore the $(i,k)$ entry of the normal-equation matrix has the form
+
+$$[\hat{\mathbf{R}}_p]_{i,k}=\hat r_x(i-k),\qquad i,k=1,\ldots,p,$$
+
+up to the usual conjugation convention for negative lags. Since all entries on the same diagonal have the same value of $i-k$, every diagonal is constant. Hence $\hat{\mathbf{R}}_p$ is Hermitian Toeplitz.
+
 $$\hat{\mathbf{R}}_p\hat{\mathbf{a}}_p=-\hat{\mathbf{r}}_p.$$
 
 This is the main advantage of the autocorrelation method: it preserves the Toeplitz structure, so the coefficients can be computed efficiently and stably by Levinson-Durbin recursion.
