@@ -97,6 +97,13 @@ Linear prediction is one of the central ideas in modern digital signal processin
 
 > Can we estimate the current sample of a signal from a linear combination of its past samples?
 
+Concrete application scenarios:
+
+- **Speech coding:** Adjacent speech samples are strongly correlated because the vocal tract changes slowly over a few milliseconds. A phone codec can predict the next sample from recent samples and transmit mainly the prediction error, which requires fewer bits than transmitting the raw waveform.
+- **Radar clutter suppression:** Reflections from the ground, sea surface, or weather often vary slowly from pulse to pulse. A linear predictor can estimate this predictable clutter component from previous pulses; subtracting it makes moving targets easier to detect.
+- **Power-line or narrowband interference cancellation:** If a sensor signal is contaminated by a nearly sinusoidal 50/60 Hz component, recent samples contain enough phase and amplitude information to predict the interference. The prediction error filter can reduce this predictable tone while keeping less predictable components.
+- **Slowly varying sensor monitoring:** Temperature, pressure, vibration baseline, or biomedical measurements often change gradually. The current reading can be predicted from recent readings, and a large prediction error can indicate a fault, event, or abrupt change.
+
 For a highly correlated signal, such as speech, radar clutter, narrowband interference, or a slowly varying sensor measurement, the answer is often yes. The current sample contains information that is already partly present in previous samples. Linear prediction extracts this redundancy.
 
 A one-step $p$-th order forward predictor estimates $x(n)$ using the previous $p$ samples:
