@@ -646,6 +646,40 @@ For $i=0$,
 
 $$r_x(0)+\sum_{k=1}^{p}a_k r_x(-k)=\sigma_w^2.$$
 
+The right-hand side is no longer zero because the multiplier is the current
+sample $x^{\ast}(n)$, not a past sample. More explicitly, after multiplying by
+$x^{\ast}(n-i)$ and taking expectation, the right-hand side is
+
+$$E\{w(n)x^{\ast}(n-i)\}.$$
+
+For $i=1,2,\ldots,p$, this term is zero because $w(n)$ is orthogonal to the
+past samples $x(n-i)$. For $i=0$, however,
+
+$$E\{w(n)x^{\ast}(n)\}$$
+
+must be evaluated. From the AR equation,
+
+$$x(n)=w(n)-\sum_{k=1}^{p}a_kx(n-k),$$
+
+and therefore
+
+$$x^{\ast}(n)=w^{\ast}(n)-\sum_{k=1}^{p}a_k^{\ast}x^{\ast}(n-k).$$
+
+Hence
+
+$$
+\begin{aligned}
+E\{w(n)x^{\ast}(n)\}
+&=E\{|w(n)|^2\}
+-\sum_{k=1}^{p}a_k^{\ast}E\{w(n)x^{\ast}(n-k)\}\\
+&=\sigma_w^2.
+\end{aligned}
+$$
+
+The second term is zero because $w(n)$ is orthogonal to all past samples
+$x(n-k)$, while $E\{|w(n)|^2\}$ is exactly the white-noise variance
+$\sigma_w^2$.
+
 This gives the innovation variance:
 
 $$\boxed{\sigma_w^2=P_p=r_x(0)+\sum_{k=1}^{p}a_k r_x^{\ast}(k).}$$
