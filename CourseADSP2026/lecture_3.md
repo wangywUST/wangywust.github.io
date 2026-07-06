@@ -258,7 +258,41 @@ $$a_1r(1)=-\frac{r(1)^2}{r(0)}\le 0.$$
 
 If $r(1)>0$, then $a_1<0$; if $r(1)<0$, then $a_1>0$. In both cases the product is nonpositive. What matters is not the sign of each coefficient, but the fact that the optimal predictor chooses coefficients that cancel the predictable correlation.
 
-If the signal is very predictable, $P_p$ is small. If the signal is white noise, all nonzero-lag autocorrelations are zero, so $\mathbf{a}_p=\mathbf{0}$ and $P_p=r_x(0)$. In that case prediction cannot improve anything.
+If the signal is very predictable, $P_p$ is small. If the signal is white noise, all nonzero-lag autocorrelations are zero.
+
+To see this, for zero-mean white noise with variance $\sigma_x^2$,
+
+$$E\left[x(n)x^{\ast}(m)\right]=\sigma_x^2\delta[n-m].$$
+
+Therefore
+
+$$r_x(l)=E\left[x(n)x^{\ast}(n-l)\right]
+=\sigma_x^2\delta[l].$$
+
+Hence
+
+$$r_x(l)=0,\qquad l\ne 0.$$
+
+Thus the autocorrelation vector used in the Wiener-Hopf equation is
+
+$$\mathbf{r}_p=
+\begin{bmatrix}
+r_x(1)\\
+r_x(2)\\
+\vdots\\
+r_x(p)
+\end{bmatrix}
+=\mathbf{0}.$$
+
+Since
+
+$$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p,$$
+
+we get $\mathbf{a}_p=\mathbf{0}$ when $\mathbf{R}_p$ is invertible. Consequently,
+
+$$P_p=r_x(0).$$
+
+In that case prediction cannot improve anything.
 
 ## 1.4 The Autocorrelation Method for Finite Data
 
