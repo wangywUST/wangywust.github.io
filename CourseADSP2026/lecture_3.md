@@ -684,6 +684,29 @@ This gives the innovation variance:
 
 $$\boxed{\sigma_w^2=P_p=r_x(0)+\sum_{k=1}^{p}a_k r_x^{\ast}(k).}$$
 
+Here the word **innovation** means the new, unpredictable part of the current
+sample. Rewriting the AR model as
+
+$$x(n)=-\sum_{k=1}^{p}a_kx(n-k)+w(n),$$
+
+the term $-\sum_{k=1}^{p}a_kx(n-k)$ is the prediction of $x(n)$ from its past
+$p$ samples, while $w(n)$ is the part left over after prediction. Thus
+$w(n)$ is the innovation. Its variance is
+
+$$E\{|w(n)|^2\}=\sigma_w^2.$$
+
+But the linear prediction error is
+
+$$e_p^f(n)=x(n)+\sum_{k=1}^{p}a_kx(n-k).$$
+
+For an exact AR($p$) process, $e_p^f(n)=w(n)$. Therefore the prediction-error
+power is the same as the innovation variance:
+
+$$P_p=E\{|e_p^f(n)|^2\}=E\{|w(n)|^2\}=\sigma_w^2.$$
+
+In words, the innovation variance is the average power of the part of the
+current sample that cannot be predicted from the past $p$ samples.
+
 ## 2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction
 
 There are two related but distinct problems.
