@@ -53,6 +53,34 @@ layout: course
     content: "-";
   }
 
+  .lecture-toggle:nth-of-type(1) > summary {
+    background: #e8f1ff;
+  }
+
+  .lecture-toggle:nth-of-type(2) > summary {
+    background: #e8f8f1;
+  }
+
+  .lecture-toggle:nth-of-type(3) > summary {
+    background: #fff4df;
+  }
+
+  .lecture-toggle:nth-of-type(4) > summary {
+    background: #f1ecff;
+  }
+
+  .lecture-toggle:nth-of-type(5) > summary {
+    background: #ffeef2;
+  }
+
+  .lecture-toggle:nth-of-type(6) > summary {
+    background: #e9f7fb;
+  }
+
+  .lecture-toggle:nth-of-type(7) > summary {
+    background: #f2f6e8;
+  }
+
   .lecture-intro {
     display: block;
     margin: 0.5rem 0 0 1.55rem;
@@ -74,6 +102,34 @@ layout: course
     .lecture-toggle > summary {
       background: #1e40af;
       color: #f8fafc;
+    }
+
+    .lecture-toggle:nth-of-type(1) > summary {
+      background: #1e40af;
+    }
+
+    .lecture-toggle:nth-of-type(2) > summary {
+      background: #166534;
+    }
+
+    .lecture-toggle:nth-of-type(3) > summary {
+      background: #92400e;
+    }
+
+    .lecture-toggle:nth-of-type(4) > summary {
+      background: #5b21b6;
+    }
+
+    .lecture-toggle:nth-of-type(5) > summary {
+      background: #9f1239;
+    }
+
+    .lecture-toggle:nth-of-type(6) > summary {
+      background: #155e75;
+    }
+
+    .lecture-toggle:nth-of-type(7) > summary {
+      background: #3f6212;
     }
 
     .lecture-intro {
