@@ -97,12 +97,47 @@ Linear prediction is one of the central ideas in modern digital signal processin
 
 > Can we estimate the current sample of a signal from a linear combination of its past samples?
 
-Concrete application scenarios:
+Concrete application scenarios with numerical signals:
 
-- **Speech coding:** Adjacent speech samples are strongly correlated because the vocal tract changes slowly over a few milliseconds. A phone codec can predict the next sample from recent samples and transmit mainly the prediction error, which requires fewer bits than transmitting the raw waveform.
-- **Radar clutter suppression:** Reflections from the ground, sea surface, or weather often vary slowly from pulse to pulse. A linear predictor can estimate this predictable clutter component from previous pulses; subtracting it makes moving targets easier to detect.
-- **Power-line or narrowband interference cancellation:** If a sensor signal is contaminated by a nearly sinusoidal 50/60 Hz component, recent samples contain enough phase and amplitude information to predict the interference. The prediction error filter can reduce this predictable tone while keeping less predictable components.
-- **Slowly varying sensor monitoring:** Temperature, pressure, vibration baseline, or biomedical measurements often change gradually. The current reading can be predicted from recent readings, and a large prediction error can indicate a fault, event, or abrupt change.
+- **Speech coding:** Suppose a short segment of voiced speech, sampled at 8 kHz, has recent normalized samples
+  $$x(n-3)=0.62,\quad x(n-2)=0.71,\quad x(n-1)=0.76,\quad x(n)=0.80.$$
+  A simple third-order predictor might use
+  $$\hat{x}(n)=0.65x(n-1)+0.25x(n-2)+0.08x(n-3).$$
+  Then
+  $$\hat{x}(n)=0.65(0.76)+0.25(0.71)+0.08(0.62)=0.721,$$
+  so the prediction error is
+  $$e(n)=x(n)-\hat{x}(n)=0.80-0.721=0.079.$$
+  Instead of coding the full sample $0.80$, a speech coder can code the smaller residual $0.079$ plus the predictor parameters.
+
+- **Radar clutter suppression:** Suppose the return from one range bin over successive radar pulses is dominated by slowly varying ground clutter:
+  $$x(n-3)=10.1,\quad x(n-2)=10.4,\quad x(n-1)=10.6,\quad x(n)=10.8.$$
+  A first-order predictor
+  $$\hat{x}(n)=x(n-1)=10.6$$
+  gives a small residual
+  $$e(n)=10.8-10.6=0.2.$$
+  If a moving target suddenly enters the same range bin and the current sample becomes $x(n)=14.3$, the same predictor gives
+  $$e(n)=14.3-10.6=3.7.$$
+  The large residual is easier to detect than the raw return, because the predictable clutter has been mostly removed.
+
+- **Power-line or narrowband interference cancellation:** Suppose a sensor is contaminated by a nearly sinusoidal interference component with recent samples
+  $$x(n-2)=0.95,\quad x(n-1)=0.59,\quad x(n)=-0.01.$$
+  For a pure sinusoid, a useful second-order predictor has the form
+  $$\hat{x}(n)=2\cos(\omega_0)x(n-1)-x(n-2).$$
+  If $2\cos(\omega_0)\approx 1.62$, then
+  $$\hat{x}(n)=1.62(0.59)-0.95=0.0058.$$
+  The prediction error is
+  $$e(n)=-0.01-0.0058=-0.0158.$$
+  The small residual shows that most of the narrowband tone is predictable from the past two samples.
+
+- **Slowly varying sensor monitoring:** Suppose a temperature sensor reports
+  $$x(n-3)=24.0,\quad x(n-2)=24.1,\quad x(n-1)=24.1\ \text{degrees C}.$$
+  A simple local-average predictor is
+  $$\hat{x}(n)=0.5x(n-1)+0.3x(n-2)+0.2x(n-3)=24.08\ \text{degrees C}.$$
+  If the actual reading is $x(n)=24.2$, then
+  $$e(n)=24.2-24.08=0.12\ \text{degrees C},$$
+  which is normal. If the actual reading jumps to $x(n)=28.5$, then
+  $$e(n)=28.5-24.08=4.42\ \text{degrees C},$$
+  which may indicate a fault, event, or abrupt environmental change.
 
 For a highly correlated signal, such as speech, radar clutter, narrowband interference, or a slowly varying sensor measurement, the answer is often yes. The current sample contains information that is already partly present in previous samples. Linear prediction extracts this redundancy.
 
