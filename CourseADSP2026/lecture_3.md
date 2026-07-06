@@ -352,6 +352,28 @@ $$[\hat{\mathbf{R}}_p]_{i,k}=\hat r_x(i-k),\qquad i,k=1,\ldots,p,$$
 
 up to the usual conjugation convention for negative lags. Since all entries on the same diagonal have the same value of $i-k$, every diagonal is constant. Hence $\hat{\mathbf{R}}_p$ is Hermitian Toeplitz.
 
+The hat notation here emphasizes that these are finite-sample quantities, not ensemble autocorrelations. The unknown vector
+
+$$\hat{\mathbf{a}}_p=[\hat a_1,\hat a_2,\ldots,\hat a_p]^T$$
+
+contains the prediction coefficients obtained by minimizing the sample squared error $J$. The right-hand side comes from the first term in the scalar normal equations:
+
+$$
+\sum_n x(n)x^{\ast}(n-i)=\hat r_x(i),\qquad i=1,\ldots,p.
+$$
+
+Thus
+
+$$\hat{\mathbf{r}}_p=[\hat r_x(1),\hat r_x(2),\ldots,\hat r_x(p)]^T,$$
+
+with the same conjugation convention used in $\hat{\mathbf{R}}_p$. The $i$-th scalar equation
+
+$$
+\hat r_x(i)+\sum_{k=1}^{p}\hat a_k\hat r_x(i-k)=0
+$$
+
+is therefore exactly the $i$-th row of the matrix equation
+
 $$\hat{\mathbf{R}}_p\hat{\mathbf{a}}_p=-\hat{\mathbf{r}}_p.$$
 
 This is the main advantage of the autocorrelation method: it preserves the Toeplitz structure, so the coefficients can be computed efficiently and stably by Levinson-Durbin recursion.
