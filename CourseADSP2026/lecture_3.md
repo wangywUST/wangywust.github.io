@@ -1002,13 +1002,27 @@ $$x_1,x_2,x_3,x_4
 \quad\longrightarrow\quad
 w_1,w_2,w_3,w_4.$$
 
-The notation in Figure 3.1 can be read as follows.
+The notation in Figure 3.1 uses the textbook's generic LMMSE-estimation notation. In this chapter, we should translate it back to the linear-prediction notation already used above:
+
+$$
+y \longleftrightarrow x(n),\qquad
+x_i \longleftrightarrow x(n-i),\qquad
+\hat y_i \longleftrightarrow \hat{x}_i(n).
+$$
+
+Thus $\hat y_i$ in the figure is not a new signal introduced for this chapter. It is the estimate of the desired sample after the first $i$ orthogonalized input components have been used. In our notation, this is the order-$i$ prediction
+
+$$
+\hat{x}_i(n)=-\sum_{k=1}^{i}a_k^{(i)\ast}x(n-k),
+\qquad
+e_i^f(n)=x(n)-\hat{x}_i(n).
+$$
 
 | Notation | Meaning |
 |----------|---------|
-| $x_i$ | The original input variables |
-| $w_i$ | Innovations, or orthogonalized new-information components |
-| $\hat y_i$ | Estimate of the desired output component $y_i$ |
+| $x_i$ | Generic input component; for prediction, read this as a lagged sample such as $x(n-i)$ |
+| $w_i$ | Orthogonalized version of the input component; conceptually, the new information left after earlier lags have been removed |
+| $\hat y_i$ | Generic running estimate; for prediction, read this as the order-$i$ predictor output $\hat{x}_i(n)$ |
 | $\mathbf{R}$ | Input autocorrelation or covariance matrix |
 | $\mathbf{d}$ | Cross-correlation vector between the input and the desired response |
 | $\mathbf{R}=\mathbf{L}\mathbf{D}\mathbf{L}^H$ | LDL$^H$ factorization of the correlation matrix |
