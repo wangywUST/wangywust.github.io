@@ -125,6 +125,8 @@ $$\hat{x}(n)=-\sum_{k=1}^{p} a_k^{\ast}x(n-k).$$
 
 The minus sign is a convention. It is chosen so that the prediction error filter has a compact polynomial form:
 
+Here $e_p^f(n)$ denotes the $p$-th order forward prediction error: the part of the current sample $x(n)$ that cannot be predicted from the previous $p$ samples by this linear predictor.
+
 $$\boxed{e_p^f(n)=x(n)-\hat{x}(n)=x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)}$$
 
 and therefore
