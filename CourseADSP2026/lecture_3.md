@@ -227,6 +227,37 @@ This expression has a clear interpretation:
 - $\mathbf{r}_p^H\mathbf{a}_p$ is the amount of predictable power removed by the predictor.
 - $P_p$ is the leftover power that cannot be predicted linearly from the previous $p$ samples.
 
+Strictly speaking, the second bullet above is a sign-sensitive statement. The leading ``-'' in the bullet list is only Markdown punctuation, not a mathematical minus sign. The actual predictable power removed by the optimal predictor is
+
+$$-\mathbf{r}_p^H\mathbf{a}_p \ge 0.$$
+
+Indeed, using the Wiener-Hopf equation
+
+$$\mathbf{R}_p\mathbf{a}_p=-\mathbf{r}_p,$$
+
+we have
+
+$$\mathbf{a}_p=-\mathbf{R}_p^{-1}\mathbf{r}_p,$$
+
+and therefore
+
+$$\mathbf{r}_p^H\mathbf{a}_p
+=-\mathbf{r}_p^H\mathbf{R}_p^{-1}\mathbf{r}_p \le 0,$$
+
+because the autocorrelation matrix $\mathbf{R}_p$ is positive definite, or at least positive semidefinite in the non-invertible case. Thus the prediction error power can be read as
+
+$$P_p=r_x(0)-\left(-\mathbf{r}_p^H\mathbf{a}_p\right).$$
+
+This does not mean that every coefficient $a_k^{\ast}$ is negative. The sign comes from the whole quadratic form. For example, in the real-valued first-order case,
+
+$$a_1=-\frac{r(1)}{r(0)},$$
+
+so
+
+$$a_1r(1)=-\frac{r(1)^2}{r(0)}\le 0.$$
+
+If $r(1)>0$, then $a_1<0$; if $r(1)<0$, then $a_1>0$. In both cases the product is nonpositive. What matters is not the sign of each coefficient, but the fact that the optimal predictor chooses coefficients that cancel the predictable correlation.
+
 If the signal is very predictable, $P_p$ is small. If the signal is white noise, all nonzero-lag autocorrelations are zero, so $\mathbf{a}_p=\mathbf{0}$ and $P_p=r_x(0)$. In that case prediction cannot improve anything.
 
 ## 1.4 The Autocorrelation Method for Finite Data
