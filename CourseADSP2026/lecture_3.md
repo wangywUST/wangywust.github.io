@@ -49,7 +49,7 @@ All symbols used in this chapter are collected below. The notation follows the c
 | $e_p^b(n)$ | $p$-th order backward prediction error |
 | $\mathbf{x}_p(n)$ | Data vector, usually $[x(n-1),x(n-2),\ldots,x(n-p)]^T$ for forward prediction |
 | $\mathbf{a}_p$ | Direct-form forward prediction coefficient vector $[a_1^{(p)},\ldots,a_p^{(p)}]^T$ |
-| $\mathbf{b}_p$ | Direct-form backward prediction coefficient vector |
+| $\mathbf{b}_p$ | Direct-form backward prediction coefficient vector $[b_0^{(p)},\ldots,b_{p-1}^{(p)}]^T$ |
 | $A_p(z)$ | Forward prediction error filter (PEF) |
 | $B_p(z)$ | Backward prediction error filter (BPEF) |
 
@@ -1124,6 +1124,18 @@ The same prediction model can be converted from one representation to another.
 > ![Figure 4.1](./CourseADSP2026/Fig/Chapter_3/fig_4_1_textbook_fig_7_4_p356.png)
 >
 > *Figure 4.1 (Textbook Fig. 7.4, p. 356): Direct-form structure for computing forward and backward prediction errors.*
+
+In this figure, the lower branch computes the backward prediction error. The coefficients labeled $b_0^{(m)\ast},b_1^{(m)\ast},\ldots,b_{m-1}^{(m)\ast}$ are the conjugated entries of the direct-form backward coefficient vector
+
+$$\mathbf{b}_m=[b_0^{(m)},b_1^{(m)},\ldots,b_{m-1}^{(m)}]^T.$$
+
+Thus the lower output is
+
+$$e_m^b(n)=x(n-m)+\sum_{k=0}^{m-1}b_k^{(m)\ast}x(n-k).$$
+
+The rightmost coefficient $1$ on the lower branch multiplies the oldest sample $x(n-m)$. It plays the same role as the leading coefficient $1$ in the forward prediction error filter. For a WSS process with the usual optimum forward/backward predictors, the backward coefficients are the conjugate-reversed version of the forward coefficients:
+
+$$\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.$$
 
 > ![Figure 4.2](./CourseADSP2026/Fig/Chapter_3/fig_4_2_textbook_fig_7_7_p361.png)
 >
