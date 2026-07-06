@@ -1007,7 +1007,8 @@ The notation in Figure 3.1 uses the textbook's generic LMMSE-estimation notation
 $$
 y \longleftrightarrow x(n),\qquad
 x_i \longleftrightarrow x(n-i),\qquad
-\hat y_i \longleftrightarrow \hat{x}_i(n).
+\hat y_i \longleftrightarrow \hat{x}_i(n),\qquad
+\mathbf{d}_i \longleftrightarrow \mathbf{r}_i.
 $$
 
 Thus $\hat y_i$ in the figure is not a new signal introduced for this chapter. It is the estimate of the desired sample after the first $i$ orthogonalized input components have been used. In our notation, this is the order-$i$ prediction
@@ -1018,13 +1019,27 @@ $$
 e_i^f(n)=x(n)-\hat{x}_i(n).
 $$
 
+Similarly, the figure's $\mathbf{d}$ is the generic cross-correlation vector between the input vector and the desired response. For the order-$i$ prediction problem, the desired response is $x(n)$ and the input vector is
+
+$$
+\mathbf{x}_i(n)=\begin{bmatrix}x(n-1)&\cdots&x(n-i)\end{bmatrix}^T,
+$$
+
+so the same information is the prediction correlation vector
+
+$$
+\mathbf{r}_i=\begin{bmatrix}r_x(1)&r_x(2)&\cdots&r_x(i)\end{bmatrix}^T,
+$$
+
+up to the conjugation convention. The reason our prediction normal equation is written as $\mathbf{R}_i\mathbf{a}_i=-\mathbf{r}_i$ rather than $\mathbf{R}_i\mathbf{c}_i=\mathbf{d}_i$ is that $\mathbf{a}_i$ is the prediction-error coefficient vector, while the actual predictor coefficients are $-\mathbf{a}_i$.
+
 | Notation | Meaning |
 |----------|---------|
 | $x_i$ | Generic input component; for prediction, read this as a lagged sample such as $x(n-i)$ |
 | $w_i$ | Orthogonalized version of the input component; conceptually, the new information left after earlier lags have been removed |
 | $\hat y_i$ | Generic running estimate; for prediction, read this as the order-$i$ predictor output $\hat{x}_i(n)$ |
 | $\mathbf{R}$ | Input autocorrelation or covariance matrix |
-| $\mathbf{d}$ | Cross-correlation vector between the input and the desired response |
+| $\mathbf{d}$ | Generic cross-correlation vector; for prediction, this carries the same correlation information as $\mathbf{r}_i=[r_x(1),\ldots,r_x(i)]^T$ |
 | $\mathbf{R}=\mathbf{L}\mathbf{D}\mathbf{L}^H$ | LDL$^H$ factorization of the correlation matrix |
 | $\mathbf{B}=\mathbf{L}^{-1}$ | Matrix representation of the decorrelator |
 | $\mathbf{k}=\mathbf{D}^{-1}\mathbf{B}\mathbf{d}$ | Optimum linear-combiner coefficients after decorrelation |
