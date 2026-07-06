@@ -380,7 +380,42 @@ This is the main advantage of the autocorrelation method: it preserves the Toepl
 
 ### Important Practical Consequence: Stability
 
-For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle. The reason is not merely that the normal equations have a unique solution; the stronger reason is that positive definiteness keeps every intermediate prediction problem strictly nondegenerate.
+For a positive definite autocorrelation matrix, the autocorrelation method produces a prediction error filter $A_p(z)$ that is minimum phase. This means all zeros of $A_p(z)$ are inside the unit circle.
+
+The relationship between the autocorrelation matrix and $A_p(z)$ is indirect but very important. The autocorrelation method first forms the Toeplitz matrix
+
+$$
+\hat{\mathbf{R}}_p=
+\begin{bmatrix}
+\hat r_x(0)&\hat r_x(1)&\cdots&\hat r_x(p-1)\\
+\hat r_x(1)&\hat r_x(0)&\cdots&\hat r_x(p-2)\\
+\vdots&\vdots&\ddots&\vdots\\
+\hat r_x(p-1)&\hat r_x(p-2)&\cdots&\hat r_x(0)
+\end{bmatrix}
+$$
+
+from the estimated autocorrelation values. Then it solves the normal equations
+
+$$\hat{\mathbf{R}}_p\hat{\mathbf{a}}_p=-\hat{\mathbf{r}}_p,$$
+
+where
+
+$$\hat{\mathbf{a}}_p=[\hat a_1,\hat a_2,\ldots,\hat a_p]^T.$$
+
+These solved coefficients are exactly the coefficients used to build the prediction error filter:
+
+$$A_p(z)=1+\sum_{k=1}^{p}\hat a_k z^{-k}.$$
+
+So the flow is:
+
+$$
+\text{autocorrelation values}
+\rightarrow \hat{\mathbf{R}}_p,\hat{\mathbf{r}}_p
+\rightarrow \hat a_1,\ldots,\hat a_p
+\rightarrow A_p(z).
+$$
+
+Positive definiteness is a property of $\hat{\mathbf{R}}_p$, but it controls the kind of filter that results after solving for the coefficients. The reason is not merely that the normal equations have a unique solution; the stronger reason is that positive definiteness keeps every intermediate prediction problem strictly nondegenerate.
 
 Here is the logic, with the symbols unpacked first.
 
