@@ -123,13 +123,11 @@ A one-step $p$-th order forward predictor estimates $x(n)$ using the previous $p
 
 $$\hat{x}(n)=-\sum_{k=1}^{p} a_k^{\ast}x(n-k).$$
 
-The minus sign is a convention. It is chosen so that the prediction error filter has a compact polynomial form:
-
-Here $e_p^f(n)$ denotes the $p$-th order forward prediction error: the part of the current sample $x(n)$ that cannot be predicted from the previous $p$ samples by this linear predictor.
+The corresponding prediction error is the residual left after prediction. We denote the $p$-th order forward prediction error by $e_p^f(n)$:
 
 $$\boxed{e_p^f(n)=x(n)-\hat{x}(n)=x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)}$$
 
-and therefore
+The prediction error filter (PEF) is the FIR filter that maps the original signal $x(n)$ to this residual error $e_p^f(n)$. Its transfer function is denoted by $A_p(z)$, so that $e_p^f(n)=A_p(z)x(n)$. The minus sign in the predictor is a convention chosen so that this filter has the compact polynomial form
 
 $$\boxed{A_p(z)=1+\sum_{k=1}^{p}a_k^{\ast}z^{-k}}.$$
 
