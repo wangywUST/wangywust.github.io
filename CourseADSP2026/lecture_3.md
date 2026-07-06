@@ -162,6 +162,18 @@ The optimal coefficient vector is the one that minimizes
 
 $$J(\mathbf{a}_p)=E\{\lvert e_p^f(n)\rvert^2\}.$$
 
+Before writing the normal equations, it is useful to understand the geometry of this minimization. The previous samples
+
+$$x(n-1),x(n-2),\ldots,x(n-p)$$
+
+span the linear prediction space. The predictor chooses the point in this space that is closest to the desired sample $x(n)$ in the mean-square sense. The prediction error is the residual part left after this projection:
+
+$$e_p^f(n)=x(n)-\hat{x}(n).$$
+
+If the residual were still correlated with one of the samples used by the predictor, then that sample would still contain useful linear information about the residual. In that case, we could adjust the corresponding prediction coefficient and reduce the mean-square error further. Therefore, at the optimum, no such useful linear information can remain in the residual.
+
+Equivalently, the predictor has already extracted all linearly predictable information from the previous $p$ samples. The leftover error must be perpendicular, in the correlation/inner-product sense, to each sample used in the prediction.
+
 The LMMSE orthogonality principle says:
 
 > The optimal prediction error is orthogonal to every sample used by the predictor.
