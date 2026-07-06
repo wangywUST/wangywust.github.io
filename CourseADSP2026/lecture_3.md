@@ -99,15 +99,23 @@ Linear prediction is one of the central ideas in modern digital signal processin
 
 Concrete application scenarios with numerical signals:
 
-- **Speech coding:** Suppose a short segment of voiced speech, sampled at 8 kHz, has recent normalized samples
+- **Speech coding:** Here $x(n)$ is one discrete-time speech sample after the microphone signal has been sampled and normalized. Physically, it is proportional to the short-time acoustic pressure at the microphone, or equivalently to the microphone voltage after A/D conversion. If the sampling rate is 8 kHz, then adjacent samples are only $1/8000=0.125$ ms apart, so voiced speech usually changes smoothly from one sample to the next.
+
+  Suppose four consecutive normalized speech samples are
   $$x(n-3)=0.62,\quad x(n-2)=0.71,\quad x(n-1)=0.76,\quad x(n)=0.80.$$
-  A simple third-order predictor might use
+  These numbers mean that the waveform amplitude is rising slowly during this short interval. A simple third-order predictor might use
   $$\hat{x}(n)=0.65x(n-1)+0.25x(n-2)+0.08x(n-3).$$
   Then
   $$\hat{x}(n)=0.65(0.76)+0.25(0.71)+0.08(0.62)=0.721,$$
   so the prediction error is
   $$e(n)=x(n)-\hat{x}(n)=0.80-0.721=0.079.$$
-  Instead of coding the full sample $0.80$, a speech coder can code the smaller residual $0.079$ plus the predictor parameters.
+  The sample $x(n)=0.80$ itself is large because it contains both the predictable waveform shape and the new information. The residual $e(n)=0.079$ is smaller because the predictable part, $0.721$, has already been explained by past samples.
+
+  This helps coding because the residual usually has smaller variance and a smaller amplitude range. For example, if raw normalized speech samples occupy roughly $[-1,1]$, but the prediction residual usually lies in $[-0.125,0.125]$, then the residual range is eight times narrower. With uniform quantization, using 5 bits for $[-0.125,0.125]$ gives step size
+  $$\Delta_e=\frac{0.25}{2^5}=0.0078125,$$
+  which is the same step size as using 8 bits for raw samples over $[-1,1]$:
+  $$\Delta_x=\frac{2}{2^8}=0.0078125.$$
+  So, in this simplified example, coding the residual can use about 5 bits per sample instead of 8 bits per sample for similar scalar quantization precision. The predictor coefficients are transmitted or updated much less frequently, usually once per short frame, not once per sample.
 
 - **Radar clutter suppression:** Suppose the return from one range bin over successive radar pulses is dominated by slowly varying ground clutter:
   $$x(n-3)=10.1,\quad x(n-2)=10.4,\quad x(n-1)=10.6,\quad x(n)=10.8.$$
