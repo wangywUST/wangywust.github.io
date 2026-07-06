@@ -227,7 +227,7 @@ This expression has a clear interpretation:
 - $\mathbf{r}_p^H\mathbf{a}_p$ is the amount of predictable power removed by the predictor.
 - $P_p$ is the leftover power that cannot be predicted linearly from the previous $p$ samples.
 
-Strictly speaking, the second bullet above is a sign-sensitive statement. The leading ``-'' in the bullet list is only Markdown punctuation, not a mathematical minus sign. The actual predictable power removed by the optimal predictor is
+Strictly speaking, the second bullet above is a sign-sensitive statement. The actual predictable power removed by the optimal predictor is
 
 $$-\mathbf{r}_p^H\mathbf{a}_p \ge 0.$$
 
