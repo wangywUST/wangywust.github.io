@@ -494,15 +494,28 @@ $$1-\lvert\kappa_m\rvert^2>0
 \quad\Longrightarrow\quad
 \lvert\kappa_m\rvert<1.$$
 
-This is the key stability condition. In the lattice/Schur interpretation, each reflection coefficient is a step that grows the prediction error filter from order $m-1$ to order $m$. The Schur-Cohn stability result says that this step preserves the minimum-phase property exactly when
+This is the key stability condition. The remaining step uses a polynomial stability theorem, not just the energy formula. In the Levinson-Durbin step-up recursion, the new prediction error filter is formed from the previous one by
 
-$$\lvert\kappa_m\rvert<1.$$
+$$A_m(z)=A_{m-1}(z)+\kappa_m z^{-m}A_{m-1}^{\ast}(1/z^{\ast}).$$
 
-Starting from $A_0(z)=1$, which has no zeros and is trivially minimum phase, the recursion therefore builds
+Here $A_{m-1}^{\ast}(1/z^{\ast})$ is the conjugate-reversed version of the previous polynomial. This formula is another way of writing the coefficient update in Levinson-Durbin recursion.
+
+The Schur-Cohn theorem says:
+
+> If $A_{m-1}(z)$ is minimum phase, then the step-up polynomial $A_m(z)$ is minimum phase if and only if $\lvert\kappa_m\rvert<1$.
+
+So the phrase "without ever moving a zero outside the unit circle" means the following inductive argument:
+
+1. $A_0(z)=1$ has no zeros, so it is trivially minimum phase.
+2. Positive definiteness gives $\lvert\kappa_1\rvert<1$, so the Schur-Cohn theorem implies $A_1(z)$ is minimum phase.
+3. Positive definiteness also gives $\lvert\kappa_2\rvert<1$, so the next step preserves minimum phase and $A_2(z)$ is minimum phase.
+4. Repeating this argument up to order $p$ gives
 
 $$A_1(z),A_2(z),\ldots,A_p(z)$$
 
-without ever moving a zero outside the unit circle. Hence $A_p(z)$ is minimum phase.
+all minimum phase. Hence $A_p(z)$ is minimum phase.
+
+In short, the energy update gives $\lvert\kappa_m\rvert<1$, and the Schur-Cohn theorem translates $\lvert\kappa_m\rvert<1$ into the zero-location statement.
 
 Another way to say the same thing is:
 
