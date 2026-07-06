@@ -66,7 +66,7 @@ The notation below follows the previous lectures: bold lower-case letters denote
 | $\mathbf{d}=E\{\mathbf{x}y^\ast\}$ | Cross-correlation vector between the data and the desired response |
 | $P(c)$ | Mean-square error as a function of estimator coefficients |
 | $P_o$ | Minimum mean-square error (MMSE) |
-| $P_y=E\{|y|^2\}$ | Desired-response power |
+| $P_y=E\{\vert y\vert^2\}$ | Desired-response power |
 
 ### Correlation and Spectral Quantities
 
@@ -93,10 +93,10 @@ The notation below follows the previous lectures: bold lower-case letters denote
 | $\mathbf{v}(n)$ | Observation noise |
 | $\mathbf{Q}(n)$ | Process-noise covariance |
 | $\mathbf{R}_v(n)$ | Observation-noise covariance |
-| $\hat{\mathbf{s}}(n|n-1)$ | A priori state estimate before using observation at time $n$ |
-| $\hat{\mathbf{s}}(n|n)$ | A posteriori state estimate after using observation at time $n$ |
-| $\mathbf{P}(n|n-1)$ | A priori estimation-error covariance |
-| $\mathbf{P}(n|n)$ | A posteriori estimation-error covariance |
+| $\hat{\mathbf{s}}(n\mid n-1)$ | A priori state estimate before using observation at time $n$ |
+| $\hat{\mathbf{s}}(n\mid n)$ | A posteriori state estimate after using observation at time $n$ |
+| $\mathbf{P}(n\mid n-1)$ | A priori estimation-error covariance |
+| $\mathbf{P}(n\mid n)$ | A posteriori estimation-error covariance |
 | $\mathbf{K}(n)$ | Kalman gain |
 | $\boldsymbol{\nu}(n)$ | Innovation / measurement residual |
 
@@ -119,7 +119,7 @@ The filter is called **optimum** not because it is universally best, but because
 The criterion is the mean-square error:
 
 $$
-P=E\{|e(n)|^2\}=E\{|y(n)-\hat y(n)|^2\}.
+P=E\{\vert e(n)\vert^2\}=E\{\vert y(n)-\hat y(n)\vert^2\}.
 $$
 
 Here:
@@ -159,7 +159,7 @@ The textbook begins by emphasizing that the data used by an estimator may come f
 
 ## 0.3 Why Mean-Square Error?
 
-Many error measures are possible. We could penalize $|e|$, $|e|^2$, $|e|^3$, or even a nonconvex application-specific loss. The squared error has two major advantages:
+Many error measures are possible. We could penalize $\vert e\vert$, $\vert e\vert^2$, $\vert e\vert^3$, or even a nonconvex application-specific loss. The squared error has two major advantages:
 
 1. It strongly penalizes large errors.
 2. It leads to a simple linear algebra solution when the estimator is linear.
@@ -221,7 +221,7 @@ $$
 The goal is to choose $\mathbf{c}$ to minimize
 
 $$
-P(\mathbf{c})=E\{|e|^2\}.
+P(\mathbf{c})=E\{\vert e\vert^2\}.
 $$
 
 The block diagram is a linear combiner: each data component is weighted, the weighted terms are added, and the result is compared with the desired response.
@@ -244,14 +244,14 @@ $$
 \begin{aligned}
 P(\mathbf{c})
 &=E\{(y-\mathbf{c}^H\mathbf{x})(y^\ast-\mathbf{x}^H\mathbf{c})\} \\
-&=E\{|y|^2\}-\mathbf{c}^H E\{\mathbf{x}y^\ast\}-E\{y\mathbf{x}^H\}\mathbf{c}+\mathbf{c}^H E\{\mathbf{x}\mathbf{x}^H\}\mathbf{c}.
+&=E\{\vert y\vert^2\}-\mathbf{c}^H E\{\mathbf{x}y^\ast\}-E\{y\mathbf{x}^H\}\mathbf{c}+\mathbf{c}^H E\{\mathbf{x}\mathbf{x}^H\}\mathbf{c}.
 \end{aligned}
 $$
 
 Define
 
 $$
-\boxed{P_y=E\{|y|^2\}},
+\boxed{P_y=E\{\vert y\vert^2\}},
 $$
 
 $$
@@ -320,7 +320,7 @@ This formula has a very clear interpretation:
 
 $$
 \text{minimum error power}
-=	ext{desired signal power}-\text{power explained by the optimum linear estimate}.
+=\text{desired signal power}-\text{power explained by the optimum linear estimate}.
 $$
 
 If $\mathbf{x}$ carries no information about $y$, then $\mathbf{d}=\mathbf{0}$ and $P_o=P_y$. The filter cannot help.
@@ -415,7 +415,7 @@ $$
 The filter design problem is
 
 $$
-\boxed{\min_{\mathbf{h}} E\{|y(n)-\mathbf{h}^H\mathbf{x}(n)|^2\}}.
+\boxed{\min_{\mathbf{h}} E\{\vert y(n)-\mathbf{h}^H\mathbf{x}(n)\vert^2\}}.
 $$
 
 By the result from §1, the optimum coefficients satisfy
@@ -753,7 +753,7 @@ $$
 If $u(n)$ is uncorrelated with $d(n)$, minimizing
 
 $$
-E\{|x_0(n)-\hat v_1(n)|^2\}
+E\{\vert x_0(n)-\hat v_1(n)\vert^2\}
 $$
 
 causes the filter to remove the component of $x_0(n)$ that is linearly predictable from the reference. This is the basis of adaptive noise cancellation.
@@ -840,7 +840,7 @@ This removes intersymbol interference if the channel model is exact and noise is
 An **MMSE equalizer** minimizes
 
 $$
-E\{|a(n-D)-\hat a(n)|^2\}.
+E\{\vert a(n-D)-\hat a(n)\vert^2\}.
 $$
 
 It accepts a controlled amount of residual distortion if that avoids excessive noise amplification.
@@ -929,7 +929,7 @@ $$
 The MMSE is
 
 $$
-\boxed{P_{nc}=r_y(0)-\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{|R_{yx}(e^{j\omega})|^2}{R_x(e^{j\omega})}\,d\omega}.
+\boxed{P_{nc}=r_y(0)-\frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{\vert R_{yx}(e^{j\omega})\vert^2}{R_x(e^{j\omega})}\,d\omega}.
 $$
 
 This is a theoretical performance limit for linear filtering because the noncausal filter may use future samples. It may not be physically realizable in real time, but it tells us how well any linear filter could do if causality were not a constraint.
@@ -1113,7 +1113,7 @@ $$
 The output SNR is therefore
 
 $$
-\mathrm{SNR}(\mathbf{c})=\frac{|\mathbf{c}^H\mathbf{s}|^2}{\mathbf{c}^H\mathbf{R}_v\mathbf{c}}.
+\mathrm{SNR}(\mathbf{c})=\frac{\vert\mathbf{c}^H\mathbf{s}\vert^2}{\mathbf{c}^H\mathbf{R}_v\mathbf{c}}.
 $$
 
 The filter that maximizes this SNR is proportional to
@@ -1153,7 +1153,7 @@ $$
 The output SNR is a ratio of quadratic forms:
 
 $$
-\boxed{\mathrm{SNR}(\mathbf{c})=rac{\mathbf{c}^H\mathbf{R}_s\mathbf{c}}{\mathbf{c}^H\mathbf{R}_v\mathbf{c}}.}
+\boxed{\mathrm{SNR}(\mathbf{c})=\frac{\mathbf{c}^H\mathbf{R}_s\mathbf{c}}{\mathbf{c}^H\mathbf{R}_v\mathbf{c}}.}
 $$
 
 If $\mathbf{R}_v=\sigma_v^2\mathbf{I}$, maximizing this ratio reduces to choosing the eigenvector of $\mathbf{R}_s$ associated with the largest eigenvalue.
@@ -1272,25 +1272,25 @@ The process noise and observation noise are usually assumed uncorrelated with ea
 At time $n-1$, suppose we already have the best estimate after using all observations up to time $n-1$:
 
 $$
-\hat{\mathbf{s}}(n-1|n-1).
+\hat{\mathbf{s}}(n-1\mid n-1).
 $$
 
 The one-step prediction is
 
 $$
-\boxed{\hat{\mathbf{s}}(n|n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1|n-1)}.
+\boxed{\hat{\mathbf{s}}(n\mid n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1\mid n-1)}.
 $$
 
 The prediction error is
 
 $$
-\tilde{\mathbf{s}}(n|n-1)=\mathbf{s}(n)-\hat{\mathbf{s}}(n|n-1).
+\tilde{\mathbf{s}}(n\mid n-1)=\mathbf{s}(n)-\hat{\mathbf{s}}(n\mid n-1).
 $$
 
 Its covariance is
 
 $$
-\boxed{\mathbf{P}(n|n-1)=\mathbf{A}(n-1)\mathbf{P}(n-1|n-1)\mathbf{A}^H(n-1)
+\boxed{\mathbf{P}(n\mid n-1)=\mathbf{A}(n-1)\mathbf{P}(n-1\mid n-1)\mathbf{A}^H(n-1)
 +\mathbf{B}(n)\mathbf{Q}(n)\mathbf{B}^H(n).}
 $$
 
@@ -1304,31 +1304,31 @@ This equation is a Riccati-type covariance prediction equation. It says:
 Given the predicted state, the predicted measurement is
 
 $$
-\hat{\mathbf{y}}(n|n-1)=\mathbf{C}(n)\hat{\mathbf{s}}(n|n-1).
+\hat{\mathbf{y}}(n\mid n-1)=\mathbf{C}(n)\hat{\mathbf{s}}(n\mid n-1).
 $$
 
 The measurement residual, or innovation, is
 
 $$
-\boxed{\boldsymbol{\nu}(n)=\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n|n-1)}.
+\boxed{\boldsymbol{\nu}(n)=\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n\mid n-1)}.
 $$
 
 The innovation covariance is
 
 $$
-\boxed{\mathbf{S}(n)=\mathbf{C}(n)\mathbf{P}(n|n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n)}.
+\boxed{\mathbf{S}(n)=\mathbf{C}(n)\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n)}.
 $$
 
 The cross-covariance between the state prediction error and the innovation is
 
 $$
-\mathbf{P}(n|n-1)\mathbf{C}^H(n).
+\mathbf{P}(n\mid n-1)\mathbf{C}^H(n).
 $$
 
 The Kalman gain is therefore
 
 $$
-\boxed{\mathbf{K}(n)=\mathbf{P}(n|n-1)\mathbf{C}^H(n)\mathbf{S}^{-1}(n)}.
+\boxed{\mathbf{K}(n)=\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)\mathbf{S}^{-1}(n)}.
 $$
 
 This is the same structure as a Wiener filter:
@@ -1344,34 +1344,34 @@ So the Kalman gain is not a heuristic tuning factor. It is the MMSE-optimal line
 The corrected state estimate is
 
 $$
-\boxed{\hat{\mathbf{s}}(n|n)=\hat{\mathbf{s}}(n|n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n)}.
+\boxed{\hat{\mathbf{s}}(n\mid n)=\hat{\mathbf{s}}(n\mid n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n)}.
 $$
 
 Equivalently,
 
 $$
-\boxed{\hat{\mathbf{s}}(n|n)=\hat{\mathbf{s}}(n|n-1)+\mathbf{K}(n)
-\left[\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n|n-1)\right].}
+\boxed{\hat{\mathbf{s}}(n\mid n)=\hat{\mathbf{s}}(n\mid n-1)+\mathbf{K}(n)
+\left[\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n\mid n-1)\right].}
 $$
 
 The a posteriori covariance update is
 
 $$
-\boxed{\mathbf{P}(n|n)=\left[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)\right]\mathbf{P}(n|n-1).}
+\boxed{\mathbf{P}(n\mid n)=\left[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)\right]\mathbf{P}(n\mid n-1).}
 $$
 
 A numerically more stable Joseph-form update is often written as
 
 $$
-\mathbf{P}(n|n)=
-[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]\mathbf{P}(n|n-1)[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]^H
+\mathbf{P}(n\mid n)=
+[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]\mathbf{P}(n\mid n-1)[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]^H
 +\mathbf{K}(n)\mathbf{R}_v(n)\mathbf{K}^H(n).
 $$
 
 The textbook derivation minimizes a scalar measure of covariance, often
 
 $$
-\mathrm{tr}\{\mathbf{P}(n|n)\},
+\mathrm{tr}\{\mathbf{P}(n\mid n)\},
 $$
 
 which is the sum of posterior state estimation error variances.
@@ -1385,59 +1385,59 @@ A compact Kalman filtering loop is:
 Choose
 
 $$
-\boxed{\hat{\mathbf{s}}(0|0)=E\{\mathbf{s}(0)\}}
+\boxed{\hat{\mathbf{s}}(0\mid 0)=E\{\mathbf{s}(0)\}}
 $$
 
 and
 
 $$
-\boxed{\mathbf{P}(0|0)=E\{[\mathbf{s}(0)-\hat{\mathbf{s}}(0|0)][\mathbf{s}(0)-\hat{\mathbf{s}}(0|0)]^H\}}.
+\boxed{\mathbf{P}(0\mid 0)=E\{[\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)][\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)]^H\}}.
 $$
 
-If no observation has yet been processed, one may instead initialize $\hat{\mathbf{s}}(0|-1)$ and $\mathbf{P}(0|-1)$.
+If no observation has yet been processed, one may instead initialize $\hat{\mathbf{s}}(0\mid -1)$ and $\mathbf{P}(0\mid -1)$.
 
 ### For each $n=1,2,\ldots$
 
 Predict:
 
 $$
-\hat{\mathbf{s}}(n|n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1|n-1),
+\hat{\mathbf{s}}(n\mid n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1\mid n-1),
 $$
 
 $$
-\mathbf{P}(n|n-1)=\mathbf{A}(n-1)\mathbf{P}(n-1|n-1)\mathbf{A}^H(n-1)+\mathbf{B}(n)\mathbf{Q}(n)\mathbf{B}^H(n).
+\mathbf{P}(n\mid n-1)=\mathbf{A}(n-1)\mathbf{P}(n-1\mid n-1)\mathbf{A}^H(n-1)+\mathbf{B}(n)\mathbf{Q}(n)\mathbf{B}^H(n).
 $$
 
 Compute innovation:
 
 $$
-\boldsymbol{\nu}(n)=\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n|n-1),
+\boldsymbol{\nu}(n)=\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n\mid n-1),
 $$
 
 $$
-\mathbf{S}(n)=\mathbf{C}(n)\mathbf{P}(n|n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n).
+\mathbf{S}(n)=\mathbf{C}(n)\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n).
 $$
 
 Compute gain:
 
 $$
-\mathbf{K}(n)=\mathbf{P}(n|n-1)\mathbf{C}^H(n)\mathbf{S}^{-1}(n).
+\mathbf{K}(n)=\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)\mathbf{S}^{-1}(n).
 $$
 
 Update:
 
 $$
-\hat{\mathbf{s}}(n|n)=\hat{\mathbf{s}}(n|n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n),
+\hat{\mathbf{s}}(n\mid n)=\hat{\mathbf{s}}(n\mid n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n),
 $$
 
 $$
-\mathbf{P}(n|n)=\left[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)\right]\mathbf{P}(n|n-1).
+\mathbf{P}(n\mid n)=\left[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)\right]\mathbf{P}(n\mid n-1).
 $$
 
 This recursion is computationally attractive because it does not require storing all past data. All information from the past is summarized by two quantities:
 
 $$
-\hat{\mathbf{s}}(n|n),\qquad \mathbf{P}(n|n).
+\hat{\mathbf{s}}(n\mid n),\qquad \mathbf{P}(n\mid n).
 $$
 
 ## 6.7 Scalar Example: Kalman Estimation of an AR(1) Process
@@ -1467,33 +1467,33 @@ The Kalman equations become scalar:
 Prediction:
 
 $$
-\hat s(n|n-1)=a\hat s(n-1|n-1),
+\hat s(n\mid n-1)=a\hat s(n-1\mid n-1),
 $$
 
 $$
-P(n|n-1)=a^2P(n-1|n-1)+q.
+P(n\mid n-1)=a^2P(n-1\mid n-1)+q.
 $$
 
 Gain:
 
 $$
-K(n)=\frac{P(n|n-1)}{P(n|n-1)+r}.
+K(n)=\frac{P(n\mid n-1)}{P(n\mid n-1)+r}.
 $$
 
 Update:
 
 $$
-\hat s(n|n)=\hat s(n|n-1)+K(n)[y(n)-\hat s(n|n-1)],
+\hat s(n\mid n)=\hat s(n\mid n-1)+K(n)[y(n)-\hat s(n\mid n-1)],
 $$
 
 $$
-P(n|n)=[1-K(n)]P(n|n-1).
+P(n\mid n)=[1-K(n)]P(n\mid n-1).
 $$
 
 This example makes the meaning of $K(n)$ clear:
 
 - if measurement noise $r$ is large, $K(n)$ is small, so the filter trusts the model more;
-- if prediction uncertainty $P(n|n-1)$ is large, $K(n)$ is large, so the filter trusts the new measurement more;
+- if prediction uncertainty $P(n\mid n-1)$ is large, $K(n)$ is large, so the filter trusts the new measurement more;
 - if the system is time invariant, $K(n)$ often converges to a steady-state value.
 
 When the gain converges, the Kalman filter becomes equivalent to a fixed recursive Wiener filter. Before convergence, it is time-varying.
@@ -1533,7 +1533,7 @@ The Kalman filter can be understood through three complementary viewpoints.
 At each time $n$, the Kalman filter performs a linear MMSE correction:
 
 $$
-\hat{\mathbf{s}}(n|n)=\hat{\mathbf{s}}(n|n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n).
+\hat{\mathbf{s}}(n\mid n)=\hat{\mathbf{s}}(n\mid n-1)+\mathbf{K}(n)\boldsymbol{\nu}(n).
 $$
 
 The gain has the Wiener form:
@@ -1547,7 +1547,7 @@ $$
 The prediction step trusts the dynamics:
 
 $$
-\text{state model} \quad \Longrightarrow \quad \hat{\mathbf{s}}(n|n-1).
+\text{state model} \quad \Longrightarrow \quad \hat{\mathbf{s}}(n\mid n-1).
 $$
 
 The update step trusts the measurement according to its reliability:
@@ -1561,7 +1561,7 @@ $$
 All past measurements are summarized by
 
 $$
-\hat{\mathbf{s}}(n|n),\quad \mathbf{P}(n|n).
+\hat{\mathbf{s}}(n\mid n),\quad \mathbf{P}(n\mid n).
 $$
 
 Therefore the filter does not need to store the full observation history.
@@ -1639,28 +1639,28 @@ $$
 Prediction:
 
 $$
-\hat{\mathbf{s}}(n|n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1|n-1)
+\hat{\mathbf{s}}(n\mid n-1)=\mathbf{A}(n-1)\hat{\mathbf{s}}(n-1\mid n-1)
 $$
 
 $$
-\mathbf{P}(n|n-1)=\mathbf{A}\mathbf{P}(n-1|n-1)\mathbf{A}^H+\mathbf{B}\mathbf{Q}\mathbf{B}^H
+\mathbf{P}(n\mid n-1)=\mathbf{A}\mathbf{P}(n-1\mid n-1)\mathbf{A}^H+\mathbf{B}\mathbf{Q}\mathbf{B}^H
 $$
 
 Gain:
 
 $$
-\mathbf{K}(n)=\mathbf{P}(n|n-1)\mathbf{C}^H(n)
-[\mathbf{C}(n)\mathbf{P}(n|n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n)]^{-1}
+\mathbf{K}(n)=\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)
+[\mathbf{C}(n)\mathbf{P}(n\mid n-1)\mathbf{C}^H(n)+\mathbf{R}_v(n)]^{-1}
 $$
 
 Update:
 
 $$
-\hat{\mathbf{s}}(n|n)=\hat{\mathbf{s}}(n|n-1)+\mathbf{K}(n)[\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n|n-1)]
+\hat{\mathbf{s}}(n\mid n)=\hat{\mathbf{s}}(n\mid n-1)+\mathbf{K}(n)[\mathbf{y}(n)-\mathbf{C}(n)\hat{\mathbf{s}}(n\mid n-1)]
 $$
 
 $$
-\mathbf{P}(n|n)=[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]\mathbf{P}(n|n-1)
+\mathbf{P}(n\mid n)=[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]\mathbf{P}(n\mid n-1)
 $$
 
 ## 7.2 Method Selection Guide
