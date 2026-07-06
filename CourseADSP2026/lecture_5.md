@@ -135,7 +135,7 @@ The distinction is important:
 
 For example, an AR model gives a spectrum of the form
 
-$$R_x(e^{j\omega})=\frac{\sigma_w^2}{|A(e^{j\omega})|^2}.$$
+$$R_x(e^{j\omega})=\frac{\sigma_w^2}{\vert A(e^{j\omega})\vert^2}.$$
 
 But the practical question is: how do we estimate $A(z)$ and $\sigma_w^2$ from a short, noisy record? That is a spectrum-estimation problem.
 
@@ -209,7 +209,7 @@ A biased estimator may systematically smooth peaks, lift valleys, or shift energ
 
 The variance is
 
-$$\operatorname{var}\{\hat R_x(e^{j\omega})\}=E\left\{\left|\hat R_x(e^{j\omega})-E\{\hat R_x(e^{j\omega})\}\right|^2\right\}.$$
+$$\operatorname{var}\{\hat R_x(e^{j\omega})\}=E\left\{\left\vert\hat R_x(e^{j\omega})-E\{\hat R_x(e^{j\omega})\}\right\vert^2\right\}.$$
 
 High variance means the estimate changes strongly from one data record to another.
 
@@ -267,11 +267,11 @@ $$X_N(e^{j\omega})=\sum_{n=0}^{N-1}x(n)e^{-j\omega n}.$$
 
 The periodogram is
 
-$$\boxed{\hat R_x^{(P)}(e^{j\omega})=\frac{1}{N}|X_N(e^{j\omega})|^2.}$$
+$$\boxed{\hat R_x^{(P)}(e^{j\omega})=\frac{1}{N}\vert X_N(e^{j\omega})\vert^2.}$$
 
 At DFT frequencies $\omega_k=2\pi k/N$,
 
-$$\boxed{\hat R_x^{(P)}(e^{j\omega_k})=\frac{1}{N}|X_N(k)|^2.}$$
+$$\boxed{\hat R_x^{(P)}(e^{j\omega_k})=\frac{1}{N}\vert X_N(k)\vert^2.}$$
 
 This is the most intuitive PSD estimator: compute the DFT, square the magnitude, and normalize by $N$.
 
@@ -407,7 +407,7 @@ $$X_w(e^{j\omega})=\sum_{n=0}^{L-1}w(n)x(n)e^{-j\omega n}.$$
 
 The normalized modified periodogram is
 
-$$\boxed{\hat R_x^{(MP)}(e^{j\omega})=\frac{1}{U}|X_w(e^{j\omega})|^2,\quad U=\sum_{n=0}^{L-1}|w(n)|^2.}$$
+$$\boxed{\hat R_x^{(MP)}(e^{j\omega})=\frac{1}{U}\vert X_w(e^{j\omega})\vert^2,\quad U=\sum_{n=0}^{L-1}\vert w(n)\vert^2.}$$
 
 Some texts normalize by $LU$ or by the average window power depending on the exact definition of $U$. The essential idea is the same: the normalization compensates for the energy loss introduced by the window.
 
@@ -449,7 +449,7 @@ $$x_i(n)=x(n+iL),\quad n=0,1,\ldots,L-1.$$
 
 Compute the periodogram of each segment:
 
-$$\hat R_{x,i}^{(P)}(e^{j\omega})=\frac{1}{L}\left|\sum_{n=0}^{L-1}x_i(n)e^{-j\omega n}\right|^2.$$
+$$\hat R_{x,i}^{(P)}(e^{j\omega})=\frac{1}{L}\left\vert\sum_{n=0}^{L-1}x_i(n)e^{-j\omega n}\right\vert^2.$$
 
 Then average:
 
@@ -504,11 +504,11 @@ $$K=1+\left\lfloor\frac{N-L}{D}\right\rfloor.$$
 
 The Welch estimate is
 
-$$\boxed{\hat R_x^{(W)}(e^{j\omega})=\frac{1}{K}\sum_{i=0}^{K-1}\frac{1}{U}\left|\sum_{n=0}^{L-1}w(n)x_i(n)e^{-j\omega n}\right|^2,}$$
+$$\boxed{\hat R_x^{(W)}(e^{j\omega})=\frac{1}{K}\sum_{i=0}^{K-1}\frac{1}{U}\left\vert\sum_{n=0}^{L-1}w(n)x_i(n)e^{-j\omega n}\right\vert^2,}$$
 
 where
 
-$$U=\sum_{n=0}^{L-1}|w(n)|^2.$$
+$$U=\sum_{n=0}^{L-1}\vert w(n)\vert^2.$$
 
 ### 2.4.3 Why Overlap Helps
 
@@ -546,7 +546,7 @@ $$R_x(e^{j\omega})=\sum_{l=-\infty}^{\infty}r_x(l)e^{-j\omega l}.$$
 
 Since only finite data are available, we estimate $r_x(l)$ for a limited range of lags and then apply a correlation window $v(l)$:
 
-$$\hat r_{x,v}(l)=v(l)\hat r_x(l),\quad |l|\le L.$$
+$$\hat r_{x,v}(l)=v(l)\hat r_x(l),\quad \vert l\vert \le L.$$
 
 The PSD estimate is
 
@@ -662,11 +662,11 @@ $$H(z)=\frac{1}{A(z)}.$$
 
 Therefore the AR spectrum is
 
-$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{|A(e^{j\omega})|^2}.}$$
+$$\boxed{R_x(e^{j\omega})=\frac{\sigma_w^2}{\vert A(e^{j\omega})\vert^2}.}$$
 
 After estimating $a_1,\ldots,a_P$ and $\sigma_w^2$, the AR spectral estimate is
 
-$$\boxed{\hat R_x^{(AR)}(e^{j\omega})=\frac{\hat\sigma_w^2}{\left|1+\sum_{k=1}^{P}\hat a_ke^{-j\omega k}\right|^2}.}$$
+$$\boxed{\hat R_x^{(AR)}(e^{j\omega})=\frac{\hat\sigma_w^2}{\left\vert 1+\sum_{k=1}^{P}\hat a_ke^{-j\omega k}\right\vert^2}.}$$
 
 ### 3.1.2 Why AR Methods Can Have High Resolution
 
@@ -727,9 +727,9 @@ $$D(z)=\sum_{k=0}^{Q}d_kz^{-k}.$$
 
 The spectrum is
 
-$$\boxed{R_x(e^{j\omega})=\sigma_w^2|D(e^{j\omega})|^2.}$$
+$$\boxed{R_x(e^{j\omega})=\sigma_w^2\vert D(e^{j\omega})\vert^2.}$$
 
-MA models are good for spectral valleys and finite-duration correlation structure. An MA($Q$) process has autocorrelation equal to zero outside the range $|l|>Q$.
+MA models are good for spectral valleys and finite-duration correlation structure. An MA($Q$) process has autocorrelation equal to zero outside the range $\vert l\vert > Q$.
 
 ### 3.2.2 Direct MA Estimation
 
@@ -765,7 +765,7 @@ $$A(z)=1+\sum_{k=1}^{P}a_kz^{-k},\quad D(z)=d_0+\sum_{k=1}^{Q}d_kz^{-k}.$$
 
 The spectrum is
 
-$$\boxed{R_x(e^{j\omega})=\sigma_w^2\frac{|D(e^{j\omega})|^2}{|A(e^{j\omega})|^2}.}$$
+$$\boxed{R_x(e^{j\omega})=\sigma_w^2\frac{\vert D(e^{j\omega})\vert^2}{\vert A(e^{j\omega})\vert^2}.}$$
 
 This model can represent both peaks and notches:
 
@@ -831,7 +831,7 @@ This means the filter has unit response at frequency $\omega$.
 
 The output power is
 
-$$E\{|y(n)|^2\}=\mathbf{h}^H\mathbf{R}_x\mathbf{h}.$$
+$$E\{\vert y(n)\vert^2\}=\mathbf{h}^H\mathbf{R}_x\mathbf{h}.$$
 
 The MV design problem is
 
@@ -938,7 +938,7 @@ $$r_x(0),r_x(1),\ldots,r_x(P).$$
 
 The maximum-entropy spectrum consistent with these lags has the form
 
-$$\boxed{R_{MEM}(e^{j\omega})=\frac{\sigma_w^2}{\left|1+\sum_{k=1}^{P}a_ke^{-j\omega k}\right|^2}.}$$
+$$\boxed{R_{MEM}(e^{j\omega})=\frac{\sigma_w^2}{\left\vert 1+\sum_{k=1}^{P}a_ke^{-j\omega k}\right\vert^2}.}$$
 
 This is exactly an AR($P$) or all-pole spectrum.
 
@@ -960,7 +960,7 @@ $$e_m^b(n)=e_{m-1}^b(n-1)+k_m^\ast e_{m-1}^f(n).$$
 
 At each order, $k_m$ is chosen to reduce the sum of forward and backward error energies. Stability follows when
 
-$$|k_m|<1.$$
+$$\vert k_m\vert < 1.$$
 
 ## 5.4 MEM versus Classical Estimators
 
@@ -1081,7 +1081,7 @@ Therefore, one can form a polynomial from the entries of $\mathbf{q}_{min}$ and 
 
 A pseudospectrum can be defined as
 
-$$\boxed{P_{Pis}(f)=\frac{1}{|\mathbf{q}_{min}^H\mathbf{v}(f)|^2}.}$$
+$$\boxed{P_{Pis}(f)=\frac{1}{\vert\mathbf{q}_{min}^H\mathbf{v}(f)\vert^2}.}$$
 
 Peaks occur where $\mathbf{v}(f)$ is nearly orthogonal to the noise eigenvector.
 
@@ -1114,7 +1114,7 @@ $$\boxed{P_{MUSIC}(f)=\frac{1}{\mathbf{v}^H(f)\mathbf{Q}_n\mathbf{Q}_n^H\mathbf{
 
 Equivalently,
 
-$$P_{MUSIC}(f)=\frac{1}{\sum_{i=P+1}^{M}|\mathbf{q}_i^H\mathbf{v}(f)|^2}.$$
+$$P_{MUSIC}(f)=\frac{1}{\sum_{i=P+1}^{M}\vert\mathbf{q}_i^H\mathbf{v}(f)\vert^2}.$$
 
 At a true frequency, $\mathbf{v}(f_p)$ is orthogonal to the noise subspace, so the denominator becomes small and the pseudospectrum has a peak.
 
@@ -1151,7 +1151,7 @@ The textbook also discusses other eigenvector-based methods.
 
 The eigenvector method weights the contributions of different noise eigenvectors. One form is
 
-$$P_{EV}(f)=\frac{1}{\sum_{i=P+1}^{M}\frac{1}{\lambda_i}|\mathbf{q}_i^H\mathbf{v}(f)|^2}.$$
+$$P_{EV}(f)=\frac{1}{\sum_{i=P+1}^{M}\frac{1}{\lambda_i}\vert\mathbf{q}_i^H\mathbf{v}(f)\vert^2}.$$
 
 The weighting can improve performance in some finite-sample settings.
 
