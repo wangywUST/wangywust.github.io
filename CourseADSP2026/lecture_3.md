@@ -127,7 +127,11 @@ The corresponding prediction error is the residual left after prediction. We den
 
 $$\boxed{e_p^f(n)=x(n)-\hat{x}(n)=x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)}$$
 
-The prediction error filter (PEF) is the FIR filter that maps the original signal $x(n)$ to this residual error $e_p^f(n)$. Its transfer function is denoted by $A_p(z)$, so that $e_p^f(n)=A_p(z)x(n)$. The minus sign in the predictor is a convention chosen so that this filter has the compact polynomial form
+The prediction error filter (PEF) is the FIR filter that maps the original signal $x(n)$ to this residual error $e_p^f(n)$. We denote the z-domain transfer function of this order-$p$ error filter by $A_p(z)$. Equivalently, $A_p(z)$ is the polynomial whose impulse-response coefficients are $[1,a_1^\ast,\ldots,a_p^\ast]$, so filtering $x(n)$ by $A_p(z)$ produces the residual:
+
+$$e_p^f(n)=A_p(z)x(n).$$
+
+The minus sign in the predictor is a convention chosen so that this filter has the compact polynomial form
 
 $$\boxed{A_p(z)=1+\sum_{k=1}^{p}a_k^{\ast}z^{-k}}.$$
 
