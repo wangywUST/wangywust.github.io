@@ -63,7 +63,7 @@ This chapter uses the notation of the previous lectures. The new emphasis is tha
 |--------|------------|
 | $w_N(n)$ | Data window applied directly to samples before the DFT |
 | $v(l)$ | Correlation window or lag window applied to an autocorrelation estimate |
-| $U=\sum_{n=0}^{L-1} |w(n)|^2$ | Data-window energy normalization |
+| $U=\sum_{n=0}^{L-1} \vert w(n)\vert^2$ | Data-window energy normalization |
 | $\hat R_x^{(P)}(e^{j\omega})$ | Periodogram estimate |
 | $\hat R_x^{(MP)}(e^{j\omega})$ | Modified periodogram estimate |
 | $\hat R_x^{(BT)}(e^{j\omega})$ | Blackman-Tukey estimate |
@@ -688,7 +688,7 @@ But the same property can be dangerous. If the model order is too high or the da
 | Autocorrelation / Yule-Walker | Matches autocorrelation lags with a Toeplitz matrix | Stable if estimated autocorrelation matrix is positive definite | Efficient via Levinson-Durbin | Robust, but can smooth or split peaks |
 | Covariance | Least-squares prediction error without assuming data outside the window | Not automatically guaranteed | Solves non-Toeplitz equations | High resolution, but can be unstable |
 | Modified covariance | Uses both forward and backward prediction errors | Better practical behavior than covariance | More expensive | Good resolution |
-| Burg | Minimizes forward/backward errors recursively and enforces stable reflection coefficients | Stable if $|k_m|<1$ | Efficient lattice recursion | High resolution for short records, can be sensitive to order |
+| Burg | Minimizes forward/backward errors recursively and enforces stable reflection coefficients | Stable if $\vert k_m\vert < 1$ | Efficient lattice recursion | High resolution for short records, can be sensitive to order |
 
 > ![Figure 3.1](./CourseADSP2026/Fig/Chapter_5/fig_3_1_textbook_fig_9_14_p468.png)
 >
@@ -1247,9 +1247,9 @@ In array processing, MUSIC and ESPRIT become direction-of-arrival estimators. In
 | Bartlett | Split data into nonoverlapping segments and average periodograms to reduce variance. |
 | Welch | Use overlapping windowed segments and average modified periodograms. |
 | Blackman-Tukey | Estimate autocorrelation, apply a lag window, then transform to frequency domain. |
-| AR spectrum | Fit an all-pole model and compute $\sigma_w^2/|A(e^{j\omega})|^2$. |
-| MA spectrum | Fit an all-zero model and compute $\sigma_w^2|D(e^{j\omega})|^2$. |
-| ARMA spectrum | Fit a pole-zero model and compute $\sigma_w^2|D(e^{j\omega})|^2/|A(e^{j\omega})|^2$. |
+| AR spectrum | Fit an all-pole model and compute $\sigma_w^2/\vert A(e^{j\omega})\vert^2$. |
+| MA spectrum | Fit an all-zero model and compute $\sigma_w^2\vert D(e^{j\omega})\vert^2$. |
+| ARMA spectrum | Fit a pole-zero model and compute $\sigma_w^2\vert D(e^{j\omega})\vert^2/\vert A(e^{j\omega})\vert^2$. |
 | MV spectrum | Use a data-adaptive filter with unit gain at the test frequency and minimum output variance. |
 | MEM | Choose the all-pole spectrum with maximum entropy subject to autocorrelation constraints. |
 | MUSIC | Locate frequencies by finding steering vectors orthogonal to the noise subspace. |
