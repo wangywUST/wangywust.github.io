@@ -576,7 +576,7 @@ A smoother window, such as a Hamming window, reduces sidelobes but broadens main
 | Rectangular | High resolution; simple; preserves more data energy | Strong sidelobes; boundary discontinuity |
 | Hamming | Lower sidelobes; smoother finite record | Lower resolution; broadened spectral peaks |
 
-The choice of window changes the estimated autocorrelation sequence and therefore changes the AR model.
+The choice of window changes the estimated autocorrelation sequence and therefore changes the autoregressive (AR) model.
 
 ---
 
