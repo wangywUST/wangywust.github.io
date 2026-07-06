@@ -500,6 +500,30 @@ $$A_m(z)=A_{m-1}(z)+\kappa_m z^{-m}A_{m-1}^{\ast}(1/z^{\ast}).$$
 
 Here $A_{m-1}^{\ast}(1/z^{\ast})$ is the conjugate-reversed version of the previous polynomial. This formula is another way of writing the coefficient update in Levinson-Durbin recursion.
 
+This formula shows the direct relationship between $\kappa_m$ and $A_m(z)$. The coefficient of the newest delay term $z^{-m}$ in $A_m(z)$ is exactly the reflection coefficient:
+
+$$a_m^{(m)}=\kappa_m.$$
+
+So $\kappa_m$ is the new last coefficient added when the predictor order increases from $m-1$ to $m$. But it also changes the older coefficients through the same step-up recursion:
+
+$$a_k^{(m)}=a_k^{(m-1)}+\kappa_m\left[a_{m-k}^{(m-1)}\right]^{\ast},\qquad k=1,\ldots,m-1.$$
+
+Thus $\kappa_m$ is not separate from $A_m(z)$. It is one parameter that tells us how to grow the whole prediction error filter from order $m-1$ to order $m$.
+
+For example, when $m=1$,
+
+$$A_1(z)=1+\kappa_1z^{-1}.$$
+
+When $m=2$,
+
+$$A_2(z)=1+a_1^{(2)}z^{-1}+\kappa_2z^{-2},$$
+
+where
+
+$$a_1^{(2)}=a_1^{(1)}+\kappa_2\left[a_1^{(1)}\right]^{\ast}.$$
+
+So each $\kappa_m$ becomes the newest endpoint coefficient of $A_m(z)$ and also determines how the previous coefficients are adjusted.
+
 The Schur-Cohn theorem says:
 
 > If $A_{m-1}(z)$ is minimum phase, then the step-up polynomial $A_m(z)$ is minimum phase if and only if $\lvert\kappa_m\rvert<1$.
