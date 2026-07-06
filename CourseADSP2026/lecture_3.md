@@ -447,6 +447,20 @@ At intermediate order $m$, it has already found the best $m$-th order prediction
 
 $$A_m(z)=1+\sum_{k=1}^{m}a_k^{(m)}z^{-k}.$$
 
+Its output is the $m$-th order prediction error
+
+$$e_m^f(n)=A_m(z)x(n).$$
+
+The corresponding minimum prediction error power is
+
+$$P_m=E\{\lvert e_m^f(n)\rvert^2\}.$$
+
+This is the same quantity introduced earlier as $P_p$, but with the final order $p$ replaced by an arbitrary intermediate order $m$. In other words, $P_p$ is the final error power after the full $p$-th order predictor is built, while
+
+$$P_0,P_1,\ldots,P_p$$
+
+are the error powers along the way.
+
 The notation means:
 
 | Symbol | Meaning |
