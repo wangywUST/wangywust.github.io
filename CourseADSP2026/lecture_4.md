@@ -608,6 +608,44 @@ The idea is this:
 
 This is not always trivial, because a magnitude response does not uniquely determine phase. The minimum-phase factor provides a canonical causal and invertible choice.
 
+Why does the minimum-phase condition make phase recoverable from magnitude?
+
+The key point is that a general transfer function can be written as
+
+$$H(e^{j\omega})=\lvert H(e^{j\omega})\rvert e^{j\phi(\omega)}.$$
+
+The PSD only gives $\lvert H(e^{j\omega})\rvert^2$, so it contains magnitude information but not phase information. In general, many different filters can have the same magnitude response but different phase responses. One way this happens is through an **all-pass factor** $A(z)$:
+
+$$H_2(z)=H_1(z)A(z),\qquad \lvert A(e^{j\omega})\rvert=1.$$
+
+Then
+
+$$\lvert H_2(e^{j\omega})\rvert=\lvert H_1(e^{j\omega})\rvert,$$
+
+but
+
+$$\angle H_2(e^{j\omega})=\angle H_1(e^{j\omega})+\angle A(e^{j\omega}).$$
+
+Thus an all-pass factor can change phase without changing magnitude. This is why magnitude alone normally cannot determine phase.
+
+The minimum-phase condition removes this ambiguity. A minimum-phase filter has all its zeros inside the unit circle. Among all filters with the same magnitude response, the minimum-phase one is the canonical representative: it has no extra all-pass factor that changes phase while preserving magnitude. Consequently, once we specify that the spectral factor must be minimum phase, its phase is determined by its magnitude, up to a harmless constant phase convention. More formally, for a stable minimum-phase system with no zeros on the unit circle, the phase is related to the log-magnitude by a Hilbert-transform relation:
+
+$$\phi(\omega)=-\mathcal{H}\{\log \lvert H(e^{j\omega})\rvert\}.$$
+
+An intuitive zero-flipping example is
+
+$$H_1(z)=1-0.5z^{-1},$$
+
+whose zero is at $z=0.5$, and
+
+$$H_2(z)=0.5-z^{-1}=0.5(1-2z^{-1}),$$
+
+whose zero is at $z=2$. These two factors can produce the same magnitude response on the unit circle, but they have different phase responses. The first factor is minimum phase; the second is not. Choosing the minimum-phase factor means choosing the zero inside the unit circle, which also makes the inverse filter causal and stable.
+
+In Chinese:
+
+> 幅度响应本来不能唯一决定相位，因为可以乘上全通因子来改变相位但不改变幅度。minimum-phase 条件禁止了这种额外的全通相位自由度：所有零点都必须在单位圆内。因此，在所有具有相同幅度响应的候选滤波器中，minimum-phase 因子给出一个标准的、因果的、稳定可逆的选择。也就是说，一旦要求谱因子是 minimum phase，相位就不再是任意的，而是由幅度响应唯一确定。
+
 ## 1.6 Spectral Flatness Measure
 
 The textbook defines the spectral flatness measure as
