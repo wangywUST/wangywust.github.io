@@ -173,6 +173,40 @@ The textbook organizes practical signal modeling as an iterative process:
 
 This loop is important pedagogically. Many students think model order selection is just a technical detail. It is not. The order determines the complexity and behavior of the model.
 
+### Why Model Order Is Not a Minor Detail
+
+The model order is the number of past samples, poles, or zeros that the model is allowed to use. Therefore it is not merely a bookkeeping choice. It controls how much structure the model can represent.
+
+For example, in an AR($p$) model,
+
+$$x(n)+a_1x(n-1)+a_2x(n-2)+\cdots+a_px(n-p)=w(n),$$
+
+the order $p$ says how many previous samples are used to explain the current sample. An AR(1) model only has one-step memory. An AR(5) model has five-step memory. These two models can produce very different autocorrelation functions, spectra, prediction behavior, and residual sequences.
+
+The same idea applies to MA($q$) and ARMA($p,q$) models:
+
+| Model Class | Order Controls | Practical Meaning |
+|------------|----------------|-------------------|
+| AR($p$) | Number of poles / feedback coefficients | How many past values affect the present; controls resonance, memory, and spectral peaks |
+| MA($q$) | Number of zeros / feedforward coefficients | How many past innovations affect the present; controls short-term correlation and spectral notches |
+| ARMA($p,q$) | Number of poles and zeros | Balances resonant behavior from poles with shaping/cancellation from zeros |
+
+This is why order selection changes the model itself, not just the amount of computation. If the order is too small, the model is too rigid. It may miss important correlations, smooth over spectral peaks, and leave predictable structure in the residual. This is underfitting.
+
+If the order is too large, the model is too flexible. It may fit random fluctuations in the observed data instead of the underlying process. The residual error may look artificially small on the training data, but the model may generalize poorly, produce unstable or fragile pole-zero patterns, and give misleading spectral details. This is overfitting.
+
+The order also affects interpretation. A low-order model gives a compact explanation: a few dominant modes, a short memory, or a simple spectral shape. A high-order model may reproduce the data more accurately, but its parameters may be harder to interpret and more sensitive to finite-sample noise.
+
+In practice, order selection is part of the modeling loop:
+
+1. Choose a tentative order.
+2. Estimate the coefficients for that order.
+3. Check whether the residual still contains correlation or structure.
+4. Compare performance using criteria such as prediction error, residual whiteness, AIC, BIC, or application-specific validation.
+5. Increase, decrease, or change the model class if the current choice is not satisfactory.
+
+The key lesson is: model order is a modeling decision. It determines the allowed memory, the number of degrees of freedom, the possible spectral shape, and the tradeoff between bias and variance. Therefore the order directly determines both the complexity and the behavior of the model.
+
 A good model should satisfy three requirements:
 
 | Requirement | Meaning |
