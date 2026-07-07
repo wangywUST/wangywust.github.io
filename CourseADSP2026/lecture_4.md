@@ -505,8 +505,12 @@ In short:
 This figure is one of the most important conceptual figures in the chapter. It explains why modeling and prediction are connected:
 
 - modeling: find $H(z)$ so that $x(n)=H(z)w(n)$,
-- whitening: apply $1/H(z)$ so that the residual is white,
-- prediction: if the residual is the innovation, then everything predictable has been removed.
+- whitening: apply $1/H(z)$ so that the output is white,
+- prediction: the prediction error, or residual,
+
+  $$e(n)=x(n)-\hat{x}(n),$$
+
+  is what remains after subtracting the predictable part of $x(n)$; if this residual is the innovation, then everything predictable has been removed.
 
 ## 1.4 Minimum Phase and Innovations
 
