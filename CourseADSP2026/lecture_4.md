@@ -446,6 +446,62 @@ This inverse filter is called the **analysis filter** or **whitening filter**.
 >
 > *Figure 1.2 (Textbook Fig. 4.2, p. 152): Synthesis/coloring and analysis/whitening filters used in innovations representation. The forward system generates the correlated process; the inverse system recovers the innovation sequence if the model is minimum phase.*
 
+**Intuitive explanation.** This figure describes how to move back and forth between a white-noise innovation sequence and a correlated random process.
+
+The **innovation sequence** is the part of the process that is new at each time instant and cannot be predicted from the past. Suppose we predict the current sample $x(n)$ from previous samples $x(n-1),x(n-2),\ldots$. Denote the prediction by
+
+$$\hat{x}(n)=\text{prediction from past samples}.$$
+
+The difference between the true value and the predicted value,
+
+$$e(n)=x(n)-\hat{x}(n),$$
+
+is the innovation at time $n$. It represents the new random component that is not explained by previous observations. Therefore, the innovation sequence is
+
+$$e(0),e(1),e(2),\ldots.$$
+
+In an ideal model, this sequence is usually treated as white noise: it has zero mean, its samples are uncorrelated across time, and it represents the genuinely new information entering the system at each time instant.
+
+The forward system is
+
+$$w(n)\longrightarrow H(z)\longrightarrow x(n).$$
+
+Here $w(n)$ is the white-noise excitation or innovation sequence, $H(z)$ is the **synthesis/coloring filter**, and $x(n)$ is the correlated random process. The word coloring is used because white noise has a flat spectrum. After passing through $H(z)$, different frequencies are amplified or attenuated by different amounts, so the spectrum is shaped or "colored." This filtering operation also creates correlation among the output samples.
+
+For example, the AR(1) model
+
+$$x(n)=a x(n-1)+w(n)$$
+
+can be written as
+
+$$x(n)=\frac{1}{1-a z^{-1}}w(n).$$
+
+Thus,
+
+$$H(z)=\frac{1}{1-a z^{-1}}$$
+
+is the coloring filter. It turns the memoryless input $w(n)$ into the correlated output $x(n)$.
+
+The inverse system is
+
+$$x(n)\longrightarrow H_I(z)=\frac{1}{H(z)}\longrightarrow w(n).$$
+
+This inverse filter $H_I(z)$ is the **analysis/whitening filter**. Its role is to remove the part of $x(n)$ that can be explained from the past and leave only the innovation. For the AR(1) model above,
+
+$$w(n)=x(n)-a x(n-1),$$
+
+so the whitening filter is
+
+$$H_I(z)=1-a z^{-1}.$$
+
+This shows the essence of whitening: subtract the predictable part from $x(n)$. If the remaining residual is approximately white, then it can be interpreted as the innovation sequence.
+
+The phrase "the inverse system recovers the innovation sequence if the model is minimum phase" means that the inverse filter $1/H(z)$ must be causal and stable. It is not enough to write down an inverse algebraically; the inverse must also be physically and numerically usable. When the model is **minimum phase**, the whitening filter is stable and causal, so the innovation sequence $w(n)$ can be recovered from the observed process $x(n)$.
+
+In short:
+
+> The forward coloring filter turns a white-noise innovation sequence into a correlated random process; the inverse whitening filter turns the correlated process back into a white innovation sequence. This recovery requires a minimum-phase model so that the inverse filter is stable and usable.
+
 This figure is one of the most important conceptual figures in the chapter. It explains why modeling and prediction are connected:
 
 - modeling: find $H(z)$ so that $x(n)=H(z)w(n)$,
