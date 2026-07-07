@@ -219,7 +219,7 @@ A good model should satisfy three requirements:
 
 This chapter proceeds in the following logical order.
 
-First, we define the broad class of white-noise-driven linear models. Second, we restrict the system $H(z)$ to rational forms, producing AP, AZ, and PZ models. Third, we identify the signatures of these models in the autocorrelation, partial autocorrelation, and spectrum. Fourth, we discuss practical algorithms for estimating AR, MA, and ARMA parameters. Finally, we explain how these models are used for power spectrum estimation.
+First, we define the broad class of white-noise-driven linear models. Second, we restrict the system $H(z)$ to rational forms, producing all-pole (AP), all-zero (AZ), and pole-zero (PZ) models. Third, we identify the signatures of these models in the autocorrelation sequence (ACS), partial autocorrelation sequence (PACS), and spectrum. Fourth, we discuss practical algorithms for estimating autoregressive (AR), moving-average (MA), and autoregressive moving-average (ARMA) parameters. Finally, we explain how these models are used for power spectrum estimation.
 
 ---
 
