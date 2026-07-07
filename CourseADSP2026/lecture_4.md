@@ -304,6 +304,124 @@ so $d_1,\ldots,d_Q$ describe the zero, or moving-average, part. The leading
 gain $d_0$ is often normalized to $1$ and absorbed into the driving-noise
 variance $\sigma_w^2$, which controls the overall power level of the process.
 
+### Teaching Note: Why the Polynomials Use $z^{-1}$
+
+Students often find the notation confusing at first because $A(z)$ and $D(z)$
+are written as polynomials in $z^{-1}$ rather than in positive powers of $z$.
+The reason is signal-processing notation: $z^{-1}$ represents a one-sample
+delay. A term such as $x(n-1)$ becomes $z^{-1}X(z)$ after the z-transform, and
+$x(n-2)$ becomes $z^{-2}X(z)$. Since digital models are usually written in
+terms of present and past samples, their transfer functions naturally contain
+negative powers of $z$.
+
+For example, the autoregressive equation
+
+$$x(n)+a_1x(n-1)+a_2x(n-2)=w(n)$$
+
+becomes
+
+$$\bigl(1+a_1z^{-1}+a_2z^{-2}\bigr)X(z)=W(z),$$
+
+so
+
+$$H(z)=\frac{X(z)}{W(z)}=\frac{1}{1+a_1z^{-1}+a_2z^{-2}}.$$
+
+Thus the negative powers are not introduced to create a singularity at
+$z=0$. They appear because the model is built from delays.
+
+When doing pole-zero analysis, the main question is not whether the individual
+expressions $A(z)$ or $D(z)$ become large at some point. The main question is
+what happens to the whole system function
+
+$$H(z)=\frac{D(z)}{A(z)}.$$
+
+Zeros are values of $z$ that make the whole transfer function equal to zero.
+In the usual non-cancelled case, these are the roots of the numerator:
+
+$$D(z)=0 \quad \Longrightarrow \quad H(z)=0.$$
+
+Poles are values of $z$ that make the whole transfer function unbounded. In the
+usual non-cancelled case, these are the roots of the denominator:
+
+$$A(z)=0 \quad \Longrightarrow \quad H(z)\to\infty.$$
+
+This is different from saying that the denominator expression itself becomes
+infinite. A pole occurs when the denominator becomes zero, because division by
+zero makes the ratio unbounded.
+
+The negative-power form can hide this point. Consider the simple all-pole
+model
+
+$$H(z)=\frac{1}{1+a_1z^{-1}}.$$
+
+As $z\to 0$, the denominator expression $1+a_1z^{-1}$ may become large. But
+the transfer function does not become large; instead,
+
+$$H(z)=\frac{z}{z+a_1},$$
+
+so $H(z)\to 0$ as $z\to 0$ when $a_1\neq 0$. The actual pole is found by
+setting the denominator equal to zero:
+
+$$1+a_1z^{-1}=0.$$
+
+Multiplying by $z$ gives
+
+$$z+a_1=0,$$
+
+so the pole is
+
+$$z=-a_1.$$
+
+The general rule is the same. For
+
+$$A(z)=1+a_1z^{-1}+\cdots+a_Pz^{-P},$$
+
+multiply by $z^P$:
+
+$$z^PA(z)=z^P+a_1z^{P-1}+\cdots+a_P.$$
+
+The pole locations are the roots of
+
+$$z^P+a_1z^{P-1}+\cdots+a_P=0,$$
+
+not simply the point $z=0$ suggested by the negative powers.
+
+Similarly, for
+
+$$D(z)=d_0+d_1z^{-1}+\cdots+d_Qz^{-Q},$$
+
+multiply by $z^Q$:
+
+$$z^QD(z)=d_0z^Q+d_1z^{Q-1}+\cdots+d_Q.$$
+
+The zero locations are the roots of
+
+$$d_0z^Q+d_1z^{Q-1}+\cdots+d_Q=0.$$
+
+It is also possible for both numerator and denominator expressions to become
+large at $z=0$ because both contain negative powers. That does not by itself
+mean there is a pole or a zero at $z=0$. The ratio may remain finite after the
+common powers of $z^{-1}$ are cleared. For example,
+
+$$H(z)=\frac{1+d_1z^{-1}}{1+a_1z^{-1}}
+      =\frac{z+d_1}{z+a_1}.$$
+
+If $a_1\neq 0$ and $d_1\neq 0$, then
+
+$$H(0)=\frac{d_1}{a_1},$$
+
+which is finite and nonzero. Therefore $z=0$ is neither a pole nor a zero in
+this case.
+
+The important lesson is:
+
+| Question | Correct Object to Inspect |
+|----------|---------------------------|
+| Where are the zeros? | Roots of the numerator after clearing negative powers |
+| Where are the poles? | Roots of the denominator after clearing negative powers |
+| Why use $z^{-1}$? | Because $z^{-1}$ represents a one-sample delay |
+| Should we classify poles and zeros by where $A(z)$ or $D(z)$ separately becomes infinite? | No. Classify them by where the whole ratio $H(z)=D(z)/A(z)$ becomes zero or unbounded |
+
 Parametric models are less flexible than arbitrary impulse responses, but they are easier to estimate, interpret, and use.
 
 ## 1.3 Coloring and Whitening Filters
