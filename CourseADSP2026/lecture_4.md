@@ -518,6 +518,64 @@ The innovations interpretation requires more than stability. We usually want $H(
 
 If $H(z)$ is minimum phase, then the current innovation $w(n)$ is the genuinely new information in $x(n)$ that cannot be predicted from past samples.
 
+The connection with the generating filter $H(z)$ is through the **inverse filter**, not because $H(z)$ itself is directly a predictor.
+
+The synthesis model says
+
+$$x(n)=H(z)w(n),$$
+
+or equivalently,
+
+$$w(n)=\frac{1}{H(z)}x(n).$$
+
+Thus $H(z)$ explains how a white innovation sequence is turned into a correlated process, while $1/H(z)$ explains how the correlated process can be whitened back into the innovation sequence.
+
+This is where the minimum-phase condition matters. If $H(z)$ is minimum phase, then $1/H(z)$ is causal and stable. Therefore, the current $w(n)$ can be recovered using only the current and past values of $x$:
+
+$$w(n)=\text{causal stable filtering of }x(n),x(n-1),x(n-2),\ldots.$$
+
+In that case, $w(n)$ has a prediction meaning. It is the part of $x(n)$ left after all information linearly predictable from the past samples has been removed. In prediction notation,
+
+$$x(n)=\hat{x}(n|n-1)+e(n),$$
+
+where
+
+$$e(n)=x(n)-\hat{x}(n|n-1).$$
+
+For a correct minimum-phase innovations model, this prediction error is the innovation:
+
+$$e(n)=w(n).$$
+
+So the phrase "new information" should be read in this precise sense:
+
+> Given the past samples $x(n-1),x(n-2),\ldots$, the innovation $w(n)$ is the component of the current sample $x(n)$ that cannot be predicted from that past.
+
+The link can be seen most clearly in an AR(1) example. Suppose
+
+$$H(z)=\frac{1}{1-az^{-1}}.$$
+
+Then
+
+$$x(n)=H(z)w(n)$$
+
+is equivalent to
+
+$$(1-az^{-1})x(n)=w(n),$$
+
+or
+
+$$x(n)-ax(n-1)=w(n).$$
+
+Rearranging gives
+
+$$x(n)=ax(n-1)+w(n).$$
+
+Here $ax(n-1)$ is the part predictable from the previous sample, and $w(n)$ is the prediction error. This example shows the general idea:
+
+$$H(z)\quad\Longrightarrow\quad \frac{1}{H(z)}\quad\Longrightarrow\quad \text{whitening filter}\quad\Longrightarrow\quad \text{prediction error / innovation}.$$
+
+If $H(z)$ is not minimum phase, we may still write $w(n)=\frac{1}{H(z)}x(n)$ algebraically, but the inverse filter may be noncausal or unstable. Then recovering $w(n)$ may require future samples or may be numerically unusable. In that case, $w(n)$ can no longer be interpreted cleanly as the current new information relative only to the past of $x(n)$.
+
 For a minimum-phase model,
 
 $$x(n+1)=\text{linear combination of past }x(n),x(n-1),\ldots+w(n+1).$$
