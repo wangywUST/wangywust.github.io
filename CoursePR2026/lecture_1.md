@@ -122,7 +122,7 @@ Pattern recognition is the automatic discovery of regularities in data, and the 
 
 A simple but important example is handwritten digit recognition.
 
-> ![Figure 1.1](./CoursePR2026/Fig/Chapter_1/fig_1_1_textbook_p2.png)
+> ![Figure 1.1](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_1__textbook_fig_1_1__p2.png)
 >
 > *Figure 1.1 (Textbook Fig. 1.1, p. 2): Handwritten digit examples. The same digit class can appear in many different visual forms, so a fixed hand-written rule system is fragile. A learning system instead infers regularities from many examples.*
 
@@ -214,7 +214,7 @@ $$
 
 The observed target $t$ is noisy. This means the data are not exactly on the true curve.
 
-> ![Figure 1.2](./CoursePR2026/Fig/Chapter_1/fig_1_2_textbook_p4.png)
+> ![Figure 1.2](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_2__textbook_fig_1_2__p4.png)
 >
 > *Figure 1.2 (Textbook Fig. 1.2, p. 4): A small training data set generated from a sinusoidal function with added noise. The learning task is to infer a useful predictive rule from a limited number of noisy observations.*
 
@@ -252,7 +252,7 @@ $$
 
 The factor $1/2$ is included only to simplify derivatives. It does not change the minimizer.
 
-> ![Figure 1.3](./CoursePR2026/Fig/Chapter_1/fig_1_3_textbook_p6.png)
+> ![Figure 1.3](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_3__textbook_fig_1_3__p6.png)
 >
 > *Figure 1.3 (Textbook Fig. 1.3, p. 6): Sum-of-squares error measures the vertical discrepancy between the model prediction and each target value. Squaring penalizes large deviations strongly and gives a smooth differentiable objective.*
 
@@ -264,7 +264,7 @@ However, a small training error does not automatically mean good prediction on f
 
 The order $M$ controls the flexibility of the polynomial.
 
-> ![Figure 1.4](./CoursePR2026/Fig/Chapter_1/fig_1_4_textbook_p7.png)
+> ![Figure 1.4](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_4__textbook_fig_1_4__p7.png)
 >
 > *Figure 1.4 (Textbook Fig. 1.4, p. 7): Polynomial fits for several values of $M$. Low-order models are too rigid; an intermediate model captures the trend; a very high-order model can fit every training point while oscillating badly between them.*
 
@@ -288,7 +288,7 @@ $$
 
 Here $\mathbf{w}^{\star}$ denotes the fitted parameter vector. The square root puts the error on the same scale as the target variable $t$.
 
-> ![Figure 1.5](./CoursePR2026/Fig/Chapter_1/fig_1_5_textbook_p8.png)
+> ![Figure 1.5](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_5__textbook_fig_1_5__p8.png)
 >
 > *Figure 1.5 (Textbook Fig. 1.5, p. 8): Training error decreases as model complexity increases, but test error can rise sharply when the model overfits. Generalization must be evaluated on data not used for fitting.*
 
@@ -304,7 +304,7 @@ This is a central theme in machine learning: **we care about expected future per
 
 Overfitting depends not only on the model class but also on the amount of data.
 
-> ![Figure 1.6](./CoursePR2026/Fig/Chapter_1/fig_1_6_textbook_p9.png)
+> ![Figure 1.6](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_6__textbook_fig_1_6__p9.png)
 >
 > *Figure 1.6 (Textbook Fig. 1.6, p. 9): The same high-order polynomial behaves differently as the number of training points increases. More data can constrain a flexible model and reduce overfitting.*
 
@@ -337,7 +337,7 @@ The parameter $\lambda\geq 0$ controls the strength of the penalty.
 | Moderate | Suppresses extreme coefficients; often improves generalization. |
 | Very large | Forces coefficients close to zero; may underfit. |
 
-> ![Figure 1.7](./CoursePR2026/Fig/Chapter_1/fig_1_7_textbook_p10.png)
+> ![Figure 1.7](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_7__textbook_fig_1_7__p10.png)
 >
 > *Figure 1.7 (Textbook Fig. 1.7, p. 10): Regularization can suppress the extreme oscillations of a high-order polynomial. If the penalty is too strong, however, the model becomes overly flat and underfits.*
 
@@ -353,7 +353,7 @@ The Bayesian view will be derived in §4.4.
 
 The regularization parameter cannot be chosen by training error alone. If $\lambda$ is reduced, training error generally improves, but generalization may get worse.
 
-> ![Figure 1.8](./CoursePR2026/Fig/Chapter_1/fig_1_8_textbook_p11.png)
+> ![Figure 1.8](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_8__textbook_fig_1_8__p11.png)
 >
 > *Figure 1.8 (Textbook Fig. 1.8, p. 11): The regularization parameter controls the effective complexity of the fitted polynomial. A validation set or cross-validation procedure is needed to choose it in practice.*
 
@@ -396,7 +396,7 @@ Probability theory gives a consistent language for representing such uncertainty
 
 Bishop introduces probability using boxes of fruit.
 
-> ![Figure 1.9](./CoursePR2026/Fig/Chapter_1/fig_1_9_textbook_p12.png)
+> ![Figure 1.9](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_9__textbook_fig_1_9__p12.png)
 >
 > *Figure 1.9 (Textbook Fig. 1.9, p. 12): A simple fruit-box example for introducing priors, likelihoods, and posteriors. After seeing the fruit, our belief about the selected box changes.*
 
@@ -426,7 +426,7 @@ This example is small, but it already contains the general Bayesian logic used t
 
 Consider two random variables $X$ and $Y$. Their joint probability is $p(X,Y)$.
 
-> ![Figure 1.10](./CoursePR2026/Fig/Chapter_1/fig_1_10_textbook_p13.png)
+> ![Figure 1.10](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_10__textbook_fig_1_10__p13.png)
 >
 > *Figure 1.10 (Textbook Fig. 1.10, p. 13): Counting occurrences in a two-variable table motivates the sum rule and product rule of probability.*
 
@@ -485,7 +485,7 @@ For continuous variables, the sum is replaced by an integral.
 
 ## 3.5 Marginal and Conditional Distributions
 
-> ![Figure 1.11](./CoursePR2026/Fig/Chapter_1/fig_1_11_textbook_p16.png)
+> ![Figure 1.11](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_11__textbook_fig_1_11__p16.png)
 >
 > *Figure 1.11 (Textbook Fig. 1.11, p. 16): A joint distribution contains enough information to compute marginal distributions and conditional distributions. Marginalization discards one variable; conditioning focuses on a subset of cases.*
 
@@ -553,7 +553,7 @@ Conditional independence will become extremely important in graphical models.
 
 For a continuous variable, the probability of an exact value is usually zero. Instead, we use a probability density $p(x)$.
 
-> ![Figure 1.12](./CoursePR2026/Fig/Chapter_1/fig_1_12_textbook_p18.png)
+> ![Figure 1.12](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_12__textbook_fig_1_12__p18.png)
 >
 > *Figure 1.12 (Textbook Fig. 1.12, p. 18): A probability density assigns probability mass to intervals. The probability of a small interval is approximately density times width.*
 
@@ -679,7 +679,7 @@ $$
 \exp\left\{-\frac{1}{2\sigma^2}(x-\mu)^2\right\}.
 $$
 
-> ![Figure 1.13](./CoursePR2026/Fig/Chapter_1/fig_1_13_textbook_p25.png)
+> ![Figure 1.13](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_13__textbook_fig_1_13__p25.png)
 >
 > *Figure 1.13 (Textbook Fig. 1.13, p. 25): A univariate Gaussian is controlled by a mean $\mu$ and a standard deviation $\sigma$. The mean sets the center; the variance sets the spread.*
 
@@ -719,7 +719,7 @@ $$
 p(\mathbf{x}\mid \mu,\sigma^2)=\prod_{n=1}^{N}\mathcal{N}(x_n\mid \mu,\sigma^2).
 $$
 
-> ![Figure 1.14](./CoursePR2026/Fig/Chapter_1/fig_1_14_textbook_p26.png)
+> ![Figure 1.14](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_14__textbook_fig_1_14__p26.png)
 >
 > *Figure 1.14 (Textbook Fig. 1.14, p. 26): The Gaussian likelihood is the product of the density values assigned to the observed data points. Maximum likelihood chooses parameters that make the observed data most probable under the model.*
 
@@ -756,7 +756,7 @@ $$
 \widehat{\sigma}^2=\frac{1}{N-1}\sum_{n=1}^{N}(x_n-\mu_{\mathrm{ML}})^2.
 $$
 
-> ![Figure 1.15](./CoursePR2026/Fig/Chapter_1/fig_1_15_textbook_p28.png)
+> ![Figure 1.15](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_15__textbook_fig_1_15__p28.png)
 >
 > *Figure 1.15 (Textbook Fig. 1.15, p. 28): Estimating the mean from the same small data set pulls the fitted Gaussian toward the data, causing the maximum-likelihood variance estimate to be too small on average.*
 
@@ -790,7 +790,7 @@ $$
 p(t\mid x,\mathbf{w},\beta)=\mathcal{N}(t\mid y(x,\mathbf{w}),\beta^{-1}).
 $$
 
-> ![Figure 1.16](./CoursePR2026/Fig/Chapter_1/fig_1_16_textbook_p29.png)
+> ![Figure 1.16](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_16__textbook_fig_1_16__p29.png)
 >
 > *Figure 1.16 (Textbook Fig. 1.16, p. 29): A probabilistic regression model places a Gaussian distribution over $t$ for each input $x$. The mean is the polynomial prediction; the variance describes noise around the curve.*
 
@@ -906,7 +906,7 @@ $$
 
 This integral averages predictions over all plausible parameter values, weighted by their posterior probability.
 
-> ![Figure 1.17](./CoursePR2026/Fig/Chapter_1/fig_1_17_textbook_p32.png)
+> ![Figure 1.17](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_17__textbook_fig_1_17__p32.png)
 >
 > *Figure 1.17 (Textbook Fig. 1.17, p. 32): Bayesian curve fitting produces both a predictive mean and a predictive uncertainty band. Uncertainty is larger where the data provide less constraint.*
 
@@ -949,7 +949,7 @@ The test set should not be repeatedly used for model selection, because then it 
 
 When data are limited, holding out a large validation set can waste valuable training data. Cross-validation reduces this problem.
 
-> ![Figure 1.18](./CoursePR2026/Fig/Chapter_1/fig_1_18_textbook_p33.png)
+> ![Figure 1.18](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_18__textbook_fig_1_18__p33.png)
 >
 > *Figure 1.18 (Textbook Fig. 1.18, p. 33): In $S$-fold cross-validation, the data are split into $S$ groups. Each group is used once as validation data while the remaining groups are used for training.*
 
@@ -968,11 +968,11 @@ Cross-validation is useful but computationally expensive. If there are many cand
 
 High-dimensional spaces behave very differently from low-dimensional spaces. A naive approach to classification is to divide the input space into cells and classify a test point by the majority class in its cell.
 
-> ![Figure 1.19](./CoursePR2026/Fig/Chapter_1/fig_1_19_textbook_p34.png)
+> ![Figure 1.19](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_19__textbook_fig_1_19__p34.png)
 >
 > *Figure 1.19 (Textbook Fig. 1.19, p. 34): A two-dimensional projection of a classification problem. Even in two dimensions, local neighborhoods can contain mixed class labels.*
 
-> ![Figure 1.20](./CoursePR2026/Fig/Chapter_1/fig_1_20_textbook_p35.png)
+> ![Figure 1.20](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_20__textbook_fig_1_20__p35.png)
 >
 > *Figure 1.20 (Textbook Fig. 1.20, p. 35): A simple grid-based classifier assigns a test point according to the majority class in the same cell. This becomes impractical in high dimensions.*
 
@@ -984,7 +984,7 @@ $$
 
 This grows exponentially with dimension $D$.
 
-> ![Figure 1.21](./CoursePR2026/Fig/Chapter_1/fig_1_21_textbook_p35.png)
+> ![Figure 1.21](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_21__textbook_fig_1_21__p35.png)
 >
 > *Figure 1.21 (Textbook Fig. 1.21, p. 35): The number of grid regions grows exponentially as dimension increases. This is one form of the curse of dimensionality.*
 
@@ -1027,7 +1027,7 @@ This motivates models that exploit structure, such as:
 
 High-dimensional geometry is often unintuitive. Consider a unit sphere in $D$ dimensions. The fraction of volume lying near the surface becomes large as $D$ increases.
 
-> ![Figure 1.22](./CoursePR2026/Fig/Chapter_1/fig_1_22_textbook_p37.png)
+> ![Figure 1.22](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_22__textbook_fig_1_22__p37.png)
 >
 > *Figure 1.22 (Textbook Fig. 1.22, p. 37): In high dimensions, most of the volume of a sphere lies in a thin shell near the surface.*
 
@@ -1037,7 +1037,7 @@ This means that our low-dimensional intuition can be misleading. In high dimensi
 
 A similar effect occurs for high-dimensional Gaussian distributions.
 
-> ![Figure 1.23](./CoursePR2026/Fig/Chapter_1/fig_1_23_textbook_p37.png)
+> ![Figure 1.23](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_23__textbook_fig_1_23__p37.png)
 >
 > *Figure 1.23 (Textbook Fig. 1.23, p. 37): For a high-dimensional Gaussian, most probability mass lies in a shell at a nonzero radius rather than near the mean.*
 
@@ -1091,7 +1091,7 @@ Suppose there are classes $C_1,\ldots,C_K$. A classifier divides input space int
 
 If $\mathbf{x}\in\mathcal{R}_k$, the classifier assigns class $C_k$.
 
-> ![Figure 1.24](./CoursePR2026/Fig/Chapter_1/fig_1_24_textbook_p40.png)
+> ![Figure 1.24](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_24__textbook_fig_1_24__p40.png)
 >
 > *Figure 1.24 (Textbook Fig. 1.24, p. 40): For two classes, errors occur in regions where the chosen decision region does not match the true class distribution. The optimal boundary for minimizing error assigns each $x$ to the most probable class.*
 
@@ -1113,7 +1113,7 @@ This is the standard maximum-posterior classification rule.
 
 In many applications, different errors have different consequences.
 
-> ![Figure 1.25](./CoursePR2026/Fig/Chapter_1/fig_1_25_textbook_p41.png)
+> ![Figure 1.25](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_25__textbook_fig_1_25__p41.png)
 >
 > *Figure 1.25 (Textbook Fig. 1.25, p. 41): A loss matrix for a medical diagnosis example. Missing a serious condition can be much more costly than a false alarm.*
 
@@ -1138,7 +1138,7 @@ This is more general than maximum-posterior classification. Maximum-posterior cl
 
 Sometimes the best action is not to classify. If the model is uncertain, we may reject the example and ask for human review.
 
-> ![Figure 1.26](./CoursePR2026/Fig/Chapter_1/fig_1_26_textbook_p42.png)
+> ![Figure 1.26](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_26__textbook_fig_1_26__p42.png)
 >
 > *Figure 1.26 (Textbook Fig. 1.26, p. 42): With a reject option, inputs with insufficient posterior confidence are not assigned to a class.*
 
@@ -1197,7 +1197,7 @@ $$
 
 This can be computationally simple, but it does not provide calibrated posterior probabilities. Without posterior probabilities, it is harder to handle rejection, asymmetric loss, class-prior changes, and model combination.
 
-> ![Figure 1.27](./CoursePR2026/Fig/Chapter_1/fig_1_27_textbook_p44.png)
+> ![Figure 1.27](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_27__textbook_fig_1_27__p44.png)
 >
 > *Figure 1.27 (Textbook Fig. 1.27, p. 44): Generative modeling captures class-conditional densities, while discriminative modeling focuses on posterior probabilities and decision boundaries. Some density structure may be irrelevant for classification.*
 
@@ -1231,7 +1231,7 @@ $$
 y(\mathbf{x})=\mathbb{E}[t\mid \mathbf{x}].
 $$
 
-> ![Figure 1.28](./CoursePR2026/Fig/Chapter_1/fig_1_28_textbook_p47.png)
+> ![Figure 1.28](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_28__textbook_fig_1_28__p47.png)
 >
 > *Figure 1.28 (Textbook Fig. 1.28, p. 47): Under squared loss, the optimal regression function is the mean of the conditional distribution $p(t\mid x)$.*
 
@@ -1261,7 +1261,7 @@ $$
 L_q=|y-t|^q.
 $$
 
-> ![Figure 1.29](./CoursePR2026/Fig/Chapter_1/fig_1_29_textbook_p49.png)
+> ![Figure 1.29](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_29__textbook_fig_1_29__p49.png)
 >
 > *Figure 1.29 (Textbook Fig. 1.29, p. 49): The shape of the loss function changes with $q$. Different choices of loss lead to different optimal predictions.*
 
@@ -1315,7 +1315,7 @@ $$
 
 Entropy measures the average uncertainty of a random variable.
 
-> ![Figure 1.30](./CoursePR2026/Fig/Chapter_1/fig_1_30_textbook_p52.png)
+> ![Figure 1.30](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_30__textbook_fig_1_30__p52.png)
 >
 > *Figure 1.30 (Textbook Fig. 1.30, p. 52): A broader distribution has higher entropy because observations are less predictable on average.*
 
@@ -1381,7 +1381,7 @@ The analogy is useful: probability factorization becomes entropy decomposition.
 
 KL divergence and many later variational methods rely on convexity.
 
-> ![Figure 1.31](./CoursePR2026/Fig/Chapter_1/fig_1_31_textbook_p56.png)
+> ![Figure 1.31](./CoursePRML2026/Fig/Chapter_1/lecture_fig_1_31__textbook_fig_1_31__p56.png)
 >
 > *Figure 1.31 (Textbook Fig. 1.31, p. 56): A convex function lies below its chords. This geometric property underlies Jensen's inequality, which is used to prove non-negativity of KL divergence.*
 
@@ -1580,44 +1580,47 @@ $$
 
 ## 8.3 Figure Checklist
 
+Filename convention: `lecture_fig_<lecture-number>__textbook_fig_<original-textbook-number>__p<textbook-page>.png`.
+
+
 | Lecture Figure | Textbook Figure | File |
 |----------------|-----------------|------|
-| Figure 1.1 | PRML Fig. 1.1 | `fig_1_1_textbook_p2.png` |
-| Figure 1.2 | PRML Fig. 1.2 | `fig_1_2_textbook_p4.png` |
-| Figure 1.3 | PRML Fig. 1.3 | `fig_1_3_textbook_p6.png` |
-| Figure 1.4 | PRML Fig. 1.4 | `fig_1_4_textbook_p7.png` |
-| Figure 1.5 | PRML Fig. 1.5 | `fig_1_5_textbook_p8.png` |
-| Figure 1.6 | PRML Fig. 1.6 | `fig_1_6_textbook_p9.png` |
-| Figure 1.7 | PRML Fig. 1.7 | `fig_1_7_textbook_p10.png` |
-| Figure 1.8 | PRML Fig. 1.8 | `fig_1_8_textbook_p11.png` |
-| Figure 1.9 | PRML Fig. 1.9 | `fig_1_9_textbook_p12.png` |
-| Figure 1.10 | PRML Fig. 1.10 | `fig_1_10_textbook_p13.png` |
-| Figure 1.11 | PRML Fig. 1.11 | `fig_1_11_textbook_p16.png` |
-| Figure 1.12 | PRML Fig. 1.12 | `fig_1_12_textbook_p18.png` |
-| Figure 1.13 | PRML Fig. 1.13 | `fig_1_13_textbook_p25.png` |
-| Figure 1.14 | PRML Fig. 1.14 | `fig_1_14_textbook_p26.png` |
-| Figure 1.15 | PRML Fig. 1.15 | `fig_1_15_textbook_p28.png` |
-| Figure 1.16 | PRML Fig. 1.16 | `fig_1_16_textbook_p29.png` |
-| Figure 1.17 | PRML Fig. 1.17 | `fig_1_17_textbook_p32.png` |
-| Figure 1.18 | PRML Fig. 1.18 | `fig_1_18_textbook_p33.png` |
-| Figure 1.19 | PRML Fig. 1.19 | `fig_1_19_textbook_p34.png` |
-| Figure 1.20 | PRML Fig. 1.20 | `fig_1_20_textbook_p35.png` |
-| Figure 1.21 | PRML Fig. 1.21 | `fig_1_21_textbook_p35.png` |
-| Figure 1.22 | PRML Fig. 1.22 | `fig_1_22_textbook_p37.png` |
-| Figure 1.23 | PRML Fig. 1.23 | `fig_1_23_textbook_p37.png` |
-| Figure 1.24 | PRML Fig. 1.24 | `fig_1_24_textbook_p40.png` |
-| Figure 1.25 | PRML Fig. 1.25 | `fig_1_25_textbook_p41.png` |
-| Figure 1.26 | PRML Fig. 1.26 | `fig_1_26_textbook_p42.png` |
-| Figure 1.27 | PRML Fig. 1.27 | `fig_1_27_textbook_p44.png` |
-| Figure 1.28 | PRML Fig. 1.28 | `fig_1_28_textbook_p47.png` |
-| Figure 1.29 | PRML Fig. 1.29 | `fig_1_29_textbook_p49.png` |
-| Figure 1.30 | PRML Fig. 1.30 | `fig_1_30_textbook_p52.png` |
-| Figure 1.31 | PRML Fig. 1.31 | `fig_1_31_textbook_p56.png` |
+| Figure 1.1 | PRML Fig. 1.1 | `lecture_fig_1_1__textbook_fig_1_1__p2.png` |
+| Figure 1.2 | PRML Fig. 1.2 | `lecture_fig_1_2__textbook_fig_1_2__p4.png` |
+| Figure 1.3 | PRML Fig. 1.3 | `lecture_fig_1_3__textbook_fig_1_3__p6.png` |
+| Figure 1.4 | PRML Fig. 1.4 | `lecture_fig_1_4__textbook_fig_1_4__p7.png` |
+| Figure 1.5 | PRML Fig. 1.5 | `lecture_fig_1_5__textbook_fig_1_5__p8.png` |
+| Figure 1.6 | PRML Fig. 1.6 | `lecture_fig_1_6__textbook_fig_1_6__p9.png` |
+| Figure 1.7 | PRML Fig. 1.7 | `lecture_fig_1_7__textbook_fig_1_7__p10.png` |
+| Figure 1.8 | PRML Fig. 1.8 | `lecture_fig_1_8__textbook_fig_1_8__p11.png` |
+| Figure 1.9 | PRML Fig. 1.9 | `lecture_fig_1_9__textbook_fig_1_9__p12.png` |
+| Figure 1.10 | PRML Fig. 1.10 | `lecture_fig_1_10__textbook_fig_1_10__p13.png` |
+| Figure 1.11 | PRML Fig. 1.11 | `lecture_fig_1_11__textbook_fig_1_11__p16.png` |
+| Figure 1.12 | PRML Fig. 1.12 | `lecture_fig_1_12__textbook_fig_1_12__p18.png` |
+| Figure 1.13 | PRML Fig. 1.13 | `lecture_fig_1_13__textbook_fig_1_13__p25.png` |
+| Figure 1.14 | PRML Fig. 1.14 | `lecture_fig_1_14__textbook_fig_1_14__p26.png` |
+| Figure 1.15 | PRML Fig. 1.15 | `lecture_fig_1_15__textbook_fig_1_15__p28.png` |
+| Figure 1.16 | PRML Fig. 1.16 | `lecture_fig_1_16__textbook_fig_1_16__p29.png` |
+| Figure 1.17 | PRML Fig. 1.17 | `lecture_fig_1_17__textbook_fig_1_17__p32.png` |
+| Figure 1.18 | PRML Fig. 1.18 | `lecture_fig_1_18__textbook_fig_1_18__p33.png` |
+| Figure 1.19 | PRML Fig. 1.19 | `lecture_fig_1_19__textbook_fig_1_19__p34.png` |
+| Figure 1.20 | PRML Fig. 1.20 | `lecture_fig_1_20__textbook_fig_1_20__p35.png` |
+| Figure 1.21 | PRML Fig. 1.21 | `lecture_fig_1_21__textbook_fig_1_21__p35.png` |
+| Figure 1.22 | PRML Fig. 1.22 | `lecture_fig_1_22__textbook_fig_1_22__p37.png` |
+| Figure 1.23 | PRML Fig. 1.23 | `lecture_fig_1_23__textbook_fig_1_23__p37.png` |
+| Figure 1.24 | PRML Fig. 1.24 | `lecture_fig_1_24__textbook_fig_1_24__p40.png` |
+| Figure 1.25 | PRML Fig. 1.25 | `lecture_fig_1_25__textbook_fig_1_25__p41.png` |
+| Figure 1.26 | PRML Fig. 1.26 | `lecture_fig_1_26__textbook_fig_1_26__p42.png` |
+| Figure 1.27 | PRML Fig. 1.27 | `lecture_fig_1_27__textbook_fig_1_27__p44.png` |
+| Figure 1.28 | PRML Fig. 1.28 | `lecture_fig_1_28__textbook_fig_1_28__p47.png` |
+| Figure 1.29 | PRML Fig. 1.29 | `lecture_fig_1_29__textbook_fig_1_29__p49.png` |
+| Figure 1.30 | PRML Fig. 1.30 | `lecture_fig_1_30__textbook_fig_1_30__p52.png` |
+| Figure 1.31 | PRML Fig. 1.31 | `lecture_fig_1_31__textbook_fig_1_31__p56.png` |
 
 All figures used in this lecture were rendered from the supplied textbook PDF and saved under:
 
 ```text
-./CoursePR2026/Fig/Chapter_1/
+./CoursePRML2026/Fig/Chapter_1/
 ```
 
 ## 8.4 Suggested Teaching Flow
