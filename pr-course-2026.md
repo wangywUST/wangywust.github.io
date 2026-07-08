@@ -147,48 +147,6 @@ layout: course
 
 </details>
 
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 2: Analysis of Discrete Random Signals</span><span class="lecture-intro">This lecture introduces random signals from a signal-processing perspective, focusing on stationarity, correlation, covariance, power spectra, and spectral factorization. These ideas provide the probabilistic foundation for prediction, estimation, and optimum filtering.</span></summary>
-
-{% include_relative CoursePR2026/lecture_2.md %}
-
-</details>
-
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 3: Linear Prediction and Lattice Filters</span><span class="lecture-intro">This lecture studies how future or missing signal samples can be estimated from past observations using linear prediction. It also develops lattice filter structures and related algorithms that are central to speech modeling, spectral analysis, and adaptive filtering.</span></summary>
-
-{% include_relative CoursePR2026/lecture_3.md %}
-
-</details>
-
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 4: Linear Signal Modeling and Parametric Spectral Estimation</span><span class="lecture-intro">This lecture connects random signal behavior with compact parametric models such as AR, MA, and ARMA processes. It emphasizes how model assumptions lead to practical spectral estimation methods and how residual analysis helps judge model quality.</span></summary>
-
-{% include_relative CoursePR2026/lecture_4.md %}
-
-</details>
-
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 5: Power Spectrum Estimation</span><span class="lecture-intro">This lecture focuses on estimating power spectra from finite data records. It compares nonparametric and model-based approaches, highlighting the trade-offs among resolution, variance, bias, data length, and prior modeling assumptions.</span></summary>
-
-{% include_relative CoursePR2026/lecture_5.md %}
-
-</details>
-
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 6: Optimum Linear Filtering, Wiener Filters and Kalman Filters</span><span class="lecture-intro">This lecture develops optimum linear filtering as a framework for estimation, denoising, prediction, and tracking. It covers Wiener filtering and Kalman filtering, showing how second-order statistics and state-space models lead to principled signal estimates.</span></summary>
-
-{% include_relative CoursePR2026/lecture_6.md %}
-
-</details>
-
-<details class="lecture-toggle" markdown="1">
-<summary><span class="lecture-title">Lecture 7: Adaptive Filters, LMS, RLS, and Tracking</span><span class="lecture-intro">This lecture explains how filters can learn and update from streaming data when signal statistics are unknown or changing. It introduces adaptive filtering algorithms such as LMS and RLS, with attention to convergence, stability, tracking, and practical implementation.</span></summary>
-
-{% include_relative CoursePR2026/lecture_7.md %}
-
-</details>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const lectureToggles = Array.from(document.querySelectorAll(".lecture-toggle"));
