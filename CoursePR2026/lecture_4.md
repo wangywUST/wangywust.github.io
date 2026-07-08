@@ -233,9 +233,9 @@ $$
 
 This formula is useful pedagogically because it shows that a discriminant score is not just an arbitrary number. Its magnitude measures how far the point lies from the separating hyperplane, up to the scale of $\mathbf{w}$.
 
-![Lecture Figure 4.1 / Textbook Figure 4.1: Geometry of a two-class linear discriminant.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_1__textbook_fig_4_1_p182_linear_discriminant_geometry.png)
-
-**Teaching interpretation of Figure 4.1.** The red line is the decision surface $y=0$. The vector $\mathbf{w}$ is perpendicular to this line, and its direction points toward the region where the score is positive. The point $\mathbf{x}$ is decomposed into a point $\mathbf{x}_\perp$ on the boundary plus a normal displacement. The signed distance is $y(\mathbf{x})/\|\mathbf{w}\|$, so the linear score carries both class information and a notion of confidence margin.
+> ![Figure 4.1](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_1__textbook_fig_4_1_p182_linear_discriminant_geometry.png)
+>
+> *Figure 4.1 (Textbook Fig. 4.1, p. 182): The red line is the decision surface $y=0$. The vector $\mathbf{w}$ is perpendicular to this line, and its direction points toward the region where the score is positive. The point $\mathbf{x}$ is decomposed into a point $\mathbf{x}_\perp$ on the boundary plus a normal displacement. The signed distance is $y(\mathbf{x})/\|\mathbf{w}\|$, so the linear score carries both class information and a notion of confidence margin.*
 
 ## 1.3 Multiple Classes: Why Naive Pairwise Constructions Can Fail
 
@@ -245,9 +245,9 @@ The first is **one-versus-rest**. For each class $\mathcal{C}_k$, train a classi
 
 The second is **one-versus-one**. For each pair of classes $(\mathcal{C}_j,\mathcal{C}_k)$, train a classifier that separates those two classes. This also can create regions where pairwise decisions are inconsistent.
 
-![Lecture Figure 4.2 / Textbook Figure 4.2: Ambiguous regions from one-versus-rest and one-versus-one constructions.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_2__textbook_fig_4_2_p183_one_vs_rest_one_vs_one_ambiguity.png)
-
-**Teaching interpretation of Figure 4.2.** The green regions show the key failure mode. Independent binary classifiers do not necessarily agree on a single global multiclass partition of input space. This is why it is cleaner to define one joint $K$-class model rather than trying to paste together unrelated binary decisions.
+> ![Figure 4.2](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_2__textbook_fig_4_2_p183_one_vs_rest_one_vs_one_ambiguity.png)
+>
+> *Figure 4.2 (Textbook Fig. 4.2, p. 183): The green regions show the key failure mode. Independent binary classifiers do not necessarily agree on a single global multiclass partition of input space. This is why it is cleaner to define one joint $K$-class model rather than trying to paste together unrelated binary decisions.*
 
 A more coherent approach uses $K$ linear discriminant functions
 
@@ -276,9 +276,9 @@ $$
 
 Thus each pairwise boundary is still a hyperplane, but all boundaries are now coupled through a single set of class scores.
 
-![Lecture Figure 4.3 / Textbook Figure 4.3: Convex decision regions produced by multiclass linear discriminants.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_3__textbook_fig_4_3_p184_multiclass_linear_regions_convexity.png)
-
-**Teaching interpretation of Figure 4.3.** Multiclass linear discriminants create decision regions that are convex and singly connected. If two points lie inside the same region, then every point on the straight line between them also lies in that region. This is a useful limitation to remember: linear multiclass models cannot represent disconnected decision regions unless we first transform the inputs through nonlinear basis functions.
+> ![Figure 4.3](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_3__textbook_fig_4_3_p184_multiclass_linear_regions_convexity.png)
+>
+> *Figure 4.3 (Textbook Fig. 4.3, p. 184): Multiclass linear discriminants create decision regions that are convex and singly connected. If two points lie inside the same region, then every point on the straight line between them also lies in that region. This is a useful limitation to remember: linear multiclass models cannot represent disconnected decision regions unless we first transform the inputs through nonlinear basis functions.*
 
 ## 1.4 Least Squares for Classification
 
@@ -306,15 +306,15 @@ $$
 
 At first this looks attractive because it is closed-form and computationally simple. However, least squares is usually a poor classification loss. It assumes Gaussian noise around target vectors, but class labels are discrete. It also penalizes predictions that are far beyond the correct side of the boundary, even though being “very correctly classified” should not be a problem.
 
-![Lecture Figure 4.4 / Textbook Figure 4.4: Least squares is sensitive to outliers compared with logistic regression.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_4__textbook_fig_4_4_p186_least_squares_outlier_sensitivity.png)
-
-**Teaching interpretation of Figure 4.4.** In the left plot, least squares and logistic regression both produce reasonable boundaries. In the right plot, a cluster of extra points far from the boundary strongly moves the least-squares boundary, even though those points are already correctly classified. The squared loss keeps trying to fit the numerical target values, not just the class separation. Logistic regression is less affected because its cross-entropy loss saturates differently for confidently correct examples.
+> ![Figure 4.4](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_4__textbook_fig_4_4_p186_least_squares_outlier_sensitivity.png)
+>
+> *Figure 4.4 (Textbook Fig. 4.4, p. 186): In the left plot, least squares and logistic regression both produce reasonable boundaries. In the right plot, a cluster of extra points far from the boundary strongly moves the least-squares boundary, even though those points are already correctly classified. The squared loss keeps trying to fit the numerical target values, not just the class separation. Logistic regression is less affected because its cross-entropy loss saturates differently for confidently correct examples.*
 
 Least squares can be even more problematic in multiclass problems.
 
-![Lecture Figure 4.5 / Textbook Figure 4.5: Failure of least squares on a three-class classification problem.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_5__textbook_fig_4_5_p187_least_squares_multiclass_failure.png)
-
-**Teaching interpretation of Figure 4.5.** The data are almost linearly separable by sensible class regions. The least-squares solution on the left assigns too little space to the green class, while logistic regression on the right produces a much more natural partition. This figure is important because it shows that a closed-form solution is not automatically a good classification method. The loss function must match the nature of the target.
+> ![Figure 4.5](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_5__textbook_fig_4_5_p187_least_squares_multiclass_failure.png)
+>
+> *Figure 4.5 (Textbook Fig. 4.5, p. 187): The data are almost linearly separable by sensible class regions. The least-squares solution on the left assigns too little space to the green class, while logistic regression on the right produces a much more natural partition. This figure is important because it shows that a closed-form solution is not automatically a good classification method. The loss function must match the nature of the target.*
 
 ## 1.5 Fisher's Linear Discriminant
 
@@ -371,9 +371,9 @@ $$
 \mathbf{w}\propto S_W^{-1}(\mathbf{m}_2-\mathbf{m}_1).
 $$
 
-![Lecture Figure 4.6 / Textbook Figure 4.6: Fisher's projection improves class separation.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_6__textbook_fig_4_6_p188_fisher_projection_class_separation.png)
-
-**Teaching interpretation of Figure 4.6.** The line joining the class means is not necessarily a good projection direction. In the left plot, projection onto that direction creates substantial overlap in one dimension. Fisher's discriminant, shown on the right, accounts for within-class covariance and finds a projection with much cleaner separation.
+> ![Figure 4.6](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_6__textbook_fig_4_6_p188_fisher_projection_class_separation.png)
+>
+> *Figure 4.6 (Textbook Fig. 4.6, p. 188): The line joining the class means is not necessarily a good projection direction. In the left plot, projection onto that direction creates substantial overlap in one dimension. Fisher's discriminant, shown on the right, accounts for within-class covariance and finds a projection with much cleaner separation.*
 
 After projecting onto one dimension, we still need a threshold to classify points. Fisher's method gives a representation; it does not by itself specify a probabilistic classifier. The threshold can be chosen by minimizing training errors, by validation, or by fitting simple one-dimensional class-conditional densities in the projected space.
 
@@ -451,13 +451,13 @@ $$
 
 This update has an intuitive interpretation. If a positive example is misclassified, add its feature vector to $\mathbf{w}$. If a negative example is misclassified, subtract its feature vector from $\mathbf{w}$. Each update rotates or shifts the decision boundary so that the current mistaken point is more likely to be classified correctly.
 
-![Lecture Figure 4.7 / Textbook Figure 4.7: Convergence behavior of the perceptron learning algorithm.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_7__textbook_fig_4_7_p195_perceptron_learning_convergence.png)
+> ![Figure 4.7](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_7__textbook_fig_4_7_p195_perceptron_learning_convergence.png)
+>
+> *Figure 4.7 (Textbook Fig. 4.7, p. 195): Each panel shows the current parameter vector and decision boundary. The circled point is misclassified, so its feature vector is used to update the weights. The boundary changes after each update. When the data are linearly separable, the perceptron convergence theorem guarantees that this process eventually finds a separating solution.*
 
-**Teaching interpretation of Figure 4.7.** Each panel shows the current parameter vector and decision boundary. The circled point is misclassified, so its feature vector is used to update the weights. The boundary changes after each update. When the data are linearly separable, the perceptron convergence theorem guarantees that this process eventually finds a separating solution.
-
-![Lecture Figure 4.8 / Textbook Figure 4.8: The Mark 1 perceptron hardware.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_8__textbook_fig_4_8_p196_mark_1_perceptron_hardware.png)
-
-**Teaching interpretation of Figure 4.8.** The perceptron was not just an abstract algorithm; it was also implemented as physical hardware. The system used a primitive image sensor, configurable feature wiring, and adaptive parameters. This figure is useful for reminding students that modern neural networks evolved from very concrete attempts to build trainable pattern-recognition machines.
+> ![Figure 4.8](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_8__textbook_fig_4_8_p196_mark_1_perceptron_hardware.png)
+>
+> *Figure 4.8 (Textbook Fig. 4.8, p. 196): The perceptron was not just an abstract algorithm; it was also implemented as physical hardware. The system used a primitive image sensor, configurable feature wiring, and adaptive parameters. This figure is useful for reminding students that modern neural networks evolved from very concrete attempts to build trainable pattern-recognition machines.*
 
 The perceptron has important limitations. It does not output probabilities, so it cannot directly express uncertainty. It converges only when the data are linearly separable in feature space. If the data are not separable, the algorithm can keep updating indefinitely. These limitations motivate probabilistic classifiers such as logistic regression.
 
@@ -505,9 +505,9 @@ $$
 \sigma(a)=\frac{1}{1+\exp(-a)}.
 $$
 
-![Lecture Figure 4.9 / Textbook Figure 4.9: Logistic sigmoid and scaled probit functions.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_9__textbook_fig_4_9_p197_logistic_sigmoid_and_probit.png)
-
-**Teaching interpretation of Figure 4.9.** The logistic sigmoid maps any real-valued score to a number between 0 and 1. Large positive scores become probabilities near 1, large negative scores become probabilities near 0, and a score of 0 corresponds to probability 0.5. The figure also compares the sigmoid with a scaled probit function, which will become useful when we discuss probit regression and Bayesian logistic prediction.
+> ![Figure 4.9](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_9__textbook_fig_4_9_p197_logistic_sigmoid_and_probit.png)
+>
+> *Figure 4.9 (Textbook Fig. 4.9, p. 197): The logistic sigmoid maps any real-valued score to a number between 0 and 1. Large positive scores become probabilities near 1, large negative scores become probabilities near 0, and a score of 0 corresponds to probability 0.5. The figure also compares the sigmoid with a scaled probit function, which will become useful when we discuss probit regression and Bayesian logistic prediction.*
 
 For $K$ classes, Bayes' theorem gives the softmax form
 
@@ -556,9 +556,9 @@ $$
 
 This is a central result: **Gaussian class-conditionals with common covariance imply a linear decision boundary and a logistic posterior**.
 
-![Lecture Figure 4.10 / Textbook Figure 4.10: Gaussian class-conditionals leading to a sigmoid posterior.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_10__textbook_fig_4_10_p199_generative_gaussian_posterior_sigmoid.png)
-
-**Teaching interpretation of Figure 4.10.** The left plot shows two class-conditional densities. The right plot shows the posterior probability $p(\mathcal{C}_1\mid\mathbf{x})$. The posterior surface has a sigmoid transition because the log-odds is linear in $\mathbf{x}$. This figure connects density modelling to the same kind of linear boundary used by discriminant functions.
+> ![Figure 4.10](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_10__textbook_fig_4_10_p199_generative_gaussian_posterior_sigmoid.png)
+>
+> *Figure 4.10 (Textbook Fig. 4.10, p. 199): The left plot shows two class-conditional densities. The right plot shows the posterior probability $p(\mathcal{C}_1\mid\mathbf{x})$. The posterior surface has a sigmoid transition because the log-odds is linear in $\mathbf{x}$. This figure connects density modelling to the same kind of linear boundary used by discriminant functions.*
 
 For $K$ Gaussian classes with the same covariance matrix, the posterior has a softmax form:
 
@@ -587,9 +587,9 @@ $$
 
 If different classes have different covariance matrices $\boldsymbol{\Sigma}_k$, the quadratic terms no longer cancel. The resulting log-odds is quadratic in $\mathbf{x}$, so the decision boundaries become quadratic surfaces.
 
-![Lecture Figure 4.11 / Textbook Figure 4.11: Linear and quadratic decision boundaries from Gaussian class-conditionals.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_11__textbook_fig_4_11_p200_linear_quadratic_decision_boundaries.png)
-
-**Teaching interpretation of Figure 4.11.** The red and green classes share the same covariance, so the boundary between them is linear. Boundaries involving the blue class are quadratic because its covariance differs. This figure shows exactly how modelling assumptions about class covariance determine the shape of the decision boundary.
+> ![Figure 4.11](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_11__textbook_fig_4_11_p200_linear_quadratic_decision_boundaries.png)
+>
+> *Figure 4.11 (Textbook Fig. 4.11, p. 200): The red and green classes share the same covariance, so the boundary between them is linear. Boundaries involving the blue class are quadratic because its covariance differs. This figure shows exactly how modelling assumptions about class covariance determine the shape of the decision boundary.*
 
 ## 2.3 Maximum-Likelihood Solution for Shared-Covariance Gaussians
 
@@ -677,9 +677,9 @@ $$
 
 Then a linear decision boundary in feature space corresponds to a nonlinear decision boundary in the original input space.
 
-![Lecture Figure 4.12 / Textbook Figure 4.12: Nonlinear basis functions make linear classification flexible.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_12__textbook_fig_4_12_p204_nonlinear_basis_feature_space_classification.png)
-
-**Teaching interpretation of Figure 4.12.** The left plot shows data in the original input space and two Gaussian basis functions. The right plot shows the transformed feature space. In feature space, the classes can be separated by a straight line. When mapped back to the original input space, that straight line becomes a nonlinear boundary. This is the same basis-function principle from Chapter 3, now used for classification.
+> ![Figure 4.12](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_12__textbook_fig_4_12_p204_nonlinear_basis_feature_space_classification.png)
+>
+> *Figure 4.12 (Textbook Fig. 4.12, p. 204): The left plot shows data in the original input space and two Gaussian basis functions. The right plot shows the transformed feature space. In feature space, the classes can be separated by a straight line. When mapped back to the original input space, that straight line becomes a nonlinear boundary. This is the same basis-function principle from Chapter 3, now used for classification.*
 
 ## 3.2 Logistic Regression
 
@@ -820,9 +820,9 @@ $$
 
 If $p(\theta)$ is Gaussian, this gives the probit model.
 
-![Lecture Figure 4.13 / Textbook Figure 4.13: A probability density and its cumulative distribution function.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_13__textbook_fig_4_13_p211_density_and_cumulative_distribution.png)
-
-**Teaching interpretation of Figure 4.13.** The blue curve is a density over a threshold variable. The red curve is the cumulative probability up to a given value. The value of the red curve at a score $a$ gives the probability that the threshold is below $a$. This explains why cumulative distribution functions naturally act as sigmoid-shaped activation functions.
+> ![Figure 4.13](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_13__textbook_fig_4_13_p211_density_and_cumulative_distribution.png)
+>
+> *Figure 4.13 (Textbook Fig. 4.13, p. 211): The blue curve is a density over a threshold variable. The red curve is the cumulative probability up to a given value. The value of the red curve at a score $a$ gives the probability that the threshold is below $a$. This explains why cumulative distribution functions naturally act as sigmoid-shaped activation functions.*
 
 Logistic and probit regression often behave similarly. The logistic sigmoid is algebraically convenient for Bernoulli likelihoods, while the probit function is convenient for Gaussian integrals. This Gaussian-integral convenience becomes important in Bayesian logistic regression.
 
@@ -910,9 +910,9 @@ $$
 q(z)=\mathcal{N}(z\mid z_0,A^{-1}).
 $$
 
-![Lecture Figure 4.14 / Textbook Figure 4.14: Laplace approximation to a non-Gaussian distribution.](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_14__textbook_fig_4_14_p215_laplace_approximation_distribution.png)
-
-**Teaching interpretation of Figure 4.14.** The yellow distribution is skewed and non-Gaussian. The red curve is the Gaussian approximation obtained by matching the mode and local curvature. The right plot shows negative log-density: the Laplace approximation is equivalent to replacing the local shape near the minimum by a quadratic bowl. This is powerful, but also limited: it is a local approximation and may miss skewness, heavy tails, or multiple modes.
+> ![Figure 4.14](./CoursePR2026/Fig/Chapter_4/lecture_fig_4_14__textbook_fig_4_14_p215_laplace_approximation_distribution.png)
+>
+> *Figure 4.14 (Textbook Fig. 4.14, p. 215): The yellow distribution is skewed and non-Gaussian. The red curve is the Gaussian approximation obtained by matching the mode and local curvature. The right plot shows negative log-density: the Laplace approximation is equivalent to replacing the local shape near the minimum by a quadratic bowl. This is powerful, but also limited: it is a local approximation and may miss skewness, heavy tails, or multiple modes.*
 
 ## 4.3 Multivariate Laplace Approximation
 
