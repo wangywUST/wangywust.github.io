@@ -809,6 +809,58 @@ For a causal pole-zero model with distinct poles, the impulse response can be wr
 
 $$h(n)=\sum_jB_j\delta(n-j)+\sum_kA_kp_k^nu(n)+\sum_iC_ir_i^n\cos(\omega_in+\phi_i)u(n).$$
 
+This result comes from **partial-fraction expansion** of the rational transfer function and the basic inverse z-transform pairs.
+
+For a pole-zero model,
+
+$$H(z)=\frac{D(z)}{A(z)},$$
+
+where $D(z)$ contains the zeros and $A(z)$ contains the poles. If the poles are distinct, the denominator can be factored as
+
+$$A(z)=\prod_k(1-p_kz^{-1}).$$
+
+Therefore $H(z)$ can be decomposed into a finite polynomial part plus first-order pole terms:
+
+$$H(z)=\sum_jB_jz^{-j}+\sum_k\frac{A_k}{1-p_kz^{-1}}.$$
+
+Now take the inverse z-transform term by term.
+
+First, the polynomial terms give delayed impulses:
+
+$$B_jz^{-j}\quad \Longleftrightarrow \quad B_j\delta(n-j).$$
+
+These terms come from the finite all-zero part of the model. This is why an all-zero or MA model has a finite impulse response.
+
+Second, a real pole gives a real exponential. The basic causal z-transform pair is
+
+$$\frac{1}{1-pz^{-1}}\quad \Longleftrightarrow \quad p^nu(n).$$
+
+So a real pole $p_k$ contributes
+
+$$A_kp_k^nu(n).$$
+
+If $|p_k|<1$, this term decays exponentially. If $p_k$ is closer to the unit circle, the decay is slower, so the system has longer memory.
+
+Third, complex poles occur in conjugate pairs when the model coefficients are real. Let
+
+$$p_{1,2}=re^{\pm j\omega}.$$
+
+The two corresponding exponential terms have the form
+
+$$A(re^{j\omega})^n+A^*(re^{-j\omega})^n.$$
+
+This can be rewritten as
+
+$$C r^n\cos(\omega n+\phi).$$
+
+Thus a complex-conjugate pole pair produces a **damped sinusoid**: the factor $r^n$ controls the decay rate, and the angle $\omega$ controls the oscillation frequency.
+
+In short:
+
+- polynomial terms in $z^{-1}$ produce impulses,
+- real poles produce real exponentials,
+- complex-conjugate pole pairs produce damped sinusoids.
+
 This expression explains the short-memory behavior:
 
 - all-zero models have finite impulse responses,
