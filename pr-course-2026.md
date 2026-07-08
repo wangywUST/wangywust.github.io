@@ -34,6 +34,10 @@ layout: course
     background: #fff4df;
   }
 
+  .lecture-toggle:nth-of-type(4) > summary {
+    background: #f1ecff;
+  }
+
   .lecture-toggle > summary::-webkit-details-marker {
     display: none;
   }
@@ -95,6 +99,10 @@ layout: course
       background: #92400e;
     }
 
+    .lecture-toggle:nth-of-type(4) > summary {
+      background: #5b21b6;
+    }
+
     .lecture-description {
       border-left-color: #60a5fa;
       background: #1e293b;
@@ -130,6 +138,16 @@ layout: course
 </summary>
 
 {% include_relative CoursePR2026/lecture_3.md %}
+
+</details>
+
+<details class="lecture-toggle" markdown="1">
+<summary>
+<span class="lecture-title">Lecture 4: Linear Models for Classification</span>
+<span class="lecture-description">This lecture studies linear classification models, including discriminant functions, generative and discriminative probabilistic classifiers, logistic regression, the Laplace approximation, and Bayesian logistic regression.</span>
+</summary>
+
+{% include_relative CoursePR2026/lecture_4.md %}
 
 </details>
 
