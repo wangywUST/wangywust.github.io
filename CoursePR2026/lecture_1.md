@@ -1,2150 +1,1664 @@
-# Modern Digital Signal Processing
-## Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review
+# Pattern Recognition and Machine Learning
+## Chapter 1: Introduction: Probability, Decision Theory, and Information Theory
 
-> 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005
-> Chapters covered: Ch. 1 (Introduction) + Ch. 2 (Fundamentals of Discrete-Time Signal Processing)
+> 📖 Textbook: Christopher M. Bishop — *Pattern Recognition and Machine Learning*, Springer, 2006  
+> Chapter covered: Ch. 1 Introduction (§1.1-§1.6)
+
+---
 
 ## Table of Contents
 
-1. [Part I: Digital Signals and DSP Overview](#part-i-digital-signals-and-dsp-overview)
-2. [Part II: Transforms for Discrete-Time Signals](#part-ii-transforms-for-discrete-time-signals)
-3. [Part III: Digital Filter Structures and Design](#part-iii-digital-filter-structures-and-design)
-4. [Part IV: Special Sequences and Corresponding Filters](#part-iv-special-sequences-and-corresponding-filters)
+1. [§0 Learning Viewpoint and Chapter Roadmap](#0-learning-viewpoint-and-chapter-roadmap)
+2. [§1 Pattern Recognition and Machine Learning](#1-pattern-recognition-and-machine-learning)
+3. [§2 Polynomial Curve Fitting](#2-polynomial-curve-fitting)
+4. [§3 Probability Theory Essentials](#3-probability-theory-essentials)
+5. [§4 Probabilistic Curve Fitting](#4-probabilistic-curve-fitting)
+6. [§5 Model Selection and the Curse of Dimensionality](#5-model-selection-and-the-curse-of-dimensionality)
+7. [§6 Decision Theory](#6-decision-theory)
+8. [§7 Information Theory](#7-information-theory)
+9. [§8 Chapter Summary, Figure Checklist, and Teaching Flow](#8-chapter-summary-figure-checklist-and-teaching-flow)
 
 ---
 
 ## Notation and Variable Definitions
 
-All symbols used in this chapter are collected below. Where one symbol carries different meanings in different sections, the context is explicitly noted.
+This first chapter introduces the notation that will be used throughout the course. The important shift is from thinking of machine learning as “fitting a curve” to thinking of it as **reasoning under uncertainty**.
 
-### Time, Frequency, and Index Variables
-
-| Symbol | Definition | Unit |
-|--------|-----------|------|
-| $t$ | Continuous time | s |
-| $n$ | Discrete time index ($n \in \mathbb{Z}$) | sample |
-| $f$ | Analog cyclic frequency | Hz |
-| $f_s = 1/T_s$ | Sampling rate | Hz |
-| $f_c$ | Carrier frequency (§1.1.4, §1.3.4) | Hz |
-| $f_1,\, f_2$ | Lower/upper band edges of a bandpass signal | Hz |
-| $T_s = 1/f_s$ | Sampling period | s/sample |
-| $B$ | Signal bandwidth (one-sided baseband) | Hz |
-| $\Omega = 2\pi f \in [-\pi/T_s,\,\pi/T_s]$ | Analog angular frequency | rad/s |
-| $\omega = \Omega T_s \in [-\pi,\pi]$ | Digital angular frequency | rad/sample |
-| $\omega_k = 2\pi k/N$ | $k$-th DFT frequency bin | rad/sample |
-| $\omega_c$ | Digital cutoff frequency | rad/sample |
-| $\omega_p,\,\omega_s$ | Passband/stopband edge frequencies | rad/sample |
-| $\omega_0$ | Fixed oscillation frequency in exponential sequences | rad/sample |
-| $\Delta\omega = \omega_s - \omega_p$ | Filter transition bandwidth | rad/sample |
-| $k$ | DFT bin index; OFDM subcarrier index; summation index (context determines) | — |
-| $l$ | Multipath channel tap index | — |
-| $m$ | Image row index (§1.1.2); FIR coefficient index (§3.1.1) | — |
-| $q$ | Integer subsampling factor in bandpass sampling theorem (§1.3.3) | — |
-
-### Signals and Sequences
+### Data, Inputs, Targets, and Models
 
 | Symbol | Definition |
-|--------|-----------|
-| $x_a(t)$ | Continuous-time (analog) input signal |
-| $y_a(t)$ | Continuous-time (analog) output signal |
-| $p(t) = \sum_{n}\delta(t-nT_s)$ | Ideal Dirac comb (impulse train) used in sampling model |
-| $x_s(t) = x_a(t)\cdot p(t)$ | Ideally sampled signal |
-| $x(n) = x_a(nT_s)$ | Discrete-time sequence (uniform samples of $x_a$) |
-| $y(n)$ | Discrete-time output sequence |
-| $h(n)$ | Impulse response of a discrete-time LTI system |
-| $h_d(n)$ | Ideal (desired) impulse response in FIR window design |
-| $h_{ap}(n)$ | Impulse response of an allpass filter |
-| $h_m(n)$ | Impulse response of a minimum-phase filter |
-| $r_x(n) = x(n)\ast x^{\ast}(-n)$ | Autocorrelation sequence of $x(n)$ |
-| $\tilde{x}(n) = x(\langle n\rangle_N)$ | Periodic extension of finite-length $x(n)$, period $N$ |
-| $\delta(n)$ | Unit impulse: $1$ at $n=0$, $0$ elsewhere |
-| $u(n)$ | Unit step: $1$ for $n\ge 0$, $0$ for $n<0$ |
-| $\alpha^n u(n)$ | Causal exponential sequence with scalar base $\alpha$ |
-| $x(m,n)$ | 2D image signal (intensity at pixel row $m$, column $n$) |
-| $x_k(m,n)$ | $k$-th video frame |
-| $w(n)$ | **(a)** Window function in FIR design (§3.3.2); **(b)** Additive time-domain noise in channel model (§1.1.4) — context determines |
+|--------|------------|
+| $\mathbf{x}$ | Input vector / feature vector. In digit recognition, it can be a vector of pixel intensities. |
+| $x$ | A scalar input variable, used in the polynomial curve-fitting example. |
+| $t$ | Target variable. In regression it is continuous; in classification it represents a class label. |
+| $\mathcal{D}$ | Training data set, usually $\mathcal{D}=\{(\mathbf{x}_n,t_n)\}_{n=1}^N$. |
+| $N$ | Number of training examples. |
+| $D$ | Dimensionality of the input vector $\mathbf{x}$. |
+| $K$ | Number of classes in a classification problem. |
+| $y(\mathbf{x})$ | Model output / prediction as a function of the input. |
+| $\mathbf{w}$ | Parameter vector of a model. |
+| $M$ | Polynomial order in §1.1. A polynomial of order $M$ has $M+1$ coefficients. |
 
-### Transforms and Spectral Functions
+### Probability and Statistics
 
 | Symbol | Definition |
-|--------|-----------|
-| $X_a(f)$ | Continuous Fourier transform of $x_a(t)$ |
-| $X_s(f)$ | Fourier transform of sampled signal $x_s(t)$; periodic copies of $X_a(f)$ at spacing $f_s$ |
-| $X(e^{j\omega}) = \sum_n x(n)e^{-j\omega n}$ | DTFT of $x(n)$ |
-| $X(z) = \sum_n x(n)z^{-n}$ | z-Transform of $x(n)$, $z\in\mathbb{C}$ |
-| $X(k) = \sum_{n=0}^{N-1}x(n)W_N^{nk}$ | $k$-th DFT coefficient (§2.3); also QAM symbol on subcarrier $k$ in OFDM (§1.1.4) |
-| $\tilde{X}(k)$ | DFS coefficient of periodic sequence $\tilde{x}(n)$ |
-| $H(e^{j\omega})$ | System frequency response (DTFT of $h(n)$) |
-| $H(z)$ | System transfer function (z-transform of $h(n)$) |
-| $W_N = e^{-j2\pi/N}$ | DFT twiddle factor |
-| $\mathbf{W}_N = [W_N^{kn}]$ | $N\times N$ DFT matrix with row/column indices $k,n=0,\ldots,N-1$ |
-| $R(e^{j\omega})$ | DTFT of autocorrelation $r_x(n)$ |
-| $R(z)$ | z-Transform of autocorrelation $r_x(n)$ |
-| $P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2$ | Power spectral density (PSD) of $x(n)$ |
-| $\mathbf{R} = [r_x(i-j)]_{i,j}$ | Autocorrelation matrix (Hermitian Toeplitz) |
+|--------|------------|
+| $p(X)$ | Probability that discrete random variable $X$ takes a particular value. |
+| $p(x)$ | Probability density of a continuous variable $x$. |
+| $p(X,Y)$ | Joint probability of $X$ and $Y$. |
+| $p(X \mid Y)$ | Conditional probability of $X$ given $Y$. |
+| $p(\mathbf{x}\mid C_k)$ | Class-conditional density for class $C_k$. |
+| $p(C_k\mid \mathbf{x})$ | Posterior probability of class $C_k$ after observing $\mathbf{x}$. |
+| $\mathbb{E}[f]$ | Expectation or average value of a function $f$. |
+| $\operatorname{var}[x]$ | Variance of random variable $x$. |
+| $\operatorname{cov}[\mathbf{x}]$ | Covariance matrix of random vector $\mathbf{x}$. |
+| $\mathcal{N}(x\mid \mu,\sigma^2)$ | Univariate Gaussian density with mean $\mu$ and variance $\sigma^2$. |
+| $\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu},\boldsymbol{\Sigma})$ | Multivariate Gaussian density with mean vector $\boldsymbol{\mu}$ and covariance matrix $\boldsymbol{\Sigma}$. |
+| $\beta$ | Precision parameter, equal to inverse variance: $\beta=1/\sigma^2$. |
 
-### Laplace and z-Domain Variables
+### Decision Theory and Information Theory
 
 | Symbol | Definition |
-|--------|-----------|
-| $s = \sigma + j\Omega$ | Complex Laplace frequency variable |
-| $\sigma = \mathrm{Re}(s)$ | Damping factor (unit: Np/s, Neper per second$^{\dagger}$); $\sigma<0$: exponential decay, $\sigma>0$: exponential growth, $\sigma=0$: pure sinusoid (imaginary axis) |
-| $z = re^{j\omega}$ | Complex z-domain variable (polar form) |
-| $r = \lvert z\rvert = e^{\sigma T_s}$ | Magnitude of $z$ |
-| $z = e^{sT_s}$ | s-plane to z-plane mapping |
-| $\mathrm{ROC}$ | Region of Convergence: $\{z\in\mathbb{C}:\sum_n\lvert x(n)\rvert\lvert z\rvert^{-n}<\infty\}$ |
-| $\langle n\rangle_N = n\bmod N$ | Modulo-$N$ reduction of integer $n$ |
-
-> $^{\dagger}$**Neper (Np)** is a logarithmic unit for amplitude ratios based on the natural logarithm: $1\,\text{Np} = \ln(A_1/A_2)$, corresponding to an amplitude ratio of $e \approx 2.718$. Conversion: $1\,\text{Np} = 20/\ln(10)\,\text{dB} \approx 8.686\,\text{dB}$. In the Laplace domain, $s = \sigma + j\Omega$ corresponds to the time-domain signal $e^{st} = e^{\sigma t}e^{j\Omega t}$: the real part $\sigma$ (Np/s) sets the exponential growth/decay rate of the amplitude, while the imaginary part $\Omega$ (rad/s) sets the oscillation frequency. For example, $\sigma = -2\,\text{Np/s}$ means the amplitude decays to $e^{-2} \approx 13.5\%$ of its initial value per second.
-
-### LTI System and Filter Parameters
-
-| Symbol | Definition |
-|--------|-----------|
-| $N$ | **(a)** DFT/FFT length; OFDM subcarrier count (§2.3, §1.1.4); **(b)** IIR filter order (§3.0, §3.2); **(c)** Length of FIR filter (§3.1.3); always stated in context |
-| $M$ | **(a)** FIR filter order (taps $= M+1$, §3.1); **(b)** Image height in pixels (§1.1.2); **(c)** Modulation constellation size (§1.1.4) |
-| $a_k$ | Feedforward (numerator) coefficients of LCCDE |
-| $b_k$ | Feedback (denominator) coefficients of LCCDE ($b_0=1$ by convention) |
-| $A(z) = \sum_{k=0}^{M}a_k z^{-k}$ | Numerator polynomial of $H(z)$ |
-| $B(z) = \sum_{k=0}^{N}b_k z^{-k}$ | Denominator polynomial of $H(z)$ |
-| $v(n)$ | Internal state variable in IIR Direct Form II (§3.2.2); distinct from unit step $u(n)$ |
-| $\delta_1,\,\delta_2$ | Passband ripple / stopband attenuation (linear scale) |
-| $R_p,\,A_s$ | Passband ripple / stopband attenuation (dB) |
-| $\alpha$ | **(a)** Base of exponential sequence $\alpha^n u(n)$ and pole of first-order IIR/allpass, $\lvert\alpha\rvert<1$ (§1.5.3, §3.2, §4.1); **(b)** Constant group delay in samples (§4.3.1 only — local meaning, distinct from (a)) |
-| $\beta$ | **(a)** Kaiser window shape parameter (§3.3.2); **(b)** Linear-phase FIR phase offset $\beta\in\{0,\pm\pi/2\}$ (§4.3.1 only) |
-| $r$ | **(a)** Magnitude $\lvert z\rvert$ of the z-domain variable; **(b)** Decay parameter in sequences $r^n\cos(\omega_0 n)u(n)$ (§2.2.3) |
-
-### Allpass, Minimum-Phase, and Spectral Factorization
-
-| Symbol | Definition |
-|--------|-----------|
-| $H_{ap}(z)$ | Allpass filter transfer function: $\lvert H_{ap}(e^{j\omega})\rvert=1\ \forall\omega$ |
-| $H_m(z)$ | Minimum-phase filter / minimum-phase factor in decomposition |
-| $\alpha_k$ | $k$-th pole of allpass filter, $\lvert\alpha_k\rvert<1$ |
-| $\tau(\omega) = -d(\angle H)/d\omega$ | Group delay |
-| $\sigma^2$ | Scalar gain in spectral factorization $R(z)=\sigma^2 H_m(z)H_m^{\ast}(1/z^{\ast})$ |
-
-### OFDM and Multipath Channel Model (§1.1.4)
-
-| Symbol | Definition |
-|--------|-----------|
-| $N$ | Number of OFDM subcarriers |
-| $k$ | Subcarrier index, $k=0,\ldots,N-1$ |
-| $X(k)$ | QAM symbol placed on subcarrier $k$ (also: DFT of $x(n)$ in §2.3) |
-| $Y(k)$ | Received signal on subcarrier $k$ after FFT |
-| $H(k)$ | Channel frequency response at subcarrier $k$ |
-| $W(k)$ | Additive noise on subcarrier $k$ (frequency domain) |
-| $\hat{X}(k) = Y(k)/H(k)$ | One-tap equalized symbol estimate |
-| $h(l)$ | Discrete channel impulse response tap at delay $l$ |
-| $L$ | Number of resolvable channel taps |
-| $L_{\mathrm{cp}} = L-1$ | Minimum cyclic prefix length |
+|--------|------------|
+| $C_k$ | Class $k$. |
+| $\mathcal{R}_k$ | Decision region assigned to class $C_k$. |
+| $L_{kj}$ | Loss incurred when the true class is $C_k$ but the decision is $C_j$. |
+| $H[x]$ | Entropy of random variable $x$. |
+| $\mathrm{KL}(p\Vert q)$ | Kullback-Leibler divergence from distribution $q$ to distribution $p$. |
+| $I[x,y]$ | Mutual information between $x$ and $y$. |
 
 ---
 
-# Part I: Digital Signals and DSP Overview
+# §0 Learning Viewpoint and Chapter Roadmap
 
-> 📖 Textbook §1.1 (Random Signals overview); §2.1 (Discrete-Time Signals)
+> 📖 Textbook Ch.1 opening; §1.1-§1.6
 
----
+## 0.1 What This Chapter Is Really About
 
-## 1.1 Basic Types and Examples of Digital Signals
+This chapter is called “Introduction”, but it is not merely a motivational chapter. It establishes the three conceptual pillars of the whole course:
 
-A **digital signal** is a discrete-time, discrete-amplitude representation of a physical quantity. It arises from sampling and quantizing a continuous-time analog signal.
+| Pillar | Main Question | Why It Matters |
+|--------|---------------|----------------|
+| **Probability theory** | How do we represent uncertainty? | Real data contain noise, ambiguity, missing information, and finite-sample uncertainty. |
+| **Decision theory** | How do we make an action or prediction once probabilities are known? | A posterior probability is not yet a decision. Different applications have different costs. |
+| **Information theory** | How do we quantify uncertainty, surprise, and distributional mismatch? | Entropy, KL divergence, and mutual information appear repeatedly in density estimation, latent-variable models, variational inference, and neural networks. |
 
-### 1.1.1 Speech Signals
+A useful way to read the chapter is the following:
 
-A speech signal is a **one-dimensional time-domain discrete sequence**. A continuous pressure wave $x_a(t)$ is sampled at rate $f_s$ (typically 8 kHz for telephony, 44.1 kHz for audio) to produce $x(n) = x_a(nT_s)$ where $T_s = 1/f_s$.
+1. The digit example tells us what pattern recognition is.
+2. Polynomial curve fitting gives a concrete miniature version of supervised learning.
+3. Probability theory explains why least squares, regularization, and Bayesian prediction are not arbitrary tricks.
+4. Model selection and high-dimensional geometry explain why “more flexible” does not automatically mean “better”.
+5. Decision theory separates estimating uncertainty from acting under uncertainty.
+6. Information theory gives a language for uncertainty and distribution comparison.
 
-> ![Figure 1.1 speech waveform](<./CourseADSP2026/Fig/Chapter_1/fig_1_1.png>)
->
-> *Figure 1.1: A speech signal sampled at a fixed rate, shown as a discrete sequence in the time domain. Voiced segments (vowels) exhibit quasi-periodic structure; unvoiced segments (fricatives) appear noise-like.*
+## 0.2 The Big Picture: From Data to Decision
 
-### 1.1.2 Image Signals
-
-An image signal is a **two-dimensional discrete sequence** $x(m, n)$, where $(m, n)$ indexes the row and column of a pixel. Grayscale images have scalar values; color images have vector values (e.g., RGB). Standard digital image resolutions range from $320 \times 240$ (VGA) to $3840 \times 2160$ (4K).
-
-$$x(m, n), \quad m = 0, 1, \ldots, M-1;\; n = 0, 1, \ldots, N-1$$
-
-> ![Figure 1.2 image pixel](<./CourseADSP2026/Fig/Chapter_1/fig_1_2.jpg>)
->
-> *Figure 1.2: An image signal — 2D pixel array. Each element $x(m,n)$ stores intensity (grayscale) or a color vector.*
-
-### 1.1.3 Video Signals
-
-A video signal is a **dynamic image sequence**: a series of image frames $x_k(m,n)$ indexed by frame number $k$, captured at a frame rate (typically 25, 30, or 60 fps). Video introduces temporal correlation in addition to spatial correlation, requiring 3D signal processing.
-
-$$\text{Video:} \quad \lbrace x_k(m,n)\rbrace_{k=0}^{K-1}, \quad k = \text{frame index}$$
-
-The large data volume of uncompressed video (e.g., 1080p at 30 fps $\approx$ 1.5 Gbps) motivates video compression standards such as H.264, H.265/HEVC, and AV1.
-
-### 1.1.4 Communication Signals
-
-The purpose of a digital communication system is not to reproduce a waveform for its own sake. The transmitter starts with **information bits**, converts them into a physical signal that can travel through a channel, and the receiver tries to recover the **same information bits** from a distorted, noisy observation.
-
-For one block of an OFDM system, the signal-processing chain is:
-
-$$\text{bits} \rightarrow \text{QAM symbols } X(k) \rightarrow \text{IFFT} \rightarrow \text{time samples } x(n) \rightarrow \text{CP insertion} \rightarrow \text{channel}$$
-
-and at the receiver:
-
-$$\text{received samples} \rightarrow \text{CP removal} \rightarrow \text{FFT} \rightarrow Y(k) \rightarrow \text{equalization} \rightarrow \hat{X}(k) \rightarrow \text{QAM demodulation} \rightarrow \widehat{\text{bits}}.$$
-
-So the final goal is to recover the bits. Inside the OFDM receiver, the important intermediate goal is to recover the transmitted subcarrier symbols $X(k)$, because those symbols are the objects that directly encode the bits. The time-domain sequence $x(n)$ is the waveform we create in order to send those symbols through the physical channel.
-
-**From bits to symbols.** A modulation scheme such as QPSK or QAM maps a small group of bits to one complex number. That complex number is called a **symbol**. The set of possible symbols is the **constellation**. For example, QPSK has 4 constellation points and carries 2 bits per symbol; 16-QAM has 16 points and carries 4 bits per symbol.
-
-In OFDM, a **carrier** is a sinusoidal wave used to carry information at a particular frequency. Instead of using one wide carrier, OFDM divides the available bandwidth into $N$ narrow frequency lanes called **subcarriers**. One symbol $X(k)$ is placed on each subcarrier $k = 0, 1, \ldots, N-1$.
-
-The number $N$ is therefore both the number of DFT subcarriers and the FFT/IFFT length. It is a design parameter, not something determined by the IDFT formula alone. In practical systems, not every DFT bin must carry user data; some bins may be reserved for pilots, guard bands, or a DC null. But mathematically the length-$N$ OFDM block provides $N$ orthogonal frequency slots. If the available bandwidth is approximately $B$ and adjacent subcarriers are spaced by $\Delta f$, then roughly
-
-$$N \approx \frac{B}{\Delta f}.$$
-
-The subcarrier spacing $\Delta f$ is tied to the useful OFDM symbol duration $T_u$ by the orthogonality condition
-
-$$\Delta f = \frac{1}{T_u}.$$
-
-Here $T_u$ is the duration of the $N$ useful time-domain samples before adding the cyclic prefix. To see why this relation appears, write the $k$-th continuous-time subcarrier as
-
-$$\phi_k(t)=e^{j2\pi k\Delta f t}, \quad 0 \leq t < T_u.$$
-
-Two different subcarriers $k$ and $m$ are orthogonal if their inner product over one OFDM symbol is zero:
-
-$$\int_0^{T_u} \phi_k(t)\phi_m^{\ast}(t)\,dt
-= \int_0^{T_u} e^{j2\pi (k-m)\Delta f t}\,dt = 0,\quad k\neq m.$$
-
-Evaluating the integral gives
-
-$$\frac{e^{j2\pi (k-m)\Delta f T_u}-1}{j2\pi (k-m)\Delta f}.$$
-
-For this to be zero, the numerator must vanish:
-
-$$e^{j2\pi (k-m)\Delta f T_u}=1.$$
-
-Thus $(k-m)\Delta f T_u$ must be an integer. The smallest spacing that makes every neighboring pair orthogonal is therefore $\Delta f = 1/T_u$. This is the mathematical reason why symbol duration and subcarrier count are connected: for a fixed bandwidth $B$,
-
-$$N \approx \frac{B}{\Delta f} = B T_u.$$
-
-A longer OFDM symbol allows smaller subcarrier spacing and therefore more subcarriers in the same bandwidth. A shorter OFDM symbol requires wider subcarrier spacing and therefore fewer subcarriers.
-
-This does **not** mean that increasing $N$ automatically increases the data rate. If every active subcarrier uses the same $M$-ary constellation, then each subcarrier carries $\log_2 M$ bits per OFDM symbol. Ignoring pilots, coding, guard bands, and the cyclic prefix, one OFDM symbol carries approximately
-
-$$N\log_2 M \text{ bits}.$$
-
-But the useful symbol duration is approximately
-
-$$T_u \approx \frac{N}{B}.$$
-
-Thus the ideal uncoded data rate is
-
-$$R \approx \frac{N\log_2 M}{T_u}
-= \frac{N\log_2 M}{N/B}
-= B\log_2 M.$$
-
-The factor $N$ cancels. More subcarriers do not create extra bandwidth or free throughput by themselves. Their main value is that each subcarrier becomes narrower, so the channel over that subcarrier is closer to flat fading and can be equalized by a simple one-tap correction. Larger $N$ also increases $T_u$, which can reduce the relative overhead of a fixed cyclic prefix:
-
-$$\text{CP overhead} = \frac{T_{cp}}{T_u+T_{cp}}.$$
-
-The tradeoff is that larger $N$ also means a longer OFDM symbol, greater latency and FFT size, and more sensitivity to frequency offset, Doppler shift, or any channel variation within one symbol. Smaller $N$ gives shorter symbols and lower computation, but each subcarrier is wider and more likely to experience frequency-selective fading.
-
-The same result appears in the discrete-time IDFT. If the sampling rate is $F_s$, then $N$ useful samples occupy
-
-$$T_u = \frac{N}{F_s},$$
-
-and the DFT frequency spacing is
-
-$$\Delta f = \frac{F_s}{N}.$$
-
-Therefore $T_u\Delta f = 1$. The DFT basis functions
-
-$$e^{j2\pi kn/N}, \quad n=0,1,\ldots,N-1,$$
-
-are orthogonal because
-
-$$\sum_{n=0}^{N-1} e^{j2\pi kn/N}e^{-j2\pi mn/N}
-= \sum_{n=0}^{N-1} e^{j2\pi (k-m)n/N}=0,\quad k\neq m.$$
-
-The $N$ frequency-domain symbols are then converted into $N$ time-domain samples by an inverse DFT:
-
-$$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, e^{j2\pi kn/N}}, \quad n = 0, 1, \ldots, N-1$$
-
-The IFFT is the fast algorithm that computes this inverse DFT. Conceptually, $x(n)$ is the sum of many narrowband subcarrier waves, each carrying its own symbol $X(k)$.
-
-**What is multipath?** A wireless, acoustic, or underwater channel usually does not deliver only one clean copy of the transmitted signal. The receiver often hears several copies: a direct path plus reflected paths from walls, ground, buildings, the sea surface, the seabed, or other objects. Each path has its own delay and attenuation/phase shift.
-
-In discrete time, this means the received sample is a weighted sum of delayed copies of the transmitted samples:
-
-$$y(n) = \underbrace{h(0)x(n)}_{\text{path }0} + \underbrace{h(1)x(n-1)}_{\text{path }1} + \underbrace{h(2)x(n-2)}_{\text{path }2} + \cdots + w(n)$$
-
-or, more compactly,
-
-$$y(n) = \sum_l h(l)\,x(n-l) + w(n) = h(n) \ast x(n) + w(n).$$
-
-This is why a communication channel is modeled as convolution. The impulse response $h(n)$ packages the channel's path delays and gains; $w(n)$ models additive noise. The number of significant taps is denoted by $L$, and the channel's delay spread is roughly the time span over which those taps are nonzero.
-
-A useful mental picture is speaking in a room with echoes. The microphone records the direct voice plus delayed, weaker reflected copies. Multipath is the communication-channel version of that same phenomenon.
-
-**Why OFDM helps.** Directly undoing the time-domain convolution $h(n)\ast x(n)$ can be difficult. OFDM is designed so that, after CP removal and an FFT, the channel becomes a simple per-subcarrier multiplication:
-
-$$Y(k) = H(k) X(k) + W(k), \quad k = 0, 1, \ldots, N-1$$
-
-Here:
-- $X(k)$ is the transmitted QAM symbol on subcarrier $k$.
-- $H(k)$ is the channel frequency response on subcarrier $k$.
-- $W(k)$ is the noise observed on subcarrier $k$ after the FFT.
-- $Y(k)$ is the receiver's frequency-domain observation.
-
-If $H(k)$ is known or estimated using pilots, the receiver can use a one-tap equalizer:
-
-$$\hat{X}(k) = \frac{Y(k)}{H(k)}.$$
-
-Then $\hat{X}(k)$ is mapped back to bits by QAM demodulation. This is the sense in which the receiver "recovers $X(k)$": it does not want $x(n)$ as the final product; it wants the symbols $X(k)$ because they carry the information bits.
-
-**Why the cyclic prefix works: from linear to circular convolution.** The physical channel performs *linear* convolution:
-
-$$y(n) = \sum_l h(l)\,x(n-l) + w(n).$$
-
-For a length-$N$ OFDM block and a channel of length $L$, linear convolution pulls in samples from before the block. Near the start of the current block, terms such as $x(-1), x(-2), \ldots$ are needed. The real channel has no concept of OFDM block boundaries, so it uses whatever was actually transmitted before the current block.
-
-The DFT, however, cleanly diagonalizes *circular* convolution:
-
-$$y(n) = \sum_l h(l)\,x(\langle n-l\rangle_N),$$
-
-where $x(n)$ is treated as periodic with period $N$. These are not the same operation. The cyclic prefix makes them match over the $N$ samples kept by the receiver.
-
-*Worked example ($N=4$, two-tap channel).* Let the channel have taps $h(0), h(1)$ (length $L=2$), so a CP of length $L_{cp}=L-1=1$ suffices. The transmitted sequence is the CP sample $s(-1)=x(3)$ followed by the block $s(0..3)=x(0..3)$. The channel produces $y(n)=h(0)s(n)+h(1)s(n-1)$; after the receiver discards $s(-1)$:
-
-$$y(0) = h(0)x(0) + h(1)x(3), \qquad y(1) = h(0)x(1) + h(1)x(0),$$
-$$y(2) = h(0)x(2) + h(1)x(1), \qquad y(3) = h(0)x(3) + h(1)x(2).$$
-
-Compare with the circular convolution $y_{\text{circ}}(n) = \sum_l h(l)\,x(\langle n-l\rangle_4)$: e.g. $y_{\text{circ}}(0) = h(0)x(0) + h(1)x(\langle -1\rangle_4) = h(0)x(0)+h(1)x(3)$, identical to $y(0)$ above, and likewise for $n=1,2,3$. So the $N$ retained samples are, term for term, the circular convolution of $x(n)$ and $h(n)$. The DFT convolution theorem then gives $Y(k)=H(k)X(k)$ directly.
-
-This match depends on the guard samples being an **exact copy** of $x(N-1), x(N-2), \ldots$, not zero-padding. If $s(-1)$ were $0$ instead of $x(3)$, $y(0)$ would become $h(0)x(0)+h(1)\cdot 0$, which does **not** equal $y_{\text{circ}}(0)=h(0)x(0)+h(1)x(3)$. Only the literal copy of the tail reproduces the periodic wrap-around that circular convolution assumes. This is why it is a *cyclic prefix* and not merely a blank guard interval.
-
-**Two distinct impairments from multipath, fixed by two different mechanisms.** Delay spread in the channel, meaning multiple echoes arriving with different delays, causes two separable problems:
-
-| Impairment | Cause | How the CP fixes it |
-|---|---|---|
-| **Inter-symbol interference (ISI)** | Echoes carrying the *previous* symbol's tail bleed into the current symbol's receive window | *Guard time*: if $L_{cp} \geq$ the channel's maximum delay spread, the stale energy decays entirely within the discarded CP interval and never reaches the $N$ retained samples. Any guard interval, even zeros, would achieve this. |
-| **Inter-carrier interference (ICI) / loss of subcarrier orthogonality** | Within a single symbol, *linear* convolution lacks the periodic boundary condition that the complex exponentials $e^{j2\pi kn/N}$ need to remain eigenfunctions of the channel operator, so energy leaks between subcarriers | *Exact tail copy*: converts the in-block operation into a true circular convolution, under which each $e^{j2\pi kn/N}$ passes through unchanged in shape (only scaled by $H(k)$), so no energy crosses subcarriers. Zero-padding alone would not prevent this. |
-
-The two fixes are independent: sufficient *length* protects against ISI, while the exact *duplication* of the tail protects against ICI. Both are necessary. A long-enough zero guard band would still leave a linear-convolution boundary artifact inside the block, smearing the $N$ orthogonal subcarriers into each other even with no inter-symbol contamination at all. The combination of enough length and exact tail copying yields the clean model $Y(k)=H(k)X(k)+W(k)$ and the simple one-tap equalizer $\hat{X}(k) = Y(k)/H(k)$.
-
-**Constellation diagrams**: The modulation alphabet is visualized as a constellation. Common examples:
-- **QPSK** ($M=4$): 4 points on a circle, 2 bits/symbol
-- **8-PSK** ($M=8$): 8 points on a circle, 3 bits/symbol
-- **16-QAM** ($M=16$): 16 points on a square grid, 4 bits/symbol
-- **64-QAM** ($M=64$): 64 points, 6 bits/symbol
-
-> ![Figure 1.3](<./CourseADSP2026/Fig/Chapter_1/fig_1_3.png>)
->
-> *Figure 1.3: Baseband communication signals — constellation maps. Each point represents one symbol carrying $\log_2 M$ bits. Higher-order constellations achieve greater spectral efficiency but require higher SNR.*
-
-### 1.1.5 Radar Signals
-
-Radar signals are specially designed waveforms transmitted and received after reflection from a target. Two common types:
-
-**Linear frequency modulation (LFM / chirp)**: The instantaneous frequency increases linearly with time:
-
-$$x(t) = \text{rect}\!\left(\frac{t}{T}\right) e^{j\pi \mu t^2}, \quad \mu = B/T \text{ (chirp rate)}$$
-
-> **Notation — the rect function**: $\text{rect}(\cdot)$ is the *rectangular (boxcar) window function*,
-> $$\text{rect}(u) = \begin{cases} 1, & \lvert u\rvert \le \tfrac{1}{2} \\ 0, & \lvert u\rvert \gt \tfrac{1}{2} \end{cases}$$
-> i.e. a "brick-wall" gate that is 1 inside $[-\tfrac12, \tfrac12]$ and 0 everywhere else (the value exactly at the edges, $u=\pm\tfrac12$, is a convention and is often taken as $1$, $0$, or $\tfrac12$ depending on the textbook — it doesn't matter physically since it's a single point). Substituting $u = t/T$ rescales the gate to width $T$: $\text{rect}(t/T) = 1$ for $-T/2 \le t \le T/2$ and $0$ outside it. Its role here is purely to *window* the otherwise infinite-duration chirp $e^{j\pi\mu t^2}$ down to one finite pulse of duration $T$ — i.e., it is the mathematical way of saying "the radar transmits this chirp for $T$ seconds, then stops." Without the rect factor, the formula would describe a chirp that exists for all time; with it, $x(t)$ is a single, time-limited radar pulse, which is what is actually transmitted.
-
-After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a long pulse (high energy) is compressed to a short pulse (high resolution) via matched filtering.
-
-**Frequency-diversity radar**: Successive pulses use different carrier frequencies to improve target discrimination and reduce scintillation. The transmitted waveform exhibits a stepped-frequency pattern.
-
-> ![Figure 1.4](<./CourseADSP2026/Fig/Chapter_1/fig_1_4.png>)
->
-> *Figure 1.4: Radar signals — (left) LFM chirp with linearly increasing instantaneous frequency; (right) frequency-diverse radar with stepped carrier frequencies across pulses.*
-
----
-
-## 1.2 Applications of Digital Signal Processing
-
-DSP methods underpin virtually every modern technology domain:
-
-| Domain | Key DSP Tasks |
-|--------|--------------|
-| **Multimedia processing** | Filtering, enhancement, compression (MP3, JPEG, H.265), speech/face recognition |
-| **Wireless communications** | Modulation/demodulation, channel estimation, equalization, source/channel coding (OFDM, 5G NR) |
-| **Radar and sonar** | Waveform design, pulse compression, detection, localization, target recognition, DOA estimation |
-| **Biomedical engineering** | ECG/EEG monitoring, ultrasound imaging, diagnostic signal processing |
-| **Geophysics and meteorology** | Seismic data processing, weather signal analysis, oil exploration |
-| **Automatic control** | Digital PID controllers, state estimation (Kalman filter), adaptive systems |
-
-**OFDM transceiver chain.** The transmitter and receiver form a symmetric pipeline, with the cyclic prefix marking the boundary between digital baseband processing and the analog/RF front end:
-
-- **Transmitter (digital baseband → analog/RF):** Data Bits → Channel Coding → Interleaving → QAM Modulation → S/P (Serial-to-Parallel) → IFFT (Inverse Fast Fourier Transform) → P/S (Parallel-to-Serial) → CP Insertion (Cyclic Prefix) → DAC (Digital-to-Analog Converter) → RF TX (Radio Frequency Transmitter)
-- **Receiver (analog/RF → digital baseband), the symmetric reverse chain:** RF RX (Radio Frequency Receiver) → ADC (Analog-to-Digital Converter) → CP Removal → S/P → FFT (Fast Fourier Transform) → P/S → QAM Demodulation → De-Interleaving → Channel Decoding → Data Bits
-
----
-
-## 1.3 General Digital Signal Processing System
-
-### 1.3.1 System Pipeline
-
-A continuous-time bandlimited signal $x_a(t)$ (bandwidth $B$ Hz) is processed as follows:
-
-$$x_a(t) \xrightarrow{\text{AAF}} \xrightarrow{\text{A/D},\; f_s} x(n) \xrightarrow{h(n)} y(n) \xrightarrow{\text{D/A}} y_a(t)$$
-
-1. **Anti-aliasing filter (AAF)**: Lowpass filter with cutoff $f_s/2$ — removes frequency components above $f_s/2$ to prevent aliasing.
-
-   > **Where do the periodic spectral copies come from?** Ideal sampling can be modeled as multiplying the continuous signal by a periodic train of unit impulses spaced $T_s$ apart (a "Dirac comb"), $p(t) = \sum_{n} \delta(t-nT_s)$, so that $x_s(t) = x_a(t)\,p(t) = \sum_n x_a(nT_s)\,\delta(t-nT_s)$ — this is exact, since "keep the value at $nT_s$, discard everything in between" is precisely what an impulse at each sampling instant encodes. Multiplication in time becomes *convolution* in frequency, so the spectrum of $x_s(t)$ is $X_a(f)$ convolved with $P(f)$, the Fourier transform of the impulse train. Impulse trains have a self-dual property: the Fourier transform of a period-$T_s$ impulse train is *itself* an impulse train, but in frequency, with spacing $f_s = 1/T_s$: $P(f) = f_s\sum_k \delta(f-kf_s)$ (teeth packed close together in time spread far apart in frequency, and vice versa — the same time/frequency reciprocity that makes short pulses wideband). Convolving $X_a(f)$ with a single impulse $\delta(f-kf_s)$ just slides a copy of $X_a(f)$ to be centered at $kf_s$ (by the sifting property of convolution with an impulse); convolving with the *entire* impulse train therefore stamps down a whole sequence of shifted copies, one at every integer multiple of $f_s$: $X_s(f) = f_s\sum_k X_a(f-kf_s)$ — exactly the periodic replication used below.
-   >
-   > *Equivalent intuition, without impulse trains:* a sequence of samples literally cannot tell a sinusoid at frequency $f$ apart from one at $f + kf_s$. At the sampling instants $t = nT_s$, $e^{j2\pi(f+kf_s)nT_s} = e^{j2\pi f nT_s}\cdot e^{j2\pi k(f_sT_s)n} = e^{j2\pi f nT_s}\cdot e^{j2\pi kn} = e^{j2\pi f nT_s}$, because $f_sT_s = 1$ and $kn$ is an integer (so $e^{j2\pi kn}=1$). Every analog frequency $f$ is therefore indistinguishable, once sampled, from "phantom" frequencies $f \pm f_s,\, f\pm 2f_s,\dots$ — they all produce identical sample values. The sampled signal's spectrum *must* be periodic with period $f_s$, simply because sampling itself cannot resolve frequencies that differ by a multiple of $f_s$.
-   >
-   > **Why cutoff exactly at $f_s/2$?** Given that sampling at rate $f_s$ periodically *repeats* the analog spectrum, the discrete-time spectrum consists of shifted copies of the analog spectrum, $X_a(f - kf_s)$ for every integer $k$, spaced $f_s$ apart along the frequency axis. The baseband copy ($k=0$) occupies $[-f_s/2,\, f_s/2]$, and its nearest neighbor ($k=1$) occupies $[f_s/2,\, 3f_s/2]$ — so two adjacent replicas meet exactly at the midpoint between them, $f_s/2$. If the analog input still carries energy above $f_s/2$ at the moment it is sampled, that energy lands inside the span of the neighboring replica, and the two overlap. Once overlapped, the two contributions cannot be told apart by any downstream filter — this is aliasing, and it is irreversible by construction, not just inconvenient. So $f_s/2$ is not an arbitrary design choice; it is the largest frequency that can be let through *without guaranteeing overlap* with the next replica, i.e. it is the **Nyquist frequency** (also called the folding frequency, since this is the point about which spectral content "folds back" on top of itself). The AAF's role is to physically enforce — before sampling ever happens — the bandlimiting condition $B \le f_s/2$ that the Nyquist–Shannon theorem (§1.3.2 below) requires for perfect reconstruction, regardless of whether the original analog signal already happened to satisfy it.
-
-2. **A/D conversion**: Samples $x_a(t)$ at rate $f_s \geq 2B$ and quantizes to $b$ bits.
-
-   > **Why $f_s \geq 2B$, and not $f_s \geq B$?** A common error is to assume that since the highest frequency component is $B$ Hz, sampling once per "half-cycle" — i.e. at rate $f_s = B$ — should suffice. This overlooks that any *real-valued* signal has a two-sided spectrum: writing $\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$ shows that a real sinusoid is built from a conjugate *pair* of complex exponentials at $+f$ and $-f$. Consequently $X_a(f) = 0$ for $\lvert f\rvert \gt B$ means the spectrum truly occupies $[-B,B]$ — a total width of $2B$, not $B$. The replication argument above already used this: the baseband copy spans $[-f_s/2, f_s/2]$, so avoiding overlap with the neighboring replica requires the *full* $2B$-wide occupied band to fit inside one period, i.e. $f_s \geq 2B$.
-   >
-   > A concrete failure mode at $f_s = B$: consider $x_a(t) = \cos(2\pi Bt)$, a signal sitting right at the band edge. Sampling at $t = n/B$ gives $x(n) = \cos(2\pi B \cdot n/B) = \cos(2\pi n) = 1$ for every $n$ — a constant sequence, regardless of the sinusoid's true amplitude or phase. One sample per cycle can never distinguish "the wave went up and came back down" from "the wave never moved"; at least two samples per cycle (two different phases within one period) are needed to pin down a sinusoid, which is exactly the origin of the factor of 2.
-   >
-   > **Why "$b$" bits — a free parameter, not a derived constant.** Unlike $f_s \geq 2B$, which is a hard mathematical necessity (violating it causes irreversible aliasing), the number of quantization bits $b$ is an engineering *choice*: it sets the number of amplitude levels to $2^b$, trading quantization noise against bit rate/storage. The one quantitative rule of thumb is that each additional bit improves the signal-to-quantization-noise ratio by about 6 dB:
-   > $$\text{SQNR} \approx 6.02\,b + 1.76\ \text{(dB)}$$
-   > Typical choices reflect this trade-off rather than a derivation: $b=8$ for telephony (G.711), $b=16$ for CD audio, $b=24$ for studio recording.
-
-3. **Discrete-time processing**: Convolution with $h(n)$, or more generally any digital signal processing algorithm.
-4. **D/A conversion and reconstruction filter**: Converts the discrete output back to a continuous signal.
-
-> ![Figure 1.6](<./CourseADSP2026/Fig/Chapter_1/fig_1_6.png>)
->
-> *Figure 1.6: General DSP system — pipeline from continuous input to continuous output, with frequency-domain illustrations at each stage.*
-
-### 1.3.2 Sampling Theorem and Bandlimited Condition
-
-**Nyquist–Shannon Sampling Theorem**: A continuous-time signal $x_a(t)$ with bandwidth $B$ Hz (i.e., $X_a(f) = 0$ for $\lvert f\rvert \gt B$) can be perfectly reconstructed from its samples $x(n) = x_a(nT_s)$ if and only if:
-
-$$f_s = \frac{1}{T_s} \geq 2B$$
-
-The minimum sampling rate $f_s = 2B$ is the **Nyquist rate**.
-
-> **Why can frequency be negative?** Negative frequency is a by-product of representing real signals on a complex-exponential basis, not an independent physical quantity. By Euler's formula,
->
-> $$\cos(2\pi ft) = \tfrac12 e^{j2\pi ft} + \tfrac12 e^{-j2\pi ft}$$
->
-> any real sinusoid is necessarily built from a *conjugate pair* of complex exponentials at $+f$ and $-f$, whose imaginary parts cancel. For a real signal $x_a(t)$, this forces Hermitian (conjugate) symmetry on its spectrum,
->
-> $$X_a(-f) = X_a^{\ast}(f)$$
->
-> so the negative-frequency content has the same magnitude as its positive-frequency mirror and carries no independent information, but it is not optional: it must be present for the sum to come out real, and it occupies its own share of the frequency axis. This is precisely why "bandwidth $B$" in the theorem above means
->
-> $$X_a(f) = 0 \quad \text{for } \lvert f\rvert \gt B$$
->
-> the occupied spectrum is the *two-sided* interval $[-B,B]$, total width $2B$, not just $[0,B]$.
->
-> Geometrically, $e^{j2\pi ft}$ is a unit phasor in the complex (I/Q) plane rotating at angular rate $2\pi f$: positive $f$ means counter-clockwise rotation, negative $f$ means clockwise. A real signal is the projection of this rotating phasor onto the real axis, and that projection alone cannot distinguish a counter-clockwise rotation from a clockwise one — both project identically onto the real axis. Hence a real signal must carry both rotation directions ($\pm f$) to be represented faithfully. For a genuinely *complex*-valued signal (e.g. the I/Q baseband signal in a digital receiver, or an analytic signal), $+f$ and $-f$ are no longer forced to be conjugate partners — they become independent, physically meaningful quantities (e.g. the sign of a Doppler shift indicates approach vs. recession).
-
-The relationship between analog frequency $f$ and digital frequency $\omega$ is:
-
-$$\omega = 2\pi f T_s = \frac{2\pi f}{f_s}$$
-
-Digital frequency $\omega \in [-\pi, \pi]$ corresponds to analog frequency $f \in [-f_s/2,\; f_s/2]$.
-
-**If $f_s \lt 2B$ (undersampling)**: Spectral replicas overlap → **aliasing** — high-frequency components masquerade as low-frequency ones, irreversibly corrupting the signal.
-
-> ![Figure 1.7](<./CourseADSP2026/Fig/Chapter_1/fig_1_7.png>)
->
-> *Figure 1.7: Sampling operation — (a) continuous-time spectrum $X_a(f)$ bandlimited to $B$; (b) discrete-time spectrum when $f_s \gt 2B$ (no aliasing); (c) discrete-time spectrum when $f_s \lt 2B$ (aliasing).*
-
-### 1.3.3 Bandpass Signals and the Bandpass Sampling Theorem
-
-§1.3.2 implicitly assumed a **baseband (lowpass) signal**: $X_a(f) = 0$ for $\lvert f\rvert \gt B$, spectrum centered at $f = 0$. Many real signals instead are **bandpass**: their energy sits in a band $[f_1, f_2]$ away from $f = 0$ (plus its conjugate mirror $[-f_2, -f_1]$) — narrowband sonar/radar returns, AM/FM radio, and IF-stage receiver signals are typical examples. The conventional bandwidth is the width of the *positive-frequency* interval, $B = f_2 - f_1$, *not* $f_2$ itself.
-
-**Naively applying §1.3.2** would suggest $f_s \geq 2f_2$ — sampling at twice the highest frequency present — which is wasteful when $f_2 \gg B$. The **bandpass sampling theorem** (also called IF sampling, or deliberate undersampling) shows that the true minimum sampling rate depends only on the bandwidth $B$, not on how far the band sits from $f = 0$: there exists an integer $q$, $1 \leq q \leq \lfloor f_2/B \rfloor$, such that
-
-$$\frac{2f_2}{q} \;\leq\; f_s \;\leq\; \frac{2f_1}{q-1}$$
-
-(for $q=1$ this reduces to the baseband condition $f_s \geq 2f_2$). When $f_2$ is an integer multiple of $B$ (the band is "harmonically aligned"), the theoretical minimum $f_s = 2B$ is achievable exactly — the *same* floor as for a baseband signal of bandwidth $B$.
-
-> **Why is the floor still $2B$, not $B$?** It is tempting to think that replicating a single band of width $B$ at spacing $f_s = B$ tiles it edge-to-edge with no gap, so $f_s = B$ should suffice. This overlooks the conjugate mirror band: a real bandpass signal occupies $[f_1, f_2]$ **and** $[-f_2, -f_1]$ — two separate intervals on the frequency axis, each of width $B$, total occupied measure $2B$ (exactly the two-sided argument from §1.3.2, now applied to a shifted band). Sampling at rate $f_s$ is equivalent to wrapping the frequency axis onto a circle of circumference $f_s$ (taking frequency modulo $f_s$); for alias-free recovery this wrap must be injective on the occupied support. If $f_s \lt 2B$, the occupied measure ($2B$) exceeds the circle's circumference ($f_s$), so by a simple pigeonhole argument the wrap **cannot** be injective — overlap is unavoidable no matter where the band sits.
->
-> Concretely, at $f_s = B$: the positive band's own replicas $[f_1+kB,\, f_2+kB]$ already tile the *entire* frequency axis with zero gaps (each replica has width exactly $B$, spaced exactly $B$ apart). The mirror band's replicas, sitting on that same comb, then have nowhere to land except squarely on top of the positive band's replicas — total, unavoidable overlap. At $f_s = 2B$ (achievable when $f_2 = nB$), the positive-band and mirror-band replicas instead tile the axis in a perfect alternating pattern — one period of width $2B$ holding exactly one positive-band replica plus one mirror-band replica, edge-to-edge, zero overlap. This is the tightest possible packing.
-
-The general lesson: the Nyquist floor is set by the **total occupied measure of the signal's full (two-sided) spectral support**, $f_s \geq (\text{total occupied measure})$, regardless of where on the frequency axis that support sits. For baseband signals this measure is $2B$ (§1.3.2); for bandpass signals it is likewise $2B$, where $B = f_2-f_1$ is the one-sided occupied width. Equivalently: a real signal carrying $2B$ Hz of total spectral occupancy needs $2B$ real samples/second no matter how the carrier is chosen — or, if down-converted to a complex (I/Q) baseband representation first, $B$ complex samples/second, which is the same $2B$ real numbers/second once I and Q are counted separately.
-
-### 1.3.4 Spectral Translation: Up-Conversion and the Apparent Doubling of Bandwidth
-
-A natural follow-up question: if a baseband signal $x(t)$ of bandwidth $B$ is **up-converted** to a carrier frequency $f_c$ — e.g. by mixing with a real carrier, $s(t) = x(t)\cos(2\pi f_ct)$ — does the resulting bandpass signal's bandwidth grow?
-
-By the modulation (frequency-shift) theorem,
-
-$$S(f) = \frac{1}{2}\big[X(f-f_c) + X(f+f_c)\big]$$
-
-Since $\cos(2\pi f_ct)$ itself has spectrum supported at $\pm f_c$ (Euler's formula again), multiplication produces **two** shifted copies of the *entire* original two-sided spectrum $X(f)$ — not half of it. $X(f)$ already spans $[-B,B]$ (total width $2B$, §1.3.2), so each shifted copy retains that full $2B$ width:
-
-- Positive-frequency lobe: $[f_c - B,\, f_c + B]$, width $2B$
-- Mirror lobe at $-f_c$: $[-f_c - B,\, -f_c + B]$, width $2B$
-
-In other words, each lobe is exactly as wide as the *entire* original baseband spectrum was — nothing has grown; the same $2B$-wide shape has simply been picked up and moved to sit at $\pm f_c$ instead of straddling $f=0$.
-
-Using the bandpass-signal convention $B' = f_2-f_1$ from §1.3.3, the new one-sided bandwidth is $B' = 2B$ — numerically double the original baseband $B$. But note what changed and what did not: the physical spectral content is still exactly $2B$ Hz wide (it is literally the same shape, just translated); what changed is the *labeling convention*. For a baseband (lowpass) signal, "bandwidth $B$" by convention reports only the *radius* from the natural reference point $f=0$ — the highest frequency present — leaving the other half of the occupied span ($[-B,0]$) implicit. For a bandpass signal centered away from $0$, there is no natural "halving point" left to exploit, so the convention instead reports the *full* one-sided occupied width $f_2-f_1$. The same $2B$ Hz of physical spectrum is therefore reported as "$B$" under one convention and "$2B$" under the other — the doubling is a bookkeeping artifact of where the signal sits relative to $f=0$, not new information appearing out of nowhere.
-
-This is the textbook fact that **double-sideband (DSB) modulation occupies transmission bandwidth $2B$** for a baseband message of bandwidth $B$, because both the upper and lower sidebands are transmitted, and they are conjugate mirror images of each other — carrying no independent information, exactly as in §1.3.2's negative-frequency discussion, only now the redundant pair sits at $f_c$ instead of at $0$. **Single-sideband (SSB)** modulation removes one sideband (by filtering, or by mixing with a complex carrier $e^{j2\pi f_ct}$ instead of a real $\cos$) and recovers the original $B$-Hz efficiency, at the cost of more complex transmit/receive hardware.
-
-The practical consequence for sampling: if this DSB signal is bandpass-sampled directly (§1.3.3) without first down-converting, the relevant bandwidth parameter is the doubled $2B$, so the minimum rate becomes $f_s \geq 2(2B) = 4B$ — twice what would be needed for the baseband signal or for an SSB-modulated version of it.
-
-### 1.3.5 The Two Fundamental Problems of DSP
-
-The DSP pipeline gives rise to two core problems:
-
-**① Signal Description and Analysis — Transforms**
-
-How do we efficiently describe and analyze discrete-time signals in alternative domains?
-- **z-transform**: General framework for discrete-time system analysis
-- **DTFT**: Frequency-domain representation on the unit circle
-- **DFT/FFT**: Practical numerical computation tool
-
-**② System Description and Design — Filters**
-
-How do we characterize discrete-time systems and design them to perform desired signal transformations?
-- Difference equations, impulse responses, frequency responses
-- FIR and IIR filter structures and design methods
-
----
-
-## 1.4 Review of Undergraduate DSP Course Structure
-
-Undergraduate DSP courses are organized around two pillars:
-
-```
-Undergraduate DSP
-├── Transforms
-│   ├── DTFT — spectrum of infinite-length sequences
-│   ├── z-Transform — generalization to the complex plane
-│   ├── DFT — finite-length, numerical computation
-│   └── FFT — fast algorithm for the DFT
-│
-└── Filters
-    ├── FIR filter structures and design
-    ├── IIR filter structures and design
-    └── Special filter classes (allpass, minimum-phase, linear-phase)
-```
-
-This chapter reviews these foundations as preparation for the **stochastic signal processing** topics in subsequent chapters. The emphasis shifts from deterministic signals to **random signals** — signals characterized by statistical properties (mean, autocorrelation, power spectrum) rather than exact waveforms.
-
----
-
-## 1.5 Elementary Sequences (Fundamental Building Blocks)
-
-Three sequences serve as the universal building blocks of discrete-time signal processing. Every other sequence and system property is ultimately expressed in terms of these.
-
-### 1.5.1 Unit Impulse $\delta(n)$
-
-$$\delta(n) = \begin{cases} 1, & n = 0 \\ 0, & n \neq 0 \end{cases}$$
-
-**Sifting property** — the reason $\delta(n)$ is fundamental:
-
-$$\sum_{n=-\infty}^{\infty} x(n)\,\delta(n-k) = x(k)$$
-
-A shifted impulse $\delta(n-k)$ "picks out" the single value $x(k)$. Equivalently, *any* sequence decomposes into a superposition of weighted, shifted impulses:
-
-$$\boxed{x(n) = \sum_{k=-\infty}^{\infty} x(k)\,\delta(n-k)}$$
-
-This decomposition is the starting point for deriving the convolution sum: if a system is LTI, its response to $x(n)$ is fully determined by its response to a single $\delta(n)$ (the impulse response $h(n)$).
-
-### 1.5.2 Unit Step $u(n)$
-
-$$\boxed{u(n) = \begin{cases} 1, & n \geq 0 \\ 0, & n < 0 \end{cases}}$$
-
-> **Convention**: $u(0) = 1$ (the step "turns on" at $n = 0$). This differs from the continuous-time Heaviside function, where $u(0)$ is sometimes left ambiguous or set to $\tfrac{1}{2}$; in discrete time there is no such ambiguity.
-
-**Relationship between $u(n)$ and $\delta(n)$**:
-
-$$u(n) = \sum_{k=0}^{\infty} \delta(n-k), \qquad \delta(n) = u(n) - u(n-1)$$
-
-The step is the running sum of the impulse; the impulse is the first difference of the step — a discrete-time analogy of integration and differentiation.
-
-> **Why $u(n)$ has no DTFT in the ordinary sense**: The absolute sum $\sum_{n=0}^{\infty}\lvert u(n)\rvert = \infty$ diverges, so the DTFT does not exist as a conventional integral. $u(n)$ is instead handled via the z-transform (ROC: $\lvert z\rvert>1$, §2.2.3) or via distribution theory (adding a Dirac delta at $\omega=0$ to the formal DTFT).
-
-### 1.5.3 Real Exponential Sequence $\alpha^n u(n)$
-
-$$\alpha^n u(n) = \begin{cases} \alpha^n, & n \geq 0 \\ 0, & n < 0 \end{cases}$$
-
-| $\lvert\alpha\rvert$ | Behavior |
-|------------|----------|
-| $\lvert\alpha\rvert < 1$ | Decays to zero — stable causal system |
-| $\lvert\alpha\rvert = 1$ | Sustained oscillation (or DC for $\alpha=1$) |
-| $\lvert\alpha\rvert > 1$ | Grows without bound — unstable |
-
-This is the prototype impulse response of a first-order causal IIR filter. Its z-transform $\dfrac{1}{1-\alpha z^{-1}}$ (ROC: $\lvert z\rvert>\lvert\alpha\rvert$) is the single most-used entry in the z-transform table (§2.2.3).
-
-### 1.5.4 Complex Exponential Sequence $e^{j\omega_0 n}$
-
-$$x(n) = e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)$$
-
-where $\omega_0 \in [-\pi, \pi]$ is the digital angular frequency (rad/sample). The real and imaginary parts are the discrete cosine and sine sequences respectively.
-
-**Correspondence to analog frequency:**
-
-Sampling the continuous-time complex exponential $e^{j\Omega_0 t}$ at rate $f_s = 1/T_s$ gives:
-
-$$e^{j\Omega_0 t}\big|_{t=nT_s} = e^{j\Omega_0 T_s n} = e^{j\omega_0 n}, \qquad \omega_0 = \Omega_0 T_s = \frac{2\pi f_0}{f_s}$$
-
-Higher analog frequencies map to larger $\omega_0$; lower analog frequencies map to smaller $\omega_0$. The digital frequency range $\omega_0 \in [-\pi, \pi]$ corresponds exactly to the analog Nyquist interval $f_0 \in [-f_s/2,\, f_s/2]$.
-
-| $\omega_0$ | Analog frequency | Sequence behavior |
-|---|---|---|
-| $0$ | $0$ Hz (DC) | $x(n) = 1$ (constant) |
-| $\pi/2$ | $f_s/4$ | Period of 4 samples |
-| $\pi$ | $f_s/2$ (Nyquist) | $x(n) = (-1)^n$ (fastest oscillation) |
-
-**Role as basis functions:**
-
-The DTFT inverse formula decomposes any sequence into a continuum of complex exponentials:
-
-$$x(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})\, e^{j\omega n}\, d\omega$$
-
-$X(e^{j\omega})$ is the spectral weight — the amplitude and phase of each frequency component. The role of $e^{j\omega_0 n}$ in discrete-time exactly parallels that of $e^{j\Omega t}$ in continuous-time Fourier analysis:
-
-| Analog domain | Digital domain |
-|---|---|
-| Basis function $e^{j\Omega t}$, $\Omega \in (-\infty, +\infty)$ | Basis function $e^{j\omega n}$, $\omega \in [-\pi, \pi]$ |
-| Spectral weight $X_a(\Omega)$ | Spectral weight $X(e^{j\omega})$ |
-| Frequency axis unbounded | Frequency axis folded into $[-\pi, \pi]$ |
-
-**The root cause of aliasing:**
-
-$e^{j\omega_0 n}$ is $2\pi$-periodic: $e^{j(\omega_0 + 2\pi)n} = e^{j\omega_0 n}$. Consequently, analog frequencies $f_0$ and $f_0 + kf_s$ (differing by any integer multiple of $f_s$) map to the same digital frequency $\omega_0$ and become indistinguishable after sampling. This is the fundamental cause of **aliasing**, and explains why an anti-aliasing lowpass filter with cutoff $f_c = f_s/2$ (i.e., $\omega_c = \pi$) must be applied before sampling.
-
----
-
-# Part II: Transforms for Discrete-Time Signals
-
-> 📖 Textbook §2.2 (Transform-Domain Representation, §2.2.1–§2.2.4)
-
----
-
-## 2.1 Discrete-Time Fourier Transform (DTFT)
-
-### 2.1.1 Definition and Physical Meaning
-
-The **DTFT** transforms a discrete-time sequence $x(n)$ into a continuous function of frequency $\omega$:
-
-$$\boxed{X(e^{j\omega}) = \sum_{n=-\infty}^{\infty} x(n)\, e^{-j\omega n}} \qquad \text{(Forward Transform)}$$
-
-$$\boxed{x(n) = \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega})\, e^{j\omega n}\, d\omega} \qquad \text{(Inverse Transform)}$$
-
-**Physical meaning — DTFT as z-transform on the unit circle**:
-
-The z-transform is $X(z) = \sum_{n=-\infty}^{\infty} x(n) z^{-n}$. Setting $z = e^{j\omega}$ (i.e., evaluating on the unit circle $\lvert z\rvert = 1$):
-
-$$X(e^{j\omega}) = X(z)\big\rvert_{z = e^{j\omega}}$$
-
-The DTFT exists when the ROC (Region of Convergence) of $X(z)$ includes the unit circle.
-
-*Note: The DTFT is obtained by evaluating the Z-transform on the unit circle ($z = e^{j\omega}$, $\lvert z\rvert = 1$). The ROC is the region in the complex $z$-plane where the Z-transform sum $\sum_n x(n)z^{-n}$ converges to a finite value. A **pole** is a value of $z$ at which $X(z) \to \infty$ (denominator of the rational $X(z)$ equals zero); the ROC therefore never contains any pole. For a causal stable system, all poles lie strictly inside the unit circle, so the ROC extends outward from the outermost pole and includes the unit circle — hence the DTFT exists. If any pole lies on or outside the unit circle, the ROC excludes the unit circle and the DTFT does not exist.*
-
-**Key structural properties**:
-- $X(e^{j\omega})$ is **$2\pi$-periodic**: $X(e^{j(\omega+2\pi)}) = X(e^{j\omega})$
-- For real $x(n)$: $X(e^{-j\omega}) = X^{\ast}(e^{j\omega})$ — conjugate symmetry, so the magnitude spectrum is even and the phase spectrum is odd
-
-### 2.1.2 Main Properties of the DTFT
-
-| Property | Time Domain | $\leftrightarrow$ | Frequency Domain |
-|----------|-------------|---|-----------------|
-| Linearity | $ax(n) + by(n)$ | $\leftrightarrow$ | $aX(e^{j\omega}) + bY(e^{j\omega})$ |
-| Time shift | $x(n - n_0)$ | $\leftrightarrow$ | $e^{-j\omega n_0} X(e^{j\omega})$ |
-| Frequency shift | $e^{j\omega_0 n} x(n)$ | $\leftrightarrow$ | $X(e^{j(\omega - \omega_0)})$ |
-| Modulation | $x(n)\cos\omega_0 n$ | $\leftrightarrow$ | $\frac{1}{2}[X(e^{j(\omega-\omega_0)}) + X(e^{j(\omega+\omega_0)})]$ |
-| Conjugate | $x^{\ast}(n)$ | $\leftrightarrow$ | $X^{\ast}(e^{-j\omega})$ |
-| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(e^{-j\omega})$ |
-| Convolution | $x(n) \ast y(n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y(e^{j\omega})$ |
-| Correlation | $\sum_k x(k)y^{\ast}(k-n)$ | $\leftrightarrow$ | $X(e^{j\omega})Y^{\ast}(e^{j\omega})$ |
-| Multiplication | $x(n)y(n)$ | $\leftrightarrow$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\theta})Y(e^{j(\omega-\theta)})d\theta$ |
-| Frequency differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $j\dfrac{d}{d\omega}X(e^{j\omega})$ |
-| Parseval's theorem | $\sum_{n} x(n)y^{\ast}(n)$ | $=$ | $\frac{1}{2\pi}\int_{-\pi}^{\pi} X(e^{j\omega})Y^{\ast}(e^{j\omega})d\omega$ |
-
-**Energy form of Parseval's theorem** (setting $y = x$):
-
-$$\sum_{n=-\infty}^{\infty} \lvert x(n)\rvert^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \lvert X(e^{j\omega})\rvert^2\, d\omega$$
-
-Total energy is preserved between the time and frequency domains.
-
-> ![Figure 2.1](<./CourseADSP2026/Fig/Chapter_1/fig_2_1.png>)
->
-> *Figure 2.1: Frequency-domain view of an LTI system: the output spectrum equals the input spectrum multiplied point-wise by the system frequency response $H(e^{j\omega})$.  
-> **Top (aperiodic input):** $Y(e^{j\omega}) = X(e^{j\omega})\cdot H(e^{j\omega})$ — continuous DTFT spectra.  
-> **Bottom (periodic input):** $Y_k = X_k\cdot H(e^{j\omega_k})$ — discrete Fourier series (DFS) coefficients evaluated at $\omega_k = 2\pi k/N$.*
-
----
-
-## 2.2 z-Transform
-
-### 2.2.1 Definition and Region of Convergence
-
-The **z-transform** generalizes the DTFT to the complex plane:
-
-$$\boxed{X(z) = \sum_{n=-\infty}^{\infty} x(n)\, z^{-n}, \quad z \in \mathbb{C}}$$
-
-The **Region of Convergence (ROC)** is the set of $z$ values for which the sum converges absolutely:
-
-$$\text{ROC} = \lbrace z \in \mathbb{C} : \sum_{n=-\infty}^{\infty} \lvert x(n)\rvert\, \lvert z\rvert^{-n} \lt \infty \rbrace$$
-
-The ROC takes the form of an annulus $r_1 \lt \lvert z\rvert \lt r_2$ (two-sided sequences), $\lvert z\rvert \gt r_1$ (right-sided/causal), or $\lvert z\rvert \lt r_2$ (left-sided).
-
-**Inverse z-transform** via contour integration:
-
-$$x(n) = \frac{1}{2\pi j} \oint_C X(z) z^{n-1}\, dz$$
-
-where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-transforms are computed via **partial fraction expansion**.
-
-### 2.2.2 Main Properties of the z-Transform
-
-| Property | Time Sequence | $\leftrightarrow$ | z-Transform | ROC |
-|----------|--------------|---|-------------|-----|
-| Linearity | $ax(n)+by(n)$ | $\leftrightarrow$ | $aX(z)+bY(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
-| Time shift | $x(n-K)$ | $\leftrightarrow$ | $z^{-K}X(z)$ | $\text{ROC}_x$ (modified at $z=0,\infty$) |
-| z-domain scaling | $\alpha^n x(n)$ | $\leftrightarrow$ | $X(z/\alpha)$ | $\lvert\alpha\rvert\,r_1 \lt \lvert z\rvert \lt \lvert\alpha\rvert\,r_2$ |
-| Conjugate | $x^{\ast}(n)$ | $\leftrightarrow$ | $X^{\ast}(z^{\ast})$ | $\text{ROC}_x$ |
-| Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 \lt \lvert z\rvert \lt 1/r_1$ |
-| Convolution | $x(n)\ast y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
-| Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
-| z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
-| Initial value | $x(0)$, causal $x$ | — | $\lim_{z\to\infty} X(z)$ | — |
-| Parseval | $\sum_n x(n)y^\ast(n)$ | $=$ | $\frac{1}{2\pi j}\oint X(v)Y^\ast(1/v^\ast)v^{-1}\,dv$ | — |
-
-### 2.2.3 Common z-Transform Pairs
-
-| Sequence $x(n)$ | z-Transform $X(z)$ | ROC |
-|-----------------|-------------------|-----|
-| $\delta(n)$ | $1$ | All $z$ |
-| $u(n)$ (unit step, see §1.5.2) | $\dfrac{1}{1-z^{-1}}$ | $\lvert z\rvert \gt 1$ |
-| $\alpha^n u(n)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
-| $-\alpha^n u(-n-1)$ | $\dfrac{1}{1-\alpha z^{-1}}$ | $\lvert z\rvert \lt \lvert\alpha\rvert$ |
-| $n\alpha^n u(n)$ | $\dfrac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}$ | $\lvert z\rvert \gt \lvert\alpha\rvert$ |
-| $r^n \cos(\omega_0 n) u(n)$ | $\dfrac{1-r\cos\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert \gt r$ |
-| $r^n \sin(\omega_0 n) u(n)$ | $\dfrac{r\sin\omega_0\, z^{-1}}{1-2r\cos\omega_0\, z^{-1}+r^2z^{-2}}$ | $\lvert z\rvert \gt r$ |
-| $\alpha^n u(n) - \alpha^n u(n-N)$ | $\dfrac{1-\alpha^N z^{-N}}{1-\alpha z^{-1}}$ | $\lvert z\rvert \gt 0$ |
-| $\alpha^{\lvert n\rvert}$ | $\dfrac{1-\alpha^2}{(1-\alpha z^{-1})(1-\alpha z)}$ | $\lvert\alpha\rvert \lt \lvert z\rvert \lt 1/\lvert\alpha\rvert$ |
-
-### 2.2.4 Relationship Between the z-Transform and the Laplace Transform
-
-The z-transform is the **discrete-time counterpart** of the Laplace transform. The correspondence is established through the sampling relationship $z = e^{sT_s}$:
-
-$$s = \sigma + j\Omega \xrightarrow{z = e^{sT_s}} z = e^{\sigma T_s}\, e^{j\Omega T_s} = r\, e^{j\omega}$$
-
-where each variable carries a distinct physical meaning:
-
-- $s = \sigma + j\Omega$ is the **complex frequency variable** of the Laplace transform ($s \in \mathbb{C}$), whose real and imaginary parts are independent:
-  - $\sigma = \mathrm{Re}(s)$: the **damping factor** (units: Np/s). $\sigma < 0$ → exponentially decaying signal; $\sigma > 0$ → exponentially growing signal; $\sigma = 0$ → pure sinusoid (sustained oscillation).
-  - $\Omega = \mathrm{Im}(s)$: the **analog angular frequency** (units: rad/s), i.e., the rate of oscillation in continuous time.
-
-- $T_s$: the **sampling period** (units: s/sample). Its reciprocal $f_s = 1/T_s$ is the **sampling rate** (units: Hz = samples/s).
-
-- $z = r\,e^{j\omega}$ is the **complex frequency variable** of the z-transform ($z \in \mathbb{C}$), expressed in polar form:
-  - $r = \lvert z\rvert = e^{\sigma T_s}$: the **magnitude** of $z$, encoding the growth/decay rate after sampling. $r < 1$ (inside the unit circle) $\leftrightarrow$ $\sigma < 0$ (stable); $r > 1$ (outside) $\leftrightarrow$ $\sigma > 0$ (unstable); $r = 1$ (on the unit circle) $\leftrightarrow$ $\sigma = 0$ (marginally stable, pure sinusoidal response).
-  - $\omega = \angle z = \Omega T_s = \Omega / f_s$: the **digital angular frequency** (units: rad/sample), the discrete-time counterpart of $\Omega$. It is obtained by normalizing $\Omega$ by the sampling period; it is $2\pi$-periodic by construction, with $\omega \in [-\pi, \pi]$ corresponding to the analog band $\Omega \in [-\pi/T_s,\, \pi/T_s]$ (rad/s), or equivalently $f \in [-f_s/2,\, f_s/2]$ (Hz) (one full traversal of the Nyquist interval).
-
-**Key correspondences**:
-
-| Laplace / s-domain | z-Transform / z-domain |
-|-------------------|----------------------|
-| Left half-plane ($\sigma \lt 0$) | Interior of unit circle ($\lvert z\rvert \lt 1$) |
-| Right half-plane ($\sigma \gt 0$) | Exterior of unit circle ($\lvert z\rvert \gt 1$) |
-| Imaginary axis ($\sigma = 0$, $s = j\Omega$) | Unit circle ($\lvert z\rvert = 1$) |
-| Stable causal: poles in left half-plane | Stable causal: poles inside unit circle |
-| Analog frequency $\Omega$ (rad/s) | Digital frequency $\omega = \Omega T_s$ (rad/sample) |
-
-**Frequency mapping**: As $\Omega$ traverses $[-\pi/T_s,\; \pi/T_s]$ (rad/s), equivalently as analog cyclic frequency $f$ traverses $[-f_s/2,\; f_s/2]$ (Hz), the digital frequency $\omega = \Omega T_s$ completes one full traversal of $[-\pi, \pi]$ — one loop around the unit circle. This mapping is the theoretical basis of the **bilinear z-transform** and **impulse invariance** methods for IIR filter design.
-
-> ![Figure 2.2](<./CourseADSP2026/Fig/Chapter_1/fig_2_2.jpg>)
->
-> *Figure 2.2: s-plane to z-plane mapping via $z = e^{sT_s}$.*
-
----
-
-## 2.3 Discrete Fourier Transform (DFT)
-
-### 2.3.1 From DTFT to DFT: Uniform Frequency Sampling
-
-The DTFT $X(e^{j\omega})$ is continuous in $\omega \in [-\pi, \pi]$. For numerical computation, we sample it at $N$ equally spaced frequencies:
-
-$$\omega_k = \frac{2\pi k}{N}, \quad k = 0, 1, \ldots, N-1$$
-
-This yields the **DFT**:
-
-$$\boxed{X(k) = \sum_{n=0}^{N-1} x(n)\, W_N^{nk}} \qquad k = 0, 1, \ldots, N-1$$
-
-$$\boxed{x(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)\, W_N^{-nk}} \qquad n = 0, 1, \ldots, N-1$$
-
-where $W_N = e^{-j2\pi/N}$ is the **twiddle factor**.
-
-The DFT can be written in matrix form:
-
-$$\mathbf{X} = \mathbf{W}_N \mathbf{x}$$
-
-where the matrix entries are:
-
-$$[\mathbf{W}_N]_{kn} = W_N^{kn}, \qquad k,n = 0, 1, \ldots, N-1$$
-
-Thus $\mathbf{W}_N$ is the $N\times N$ DFT matrix. The inverse uses:
-
-$$\mathbf{W}_N^{-1} = \frac{1}{N}\mathbf{W}_N^{\ast}$$
-
-### 2.3.2 Relationship Between DFT and DFS (Discrete Fourier Series)
-
-The DFT and the DFS are closely related but apply to different objects: the DFT operates on a *finite-length* sequence; the DFS operates on an *infinite periodic* sequence. Understanding the bridge between them is essential for correctly interpreting circular convolution, time-domain aliasing, and the DFT convolution theorem.
-
-#### Step 1 — The DFS: transform for periodic sequences
-
-The **Discrete Fourier Series (DFS)** is the frequency-domain representation of a sequence $\tilde{x}(n)$ that is periodic with period $N$, i.e., $\tilde{x}(n + N) = \tilde{x}(n)$ for all $n \in \mathbb{Z}$.
-
-Because $\tilde{x}(n)$ repeats every $N$ samples, it can be decomposed exactly into $N$ complex exponentials with frequencies $\omega_k = 2\pi k/N$:
-
-$$\boxed{\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk}} \qquad \text{(DFS analysis, } k \in \mathbb{Z}\text{)}$$
-
-$$\boxed{\tilde{x}(n) = \frac{1}{N}\sum_{k=0}^{N-1} \tilde{X}(k)\, W_N^{-nk}} \qquad \text{(DFS synthesis, } n \in \mathbb{Z}\text{)}$$
-
-Two important structural facts:
-
-1. **Both sides are periodic with period $N$.** The time-domain sequence $\tilde{x}(n)$ is periodic by assumption. The frequency-domain coefficients $\tilde{X}(k)$ are also periodic: $\tilde{X}(k+N) = \tilde{X}(k)$. This can be verified directly — replacing $k$ by $k+N$ in the analysis formula gives $W_N^{n(k+N)} = W_N^{nk} \cdot W_N^{nN} = W_N^{nk} \cdot 1 = W_N^{nk}$, so the sum is unchanged. The DFS thus describes a *doubly periodic* object: infinite in both time and frequency, with period $N$ in both domains.
-
-2. **The DFS sum only needs one period.** Even though $\tilde{x}(n)$ extends over all integers, the analysis sum only runs over one period $n = 0, \ldots, N-1$ (any consecutive $N$ samples give the same result). This is the key fact exploited in Step 3 below.
-
-#### Step 2 — Periodic extension of a finite-length sequence
-
-Given a finite-length sequence $x(n)$ supported on $0 \leq n \leq N-1$, define its **periodic extension** with period $N$:
-
-$$\tilde{x}(n) \triangleq x(\langle n \rangle_N), \qquad \langle n \rangle_N \triangleq n \bmod N$$
-
-The operator $\langle \cdot \rangle_N$ wraps any integer $n$ into the range $[0, N-1]$ by taking the remainder after dividing by $N$. In other words, $\tilde{x}(n)$ tiles the finite block $x(0), x(1), \ldots, x(N-1)$ infinitely in both directions:
-
-$$\ldots,\; \underbrace{x(0),\, x(1),\, \ldots,\, x(N-1)}_{\text{original block}},\; \underbrace{x(0),\, x(1),\, \ldots,\, x(N-1)}_{\text{copy}},\; \ldots$$
-
-On the canonical interval $0 \leq n \leq N-1$, the two sequences agree exactly: $\tilde{x}(n) = x(n)$.
-
-#### Step 3 — DFT equals one period of the DFS
-
-Now compute the DFS coefficients of $\tilde{x}(n)$:
-
-$$\tilde{X}(k) = \sum_{n=0}^{N-1} \tilde{x}(n)\, W_N^{nk}$$
-
-On the summation interval $0 \leq n \leq N-1$, we have $\tilde{x}(n) = x(n)$ (from Step 2). Substituting:
-
-$$\tilde{X}(k) = \sum_{n=0}^{N-1} x(n)\, W_N^{nk} = X(k)$$
-
-The right-hand side is exactly the DFT definition from §2.3.1. Therefore:
-
-$$\boxed{\tilde{X}(k) = X(k), \quad k = 0, 1, \ldots, N-1}$$
-
-The DFT values $X(k)$ are simply *one period of the (doubly-periodic) DFS coefficients* $\tilde{X}(k)$. The DFT isolates and works with just this one representative period, while the DFS describes the full periodic structure in both domains.
-
-#### Summary: DFT vs. DFS at a glance
-
-| | **DFS** | **DFT** |
-|---|---|---|
-| Input | Infinite periodic sequence $\tilde{x}(n)$, period $N$ | Finite-length sequence $x(n)$, $0 \leq n \leq N-1$ |
-| Output | Infinite periodic coefficients $\tilde{X}(k)$, period $N$ | $N$ complex numbers $X(k)$, $k = 0, \ldots, N-1$ |
-| Relationship | Both domains periodic; extends over all $n, k \in \mathbb{Z}$ | One period of the DFS: $X(k) = \tilde{X}(k)$ for $k = 0,\ldots, N-1$ |
-| Role | Theoretical framework; explains circular convolution | Practical numerical tool; computed by the FFT |
-
-**Key implication**: Since the DFT is just one period of the DFS, and the DFS diagonalizes *periodic* (circular) convolution, the DFT likewise diagonalizes circular convolution — giving the convolution theorem $x(n) \circledast y(n) \overset{\text{DFT}}{\longleftrightarrow} X(k) \cdot Y(k)$. To compute *linear* convolution of sequences of lengths $L_1$ and $L_2$ via the DFT, the transform length must satisfy $N \geq L_1 + L_2 - 1$ (with zero-padding); otherwise the periodic wrap-around causes the tails of the linear convolution to fold back onto the result — a phenomenon called **time-domain aliasing**.
-
-#### When Does Time-Domain Aliasing Occur?
-
-**Root cause: the DFT implicitly treats every signal as periodic.**
-
-When you take the $N$-point DFT of two sequences, multiply in the frequency domain, and apply the IDFT, the result is an $N$-point **circular** convolution — not a linear convolution. Behind the scenes the DFT periodically extends both $x(n)$ and $h(n)$ with period $N$, convolves in that periodic world, and returns one period of the output.
-
-To see why, we first define the two types of convolution precisely and show how each is computed.
-
----
-
-**Definition 1 — Linear convolution** $y_{\text{lin}}(n)$
-
-Given a finite-length input $x(n)$ of length $L_1$ (nonzero for $0 \leq n \leq L_1-1$) and a finite-length filter $h(n)$ of length $L_2$ (nonzero for $0 \leq n \leq L_2-1$), their **linear (aperiodic) convolution** is the standard convolution sum over all integers:
-
-$$y_{\text{lin}}(n) = (x \ast h)(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k) = \sum_{k=0}^{L_1-1} x(k)\, h(n-k)$$
-
-The second equality holds because $x(k) = 0$ outside $[0, L_1-1]$. The output $y_{\text{lin}}(n)$ is nonzero only for $0 \leq n \leq L_1 + L_2 - 2$, so its length is exactly $L_1 + L_2 - 1$. No periodicity is assumed; the sequences live on the entire integer line $\mathbb{Z}$.
-
-**How to compute** $y_{\text{lin}}(n)$: slide $h(n)$ past $x(n)$ one sample at a time, multiply element-wise, and sum — the standard "flip-and-drag" operation. For sequences of length $L_1$ and $L_2$, this requires $L_1 \cdot L_2$ multiplications by direct computation, or $O(N \log N)$ multiplications via the DFT (with sufficient zero-padding, as discussed below).
-
----
-
-**Definition 2 — Circular (periodic) convolution** $y_{\text{circ}}(n)$
-
-Given two finite-length sequences $x(n)$ and $h(n)$, both viewed modulo $N$ (i.e., periodically extended with period $N$), the **$N$-point circular convolution** is:
-
-$$y_{\text{circ}}(n) = \bigl(x \circledast_N h\bigr)(n) = \sum_{k=0}^{N-1} x(k)\, h\!\left(\langle n - k \rangle_N\right), \qquad n = 0, 1, \ldots, N-1$$
-
-where $\langle m \rangle_N = m \bmod N$ denotes the **modulo-$N$** reduction, i.e., $h$ is treated as periodic with period $N$ so that $h(-1)$ wraps to $h(N-1)$, $h(-2)$ wraps to $h(N-2)$, and so on. The result $y_{\text{circ}}(n)$ has exactly $N$ samples.
-
-Equivalently, using the periodic extension $\tilde{h}(n) = h(\langle n \rangle_N)$:
-
-$$y_{\text{circ}}(n) = \sum_{k=0}^{N-1} x(k)\, \tilde{h}(n - k)$$
-
-**How to compute** $y_{\text{circ}}(n)$: the same flip-and-sum as linear convolution, but the shift of $h$ wraps around modulo $N$ instead of extending to $\pm\infty$. In practice, one never computes circular convolution directly in the time domain — the point is to use the DFT: compute $X(k) = \mathrm{DFT}\lbrace x\rbrace$, $H(k) = \mathrm{DFT}\lbrace h\rbrace$, form $Y(k) = X(k) \cdot H(k)$ (pointwise), and recover $y_{\text{circ}}(n) = \mathrm{IDFT}\lbrace Y\rbrace$. This is the DFT convolution theorem, and it works because the $N$-point DFT diagonalizes exactly the $N$-point circular convolution.
-
----
-
-**Relationship between the two convolutions**
-
-The precise connection is:
-
-$$\boxed{y_{\text{circ}}(n) = \sum_{r=-\infty}^{\infty} y_{\text{lin}}(n - rN), \qquad n = 0, 1, \ldots, N-1}$$
-
-That is, the circular convolution equals the linear convolution **aliased (summed) with period $N$**. If the linear convolution fits inside $N$ samples — i.e., $L_1 + L_2 - 1 \leq N$ — adjacent periodic copies do not overlap and the two are identical. The moment $N < L_1 + L_2 - 1$, the copies overlap and corrupt each other. This is **time-domain aliasing**: the direct dual of frequency-domain aliasing caused by undersampling, now arising from insufficient DFT length.
-
-**Condition for aliasing to occur:**
-
-$$\boxed{N < L_1 + L_2 - 1}$$
-
-**Correct procedure:** zero-pad both sequences to length $N \geq L_1 + L_2 - 1$, compute DFT $\to$ pointwise multiply $\to$ IDFT, and keep the first $L_1 + L_2 - 1$ output samples.
-
----
-
-#### Numerical Example: What Goes Wrong When $N$ Is Too Small
-
-Let:
-
-$$x(n) = [1,\; 2,\; 3], \quad\quad L_1 = 3$$
-
-$$h(n) = [1,\; 1], \quad\quad L_2 = 2$$
-
-The required minimum DFT length is $L_1 + L_2 - 1 = 4$.
-
-**Step 1 — Reference: true linear convolution**
-
-$$y_{\text{lin}} = x \ast h = [1,\; 3,\; 5,\; 3] \qquad \text{(length 4)}$$
-
-Point-by-point:
-
-| $n$ | $y_{\text{lin}}(n) = \sum_k x(k)\,h(n-k)$ |
-|-----|---------------------------------------------|
-| 0 | $x(0)h(0) = 1$ |
-| 1 | $x(0)h(1)+x(1)h(0) = 1+2 = 3$ |
-| 2 | $x(1)h(1)+x(2)h(0) = 2+3 = 5$ |
-| 3 | $x(2)h(1) = 3$ |
-
----
-
-**Step 2 — $N = 3$ DFT (too short — aliasing expected)**
-
-$N = 3 < 4$, so the condition is violated. Zero-pad $h$ to length 3: $h \to [1, 1, 0]$. The claim is:
-
-$$x(n) \circledast h(n) \;\overset{\text{DFT}}{\longleftrightarrow}\; X(k) \cdot H(k)$$
-
-We verify this by carrying out the full DFT $\to$ pointwise multiply $\to$ IDFT pipeline numerically and checking that it matches the time-domain circular convolution.
-
-Let $W_3 = e^{-j2\pi/3}$. The numerical values needed are:
-
-$$e^{-j2\pi/3} = -\tfrac{1}{2} - j\tfrac{\sqrt{3}}{2}, \qquad e^{-j4\pi/3} = -\tfrac{1}{2} + j\tfrac{\sqrt{3}}{2}$$
-
-**2a — Compute $X(k)$**
-
-$$X(k) = \sum_{n=0}^{2} x(n)\,e^{-j2\pi kn/3}$$
-
-$$X(0) = 1 + 2 + 3 = 6$$
-
-$$X(1) = 1 + 2\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2} + j\tfrac{\sqrt3}{2}$$
-
-$$X(2) = 1 + 2\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2} - j\tfrac{\sqrt3}{2}$$
-
-Note $X(2) = X^*(1)$, as expected for a real input sequence.
-
-**2b — Compute $H(k)$**
-
-$$H(0) = 1 + 1 + 0 = 2$$
-
-$$H(1) = 1 + 1\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) + 0 = \tfrac{1}{2} - j\tfrac{\sqrt3}{2}$$
-
-$$H(2) = 1 + 1\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) + 0 = \tfrac{1}{2} + j\tfrac{\sqrt3}{2}$$
-
-**2c — Pointwise multiply $Y(k) = X(k) \cdot H(k)$**
-
-$$Y(0) = 6 \times 2 = 12$$
-
-$$Y(1) = \left(-\tfrac{3}{2}+j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{4}+j^2\!\left(-\tfrac{3}{4}\right) + j\!\left(\tfrac{3\sqrt3}{4}+\tfrac{\sqrt3}{4}\right) = j\sqrt{3}$$
-
-$$Y(2) = \left(-\tfrac{3}{2}-j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -j\sqrt{3}$$
-
-($Y(2) = Y^*(1)$, consistent with a real output sequence.)
-
-**2d — IDFT: $y(n) = \tfrac{1}{3}\sum_{k=0}^{2} Y(k)\,e^{j2\pi kn/3}$**
-
-$$y(0) = \frac{1}{3}\!\left[12 + j\sqrt3 + (-j\sqrt3)\right] = \frac{12}{3} = \mathbf{4}$$
-
-For $y(1)$, using $e^{j2\pi/3} = -\frac{1}{2}+j\frac{\sqrt3}{2}$ and $e^{j4\pi/3} = -\frac{1}{2}-j\frac{\sqrt3}{2}$:
-
-$$Y(1)\cdot e^{j2\pi/3} = j\sqrt3\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2}-j\tfrac{\sqrt3}{2}$$
-
-$$Y(2)\cdot e^{j4\pi/3} = -j\sqrt3\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2}+j\tfrac{\sqrt3}{2}$$
-
-$$y(1) = \frac{1}{3}\!\left[12 + \left(-\tfrac{3}{2}-j\tfrac{\sqrt3}{2}\right) + \left(-\tfrac{3}{2}+j\tfrac{\sqrt3}{2}\right)\right] = \frac{9}{3} = \mathbf{3}$$
-
-For $y(2)$, using $e^{j4\pi/3}$ and $e^{j8\pi/3} = e^{j2\pi/3}$ (periodicity):
-
-$$Y(1)\cdot e^{j4\pi/3} = j\sqrt3\cdot\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = \tfrac{3}{2}-j\tfrac{\sqrt3}{2}$$
-
-$$Y(2)\cdot e^{j8\pi/3} = -j\sqrt3\cdot\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = \tfrac{3}{2}+j\tfrac{\sqrt3}{2}$$
-
-$$y(2) = \frac{1}{3}\!\left[12 + \tfrac{3}{2} - j\tfrac{\sqrt3}{2} + \tfrac{3}{2} + j\tfrac{\sqrt3}{2}\right] = \frac{15}{3} = \mathbf{5}$$
-
-The full pipeline gives:
-
-$$y_{\text{circ},\,N=3} = [4,\; 3,\; 5]$$
-
-This numerically confirms $X(k)\cdot H(k) \xrightarrow{\text{IDFT}} x(n)\circledast h(n)$.
-
-Comparing with the linear convolution:
-
-| $n$ | $y_{\text{lin}}(n)$ | $y_{\text{circ},\,N=3}(n)$ | Correct? |
-|-----|---------------------|----------------------------|----------|
-| 0 | 1 | **4** | ✗ |
-| 1 | 3 | 3 | ✓ (coincidence) |
-| 2 | 5 | 5 | ✓ |
-| 3 | 3 | (absent — folded away) | ✗ |
-
-**Why is $y_{\text{circ}}(0) = 4$ instead of 1?**
-
-The $N=3$ circular convolution equals the linear convolution aliased with period 3:
-$$y_{\text{circ}}(n) = y_{\text{lin}}(n) + y_{\text{lin}}(n - 3)$$
-
-At $n = 0$: $\;y_{\text{lin}}(0) + y_{\text{lin}}(0-3) = 1 + y_{\text{lin}}(3) = 1 + 3 = 4$.
-
-The value that should appear at $n = 3$ **wraps around** and adds onto $n = 0$. That is time-domain aliasing. The DFT pipeline produces this automatically because it treats both sequences as period-3, so the modulo-$N$ wrap-around is built into the IDFT basis functions $e^{j2\pi kn/3}$ — no manual folding required.
-
----
-
-**Step 3 — $N = 4$ DFT (exactly sufficient — no aliasing)**
-
-$N = 4 \geq L_1 + L_2 - 1 = 4$, so the no-aliasing condition is exactly met. Zero-pad both sequences to length 4:
-
-$$x \;\to\; [1,\;2,\;3,\;0], \qquad h \;\to\; [1,\;1,\;0,\;0]$$
-
-The 4-point twiddle factor is $W_4 = e^{-j2\pi/4} = e^{-j\pi/2} = -j$, giving the convenient integer powers:
-
-$$W_4^0 = 1,\quad W_4^1 = -j,\quad W_4^2 = -1,\quad W_4^3 = j$$
-
-**3a — Compute $X(k) = \sum_{n=0}^{3} x(n)\,W_4^{nk}$**
-
-$$X(0) = 1 + 2 + 3 + 0 = 6$$
-
-$$X(1) = 1\cdot 1 + 2\cdot(-j) + 3\cdot(-1) + 0\cdot j = 1 - 2j - 3 = -2 - 2j$$
-
-$$X(2) = 1\cdot 1 + 2\cdot(-1) + 3\cdot 1 + 0\cdot(-1) = 1 - 2 + 3 = 2$$
-
-$$X(3) = 1\cdot 1 + 2\cdot j + 3\cdot(-1) + 0\cdot(-j) = 1 + 2j - 3 = -2 + 2j$$
-
-Note $X(3) = X^*(1)$, as expected for a real input sequence.
-
-**3b — Compute $H(k) = \sum_{n=0}^{3} h(n)\,W_4^{nk}$**
-
-$$H(0) = 1 + 1 + 0 + 0 = 2$$
-
-$$H(1) = 1\cdot 1 + 1\cdot(-j) + 0 + 0 = 1 - j$$
-
-$$H(2) = 1\cdot 1 + 1\cdot(-1) + 0 + 0 = 0$$
-
-$$H(3) = 1\cdot 1 + 1\cdot j + 0 + 0 = 1 + j$$
-
-Again $H(3) = H^*(1)$, consistent with a real impulse response.
-
-**3c — Pointwise multiply $Y(k) = X(k)\cdot H(k)$**
-
-$$Y(0) = 6\times 2 = 12$$
-
-$$Y(1) = (-2 - 2j)(1 - j) = -2 + 2j - 2j + 2j^2 = -2 - 2 = -4$$
-
-$$Y(2) = 2\times 0 = 0$$
-
-$$Y(3) = (-2 + 2j)(1 + j) = -2 - 2j + 2j + 2j^2 = -2 - 2 = -4$$
-
-Check: $Y(3) = Y^*(1) = (-4)^* = -4$ ✓
-
-**3d — IDFT: $y(n) = \dfrac{1}{4}\displaystyle\sum_{k=0}^{3} Y(k)\,W_4^{-nk}$**
-
-The inverse twiddle factors are $W_4^{-1} = j$, giving $W_4^{-nk} = j^{nk}$:
-
-$$y(0) = \tfrac{1}{4}\!\left[12 + (-4) + 0 + (-4)\right] = \tfrac{4}{4} = \mathbf{1}$$
-
-$$y(1) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot j + 0\cdot(-1) + (-4)\cdot(-j)\right] = \tfrac{1}{4}\!\left[12 - 4j + 4j\right] = \tfrac{12}{4} = \mathbf{3}$$
-
-$$y(2) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot(-1) + 0\cdot 1 + (-4)\cdot(-1)\right] = \tfrac{1}{4}\!\left[12 + 4 + 0 + 4\right] = \tfrac{20}{4} = \mathbf{5}$$
-
-$$y(3) = \tfrac{1}{4}\!\left[12\cdot 1 + (-4)\cdot(-j) + 0\cdot(-1) + (-4)\cdot j\right] = \tfrac{1}{4}\!\left[12 + 4j - 4j\right] = \tfrac{12}{4} = \mathbf{3}$$
-
-The full pipeline gives:
-
-$$y_{\text{circ},\,N=4} = [1,\; 3,\; 5,\; 3]$$
-
-Comparing with the linear convolution:
-
-| $n$ | $y_{\text{lin}}(n)$ | $y_{\text{circ},\,N=4}(n)$ | Correct? |
-|-----|---------------------|----------------------------|----------|
-| 0 | 1 | **1** | ✓ |
-| 1 | 3 | **3** | ✓ |
-| 2 | 5 | **5** | ✓ |
-| 3 | 3 | **3** | ✓ |
-
-This matches the linear convolution exactly. ✓  Because $N = L_1 + L_2 - 1 = 4$, the zero-padded $x(n)$ and $h(n)$ have no periodic wrap-around overlap: the last sample of the linear convolution ($n=3$) lands precisely in the last slot of the $N=4$ period and does **not** fold onto $n=0$. The imaginary parts cancel perfectly in the IDFT (all $Y(k)$ are real, as $Y(1)=Y(3)=-4$), which is a further confirmation that the result is a valid real sequence.
-
----
-
-**Summary**
-
-| Scenario | Linear conv. length | DFT length $N$ | Outcome |
-|----------|---------------------|----------------|---------|
-| $N \geq L_1+L_2-1$ | $L_1+L_2-1$ | Sufficient | Circular conv. $=$ linear conv. ✓ |
-| $N < L_1+L_2-1$ | Overflows $N$ | Insufficient | Tail wraps around — **time-domain aliasing** ✗ |
-
-Correct pipeline for DFT-based linear convolution:
-
-$$x(n)\xrightarrow{\text{zero-pad to }N} \xrightarrow{\mathrm{DFT}} X(k) \quad\Big|\quad h(n)\xrightarrow{\text{zero-pad to }N} \xrightarrow{\mathrm{DFT}} H(k) \;\longrightarrow\; Y(k)=X(k)H(k) \xrightarrow{\mathrm{IDFT}} y(n)$$
-
-Retain the first $L_1 + L_2 - 1$ samples of $y(n)$; that is $x(n) \ast h(n)$.
-
-### 2.3.3 Main Properties and Uses of the DFT
-
-| Property | Condition | Result |
-|----------|-----------|--------|
-| Linearity | — | $\mathrm{DFT}\lbrace a x(n)+b y(n)\rbrace = aX(k)+bY(k)$ |
-| Circular shift | $x(\langle n-m\rangle_N)$ | $W_N^{mk} X(k)$ |
-| Circular convolution | $x(n) \circledast y(n)$ | $X(k)\cdot Y(k)$ |
-| Multiplication | $x(n)\cdot y(n)$ | $\frac{1}{N} X(k) \circledast Y(k)$ |
-| Conjugate symmetry | $x(n)$ real | $X(N-k) = X^{\ast}(k)$ |
-| Parseval's theorem | — | $\sum_{n=0}^{N-1}\lvert x(n)\rvert^2 = \frac{1}{N}\sum_{k=0}^{N-1}\lvert X(k)\rvert^2$ |
-
-**Primary uses**:
-1. **Spectral analysis**: Estimates frequency content of a finite-duration signal
-2. **Fast linear convolution**: FIR filtering via FFT (overlap-add, overlap-save methods)
-3. **Correlation computation**: Cross-correlation and autocorrelation via FFT
-4. **Filter design**: Frequency-sampling method
-
----
-
-## 2.4 Fast Fourier Transform (FFT)
-
-### 2.4.1 Divide-and-Conquer Strategy and Twiddle Factor Properties
-
-Direct DFT computation requires $O(N^2)$ complex multiplications and additions. The FFT exploits two fundamental properties of the twiddle factor $W_N = e^{-j2\pi/N}$:
-
-**Periodicity**:
-
-$$W_N^{r+N} = W_N^r$$
-
-**Symmetry**:
-
-$$W_N^{r+N/2} = -W_N^r, \qquad W_N^{N/2} = -1, \qquad W_{2N}^{2r} = W_N^r$$
-
-Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively split into two $N/2$-point DFTs, reducing complexity from $O(N^2)$ to $O(N\log_2 N)$.
-
-### 2.4.2 Radix-2 DIT and DIF FFT
-
-#### Decimation-in-Time (DIT) FFT
-
-Split $x(n)$ into even-indexed and odd-indexed subsequences:
-
-$$x_1(n) = x(2n), \quad x_2(n) = x(2n+1), \quad n = 0, 1, \ldots, N/2-1$$
-
-Then:
-
-$$X(k) = \underbrace{\sum_{n=0}^{N/2-1} x(2n)\, W_{N/2}^{nk}}_{U(k)} + W_N^k \underbrace{\sum_{n=0}^{N/2-1} x(2n+1)\, W_{N/2}^{nk}}_{V(k)}$$
-
-Using the symmetry $W_N^{k+N/2} = -W_N^k$, the **butterfly equations** are:
-
-$$\boxed{X(k) = U(k) + W_N^k V(k)} \qquad k = 0, 1, \ldots, N/2-1$$
-
-$$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
-
-Apply recursively for $m = \log_2 N$ stages.
-
-> ![Figure 2.3](<./CourseADSP2026/Fig/Chapter_1/fig_2_3.jpg>)
->
-> *Figure 2.3: 8-point DIT-FFT signal flow graph.*
-
-#### Decimation-in-Frequency (DIF) FFT
-
-Split $x(n)$ into the first half and second half:
-
-$$X(2k) = \sum_{n=0}^{N/2-1}[x(n) + x(n+N/2)]\, W_{N/2}^{nk}$$
-
-$$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]\, W_N^n\, W_{N/2}^{nk}$$
-
-**Comparison**:
-
-| | DIT-FFT | DIF-FFT |
-|---|---------|---------|
-| Input order | Bit-reversed | Natural |
-| Output order | Natural | Bit-reversed |
-| Structure | Butterfly inputs combined | Butterfly outputs split |
-| Complexity | $O(N\log_2 N)$ | $O(N\log_2 N)$ |
-
-### 2.4.3 Computational Complexity
-
-For $N = 2^m$:
-
-| Algorithm | Complex Multiplications | Complex Additions |
-|-----------|------------------------|------------------|
-| Direct DFT | $N^2$ | $N(N-1)$ |
-| Radix-2 FFT | $\dfrac{N}{2}\log_2 N$ | $N\log_2 N$ |
-| Speedup | $\dfrac{2N}{\log_2 N}$ | $\approx \dfrac{N}{\log_2 N}$ |
-
-**Example** ($N = 1024 = 2^{10}$): Direct DFT requires $1{,}048{,}576$ multiplications; the FFT requires only $5{,}120$ — a speedup of $\approx 200\times$.
-
-### 2.4.4 Bit-Reversal Permutation
-
-> **Why DIT requires bit-reversed input.** Recall that DIT (Decimation-in-Time, §2.4.2) splits the input **recursively by even/odd indices** at each stage:
-> - Stage 1: separate by bit 0 (even/odd) → two groups of $N/2$
-> - Stage 2: within each group, separate by bit 1 → four groups of $N/4$
-> - $\vdots$
-> - Stage $m$: separate by bit $m-1$ → $N$ individual samples
->
-> Because each stage sorts by one bit, starting from the **rightmost bit** (bit 0, which determines even/odd) and moving leftward to bit $m-1$, after all $m$ stages the element originally at index $n$ ends up at the position whose binary representation is $n$'s bits **written in reverse order**. This bit-reversed ordering is therefore not an arbitrary pre-processing step — it is the **natural outcome of DIT's recursive even/odd decomposition**, baked into the algorithm itself.
->
-> By contrast, **DIF** (Decimation-in-Frequency, §2.4.2) splits the *output* spectrum first (even/odd frequency bins), so the *output* ends up in bit-reversed order while the input remains in natural order — a perfect input/output duality between DIT and DIF.
-
-In **DIT-FFT** (Decimation-in-Time FFT), the input sequence must therefore be reordered into **bit-reversed** order before the butterfly stages can proceed. The bit-reversed index is obtained by reversing the $m$-bit binary representation of $n$:
-
-| Index $n$ | Binary ($m=3$) | Bit-reversed | Reordered index |
-|-----------|---------------|-------------|-----------------|
-| 0 | 000 | 000 | 0 |
-| 1 | 001 | 100 | 4 |
-| 2 | 010 | 010 | 2 |
-| 3 | 011 | 110 | 6 |
-| 4 | 100 | 001 | 1 |
-| 5 | 101 | 101 | 5 |
-| 6 | 110 | 011 | 3 |
-| 7 | 111 | 111 | 7 |
-
-Here $\operatorname{br}(n)$ denotes the **bit-reversed index** of $n$. If the $m$-bit binary representation of $n$ is
+A pattern-recognition system typically follows this conceptual pipeline:
 
 $$
-n = (b_{m-1}\cdots b_1 b_0)_2,
+\text{raw input} \longrightarrow \text{features} \longrightarrow \text{probabilistic model} \longrightarrow \text{decision rule} \longrightarrow \text{action}.
 $$
 
-then
+For example, in handwritten digit recognition:
+
+1. The raw input is an image of a handwritten digit.
+2. The image is represented numerically as a vector of pixel values.
+3. A model estimates class probabilities such as $p(C_3\mid \mathbf{x})$ or $p(C_8\mid \mathbf{x})$.
+4. A decision rule chooses the most appropriate output class.
+5. The final action could be storing a postal code, rejecting the example, or asking a human to check it.
+
+The key lesson is that **learning** and **decision-making** are not the same thing. Learning gives us a model of uncertainty; decision theory tells us what to do with that uncertainty.
+
+---
+
+# §1 Pattern Recognition and Machine Learning
+
+> 📖 Textbook Ch.1 opening, pp. 1-4; digit-recognition running example
+
+## 1.1 What Is Pattern Recognition?
+
+Pattern recognition is the automatic discovery of regularities in data, and the use of those regularities to make predictions, classify new examples, or uncover structure.
+
+A simple but important example is handwritten digit recognition.
+
+> ![Figure 1.1](./CoursePRML2026/Fig/Chapter_1/fig_1_1_textbook_p2.png)
+>
+> *Figure 1.1 (Textbook Fig. 1.1, p. 2): Handwritten digit examples. The same digit class can appear in many different visual forms, so a fixed hand-written rule system is fragile. A learning system instead infers regularities from many examples.*
+
+In the digit example, each image can be treated as a vector:
 
 $$
-\operatorname{br}(n) = (b_0 b_1 \cdots b_{m-1})_2,
+\mathbf{x}=(x_1,x_2,\ldots,x_D)^T.
 $$
 
-which is obtained by mirroring those bits.
-
-For example, when $m=3$:
+If the image is $28\times 28$ pixels, then $D=784$. The target could be one of ten labels:
 
 $$
-\operatorname{br}(1) = \operatorname{br}(001_2) = 100_2 = 4,
+t\in\{0,1,2,\ldots,9\}.
+$$
+
+The goal is not to memorize the training digits. The goal is to correctly classify new images that were not seen during training. This is called **generalization**.
+
+## 1.2 Training Set, Test Set, and Generalization
+
+A training set is a collection of examples:
+
+$$
+\mathcal{D}=\{(\mathbf{x}_1,t_1),(\mathbf{x}_2,t_2),\ldots,(\mathbf{x}_N,t_N)\}.
+$$
+
+A model uses the training set to choose its parameters. After training, it is evaluated on a test set that was not used for fitting. The test set estimates how well the model generalizes.
+
+The central problem is this:
+
+> We want the model to capture the underlying regularity in the data, not the accidental noise of the training sample.
+
+This distinction will appear repeatedly in the polynomial example. A model can fit the training data perfectly and still perform badly on new data.
+
+## 1.3 Supervised, Unsupervised, and Reinforcement Learning
+
+The textbook distinguishes several broad learning settings.
+
+| Learning Setting | Data Format | Goal | Examples |
+|------------------|-------------|------|----------|
+| **Supervised learning** | Inputs plus targets $(\mathbf{x},t)$ | Learn a mapping from input to target | Classification, regression |
+| **Unsupervised learning** | Inputs only $\mathbf{x}$ | Discover structure in the input distribution | Clustering, density estimation, visualization |
+| **Reinforcement learning** | Actions, states, rewards | Learn actions that maximize long-term reward | Control, game playing, robotics |
+
+This course focuses mostly on supervised and unsupervised probabilistic models. Reinforcement learning is mentioned for context but is not the main topic.
+
+## 1.4 Classification versus Regression
+
+Supervised learning divides into two main cases.
+
+### Classification
+
+The target is discrete. For example:
+
+$$
+t\in\{0,1,2,\ldots,9\}.
+$$
+
+The model assigns an input to a class. A probabilistic classifier estimates:
+
+$$
+p(C_k\mid \mathbf{x}).
+$$
+
+### Regression
+
+The target is continuous. For example, in curve fitting, the input $x$ is a scalar and the target $t$ is a noisy real-valued observation.
+
+A regression model predicts a real value:
+
+$$
+y(x)\approx t.
+$$
+
+The polynomial curve-fitting example is a regression problem. It is intentionally simple, but it contains nearly all of the important ideas: model complexity, overfitting, regularization, likelihood, prior, posterior, and predictive uncertainty.
+
+---
+
+# §2 Polynomial Curve Fitting
+
+> 📖 Textbook §1.1 Example: Polynomial Curve Fitting
+
+## 2.1 The Curve-Fitting Setup
+
+We start with a synthetic data set. The input $x$ lies in $[0,1]$, and the true underlying function is
+
+$$
+\sin(2\pi x).
+$$
+
+The observed target $t$ is noisy. This means the data are not exactly on the true curve.
+
+> ![Figure 1.2](./CoursePRML2026/Fig/Chapter_1/fig_1_2_textbook_p4.png)
+>
+> *Figure 1.2 (Textbook Fig. 1.2, p. 4): A small training data set generated from a sinusoidal function with added noise. The learning task is to infer a useful predictive rule from a limited number of noisy observations.*
+
+The training data are
+
+$$
+\mathbf{x}=(x_1,\ldots,x_N)^T, \qquad \mathbf{t}=(t_1,\ldots,t_N)^T.
+$$
+
+We fit a polynomial of order $M$:
+
+$$
+y(x,\mathbf{w})=w_0+w_1x+w_2x^2+\cdots+w_Mx^M
+=\sum_{j=0}^{M}w_jx^j.
+$$
+
+The word “order” means the highest power of $x$. A polynomial of order $M$ has $M+1$ coefficients.
+
+| Polynomial Order | Model Form | Number of Coefficients | Flexibility |
+|------------------|------------|------------------------|-------------|
+| $M=0$ | $w_0$ | 1 | Constant only |
+| $M=1$ | $w_0+w_1x$ | 2 | Straight line |
+| $M=3$ | $w_0+w_1x+w_2x^2+w_3x^3$ | 4 | Smooth curve |
+| $M=9$ | $\sum_{j=0}^{9}w_jx^j$ | 10 | Very flexible for $N=10$ points |
+
+The model is nonlinear in $x$, but it is **linear in the parameters** $w_j$. This is important: many models in machine learning are nonlinear functions of inputs while still being linear in their trainable parameters.
+
+## 2.2 Sum-of-Squares Error
+
+To choose $\mathbf{w}$, we need a criterion. A common choice is the sum-of-squares error:
+
+$$
+E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2.
+$$
+
+The factor $1/2$ is included only to simplify derivatives. It does not change the minimizer.
+
+> ![Figure 1.3](./CoursePRML2026/Fig/Chapter_1/fig_1_3_textbook_p6.png)
+>
+> *Figure 1.3 (Textbook Fig. 1.3, p. 6): Sum-of-squares error measures the vertical discrepancy between the model prediction and each target value. Squaring penalizes large deviations strongly and gives a smooth differentiable objective.*
+
+For the polynomial model, $E(\mathbf{w})$ is a quadratic function of the parameters. Therefore the minimizing coefficients can be obtained by solving linear equations.
+
+However, a small training error does not automatically mean good prediction on future data.
+
+## 2.3 Model Complexity: Underfitting and Overfitting
+
+The order $M$ controls the flexibility of the polynomial.
+
+> ![Figure 1.4](./CoursePRML2026/Fig/Chapter_1/fig_1_4_textbook_p7.png)
+>
+> *Figure 1.4 (Textbook Fig. 1.4, p. 7): Polynomial fits for several values of $M$. Low-order models are too rigid; an intermediate model captures the trend; a very high-order model can fit every training point while oscillating badly between them.*
+
+This figure gives the first major lesson of the course.
+
+| Case | What Happens | Name |
+|------|--------------|------|
+| $M=0,1$ | The model is too simple to represent the sinusoidal pattern. | Underfitting |
+| $M=3$ | The model captures the main trend without chasing every noisy point. | Good generalization |
+| $M=9$ | The model interpolates the training data but oscillates wildly. | Overfitting |
+
+Overfitting is not merely “the model is complicated.” A complicated model is harmful when it uses its flexibility to explain noise rather than stable structure.
+
+## 2.4 Training Error versus Test Error
+
+To measure prediction performance, Bishop uses the root-mean-square error:
+
+$$
+E_{\mathrm{RMS}}=\sqrt{\frac{2E(\mathbf{w}^{\star})}{N}}.
+$$
+
+Here $\mathbf{w}^{\star}$ denotes the fitted parameter vector. The square root puts the error on the same scale as the target variable $t$.
+
+> ![Figure 1.5](./CoursePRML2026/Fig/Chapter_1/fig_1_5_textbook_p8.png)
+>
+> *Figure 1.5 (Textbook Fig. 1.5, p. 8): Training error decreases as model complexity increases, but test error can rise sharply when the model overfits. Generalization must be evaluated on data not used for fitting.*
+
+The important pattern is:
+
+- Training error usually decreases as model complexity increases.
+- Test error often decreases at first and then increases.
+- Therefore the model with the smallest training error is not necessarily the model with the best test performance.
+
+This is a central theme in machine learning: **we care about expected future performance, not just empirical training performance**.
+
+## 2.5 Data Size and Model Complexity
+
+Overfitting depends not only on the model class but also on the amount of data.
+
+> ![Figure 1.6](./CoursePRML2026/Fig/Chapter_1/fig_1_6_textbook_p9.png)
+>
+> *Figure 1.6 (Textbook Fig. 1.6, p. 9): The same high-order polynomial behaves differently as the number of training points increases. More data can constrain a flexible model and reduce overfitting.*
+
+A useful heuristic is:
+
+> The more flexible the model, the more data are needed to constrain it.
+
+This heuristic is not a theorem by itself, but it is extremely useful. A high-capacity model can generalize well when trained on enough representative data. With too little data, it may fit accidental noise.
+
+## 2.6 Regularization: Penalizing Overly Large Coefficients
+
+Another way to control overfitting is regularization. Instead of minimizing only training error, we minimize a penalized objective:
+
+$$
+\widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2+
+\frac{\lambda}{2}\|\mathbf{w}\|^2.
+$$
+
+Here
+
+$$
+\|\mathbf{w}\|^2=\sum_{j=0}^{M}w_j^2.
+$$
+
+The parameter $\lambda\geq 0$ controls the strength of the penalty.
+
+| $\lambda$ | Effect |
+|----------|--------|
+| Very small | Similar to unregularized least squares; may overfit. |
+| Moderate | Suppresses extreme coefficients; often improves generalization. |
+| Very large | Forces coefficients close to zero; may underfit. |
+
+> ![Figure 1.7](./CoursePRML2026/Fig/Chapter_1/fig_1_7_textbook_p10.png)
+>
+> *Figure 1.7 (Textbook Fig. 1.7, p. 10): Regularization can suppress the extreme oscillations of a high-order polynomial. If the penalty is too strong, however, the model becomes overly flat and underfits.*
+
+Regularization can be understood in three equivalent ways:
+
+1. **Optimization view:** add a penalty for large coefficients.
+2. **Complexity-control view:** reduce the effective flexibility of the model.
+3. **Bayesian view:** impose a prior belief that very large coefficients are unlikely.
+
+The Bayesian view will be derived in §4.4.
+
+## 2.7 Choosing the Regularization Strength
+
+The regularization parameter cannot be chosen by training error alone. If $\lambda$ is reduced, training error generally improves, but generalization may get worse.
+
+> ![Figure 1.8](./CoursePRML2026/Fig/Chapter_1/fig_1_8_textbook_p11.png)
+>
+> *Figure 1.8 (Textbook Fig. 1.8, p. 11): The regularization parameter controls the effective complexity of the fitted polynomial. A validation set or cross-validation procedure is needed to choose it in practice.*
+
+In practice, model-complexity parameters such as $M$ and $\lambda$ are called **hyperparameters**. They are not usually learned by direct training-error minimization. They are selected using validation data, cross-validation, or Bayesian model comparison.
+
+## 2.8 Key Lessons from the Polynomial Example
+
+The polynomial example is simple, but it already contains the major themes of the course.
+
+| Concept | How It Appears in Curve Fitting | General Machine-Learning Meaning |
+|--------|----------------------------------|----------------------------------|
+| Model | Polynomial $y(x,\mathbf{w})$ | A parametric function family |
+| Parameters | Coefficients $\mathbf{w}$ | Quantities learned from training data |
+| Error function | Sum-of-squares error | Training objective |
+| Complexity | Polynomial order $M$ | Capacity/flexibility of model class |
+| Generalization | Test error | Performance on unseen data |
+| Overfitting | $M=9$ oscillates | Fits noise rather than stable structure |
+| Regularization | $\lambda\|\mathbf{w}\|^2/2$ | Bias toward simpler/smoother solutions |
+| Hyperparameter | $M,\lambda$ | Chosen by validation or model selection |
+
+---
+
+# §3 Probability Theory Essentials
+
+> 📖 Textbook §1.2 Probability Theory (§1.2.1-§1.2.4)
+
+## 3.1 Why Probability Is Needed
+
+Machine learning must deal with uncertainty. Uncertainty appears because:
+
+1. measurements are noisy,
+2. training data are finite,
+3. the target may be inherently ambiguous,
+4. model assumptions are imperfect,
+5. future test points are not known during training.
+
+Probability theory gives a consistent language for representing such uncertainty.
+
+## 3.2 A Simple Fruit-Box Example
+
+Bishop introduces probability using boxes of fruit.
+
+> ![Figure 1.9](./CoursePRML2026/Fig/Chapter_1/fig_1_9_textbook_p12.png)
+>
+> *Figure 1.9 (Textbook Fig. 1.9, p. 12): A simple fruit-box example for introducing priors, likelihoods, and posteriors. After seeing the fruit, our belief about the selected box changes.*
+
+Let $B$ denote the selected box and $F$ denote the selected fruit.
+
+Before observing the fruit, we have a prior distribution over boxes:
+
+$$
+p(B=b).
+$$
+
+The composition of each box gives a likelihood:
+
+$$
+p(F=f\mid B=b).
+$$
+
+After observing the fruit, we update our belief using Bayes' theorem:
+
+$$
+p(B=b\mid F=f)=\frac{p(F=f\mid B=b)p(B=b)}{p(F=f)}.
+$$
+
+This example is small, but it already contains the general Bayesian logic used throughout the course.
+
+## 3.3 Sum Rule and Product Rule
+
+Consider two random variables $X$ and $Y$. Their joint probability is $p(X,Y)$.
+
+> ![Figure 1.10](./CoursePRML2026/Fig/Chapter_1/fig_1_10_textbook_p13.png)
+>
+> *Figure 1.10 (Textbook Fig. 1.10, p. 13): Counting occurrences in a two-variable table motivates the sum rule and product rule of probability.*
+
+The **sum rule** says that a marginal probability is obtained by summing over the other variable:
+
+$$
+p(X)=\sum_Y p(X,Y).
+$$
+
+The **product rule** says that the joint probability can be factorized into a conditional probability times a marginal probability:
+
+$$
+p(X,Y)=p(Y\mid X)p(X).
+$$
+
+Because the joint probability is symmetric,
+
+$$
+p(X,Y)=p(X\mid Y)p(Y).
+$$
+
+Combining these equations gives Bayes' theorem:
+
+$$
+p(Y\mid X)=\frac{p(X\mid Y)p(Y)}{p(X)}.
+$$
+
+## 3.4 Bayes' Theorem: Posterior Is Proportional to Likelihood Times Prior
+
+Bayes' theorem is often remembered as:
+
+$$
+\text{posterior} = \frac{\text{likelihood}\times\text{prior}}{\text{evidence}}.
+$$
+
+More explicitly:
+
+$$
+p(Y\mid X)=\frac{p(X\mid Y)p(Y)}{p(X)}.
+$$
+
+| Term | Formula | Meaning |
+|------|---------|---------|
+| Prior | $p(Y)$ | Belief about $Y$ before observing $X$ |
+| Likelihood | $p(X\mid Y)$ | How probable the observation would be if $Y$ were true |
+| Evidence | $p(X)$ | Normalizing probability of the observation |
+| Posterior | $p(Y\mid X)$ | Updated belief after observing $X$ |
+
+The denominator can be computed by the sum rule:
+
+$$
+p(X)=\sum_Y p(X\mid Y)p(Y).
+$$
+
+For continuous variables, the sum is replaced by an integral.
+
+## 3.5 Marginal and Conditional Distributions
+
+> ![Figure 1.11](./CoursePRML2026/Fig/Chapter_1/fig_1_11_textbook_p16.png)
+>
+> *Figure 1.11 (Textbook Fig. 1.11, p. 16): A joint distribution contains enough information to compute marginal distributions and conditional distributions. Marginalization discards one variable; conditioning focuses on a subset of cases.*
+
+The difference between marginalization and conditioning is essential.
+
+### Marginalization
+
+Marginalization answers:
+
+> What is the distribution of $X$ if we ignore $Y$?
+
+For discrete variables:
+
+$$
+p(X)=\sum_Y p(X,Y).
+$$
+
+For continuous variables:
+
+$$
+p(x)=\int p(x,y)\,dy.
+$$
+
+### Conditioning
+
+Conditioning answers:
+
+> What is the distribution of $X$ after we know $Y=y$?
+
+For discrete variables:
+
+$$
+p(X\mid Y)=\frac{p(X,Y)}{p(Y)}.
+$$
+
+For continuous variables:
+
+$$
+p(x\mid y)=\frac{p(x,y)}{p(y)}.
+$$
+
+## 3.6 Independence
+
+Two variables $X$ and $Y$ are independent if knowing one does not change the probability of the other:
+
+$$
+p(X\mid Y)=p(X).
+$$
+
+Equivalently,
+
+$$
+p(X,Y)=p(X)p(Y).
+$$
+
+Conditional independence is similar but depends on a third variable:
+
+$$
+p(X,Y\mid Z)=p(X\mid Z)p(Y\mid Z).
+$$
+
+Conditional independence will become extremely important in graphical models.
+
+## 3.7 Probability Densities
+
+For a continuous variable, the probability of an exact value is usually zero. Instead, we use a probability density $p(x)$.
+
+> ![Figure 1.12](./CoursePRML2026/Fig/Chapter_1/fig_1_12_textbook_p18.png)
+>
+> *Figure 1.12 (Textbook Fig. 1.12, p. 18): A probability density assigns probability mass to intervals. The probability of a small interval is approximately density times width.*
+
+For a small interval $[x,x+\delta x]$,
+
+$$
+p(x\leq X\leq x+\delta x)\simeq p(x)\delta x.
+$$
+
+A valid density must satisfy:
+
+$$
+p(x)\geq 0,
 $$
 
 and
 
 $$
-\operatorname{br}(3) = \operatorname{br}(011_2) = 110_2 = 6,
+\int_{-\infty}^{\infty}p(x)\,dx=1.
 $$
 
-consistent with the table above.
+The probability that $x$ lies in an interval $(a,b)$ is
 
-The permutation can be performed in-place with an $O(N)$ algorithm: compare each index with its bit-reverse and swap if $n \lt \text{br}(n)$. The condition $n < \text{br}(n)$ ensures each pair is swapped exactly once; indices satisfying $\text{br}(n) = n$ (such as $0$ and $7$ in the $N=8$ example) are already in their correct positions and require no action.
+$$
+p(x\in(a,b))=\int_a^b p(x)\,dx.
+$$
 
-**FFT variants**:
-- **Radix-4 FFT**: Groups of 4; further reduces multiplicative count
-- **Split-radix FFT**: Best known operation count for power-of-2 $N$
-- **Mixed-radix FFT**: Handles arbitrary $N$ by factoring $N = N_1 \times N_2 \times \cdots$ (used in FFTW)
+## 3.8 Change of Variables for Densities
+
+Densities transform differently from ordinary functions. Suppose
+
+$$
+x=g(y).
+$$
+
+Then probabilities must be preserved:
+
+$$
+p_y(y)\,dy=p_x(x)\,dx.
+$$
+
+Therefore,
+
+$$
+p_y(y)=p_x(g(y))\left|\frac{dg(y)}{dy}\right|.
+$$
+
+The absolute derivative is the one-dimensional Jacobian. In multiple dimensions, the corresponding term is the absolute determinant of the Jacobian matrix.
+
+This is a common source of mistakes. A density is not itself a probability; probability is density times volume.
+
+## 3.9 Expectations, Variances, and Covariances
+
+The expectation of a function $f(x)$ is its probability-weighted average.
+
+For a discrete variable:
+
+$$
+\mathbb{E}[f]=\sum_x p(x)f(x).
+$$
+
+For a continuous variable:
+
+$$
+\mathbb{E}[f]=\int p(x)f(x)\,dx.
+$$
+
+In practice, if we have samples $x_1,\ldots,x_N$, we often approximate the expectation by the sample average:
+
+$$
+\mathbb{E}[f]\simeq \frac{1}{N}\sum_{n=1}^{N}f(x_n).
+$$
+
+The variance measures spread:
+
+$$
+\operatorname{var}[x]=\mathbb{E}\left[(x-\mathbb{E}[x])^2\right]
+=\mathbb{E}[x^2]-\mathbb{E}[x]^2.
+$$
+
+For two variables, covariance measures linear co-variation:
+
+$$
+\operatorname{cov}[x,y]=\mathbb{E}\left[(x-\mathbb{E}[x])(y-\mathbb{E}[y])\right].
+$$
+
+For a vector $\mathbf{x}$, the covariance matrix is
+
+$$
+\operatorname{cov}[\mathbf{x}]=\mathbb{E}\left[(\mathbf{x}-\mathbb{E}[\mathbf{x}])(\mathbf{x}-\mathbb{E}[\mathbf{x}])^T\right].
+$$
+
+## 3.10 Frequentist and Bayesian Views of Probability
+
+Probability can be interpreted in two related but different ways.
+
+| View | Probability Means | Parameters |
+|------|-------------------|------------|
+| Frequentist | Long-run frequency of repeatable events | Fixed but unknown quantities |
+| Bayesian | Degree of uncertainty or belief | Random/uncertain quantities represented by distributions |
+
+For example, suppose $\mathbf{w}$ is a model parameter.
+
+In the frequentist view, $\mathbf{w}$ is fixed but unknown. We estimate it from data.
+
+In the Bayesian view, uncertainty about $\mathbf{w}$ is represented by a distribution:
+
+$$
+p(\mathbf{w}\mid \mathcal{D}).
+$$
+
+This posterior distribution can be used to make predictions by averaging over parameter uncertainty.
+
+## 3.11 The Gaussian Distribution
+
+The Gaussian distribution is central because it is mathematically convenient, widely occurring, and closely connected to least squares.
+
+The univariate Gaussian density is
+
+$$
+\mathcal{N}(x\mid \mu,\sigma^2)
+=\frac{1}{(2\pi\sigma^2)^{1/2}}
+\exp\left\{-\frac{1}{2\sigma^2}(x-\mu)^2\right\}.
+$$
+
+> ![Figure 1.13](./CoursePRML2026/Fig/Chapter_1/fig_1_13_textbook_p25.png)
+>
+> *Figure 1.13 (Textbook Fig. 1.13, p. 25): A univariate Gaussian is controlled by a mean $\mu$ and a standard deviation $\sigma$. The mean sets the center; the variance sets the spread.*
+
+For a Gaussian,
+
+$$
+\mathbb{E}[x]=\mu,
+$$
+
+and
+
+$$
+\operatorname{var}[x]=\sigma^2.
+$$
+
+The multivariate Gaussian is
+
+$$
+\mathcal{N}(\mathbf{x}\mid \boldsymbol{\mu},\boldsymbol{\Sigma})
+=\frac{1}{(2\pi)^{D/2}|\boldsymbol{\Sigma}|^{1/2}}
+\exp\left\{-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right\}.
+$$
+
+The quadratic term
+
+$$
+(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})
+$$
+
+is the squared Mahalanobis distance.
+
+## 3.12 Likelihood for Gaussian Parameters
+
+Suppose we observe independent data $x_1,\ldots,x_N$ from a Gaussian distribution. The likelihood of the parameters is
+
+$$
+p(\mathbf{x}\mid \mu,\sigma^2)=\prod_{n=1}^{N}\mathcal{N}(x_n\mid \mu,\sigma^2).
+$$
+
+> ![Figure 1.14](./CoursePRML2026/Fig/Chapter_1/fig_1_14_textbook_p26.png)
+>
+> *Figure 1.14 (Textbook Fig. 1.14, p. 26): The Gaussian likelihood is the product of the density values assigned to the observed data points. Maximum likelihood chooses parameters that make the observed data most probable under the model.*
+
+It is easier to maximize the log likelihood:
+
+$$
+\ln p(\mathbf{x}\mid \mu,\sigma^2)
+= -\frac{N}{2}\ln(2\pi\sigma^2)-\frac{1}{2\sigma^2}\sum_{n=1}^{N}(x_n-\mu)^2.
+$$
+
+Taking derivatives gives the maximum likelihood estimates:
+
+$$
+\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_n,
+$$
+
+and
+
+$$
+\sigma^2_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}(x_n-\mu_{\mathrm{ML}})^2.
+$$
+
+## 3.13 Bias of the Maximum-Likelihood Variance Estimate
+
+The maximum-likelihood estimate of variance is biased. Its expectation is
+
+$$
+\mathbb{E}[\sigma^2_{\mathrm{ML}}]=\frac{N-1}{N}\sigma^2.
+$$
+
+The unbiased estimate is
+
+$$
+\widehat{\sigma}^2=\frac{1}{N-1}\sum_{n=1}^{N}(x_n-\mu_{\mathrm{ML}})^2.
+$$
+
+> ![Figure 1.15](./CoursePRML2026/Fig/Chapter_1/fig_1_15_textbook_p28.png)
+>
+> *Figure 1.15 (Textbook Fig. 1.15, p. 28): Estimating the mean from the same small data set pulls the fitted Gaussian toward the data, causing the maximum-likelihood variance estimate to be too small on average.*
+
+The intuition is important. When the mean is estimated from the data, the fitted mean is closer to the observed points than the true mean would be on average. This reduces the measured squared deviations and therefore underestimates variance.
 
 ---
 
-# Part III: Digital Filter Structures and Design
+# §4 Probabilistic Curve Fitting
 
-> 📖 Textbook §2.3 (Discrete-Time Systems); §2.4 (Minimum-Phase and System Invertibility); §2.5 (Lattice Filter Realizations)
+> 📖 Textbook §1.2.5 Curve fitting re-visited; §1.2.6 Bayesian curve fitting
+
+## 4.1 From Least Squares to a Probabilistic Model
+
+We now revisit polynomial curve fitting using probability.
+
+Assume that each target is generated by
+
+$$
+t=y(x,\mathbf{w})+\epsilon,
+$$
+
+where the noise is Gaussian:
+
+$$
+\epsilon\sim \mathcal{N}(0,\beta^{-1}).
+$$
+
+Equivalently,
+
+$$
+p(t\mid x,\mathbf{w},\beta)=\mathcal{N}(t\mid y(x,\mathbf{w}),\beta^{-1}).
+$$
+
+> ![Figure 1.16](./CoursePRML2026/Fig/Chapter_1/fig_1_16_textbook_p29.png)
+>
+> *Figure 1.16 (Textbook Fig. 1.16, p. 29): A probabilistic regression model places a Gaussian distribution over $t$ for each input $x$. The mean is the polynomial prediction; the variance describes noise around the curve.*
+
+This model says:
+
+- $y(x,\mathbf{w})$ is the mean prediction,
+- $\beta^{-1}$ is the noise variance,
+- targets near the curve are more probable than targets far away.
+
+## 4.2 Maximum Likelihood Gives Least Squares
+
+Assuming independent observations, the likelihood is
+
+$$
+p(\mathbf{t}\mid \mathbf{x},\mathbf{w},\beta)=
+\prod_{n=1}^{N}\mathcal{N}(t_n\mid y(x_n,\mathbf{w}),\beta^{-1}).
+$$
+
+Taking logs gives
+
+$$
+\ln p(\mathbf{t}\mid \mathbf{x},\mathbf{w},\beta)
+=\frac{N}{2}\ln\beta-\frac{N}{2}\ln(2\pi)
+-\beta E(\mathbf{w}),
+$$
+
+where
+
+$$
+E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2.
+$$
+
+For fixed $\beta$, maximizing the log likelihood with respect to $\mathbf{w}$ is exactly the same as minimizing the sum-of-squares error.
+
+This equivalence is one of the most important points in the chapter:
+
+> Least squares is not just an algebraic convenience. It is maximum likelihood under a Gaussian noise assumption.
+
+## 4.3 Estimating the Noise Precision
+
+After finding $\mathbf{w}_{\mathrm{ML}}$, we can estimate $\beta$ by maximum likelihood:
+
+$$
+\frac{1}{\beta_{\mathrm{ML}}}=\frac{1}{N}\sum_{n=1}^{N}\{y(x_n,\mathbf{w}_{\mathrm{ML}})-t_n\}^2.
+$$
+
+This is the residual variance under the fitted model.
+
+The predictive distribution under the maximum-likelihood parameters is
+
+$$
+p(t\mid x,\mathbf{w}_{\mathrm{ML}},\beta_{\mathrm{ML}})=
+\mathcal{N}(t\mid y(x,\mathbf{w}_{\mathrm{ML}}),\beta_{\mathrm{ML}}^{-1}).
+$$
+
+This predictive distribution includes observation noise but does not include uncertainty about the fitted parameters $\mathbf{w}$.
+
+## 4.4 MAP Estimation and Regularized Least Squares
+
+Now place a Gaussian prior on the weights:
+
+$$
+p(\mathbf{w}\mid \alpha)=\mathcal{N}(\mathbf{w}\mid \mathbf{0},\alpha^{-1}\mathbf{I}).
+$$
+
+By Bayes' theorem,
+
+$$
+p(\mathbf{w}\mid \mathbf{x},\mathbf{t},\alpha,\beta)
+\propto p(\mathbf{t}\mid \mathbf{x},\mathbf{w},\beta)p(\mathbf{w}\mid \alpha).
+$$
+
+The maximum a posteriori estimate is
+
+$$
+\mathbf{w}_{\mathrm{MAP}}=\arg\max_{\mathbf{w}}p(\mathbf{w}\mid \mathbf{x},\mathbf{t},\alpha,\beta).
+$$
+
+Taking the negative log posterior gives an objective proportional to
+
+$$
+\frac{\beta}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2+rac{\alpha}{2}\mathbf{w}^T\mathbf{w}.
+$$
+
+Dividing by $\beta$ gives
+
+$$
+\frac{1}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2+rac{\lambda}{2}\mathbf{w}^T\mathbf{w},
+$$
+
+where
+
+$$
+\lambda=\frac{\alpha}{\beta}.
+$$
+
+Therefore:
+
+> Regularized least squares is MAP estimation under a Gaussian prior over the weights.
+
+This connects optimization, probability, and regularization.
+
+## 4.5 Full Bayesian Curve Fitting
+
+MAP estimation still returns a single parameter vector. Full Bayesian prediction keeps the entire posterior distribution over parameters.
+
+The Bayesian predictive distribution is
+
+$$
+p(t\mid x,\mathbf{x},\mathbf{t})=
+\int p(t\mid x,\mathbf{w})p(\mathbf{w}\mid \mathbf{x},\mathbf{t})\,d\mathbf{w}.
+$$
+
+This integral averages predictions over all plausible parameter values, weighted by their posterior probability.
+
+> ![Figure 1.17](./CoursePRML2026/Fig/Chapter_1/fig_1_17_textbook_p32.png)
+>
+> *Figure 1.17 (Textbook Fig. 1.17, p. 32): Bayesian curve fitting produces both a predictive mean and a predictive uncertainty band. Uncertainty is larger where the data provide less constraint.*
+
+The Bayesian view gives two advantages:
+
+1. It naturally expresses predictive uncertainty.
+2. It reduces overconfident extrapolation when data are limited.
+
+In later chapters, this idea will reappear in Bayesian linear regression, Gaussian processes, Bayesian neural networks, variational inference, and graphical models.
 
 ---
 
-## 3.0 Characterizing Discrete-Time Systems
+# §5 Model Selection and the Curse of Dimensionality
 
-> **Guiding question**: How do we characterize a discrete-time system and design it to perform a desired signal transformation?
+> 📖 Textbook §1.3 Model Selection; §1.4 The Curse of Dimensionality
 
-A **discrete-time LTI (Linear Time-Invariant) system** is any processor that maps an input sequence $x(n)$ to an output sequence $y(n)$ while satisfying two properties:
-- **Linearity**: $\mathcal{H}\lbrace ax_1(n) + bx_2(n)\rbrace = a\mathcal{H}\lbrace x_1(n)\rbrace + b\mathcal{H}\lbrace x_2(n)\rbrace$
-- **Time-invariance**: if $y(n) = \mathcal{H}\lbrace x(n)\rbrace$, then $\mathcal{H}\lbrace x(n-k)\rbrace = y(n-k)$ for any integer $k$
+## 5.1 Model Selection
 
-These two properties together guarantee that an LTI system is *completely characterized* by a single function — its **impulse response** $h(n)$ — and that system behavior in frequency is described by the **frequency response** $H(e^{j\omega})$. The difference equation is the computational recipe for implementing the system.
+Model selection means choosing between model structures or hyperparameter settings.
+
+Examples include:
+
+- choosing polynomial order $M$,
+- choosing regularization strength $\lambda$,
+- choosing the number of mixture components,
+- choosing the number of hidden units in a neural network,
+- choosing a kernel width in a kernel method.
+
+A common approach is to split data into three parts.
+
+| Data Split | Purpose |
+|------------|---------|
+| Training set | Fit model parameters. |
+| Validation set | Choose hyperparameters and model class. |
+| Test set | Estimate final generalization performance. |
+
+The test set should not be repeatedly used for model selection, because then it becomes part of the training procedure indirectly.
+
+## 5.2 Cross-Validation
+
+When data are limited, holding out a large validation set can waste valuable training data. Cross-validation reduces this problem.
+
+> ![Figure 1.18](./CoursePRML2026/Fig/Chapter_1/fig_1_18_textbook_p33.png)
+>
+> *Figure 1.18 (Textbook Fig. 1.18, p. 33): In $S$-fold cross-validation, the data are split into $S$ groups. Each group is used once as validation data while the remaining groups are used for training.*
+
+In $S$-fold cross-validation:
+
+1. Split the data into $S$ subsets.
+2. For each fold, train on $S-1$ subsets and validate on the remaining subset.
+3. Average the validation performance across the $S$ folds.
+4. Choose the model or hyperparameter setting with the best average validation performance.
+
+Special case: if $S=N$, then each validation set has one example. This is called leave-one-out cross-validation.
+
+Cross-validation is useful but computationally expensive. If there are many candidate hyperparameters, the total cost can become large.
+
+## 5.3 The Curse of Dimensionality: Cell Counting
+
+High-dimensional spaces behave very differently from low-dimensional spaces. A naive approach to classification is to divide the input space into cells and classify a test point by the majority class in its cell.
+
+> ![Figure 1.19](./CoursePRML2026/Fig/Chapter_1/fig_1_19_textbook_p34.png)
+>
+> *Figure 1.19 (Textbook Fig. 1.19, p. 34): A two-dimensional projection of a classification problem. Even in two dimensions, local neighborhoods can contain mixed class labels.*
+
+> ![Figure 1.20](./CoursePRML2026/Fig/Chapter_1/fig_1_20_textbook_p35.png)
+>
+> *Figure 1.20 (Textbook Fig. 1.20, p. 35): A simple grid-based classifier assigns a test point according to the majority class in the same cell. This becomes impractical in high dimensions.*
+
+If each dimension is divided into $L$ intervals, then the total number of grid cells is
+
+$$
+L^D.
+$$
+
+This grows exponentially with dimension $D$.
+
+> ![Figure 1.21](./CoursePRML2026/Fig/Chapter_1/fig_1_21_textbook_p35.png)
+>
+> *Figure 1.21 (Textbook Fig. 1.21, p. 35): The number of grid regions grows exponentially as dimension increases. This is one form of the curse of dimensionality.*
+
+For example, if $L=10$:
+
+| Dimension $D$ | Number of Cells $10^D$ |
+|--------------|-------------------------|
+| 1 | 10 |
+| 2 | 100 |
+| 3 | 1,000 |
+| 10 | 10,000,000,000 |
+| 100 | $10^{100}$ |
+
+A finite data set becomes sparse in high dimensions. Therefore methods that rely on local counts in small cells quickly become impractical.
+
+## 5.4 Polynomial Coefficient Growth
+
+The curse of dimensionality also appears in polynomial models.
+
+Suppose the input has $D$ dimensions, and we use all polynomial terms up to order $M$. The number of possible terms grows rapidly with both $D$ and $M$.
+
+For example, a second-order polynomial in $D$ variables includes:
+
+- one constant term,
+- $D$ linear terms,
+- many quadratic and cross terms.
+
+The exact count depends on whether terms are repeated and how the polynomial is represented, but the key point is that complexity grows quickly as dimension increases.
+
+This motivates models that exploit structure, such as:
+
+- sparse representations,
+- kernels,
+- neural networks with shared parameters,
+- latent-variable models,
+- manifold learning,
+- regularization and priors.
+
+## 5.5 Geometry in High Dimensions: Volume Near the Boundary
+
+High-dimensional geometry is often unintuitive. Consider a unit sphere in $D$ dimensions. The fraction of volume lying near the surface becomes large as $D$ increases.
+
+> ![Figure 1.22](./CoursePRML2026/Fig/Chapter_1/fig_1_22_textbook_p37.png)
+>
+> *Figure 1.22 (Textbook Fig. 1.22, p. 37): In high dimensions, most of the volume of a sphere lies in a thin shell near the surface.*
+
+This means that our low-dimensional intuition can be misleading. In high dimensions, “typical” points may not be near the center.
+
+## 5.6 Gaussian Probability Mass in High Dimensions
+
+A similar effect occurs for high-dimensional Gaussian distributions.
+
+> ![Figure 1.23](./CoursePRML2026/Fig/Chapter_1/fig_1_23_textbook_p37.png)
+>
+> *Figure 1.23 (Textbook Fig. 1.23, p. 37): For a high-dimensional Gaussian, most probability mass lies in a shell at a nonzero radius rather than near the mean.*
+
+The density is highest at the mean, but the amount of volume near the mean is small. The product of density and volume determines probability mass.
+
+This distinction matters in machine learning. High density and high probability mass are not always the same thing in high dimensions.
+
+## 5.7 Why Machine Learning Is Still Possible
+
+The curse of dimensionality is serious, but it does not make learning impossible. Real data often have structure.
+
+Examples:
+
+- Images are not arbitrary pixel vectors; nearby pixels are correlated.
+- Natural language sequences have grammar and semantics.
+- Human motion lies on constrained physical manifolds.
+- Biological measurements often depend on a smaller number of latent factors.
+
+Machine learning works by exploiting such structure through assumptions, architectures, priors, smoothness, invariance, and compositionality.
 
 ---
 
-### 3.0.1 The Difference Equation — Computational Recipe for a Filter
+# §6 Decision Theory
 
-The most general form of a causal LTI digital filter is the **$N$-th order Linear Constant-Coefficient Difference Equation (LCCDE)**:
+> 📖 Textbook §1.5 Decision Theory (§1.5.1-§1.5.5)
 
-$$\boxed{y(n) = \underbrace{-\sum_{k=1}^{N} b_k\, y(n-k)}_{\text{feedback (IIR part)}} + \underbrace{\sum_{k=0}^{M} a_k\, x(n-k)}_{\text{feedforward (FIR part)}}}$$
+## 6.1 Inference versus Decision
 
-or in the equivalent symmetric form (dividing through and setting $b_0 = 1$):
+Probability theory can tell us quantities such as
 
-$$\sum_{k=0}^{N} b_k\, y(n-k) = \sum_{k=0}^{M} a_k\, x(n-k)$$
+$$
+p(C_k\mid \mathbf{x}).
+$$
 
-**What each term means physically**: At each time step $n$, the new output $y(n)$ is formed by two contributions: (i) a weighted sum of the current and past $M$ *inputs* $x(n), x(n-1), \ldots, x(n-M)$ — the **feedforward path**, which "looks backward" through the input — and (ii) a weighted sum of the past $N$ *outputs* $y(n-1), \ldots, y(n-N)$ — the **feedback path**, which feeds the system's own past decisions back into the computation.
+But a posterior probability is not yet a final decision. Decision theory asks:
 
-> **Why does feedback matter so much?** Feedback is what makes a filter's impulse response potentially infinite. A single tap of feedback — even just $y(n) = a\,y(n-1) + x(n)$ — means the output at time $n$ depends on $y(n-1)$, which depended on $y(n-2)$, and so on: the influence of a single input impulse propagates indefinitely into the future. Remove all feedback (set all $b_k = 0$, $k \geq 1$), and the equation collapses to a pure weighted sum of inputs — the impulse response is finite by construction.
+> Given uncertainty and possible costs, what action should we take?
 
-**The FIR/IIR split directly from the difference equation:**
+This distinction is crucial.
 
-| Condition | Filter type | Equation reduces to |
-|---|---|---|
-| All $b_k = 0$ for $k \geq 1$ | **FIR** | $y(n) = \sum_{k=0}^{M} a_k\, x(n-k)$ — pure feedforward |
-| At least one $b_k \neq 0$ | **IIR** | Full **Linear Constant-Coefficient Difference Equation (LCCDE)** with feedback: $y(n) = -\sum_{k=1}^{N} b_k\,y(n-k) + \sum_{k=0}^{M} a_k\,x(n-k)$ |
+| Stage | Output | Example |
+|-------|--------|---------|
+| Inference | Posterior probabilities | $p(\text{cancer}\mid \mathbf{x})=0.03$ |
+| Decision | Action | Treat, monitor, reject, request more tests |
 
-The z-transform of the LCCDE (assuming zero initial conditions) gives the **transfer function** directly. Taking $\mathcal{Z}\lbrace\cdot\rbrace$ of both sides and using the shift property $\mathcal{Z}\lbrace x(n-k)\rbrace = z^{-k} X(z)$:
+The best action depends on the loss associated with different mistakes.
 
-$$\left(\sum_{k=0}^{N} b_k\, z^{-k}\right) Y(z) = \left(\sum_{k=0}^{M} a_k\, z^{-k}\right) X(z)$$
+## 6.2 Minimizing Misclassification Rate
 
-$$\boxed{H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} a_k\, z^{-k}}{\sum_{k=0}^{N} b_k\, z^{-k}} = \frac{A(z)}{B(z)}}$$
+Suppose there are classes $C_1,\ldots,C_K$. A classifier divides input space into decision regions $\mathcal{R}_1,\ldots,\mathcal{R}_K$.
 
-**FIR**: denominator $B(z) = 1$ (constant); $H(z)$ is a polynomial — all poles are at the origin $z = 0$.
-**IIR**: $B(z)$ is a nontrivial polynomial; $H(z)$ is rational — poles can be anywhere in the $z$-plane.
+If $\mathbf{x}\in\mathcal{R}_k$, the classifier assigns class $C_k$.
+
+> ![Figure 1.24](./CoursePRML2026/Fig/Chapter_1/fig_1_24_textbook_p40.png)
+>
+> *Figure 1.24 (Textbook Fig. 1.24, p. 40): For two classes, errors occur in regions where the chosen decision region does not match the true class distribution. The optimal boundary for minimizing error assigns each $x$ to the most probable class.*
+
+If all mistakes have equal cost, the optimal decision rule is:
+
+$$
+\text{choose } C_k \text{ such that } p(C_k\mid \mathbf{x}) \text{ is largest.}
+$$
+
+Equivalently,
+
+$$
+\hat{k}=\arg\max_k p(C_k\mid \mathbf{x}).
+$$
+
+This is the standard maximum-posterior classification rule.
+
+## 6.3 Minimizing Expected Loss
+
+In many applications, different errors have different consequences.
+
+> ![Figure 1.25](./CoursePRML2026/Fig/Chapter_1/fig_1_25_textbook_p41.png)
+>
+> *Figure 1.25 (Textbook Fig. 1.25, p. 41): A loss matrix for a medical diagnosis example. Missing a serious condition can be much more costly than a false alarm.*
+
+Let $L_{kj}$ be the loss incurred when the true class is $C_k$ but we decide $C_j$.
+
+If we observe $\mathbf{x}$ and choose class $C_j$, the expected loss is
+
+$$
+\mathbb{E}[L\mid \mathbf{x},\text{choose }C_j]
+=\sum_k L_{kj}p(C_k\mid \mathbf{x}).
+$$
+
+The optimal decision is
+
+$$
+\hat{j}=\arg\min_j \sum_k L_{kj}p(C_k\mid \mathbf{x}).
+$$
+
+This is more general than maximum-posterior classification. Maximum-posterior classification is the special case where all wrong decisions have the same cost.
+
+## 6.4 The Reject Option
+
+Sometimes the best action is not to classify. If the model is uncertain, we may reject the example and ask for human review.
+
+> ![Figure 1.26](./CoursePRML2026/Fig/Chapter_1/fig_1_26_textbook_p42.png)
+>
+> *Figure 1.26 (Textbook Fig. 1.26, p. 42): With a reject option, inputs with insufficient posterior confidence are not assigned to a class.*
+
+A simple reject rule is:
+
+$$
+\max_k p(C_k\mid \mathbf{x}) < \theta \quad \Longrightarrow \quad \text{reject}.
+$$
+
+The threshold $\theta$ controls the tradeoff:
+
+| Threshold | Effect |
+|-----------|--------|
+| Low $\theta$ | Few rejections, more forced decisions |
+| High $\theta$ | More rejections, fewer risky classifications |
+
+Reject options are common in safety-critical settings, medical diagnosis, fraud detection, and human-in-the-loop systems.
+
+## 6.5 Three Approaches: Generative, Discriminative, and Discriminant Models
+
+Bishop distinguishes three modeling approaches for classification.
+
+### Approach A: Generative Modeling
+
+Model the class-conditional density and class prior:
+
+$$
+p(\mathbf{x}\mid C_k),\qquad p(C_k).
+$$
+
+Then compute the posterior using Bayes' theorem:
+
+$$
+p(C_k\mid \mathbf{x})=\frac{p(\mathbf{x}\mid C_k)p(C_k)}{p(\mathbf{x})}.
+$$
+
+Generative models can generate or evaluate input data. They are useful for missing data, outlier detection, and data simulation. But modeling the full input distribution can be difficult in high dimensions.
+
+### Approach B: Discriminative Probabilistic Modeling
+
+Model the posterior directly:
+
+$$
+p(C_k\mid \mathbf{x}).
+$$
+
+This often requires fewer assumptions about the input distribution and can be more accurate for classification when the only goal is predicting labels.
+
+### Approach C: Discriminant Functions
+
+Learn a direct mapping from input to class label:
+
+$$
+f(\mathbf{x})\rightarrow C_k.
+$$
+
+This can be computationally simple, but it does not provide calibrated posterior probabilities. Without posterior probabilities, it is harder to handle rejection, asymmetric loss, class-prior changes, and model combination.
+
+> ![Figure 1.27](./CoursePRML2026/Fig/Chapter_1/fig_1_27_textbook_p44.png)
+>
+> *Figure 1.27 (Textbook Fig. 1.27, p. 44): Generative modeling captures class-conditional densities, while discriminative modeling focuses on posterior probabilities and decision boundaries. Some density structure may be irrelevant for classification.*
+
+The comparison is:
+
+| Approach | Learns | Advantages | Limitations |
+|----------|--------|------------|-------------|
+| Generative | $p(\mathbf{x}\mid C_k)$ and $p(C_k)$ | Can model data distribution; useful for outliers and missing data | May waste effort modeling irrelevant input variation |
+| Discriminative probabilistic | $p(C_k\mid \mathbf{x})$ | Directly supports probabilistic decisions | Does not model full input distribution |
+| Discriminant function | Direct class label | Simple and often efficient | Loses uncertainty information |
+
+## 6.6 Loss Functions for Regression
+
+Decision theory also applies to regression. Suppose we predict $y(\mathbf{x})$ and the true target is $t$.
+
+For squared loss,
+
+$$
+L(t,y)=\{y(\mathbf{x})-t\}^2.
+$$
+
+The expected loss is
+
+$$
+\mathbb{E}[L]=\int\int \{y(\mathbf{x})-t\}^2p(\mathbf{x},t)\,d\mathbf{x}\,dt.
+$$
+
+The function that minimizes expected squared loss is the conditional mean:
+
+$$
+y(\mathbf{x})=\mathbb{E}[t\mid \mathbf{x}].
+$$
+
+> ![Figure 1.28](./CoursePRML2026/Fig/Chapter_1/fig_1_28_textbook_p47.png)
+>
+> *Figure 1.28 (Textbook Fig. 1.28, p. 47): Under squared loss, the optimal regression function is the mean of the conditional distribution $p(t\mid x)$.*
+
+This tells us why regression is often formulated as estimating a conditional average.
+
+## 6.7 Expected Squared Loss Decomposition
+
+For squared loss, the expected loss can be decomposed into two parts:
+
+$$
+\mathbb{E}[L]
+=\int \{y(\mathbf{x})-\mathbb{E}[t\mid \mathbf{x}]\}^2p(\mathbf{x})\,d\mathbf{x}
++\int \operatorname{var}[t\mid \mathbf{x}]p(\mathbf{x})\,d\mathbf{x}.
+$$
+
+The first term depends on our chosen predictor. It is zero if we choose the conditional mean.
+
+The second term is irreducible noise. It remains even for the optimal predictor because $t$ itself may be random given $\mathbf{x}$.
+
+This decomposition is important: not all prediction error is due to a bad model. Some error may be intrinsic to the data-generating process.
+
+## 6.8 Minkowski Loss Family
+
+Bishop also considers the loss
+
+$$
+L_q=|y-t|^q.
+$$
+
+> ![Figure 1.29](./CoursePRML2026/Fig/Chapter_1/fig_1_29_textbook_p49.png)
+>
+> *Figure 1.29 (Textbook Fig. 1.29, p. 49): The shape of the loss function changes with $q$. Different choices of loss lead to different optimal predictions.*
+
+Important cases:
+
+| $q$ | Loss | Optimal Prediction |
+|-----|------|-------------------|
+| $q=2$ | Squared loss | Conditional mean |
+| $q=1$ | Absolute loss | Conditional median |
+| $q\to 0$ | Strong preference for high-density target values | Conditional mode |
+
+This explains why the choice of loss function is not a minor technical detail. It determines what kind of summary of $p(t\mid \mathbf{x})$ the model is encouraged to predict.
 
 ---
 
-### 3.0.2 The Impulse Response — Complete Characterization of an LTI System
+# §7 Information Theory
 
-**Definition**: The **impulse response** $h(n)$ is the output of the system when the input is a unit impulse:
+> 📖 Textbook §1.6 Information Theory (§1.6.1)
 
-$$h(n) = \mathcal{H}\lbrace\delta(n)\rbrace \quad \text{(with zero initial conditions)}$$
+## 7.1 Information Content
 
-**Why $h(n)$ completely determines the system**: Any input signal can be decomposed into a weighted sum of shifted impulses (the sifting property):
+Information theory begins with the idea that unlikely events carry more information than likely events.
 
-$$x(n) = \sum_{k=-\infty}^{\infty} x(k)\, \delta(n-k)$$
+If event $x$ has probability $p(x)$, its information content is
 
-By linearity, the system responds to each $x(k)\,\delta(n-k)$ with $x(k)\,h(n-k)$ (scaled + shifted impulse response). By time-invariance, those shifted responses are exact copies. Summing over all $k$:
+$$
+h(x)=-\log_2 p(x).
+$$
 
-$$\boxed{y(n) = x(n) \ast h(n) = \sum_{k=-\infty}^{\infty} x(k)\, h(n-k)}$$
+Properties:
 
-This is the **convolution sum** — the universal input-output relationship for any LTI system, regardless of structure. Knowing $h(n)$ means knowing the system's response to *every* possible input.
+1. If $p(x)$ is small, then $h(x)$ is large.
+2. If $p(x)=1$, then $h(x)=0$.
+3. Independent events have additive information because logarithms turn products into sums.
 
-> **Intuitive picture**: $h(n)$ is the system's "memory trace" — the record of how long and how strongly the system rings after being struck by a single unit impulse. A short, decaying $h(n)$ means the system forgets its input quickly. A long $h(n)$ means the system "remembers" the input for many samples — either because the designer deliberately chose many taps (FIR), or because feedback causes the response to decay slowly (IIR).
+The base of the logarithm determines the unit. Base 2 gives bits; natural logarithms give nats.
 
-**Computing $h(n)$ from the difference equation**: Set $x(n) = \delta(n)$ and solve the LCCDE with zero initial conditions. For an FIR filter, **where $M$ is the filter order and $M+1$ is the number of taps**: each tap corresponds to one coefficient $a_k$ ($k = 0, 1, \ldots, M$) multiplying a delayed copy of the input $x(n-k)$. The filter order $M$ determines both the length of the impulse response and the computational cost: every output sample requires exactly $M+1$ multiplications and $M$ additions, one per tap.
+## 7.2 Entropy
 
-$$h(n) = \sum_{k=0}^{M} a_k\, \delta(n-k) = \begin{cases} a_n & 0 \leq n \leq M \\ 0 & \text{otherwise} \end{cases}$$
+Entropy is the expected information content:
 
-The impulse response *is* the coefficient sequence. For an IIR filter, the feedback generates an infinite tail. **Canonical example** — first-order recursive filter $y(n) = a\,y(n-1) + x(n)$, $\lvert a\rvert < 1$:
+$$
+H[x]=-\sum_x p(x)\log_2 p(x).
+$$
 
-$$h(n) = a^n\, u(n) = \begin{cases} a^n & n \geq 0 \\ 0 & n < 0 \end{cases}$$
+For a continuous variable, the analogous quantity is differential entropy:
 
-Even though the difference equation has only two terms, the impulse response is a geometrically decaying infinite sequence. This single pole at $z = a$ can approximate a sharp lowpass or highpass filter far more efficiently than an FIR would.
+$$
+H[x]=-\int p(x)\ln p(x)\,dx.
+$$
 
-> **Deep dive: why one pole, and why can it be both lowpass and highpass?**
->
-> **① Why just one pole**
->
-> The first-order recursive filter $y(n) = ay(n-1) + x(n)$ has transfer function:
->
-> $$H(z) = \frac{1}{1 - az^{-1}} = \frac{z}{z - a}$$
->
-> The denominator is linear in $z$, so it has exactly **one root — the pole at $z = a$**. There is also a zero at $z = 0$ (the origin), but a zero at the origin contributes no frequency-selective behavior: its distance from any point $e^{j\omega}$ on the unit circle is always $\lvert e^{j\omega} - 0\rvert = 1$ — a constant. So all the filter's frequency shaping comes from the single pole alone.
->
-> **② Geometric interpretation of the frequency response**
->
-> Evaluating $H(z)$ on the unit circle ($z = e^{j\omega}$):
->
-> $$\lvert H(e^{j\omega})\rvert = \frac{1}{\lvert e^{j\omega} - a\rvert}$$
->
-> The denominator $\lvert e^{j\omega} - a\rvert$ is the **Euclidean distance** in the complex plane from the unit-circle point $e^{j\omega}$ to the pole $z = a$. As $\omega$ sweeps from $0$ to $\pi$, this distance changes, and the magnitude response is **large wherever the unit circle passes closest to the pole** and small where it is farthest away.
->
-> ```
->       Im
->        |         pole at z=a (positive real → near z=+1 → near ω=0)
->        |      ↑ large gain at ω=0 (DC)
->  ------+------●------------ Re
->        |   (a,0)    z=+1 is close to the pole → small distance → large magnitude
->        |
->        |       z=−1 is far from the pole → large distance → small magnitude
-> ```
->
-> **③ Lowpass filter: $0 < a < 1$ (pole on the positive real axis)**
->
-> The pole sits close to the point $z = +1$ (which corresponds to DC, $\omega = 0$):
->
-> | Frequency | Unit-circle point | Distance to pole $a$ | $\lvert H\rvert$ |
-> |-----------|-------------------|-----------------------|-------|
-> | DC ($\omega = 0$) | $e^{j0} = +1$ | $1 - a$ (small, since $a \approx 1$) | **large** |
-> | Nyquist ($\omega = \pi$) | $e^{j\pi} = -1$ | $1 + a$ (large) | **small** |
->
-> Low frequencies are amplified, high frequencies are suppressed → **lowpass behavior**. The closer $a$ is to $1$, the smaller the DC-pole distance, the higher and sharper the low-frequency peak.
->
-> **④ Highpass filter: $-1 < a < 0$ (pole on the negative real axis)**
->
-> The pole now sits close to $z = -1$ (which corresponds to the Nyquist frequency, $\omega = \pi$):
->
-> | Frequency | Unit-circle point | Distance to pole $a < 0$ | $\lvert H\rvert$ |
-> |-----------|-------------------|---------------------------|-------|
-> | DC ($\omega = 0$) | $+1$ | $1 - a = 1 + \lvert a\rvert$ (large) | **small** |
-> | Nyquist ($\omega = \pi$) | $-1$ | $\lvert{-1 - a}\rvert = 1 - \lvert a\rvert$ (small, since $a \approx -1$) | **large** |
->
-> High frequencies are amplified, low frequencies are suppressed → **highpass behavior**. Symmetrically, as $a \to -1$, the filter sharpens at the Nyquist end.
->
-> **⑤ Why more efficient than FIR**
->
-> An FIR filter with $M$ taps achieves its frequency selectivity by choosing $M+1$ coefficients — more taps means sharper cutoff, but always at the cost of $M+1$ multiplications per sample. A single-pole IIR requires **exactly 1 multiplication and 1 addition per sample**, regardless of how sharp the desired rolloff is: sharpening is achieved by pushing $\lvert a\rvert$ closer to $1$ — a change to a single number, not an increase in computation. This is the fundamental computational advantage of poles over taps: a pole close to the unit circle creates a tall, narrow peak in $\lvert H(e^{j\omega})\rvert$ essentially for free.
+Entropy measures the average uncertainty of a random variable.
 
-> ![Figure 3.0a](<./CourseADSP2026/Fig/Chapter_1/fig_3_0a.png>)
+> ![Figure 1.30](./CoursePRML2026/Fig/Chapter_1/fig_1_30_textbook_p52.png)
 >
-> *Figure 3.0a: Impulse responses contrasted. (Left) FIR: $h(n)$ has finite support — the 8-tap example has exactly 8 nonzero values and decays to zero in finite time. (Right) IIR: first-order recursive filter with $a = 0.8$; $h(n) = 0.8^n u(n)$ decays exponentially but is theoretically nonzero for all $n \geq 0$. The practical consequence: the FIR requires 8 multiplications per sample; the IIR achieves a similarly shaped frequency response with 2.*
+> *Figure 1.30 (Textbook Fig. 1.30, p. 52): A broader distribution has higher entropy because observations are less predictable on average.*
 
-**BIBO stability from $h(n)$**: The system is bounded-input bounded-output (BIBO) stable if and only if $h(n)$ is absolutely summable:
+A discrete distribution over $M$ states has maximum entropy when it is uniform:
 
-$$\sum_{n=-\infty}^{\infty} \lvert h(n)\rvert < \infty$$
+$$
+p(x_i)=\frac{1}{M}.
+$$
 
-For rational $H(z)$, this is equivalent to all poles lying strictly inside the unit circle. FIR filters have all poles at the origin and are therefore **unconditionally stable** regardless of coefficient values — no stability check is ever required.
+The maximum entropy value is
 
-> **Why poles inside the unit circle ↔ absolute summability: the full argument**
->
-> **Step 1 — What is a pole?** A *rational* transfer function is one expressible as a ratio of polynomials in $z^{-1}$ (or equivalently $z$):
-> $$H(z) = \frac{B(z)}{A(z)} = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
-> The **poles** $\lbrace p_1, p_2, \ldots, p_N\rbrace$ are the roots of the denominator polynomial $A(z)$ — the values of $z$ at which $H(z) \to \infty$. They fully determine the system's natural (unforced) behavior: how the system "rings" after an impulse.
->
-> **Step 2 — Partial fraction expansion turns $H(z)$ into geometric sequences.** For a causal system with $N$ distinct poles, the partial fraction expansion gives:
-> $$H(z) = \sum_{k=1}^{N} \frac{A_k}{1 - p_k z^{-1}} + (\text{FIR terms if } M \geq N)$$
-> Taking the inverse z-transform of each term (using the pair $\dfrac{1}{1 - pz^{-1}} \xrightarrow{\mathcal{Z}^{-1}} p^n u(n)$ for a causal system):
-> $$h(n) = \left(\sum_{k=1}^{N} A_k\, p_k^n\right) u(n) + (\text{finite-length FIR part})$$
-> Each pole $p_k$ contributes a **geometric sequence** $p_k^n$ to the impulse response. The stability question reduces to: when is $\sum_{n=0}^{\infty} \lvert p_k^n\rvert = \sum_{n=0}^{\infty} \lvert p_k\rvert^n$ finite?
->
-> **Step 3 — The geometric series test decides stability.** This is a standard geometric series:
-> $$\sum_{n=0}^{\infty} \lvert p_k\rvert^n =
-> \begin{cases}
-> \dfrac{1}{1 - \lvert p_k\rvert} < \infty, & \text{if } \lvert p_k\rvert < 1 \quad \text{(stable)} \\
-> \text{diverges}, & \text{if } \lvert p_k\rvert \geq 1 \quad \text{(unstable)}
-> \end{cases}$$
-> The three cases have a direct physical picture:
->
-> | Pole location | $\lvert p_k\rvert$ | Impulse response contribution | Stability |
-> |---|---|---|---|
-> | Strictly inside unit circle | $< 1$ | Exponential decay: $\lvert p_k\rvert^n \to 0$ | **BIBO stable** |
-> | On the unit circle | $= 1$ | Sustained oscillation (no decay): e.g., $e^{j\omega_0 n}$ | **Marginally stable** (BIBO unstable — a bounded input at resonance produces unbounded output) |
-> | Outside unit circle | $> 1$ | Exponential growth: $\lvert p_k\rvert^n \to \infty$ | **Unstable** |
->
-> Since $h(n)$ is a sum of such geometric terms, the whole system is BIBO stable if and only if **every** pole satisfies $\lvert p_k\rvert < 1$ — i.e., all poles lie strictly inside the unit circle $\lvert z\rvert = 1$.
->
-> **Step 4 — Geometric picture in the z-plane.** The unit circle $\lvert z\rvert = 1$ plays the same role for discrete-time systems that the imaginary axis plays for continuous-time systems in the s-plane (left half-plane = stable, right half-plane = unstable). The mapping $z = e^{sT_s}$ transforms: left half-plane $\operatorname{Re}(s) < 0 \;\Longleftrightarrow\; \lvert e^{sT_s}\rvert = e^{\operatorname{Re}(s)T_s} < 1 \;\Longleftrightarrow\; \lvert z\rvert < 1$. So stability boundaries are directly analogous; the unit circle is simply the discrete-time version of the imaginary axis.
->
-> **Step 5 — ROC perspective (equivalent characterization).** For a causal system, the ROC of $H(z)$ is the exterior of a disk: $\operatorname{ROC} = \left\lbrace z : \lvert z\rvert > r_{\max}\right\rbrace$ where $r_{\max} = \max_k \lvert p_k\rvert$ is the magnitude of the outermost pole. The DTFT $H(e^{j\omega})$ exists (and $h(n)$ is absolutely summable) if and only if the unit circle $\lvert z\rvert = 1$ is inside the ROC — i.e., $r_{\max} < 1$ — which is exactly the condition that all poles lie strictly inside the unit circle.
->
-> **FIR special case.** An FIR filter $H(z) = \sum_{n=0}^{M} h(n) z^{-n}$ has denominator $A(z) = z^M$ (after multiplying through) — a single pole of multiplicity $M$ at the **origin** $z = 0$. Since $\lvert 0\rvert = 0 < 1$, all FIR poles are trivially inside the unit circle, so FIR filters are unconditionally stable regardless of coefficient values.
+$$
+H[x]=\log M.
+$$
 
+This result can be derived using a Lagrange multiplier to enforce the normalization constraint $\sum_i p(x_i)=1$.
 
+## 7.3 Maximum Entropy and the Gaussian
+
+A recurring idea in probabilistic modeling is maximum entropy.
+
+If we only know limited facts about a distribution, the maximum-entropy distribution is the least committed distribution consistent with those facts.
+
+Important results:
+
+| Known Constraints | Maximum-Entropy Distribution |
+|------------------|------------------------------|
+| Discrete variable with $M$ states and no other constraints | Uniform distribution |
+| Continuous variable with fixed mean and variance | Gaussian distribution |
+
+This helps explain why the Gaussian distribution is so central. It is the maximum-entropy continuous distribution when only mean and variance are specified.
+
+## 7.4 Conditional Entropy and the Chain Rule
+
+The conditional entropy of $y$ given $x$ is
+
+$$
+H[y\mid x]=-
+\int\int p(y,x)\ln p(y\mid x)\,dy\,dx.
+$$
+
+The entropy chain rule says
+
+$$
+H[x,y]=H[y\mid x]+H[x].
+$$
+
+Equivalently,
+
+$$
+H[x,y]=H[x\mid y]+H[y].
+$$
+
+This mirrors the probability product rule:
+
+$$
+p(x,y)=p(y\mid x)p(x).
+$$
+
+The analogy is useful: probability factorization becomes entropy decomposition.
+
+## 7.5 Convexity and Jensen's Inequality
+
+KL divergence and many later variational methods rely on convexity.
+
+> ![Figure 1.31](./CoursePRML2026/Fig/Chapter_1/fig_1_31_textbook_p56.png)
+>
+> *Figure 1.31 (Textbook Fig. 1.31, p. 56): A convex function lies below its chords. This geometric property underlies Jensen's inequality, which is used to prove non-negativity of KL divergence.*
+
+A function $f$ is convex if
+
+$$
+f(\lambda a+(1-\lambda)b)\leq \lambda f(a)+(1-\lambda)f(b)
+$$
+
+for $0\leq\lambda\leq 1$.
+
+Jensen's inequality generalizes this to expectations:
+
+$$
+f(\mathbb{E}[x])\leq \mathbb{E}[f(x)]
+$$
+
+for convex $f$.
+
+This inequality is one of the key tools behind variational inference in Chapter 10.
+
+## 7.6 KL Divergence
+
+The Kullback-Leibler divergence from $q$ to $p$ is
+
+$$
+\mathrm{KL}(p\Vert q)
+= -\int p(x)\ln\left\{\frac{q(x)}{p(x)}\right\}\,dx
+=\int p(x)\ln\left\{\frac{p(x)}{q(x)}\right\}\,dx.
+$$
+
+It measures the mismatch between two distributions.
+
+Important properties:
+
+1. $\mathrm{KL}(p\Vert q)\geq 0$.
+2. $\mathrm{KL}(p\Vert q)=0$ only when $p(x)=q(x)$ almost everywhere.
+3. KL divergence is not symmetric:
+
+$$
+\mathrm{KL}(p\Vert q)\neq \mathrm{KL}(q\Vert p)
+$$
+
+in general.
+
+Because it is not symmetric, KL divergence is not a distance metric in the strict mathematical sense.
+
+## 7.7 Maximum Likelihood as KL Minimization
+
+Suppose the empirical distribution of the data is
+
+$$
+\widehat{p}_{\mathrm{data}}(x)=\frac{1}{N}\sum_{n=1}^{N}\delta(x-x_n).
+$$
+
+Maximum likelihood chooses model parameters $\theta$ to maximize
+
+$$
+\sum_{n=1}^{N}\ln p(x_n\mid \theta).
+$$
+
+This is equivalent to minimizing
+
+$$
+\mathrm{KL}(\widehat{p}_{\mathrm{data}}\Vert p(\cdot\mid\theta))
+$$
+
+up to terms that do not depend on $\theta$.
+
+Thus maximum likelihood can be interpreted as choosing the model distribution closest to the empirical data distribution in the KL sense.
+
+## 7.8 Mutual Information
+
+Mutual information measures how much knowing one variable reduces uncertainty about another.
+
+It is defined as
+
+$$
+I[x,y]
+=\mathrm{KL}(p(x,y)\Vert p(x)p(y)).
+$$
+
+Equivalently,
+
+$$
+I[x,y]=H[x]-H[x\mid y]=H[y]-H[y\mid x].
+$$
+
+Interpretation:
+
+- If $x$ and $y$ are independent, then $p(x,y)=p(x)p(y)$ and $I[x,y]=0$.
+- If knowing $y$ strongly reduces uncertainty about $x$, then $I[x,y]$ is large.
+
+Mutual information appears in feature selection, representation learning, clustering, and information-theoretic views of Bayesian learning.
 
 ---
 
-### 3.0.3 The Frequency Response — What the Filter Does in the Frequency Domain
+# §8 Chapter Summary, Figure Checklist, and Teaching Flow
 
-The **frequency response** $H(e^{j\omega})$ is the DTFT of the impulse response:
+## 8.1 Conceptual Summary
 
-$$\boxed{H(e^{j\omega}) = \sum_{n=-\infty}^{\infty} h(n)\, e^{-j\omega n}}$$
+This chapter can be summarized in one sentence:
 
-Equivalently, it is the transfer function $H(z)$ evaluated on the unit circle: $H(e^{j\omega}) = H(z)\big\rvert_{z = e^{j\omega}}$.
+> Machine learning is about building models that generalize under uncertainty, and probability provides the language for both learning and decision-making.
 
-**Physical meaning**: $H(e^{j\omega})$ is the complex gain the filter applies to a pure complex sinusoid $e^{j\omega n}$. If $x(n) = e^{j\omega n}$, then:
+The key ideas are:
 
-$$y(n) = H(e^{j\omega})\, e^{j\omega n}$$
-
-The sinusoid passes through *unchanged in shape*, multiplied only by the complex constant $H(e^{j\omega})$ — this is the defining property of an eigenfunction of an LTI system. Because real sinusoids $\cos(\omega n)$ and $\sin(\omega n)$ are superpositions of $e^{\pm j\omega n}$, the filter's effect on any sinusoidal input is completely described by $H(e^{j\omega})$.
-
-**Decomposing the frequency response** into magnitude and phase:
-
-$$H(e^{j\omega}) = \lvert H(e^{j\omega})\rvert\, e^{j\angle H(e^{j\omega})}$$
-
-| Component | Definition | Physical meaning |
-|---|---|---|
-| **Magnitude response** | $\lvert H(e^{j\omega})\rvert$ | Gain applied to frequency $\omega$; squaring gives power gain |
-| **Phase response** | $\angle H(e^{j\omega})$ | Phase shift (in radians) applied to frequency $\omega$ |
-| **Group delay** | $\tau(\omega) = -\dfrac{d}{d\omega}\angle H(e^{j\omega})$ | Delay (in samples) experienced by the envelope of a narrowband signal near frequency $\omega$ |
-
-> **Why group delay matters more than phase**: In most signal processing contexts, a constant phase shift $e^{-j\omega n_0}$ merely time-delays all frequencies equally by $n_0$ samples — perfectly acceptable. What causes waveform distortion is *frequency-dependent* delay: different frequency components arriving at different times, smearing the signal in time. Group delay $\tau(\omega)$ directly quantifies this frequency-dependent delay. A filter with **constant group delay** (linear phase response) delays all frequencies equally and therefore transmits waveforms without shape distortion — the key motivation for linear-phase FIR design.
-
-> **Clarifying three easily confused concepts**:
->
-> | Concept | Definition | Meaning |
-> |---|---|---|
-> | Phase response | $\angle H(e^{j\omega})$ | Phase angle (radians) added by the filter to frequency $\omega$ |
-> | Phase delay | $-\dfrac{\angle H(e^{j\omega})}{\omega}$ | How many samples the **carrier** of frequency $\omega$ is delayed |
-> | Group delay | $-\dfrac{d\angle H}{d\omega}$ | How many samples the **envelope** (information) near frequency $\omega$ is delayed |
->
-> For signal transmission, group delay is the critical quantity because we care about the shape of the signal envelope (i.e., the information), not the phase of individual carrier cycles. Phase delay and group delay coincide only when the phase response is exactly linear.
-
-> **What "phase response" actually means**: The phase response $\angle H(e^{j\omega})$ is the phase shift the filter applies to each frequency component. For a single-frequency input $e^{j\omega n}$, the output is
->
-> $$\lvert H(e^{j\omega})\rvert \cdot e^{j(\omega n + \angle H(e^{j\omega}))}.$$
->
-> This phase offset $\angle H(e^{j\omega})$ is not a one-time event at $n = 0$ - it applies uniformly across the entire time axis. Every sample of every frequency component carries this accumulated phase offset.
-
-> **Why linear phase equals pure time delay**: Consider a signal delayed by exactly $\alpha$ samples. Each frequency component $e^{j\omega n}$ becomes $e^{j\omega(n-\alpha)} = e^{j\omega n} \cdot e^{-j\omega\alpha}$. The phase shift accumulated at frequency $\omega$ is $-\omega\alpha$ - proportional to $\omega$. This means *higher frequencies accumulate proportionally larger phase shifts*, which is precisely what a linear phase response $\angle H(e^{j\omega}) = -\alpha\omega$ describes. Linear phase and pure time delay are therefore two descriptions of the same thing.
->
-> Importantly, a constant phase response (same phase shift for all frequencies) does **not** correspond to a uniform time delay. A fixed phase angle represents a shorter time delay for high-frequency components (whose period is short) and a longer time delay for low-frequency components (whose period is long). This frequency-dependent distortion is often overlooked.
->
-> | Phase response shape | Group delay | Physical effect |
-> |---|---|---|
-> | Linear: $\angle H = -\alpha\omega$ | $\tau = \alpha$ (constant) | Pure time shift of $\alpha$ samples — waveform shape preserved ✓ |
-> | Nonlinear | $\tau(\omega)$ varies with $\omega$ | Different frequencies delayed by different amounts — waveform distorted ✗ |
-> | Constant (flat) | $\tau = 0$ | Zero group delay — but phase delay is frequency-dependent, causing distortion ✗ |
-
-> **What "constant" group delay means in practice**: For a linear-phase FIR filter of length $N$, the group delay is the constant $\alpha = (N-1)/2$ samples — a fixed number determined entirely by filter length, independent of time $n$ and independent of signal content. The effect on the output signal is a rigid time-axis shift: if $x(n)$ is the input and $y(n)$ is the output, then $y(n) = x(n - \alpha)$ (ignoring magnitude shaping). This shift applies to every sample across the entire signal duration — it is not a transient startup effect. Since all frequency components are shifted by the same $\alpha$ samples, the waveform shape is exactly preserved. By contrast, an IIR filter with frequency-varying group delay $\tau(\omega)$ shifts different frequency components by different amounts; when the components recombine, their relative timing is disrupted and the waveform shape changes — distortion that persists throughout the entire signal, not just at the beginning.
-
-**Reading the frequency response plot**: The frequency axis runs over one period $\omega \in [0, \pi]$ for a real-coefficient filter (by conjugate symmetry, $H(e^{-j\omega}) = H^{\ast}(e^{j\omega})$, so the range $[\pi, 2\pi]$ is redundant). $\omega = 0$ is DC; $\omega = \pi$ is the Nyquist frequency $f_s/2$.
-
-**FIR frequency response — a polynomial in $e^{-j\omega}$**:
-
-*Derivation.* Start from the general DTFT definition applied to the impulse response $h(n)$:
-
-$$H(e^{j\omega}) \;=\; \sum_{n=-\infty}^{\infty} h(n)\, e^{-j\omega n}$$
-
-A causal FIR filter of order $M$ has $h(n) = 0$ for $n < 0$ and $n > M$ (finite support). The infinite sum therefore collapses to a finite sum over $n = 0, 1, \ldots, M$:
-
-$$H(e^{j\omega}) \;=\; \sum_{n=0}^{M} h(n)\, e^{-j\omega n}$$
-
-Expanding term by term:
-
-$$\boxed{H(e^{j\omega}) = h(0) + h(1)\,e^{-j\omega} + h(2)\,e^{-j2\omega} + \cdots + h(M)\,e^{-j\omega M}}$$
-
-**Why "polynomial"?** Substitute $\zeta = e^{-j\omega}$:
-
-$$H(\zeta) = h(0) + h(1)\,\zeta + h(2)\,\zeta^{2} + \cdots + h(M)\,\zeta^{M} = \sum_{n=0}^{M} h(n)\,\zeta^{n}$$
-
-This is a standard polynomial of degree $M$ in $\zeta$. Since $\zeta = e^{-j\omega}$ lies on the unit circle, $H$ is a *trigonometric* polynomial in $\omega$ — a finite Fourier series with exactly $M+1$ terms and no infinite tail.
-
-**Connection to the z-transform.** The z-transform of $h(n)$ is:
-
-$$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n}$$
-
-Evaluating on the unit circle $z = e^{j\omega}$ (i.e., $z^{-1} = e^{-j\omega} = \zeta$) recovers the DTFT exactly:
-
-$$H(e^{j\omega}) = H(z)\big|_{z=e^{j\omega}}$$
-
-The DTFT is therefore the z-transform restricted to the unit circle. This is always valid for an FIR filter because $H(z)$ converges everywhere except possibly $z = 0$ (all poles of a FIR are at the origin).
-
-This is a trigonometric polynomial in $e^{-j\omega}$, capable of approximating any desired magnitude shape over $[0,\pi]$ given sufficiently large $M$.
-
-**IIR frequency response — a rational function of $e^{-j\omega}$**:
-
-$$H(e^{j\omega}) = \frac{a_0 + a_1 e^{-j\omega} + \cdots + a_N e^{-j\omega N}}{1 + b_1 e^{-j\omega} + \cdots + b_N e^{-j\omega N}}$$
-
-Poles near the unit circle create **resonance peaks** — the magnitude rises sharply near the pole angle. Zeros on the unit circle create **exact nulls** — the magnitude is identically zero at the zero angle. The interaction of poles and zeros shapes the frequency response with great efficiency: an IIR filter of order $N = 6$ can achieve stopband attenuation that an FIR filter would need $M \approx 100$ taps to match.
-
-> ![Figure 3.0b](<./CourseADSP2026/Fig/Chapter_1/fig_3_0b.png>)
->
-> *Figure 3.0b: Frequency response anatomy. (Top) Magnitude $\lvert H(e^{j\omega})\rvert$ in dB vs. normalized frequency $\omega/\pi \in [0,1]$; passband, transition band, and stopband regions labeled. (Bottom) Phase $\angle H(e^{j\omega})$: linear (constant-slope) for an FIR with symmetric coefficients $h(n) = h(M-n)$; nonlinear for a typical IIR and for non-symmetric FIR. Group delay $\tau(\omega) = -d\angle H/d\omega$: flat (constant $(M/2)$ samples) for a symmetric-coefficient FIR; frequency-varying for IIR and non-symmetric FIR.*
->
-> **FIR design** — Hamming-windowed sinc lowpass, order $M = 48$, cutoff $\omega_c = 0.4\pi$ rad/sample. The transfer function is $H_{\mathrm{FIR}}(z) = \sum_{n=0}^{48} h(n)\,z^{-n}$. Because $h(n) = h(48-n)$, only 25 independent values exist; the full 49-tap sequence is:
->
-> | $n$ | $h(n)$ | $n$ | $h(n)$ | $n$ | $h(n)$ |
-> |-----|-------------|-----|-------------|-----|-------------|
-> | 0 | −0.0010105 | 9 | −0.0000000 | 18 | +0.0437174 |
-> | 1 | −0.0006837 | 10 | −0.0091149 | 19 | −0.0000000 |
-> | 2 | +0.0008148 | 11 | −0.0069172 | 20 | −0.0711164 |
-> | 3 | +0.0016603 | 12 | +0.0084310 | 21 | −0.0602652 |
-> | 4 | −0.0000000 | 13 | +0.0165365 | 22 | +0.0922096 |
-> | 5 | −0.0027931 | 14 | −0.0000000 | 23 | +0.3019550 |
-> | 6 | −0.0022351 | 15 | −0.0241183 | **24** | **+0.4005514** |
-> | 7 | +0.0028651 | 16 | −0.0180330 | — | $h(n) = h(48-n)$ |
-> | 8 | +0.0058735 | 17 | +0.0219482 | — | for $n > 24$ |
->
-> The zeros at $h(4), h(9), h(14), \ldots$ arise from the sinc nulls at integer multiples of $1/\omega_c$. The group delay is exactly $M/2 = 24$ samples at all frequencies.
->
-> **IIR design** — 4th-order Butterworth lowpass, cutoff $\omega_c = 0.4\pi$ rad/sample, designed via the bilinear transform ($s \to \frac{2}{T}\frac{z-1}{z+1}$, $T=1$). The transfer function is:
->
-> $$H_{\mathrm{IIR}}(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2} + b_3 z^{-3} + b_4 z^{-4}}{1 + a_1 z^{-1} + a_2 z^{-2} + a_3 z^{-3} + a_4 z^{-4}}$$
->
-> | Coefficient | Value |
-> |-------------|--------------|
-> | $b_0 = b_4$ | +0.04658291 |
-> | $b_1 = b_3$ | +0.18633163 |
-> | $b_2$ | +0.27949744 |
-> | $a_1$ | −0.78209520 |
-> | $a_2$ | +0.67997853 |
-> | $a_3$ | −0.18267570 |
-> | $a_4$ | +0.03011888 |
->
-> The numerator coefficients follow the binomial pattern $\binom{4}{k}$ (scaled), reflecting four cascaded first-order sections in the analog prototype. The denominator poles lie inside the unit circle, guaranteeing BIBO stability; their proximity to the unit circle near $\omega_c$ produces the group delay peak visible in the bottom panel.*
-
-**The connection between poles/zeros and frequency response**: The magnitude at any frequency $\omega$ can be read geometrically from the pole-zero plot:
-
-$$\lvert H(e^{j\omega})\rvert = \lvert a_0\rvert \cdot \frac{\prod_k \lvert e^{j\omega} - z_k\rvert}{\prod_k \lvert e^{j\omega} - p_k\rvert}$$
-
-where $z_k$ are zeros and $p_k$ are poles. As the evaluation point $e^{j\omega}$ sweeps around the unit circle, the magnitude is the product of distances to all zeros divided by the product of distances to all poles. A pole *close to* the unit circle at angle $\omega_0$ makes the denominator small near $\omega_0$, creating a magnitude peak. A zero *on* the unit circle at angle $\omega_0$ makes the numerator zero at $\omega_0$, creating a notch.
-
----
-
-### 3.0.4 FIR vs. IIR — The Fundamental Design Choice
-
-Every filter design begins with choosing between FIR and IIR. The difference equation, impulse response, and frequency response all reflect this architectural choice:
-
-| Property | FIR | IIR |
-|---|---|---|
-| Difference equation | Pure feedforward: $y(n) = \sum_{k} a_k x(n-k)$ | Feedback + feedforward: $y(n) = -\sum b_k y(n-k) + \sum a_k x(n-k)$ |
-| Transfer function $H(z)$ | Polynomial (all poles at $z=0$) | Rational (poles can be anywhere) |
-| Impulse response | Finite: $h(n) = 0$ for $n > M$ | Infinite: $h(n) \neq 0$ for all $n \geq 0$ |
-| Stability | Unconditional (no poles on/outside unit circle possible) | Must verify all poles inside unit circle |
-| Linear phase | Achievable exactly **if and only if** $h(n)$ is symmetric ($h(n)=h(M-n)$) or anti-symmetric ($h(n)=-h(M-n)$); non-symmetric FIR has nonlinear phase just like IIR | Not achievable exactly |
-| Filter order for sharp cutoff | High (hundreds of taps) | Low (4–12 for Butterworth/Chebyshev) |
-| Arithmetic cost per sample | $O(M+1)$ — high for sharp specs | $O(N)$ — low |
-| Suitable analog prototype | No natural counterpart | Yes (Butterworth, Chebyshev, Elliptic) |
-| Primary design methods | Window, Parks-McClellan, frequency-sampling | Bilinear transform, impulse invariance |
-| Typical application | Audio EQ, communications pulse shaping, linear-phase requirements | Anti-aliasing, data acquisition, where order efficiency matters |
-
-> **Why the stability conditions differ: poles, unit circle, and ROC**
->
-> **FIR: why there are no poles to worry about.**
-> An FIR transfer function is a finite polynomial in $z^{-1}$:
-> $$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n}$$
-> Multiplying through by $z^M$ gives a polynomial of degree $M$ in $z$, whose only "poles" are $M$ copies at $z = 0$ (the origin). Since $\lvert 0\rvert = 0 < 1$, they are always strictly inside the unit circle - no matter what the coefficients $h(n)$ are. FIR filters have no feedback: the output depends on a finite window of past inputs and nothing cycles back. Without a feedback loop there is no mechanism to generate poles at arbitrary locations, so unconditional stability is a structural guarantee, not a property that must be verified case by case.
->
-> **IIR: why poles must be strictly inside the unit circle - and not merely "off" it.**
-> For a causal IIR system, each pole $p_k$ contributes a term proportional to $p_k^n$ to the impulse response $h(n)$:
->
-> | Pole location | $\lvert p_k\rvert$ | Time-domain contribution | Stability verdict |
-> |---|---|---|---|
-> | Strictly inside unit circle | $< 1$ | $\lvert p_k\rvert^n \to 0$ - exponential decay | ✅ BIBO stable |
-> | On the unit circle | $= 1$ | $\lvert p_k\rvert^n = 1$ - sustained oscillation | ⚠️ Marginally stable (BIBO unstable: a bounded sinusoidal input at the resonant frequency produces unbounded output) |
-> | Outside unit circle | $> 1$ | $\lvert p_k\rvert^n \to \infty$ - exponential growth | ❌ Unstable |
->
-> The critical point: **"outside the unit circle" is the worst case, not a safe one.** A pole at $\lvert p\rvert = 1.01$ already causes the output to grow without bound. "Not on the unit circle" is not sufficient - only $\lvert p_k\rvert < 1$ for every pole guarantees BIBO stability.
->
-> **ROC perspective: the unified criterion.**
-> The most general stability condition, valid for any LTI system (causal or not), is:
-> $$\text{System is BIBO stable} \iff \text{ROC of } H(z) \text{ includes the unit circle } \lvert z\rvert=1$$
-> For a **causal** system, the ROC is the exterior of a disk: $\{z : \lvert z\rvert > r_{\max}\}$ where $r_{\max} = \max_k \lvert p_k\rvert$ is the outermost pole magnitude. The unit circle is inside this ROC precisely when $r_{\max} < 1$ - all poles strictly inside the unit circle.
->
-> For an **anti-causal** system (left-sided sequences), the ROC is the interior of a disk: $\{z : \lvert z\rvert < r_{\min}\}$. In that case, poles *outside* the unit circle ($\lvert p\rvert > 1$) would place the unit circle inside the ROC, making the anti-causal system stable. But this is a mathematical curiosity: anti-causal systems require future input samples, so they can only be implemented offline (e.g., `filtfilt` in MATLAB, which runs the filter forward then backward to achieve zero-phase response). In real-time signal processing, all practical filters are causal, and the condition reduces simply to: **all poles strictly inside the unit circle**.
-
-**Practical decision guide**:
-- **Choose FIR** when the application requires exactly linear phase (distortion-free signal transmission, matched filtering in radar/sonar, image processing) or when guaranteed stability is essential and the computational cost of many taps is acceptable.
-- **Choose IIR** when filter order and computational efficiency are the primary constraints, phase distortion is tolerable (or can be corrected separately with an allpass equalizer), and the filter resembles a classical analog prototype (Butterworth, Chebyshev, Elliptic).
-
-> **Worked example**: Suppose you need a lowpass filter with passband $[0, 0.2\pi]$, stopband $[\geq 0.25\pi]$, stopband attenuation $\geq 60$ dB. Using the Kaiser formula (§3.3.2), the FIR order is approximately $M \approx (60 - 7.95)/(2.285 \times 0.05\pi) \approx 145$ taps. An equivalent Elliptic IIR filter achieves the same specifications with order $N = 5$ — a reduction of $28\times$ in coefficient count. But the IIR introduces frequency-dependent group delay; if you need to cascade it with a linear-phase processor, you must also design an allpass phase equalizer or accept the distortion.
-
----
-
-## 3.1 FIR Filter Implementations
-
-An **FIR (Finite Impulse Response)** filter of order $M$ has transfer function:
-
-$$H(z) = \sum_{n=0}^{M} h(n)\, z^{-n} = h(0) + h(1)z^{-1} + \cdots + h(M)z^{-M}$$
-
-All $M+1$ poles are at the origin $z=0$. FIR filters are **unconditionally stable**. They **can** achieve exactly linear phase, but only when the coefficients satisfy a symmetry condition — this is not automatic for all FIR filters.
-
-> **Why symmetry gives linear phase.** Suppose $h(n) = h(M-n)$ (even symmetry). Factor out the centre-of-symmetry phase $e^{-j\omega M/2}$ from the frequency response:
-> $$H(e^{j\omega}) = \sum_{n=0}^{M} h(n)\,e^{-j\omega n} = e^{-j\omega M/2} \underbrace{\sum_{n=0}^{M} h(n)\,e^{-j\omega(n-M/2)}}_{A(\omega)\,\in\,\mathbb{R}}$$
-> Because $h(n)=h(M-n)$, each term $e^{-j\omega(n-M/2)}$ is paired with $e^{+j\omega(n-M/2)}$, so the imaginary parts cancel and $A(\omega)$ is **real**. Therefore:
-> $$\angle H(e^{j\omega}) = -\frac{M}{2}\,\omega + \begin{cases} 0 & A(\omega)>0 \\ \pi & A(\omega)<0 \end{cases}$$
-> The phase is strictly linear in $\omega$ (the $\pm\pi$ jump is a constant, not a function of $\omega$). Group delay:
-> $$\tau(\omega) = -\frac{d}{d\omega}\angle H(e^{j\omega}) = \frac{M}{2} \quad \text{(constant, independent of }\omega\text{)}$$
-> If $h(n)$ is **not** symmetric, $A(\omega)$ acquires a nonzero imaginary part that varies with $\omega$, and $\tau(\omega)$ is no longer constant — a non-symmetric FIR has frequency-varying group delay just like an IIR.
-
-### 3.1.1 Direct Form — Transversal Filter
-
-The output is a weighted sum of the current and past $M$ inputs:
-
-$$y(n) = \sum_{m=0}^{M} h(m)\, x(n - m)$$
-
-Implemented as a **tapped delay line**: a shift register of $M$ unit delays, each tap multiplied by $h(m)$, all products summed.
-
-- Multiplications per sample: $M+1$
-- Additions per sample: $M$
-- Delay elements: $M$
-
-> ![Figure 3.1](<./CourseADSP2026/Fig/Chapter_1/fig_3_1.png>)
->
-> *Figure 3.1: Direct-form (transversal) FIR filter.*
-
-**Symmetric exploitation**: When $h(n) = h(M-n)$ (the condition that also guarantees linear phase, as shown above), paired coefficients are equal, nearly halving the number of distinct multiplications.
-
-### 3.1.2 Cascade Form
-
-Factor $H(z)$ into real-coefficient second-order sections (biquads):
-
-$$H(z) = h(0)\prod_{k=1}^{\lfloor M/2 \rfloor} H_k(z), \qquad H_k(z) = 1 + b_{1k}z^{-1} + b_{2k}z^{-2}$$
-
-Complex conjugate zero pairs are combined into each real biquad. Each biquad is a 3-tap transversal FIR.
-
-**Advantages over the direct form.**
-
-In the direct form, $H(z)$ is expressed as a single polynomial of degree $M$. All $M$ zeros are simultaneously determined by all $M+1$ coefficients — that is, every coefficient affects every zero. When coefficients are quantized to finite precision (e.g., 16-bit fixed-point), small perturbations in any $h(k)$ shift *all* zeros, and the sensitivity of polynomial roots to coefficient perturbations grows rapidly with degree: a high-order polynomial is a numerically ill-conditioned map from coefficients to roots.
-
-The cascade form avoids this by factoring $H(z)$ into independent biquads. Each biquad $H_k(z)$ has only **two zeros**, determined entirely by its own three coefficients $(1, b_{1k}, b_{2k})$. Quantization errors in section $k$ perturb only the two zeros of that section; all other zeros are unaffected. This is what **"coefficient sensitivity is localized to each section"** means: the ill-conditioning of a degree-$M$ polynomial is replaced by $\lfloor M/2 \rfloor$ independent degree-2 problems, each well-conditioned.
-
-The same structure makes zero placement **directly editable**: to move a conjugate zero pair, only $b_{1k}$ and $b_{2k}$ of the corresponding biquad need to change. In the direct form, moving a single zero requires recomputing all $M+1$ coefficients by re-expanding the full polynomial.
-
-> ![Figure 3.2](<./CourseADSP2026/Fig/Chapter_1/fig_3_2.png>)
->
-> *Figure 3.2: Cascade FIR implementation.*
-
-### 3.1.3 Recursive Realization and Comb Filter
-
-An FIR filter can sometimes be implemented recursively via pole-zero cancellation. The classic example is the **uniform moving-average filter**:
-
-$$h(n) = \begin{cases} \dfrac{1}{N} & 0 \leq n \leq N-1 \\ 0 & \text{otherwise} \end{cases}$$
-
-Its transfer function factors as:
-
-$$H(z) = \underbrace{\frac{1-z^{-N}}{N}}_{\displaystyle H_1(z):\ \text{comb filter}} \cdot \underbrace{\frac{1}{1-z^{-1}}}_{\displaystyle H_2(z):\ \text{accumulator}}$$
-
-- $H_1(z)$: **comb filter** — $N$ zeros equally spaced at the $N$-th roots of unity
-- $H_2(z)$: **first-order IIR accumulator** — pole at $z=1$ cancels the corresponding comb zero
-
-The pole-zero cancellation preserves the FIR character, while the recursive structure reduces computation from $N$ operations to **only 2 per sample**, regardless of $N$.
-
-**Why this works — and why the result is still FIR.**
-
-The direct-form moving average requires computing a fresh sum of $N$ terms for every output sample. The recursive form exploits the fact that the window shifts by one sample at a time: the new sum equals the old sum, plus the new input, minus the sample that just left the window. This leads to the difference equation:
-
-$$y(n) = y(n-1) + \frac{1}{N}\bigl[x(n) - x(n-N)\bigr]$$
-
-which requires exactly **2 multiplications and 2 additions** per sample, independent of $N$.
-
-A subtlety: the difference equation contains a feedback term $y(n-1)$, which would normally imply an IIR filter (infinite impulse response). The key is that $H_2(z) = 1/(1-z^{-1})$ introduces a pole at $z = 1$, but $H_1(z) = (1-z^{-N})/N$ places one of its $N$ zeros *exactly* at $z = 1$ as well. The pole and zero cancel in the product $H(z) = H_1(z) \cdot H_2(z)$, leaving a system that is mathematically equivalent to the original $N$-tap FIR — finite impulse response is preserved. In finite-precision arithmetic, this cancellation is only approximate, so care is needed; but in exact arithmetic the system is purely FIR.
-
-**The comb filter $H_1(z)$** places $N$ zeros uniformly around the unit circle at $z = e^{j2\pi k/N}$, $k = 0, 1, \ldots, N-1$ — the $N$-th roots of unity. Its frequency response $\lvert H_1(e^{j\omega})\rvert = \lvert 1 - e^{-j\omega N}\rvert/N$ produces $N$ equally-spaced notches, the "teeth" of the comb. The zero at $k=0$ (i.e., $z=1$, DC) is the one cancelled by the accumulator pole.
-
-### 3.1.4 Frequency-Sampling Form
-
-When the desired DFT values $H(k)$ are specified, the transfer function is:
-
-$$H(z) = \frac{1 - z^{-N}}{N} \sum_{k=0}^{N-1} \frac{H(k)}{1 - W_N^{-k} z^{-1}}, \qquad W_N = e^{-j2\pi/N}$$
-
-This is a **comb filter** cascaded with a **bank of $N$ first-order resonators**, each tuned to a DFT frequency $\omega_k = 2\pi k/N$. Transition-band samples can be optimized to minimize stopband ripple.
-
----
-
-## 3.2 IIR Filter Implementations
-
-An **IIR (Infinite Impulse Response)** filter has transfer function:
-
-$$H(z) = \frac{\sum_{k=0}^{N} a_k z^{-k}}{1 + \sum_{k=1}^{N} b_k z^{-k}}$$
-
-IIR filters achieve sharp frequency selectivity at low order, but cannot have exactly linear phase, and stability must be explicitly ensured (all poles inside the unit circle).
-
-### 3.2.1 Direct Form I
-
-Implements the difference equation with two separate delay chains — one for input terms $x(n-k)$ (FIR part) and one for output feedback terms $y(n-k)$.
-
-- Total delay elements: $2N$
-
-> ![Figure 3.3](<./CourseADSP2026/Fig/Chapter_1/fig_3_3.png>)
->
-> *Figure 3.3: Direct Form I IIR filter.*
-
-> ![Figure 3.4](<./CourseADSP2026/Fig/Chapter_1/fig_3_4.png>)
->
-> *Figure 3.4: All-pole system realization (direct form).*
-
-### 3.2.2 Direct Form II — Canonical Form
-
-Merge the two delay chains by sharing a single intermediate state variable $v(n)$ (distinct from the unit step $u(n)$):
-
-$$v(n) = x(n) - \sum_{k=1}^{N} b_k\, v(n-k)$$
-
-$$y(n) = \sum_{k=0}^{N} a_k\, v(n-k)$$
-
-- Delay elements: $N$ — the minimum possible (**canonical form**)
-
-**Transposed Direct Form II**: Reversing the signal flow graph (transpose) yields different accumulation order and superior finite-precision performance.
-
-### 3.2.3 Cascade Form
-
-Factor $H(z)$ into real-coefficient second-order sections:
-
-$$H(z) = \prod_{k=1}^{\lfloor N/2 \rfloor} H_k(z), \qquad H_k(z) = \frac{a_{0k} + a_{1k}z^{-1} + a_{2k}z^{-2}}{1 + b_{1k}z^{-1} + b_{2k}z^{-2}}$$
-
-Each biquad is implemented as Direct Form II. Coefficient sensitivity is localized; the format used by virtually all practical implementations (e.g., MATLAB `sos` format).
-
-### 3.2.4 Parallel Form
-
-Expand $H(z)$ via partial-fraction decomposition:
-
-$$H(z) = C + \sum_{k=1}^{\lfloor N/2 \rfloor} \frac{a_{0k} + a_{1k}z^{-1}}{1 + b_{1k}z^{-1} + b_{2k}z^{-2}}$$
-
-Each branch is an independent second-order section computed in parallel.
-
-**Advantages**: Best finite-precision performance — round-off errors in each section do not accumulate across branches. Suitable for highly parallel hardware.
-
----
-
-## 3.3 Digital Filter Design
-
-### 3.3.1 Ideal and Practical Frequency Responses
-
-**Ideal filter shapes** (brickwall responses):
-- **Lowpass**: passband $[0, \omega_c]$, stopband $[\omega_c, \pi]$
-- **Highpass**: stopband $[0, \omega_c]$, passband $[\omega_c, \pi]$
-- **Bandpass**: passband $[\omega_1, \omega_2]$
-- **Bandstop**: stopband $[\omega_1, \omega_2]$
-
-**Practical filter specification**:
-
-$$1 - \delta_1 \leq \lvert H(e^{j\omega})\rvert \leq 1 + \delta_1 \quad (\text{passband},\ \omega \leq \omega_p)$$
-
-$$\lvert H(e^{j\omega})\rvert \leq \delta_2 \quad (\text{stopband},\ \omega \geq \omega_s)$$
-
-In dB: passband ripple $R_p = -20\log_{10}(1-\delta_1)$ dB; stopband attenuation $A_s = -20\log_{10}(\delta_2)$ dB.
-
-### 3.3.2 FIR Filter Design: Window Method, Frequency-Sampling Method, Kaiser Formula
-
-FIR filters can achieve **exactly linear phase** — a critical property for distortion-free applications.
-
-**① Window Method**
-
-Truncate the ideal (infinite-length) impulse response $h_d(n)$ using a window $w(n)$ of length $M+1$:
-
-$$h(n) = w(n) \cdot h_d(n), \qquad n = 0, 1, \ldots, M$$
-
-| Window | Transition width | Peak sidelobe | Min. stopband attenuation |
-|--------|-----------------|--------------|--------------------------|
-| Rectangular | $0.9 \times 2\pi/M$ | $-13$ dB | 21 dB |
-| Bartlett | $1.8 \times 2\pi/M$ | $-25$ dB | 25 dB |
-| Hanning | $3.1 \times 2\pi/M$ | $-31$ dB | 44 dB |
-| Hamming | $3.3 \times 2\pi/M$ | $-41$ dB | 53 dB |
-| Blackman | $5.5 \times 2\pi/M$ | $-57$ dB | 74 dB |
-| Kaiser | Adjustable via $\beta$ | Adjustable | Adjustable |
-
-**Kaiser window**: $w(n) = I_0\!\left(\beta\sqrt{1-(1-2n/M)^2}\right) / I_0(\beta)$, where $I_0$ is the zeroth-order modified Bessel function of the first kind. The parameter $\beta$ controls the trade-off between main-lobe width and sidelobe level.
-
-**Kaiser formula** — given stopband attenuation $A_s = -20\log_{10}\delta_2$ (dB) and normalized transition bandwidth $\Delta\omega = \omega_s - \omega_p$ (rad/sample):
-
-$$\boxed{M \approx \frac{A_s - 7.95}{2.285\,\Delta\omega}} \qquad \text{(filter order)}$$
-
-$$\boxed{\beta = \begin{cases}
-0.1102\,(A_s - 8.7) & A_s \gt 50 \\
-0.5842\,(A_s - 21)^{0.4} + 0.07886\,(A_s - 21) & 21 \leq A_s \leq 50 \\
-0 & A_s \lt 21
-\end{cases}}$$
-
-Given $A_s$ and $\Delta\omega$, both $M$ and $\beta$ are fully determined.
-
-**② Frequency-Sampling Method**
-
-Specify the desired response at $N$ DFT frequencies and compute the IDFT to obtain $h(n)$. Transition-band samples can be optimized iteratively to minimize maximum ripple.
-
-**③ Chebyshev (Equiripple) Approximation**
-
-Minimizes the maximum frequency-domain error $\lVert H(e^{j\omega}) - H_d(e^{j\omega})\rVert_\infty$ over specified bands. The **Parks-McClellan algorithm** (Remez exchange) finds the optimal equiripple solution. For equal specifications, equiripple designs require lower filter order than window-based designs.
-
-### 3.3.3 IIR Filter Design: Impulse Invariance, Bilinear Transform, Frequency Transformation
-
-IIR filter design typically proceeds from a classical analog (continuous-time) filter prototype.
-
-**① Impulse Invariance**
-
-Map an analog filter $H_a(s)$ to a digital filter $H(z)$ by matching the impulse response at sample instants: $h(n) = T_s\, h_a(nT_s)$. Poles at $s_k$ in $H_a(s)$ map to poles at $z_k = e^{s_k T_s}$ in $H(z)$.
-
-**Limitation — spectral aliasing**: The frequency response satisfies:
-
-$$H(e^{j\omega}) = \sum_{k=-\infty}^{\infty} H_a\!\left(j\frac{\omega + 2\pi k}{T_s}\right)$$
-
-Replicas from adjacent periods overlap. Suitable only for **lowpass and bandpass** designs where the analog prototype is sufficiently bandlimited.
-
-**② Bilinear z-Transform**
-
-Map $s$-domain to $z$-domain via:
-
-$$s = \frac{2}{T_s}\cdot\frac{1-z^{-1}}{1+z^{-1}} \qquad \Longleftrightarrow \qquad z = \frac{1 + (T_s/2)\,s}{1 - (T_s/2)\,s}$$
-
-Frequency mapping (analog $\Omega$ $\leftrightarrow$ digital $\omega$):
-
-$$\Omega = \frac{2}{T_s}\tan\!\left(\frac{\omega}{2}\right) \qquad \Longleftrightarrow \qquad \omega = 2\arctan\!\left(\frac{\Omega T_s}{2}\right)$$
-
-**Advantage**: No aliasing — the entire analog axis $(-\infty, +\infty)$ is compressed onto $(-\pi, \pi)$.
-
-**Limitation — frequency warping**: The nonlinear $\Omega$-$\omega$ relationship distorts the frequency axis. Critical frequencies must be **pre-warped** before designing the analog prototype:
-
-$$\Omega_c = \frac{2}{T_s}\tan\!\left(\frac{\omega_c}{2}\right) \qquad \text{(pre-warping)}$$
-
-**③ Frequency Transformation Method**
-
-Design a digital lowpass prototype $H_{lp}(z')$, then apply a digital-domain frequency transformation to obtain the target filter type:
-
-| Transformation | Substitution | Purpose |
-|---|---|---|
-| Lowpass → Lowpass | $z'^{-1} \to \dfrac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$ | Shift cutoff frequency |
-| Lowpass → Highpass | $z'^{-1} \to -\dfrac{z^{-1} + \alpha}{1 + \alpha z^{-1}}$ | Spectral inversion |
-| Lowpass → Bandpass | $z'^{-1} \to -\dfrac{z^{-2} - a_1 z^{-1} + a_2}{a_2 z^{-2} - a_1 z^{-1} + 1}$ | Frequency-axis expansion |
-| Lowpass → Bandstop | $z'^{-1} \to \dfrac{z^{-2} - a_1 z^{-1} + a_2}{a_2 z^{-2} - a_1 z^{-1} + 1}$ | Notch transformation |
-
-The parameter $\alpha$ (and $a_1, a_2$ for bandpass/bandstop) is determined by the desired cutoff frequencies.
-
----
-
-# Part IV: Special Sequences and Corresponding Filters
-
-> 📖 Textbook §2.4 (Minimum-Phase and System Invertibility, §2.4.1–§2.4.4); §2.5 (Lattice Filter Realizations)
-
----
-
-## 4.1 Allpass Sequences and Allpass Filters
-
-### 4.1.1 Definition and Properties
-
-An **allpass filter** has unit magnitude response at all frequencies:
-
-$$\lvert H_{ap}(e^{j\omega})\rvert = 1 \quad \forall\, \omega$$
-
-This implies:
-
-$$H_{ap}(e^{j\omega})\, H_{ap}^{\ast}(e^{j\omega}) = 1, \qquad h_{ap}(n) \ast h_{ap}^{\ast}(-n) = \delta(n)$$
-
-$$\boxed{H_{ap}(z)\, H_{ap}^{\ast}(1/z^{\ast}) = 1}$$
-
-**Pole-zero structure**: For a stable rational allpass filter, every pole at $z = c_k$ (inside the unit circle) is paired with a zero at $z = 1/c_k^{\ast}$ (outside the unit circle) — the **conjugate reciprocal** location.
-
-**First-order allpass** ($\lvert\alpha\rvert \lt 1$, $\alpha \in \mathbb{C}$):
-
-$$H_{ap1}(z) = \frac{z^{-1} - \alpha^{\ast}}{1 - \alpha\, z^{-1}}$$
-
-**General $N$-th order allpass**:
-
-$$H_{ap}(z) = \prod_{k=1}^{N} \frac{z^{-1} - \alpha_k^{\ast}}{1 - \alpha_k\, z^{-1}} = \frac{z^{-N} + a_1^{\ast} z^{-N+1} + \cdots + a_N^{\ast}}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}$$
-
-The numerator polynomial is the **conjugate-reversed** polynomial of the denominator.
-
-> ![Figure 4.1](<./CourseADSP2026/Fig/Chapter_1/fig_4_1.png>)
->
-> *Figure 4.1: Typical pole-zero patterns of a PZ (pole-zero) system, all-pass system: (a) complex-valued coefficients and (b) real-valued coefficients.*
-
-**Use cases**: Phase equalization (correcting phase distortion without altering magnitude), building blocks in lattice filters and filter banks, Schur-Cohn stability testing.
-
-### 4.1.2 Group Delay of Allpass Filters — Proof That Group Delay is Always Positive
-
-The **group delay** of a filter is:
-
-$$\tau(\omega) = -\frac{d}{d\omega}\angle H(e^{j\omega})$$
-
-For the first-order real allpass filter
-
-$$H_{ap}(z) = \frac{z^{-1} - \alpha}{1 - \alpha z^{-1}}$$
-
-where $\lvert\alpha\rvert \lt 1$ and $\alpha \in \mathbb{R}$, the phase response is:
-
-$$\angle H_{ap}(e^{j\omega}) = \omega - 2\arctan\!\left(\frac{\alpha \sin\omega}{1 - \alpha\cos\omega}\right) - \pi$$
-
-Differentiating and negating:
-
-$$\tau(\omega) = -\frac{d}{d\omega}\angle H_{ap}(e^{j\omega}) = \frac{1 - \alpha^2}{1 - 2\alpha\cos\omega + \alpha^2}$$
-
-$$\boxed{\tau(\omega) = \frac{1 - \lvert\alpha\rvert^2}{\lvert 1 - \alpha e^{-j\omega}\rvert^2} \gt 0 \quad \forall\,\omega}$$
-
-**Proof that $\tau(\omega) \gt 0$**:
-- Numerator: $1 - \alpha^2 \gt 0$ since $\lvert\alpha\rvert \lt 1$
-- Denominator: $\lvert 1 - \alpha e^{-j\omega}\rvert^2 \gt 0$ since the pole $\alpha$ is not on the unit circle
-
-**General $N$-th order result**: The group delay of any stable allpass filter is always positive:
-
-$$\tau(\omega) = \sum_{k=1}^{N} \frac{1 - \lvert\alpha_k\rvert^2}{\lvert 1 - \alpha_k e^{-j\omega}\rvert^2} \gt 0 \quad \forall\,\omega$$
-
-This is a sum of positive terms. An allpass filter is a pure **phase-lag device**: it introduces causal group delay at every frequency without altering the magnitude response. This makes allpass filters ideal for **phase equalization**.
-
----
-
-## 4.2 Minimum-Phase Sequences and Minimum-Phase Filters
-
-### 4.2.1 Definition
-
-A causal, stable filter $H_m(z)$ is **minimum-phase** if and only if:
-1. **Stable**: ROC includes the unit circle (all poles inside)
-2. **Causal**: $h_m(n) = 0$ for $n \lt 0$
-3. **All zeros inside or on the unit circle**
-
-Among all causal, stable filters with the same magnitude response, the minimum-phase filter has:
-- The smallest phase lag at every frequency
-- The fastest energy buildup: among all causal, stable filters $H(z)$ sharing
-  the same magnitude response $|H(e^{j\omega})| = |H_m(e^{j\omega})|$,
-  $$\sum_{n=0}^{k}\lvert h_m(n)\rvert^2 \geq \sum_{n=0}^{k}\lvert h(n)\rvert^2 \quad \forall\, k$$
-- A **causal, stable inverse** $1/H_m(z)$ (all zeros inside the unit circle → all inverse poles inside)
-
-> ![Figure 4.2](<./CourseADSP2026/Fig/Chapter_1/fig_4_2.png>)
->
-> *Figure 4.2: Pole-zero, magnitude, phase, and group-delay plots for minimum-phase, maximum-phase, and two mixed-phase systems sharing the same magnitude response — the minimum-phase system has the smallest phase lag (group delay) at every frequency.*
-
-> ![Figure 4.3](<./CourseADSP2026/Fig/Chapter_1/fig_4_3.png>)
->
-> *Figure 4.3: Impulse responses for four systems — all systems share equal total energy, and the minimum-phase system achieves the fastest energy dissipation (smallest tail energy) at every $n$.*
-
-### 4.2.2 Theorem 1.1: Minimum-Phase / Allpass Decomposition
-
-> **Theorem 1.1**: Any causal, stable system $H(z)$ can be **uniquely** decomposed as:
->
-> $$\boxed{H(z) = H_{ap}(z) \cdot H_m(z)}$$
->
-> where $H_m(z)$ is minimum-phase and $H_{ap}(z)$ is allpass.
-
-**Proof by construction**:
-
-Given $H(z)$ with poles $\lbrace p_k\rbrace$ (all inside the unit circle) and zeros $\lbrace z_k\rbrace$ (some possibly outside):
-
-**Step 1** — Partition zeros:
-- $\mathcal{Z}_{in} = \lbrace z_k : \lvert z_k\rvert \leq 1\rbrace$: zeros inside or on the unit circle
-- $\mathcal{Z}_{out} = \lbrace z_k : \lvert z_k\rvert \gt 1\rbrace$: zeros outside the unit circle
-
-**Step 2** — Construct $H_m(z)$:
-- Assign all poles $\lbrace p_k\rbrace$ to $H_m(z)$
-- Assign all zeros in $\mathcal{Z}_{in}$ to $H_m(z)$
-- For each zero $c \in \mathcal{Z}_{out}$: add a zero at $1/c^{\ast}$ (its conjugate reciprocal, inside the unit circle) to $H_m(z)$
-
-The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase.
-
-**Step 3** — Construct $H_{ap}(z) = H(z)/H_m(z)$:
-- For each $c \in \mathcal{Z}_{out}$, $H_{ap}(z)$ inherits a zero at $c$ (outside) and a pole at $1/c^{\ast}$ (inside) - exactly one allpass factor:
-
-  $$\dfrac{z^{-1} - c^{\ast}}{1 - c\, z^{-1}}$$
-
-**Verification**: $\lvert H(e^{j\omega})\rvert = \lvert H_{ap}(e^{j\omega})\rvert \cdot \lvert H_m(e^{j\omega})\rvert = 1 \cdot \lvert H_m(e^{j\omega})\rvert$. The phase of $H$ exceeds that of $H_m$ by the allpass phase lag (always positive group delay). ✓
-
-> ![Figure 4.4](<./CourseADSP2026/Fig/Chapter_1/fig_4_4.png>)
->
-> *Figure 4.4: Minimum phase and all-pass decomposition.*
-
----
-
-## 4.3 Linear-Phase Sequences and Linear-Phase Filters
-
-### 4.3.1 Strict and Generalized Linear Phase
-
-A filter has **generalized linear phase** if:
-
-$$H(e^{j\omega}) = e^{j\beta}\, e^{-j\alpha\omega}\, A(e^{j\omega})$$
-
-where $A(e^{j\omega})$ is **real-valued** (amplitude function), $\alpha$ is the **constant group delay** (samples), and $\beta \in \lbrace 0, \pm\pi/2\rbrace$.
-
-The z-transform satisfies (for real $h(n)$):
-
-$$H(z) = \pm z^{-(N-1)} H(1/z)$$
-
-If $z_0$ is a zero of $H(z)$, then $1/z_0$ is also a zero — zeros off the unit circle come in reciprocal pairs.
-
-**Strict linear phase** ($\beta = 0$, real $h(n)$): requires **even symmetry**:
-
-$$h(n) = h(N-1-n), \quad n = 0, 1, \ldots, N-1$$
-
-Group delay is constant: $\tau(\omega) = \alpha = (N-1)/2$ samples.
-
-### 4.3.2 Four Types of Linear-Phase FIR Filters
-
-Classified by symmetry type (even or odd) and filter length (odd or even):
-
-| Type | Symmetry of $h(n)$ | Length $N$ | Group delay $\alpha$ | Phase $\beta$ |
-|------|-------------------|-----------|---------------------|--------------|
-| **I** | Even: $h(n)=h(N{-}1{-}n)$ | Odd | $(N-1)/2$ (integer) | $0$ |
-| **II** | Even: $h(n)=h(N{-}1{-}n)$ | Even | $(N-1)/2$ (half-integer) | $0$ |
-| **III** | Odd: $h(n)=-h(N{-}1{-}n)$ | Odd | $(N-1)/2$ (integer) | $\pi/2$ |
-| **IV** | Odd: $h(n)=-h(N{-}1{-}n)$ | Even | $(N-1)/2$ (half-integer) | $\pi/2$ |
-
-**Amplitude functions** $A(e^{j\omega})$ (all real-valued):
-
-| Type | Amplitude function $A(e^{j\omega})$ |
-|------|-----------------------------------|
-| I | $\displaystyle a(0) + 2\sum_{n=1}^{(N-1)/2} a(n)\cos(n\omega)$, where $a(n) = h\!\left(\tfrac{N-1}{2} - n\right)$ |
-| II | $\displaystyle 2\sum_{n=1}^{N/2} b(n)\cos\!\left[\!\left(n-\tfrac{1}{2}\right)\omega\right]$, where $b(n) = h\!\left(\tfrac{N}{2} - n\right)$ |
-| III | $\displaystyle 2\sum_{n=1}^{(N-1)/2} c(n)\sin(n\omega)$, where $c(n) = h\!\left(\tfrac{N-1}{2} - n\right)$ |
-| IV | $\displaystyle 2\sum_{n=1}^{N/2} d(n)\sin\!\left[\!\left(n-\tfrac{1}{2}\right)\omega\right]$, where $d(n) = h\!\left(\tfrac{N}{2} - n\right)$ |
-
-### 4.3.3 Applicable Filter Types per Class
-
-| Type | Lowpass | Highpass | Bandpass | Bandstop | Hilbert / Differentiator |
-|------|:-------:|:--------:|:--------:|:--------:|:------------------------:|
-| **I** | ✓ | ✓ | ✓ | ✓ | — |
-| **II** | ✓ | **✗** | ✓ | **✗** | — |
-| **III** | **✗** | **✗** | ✓ | **✗** | ✓ |
-| **IV** | **✗** | ✓ | ✓ | **✗** | ✓ |
-
-**Constraints and their causes**:
-
-- **Type II** — forced zero at $\omega = \pi$ ($z = -1$):
-
-  Even symmetry + even $N$ implies odd $N-1$. From $H(z) = z^{-(N-1)}H(1/z)$, evaluating at $z = -1$:
-  $H(-1) = (-1)^{-(N-1)}H(-1) = -H(-1) \Rightarrow H(-1) = 0$.
-  Cannot implement **highpass or bandstop** filters.
-
-- **Type III** — forced zeros at both $\omega = 0$ and $\omega = \pi$:
-
-  Odd symmetry forces $h\!\left(\frac{N-1}{2}\right) = 0$ (center tap is zero). Evaluating $H(z)$ at $z = \pm 1$ gives $H(\pm 1) = 0$. Useful only for **bandpass**, differentiators, and Hilbert transformers.
-
-- **Type IV** — forced zero at $\omega = 0$:
-
-  Odd symmetry + even $N$: evaluating at $z = 1$ gives $H(1) = -H(1) \Rightarrow H(1) = 0$.
-  Cannot implement **lowpass or bandstop** filters; suitable for highpass and Hilbert transformers.
-
-- **Type I** — most general: no forced zeros at $\omega = 0$ or $\omega = \pi$; suitable for all filter types.
-
----
-
-## 4.4 Positive Semi-Definite Sequences
-
-### 4.4.1 Autocorrelation Sequences and Power Spectral Non-Negativity
-
-A sequence $r(n)$ is **Hermitian (conjugate-symmetric)** if:
-
-$$r(n) = r^{\ast}(-n)$$
-
-Its DTFT is **real-valued**: $R(e^{j\omega}) \in \mathbb{R}$, and its z-transform satisfies $R(z) = R^{\ast}(1/z^{\ast})$.
-
-A Hermitian sequence is **positive semi-definite** if additionally:
-
-$$R(e^{j\omega}) \geq 0 \quad \forall\, \omega$$
-
-**Connection to autocorrelation**: The autocorrelation of a signal $x(n)$ is:
-
-$$r_x(n) = \sum_{k=-\infty}^{\infty} x(k)\, x^{\ast}(k-n) = x(n) \ast x^{\ast}(-n)$$
-
-Its DTFT is the **power spectral density**:
-
-$$P_x(e^{j\omega}) = \lvert X(e^{j\omega})\rvert^2 \geq 0$$
-
-Autocorrelation sequences are therefore **always positive semi-definite**. The autocorrelation matrix is:
-
-$$\mathbf{R} = [r_x(i-j)]_{i,j}$$
-
-It is a **Hermitian Toeplitz positive semi-definite matrix** — the central object in Wiener filtering (Chapter 6) and linear prediction (Chapter 3).
-
-### 4.4.2 Theorem 1.2: Zero Pairing in Rational Positive Semi-Definite Sequences
-
-> **Theorem 1.2**: Let $R(z)$ be the rational z-transform of a positive semi-definite sequence with real-valued coefficients. Then:
-> 1. **Zeros on the unit circle** ($\lvert z_0\rvert = 1$): occur in **conjugate pairs** $(z_0,\, z_0^{\ast})$, each with **even multiplicity**
-> 2. **Zeros off the unit circle**: occur in **quadruples** $\lbrace z_0,\; z_0^{\ast},\; 1/z_0,\; 1/z_0^{\ast}\rbrace$
-
-**Explanation**:
-- Hermitian symmetry ($R(z) = R^{\ast}(1/z^{\ast})$, real coefficients): if $z_0$ is a zero, then so are $z_0^{\ast}$, $1/z_0$, and $1/z_0^{\ast}$
-- Non-negativity $R(e^{j\omega}) \geq 0$: zeros on the unit circle must have even multiplicity, otherwise $R(e^{j\omega})$ would change sign
-
-**Spectral Factorization**: Any rational positive semi-definite sequence factors uniquely as:
-
-$$\boxed{R(z) = \sigma^2\, H_m(z)\, H_m^{\ast}(1/z^{\ast})}$$
-
-On the unit circle: $R(e^{j\omega}) = \sigma^2\lvert H_m(e^{j\omega})\rvert^2$, where $H_m(z)$ is **minimum-phase** (all zeros inside the unit circle). The quadruple structure $\lbrace z_0, z_0^{\ast}, 1/z_0, 1/z_0^{\ast}\rbrace$ splits as $\lbrace 1/z_0, 1/z_0^{\ast}\rbrace \to H_m(z)$ and $\lbrace z_0, z_0^{\ast}\rbrace \to H_m^{\ast}(1/z^{\ast})$.
-
-This spectral factorization theorem is **fundamental** to:
-- **Wiener filter theory** (Chapter 6): whitening the input requires the minimum-phase spectral factor
-- **Linear prediction** (Chapter 3): the prediction error filter is the inverse of the spectral factor
-- **Power spectral estimation** (Chapter 5): parametric spectral models exploit this structure
-
----
-
-## Chapter 1 Summary
-
-| Concept | Key Property | Application |
-|---------|-------------|-------------|
-| DTFT | Spectrum on unit circle; $2\pi$-periodic | Frequency analysis |
-| z-Transform | Generalizes DTFT to complex plane | System analysis, filter design |
-| z–s mapping: $z=e^{sT_s}$ | Left half-plane $\leftrightarrow$ interior of unit circle | Analog-to-digital filter conversion |
-| DFT | Sampled DTFT; finite-length | Numerical computation, FFT algorithms |
-| FFT (Radix-2) | $\frac{N}{2}\log_2 N$ multiplications; $\approx 200\times$ speedup at $N=1024$ | Fast convolution, spectral analysis |
-| FIR direct form | Always stable; $M+1$ taps | Baseline implementation |
-| Comb + accumulator | Recursive FIR: 2 ops/sample | Efficient moving-average |
-| IIR Direct Form II | $N$ delays (canonical) | Efficient IIR realization |
-| IIR Parallel Form | Independent poles; best numerical stability | High-order stable filters |
-| Bilinear transform | Alias-free; pre-warp critical frequencies | IIR design from analog prototype |
-| Allpass filter | $\lVert H_{ap}\rVert=1$; group delay $\tau(\omega) \gt 0$ always | Phase equalization |
-| Min-phase decomposition | $H(z) = H_{ap}(z)\,H_m(z)$, unique | Causal inversion, equalization |
-| Linear-phase FIR | $h(n) = \pm h(N-1-n)$; four types | Distortion-free filtering |
-| Type I | Even symmetry, odd $N$; no forced zeros | All filter types |
-| Type II | Even symmetry, even $N$; zero at $\omega=\pi$ | Lowpass and bandpass only |
-| Positive semi-definite | $R(e^{j\omega}) \geq 0$; zeros in quadruples off unit circle | Autocorrelation structure |
-| Spectral factorization | $R(z) = \sigma^2 H_m(z)H_m^{\ast}(1/z^{\ast})$ | Wiener filter, linear prediction |
-
-### Looking Ahead
-
-This chapter reviewed **deterministic** signal and system theory. Starting in Chapter 2, the focus shifts to **random (stochastic) signals** — characterized by statistical properties (mean, autocorrelation, power spectrum) rather than exact waveforms. The spectral factorization of $P_x(e^{j\omega})$ (Theorem 1.2) and the minimum-phase/allpass decomposition (Theorem 1.1) will recur as key tools throughout the course.
-
----
-
-*End of Chapter 1*
+| Topic | Main Lesson |
+|-------|-------------|
+| Pattern recognition | Learn regularities from data rather than writing brittle manual rules. |
+| Curve fitting | Training error and generalization error are different. |
+| Overfitting | A flexible model can fit noise and fail on new data. |
+| Regularization | Penalizing complexity can improve generalization. |
+| Probability | Sum/product rules and Bayes' theorem provide consistent uncertainty calculus. |
+| Gaussian noise | Least squares corresponds to maximum likelihood under Gaussian noise. |
+| Bayesian learning | Priors and posteriors represent uncertainty over parameters. |
+| Model selection | Hyperparameters require validation, cross-validation, or Bayesian comparison. |
+| Curse of dimensionality | High-dimensional spaces are sparse and geometrically unintuitive. |
+| Decision theory | Optimal actions depend on posterior probabilities and losses. |
+| Information theory | Entropy, KL divergence, and mutual information quantify uncertainty and distribution mismatch. |
+
+## 8.2 Mathematical Map
+
+The following equations are the essential mathematical backbone of the chapter.
+
+### Polynomial Curve Fitting
+
+$$
+y(x,\mathbf{w})=\sum_{j=0}^{M}w_jx^j
+$$
+
+$$
+E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_n,\mathbf{w})-t_n\}^2
+$$
+
+$$
+\widetilde{E}(\mathbf{w})=E(\mathbf{w})+\frac{\lambda}{2}\mathbf{w}^T\mathbf{w}
+$$
+
+### Probability
+
+$$
+p(X)=\sum_Y p(X,Y)
+$$
+
+$$
+p(X,Y)=p(Y\mid X)p(X)
+$$
+
+$$
+p(Y\mid X)=\frac{p(X\mid Y)p(Y)}{p(X)}
+$$
+
+### Gaussian
+
+$$
+\mathcal{N}(x\mid \mu,\sigma^2)=\frac{1}{(2\pi\sigma^2)^{1/2}}
+\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}
+$$
+
+$$
+\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_n
+$$
+
+$$
+\sigma^2_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}(x_n-\mu_{\mathrm{ML}})^2
+$$
+
+### Decision Theory
+
+$$
+\hat{k}=\arg\max_k p(C_k\mid \mathbf{x})
+$$
+
+$$
+\hat{j}=\arg\min_j\sum_k L_{kj}p(C_k\mid \mathbf{x})
+$$
+
+$$
+y(\mathbf{x})=\mathbb{E}[t\mid \mathbf{x}]
+$$
+
+### Information Theory
+
+$$
+H[x]=-\sum_x p(x)\log p(x)
+$$
+
+$$
+\mathrm{KL}(p\Vert q)=\int p(x)\ln\frac{p(x)}{q(x)}\,dx
+$$
+
+$$
+I[x,y]=\mathrm{KL}(p(x,y)\Vert p(x)p(y))
+$$
+
+## 8.3 Figure Checklist
+
+| Lecture Figure | Textbook Figure | File |
+|----------------|-----------------|------|
+| Figure 1.1 | PRML Fig. 1.1 | `fig_1_1_textbook_p2.png` |
+| Figure 1.2 | PRML Fig. 1.2 | `fig_1_2_textbook_p4.png` |
+| Figure 1.3 | PRML Fig. 1.3 | `fig_1_3_textbook_p6.png` |
+| Figure 1.4 | PRML Fig. 1.4 | `fig_1_4_textbook_p7.png` |
+| Figure 1.5 | PRML Fig. 1.5 | `fig_1_5_textbook_p8.png` |
+| Figure 1.6 | PRML Fig. 1.6 | `fig_1_6_textbook_p9.png` |
+| Figure 1.7 | PRML Fig. 1.7 | `fig_1_7_textbook_p10.png` |
+| Figure 1.8 | PRML Fig. 1.8 | `fig_1_8_textbook_p11.png` |
+| Figure 1.9 | PRML Fig. 1.9 | `fig_1_9_textbook_p12.png` |
+| Figure 1.10 | PRML Fig. 1.10 | `fig_1_10_textbook_p13.png` |
+| Figure 1.11 | PRML Fig. 1.11 | `fig_1_11_textbook_p16.png` |
+| Figure 1.12 | PRML Fig. 1.12 | `fig_1_12_textbook_p18.png` |
+| Figure 1.13 | PRML Fig. 1.13 | `fig_1_13_textbook_p25.png` |
+| Figure 1.14 | PRML Fig. 1.14 | `fig_1_14_textbook_p26.png` |
+| Figure 1.15 | PRML Fig. 1.15 | `fig_1_15_textbook_p28.png` |
+| Figure 1.16 | PRML Fig. 1.16 | `fig_1_16_textbook_p29.png` |
+| Figure 1.17 | PRML Fig. 1.17 | `fig_1_17_textbook_p32.png` |
+| Figure 1.18 | PRML Fig. 1.18 | `fig_1_18_textbook_p33.png` |
+| Figure 1.19 | PRML Fig. 1.19 | `fig_1_19_textbook_p34.png` |
+| Figure 1.20 | PRML Fig. 1.20 | `fig_1_20_textbook_p35.png` |
+| Figure 1.21 | PRML Fig. 1.21 | `fig_1_21_textbook_p35.png` |
+| Figure 1.22 | PRML Fig. 1.22 | `fig_1_22_textbook_p37.png` |
+| Figure 1.23 | PRML Fig. 1.23 | `fig_1_23_textbook_p37.png` |
+| Figure 1.24 | PRML Fig. 1.24 | `fig_1_24_textbook_p40.png` |
+| Figure 1.25 | PRML Fig. 1.25 | `fig_1_25_textbook_p41.png` |
+| Figure 1.26 | PRML Fig. 1.26 | `fig_1_26_textbook_p42.png` |
+| Figure 1.27 | PRML Fig. 1.27 | `fig_1_27_textbook_p44.png` |
+| Figure 1.28 | PRML Fig. 1.28 | `fig_1_28_textbook_p47.png` |
+| Figure 1.29 | PRML Fig. 1.29 | `fig_1_29_textbook_p49.png` |
+| Figure 1.30 | PRML Fig. 1.30 | `fig_1_30_textbook_p52.png` |
+| Figure 1.31 | PRML Fig. 1.31 | `fig_1_31_textbook_p56.png` |
+
+All figures used in this lecture were rendered from the supplied textbook PDF and saved under:
+
+```text
+./CoursePRML2026/Fig/Chapter_1/
+```
+
+## 8.4 Suggested Teaching Flow
+
+A practical teaching sequence for this chapter is:
+
+1. Start with handwritten digit recognition to motivate vector inputs and classification.
+2. Use polynomial curve fitting as the main running example.
+3. Emphasize the difference between training error and test error using Figures 1.4-1.5.
+4. Introduce regularization as a practical solution, then reinterpret it probabilistically.
+5. Teach probability rules slowly: sum rule, product rule, Bayes' theorem.
+6. Connect Gaussian likelihood directly to least squares.
+7. Explain model selection and cross-validation before moving to high-dimensional geometry.
+8. Separate inference from decision using medical loss and reject-option examples.
+9. End with entropy, KL divergence, and mutual information as tools that will reappear later.
+
+## 8.5 Common Student Confusions
+
+| Confusion | Clarification |
+|-----------|---------------|
+| “A lower training error means a better model.” | Not necessarily. We care about unseen data. Training error can be misleading under overfitting. |
+| “A high-order model is always bad.” | No. It is bad only when data and regularization are insufficient to constrain it. |
+| “Probability density is probability.” | No. For continuous variables, probability is the integral of density over a region. |
+| “Bayes' theorem is only for subjective beliefs.” | In this course, it is a formal rule for updating uncertainty and computing posterior distributions. |
+| “Least squares is just a numerical trick.” | Least squares is maximum likelihood under Gaussian noise. |
+| “The best classifier always chooses the most probable class.” | Only when all errors have equal cost. With asymmetric loss, minimize expected loss instead. |
+| “KL divergence is a distance.” | It measures distribution mismatch but is not symmetric and is not a metric. |
+
+## 8.6 Bridge to Chapter 2
+
+Chapter 1 introduces probability as a language. Chapter 2 develops the main probability distributions used in pattern recognition and machine learning.
+
+The next chapter will study:
+
+- Bernoulli and binomial distributions,
+- beta priors,
+- multinomial and Dirichlet distributions,
+- Gaussian distributions in more depth,
+- exponential-family distributions,
+- nonparametric density estimation.
+
+The most important transition is:
+
+> Chapter 1 explains why probabilistic modeling is needed. Chapter 2 gives the basic distributional building blocks from which probabilistic models are constructed.
