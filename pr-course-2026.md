@@ -26,6 +26,10 @@ layout: course
     list-style: none;
   }
 
+  .lecture-toggle:nth-of-type(2) > summary {
+    background: #e8f8f1;
+  }
+
   .lecture-toggle > summary::-webkit-details-marker {
     display: none;
   }
@@ -79,6 +83,10 @@ layout: course
       color: #f8fafc;
     }
 
+    .lecture-toggle:nth-of-type(2) > summary {
+      background: #166534;
+    }
+
     .lecture-description {
       border-left-color: #60a5fa;
       background: #1e293b;
@@ -94,5 +102,15 @@ layout: course
 </summary>
 
 {% include_relative CoursePR2026/lecture_1.md %}
+
+</details>
+
+<details class="lecture-toggle" markdown="1">
+<summary>
+<span class="lecture-title">Lecture 2: Probability Distributions and Density Estimation</span>
+<span class="lecture-description">This lecture develops the probability distributions used throughout pattern recognition, including binary and multinomial variables, Gaussian models, exponential-family structure, conjugate priors, and nonparametric density estimation.</span>
+</summary>
+
+{% include_relative CoursePR2026/lecture_2.md %}
 
 </details>
