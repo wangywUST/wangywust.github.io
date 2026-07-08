@@ -30,6 +30,10 @@ layout: course
     background: #e8f8f1;
   }
 
+  .lecture-toggle:nth-of-type(3) > summary {
+    background: #fff4df;
+  }
+
   .lecture-toggle > summary::-webkit-details-marker {
     display: none;
   }
@@ -87,6 +91,10 @@ layout: course
       background: #166534;
     }
 
+    .lecture-toggle:nth-of-type(3) > summary {
+      background: #92400e;
+    }
+
     .lecture-description {
       border-left-color: #60a5fa;
       background: #1e293b;
@@ -112,5 +120,15 @@ layout: course
 </summary>
 
 {% include_relative CoursePR2026/lecture_2.md %}
+
+</details>
+
+<details class="lecture-toggle" markdown="1">
+<summary>
+<span class="lecture-title">Lecture 3: Linear Models for Regression</span>
+<span class="lecture-description">This lecture studies linear basis function models for regression, connecting least squares, regularization, the bias-variance tradeoff, Bayesian linear regression, model comparison, and the evidence approximation.</span>
+</summary>
+
+{% include_relative CoursePR2026/lecture_3.md %}
 
 </details>
