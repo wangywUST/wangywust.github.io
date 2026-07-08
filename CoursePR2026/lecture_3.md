@@ -200,7 +200,7 @@ Common choices of basis functions include the following.
 
 The main modeling question is not simply “what are the weights?” but also “what representation $\boldsymbol{\phi}(\mathbf{x})$ makes the regression problem easy?” This idea foreshadows kernels and neural networks. Kernel methods implicitly choose very high-dimensional basis functions; neural networks learn the basis functions from data.
 
-![Lecture Figure 3.1 / Textbook Figure 3.1: Examples of polynomial, Gaussian, and sigmoidal basis functions.](Fig/Chapter_3/lecture_fig_3_1__textbook_fig_3_1_p140_basis_functions.png)
+![Lecture Figure 3.1 / Textbook Figure 3.1: Examples of polynomial, Gaussian, and sigmoidal basis functions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_1__textbook_fig_3_1_p140_basis_functions.png)
 
 **Teaching interpretation of Figure 3.1.** The left panel shows polynomial basis functions. They are global: a polynomial basis function has nonlocal influence over the full input range. The middle panel shows Gaussian basis functions. They are local: each basis function is active mainly around its center. The right panel shows sigmoidal basis functions, which create smooth threshold-like transitions. These three panels are a useful way to explain that “linear model” does not mean “straight line in input space.” It means that the final function is formed by linearly combining fixed basis functions.
 
@@ -380,7 +380,7 @@ $$
 
 which is exactly the normal equation.
 
-![Lecture Figure 3.2 / Textbook Figure 3.2: Geometrical interpretation of least-squares projection.](Fig/Chapter_3/lecture_fig_3_2__textbook_fig_3_2_p143_least_squares_geometry.png)
+![Lecture Figure 3.2 / Textbook Figure 3.2: Geometrical interpretation of least-squares projection.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_2__textbook_fig_3_2_p143_least_squares_geometry.png)
 
 **Teaching interpretation of Figure 3.2.** The vector $\mathbf{t}$ is the observed target vector. The green/blue basis-function vectors span a subspace. Least squares projects $\mathbf{t}$ orthogonally onto that subspace, producing the fitted vector $\mathbf{y}$. The residual vector is perpendicular to every basis direction. This figure is worth emphasizing because it turns the normal equations from a symbolic formula into a geometric fact.
 
@@ -475,7 +475,7 @@ Different values of $q$ produce different geometries.
 | $q<1$ | Nonconvex contours with sharper corners | Strong sparsity but harder optimization. |
 | $q>2$ | Squarer contours | Penalizes large weights strongly but does not favor sparsity. |
 
-![Lecture Figure 3.3 / Textbook Figure 3.3: Contours of the regularization term for different values of q.](Fig/Chapter_3/lecture_fig_3_3__textbook_fig_3_3_p145_regularization_q_norm_contours.png)
+![Lecture Figure 3.3 / Textbook Figure 3.3: Contours of the regularization term for different values of q.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_3__textbook_fig_3_3_p145_regularization_q_norm_contours.png)
 
 **Teaching interpretation of Figure 3.3.** The shape of the regularization contours determines what kinds of solutions are encouraged. The $q=2$ contour is smooth, so the optimum usually has many small nonzero weights. The $q=1$ contour has corners on the coordinate axes. When the error contours touch a corner, one coordinate becomes exactly zero. This is the geometric reason lasso can produce sparse models.
 
@@ -493,7 +493,7 @@ $$
 
 The regularization coefficient $\lambda$ and the constraint size $\eta$ are two ways of controlling the same trade-off. A large $\lambda$ corresponds to a small allowed weight region. A small $\lambda$ corresponds to a loose constraint.
 
-![Lecture Figure 3.4 / Textbook Figure 3.4: Constraint geometry for quadratic regularization and lasso.](Fig/Chapter_3/lecture_fig_3_4__textbook_fig_3_4_p146_lasso_sparsity_constraint_geometry.png)
+![Lecture Figure 3.4 / Textbook Figure 3.4: Constraint geometry for quadratic regularization and lasso.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_4__textbook_fig_3_4_p146_lasso_sparsity_constraint_geometry.png)
 
 **Teaching interpretation of Figure 3.4.** The blue contours represent the unregularized error. The feasible region represents the regularization constraint. With $q=2$, the circular boundary usually touches an error contour away from the axes, so both weights remain nonzero. With $q=1$, the diamond boundary has sharp corners on the axes, and the optimum can occur at a corner. That is why lasso often sets some coefficients exactly to zero.
 
@@ -609,7 +609,7 @@ When $\lambda$ is large, the weights are strongly constrained. The model is smoo
 
 When $\lambda$ is small, the model can adapt strongly to each data set. Bias may be low because the model class can represent the true function, but variance may be high because each fitted curve follows different noise patterns.
 
-![Lecture Figure 3.5 / Textbook Figure 3.5: Bias and variance behavior for different regularization strengths.](Fig/Chapter_3/lecture_fig_3_5__textbook_fig_3_5_p150_bias_variance_lambda_fits.png)
+![Lecture Figure 3.5 / Textbook Figure 3.5: Bias and variance behavior for different regularization strengths.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_5__textbook_fig_3_5_p150_bias_variance_lambda_fits.png)
 
 **Teaching interpretation of Figure 3.5.** Each row corresponds to a different regularization strength. The left column shows many fitted curves from many data sets, and the right column shows their average. Strong regularization gives similar curves but a biased average. Weak regularization gives flexible curves with high variability. The middle setting balances the two effects.
 
@@ -617,7 +617,7 @@ When $\lambda$ is small, the model can adapt strongly to each data set. Bias may
 
 The relationship can be summarized by plotting squared bias and variance as functions of $\ln\lambda$.
 
-![Lecture Figure 3.6 / Textbook Figure 3.6: Squared bias, variance, and test error as functions of regularization strength.](Fig/Chapter_3/lecture_fig_3_6__textbook_fig_3_6_p151_bias_variance_curves.png)
+![Lecture Figure 3.6 / Textbook Figure 3.6: Squared bias, variance, and test error as functions of regularization strength.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_6__textbook_fig_3_6_p151_bias_variance_curves.png)
 
 **Teaching interpretation of Figure 3.6.** As regularization decreases, variance tends to increase and bias tends to decrease. As regularization increases, bias tends to increase and variance tends to decrease. Good generalization usually occurs near the minimum of their sum, not at the minimum of either term alone.
 
@@ -760,7 +760,7 @@ $$
 
 This makes Bayesian learning naturally online. Unlike stochastic gradient descent, which updates a point estimate, sequential Bayesian learning updates a full distribution.
 
-![Lecture Figure 3.7 / Textbook Figure 3.7: Sequential Bayesian learning for a simple linear model.](Fig/Chapter_3/lecture_fig_3_7__textbook_fig_3_7_p155_sequential_bayesian_linear_regression.png)
+![Lecture Figure 3.7 / Textbook Figure 3.7: Sequential Bayesian learning for a simple linear model.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_7__textbook_fig_3_7_p155_sequential_bayesian_linear_regression.png)
 
 **Teaching interpretation of Figure 3.7.** This figure is one of the most important visual explanations in the chapter. The first column shows probability mass in weight space $(w_0,w_1)$. The second column shows sampled lines from that weight distribution. The third column shows data space. As observations accumulate, the posterior over weights becomes concentrated near the true parameter values, and sampled regression lines become more consistent. This demonstrates that data reduce uncertainty, but they reduce it anisotropically: uncertainty shrinks faster in directions that the data constrain strongly.
 
@@ -796,7 +796,7 @@ This variance has two terms.
 
 As the amount of data increases, the second term usually shrinks near regions supported by data. The first term does not vanish because it represents intrinsic observation noise.
 
-![Lecture Figure 3.8 / Textbook Figure 3.8: Predictive distributions for Bayesian linear regression with Gaussian basis functions.](Fig/Chapter_3/lecture_fig_3_8__textbook_fig_3_8_p157_predictive_distribution_examples.png)
+![Lecture Figure 3.8 / Textbook Figure 3.8: Predictive distributions for Bayesian linear regression with Gaussian basis functions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_8__textbook_fig_3_8_p157_predictive_distribution_examples.png)
 
 **Teaching interpretation of Figure 3.8.** The red curve is the predictive mean, and the shaded region represents predictive uncertainty. With few observations, uncertainty is large. As more data are observed, the predictive mean approaches the underlying sinusoidal trend and the uncertainty band shrinks near the training data. This figure should be connected directly to the formula for $\sigma_N^2(x)$.
 
@@ -804,7 +804,7 @@ As the amount of data increases, the second term usually shrinks near regions su
 
 The predictive variance at each input gives pointwise uncertainty. But Bayesian linear regression also defines correlations between predictions at different input values. To visualize this joint uncertainty, we can sample weights from the posterior and plot the resulting functions.
 
-![Lecture Figure 3.9 / Textbook Figure 3.9: Functions sampled from posterior weight distributions.](Fig/Chapter_3/lecture_fig_3_9__textbook_fig_3_9_p158_posterior_function_samples.png)
+![Lecture Figure 3.9 / Textbook Figure 3.9: Functions sampled from posterior weight distributions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_9__textbook_fig_3_9_p158_posterior_function_samples.png)
 
 **Teaching interpretation of Figure 3.9.** Each red curve is a function obtained by sampling one weight vector from the posterior. Early in learning, sampled functions vary widely. Later, the sampled functions are more concentrated around the data-supported trend. This shows something that pointwise error bars alone cannot show: uncertainty is correlated across input locations.
 
@@ -844,11 +844,11 @@ $$
 
 This function is called the **equivalent kernel**. It tells us how strongly the target value at training input $\mathbf{x}'$ influences the prediction at test input $\mathbf{x}$.
 
-![Lecture Figure 3.10 / Textbook Figure 3.10: Equivalent kernel for Gaussian basis functions.](Fig/Chapter_3/lecture_fig_3_10__textbook_fig_3_10_p159_equivalent_kernel_gaussian_basis.png)
+![Lecture Figure 3.10 / Textbook Figure 3.10: Equivalent kernel for Gaussian basis functions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_10__textbook_fig_3_10_p159_equivalent_kernel_gaussian_basis.png)
 
 **Teaching interpretation of Figure 3.10.** Even though the model is expressed in terms of basis functions and weights, the predictive mean can be interpreted as a kernel smoother over training targets. For Gaussian basis functions, the equivalent kernel is localized: training points near the test input usually have stronger influence.
 
-![Lecture Figure 3.11 / Textbook Figure 3.11: Equivalent kernels for polynomial and sigmoidal basis functions.](Fig/Chapter_3/lecture_fig_3_11__textbook_fig_3_11_p160_equivalent_kernel_polynomial_sigmoidal.png)
+![Lecture Figure 3.11 / Textbook Figure 3.11: Equivalent kernels for polynomial and sigmoidal basis functions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_11__textbook_fig_3_11_p160_equivalent_kernel_polynomial_sigmoidal.png)
 
 **Teaching interpretation of Figure 3.11.** The equivalent kernel can be localized even when the original basis functions themselves are global, as in polynomial or sigmoidal bases. This is an important conceptual bridge to kernel methods: we can sometimes think directly in terms of similarity functions rather than explicitly constructing basis functions.
 
@@ -933,7 +933,7 @@ $$
 
 The first term rewards data fit. The second term is the Occam factor. Since the posterior width is usually smaller than the prior width, the ratio is less than one, so the log term is negative.
 
-![Lecture Figure 3.12 / Textbook Figure 3.12: Evidence approximation and Occam factor.](Fig/Chapter_3/lecture_fig_3_12__textbook_fig_3_12_p163_evidence_occam_factor.png)
+![Lecture Figure 3.12 / Textbook Figure 3.12: Evidence approximation and Occam factor.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_12__textbook_fig_3_12_p163_evidence_occam_factor.png)
 
 **Teaching interpretation of Figure 3.12.** A complex model may fit the data well for some parameter settings, but if those settings occupy only a tiny fraction of the prior parameter space, the model pays a complexity penalty. Evidence automatically balances goodness of fit against the volume of parameter space that supports that fit.
 
@@ -945,7 +945,7 @@ The evidence implements an automatic Occam's razor. It does not always prefer th
 - A too-complex model spreads probability mass over too many possible data sets, so it may assign lower probability density to the observed data.
 - An intermediate model can achieve the highest evidence.
 
-![Lecture Figure 3.13 / Textbook Figure 3.13: Evidence and model complexity.](Fig/Chapter_3/lecture_fig_3_13__textbook_fig_3_13_p164_evidence_model_complexity.png)
+![Lecture Figure 3.13 / Textbook Figure 3.13: Evidence and model complexity.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_13__textbook_fig_3_13_p164_evidence_model_complexity.png)
 
 **Teaching interpretation of Figure 3.13.** The horizontal axis represents possible data sets. Simple models concentrate probability on a limited range of data sets. Complex models spread probability over a broader range. For the observed data set $\mathcal{D}_0$, the intermediate model may assign the largest probability. This is a conceptual explanation of why Bayesian model comparison can prefer an intermediate complexity.
 
@@ -1048,7 +1048,7 @@ Each term has an interpretation.
 | $-\frac{1}{2}\ln|\mathbf{A}|$ | Complexity/volume correction. |
 | $-\frac{N}{2}\ln(2\pi)$ | Gaussian normalization constant. |
 
-![Lecture Figure 3.14 / Textbook Figure 3.14: Model evidence versus polynomial order.](Fig/Chapter_3/lecture_fig_3_14__textbook_fig_3_14_p168_model_evidence_polynomial_order.png)
+![Lecture Figure 3.14 / Textbook Figure 3.14: Model evidence versus polynomial order.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_14__textbook_fig_3_14_p168_model_evidence_polynomial_order.png)
 
 **Teaching interpretation of Figure 3.14.** The evidence curve favors a polynomial order around $M=3$ for the synthetic curve-fitting problem. Low-order models underfit and have poor data fit. Very high-order models are penalized by the evidence because their extra flexibility is not sufficiently supported by the data. This is the evidence version of model selection.
 
@@ -1105,7 +1105,7 @@ Therefore, $\gamma$ counts how many parameter directions are effectively determi
 
 This is more nuanced than simply counting $M$ parameters. A model may have many weights, but if strong regularization or weak data support prevents many directions from being used, the effective number of parameters may be much smaller than $M$.
 
-![Lecture Figure 3.15 / Textbook Figure 3.15: Likelihood, prior, posterior mode, and effective parameter directions.](Fig/Chapter_3/lecture_fig_3_15__textbook_fig_3_15_p170_effective_parameters_likelihood_prior.png)
+![Lecture Figure 3.15 / Textbook Figure 3.15: Likelihood, prior, posterior mode, and effective parameter directions.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_15__textbook_fig_3_15_p170_effective_parameters_likelihood_prior.png)
 
 **Teaching interpretation of Figure 3.15.** The likelihood contours are elongated in directions that the data constrain weakly and narrow in directions they constrain strongly. The prior pulls the posterior mode toward the origin. Directions with high likelihood curvature are well determined by data; directions with low curvature are dominated by the prior. This is the geometric meaning of effective parameters.
 
@@ -1122,13 +1122,13 @@ This resembles the maximum-likelihood noise variance estimate, but with $N$ repl
 
 ## 5.6 Evidence Curves for $\alpha$
 
-![Lecture Figure 3.16 / Textbook Figure 3.16: Evidence optimization with respect to alpha and gamma.](Fig/Chapter_3/lecture_fig_3_16__textbook_fig_3_16_p172_evidence_alpha_gamma_curves.png)
+![Lecture Figure 3.16 / Textbook Figure 3.16: Evidence optimization with respect to alpha and gamma.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_16__textbook_fig_3_16_p172_evidence_alpha_gamma_curves.png)
 
 **Teaching interpretation of Figure 3.16.** The left panel shows the intersection condition that defines the evidence optimum for $\alpha$. The right panel shows the log evidence as a function of $\ln\alpha$. This visualization helps students see that evidence optimization is not arbitrary tuning; it chooses the regularization strength that best balances parameter shrinkage and data fit under the Bayesian model.
 
 ## 5.7 Weight Paths and Effective Parameters
 
-![Lecture Figure 3.17 / Textbook Figure 3.17: Weights plotted against the effective number of parameters.](Fig/Chapter_3/lecture_fig_3_17__textbook_fig_3_17_p172_weights_vs_effective_parameters.png)
+![Lecture Figure 3.17 / Textbook Figure 3.17: Weights plotted against the effective number of parameters.](./CoursePR2026/Fig/Chapter_3/lecture_fig_3_17__textbook_fig_3_17_p172_weights_vs_effective_parameters.png)
 
 **Teaching interpretation of Figure 3.17.** As $\alpha$ changes, $\gamma$ changes from near 0 to near $M$. The plotted weight paths show how parameters become active as the effective number of parameters increases. This is a useful way to explain that regularization does not merely make all weights smaller; it changes which directions of parameter space are allowed to be expressed by the data.
 
@@ -1237,23 +1237,23 @@ All figures used in this lecture are screenshots/crops from the uploaded textboo
 
 | Lecture Figure | Textbook Figure | Topic | File |
 |----------------|-----------------|-------|------|
-| 3.1 | 3.1 | Polynomial, Gaussian, sigmoidal basis functions | `Fig/Chapter_3/lecture_fig_3_1__textbook_fig_3_1_p140_basis_functions.png` |
-| 3.2 | 3.2 | Geometry of least-squares projection | `Fig/Chapter_3/lecture_fig_3_2__textbook_fig_3_2_p143_least_squares_geometry.png` |
-| 3.3 | 3.3 | $q$-norm regularization contours | `Fig/Chapter_3/lecture_fig_3_3__textbook_fig_3_3_p145_regularization_q_norm_contours.png` |
-| 3.4 | 3.4 | Lasso sparsity and constrained optimization | `Fig/Chapter_3/lecture_fig_3_4__textbook_fig_3_4_p146_lasso_sparsity_constraint_geometry.png` |
-| 3.5 | 3.5 | Bias-variance examples under different $\lambda$ | `Fig/Chapter_3/lecture_fig_3_5__textbook_fig_3_5_p150_bias_variance_lambda_fits.png` |
-| 3.6 | 3.6 | Bias, variance, and test error curves | `Fig/Chapter_3/lecture_fig_3_6__textbook_fig_3_6_p151_bias_variance_curves.png` |
-| 3.7 | 3.7 | Sequential Bayesian learning | `Fig/Chapter_3/lecture_fig_3_7__textbook_fig_3_7_p155_sequential_bayesian_linear_regression.png` |
-| 3.8 | 3.8 | Bayesian predictive distribution | `Fig/Chapter_3/lecture_fig_3_8__textbook_fig_3_8_p157_predictive_distribution_examples.png` |
-| 3.9 | 3.9 | Posterior samples of regression functions | `Fig/Chapter_3/lecture_fig_3_9__textbook_fig_3_9_p158_posterior_function_samples.png` |
-| 3.10 | 3.10 | Equivalent kernel for Gaussian basis functions | `Fig/Chapter_3/lecture_fig_3_10__textbook_fig_3_10_p159_equivalent_kernel_gaussian_basis.png` |
-| 3.11 | 3.11 | Equivalent kernels for polynomial/sigmoidal bases | `Fig/Chapter_3/lecture_fig_3_11__textbook_fig_3_11_p160_equivalent_kernel_polynomial_sigmoidal.png` |
-| 3.12 | 3.12 | Evidence approximation and Occam factor | `Fig/Chapter_3/lecture_fig_3_12__textbook_fig_3_12_p163_evidence_occam_factor.png` |
-| 3.13 | 3.13 | Evidence and model complexity | `Fig/Chapter_3/lecture_fig_3_13__textbook_fig_3_13_p164_evidence_model_complexity.png` |
-| 3.14 | 3.14 | Evidence versus polynomial order | `Fig/Chapter_3/lecture_fig_3_14__textbook_fig_3_14_p168_model_evidence_polynomial_order.png` |
-| 3.15 | 3.15 | Effective parameter directions | `Fig/Chapter_3/lecture_fig_3_15__textbook_fig_3_15_p170_effective_parameters_likelihood_prior.png` |
-| 3.16 | 3.16 | Evidence optimization over $\alpha$ | `Fig/Chapter_3/lecture_fig_3_16__textbook_fig_3_16_p172_evidence_alpha_gamma_curves.png` |
-| 3.17 | 3.17 | Weight paths versus effective number of parameters | `Fig/Chapter_3/lecture_fig_3_17__textbook_fig_3_17_p172_weights_vs_effective_parameters.png` |
+| 3.1 | 3.1 | Polynomial, Gaussian, sigmoidal basis functions | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_1__textbook_fig_3_1_p140_basis_functions.png` |
+| 3.2 | 3.2 | Geometry of least-squares projection | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_2__textbook_fig_3_2_p143_least_squares_geometry.png` |
+| 3.3 | 3.3 | $q$-norm regularization contours | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_3__textbook_fig_3_3_p145_regularization_q_norm_contours.png` |
+| 3.4 | 3.4 | Lasso sparsity and constrained optimization | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_4__textbook_fig_3_4_p146_lasso_sparsity_constraint_geometry.png` |
+| 3.5 | 3.5 | Bias-variance examples under different $\lambda$ | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_5__textbook_fig_3_5_p150_bias_variance_lambda_fits.png` |
+| 3.6 | 3.6 | Bias, variance, and test error curves | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_6__textbook_fig_3_6_p151_bias_variance_curves.png` |
+| 3.7 | 3.7 | Sequential Bayesian learning | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_7__textbook_fig_3_7_p155_sequential_bayesian_linear_regression.png` |
+| 3.8 | 3.8 | Bayesian predictive distribution | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_8__textbook_fig_3_8_p157_predictive_distribution_examples.png` |
+| 3.9 | 3.9 | Posterior samples of regression functions | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_9__textbook_fig_3_9_p158_posterior_function_samples.png` |
+| 3.10 | 3.10 | Equivalent kernel for Gaussian basis functions | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_10__textbook_fig_3_10_p159_equivalent_kernel_gaussian_basis.png` |
+| 3.11 | 3.11 | Equivalent kernels for polynomial/sigmoidal bases | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_11__textbook_fig_3_11_p160_equivalent_kernel_polynomial_sigmoidal.png` |
+| 3.12 | 3.12 | Evidence approximation and Occam factor | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_12__textbook_fig_3_12_p163_evidence_occam_factor.png` |
+| 3.13 | 3.13 | Evidence and model complexity | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_13__textbook_fig_3_13_p164_evidence_model_complexity.png` |
+| 3.14 | 3.14 | Evidence versus polynomial order | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_14__textbook_fig_3_14_p168_model_evidence_polynomial_order.png` |
+| 3.15 | 3.15 | Effective parameter directions | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_15__textbook_fig_3_15_p170_effective_parameters_likelihood_prior.png` |
+| 3.16 | 3.16 | Evidence optimization over $\alpha$ | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_16__textbook_fig_3_16_p172_evidence_alpha_gamma_curves.png` |
+| 3.17 | 3.17 | Weight paths versus effective number of parameters | `./CoursePR2026/Fig/Chapter_3/lecture_fig_3_17__textbook_fig_3_17_p172_weights_vs_effective_parameters.png` |
 
 ## 7.3 Suggested Teaching Flow
 
