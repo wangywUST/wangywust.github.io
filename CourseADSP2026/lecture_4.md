@@ -883,6 +883,95 @@ The model is stable and minimum phase when both poles are inside the unit circle
 >
 > *Figure 2.2 (Textbook Fig. 4.6, p. 168): Minimum-phase region for the AP(2) model in the $(a_1,a_2)$ parameter space. The triangular region corresponds to stable second-order all-pole filters; the upper curved boundary separates real and complex-conjugate pole cases.*
 
+The shape of this region comes directly from converting pole-location conditions into coefficient conditions. Expanding the denominator factorization gives
+
+$$
+(1-p_1z^{-1})(1-p_2z^{-1})
+=1-(p_1+p_2)z^{-1}+p_1p_2z^{-2}.
+$$
+
+Therefore
+
+$$
+a_1=-(p_1+p_2),\qquad a_2=p_1p_2.
+$$
+
+For a causal AP(2) model, stability requires both poles to lie strictly inside the unit circle:
+
+$$
+|p_1|<1,\qquad |p_2|<1.
+$$
+
+For the second-order polynomial
+
+$$
+1+a_1z^{-1}+a_2z^{-2},
+$$
+
+this condition is equivalent to the three inequalities
+
+$$
+1+a_1+a_2>0,
+$$
+
+$$
+1-a_1+a_2>0,
+$$
+
+$$
+1-a_2>0.
+$$
+
+Equivalently,
+
+$$
+a_2>-1-a_1,\qquad a_2>a_1-1,\qquad a_2<1.
+$$
+
+These three straight-line boundaries form the triangular stable region in the $(a_1,a_2)$ plane. The vertices of the triangle are
+
+$$
+(-2,1),\qquad (2,1),\qquad (0,-1).
+$$
+
+The curved boundary inside the triangle comes from the discriminant of the second-order pole equation. After multiplying by $z^2$, the denominator equation is
+
+$$
+z^2+a_1z+a_2=0,
+$$
+
+so
+
+$$
+p_{1,2}=\frac{-a_1\pm\sqrt{a_1^2-4a_2}}{2}.
+$$
+
+If
+
+$$
+a_1^2-4a_2\ge 0,
+$$
+
+the two poles are real. If
+
+$$
+a_1^2-4a_2<0,
+$$
+
+the two poles form a complex-conjugate pair. Hence the boundary between the real-pole and complex-conjugate-pole cases is
+
+$$
+a_1^2-4a_2=0,
+$$
+
+or
+
+$$
+a_2=\frac{a_1^2}{4}.
+$$
+
+This parabola is the upper curved boundary shown in the figure. Points above the parabola satisfy $a_2>a_1^2/4$ and correspond to complex-conjugate poles; points below it correspond to real poles.
+
 If the poles are complex conjugates,
 
 $$p_{1,2}=re^{\pm j\theta},$$
