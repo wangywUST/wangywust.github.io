@@ -11,7 +11,7 @@
 1. [§0 Modeling Viewpoint and Chapter Roadmap](#0-modeling-viewpoint-and-chapter-roadmap)
 2. [§1 Linear Random Signal Models](#1-linear-random-signal-models)
 3. [§2 Parametric Pole-Zero Models](#2-parametric-pole-zero-models)
-4. [§3 Model Signatures: ACS, PACS, and Spectrum](#3-model-signatures-acs-pacs-and-spectrum)
+4. [§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)](#3-model-signatures-acs-pacs-and-spectrum)
 5. [§4 ARMA Modeling and Modified Yule-Walker Ideas](#4-arma-modeling-and-modified-yule-walker-ideas)
 6. [§5 AR Modeling Methods](#5-ar-modeling-methods)
 7. [§6 MA Modeling Methods](#6-ma-modeling-methods)
@@ -1000,6 +1000,8 @@ This figure is useful for teaching because it links four descriptions of the sam
 # §3 Model Signatures: ACS, PACS, and Spectrum
 
 > 📖 Textbook §4.2–§4.4; Table 4.1
+
+Here, **ACS** means **autocorrelation sequence**, **PACS** means **partial autocorrelation sequence**, and **Spectrum** means the **power spectrum**, usually represented by the power spectral density (PSD).
 
 ## 3.1 Why Model Signatures Matter
 
