@@ -997,7 +997,7 @@ This figure is useful for teaching because it links four descriptions of the sam
 
 ---
 
-# §3 Model Signatures: ACS, PACS, and Spectrum
+# §3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)
 
 > 📖 Textbook §4.2–§4.4; Table 4.1
 
