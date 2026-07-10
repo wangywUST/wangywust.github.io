@@ -1133,6 +1133,27 @@ For an MA($Q$) process,
 
 $$x(n)=\sum_{k=0}^{Q}d_kw(n-k).$$
 
+Here **MA** means **moving average**, and MA($Q$) means a **moving-average process of order $Q$**. In this model, the current output is a finite weighted sum of the current and past white-noise samples. Expanding the summation gives
+
+$$x(n)=d_0w(n)+d_1w(n-1)+d_2w(n-2)+\cdots+d_Qw(n-Q).$$
+
+Thus, $x(n)$ depends on the current innovation $w(n)$ and the previous $Q$ innovations,
+
+$$w(n-1),w(n-2),\ldots,w(n-Q).$$
+
+The word "moving average" can be slightly misleading here. It does not mean that $x(n)$ is obtained by averaging past values of $x$ itself. Instead, it means that $x(n)$ is formed as a weighted moving average of the input noise, or innovation, sequence $w(n)$.
+
+This is the key contrast with an AR model:
+
+- In an AR($P$) model, the current sample $x(n)$ depends on past output samples $x(n-1),\ldots,x(n-P)$.
+- In an MA($Q$) model, the current sample $x(n)$ depends on current and past noise samples $w(n),w(n-1),\ldots,w(n-Q)$.
+
+For example, an MA(2) process is
+
+$$x(n)=d_0w(n)+d_1w(n-1)+d_2w(n-2).$$
+
+It uses only the current noise sample and the previous two noise samples. The order $Q$ is therefore the number of past noise samples included in the model.
+
 Because $x(n)$ depends only on a finite window of white-noise samples, the autocorrelation has finite duration:
 
 $$r_x(l)=0,\qquad \lvert l\rvert>Q.$$
