@@ -1040,6 +1040,37 @@ The ACS and PACS are not separate models. They are two diagnostic descriptions o
 - **ACS** means **autocorrelation sequence**. It measures the overall correlation between $x(n)$ and a delayed version $x(n-l)$. This overall correlation includes both direct dependence and indirect dependence transmitted through intermediate lags.
 - **PACS** means **partial autocorrelation sequence**. It measures the direct correlation between $x(n)$ and $x(n-l)$ after removing the linear effects of the intermediate samples $x(n-1),x(n-2),\ldots,x(n-l+1)$.
 
+The phrase "removing the effects of the intermediate lags" means the following. Suppose we want to understand the relationship between $x(n)$ and $x(n-2)$. The ordinary autocorrelation looks directly at their total correlation,
+
+$$\operatorname{corr}\{x(n),x(n-2)\}.$$
+
+However, this correlation may be indirect. It may be caused by the path
+
+$$x(n-2)\rightarrow x(n-1)\rightarrow x(n).$$
+
+The PACS at lag 2 asks a more specific question: after $x(n-1)$ has already been used to explain $x(n)$, does $x(n-2)$ still provide any additional linear information about $x(n)$? Equivalently, we first remove the part of $x(n)$ that can be linearly predicted from $x(n-1)$, and we also remove the part of $x(n-2)$ that can be linearly predicted from $x(n-1)$. Then we correlate the two remaining residuals.
+
+In symbols, for lag 2, form the residuals
+
+$$e_0(n)=x(n)-\widehat{x(n)\mid x(n-1)},$$
+
+and
+
+$$e_2(n)=x(n-2)-\widehat{x(n-2)\mid x(n-1)}.$$
+
+The partial autocorrelation at lag 2 is the correlation between these residuals:
+
+$$\operatorname{corr}\{e_0(n),e_2(n)\}.$$
+
+For a general lag $l$, PACS removes the linear effects of all intermediate samples
+
+$$x(n-1),x(n-2),\ldots,x(n-l+1),$$
+
+and then checks whether the remaining unexplained parts of $x(n)$ and $x(n-l)$ are still correlated. Thus:
+
+- ACS asks: "How correlated are $x(n)$ and $x(n-l)$ in total?"
+- PACS asks: "After accounting for the intermediate lags, is there still a direct linear relationship between $x(n)$ and $x(n-l)$?"
+
 For example, in an AR(1) process, $x(n)$ directly depends only on $x(n-1)$. However, $x(n)$ can still be correlated with $x(n-2)$, $x(n-3)$, and further past samples because dependence can propagate through the chain
 
 $$x(n)\leftarrow x(n-1)\leftarrow x(n-2)\leftarrow x(n-3)\leftarrow\cdots.$$
