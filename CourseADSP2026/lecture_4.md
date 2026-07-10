@@ -1025,6 +1025,27 @@ For an AR($P$) process,
 
 $$x(n)+\sum_{k=1}^{P}a_kx(n-k)=w(n).$$
 
+Here **AR** means **autoregressive**. An AR model is called autoregressive because the current sample is described, or predicted, from past samples of the same process. Equivalently,
+
+$$x(n)=-a_1x(n-1)-a_2x(n-2)-\cdots-a_Px(n-P)+w(n).$$
+
+Thus, an AR($P$) model says that $x(n)$ is directly driven by the previous $P$ samples,
+
+$$x(n-1),x(n-2),\ldots,x(n-P),$$
+
+plus a new white-noise innovation $w(n)$. The order $P$ is the number of past samples that appear explicitly in the model.
+
+The ACS and PACS are not separate models. They are two diagnostic descriptions of the same AR($P$) process:
+
+- **ACS** means **autocorrelation sequence**. It measures the overall correlation between $x(n)$ and a delayed version $x(n-l)$. This overall correlation includes both direct dependence and indirect dependence transmitted through intermediate lags.
+- **PACS** means **partial autocorrelation sequence**. It measures the direct correlation between $x(n)$ and $x(n-l)$ after removing the linear effects of the intermediate samples $x(n-1),x(n-2),\ldots,x(n-l+1)$.
+
+For example, in an AR(1) process, $x(n)$ directly depends only on $x(n-1)$. However, $x(n)$ can still be correlated with $x(n-2)$, $x(n-3)$, and further past samples because dependence can propagate through the chain
+
+$$x(n)\leftarrow x(n-1)\leftarrow x(n-2)\leftarrow x(n-3)\leftarrow\cdots.$$
+
+The ACS sees this total propagated correlation, so it usually tails off rather than stopping suddenly. The PACS removes the effects of the intermediate lags and asks whether there is any additional direct dependence at lag $l$. For an AR($P$) process, after the first $P$ lags, there is no further direct autoregressive term in the model. Therefore, the PACS cuts off after lag $P$.
+
 The autocorrelation satisfies a homogeneous difference equation after lag zero:
 
 $$r_x(l)+\sum_{k=1}^{P}a_kr_x(l-k)=0,\qquad l\ge 1,$$
