@@ -1033,6 +1033,42 @@ with appropriate equations at small lags.
 
 Therefore, the ACS generally tails off as damped exponentials or damped sinusoids.
 
+The reason is that this ACS equation is a linear constant-coefficient homogeneous difference equation. Such equations have solutions built from the roots of their characteristic equation. To see this, try a trial solution
+
+$$r_x(l)=\lambda^l.$$
+
+Substituting this into
+
+$$r_x(l)+a_1r_x(l-1)+a_2r_x(l-2)+\cdots+a_Pr_x(l-P)=0$$
+
+gives
+
+$$\lambda^l+a_1\lambda^{l-1}+a_2\lambda^{l-2}+\cdots+a_P\lambda^{l-P}=0.$$
+
+After dividing by $\lambda^{l-P}$, we obtain the characteristic equation
+
+$$\lambda^P+a_1\lambda^{P-1}+a_2\lambda^{P-2}+\cdots+a_P=0.$$
+
+If the characteristic roots are $\lambda_1,\lambda_2,\ldots,\lambda_P$, then the ACS is generally a linear combination of terms such as
+
+$$C_1\lambda_1^l+C_2\lambda_2^l+\cdots+C_P\lambda_P^l.$$
+
+Thus, real roots produce exponential terms. For example, if $\lambda=0.8$, then the corresponding component behaves like $0.8^l$, which decays gradually with lag. This is a damped exponential.
+
+Complex-conjugate roots produce oscillatory terms. If
+
+$$\lambda=\rho e^{j\omega},\qquad 0<\rho<1,$$
+
+then
+
+$$\lambda^l=\rho^l e^{j\omega l}.$$
+
+Using Euler's formula, the complex-conjugate pair combines into a real term of the form
+
+$$C\rho^l\cos(\omega l+\phi).$$
+
+Here, $\cos(\omega l+\phi)$ creates the oscillation, while $\rho^l$ makes the amplitude decay. This is a damped sinusoid. Therefore, the AR poles determine whether the ACS decays monotonically, alternates in sign, or oscillates while gradually dying out.
+
 The PACS, however, cuts off after lag $P$:
 
 $$k_m=0,\qquad m>P.$$
