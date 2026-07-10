@@ -1293,6 +1293,22 @@ $$c(n)=D(z)w(n)=w(n)+\sum_{k=1}^{Q}d_kw(n-k).$$
 
 Thus $c(n)$ is an MA($Q$) process.
 
+There is no contradiction between the two expressions for $c(n)$. They are two
+ways of looking at the same intermediate sequence. From the observed process,
+$c(n)$ is obtained by filtering $x(n)$ with the AR polynomial $A(z)$. From the
+generative ARMA model,
+
+$$A(z)x(n)=D(z)w(n),$$
+
+so the same sequence can also be written as $c(n)=D(z)w(n)$. Therefore, after
+removing the AR part, the residual is generally not white noise; it is an
+MA($Q$) process. Only in the pure AR case $Q=0$ does $c(n)=w(n)$.
+
+The expression above also assumes the usual normalization $d_0=1$. If
+$D(z)=d_0+\sum_{k=1}^{Q}d_kz^{-k}$ is not normalized, then
+
+$$D(z)w(n)=d_0w(n)+\sum_{k=1}^{Q}d_kw(n-k).$$
+
 This observation is the basis of modified Yule-Walker methods:
 
 1. Use long-lag autocorrelation equations to estimate the AR part $A(z)$.
