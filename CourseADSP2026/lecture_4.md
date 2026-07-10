@@ -1102,6 +1102,31 @@ This gives the classic AR diagnostic:
 | PACS | Cuts off after lag $P$ |
 | Spectrum | Good at matching peaks |
 
+The spectrum row follows from the all-pole form of an AR model. An AR($P$) process can be viewed as white noise passed through the transfer function
+
+$$H(z)=\frac{1}{A(z)},$$
+
+where
+
+$$A(z)=1+a_1z^{-1}+a_2z^{-2}+\cdots+a_Pz^{-P}.$$
+
+If the driving white noise has variance $\sigma_w^2$, the power spectral density is
+
+$$P_x(e^{j\omega})=\sigma_w^2\left|H(e^{j\omega})\right|^2
+=\frac{\sigma_w^2}{\left|A(e^{j\omega})\right|^2}.$$
+
+Thus the spectrum is large at frequencies where $\left|A(e^{j\omega})\right|$ is small. In other words, the AR denominator can create strong amplification near certain frequencies.
+
+From the pole viewpoint, AR models are all-pole models. A pole close to the unit circle produces a resonance. If a pole has angle $\omega_0$ and radius close to one, then the frequency response becomes large near $\omega_0$, and the PSD develops a spectral peak around that frequency:
+
+$$\text{pole near unit circle at angle }\omega_0
+\quad\Longrightarrow\quad
+\text{resonance near }\omega_0
+\quad\Longrightarrow\quad
+\text{spectral peak}.$$
+
+Therefore, AR models are especially useful for processes whose spectra contain resonant peaks or narrowband energy concentrations, such as speech formants, vibration signals, and other resonance-dominated data. This is also why AR models are often contrasted with MA/all-zero models: poles are naturally good at creating peaks, while zeros are naturally good at creating valleys or notches.
+
 ## 3.3 All-Zero / MA Signature
 
 For an MA($Q$) process,
