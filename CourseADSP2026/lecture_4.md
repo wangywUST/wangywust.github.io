@@ -1350,7 +1350,9 @@ r_x(Q+P-1)&r_x(Q+P-2)&\cdots&r_x(Q)
 
 This system is Toeplitz-like and can be solved efficiently by specialized algorithms when the structure is exactly Toeplitz.
 
-## 4.4 Least-Squares MYWE
+## 4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)
+
+MYWE stands for the **Modified Yule-Walker Equation** method. It modifies the usual Yule-Walker idea for AR modeling by using the long-lag autocorrelation equations of an ARMA($P,Q$) process, where the MA contribution vanishes for $l>Q$.
 
 The basic MYWE method uses exactly $P$ equations. In noisy finite-data settings, this can be fragile.
 
