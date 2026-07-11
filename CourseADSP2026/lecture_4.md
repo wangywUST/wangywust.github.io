@@ -1146,7 +1146,7 @@ If the driving white noise has variance $\sigma_w^2$, the power spectral density
 $$P_x(e^{j\omega})=\sigma_w^2\left|H(e^{j\omega})\right|^2
 =\frac{\sigma_w^2}{\left|A(e^{j\omega})\right|^2}.$$
 
-Thus the spectrum is large at frequencies where $\left|A(e^{j\omega})\right|$ is small. In other words, the AR denominator can create strong amplification near certain frequencies.
+Thus the spectrum is large at frequencies where $\left\lvert A(e^{j\omega})\right\rvert$ is small. In other words, the AR denominator can create strong amplification near certain frequencies.
 
 From the pole viewpoint, AR models are all-pole models. A pole close to the unit circle produces a resonance. If a pole has angle $\omega_0$ and radius close to one, then the frequency response becomes large near $\omega_0$, and the PSD develops a spectral peak around that frequency:
 
