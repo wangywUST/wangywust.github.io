@@ -6,6 +6,21 @@
 
 ---
 
+> **Relationship to Chapter 4.** Chapter 4 asked a **modeling question**:
+> *What low-order stochastic model could have generated the signal, and how can
+> its parameters be identified?* It developed AR, MA, and ARMA models through
+> coloring/whitening filters, prediction, autocorrelation signatures, and model
+> diagnostics. Chapter 5 asks an **estimation question**: *Given only a finite
+> data record, how should its spectrum be estimated, and how should competing
+> estimators be judged?* The emphasis therefore shifts to bias, variance,
+> resolution, leakage, consistency, order sensitivity, and method selection.
+> Parametric AR/MA/ARMA spectra reappear here intentionally: they are now
+> treated as one family of spectrum estimators and compared with periodogram,
+> Bartlett, Welch, Blackman-Tukey, minimum-variance, maximum-entropy, and
+> subspace methods.
+
+---
+
 ## Table of Contents
 
 1. [§0 Spectrum-Estimation Roadmap](#0-spectrum-estimation-roadmap)
@@ -126,18 +141,39 @@ The main teaching point is that **spectrum estimation is not simply “take an F
 
 ## 0.3 What This Chapter Adds Beyond Chapter 4
 
-Chapter 4 focused on models such as AR, MA, and ARMA. Chapter 5 focuses on estimation performance.
+Chapter 4 and Chapter 5 use some of the same formulas, but they use them to
+answer different questions.
 
-The distinction is important:
+| Chapter 4: Signal Modeling | Chapter 5: Spectrum Estimation |
+|----------------------------|--------------------------------|
+| Starts from a candidate stochastic model | Starts from a finite observed record |
+| Asks how the signal may have been generated | Asks how its spectral content should be inferred |
+| Emphasizes AR, MA, and ARMA structure | Compares nonparametric, parametric, adaptive, entropy, and subspace methods |
+| Studies poles, zeros, ACS/PACS signatures, prediction, and residual whiteness | Studies bias, variance, resolution, leakage, consistency, and computational tradeoffs |
+| Uses PSD as a consequence of the fitted model | Uses estimation performance to decide whether a spectral estimate is trustworthy |
 
-- A **model** says how the signal could have been generated.
-- A **spectrum estimator** says how to infer spectral information from data.
+A **model** says how the signal could have been generated. A **spectrum
+estimator** is a statistical procedure for inferring spectral information from
+finite data. These ideas are related, but they are not interchangeable.
 
 For example, an AR model gives a spectrum of the form
 
 $$R_x(e^{j\omega})=\frac{\sigma_w^2}{\vert A(e^{j\omega})\vert^2}.$$
 
-But the practical question is: how do we estimate $A(z)$ and $\sigma_w^2$ from a short, noisy record? That is a spectrum-estimation problem.
+In Chapter 4, this formula describes the spectrum implied by an all-pole signal
+model and connects pole locations to spectral peaks. In Chapter 5, the same
+formula becomes an estimator after $A(z)$ and $\sigma_w^2$ have been inferred
+from a short, noisy record. We must then ask additional questions:
+
+- How biased and variable is the resulting spectral estimate?
+- Does its apparent resolution reflect real information or model-induced peaks?
+- How sensitive is it to record length, estimation method, and model order?
+- When is it preferable to a periodogram, Welch estimate, MV estimate, or
+  subspace method?
+
+Thus, the parametric material in Section 3 is not meant to replace or compress
+Chapter 4. It revisits AR, MA, and ARMA models from a new viewpoint: their use,
+limitations, and comparison as finite-data spectrum estimators.
 
 ---
 
