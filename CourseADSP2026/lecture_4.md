@@ -1529,7 +1529,49 @@ $$E_P=\sum_{n=P}^{N-1}\left\lvert x(n)+\sum_{k=1}^{P}a_kx(n-k)\right\rvert^2.$$
 
 ### How Are the Coefficients $a_k$ Estimated?
 
-The criterion above is a least-squares problem. Define the covariance quantities
+Strictly speaking, minimizing $E_P$ does not directly predict the coefficients
+$a_k$. It **estimates** the coefficients from the observed data. The estimated
+coefficients are then used to predict the signal samples.
+
+To see this distinction, write the order-$P$ forward linear predictor as
+
+$$\hat x(n)=-\sum_{k=1}^{P}a_kx(n-k).$$
+
+The prediction error is therefore
+
+$$
+e(n)=x(n)-\hat x(n)
+=x(n)+\sum_{k=1}^{P}a_kx(n-k).
+$$
+
+Thus, the covariance criterion can be written as
+
+$$
+E_P=\sum_{n=P}^{N-1}|e(n)|^2
+=\sum_{n=P}^{N-1}|x(n)-\hat x(n)|^2.
+$$
+
+For every candidate coefficient vector $(a_1,\ldots,a_P)$, this expression
+measures the total squared prediction error over all valid samples. Minimizing
+$E_P$ selects the coefficients whose linear combination of the previous $P$
+samples best approximates the current sample in the least-squares sense:
+
+$$
+\hat{\mathbf a}
+=\arg\min_{\mathbf a}
+\sum_{n=P}^{N-1}
+\left|x(n)+\sum_{k=1}^{P}a_kx(n-k)\right|^2.
+$$
+
+In short, the roles are
+
+$$
+\boxed{\text{data }x(n)\ \longrightarrow\ \text{estimate }a_k
+\ \longrightarrow\ \text{predict future or current }x(n).}
+$$
+
+The criterion above is a least-squares problem. To derive its solution, define
+the covariance quantities
 
 $$C_{ij}=\sum_{n=P}^{N-1}x^\ast(n-i)x(n-j),\qquad i,j=1,\ldots,P,$$
 
