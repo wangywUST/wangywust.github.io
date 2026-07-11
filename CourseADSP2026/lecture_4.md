@@ -1527,6 +1527,57 @@ The covariance method minimizes the finite-data forward prediction error over a 
 
 $$E_P=\sum_{n=P}^{N-1}\left\lvert x(n)+\sum_{k=1}^{P}a_kx(n-k)\right\rvert^2.$$
 
+### How Are the Coefficients $a_k$ Estimated?
+
+The criterion above is a least-squares problem. Define the covariance quantities
+
+$$C_{ij}=\sum_{n=P}^{N-1}x^\ast(n-i)x(n-j),\qquad i,j=1,\ldots,P,$$
+
+and
+
+$$c_i=\sum_{n=P}^{N-1}x^\ast(n-i)x(n),\qquad i=1,\ldots,P.$$
+
+Setting the derivative of $E_P$ with respect to each $a_i^\ast$ equal to zero gives
+
+$$c_i+\sum_{j=1}^{P}C_{ij}\hat a_j=0,\qquad i=1,\ldots,P.$$
+
+Therefore, with $\mathbf{C}=[C_{ij}]$, $\mathbf{c}=[c_1,\ldots,c_P]^T$, and
+$\hat{\mathbf a}=[\hat a_1,\ldots,\hat a_P]^T$,
+
+$$\boxed{\mathbf{C}\hat{\mathbf a}=-\mathbf{c}},$$
+
+so that
+
+$$\boxed{\hat{\mathbf a}=-\mathbf{C}^{-1}\mathbf{c}}$$
+
+when $\mathbf C$ is nonsingular.
+
+Equivalently, collect the valid samples into
+
+$$\mathbf y=\begin{bmatrix}x(P)\\x(P+1)\\\vdots\\x(N-1)\end{bmatrix},\qquad
+\mathbf X=\begin{bmatrix}
+x(P-1)&x(P-2)&\cdots&x(0)\\
+x(P)&x(P-1)&\cdots&x(1)\\
+\vdots&\vdots&\ddots&\vdots\\
+x(N-2)&x(N-3)&\cdots&x(N-P-1)
+\end{bmatrix}.$$
+
+Then
+
+$$E_P=\lVert\mathbf y+\mathbf X\mathbf a\rVert_2^2,$$
+
+and the least-squares estimate is
+
+$$\boxed{\hat{\mathbf a}=-(\mathbf X^H\mathbf X)^{-1}\mathbf X^H\mathbf y
+=-\mathbf X^\dagger\mathbf y}.$$
+
+Here $\mathbf C=\mathbf X^H\mathbf X$ and $\mathbf c=\mathbf X^H\mathbf y$.
+The pseudoinverse form is used if $\mathbf X^H\mathbf X$ is singular or poorly
+conditioned. Thus, estimating the covariance-method AR coefficients amounts to
+ordinary least-squares fitting of the current sample by the previous $P$ samples;
+the minus sign comes from the convention
+$e(n)=x(n)+\sum_{k=1}^{P}a_kx(n-k)$.
+
 Unlike the autocorrelation method, it does not use zero-valued samples outside the data record.
 
 This often gives better resolution for short records.
