@@ -1859,6 +1859,16 @@ This is a parametric spectrum estimate.
 
 Classical nonparametric estimators such as the periodogram, Bartlett, Welch, and Blackman-Tukey methods estimate the spectrum directly from finite data. Their resolution is strongly tied to record length and windowing.
 
+For the $N$ observed samples, define the finite-record DTFT as
+
+$$X_N(e^{j\omega})=\sum_{n=0}^{N-1}x(n)e^{-j\omega n}.$$
+
+The periodogram is
+
+$$\boxed{\hat R_x^{(P)}(e^{j\omega})=\frac{1}{N}\left\lvert X_N(e^{j\omega})\right\rvert^2.}$$
+
+Here the superscript $(P)$ is a **method label**: $P$ stands for *periodogram*. It is not an exponent and is not obtained by an algebraic derivation. Thus, $\hat R_x^{(P)}$ means “the estimate of $R_x$ produced by the periodogram method.” This superscript should also not be confused with the symbol $P$ used elsewhere in this chapter for the number of poles or the AR model order. The hat denotes an estimate, while the factor $1/N$ normalizes the squared magnitude of the finite-record DTFT by the number of observed samples.
+
 Parametric methods impose a model. If the model is appropriate, the estimated poles and zeros extrapolate the autocorrelation beyond the observed lags.
 
 This can yield high spectral resolution from short records.
