@@ -533,7 +533,71 @@ true PSD at frequencies where the PSD is sufficiently well behaved.
 
 This means the periodogram is generally biased. The bias is not arbitrary: it is caused by spectral smoothing and leakage.
 
-For white noise, $R_x(e^{j\omega})=\sigma_x^2$ is flat. Convolution of a flat spectrum with a normalized spectral window remains flat. Therefore, the periodogram is unbiased for white noise. For a non-flat spectrum, especially a spectrum with sharp peaks, the bias can be large.
+#### Why the Periodogram Is Unbiased for White Noise
+
+For white noise, the true PSD is constant at every frequency:
+
+$$R_x(e^{j\theta})=\sigma_x^2.$$
+
+Substituting this constant PSD into the convolution formula gives
+
+$$
+\begin{aligned}
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+\sigma_x^2 W_N(e^{j(\omega-\theta)})\,d\theta\\
+&=\sigma_x^2
+\frac{1}{2\pi}\int_{-\pi}^{\pi}
+W_N(e^{j(\omega-\theta)})\,d\theta.
+\end{aligned}
+$$
+
+Because $W_N$ is $2\pi$-periodic, shifting its argument by $\omega$ does not
+change its integral over any interval of length $2\pi$. Its normalization
+therefore implies
+
+$$
+\frac{1}{2\pi}\int_{-\pi}^{\pi}
+W_N(e^{j(\omega-\theta)})\,d\theta
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}W_N(e^{j\phi})\,d\phi
+=1.
+$$
+
+It follows that
+
+$$
+\boxed{
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+=\sigma_x^2
+=R_x(e^{j\omega}).}
+$$
+
+Thus, the ordinary periodogram is unbiased for white noise at every frequency.
+The intuitive reason is that convolution with the normalized spectral window
+forms a weighted average of the true PSD around the frequency of interest. If
+all values being averaged are the same constant, their weighted average is the
+same constant.
+
+For a non-flat PSD, however, the spectral window averages unequal neighboring
+values. Near a sharp peak, the peak value is mixed with smaller surrounding
+values, so the expected peak is generally lowered and broadened. Frequencies
+beside the peak are mixed with its larger value and are consequently raised.
+The sidelobes of $W_N$ can also transfer power from more distant frequencies;
+this is spectral leakage. Therefore, for a general non-flat spectrum,
+
+$$E\{\hat R_x^{(P)}(e^{j\omega})\}\ne R_x(e^{j\omega}),$$
+
+and the frequency-dependent bias is
+
+$$
+\operatorname{Bias}(\omega)
+=E\{\hat R_x^{(P)}(e^{j\omega})\}-R_x(e^{j\omega}).
+$$
+
+Finally, **unbiased does not mean that one white-noise periodogram is flat**.
+It means that the ensemble average of periodograms over many independent
+realizations equals the flat true PSD. An individual white-noise periodogram
+still fluctuates strongly because its variance is large, as discussed next.
 
 ### 2.1.5 Variance of the Periodogram
 
