@@ -791,6 +791,85 @@ $$\boxed{\text{Zero padding gives a smoother-looking plot, but it does not impro
 
 True resolution depends on the effective observation length and window mainlobe width, not on the number of FFT display points.
 
+#### Frequency-Grid Spacing Is Not Resolving Power
+
+It is important to distinguish two quantities that are often both informally
+called *frequency resolution*:
+
+1. **Frequency-grid spacing** tells us how closely spaced the reported FFT
+   samples are.
+2. **Resolving power** tells us whether two nearby spectral components produce
+   distinguishable peaks.
+
+Suppose that only $N$ nonzero samples have been observed, but zeros are appended
+and an $M$-point FFT is computed, where $M>N$. The displayed frequency-grid
+spacing is
+
+$$\Delta\omega_{\mathrm{grid}}=\frac{2\pi}{M}.$$
+
+Increasing $M$ genuinely produces more output frequency points and makes this
+spacing smaller. However, the zero-padded FFT values are
+
+$$
+X_M(k)=\sum_{n=0}^{N-1}x(n)e^{-j(2\pi k/M)n}
+=X_N(e^{j\omega})\bigg|_{\omega=2\pi k/M},
+$$
+
+where
+
+$$X_N(e^{j\omega})=\sum_{n=0}^{N-1}x(n)e^{-j\omega n}$$
+
+is the same continuous-frequency DTFT of the original finite record. Thus,
+changing $M$ does not create a different underlying spectrum. It merely samples
+the same DTFT curve at more closely spaced frequencies. In this sense, zero
+padding performs exact interpolation of the finite-record spectrum.
+
+By contrast, the width of the spectral feature produced by one sinusoid is
+controlled by the data window. For a length-$N$ rectangular window,
+
+$$
+W_R(e^{j\omega})
+=e^{-j\omega(N-1)/2}
+\frac{\sin(N\omega/2)}{\sin(\omega/2)}.
+$$
+
+The first zeros around the central peak occur at
+
+$$\omega=\pm\frac{2\pi}{N},$$
+
+so its null-to-null mainlobe width is
+
+$$\Delta\omega_{\mathrm{mainlobe}}=\frac{4\pi}{N}.$$
+
+This width is determined by the number of actually observed samples $N$, not by
+the zero-padded FFT length $M$. Other windows have different, usually wider,
+mainlobes, but the same principle holds: the effective observation length and
+window shape determine resolving power.
+
+For example, suppose $N=64$ samples are available. A 64-point FFT has grid
+spacing $2\pi/64$. If the record is zero-padded to $M=1024$, the grid spacing
+becomes $2\pi/1024$, but the rectangular-window mainlobe still has its first
+zeros at offsets $\pm2\pi/64$. The 1024-point FFT draws that same mainlobe with
+many more points; it does not make the mainlobe narrower.
+
+Consequently, if two nearby sinusoids have already merged into one broad
+spectral peak because of the finite window, zero padding produces a more
+detailed picture of that merged peak rather than separating it into two peaks.
+Increasing the actual observation length can narrow the mainlobes and provide
+new information with which to separate the sinusoids.
+
+Zero padding is nevertheless useful. The denser grid produces a smoother plot,
+reduces the error caused by reading a peak only at coarse FFT-bin locations, and
+can improve numerical localization of an isolated peak. These benefits concern
+display and interpolation; they do not constitute an increase in the intrinsic
+ability to resolve two nearby components.
+
+An analogy is enlarging a blurred digital image. Adding display pixels allows
+the blurred shape to be drawn more smoothly, but it does not recover spatial
+detail that was never captured. Similarly, increasing $M$ increases the number
+of reported frequency samples, whereas increasing the effective observation
+length supplies additional data and can improve true spectral resolution.
+
 ### 2.2.3 Leakage and the Rectangular Window
 
 A rectangular window has a narrow mainlobe but high sidelobes. This means it can provide good nominal resolution, but strong components leak energy into distant frequencies.
