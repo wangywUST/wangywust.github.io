@@ -601,11 +601,151 @@ still fluctuates strongly because its variance is large, as discussed next.
 
 ### 2.1.5 Variance of the Periodogram
 
-A central result is that the periodogram has high variance. Roughly,
+A central result is that the periodogram has high variance. This can be seen
+most clearly by first considering zero-mean circular complex Gaussian white
+noise,
 
-$$\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}\approx R_x^2(e^{j\omega}).$$
+$$x(n)\sim\mathcal{CN}(0,\sigma_x^2),$$
 
-The key point is not the exact constant but the dependence on $N$: the variance does **not** vanish as $N$ increases.
+with independent samples. At a DFT frequency $\omega_k=2\pi k/N$,
+
+$$X_N(k)=\sum_{n=0}^{N-1}x(n)e^{-j\omega_k n}.$$
+
+A linear combination of independent Gaussian variables is Gaussian. Moreover,
+
+$$
+E\{|X_N(k)|^2\}
+=\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
+E\{x(n)x^\ast(m)\}e^{-j\omega_k(n-m)}
+=N\sigma_x^2,
+$$
+
+because $E\{x(n)x^\ast(m)\}=\sigma_x^2\delta(n-m)$. Therefore,
+
+$$X_N(k)\sim\mathcal{CN}(0,N\sigma_x^2),$$
+
+and it may be represented as
+
+$$X_N(k)=\sqrt{N\sigma_x^2}\,Z,
+\qquad Z\sim\mathcal{CN}(0,1).$$
+
+Substitution into the periodogram gives
+
+$$
+\hat R_x^{(P)}(e^{j\omega_k})
+=\frac{1}{N}|X_N(k)|^2
+=\sigma_x^2|Z|^2.
+$$
+
+The factor $N$ has canceled completely. For a standard circular complex
+Gaussian variable, $|Z|^2$ has a unit-mean exponential distribution, so
+
+$$E\{|Z|^2\}=1,
+\qquad
+\operatorname{var}\{|Z|^2\}=1.$$
+
+It follows exactly that
+
+$$
+E\{\hat R_x^{(P)}(e^{j\omega_k})\}=\sigma_x^2,
+\qquad
+\boxed{
+\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega_k})\}
+=\sigma_x^4.}
+$$
+
+Since the white-noise PSD is $R_x(e^{j\omega})=\sigma_x^2$, this result can
+also be written as
+
+$$
+\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega_k})\}
+=R_x^2(e^{j\omega_k}),
+$$
+
+which contains no $N$. Thus, even in this simplest case, increasing the record
+length does not make the variance approach zero.
+
+For a more general WSS process satisfying suitable weak-dependence conditions,
+the finite-record Fourier coefficient at a fixed frequency is asymptotically
+approximately circular complex Gaussian:
+
+$$
+X_N(e^{j\omega})
+\overset{\text{approximately}}{\sim}
+\mathcal{CN}\!\left(0,N R_x(e^{j\omega})\right).
+$$
+
+Equivalently,
+
+$$
+X_N(e^{j\omega})
+\approx\sqrt{N R_x(e^{j\omega})}\,Z,
+\qquad Z\sim\mathcal{CN}(0,1).
+$$
+
+Consequently,
+
+$$
+\hat R_x^{(P)}(e^{j\omega})
+\approx R_x(e^{j\omega})|Z|^2,
+$$
+
+and hence
+
+$$
+E\{\hat R_x^{(P)}(e^{j\omega})\}\approx R_x(e^{j\omega}),
+\qquad
+\boxed{
+\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}
+\approx R_x^2(e^{j\omega}).}
+$$
+
+The same conclusion follows directly from the fourth moment. Since
+
+$$
+\operatorname{var}\{\hat R_x^{(P)}\}
+=\frac{1}{N^2}E\{|X_N|^4\}
+-\frac{1}{N^2}\left(E\{|X_N|^2\}\right)^2,
+$$
+
+and a zero-mean circular complex Gaussian variable satisfies
+
+$$E\{|X_N|^4\}=2\left(E\{|X_N|^2\}\right)^2,$$
+
+using $E\{|X_N|^2\}\approx N R_x(e^{j\omega})$ gives
+
+$$
+\begin{aligned}
+\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}
+&\approx\frac{1}{N^2}
+\left[2N^2R_x^2(e^{j\omega})-N^2R_x^2(e^{j\omega})\right]\\
+&=R_x^2(e^{j\omega}).
+\end{aligned}
+$$
+
+The exact numerical constant depends on the signal type and frequency. For
+example, for a real Gaussian process the DFT coefficients at DC and, when $N$
+is even, at the Nyquist frequency are real rather than circular complex; their
+asymptotic variance has a different factor. The important fact is not this
+constant but the dependence on $N$: the variance remains of order
+$R_x^2(e^{j\omega})$ rather than tending to zero.
+
+Another way to express the problem is through the coefficient of variation:
+
+$$
+\frac{
+\sqrt{\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}}}
+{E\{\hat R_x^{(P)}(e^{j\omega})\}}
+\approx 1.
+$$
+
+Thus, the standard deviation of a raw periodogram ordinate is approximately as
+large as the PSD value being estimated. A longer record narrows the spectral
+window and improves frequency resolution, but each ordinate is still formed
+from only one random squared Fourier coefficient. No independent power
+estimates have been averaged, so the relative random fluctuation is not reduced.
+This is why Bartlett and Welch methods reduce variance by averaging multiple
+periodograms.
 
 Thus:
 
