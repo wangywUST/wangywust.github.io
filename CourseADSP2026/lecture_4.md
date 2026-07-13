@@ -1869,6 +1869,37 @@ $$\boxed{\hat R_x^{(P)}(e^{j\omega})=\frac{1}{N}\left\lvert X_N(e^{j\omega})\rig
 
 Here the superscript $(P)$ is a **method label**: $P$ stands for *periodogram*. It is not an exponent and is not obtained by an algebraic derivation. Thus, $\hat R_x^{(P)}$ means “the estimate of $R_x$ produced by the periodogram method.” This superscript should also not be confused with the symbol $P$ used elsewhere in this chapter for the number of poles or the AR model order. The hat denotes an estimate, while the factor $1/N$ normalizes the squared magnitude of the finite-record DTFT by the number of observed samples.
 
+### Filter-Bank Interpretation of the Periodogram
+
+The textbook gives another useful interpretation: each DFT bin behaves like one narrowband filter. This statement follows directly from the $k$th DFT coefficient,
+
+$$X[k]=\sum_{n=0}^{N-1}x(n)e^{-j\omega_k n},
+\qquad \omega_k=\frac{2\pi k}{N}.$$
+
+To compute $X[k]$, the data are multiplied by $e^{-j\omega_k n}$ and then added. If a component of the data has frequency $\omega_k$, say $x(n)=Ae^{j\omega_k n}$, then
+
+$$x(n)e^{-j\omega_k n}=A,$$
+
+so all $N$ terms have the same phase and add coherently, giving $X[k]=NA$. If the component has a different frequency $\omega_0$, then
+
+$$X[k]=A\sum_{n=0}^{N-1}e^{j(\omega_0-\omega_k)n},$$
+
+whose rotating terms tend to cancel. Therefore bin $k$ responds most strongly to frequencies near $\omega_k$ and more weakly to frequencies farther away. That is exactly the behavior of a bandpass filter centered at $\omega_k$.
+
+More formally, the corresponding FIR filter has, apart from an irrelevant phase shift, the frequency response
+
+$$H_k(e^{j\omega})=\sum_{n=0}^{N-1}e^{-j(\omega-\omega_k)n}.$$
+
+Its magnitude is a shifted Dirichlet kernel: its main lobe is centered at $\omega_k$, with zeros spaced by $2\pi/N$. Thus, increasing $N$ makes the effective passband narrower and improves frequency resolution. Because the rectangular data window has sidelobes, this “filter” is not ideal; energy at other frequencies can leak into bin $k$.
+
+The filter contains $N$ coefficients of unit magnitude, so its energy is $N$. After normalizing it to unit energy, its output magnitude squared at the end of the record is
+
+$$\left\lvert\frac{X[k]}{\sqrt N}\right\rvert^2
+=\frac{1}{N}|X[k]|^2
+=\hat R_x^{(P)}(e^{j\omega_k}).$$
+
+Hence the phrase “the periodogram estimates the output power of the filter” means: **send the same data record through a bank of narrowband filters, one centered at each DFT frequency; square the magnitude of each energy-normalized filter output.** The resulting values are the periodogram samples. It does not mean that a separate physical filter must be constructed—the DFT performs all of these filtering operations efficiently at once.
+
 Parametric methods impose a model. If the model is appropriate, the estimated poles and zeros extrapolate the autocorrelation beyond the observed lags.
 
 This can yield high spectral resolution from short records.
