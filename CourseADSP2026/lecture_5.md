@@ -313,6 +313,62 @@ $$\boxed{\hat R_x^{(P)}(e^{j\omega_k})=\frac{1}{N}\vert X_N(k)\vert^2.}$$
 
 This is the most intuitive PSD estimator: compute the DFT, square the magnitude, and normalize by $N$.
 
+#### Why This Definition Is Natural
+
+The definition is not an arbitrary choice. It follows from the fundamental
+definition of the PSD as the DTFT of the autocorrelation sequence. For a WSS
+process,
+
+$$R_x(e^{j\omega})=\sum_{l=-\infty}^{\infty}r_x(l)e^{-j\omega l},
+\qquad
+r_x(l)=E\{x(n+l)x^\ast(n)\}.$$
+
+With only $N$ observed samples, replace the unknown autocorrelation by the
+finite-record estimate
+
+$$\hat r_x(l)=\frac{1}{N}\sum_{n=0}^{N-1-l}x(n+l)x^\ast(n),
+\qquad 0\le l\le N-1,$$
+
+and use conjugate symmetry for negative lags. Taking its DTFT gives
+
+$$
+\begin{aligned}
+\sum_{l=-(N-1)}^{N-1}\hat r_x(l)e^{-j\omega l}
+&=\frac{1}{N}\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
+x(n)x^\ast(m)e^{-j\omega(n-m)}\\
+&=\frac{1}{N}
+\left(\sum_{n=0}^{N-1}x(n)e^{-j\omega n}\right)
+\left(\sum_{m=0}^{N-1}x(m)e^{-j\omega m}\right)^\ast\\
+&=\frac{1}{N}\left|X_N(e^{j\omega})\right|^2.
+\end{aligned}
+$$
+
+Thus, the periodogram is exactly the DTFT of this particular finite-sample
+autocorrelation estimate.
+
+The factor $1/N$ converts finite-record spectral energy into average power.
+Indeed, Parseval's relation gives
+
+$$\frac{1}{2\pi}\int_{-\pi}^{\pi}
+\hat R_x^{(P)}(e^{j\omega})\,d\omega
+=\frac{1}{N}\sum_{n=0}^{N-1}|x(n)|^2.$$
+
+Hence the area under the periodogram equals the observed average sample power.
+Without the factor $1/N$, the integral would represent total record energy
+rather than average power.
+
+#### Why It Is Called a Periodogram
+
+Historically, the method was introduced to reveal periodic components in an
+observed record. If the data contain a sinusoid with angular frequency
+$\omega_0$, the periodogram has a peak near $\omega_0$ (and, for a real
+sinusoid, also near $-\omega_0$). The peak therefore identifies the period
+$T=2\pi/\omega_0$. The suffix *-gram* means a record or graphical display, so
+*periodogram* originally meant a graphical record of the strengths of possible
+periodicities. The name does not mean that the plotted curve itself must be a
+periodic signal, although a discrete-time spectrum is of course $2\pi$-periodic
+in frequency.
+
 ### 2.1.2 Periodogram as an Autocorrelation-Based Estimator
 
 The periodogram can also be written as the DTFT of a finite autocorrelation estimate. Define
@@ -381,11 +437,99 @@ This filter-bank interpretation explains both the usefulness and the limitation 
 
 ### 2.1.4 Bias of the Periodogram
 
-For a WSS process, the expected periodogram is approximately the true PSD convolved with a spectral window:
+For a WSS process, the expected periodogram can be derived directly. Begin by
+expanding the squared magnitude:
 
-$$E\{\hat R_x^{(P)}(e^{j\omega})\}\approx \frac{1}{2\pi}\int_{-\pi}^{\pi}R_x(e^{j\theta})W_N(e^{j(\omega-\theta)})d\theta,$$
+$$
+\hat R_x^{(P)}(e^{j\omega})
+=\frac{1}{N}\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
+x(n)x^\ast(m)e^{-j\omega(n-m)}.
+$$
 
-where $W_N(e^{j\omega})$ is the spectral window associated with the length-$N$ rectangular window.
+WSS implies that the second moment depends only on the lag:
+
+$$E\{x(n)x^\ast(m)\}=r_x(n-m).$$
+
+Consequently,
+
+$$
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+=\frac{1}{N}\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
+r_x(n-m)e^{-j\omega(n-m)}.
+$$
+
+Set $l=n-m$. For a fixed lag $l$ with $|l|<N$, there are exactly
+$N-|l|$ pairs $(n,m)$ in the observed record satisfying $n-m=l$. Grouping the
+double sum by lag therefore gives
+
+$$
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+=\sum_{l=-(N-1)}^{N-1}
+\left(1-\frac{|l|}{N}\right)r_x(l)e^{-j\omega l}.
+$$
+
+Define the triangular lag window
+
+$$
+v_N(l)=
+\begin{cases}
+1-|l|/N, & |l|<N,\\
+0, & |l|\ge N.
+\end{cases}
+$$
+
+Because $v_N(l)=0$ outside the displayed finite-lag interval, the preceding
+sum may equivalently be extended over all integer lags:
+
+$$
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+=\sum_{l=-\infty}^{\infty}r_x(l)v_N(l)e^{-j\omega l}
+=\mathcal F\{r_x(l)v_N(l)\}.
+$$
+
+The last equality is simply the definition of the DTFT: for any sequence
+$g(l)$,
+
+$$\mathcal F\{g(l)\}=\sum_{l=-\infty}^{\infty}g(l)e^{-j\omega l},$$
+
+with $g(l)=r_x(l)v_N(l)$ here. Now define
+
+$$R_x(e^{j\omega})=\mathcal F\{r_x(l)\},
+\qquad
+W_N(e^{j\omega})=\mathcal F\{v_N(l)\}.$$
+
+Multiplication in the lag domain becomes $2\pi$-periodic convolution in the
+frequency domain. Hence
+
+$$
+\boxed{
+E\{\hat R_x^{(P)}(e^{j\omega})\}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\theta})W_N(e^{j(\omega-\theta)})\,d\theta.}
+$$
+
+For the length-$N$ rectangular data window, this spectral window is the Fejér
+kernel
+
+$$
+W_N(e^{j\omega})
+=\frac{1}{N}\left|\sum_{n=0}^{N-1}e^{-j\omega n}\right|^2
+=\frac{1}{N}\left[\frac{\sin(N\omega/2)}{\sin(\omega/2)}\right]^2,
+$$
+
+with its value at $\omega=0$ understood by continuity. It is normalized so
+that
+
+$$\frac{1}{2\pi}\int_{-\pi}^{\pi}W_N(e^{j\omega})\,d\omega=1.$$
+
+Thus, under the stated WSS assumptions and the ordinary rectangular-window
+periodogram definition, the convolution formula is an exact finite-$N$
+identity. The word *approximately* is often used only for the interpretation
+that a sufficiently concentrated $W_N$ acts like a local smoothing kernel, or
+when additional asymptotic assumptions and alternative normalizations are being
+used. As $N$ increases, the mainlobe narrows and $W_N$ approaches a periodic
+impulse in the distributional sense, so the expected periodogram approaches the
+true PSD at frequencies where the PSD is sufficiently well behaved.
 
 This means the periodogram is generally biased. The bias is not arbitrary: it is caused by spectral smoothing and leakage.
 
