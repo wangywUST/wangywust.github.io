@@ -1134,11 +1134,93 @@ The teaching message is that different estimators may agree on broad spectral st
 
 > 📖 Textbook §9.2-§9.4, connected to Chapter 4
 
-Classical nonparametric methods do not assume a low-order signal model. Parametric methods do assume a model. The basic idea is:
+Before introducing AR, MA, and ARMA estimators, it is useful to compare the
+parametric and nonparametric viewpoints. Neither family is universally better;
+they use different sources of information and fail in different ways.
 
-> Fit a model to the data, then compute the spectrum implied by the fitted model.
+## 3.0 Parametric versus Nonparametric Spectrum Estimation
 
-The advantage is high resolution from short data. The danger is model mismatch.
+### 3.0.1 Two Different Sources of Spectral Information
+
+A **nonparametric** estimator, such as the periodogram, Bartlett, Welch, or
+Blackman-Tukey method, does not require the PSD to belong to a prescribed
+low-dimensional model family. Its spectral shape is determined relatively
+directly by the measured data, together with choices such as record length,
+window, segment length, and amount of averaging.
+
+A **parametric** estimator assumes that the process can be described by a model
+with a finite number of parameters. Common examples are AR, MA, and ARMA models.
+The procedure is
+
+> Choose a model family and order, estimate its parameters from the data, and
+> then compute the PSD implied by the fitted model.
+
+Thus, a parametric estimate obtains additional apparent spectral detail by
+using model structure, not by creating additional measured information. For
+example, an AR model extrapolates the correlation structure beyond the lags
+that can be estimated reliably from the finite record. This extrapolation can
+be very effective when the assumed model is appropriate, but it can also be
+misleading when the model is wrong.
+
+### 3.0.2 Advantages and Disadvantages
+
+| Aspect | Nonparametric Methods | Parametric Methods |
+|--------|-----------------------|--------------------|
+| Prior assumption | No specific low-order AR/MA/ARMA form is required | Requires a model family and a finite order |
+| Short-data behavior | Resolution is limited mainly by the effective observation length and window mainlobe | Can produce sharp, smooth spectra from short records if the model is correct |
+| Resolution | Closely spaced components may merge because of window broadening | Can resolve narrow peaks beyond conventional window-based resolution |
+| Variance | A raw periodogram has high variance; averaging or smoothing reduces it | Often gives a smooth curve because only a small set of fitted parameters is used |
+| Bias | Controlled by windowing, leakage, smoothing, and segment length | Controlled strongly by model mismatch, order choice, and parameter-estimation bias |
+| Robustness | Relatively robust to an unknown spectral shape | Potentially fragile when the assumed model family is inappropriate |
+| Artifacts | Leakage and broadened peaks are common | Spurious peaks, peak splitting, or missing spectral zeros can occur |
+| Interpretability | Shows data-supported spectral structure with relatively few structural assumptions | Poles, zeros, resonances, and prediction errors can have physical interpretations |
+| Tuning parameters | Window type, segment length, overlap, lag limit, and averaging | Model family, model order, and parameter-estimation algorithm |
+| Computation | Usually simple and FFT-based | Requires parameter estimation and sometimes nonlinear optimization |
+
+The main advantages of nonparametric methods are simplicity, transparency, and
+robustness. They are appropriate when little is known about the generating
+mechanism or when the objective is to display broad spectral structure without
+committing to a particular model. Their main limitations are the
+bias-variance-resolution tradeoff: long windows improve resolution, averaging
+reduces variance, and low-sidelobe windows reduce leakage, but these benefits
+cannot generally be obtained simultaneously.
+
+The main advantage of parametric methods is efficiency when the model is
+correct. A small number of well-estimated parameters can represent sharp
+resonances and yield a stable-looking spectrum from a short record. Parametric
+methods can therefore appear to exceed the resolution of Fourier-window
+methods. Their main disadvantage is that this high resolution is
+model-dependent. A sharp parametric peak is not automatically evidence that a
+physical spectral component exists; it may be caused by an unsuitable model
+family, excessive order, insufficient data, or estimation error.
+
+### 3.0.3 Choosing Between the Two Families
+
+Nonparametric methods are usually preferable when:
+
+- the spectral shape and data-generating mechanism are largely unknown;
+- a robust general-purpose PSD estimate is needed;
+- enough data are available for windowing and averaging; or
+- conclusions should depend as little as possible on a structural model.
+
+Parametric methods are especially attractive when:
+
+- the available record is short;
+- the signal is known to follow an approximately low-order model;
+- narrowband resonances or closely spaced components are important;
+- model parameters have a useful physical meaning; or
+- prediction and spectral estimation should use the same fitted model.
+
+In practice, the two approaches are often complementary. A nonparametric
+estimate can reveal the broad data-supported structure, while a parametric
+estimate can test whether a compact model explains that structure. Agreement
+between them increases confidence. Strong disagreement is a warning to inspect
+the model family, order, window, data length, and estimator settings rather than
+automatically trusting the sharper curve.
+
+With this comparison in mind, the following sections introduce AR, MA, and ARMA
+spectral estimators and explain both their potential resolution advantage and
+their sensitivity to modeling choices.
 
 ---
 
