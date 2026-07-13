@@ -305,6 +305,8 @@ The periodogram is
 
 $$\boxed{\hat R_x^{(P)}(e^{j\omega})=\frac{1}{N}\vert X_N(e^{j\omega})\vert^2.}$$
 
+Here the superscript $(P)$ is a **method label**: $P$ stands for *periodogram*. It is not an exponent and does not come from an algebraic operation. Thus, $\hat R_x^{(P)}$ means “the estimate of $R_x$ produced by the periodogram method.” The hat denotes an estimate, and $1/N$ normalizes the squared magnitude of the finite-record DTFT by the number of samples. Do not confuse this method label with a symbol $P$ used elsewhere to denote a model order.
+
 At DFT frequencies $\omega_k=2\pi k/N$,
 
 $$\boxed{\hat R_x^{(P)}(e^{j\omega_k})=\frac{1}{N}\vert X_N(k)\vert^2.}$$
@@ -334,6 +336,39 @@ This viewpoint prepares us for the Blackman-Tukey method, which explicitly modif
 ### 2.1.3 Periodogram as a Filter-Bank Output
 
 The textbook gives another useful interpretation. Each DFT bin can be viewed as the output of a narrowband filter centered at that frequency. The periodogram estimates the average output power of that filter.
+
+To see why, start with the $k$th DFT coefficient:
+
+$$X[k]=\sum_{n=0}^{N-1}x(n)e^{-j\omega_k n},
+\qquad \omega_k=\frac{2\pi k}{N}.$$
+
+The operation “multiply by $e^{-j\omega_k n}$ and add” tests how much of the frequency $\omega_k$ is present in the data. For example, if
+
+$$x(n)=Ae^{j\omega_k n},$$
+
+then every product is the same constant,
+
+$$x(n)e^{-j\omega_k n}=A,$$
+
+so all $N$ terms add in phase and $X[k]=NA$. The response is large. In contrast, for a component at another frequency $\omega_0$,
+
+$$X[k]=A\sum_{n=0}^{N-1}e^{j(\omega_0-\omega_k)n}.$$
+
+These terms rotate in phase and partially cancel. The farther $\omega_0$ is from $\omega_k$, the stronger the cancellation is in general. Therefore DFT bin $k$ passes frequencies near $\omega_k$ and suppresses frequencies farther away: it behaves like a narrowband filter centered at $\omega_k$.
+
+More formally, apart from an irrelevant phase shift, that filter has frequency response
+
+$$H_k(e^{j\omega})=\sum_{n=0}^{N-1}e^{-j(\omega-\omega_k)n}.$$
+
+Its magnitude is a shifted Dirichlet kernel. Its main lobe is centered at $\omega_k$, and its first zeros are at $\omega_k\pm 2\pi/N$. Hence a longer record produces a narrower effective filter and better frequency resolution. The sidelobes also explain spectral leakage: a component outside the main lobe can still affect bin $k$.
+
+The filter has coefficient energy $N$. If it is normalized to unit energy, its squared output magnitude is
+
+$$\left\lvert\frac{X[k]}{\sqrt N}\right\rvert^2
+=\frac{1}{N}|X[k]|^2
+=\hat R_x^{(P)}(e^{j\omega_k}).$$
+
+Therefore, “the periodogram estimates the filter output power” means the following: **the DFT acts as a bank of narrowband filters, one for each DFT frequency, and the periodogram is the squared magnitude of each energy-normalized filter output.** No physical filter bank has to be built; the DFT computes all these outputs at once.
 
 > ![Figure 2.1](./CourseADSP2026/Fig/Chapter_5/fig_2_4_textbook_fig_5_11_p215.png)
 >
