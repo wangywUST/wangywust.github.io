@@ -96,11 +96,11 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 
 **Interactive demonstration.** Move the $\omega$ slider and use Play, Step, or Reset to see the rotating phasor and the discrete samples change together.
 
-<iframe src="./lecture_1_assets/digital_frequency_interactive.html" width="100%" height="720" style="border:0; border-radius:12px;" title="Interactive digital angular frequency demonstration"></iframe>
+<iframe src="./CourseADSP2026/Fig/Chapter_1/digital_frequency_interactive.html" width="100%" height="720" style="border:0; border-radius:12px;" title="Interactive digital angular frequency demonstration"></iframe>
 
 > If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive rad/sample demonstration](./lecture_1_assets/digital_frequency_interactive.html) directly. The animated GIF below is a non-interactive fallback.
 
-![Animation showing phase advance per sample](./lecture_1_assets/digital_frequency_rad_per_sample.gif)
+![Animation showing phase advance per sample](./CourseADSP2026/Fig/Chapter_1/digital_frequency_rad_per_sample.gif)
 
 > **Dimensional note.** Formally, radians are dimensionless in SI. Writing rad/sample is nevertheless useful because it distinguishes digital angular frequency from analog angular frequency in rad/s and emphasizes that the phase increment is measured per discrete index step.
 

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital Frequency: rad/sample</title>
+<style>
+  :root { color-scheme: light; --ink:#172033; --muted:#5d6678; --line:#d9deea; --panel:#f7f9fc; --accent:#315efb; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:18px; font-family:Inter,Segoe UI,Arial,sans-serif; color:var(--ink); background:white; }
+  .card { max-width:1040px; margin:auto; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 8px 24px rgba(20,30,60,.07); }
+  h2 { margin:0 0 6px; font-size:22px; }
+  .intro { margin:0 0 14px; color:var(--muted); line-height:1.45; }
+  .controls { display:grid; grid-template-columns:1fr auto; gap:14px; align-items:end; padding:12px; background:var(--panel); border-radius:12px; }
+  label { display:block; font-weight:650; margin-bottom:6px; }
+  input[type=range] { width:100%; }
+  .buttons { display:flex; flex-wrap:wrap; gap:8px; }
+  button { border:1px solid var(--line); background:white; color:var(--ink); padding:8px 12px; border-radius:9px; cursor:pointer; font-weight:650; }
+  button.primary { background:var(--accent); color:white; border-color:var(--accent); }
+  button:hover { filter:brightness(.98); }
+  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin:12px 0; }
+  .metric { border:1px solid var(--line); border-radius:11px; padding:10px; min-height:66px; }
+  .metric small { color:var(--muted); display:block; margin-bottom:4px; }
+  .metric strong { font-size:18px; }
+  .plots { display:grid; grid-template-columns:360px 1fr; gap:18px; align-items:center; }
+  canvas { width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:white; }
+  .equation { margin-top:12px; padding:11px 13px; border-left:4px solid var(--accent); background:var(--panel); line-height:1.55; }
+  .legend { margin-top:8px; color:var(--muted); font-size:13px; }
+  @media (max-width:780px) {
+    .controls, .plots { grid-template-columns:1fr; }
+    .metrics { grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Digital angular frequency: radians per sample</h2>
+  <p class="intro">Each move from sample <em>n</em> to sample <em>n+1</em> advances the phase by exactly <strong>ω radians</strong>. The highlighted sample and rotating phasor are synchronized.</p>
+
+  <div class="controls">
+    <div>
+      <label for="omega">Phase increment ω = <span id="omegaPi">0.50π</span> rad/sample</label>
+      <input id="omega" type="range" min="0" max="1" value="0.5" step="0.01" aria-label="Digital angular frequency omega divided by pi" />
+    </div>
+    <div class="buttons">
+      <button id="play" class="primary">Pause</button>
+      <button id="step">Step +1 sample</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><small>Current sample</small><strong>n = <span id="nValue">0</span></strong></div>
+    <div class="metric"><small>Phase increment</small><strong><span id="radValue">1.571</span> rad</strong></div>
+    <div class="metric"><small>Degrees per sample</small><strong><span id="degValue">90.0</span>°</strong></div>
+    <div class="metric"><small>Samples per cycle</small><strong><span id="periodValue">4.00</span></strong></div>
+  </div>
+
+  <div class="plots">
+    <canvas id="phasor" width="520" height="520"></canvas>
+    <canvas id="samples" width="900" height="520"></canvas>
+  </div>
+
+  <div class="equation">
+    <strong>Meaning:</strong> x[n] = cos(ωn). Moving one index forward changes the phase from ωn to ω(n+1), so Δθ = ω.<br>
+    <strong>Conversion:</strong> ω = ΩT<sub>s</sub> = 2πf/f<sub>s</sub>. Thus ω/(2π) is the fraction of a full cycle completed per sample.
+  </div>
+  <div class="legend">At ω = π/2 rad/sample, the phase advances by 90° each sample, so one cycle takes four samples.</div>
+</div>
+<script>
+(() => {
+  const slider = document.getElementById('omega');
+  const playBtn = document.getElementById('play');
+  const stepBtn = document.getElementById('step');
+  const resetBtn = document.getElementById('reset');
+  const phCanvas = document.getElementById('phasor');
+  const smCanvas = document.getElementById('samples');
+  const pctx = phCanvas.getContext('2d');
+  const sctx = smCanvas.getContext('2d');
+  let n = 0;
+  let playing = true;
+  let last = performance.now();
+  const maxSamples = 18;
+
+  const $ = id => document.getElementById(id);
+  function omega() { return parseFloat(slider.value) * Math.PI; }
+  function clear(ctx, canvas) { ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+  function line(ctx,x1,y1,x2,y2,w=2,color='#7b8496') { ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.lineWidth=w; ctx.strokeStyle=color; ctx.stroke(); }
+  function text(ctx,txt,x,y,size=18,color='#172033',align='center') { ctx.font=`${size}px Segoe UI, Arial`; ctx.fillStyle=color; ctx.textAlign=align; ctx.fillText(txt,x,y); }
+  function arrow(ctx,x1,y1,x2,y2,color='#315efb') {
+    line(ctx,x1,y1,x2,y2,5,color);
+    const a=Math.atan2(y2-y1,x2-x1), h=16;
+    ctx.beginPath(); ctx.moveTo(x2,y2); ctx.lineTo(x2-h*Math.cos(a-Math.PI/6),y2-h*Math.sin(a-Math.PI/6)); ctx.lineTo(x2-h*Math.cos(a+Math.PI/6),y2-h*Math.sin(a+Math.PI/6)); ctx.closePath(); ctx.fillStyle=color; ctx.fill();
+  }
+  function drawPhasor() {
+    clear(pctx,phCanvas);
+    const cx=260, cy=270, r=180;
+    pctx.beginPath(); pctx.arc(cx,cy,r,0,2*Math.PI); pctx.lineWidth=3; pctx.strokeStyle='#cfd5e2'; pctx.stroke();
+    line(pctx,cx-r-25,cy,cx+r+25,cy,2,'#aab2c2');
+    line(pctx,cx,cy-r-25,cx,cy+r+25,2,'#aab2c2');
+    text(pctx,'1',cx+r+12,cy-10,16,'#5d6678'); text(pctx,'−1',cx-r-16,cy-10,16,'#5d6678');
+    text(pctx,'j',cx+12,cy-r-10,16,'#5d6678'); text(pctx,'−j',cx+14,cy+r+22,16,'#5d6678');
+    const theta=(omega()*n)%(2*Math.PI);
+    const x=cx+r*Math.cos(theta), y=cy-r*Math.sin(theta);
+    arrow(pctx,cx,cy,x,y);
+    pctx.beginPath(); pctx.arc(x,y,8,0,2*Math.PI); pctx.fillStyle='#315efb'; pctx.fill();
+    text(pctx,`phase = ωn = ${(theta/Math.PI).toFixed(2)}π`,cx,40,22);
+    text(pctx,`x[n] = cos(ωn) = ${Math.cos(theta).toFixed(3)}`,cx,500,20);
+  }
+  function drawSamples() {
+    clear(sctx,smCanvas);
+    const L=75,R=25,T=45,B=70, W=smCanvas.width-L-R,H=smCanvas.height-T-B;
+    const xpix=i=>L+i*W/(maxSamples-1), ypix=v=>T+H*(1-v)/2;
+    line(sctx,L,ypix(0),L+W,ypix(0),2,'#7b8496');
+    line(sctx,L,T,L,T+H,2,'#7b8496');
+    text(sctx,'x[n]',32,T+8,18,'#172033'); text(sctx,'sample index n',L+W/2,smCanvas.height-20,18,'#172033');
+    for(let v=-1;v<=1;v+=0.5){ line(sctx,L-6,ypix(v),L,ypix(v),2,'#7b8496'); text(sctx,v.toFixed(1),L-12,ypix(v)+6,14,'#5d6678','right'); }
+    const om=omega();
+    for(let i=0;i<maxSamples;i++){
+      const v=Math.cos(om*i), x=xpix(i), y=ypix(v), active=i===(n%maxSamples);
+      line(sctx,x,ypix(0),x,y,active?5:3,active?'#d34836':'#315efb');
+      sctx.beginPath(); sctx.arc(x,y,active?8:5,0,2*Math.PI); sctx.fillStyle=active?'#d34836':'#315efb'; sctx.fill();
+      text(sctx,String(i),x,ypix(0)+24,12,'#5d6678');
+    }
+    text(sctx,`Adjacent samples differ in phase by ω = ${(om/Math.PI).toFixed(2)}π rad`,L+W/2,28,19);
+  }
+  function updateMetrics() {
+    const om=omega();
+    $('omegaPi').textContent=`${(om/Math.PI).toFixed(2)}π`;
+    $('nValue').textContent=n;
+    $('radValue').textContent=om.toFixed(3);
+    $('degValue').textContent=(om*180/Math.PI).toFixed(1);
+    $('periodValue').textContent=om===0?'∞':(2*Math.PI/om).toFixed(2);
+  }
+  function render(){ updateMetrics(); drawPhasor(); drawSamples(); }
+  slider.addEventListener('input',()=>{ n=0; render(); });
+  playBtn.addEventListener('click',()=>{ playing=!playing; playBtn.textContent=playing?'Pause':'Play'; playBtn.classList.toggle('primary',playing); });
+  stepBtn.addEventListener('click',()=>{ n++; render(); });
+  resetBtn.addEventListener('click',()=>{ n=0; playing=false; playBtn.textContent='Play'; playBtn.classList.remove('primary'); render(); });
+  function loop(now){ if(playing && now-last>650){ n++; last=now; render(); } requestAnimationFrame(loop); }
+  render(); requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
