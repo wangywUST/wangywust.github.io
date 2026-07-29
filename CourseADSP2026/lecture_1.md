@@ -41,6 +41,69 @@ All symbols used in this chapter are collected below. Where one symbol carries d
 | $m$ | Image row index (§1.1.2); FIR coefficient index (§3.1.1) | — |
 | $q$ | Integer subsampling factor in bandpass sampling theorem (§1.3.3) | — |
 
+
+#### How to Interpret `rad/sample`
+
+The unit **radians per sample** means:
+
+> Every time the discrete-time index advances by one sample, the sinusoid's phase advances by $\omega$ radians.
+
+Start with a continuous-time sinusoid
+
+$$x_a(t)=\cos(\Omega t+\phi),$$
+
+where $\Omega$ has units of rad/s. Sampling at $t=nT_s$ gives
+
+$$x[n]=x_a(nT_s)=\cos(\Omega nT_s+\phi)=\cos(\omega n+\phi),$$
+
+so
+
+$$\boxed{\omega=\Omega T_s}.$$
+
+The units follow directly:
+
+$$\frac{\text{rad}}{\text{s}}\times\frac{\text{s}}{\text{sample}}
+=\frac{\text{rad}}{\text{sample}}.$$
+
+Because $n$ is a sample index, the phase at sample $n$ is $\theta[n]=\omega n+\phi$. Moving to the next sample gives
+
+$$\theta[n+1]-\theta[n]
+=\bigl(\omega(n+1)+\phi\bigr)-\bigl(\omega n+\phi\bigr)
+=\omega.$$
+
+Thus, `per sample` does not describe what happens *inside* one sample. It describes the phase change **from one sample to the next**.
+
+For example, if $\omega=\pi/2$ rad/sample, the phase advances by $90^\circ$ at each sample:
+
+| Sample $n$ | Phase $\omega n$ | $\cos(\omega n)$ |
+|---:|---:|---:|
+| 0 | $0^\circ$ | 1 |
+| 1 | $90^\circ$ | 0 |
+| 2 | $180^\circ$ | -1 |
+| 3 | $270^\circ$ | 0 |
+| 4 | $360^\circ$ | 1 |
+
+Therefore, the number of samples per cycle is
+
+$$N_0=\frac{2\pi}{\omega}.$$
+
+For $\omega=\pi/2$, this gives $N_0=4$ samples per cycle. More generally,
+
+$$\boxed{\omega=\frac{2\pi f}{f_s}}, \qquad
+\boxed{\frac{\omega}{2\pi}=\frac{f}{f_s}},$$
+
+so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
+
+**Interactive demonstration.** Move the $\omega$ slider and use Play, Step, or Reset to see the rotating phasor and the discrete samples change together.
+
+<iframe src="./lecture_1_assets/digital_frequency_interactive.html" width="100%" height="720" style="border:0; border-radius:12px;" title="Interactive digital angular frequency demonstration"></iframe>
+
+> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive rad/sample demonstration](./lecture_1_assets/digital_frequency_interactive.html) directly. The animated GIF below is a non-interactive fallback.
+
+![Animation showing phase advance per sample](./lecture_1_assets/digital_frequency_rad_per_sample.gif)
+
+> **Dimensional note.** Formally, radians are dimensionless in SI. Writing rad/sample is nevertheless useful because it distinguishes digital angular frequency from analog angular frequency in rad/s and emphasizes that the phase increment is measured per discrete index step.
+
 ### Signals and Sequences
 
 | Symbol | Definition |
