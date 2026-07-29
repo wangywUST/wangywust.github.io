@@ -242,6 +242,18 @@ The large data volume of uncompressed video (e.g., 1080p at 30 fps $\approx$ 1.5
 
 ### 1.1.4 Communication Signals
 
+Before following a communication signal through a transmitter, it is useful to separate three terms that are often mentioned together but do **not** describe the same kind of thing:
+
+- **QPSK (Quadrature Phase-Shift Keying)** is a digital **modulation scheme**. It represents each group of 2 bits by one of four complex-valued symbols. The four symbols have different phases and are usually drawn as four points in the complex plane.
+- **QAM (Quadrature Amplitude Modulation)** is a broader family of digital **modulation schemes**. It represents bits using symbols whose amplitudes and phases can both vary. For example, 16-QAM has 16 possible symbols and carries 4 bits per symbol, while 64-QAM has 64 symbols and carries 6 bits per symbol.
+- **OFDM (Orthogonal Frequency-Division Multiplexing)** is a **multicarrier transmission method**, not a constellation or a direct bits-to-symbol mapping. It divides the available bandwidth into many orthogonal subcarriers and transmits one modulation symbol on each active subcarrier at the same time. An IFFT efficiently combines those subcarriers into one time-domain waveform.
+
+Their relationship can therefore be summarized as
+
+$$\boxed{\text{bits} \xrightarrow{\text{QPSK or QAM mapping}} \text{complex symbols} \xrightarrow{\text{placed on OFDM subcarriers}} \text{transmitted waveform}.}$$
+
+QPSK and QAM answer the question **"How does one complex symbol represent bits?"** OFDM answers the different question **"How are many such symbols transmitted simultaneously on different frequencies?"** An OFDM system may use QPSK, 16-QAM, 64-QAM, or different modulation orders on different subcarriers. Thus, phrases such as "QPSK-OFDM" and "16-QAM OFDM" mean that OFDM is the transmission framework and QPSK or 16-QAM supplies the symbols carried by its subcarriers.
+
 The purpose of a digital communication system is not to reproduce a waveform for its own sake. The transmitter starts with **information bits**, converts them into a physical signal that can travel through a channel, and the receiver tries to recover the **same information bits** from a distorted, noisy observation.
 
 For one block of an OFDM system, the signal-processing chain is:
@@ -254,7 +266,7 @@ $$\text{received samples} \rightarrow \text{CP removal} \rightarrow \text{FFT} \
 
 So the final goal is to recover the bits. Inside the OFDM receiver, the important intermediate goal is to recover the transmitted subcarrier symbols $X(k)$, because those symbols are the objects that directly encode the bits. The time-domain sequence $x(n)$ is the waveform we create in order to send those symbols through the physical channel.
 
-**From bits to symbols.** A modulation scheme such as QPSK or QAM maps a small group of bits to one complex number. That complex number is called a **symbol**. The set of possible symbols is the **constellation**. For example, QPSK has 4 constellation points and carries 2 bits per symbol; 16-QAM has 16 points and carries 4 bits per symbol.
+**From bits to symbols.** The complex number produced by QPSK or QAM mapping is called a **symbol**, and the set of all allowed symbols is called the **constellation**. The symbol $X(k)$ therefore carries the bits assigned to subcarrier $k$.
 
 In OFDM, a **carrier** is a sinusoidal wave used to carry information at a particular frequency. Instead of using one wide carrier, OFDM divides the available bandwidth into $N$ narrow frequency lanes called **subcarriers**. One symbol $X(k)$ is placed on each subcarrier $k = 0, 1, \ldots, N-1$.
 
