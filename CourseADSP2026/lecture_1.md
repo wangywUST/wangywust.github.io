@@ -98,7 +98,7 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 
 <iframe src="./CourseADSP2026/Fig/Chapter_1/digital_frequency_interactive.html" width="100%" height="720" style="border:0; border-radius:12px;" title="Interactive digital angular frequency demonstration"></iframe>
 
-> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive rad/sample demonstration](./lecture_1_assets/digital_frequency_interactive.html) directly. The animated GIF below is a non-interactive fallback.
+> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive rad/sample demonstration](./CourseADSP2026/Fig/Chapter_1/digital_frequency_interactive.html) directly. The animated GIF below is a non-interactive fallback.
 
 ![Animation showing phase advance per sample](./CourseADSP2026/Fig/Chapter_1/digital_frequency_rad_per_sample.gif)
 
@@ -345,6 +345,46 @@ $$y(n) = \sum_l h(l)\,x(n-l) + w(n) = h(n) \ast x(n) + w(n).$$
 This is why a communication channel is modeled as convolution. The impulse response $h(n)$ packages the channel's path delays and gains; $w(n)$ models additive noise. The number of significant taps is denoted by $L$, and the channel's delay spread is roughly the time span over which those taps are nonzero.
 
 A useful mental picture is speaking in a room with echoes. The microphone records the direct voice plus delayed, weaker reflected copies. Multipath is the communication-channel version of that same phenomenon.
+
+
+#### How to Interpret a Multipath Channel Tap
+
+The word **tap** comes from the **tapped-delay-line** implementation of an FIR filter or discrete-time channel. The input is passed through a sequence of one-sample delays, and a branch is "tapped" at each delay position. The branch at index $l$ contains the delayed sample $x(n-l)$ and is weighted by the channel coefficient $h(l)$:
+
+$$y(n)=h(0)x(n)+h(1)x(n-1)+h(2)x(n-2)+\cdots+w(n).$$
+
+Therefore, the $l$-th channel tap means
+
+$$\boxed{\text{tap }l=\text{the channel coefficient associated with a delay of }l\text{ samples}.}$$
+
+If the sampling period is $T_s$, the delay represented by tap $l$ is
+
+$$\boxed{\tau_l=lT_s.}$$
+
+For example, when $T_s=0.25\,\mu\text{s}$, tap $l=4$ represents a discrete delay of $1\,\mu\text{s}$. A physical propagation path with continuous delay $\tau_p$ is mapped approximately to the nearest discrete delay bin:
+
+$$l_p\approx \operatorname{round}\!\left(\frac{\tau_p}{T_s}\right).$$
+
+A tap should not always be interpreted as exactly one physical path. If several paths have delays that are too close to be resolved at the current sampling rate, they enter the same delay bin. Their complex gains then add:
+
+$$\boxed{h(l)=\sum_{p:\,l_p=l} a_p e^{j\phi_p}},$$
+
+where $a_p$, $\phi_p$, and $\tau_p$ are the magnitude, phase, and delay of physical path $p$. Consequently, one tap may contain a direct path, one reflected path, or the combined contribution of several nearly coincident paths. The most precise interpretation is:
+
+> A channel tap is one **resolvable discrete-delay component** of the sampled channel impulse response.
+
+The interactive demonstration below connects four views of the same process:
+
+1. continuous-time physical propagation paths;
+2. quantization of path delays into discrete delay bins;
+3. the resulting channel impulse response $h(l)$;
+4. the tapped-delay-line computation of $y(n)=\sum_l h(l)x(n-l)+w(n)$.
+
+Change the sampling rate to see how the delay resolution changes. Move two paths into the same delay bin to observe that their complex coefficients combine; changing their phases can produce reinforcement or cancellation.
+
+<iframe src="./CourseADSP2026/Fig/Chapter_1/multipath_channel_tap_interactive.html" width="100%" height="2200" style="border:0; border-radius:12px;" title="Interactive multipath channel tap demonstration"></iframe>
+
+> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive multipath channel tap demonstration](./CourseADSP2026/Fig/Chapter_1/multipath_channel_tap_interactive.html) directly.
 
 **Why OFDM helps.** Directly undoing the time-domain convolution $h(n)\ast x(n)$ can be difficult. OFDM is designed so that, after CP removal and an FFT, the channel becomes a simple per-subcarrier multiplication:
 

@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Multipath Channel Tap Demonstration</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --panel-soft: #f1f4f9;
+      --text: #18202b;
+      --muted: #5e6b7b;
+      --border: #d7dde7;
+      --accent: #356ae6;
+      --accent-soft: rgba(53, 106, 230, 0.12);
+      --p1: #356ae6;
+      --p2: #d97706;
+      --p3: #0f9f76;
+      --shadow: 0 8px 28px rgba(25, 40, 70, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #11151b;
+        --panel: #191f28;
+        --panel-soft: #222a35;
+        --text: #edf1f7;
+        --muted: #aab5c3;
+        --border: #354050;
+        --accent: #7da2ff;
+        --accent-soft: rgba(125, 162, 255, 0.15);
+        --p1: #7da2ff;
+        --p2: #f2a94a;
+        --p3: #4fd1a8;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 24px));
+      margin: 16px auto 28px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(1.35rem, 2.4vw, 2rem); margin-bottom: 6px; }
+    h2 { font-size: 1.05rem; margin-bottom: 4px; }
+    h3 { font-size: 1rem; margin-bottom: 8px; }
+
+    .subtitle, .helper, .note { color: var(--muted); }
+    .subtitle { margin-bottom: 16px; }
+    .helper, .note { font-size: 0.9rem; }
+
+    .grid { display: grid; gap: 12px; }
+    .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .panel, .metric {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel { padding: 15px; margin-top: 12px; }
+    .metric { padding: 12px 14px; }
+    .metric-label { color: var(--muted); font-size: 0.82rem; }
+    .metric-value { font-weight: 700; font-size: 1.18rem; margin-top: 3px; }
+
+    .path-card { border-top: 4px solid var(--path-color); }
+    .path-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--path-color);
+      border: 1px solid color-mix(in srgb, var(--path-color) 45%, var(--border));
+      background: color-mix(in srgb, var(--path-color) 11%, transparent);
+    }
+
+    label { display: block; font-size: 0.9rem; margin: 10px 0 3px; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+    .buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: var(--panel);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); }
+    button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+
+    .visual-wrap { overflow-x: auto; }
+    svg { width: 100%; min-width: 660px; height: auto; display: block; }
+    svg text { fill: var(--text); font-size: 12px; }
+    .axis { stroke: var(--border); stroke-width: 1.5; }
+    .gridline { stroke: var(--border); stroke-width: 1; opacity: 0.65; }
+    .bin { fill: var(--accent-soft); stroke: var(--border); }
+    .tap-slot { fill: var(--panel-soft); stroke: var(--border); }
+
+    .equation {
+      overflow-wrap: anywhere;
+      font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+      font-size: 1rem;
+    }
+
+    .callout {
+      padding: 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      background: var(--accent-soft);
+    }
+
+    .tap-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+    .tap-table th, .tap-table td {
+      padding: 7px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .tap-table th { color: var(--muted); font-weight: 600; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 0.86rem; color: var(--muted); }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--path-color); }
+
+    @media (max-width: 820px) {
+      .metrics, .paths, .two-col { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .metrics, .paths, .two-col { grid-template-columns: 1fr; }
+      main { width: min(100% - 14px, 1120px); margin-top: 8px; }
+      .panel { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Multipath Channel Taps: From Physical Echoes to Discrete Delay Bins</h1>
+  <p class="subtitle">Adjust the sampling rate, path delay, gain, and phase. The display shows how continuous-time propagation paths become discrete channel taps <strong>h[l]</strong>.</p>
+
+  <section class="grid metrics" aria-label="Current channel summary">
+    <div class="metric"><div class="metric-label">Sampling rate</div><div id="fsMetric" class="metric-value">4 MHz</div></div>
+    <div class="metric"><div class="metric-label">Sampling period T<sub>s</sub></div><div id="tsMetric" class="metric-value">0.250 μs</div></div>
+    <div class="metric"><div class="metric-label">Nonzero taps</div><div id="tapCountMetric" class="metric-value">3</div></div>
+    <div class="metric"><div class="metric-label">Maximum tap index</div><div id="maxTapMetric" class="metric-value">5</div></div>
+  </section>
+
+  <section class="panel">
+    <h2>Sampling resolution</h2>
+    <label for="fs">Sampling rate f<sub>s</sub>: <strong><span id="fsLabel">4</span> MHz</strong></label>
+    <input id="fs" type="range" min="1" max="12" step="1" value="4">
+    <p class="helper">Because T<sub>s</sub> = 1/f<sub>s</sub>, increasing the sampling rate creates narrower delay bins. The same physical delay may therefore move to a larger tap index.</p>
+  </section>
+
+  <section class="grid paths" aria-label="Physical paths">
+    <article class="panel path-card" style="--path-color: var(--p1)">
+      <div class="path-title"><h3>Path A: direct path</h3><span class="badge">A</span></div>
+      <label for="delayA">Delay: <strong><span id="delayALabel">0.00</span> μs</strong></label>
+      <input id="delayA" type="range" min="0" max="2" step="0.05" value="0">
+      <label for="gainA">Magnitude: <strong><span id="gainALabel">1.00</span></strong></label>
+      <input id="gainA" type="range" min="0" max="1" step="0.05" value="1">
+      <label for="phaseA">Phase: <strong><span id="phaseALabel">0</span>°</strong></label>
+      <input id="phaseA" type="range" min="-180" max="180" step="15" value="0">
+    </article>
+
+    <article class="panel path-card" style="--path-color: var(--p2)">
+      <div class="path-title"><h3>Path B: first reflection</h3><span class="badge">B</span></div>
+      <label for="delayB">Delay: <strong><span id="delayBLabel">0.55</span> μs</strong></label>
+      <input id="delayB" type="range" min="0" max="2" step="0.05" value="0.55">
+      <label for="gainB">Magnitude: <strong><span id="gainBLabel">0.60</span></strong></label>
+      <input id="gainB" type="range" min="0" max="1" step="0.05" value="0.6">
+      <label for="phaseB">Phase: <strong><span id="phaseBLabel">45</span>°</strong></label>
+      <input id="phaseB" type="range" min="-180" max="180" step="15" value="45">
+    </article>
+
+    <article class="panel path-card" style="--path-color: var(--p3)">
+      <div class="path-title"><h3>Path C: second reflection</h3><span class="badge">C</span></div>
+      <label for="delayC">Delay: <strong><span id="delayCLabel">1.30</span> μs</strong></label>
+      <input id="delayC" type="range" min="0" max="2" step="0.05" value="1.3">
+      <label for="gainC">Magnitude: <strong><span id="gainCLabel">0.30</span></strong></label>
+      <input id="gainC" type="range" min="0" max="1" step="0.05" value="0.3">
+      <label for="phaseC">Phase: <strong><span id="phaseCLabel">−60</span>°</strong></label>
+      <input id="phaseC" type="range" min="-180" max="180" step="15" value="-60">
+    </article>
+  </section>
+
+  <div class="buttons" aria-label="Example configurations">
+    <button id="separatePreset" type="button">Resolvable paths</button>
+    <button id="mergeConstructivePreset" type="button">Same tap: constructive addition</button>
+    <button id="mergeDestructivePreset" type="button">Same tap: phase cancellation</button>
+    <button id="resetPreset" type="button" class="primary">Reset</button>
+  </div>
+
+  <section class="panel">
+    <h2>1. Continuous-time paths and discrete delay bins</h2>
+    <p class="helper">Each colored marker is a physical arrival. The shaded regions are the delay bins produced by sampling. A path is mapped approximately to l<sub>p</sub> = round(τ<sub>p</sub>/T<sub>s</sub>).</p>
+    <div class="visual-wrap"><svg id="timeline" viewBox="0 0 820 220" role="img" aria-label="Physical multipath arrivals mapped into discrete delay bins"></svg></div>
+    <div class="legend">
+      <span class="legend-item" style="--path-color:var(--p1)"><span class="dot"></span>Path A</span>
+      <span class="legend-item" style="--path-color:var(--p2)"><span class="dot"></span>Path B</span>
+      <span class="legend-item" style="--path-color:var(--p3)"><span class="dot"></span>Path C</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>2. Discrete channel impulse response h[l]</h2>
+    <p class="helper">Each slot is one tap. Bar height is |h[l]|. When several paths enter the same slot, their complex gains are added, so phase can reinforce or cancel the tap.</p>
+    <div class="visual-wrap"><svg id="tapPlot" viewBox="0 0 820 300" role="img" aria-label="Magnitude of each discrete channel tap"></svg></div>
+    <div id="tapTableWrap"></div>
+  </section>
+
+  <section class="panel">
+    <h2>3. Tapped-delay-line interpretation</h2>
+    <p class="helper">The receiver forms delayed signal copies x[n−l], multiplies each one by h[l], and sums all branches.</p>
+    <div class="visual-wrap"><svg id="delayLine" viewBox="0 0 820 250" role="img" aria-label="Tapped delay line realization of the multipath channel"></svg></div>
+  </section>
+
+  <section class="grid two-col">
+    <div class="panel callout">
+      <h2>Path-to-tap mapping</h2>
+      <div id="mappingText" aria-live="polite"></div>
+    </div>
+    <div class="panel callout">
+      <h2>Current received-signal model</h2>
+      <div id="equationText" class="equation" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Key conclusion</h2>
+    <p id="conclusion" aria-live="polite"></p>
+    <p class="note"><strong>Modeling note:</strong> a physical path has a continuous delay, but a discrete-time channel stores coefficients only on the sampling grid. A single tap may therefore contain one path or the complex sum of several paths whose delays are not separately resolvable.</p>
+  </section>
+</main>
+
+<script>
+  const controls = {
+    fs: document.getElementById('fs'),
+    delayA: document.getElementById('delayA'), gainA: document.getElementById('gainA'), phaseA: document.getElementById('phaseA'),
+    delayB: document.getElementById('delayB'), gainB: document.getElementById('gainB'), phaseB: document.getElementById('phaseB'),
+    delayC: document.getElementById('delayC'), gainC: document.getElementById('gainC'), phaseC: document.getElementById('phaseC')
+  };
+
+  const pathMeta = [
+    { key: 'A', name: 'direct path', delay: 'delayA', gain: 'gainA', phase: 'phaseA', color: 'var(--p1)' },
+    { key: 'B', name: 'first reflection', delay: 'delayB', gain: 'gainB', phase: 'phaseB', color: 'var(--p2)' },
+    { key: 'C', name: 'second reflection', delay: 'delayC', gain: 'gainC', phase: 'phaseC', color: 'var(--p3)' }
+  ];
+
+  function svgEl(tag, attrs = {}) {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+    return node;
+  }
+
+  function addText(svg, x, y, text, attrs = {}) {
+    const node = svgEl('text', { x, y, ...attrs });
+    node.textContent = text;
+    svg.appendChild(node);
+    return node;
+  }
+
+  function complexFromPolar(magnitude, degrees) {
+    const radians = degrees * Math.PI / 180;
+    return { re: magnitude * Math.cos(radians), im: magnitude * Math.sin(radians) };
+  }
+
+  function addComplex(a, b) { return { re: a.re + b.re, im: a.im + b.im }; }
+  function magnitude(z) { return Math.hypot(z.re, z.im); }
+  function phaseDegrees(z) { return Math.atan2(z.im, z.re) * 180 / Math.PI; }
+
+  function cleanNumber(value, digits = 2) {
+    const threshold = 0.5 * Math.pow(10, -digits);
+    const v = Math.abs(value) < threshold ? 0 : value;
+    return v.toFixed(digits);
+  }
+
+  function complexText(z, digits = 2) {
+    const re = Math.abs(z.re) < 0.005 ? 0 : z.re;
+    const im = Math.abs(z.im) < 0.005 ? 0 : z.im;
+    if (im === 0) return cleanNumber(re, digits);
+    if (re === 0) return `${cleanNumber(im, digits)}j`;
+    return `${cleanNumber(re, digits)} ${im >= 0 ? '+' : '−'} ${cleanNumber(Math.abs(im), digits)}j`;
+  }
+
+  function getState() {
+    const fsMHz = Number(controls.fs.value);
+    const tsUs = 1 / fsMHz;
+    const paths = pathMeta.map(meta => {
+      const delayUs = Number(controls[meta.delay].value);
+      const gain = Number(controls[meta.gain].value);
+      const phase = Number(controls[meta.phase].value);
+      return {
+        ...meta,
+        delayUs,
+        gain,
+        phase,
+        exactIndex: delayUs / tsUs,
+        tapIndex: Math.round(delayUs / tsUs),
+        coefficient: complexFromPolar(gain, phase)
+      };
+    });
+    return { fsMHz, tsUs, paths };
+  }
+
+  function aggregateTaps(paths) {
+    const taps = new Map();
+    paths.forEach(path => {
+      if (path.gain <= 0) return;
+      if (!taps.has(path.tapIndex)) taps.set(path.tapIndex, { coefficient: { re: 0, im: 0 }, paths: [] });
+      const entry = taps.get(path.tapIndex);
+      entry.coefficient = addComplex(entry.coefficient, path.coefficient);
+      entry.paths.push(path);
+    });
+    return taps;
+  }
+
+  function updateLabels(state) {
+    document.getElementById('fsLabel').textContent = state.fsMHz.toFixed(0);
+    document.getElementById('fsMetric').textContent = `${state.fsMHz.toFixed(0)} MHz`;
+    document.getElementById('tsMetric').textContent = `${state.tsUs.toFixed(3)} μs`;
+    state.paths.forEach(path => {
+      document.getElementById(`delay${path.key}Label`).textContent = path.delayUs.toFixed(2);
+      document.getElementById(`gain${path.key}Label`).textContent = path.gain.toFixed(2);
+      document.getElementById(`phase${path.key}Label`).textContent = path.phase < 0 ? `−${Math.abs(path.phase)}` : String(path.phase);
+    });
+  }
+
+  function renderTimeline(state) {
+    const svg = document.getElementById('timeline');
+    svg.innerHTML = '';
+    const left = 62, right = 790, top = 38, bottom = 164, maxUs = 2;
+    const x = value => left + (value / maxUs) * (right - left);
+    const binCount = Math.ceil(maxUs / state.tsUs);
+
+    for (let l = 0; l < binCount; l++) {
+      const center = l * state.tsUs;
+      const start = Math.max(0, center - state.tsUs / 2);
+      const end = Math.min(maxUs, center + state.tsUs / 2);
+      svg.appendChild(svgEl('rect', {
+        x: x(start), y: top, width: Math.max(1, x(end) - x(start)), height: bottom - top,
+        class: 'bin', opacity: l % 2 === 0 ? '0.85' : '0.45'
+      }));
+      if (x(end) - x(start) > 34) addText(svg, (x(start) + x(end)) / 2, bottom + 22, `l=${l}`, { 'text-anchor': 'middle' });
+      svg.appendChild(svgEl('line', { x1: x(center), y1: top, x2: x(center), y2: bottom, class: 'gridline', 'stroke-dasharray': '3 4' }));
+    }
+
+    svg.appendChild(svgEl('line', { x1: left, y1: bottom, x2: right, y2: bottom, class: 'axis' }));
+    addText(svg, left, 22, 'Physical arrivals');
+    addText(svg, right, 207, 'Continuous delay τ (μs)', { 'text-anchor': 'end' });
+
+    state.paths.forEach((path, index) => {
+      const px = x(path.delayUs);
+      const yTop = 50 + index * 28;
+      svg.appendChild(svgEl('line', {
+        x1: px, y1: yTop, x2: px, y2: bottom,
+        stroke: path.color, 'stroke-width': Math.max(2, 3 + path.gain * 5), opacity: path.gain > 0 ? '1' : '0.25'
+      }));
+      svg.appendChild(svgEl('circle', { cx: px, cy: yTop, r: 5, fill: path.color, opacity: path.gain > 0 ? '1' : '0.25' }));
+      addText(svg, Math.min(px + 8, right - 150), yTop + 4, `${path.key}: τ=${path.delayUs.toFixed(2)} μs → tap ${path.tapIndex}`);
+    });
+  }
+
+  function renderTapPlot(state, taps) {
+    const svg = document.getElementById('tapPlot');
+    svg.innerHTML = '';
+    const maxIndex = Math.max(7, ...state.paths.map(p => p.tapIndex));
+    const count = maxIndex + 1;
+    const left = 54, right = 790, top = 34, base = 230, gap = 7;
+    const slotWidth = (right - left - gap * (count - 1)) / count;
+    const maxMagnitude = Math.max(1, ...[...taps.values()].map(entry => magnitude(entry.coefficient)));
+
+    [0, 0.5, 1].forEach(frac => {
+      const y = base - frac * 160;
+      svg.appendChild(svgEl('line', { x1: left, y1: y, x2: right, y2: y, class: 'gridline' }));
+      addText(svg, left - 8, y + 4, cleanNumber(frac * maxMagnitude, 1), { 'text-anchor': 'end' });
+    });
+    addText(svg, 18, 28, '|h[l]|', { 'font-weight': '700' });
+
+    for (let l = 0; l < count; l++) {
+      const sx = left + l * (slotWidth + gap);
+      svg.appendChild(svgEl('rect', { x: sx, y: top, width: slotWidth, height: base - top, rx: 6, class: 'tap-slot' }));
+      const entry = taps.get(l);
+      if (entry) {
+        const mag = magnitude(entry.coefficient);
+        const height = (mag / maxMagnitude) * 160;
+        svg.appendChild(svgEl('rect', {
+          x: sx + 5, y: base - height, width: Math.max(3, slotWidth - 10), height, rx: 4,
+          fill: 'var(--accent)', opacity: '0.88'
+        }));
+        addText(svg, sx + slotWidth / 2, Math.max(24, base - height - 7), mag.toFixed(2), { 'text-anchor': 'middle', 'font-weight': '700' });
+        if (entry.paths.length > 1) addText(svg, sx + slotWidth / 2, top + 16, `${entry.paths.length} paths`, { 'text-anchor': 'middle' });
+      }
+      addText(svg, sx + slotWidth / 2, base + 23, `l=${l}`, { 'text-anchor': 'middle' });
+    }
+    addText(svg, right, 285, 'Tap index l', { 'text-anchor': 'end' });
+  }
+
+  function renderTapTable(taps) {
+    const wrap = document.getElementById('tapTableWrap');
+    const indices = [...taps.keys()].sort((a, b) => a - b);
+    if (!indices.length) { wrap.innerHTML = '<p class="note">All path magnitudes are zero.</p>'; return; }
+    const rows = indices.map(l => {
+      const entry = taps.get(l);
+      const z = entry.coefficient;
+      return `<tr><td>${l}</td><td>${entry.paths.map(p => `Path ${p.key}`).join(', ')}</td><td>${complexText(z)}</td><td>${magnitude(z).toFixed(2)}</td><td>${phaseDegrees(z).toFixed(1)}°</td></tr>`;
+    }).join('');
+    wrap.innerHTML = `<table class="tap-table"><thead><tr><th>Tap</th><th>Contributing paths</th><th>Complex coefficient h[l]</th><th>|h[l]|</th><th>∠h[l]</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  function renderDelayLine(state, taps) {
+    const svg = document.getElementById('delayLine');
+    svg.innerHTML = '';
+    const indices = [...taps.keys()].sort((a, b) => a - b);
+    const shown = indices.slice(0, 6);
+    const y = 75;
+    const startX = 48;
+    const spacing = shown.length > 1 ? Math.min(120, 610 / (shown.length - 1)) : 120;
+
+    addText(svg, startX, 30, 'x[n]', { 'font-weight': '700', 'text-anchor': 'middle' });
+    let previousX = startX;
+    shown.forEach((l, i) => {
+      const x = startX + i * spacing;
+      if (i > 0) {
+        svg.appendChild(svgEl('line', { x1: previousX + 28, y1: y, x2: x - 28, y2: y, stroke: 'var(--border)', 'stroke-width': '2' }));
+        addText(svg, (previousX + x) / 2, y - 10, `z⁻${l - shown[i-1]}`, { 'text-anchor': 'middle' });
+      }
+      svg.appendChild(svgEl('rect', { x: x - 28, y: y - 22, width: 56, height: 44, rx: 8, fill: 'var(--panel-soft)', stroke: 'var(--border)' }));
+      addText(svg, x, y + 5, `x[n−${l}]`, { 'text-anchor': 'middle' });
+
+      const branchY = 165;
+      svg.appendChild(svgEl('line', { x1: x, y1: y + 22, x2: x, y2: branchY - 24, stroke: 'var(--accent)', 'stroke-width': '2' }));
+      svg.appendChild(svgEl('rect', { x: x - 31, y: branchY - 24, width: 62, height: 38, rx: 8, fill: 'var(--accent-soft)', stroke: 'var(--accent)' }));
+      addText(svg, x, branchY, `h[${l}]`, { 'text-anchor': 'middle', 'font-weight': '700' });
+      previousX = x;
+    });
+
+    const sumX = 755, sumY = 165;
+    shown.forEach((l, i) => {
+      const x = startX + i * spacing;
+      svg.appendChild(svgEl('line', { x1: x + 31, y1: sumY - 5, x2: sumX - 25, y2: sumY - 5, stroke: 'var(--border)', 'stroke-width': '1.7' }));
+    });
+    svg.appendChild(svgEl('circle', { cx: sumX, cy: sumY - 5, r: 23, fill: 'var(--panel)', stroke: 'var(--accent)', 'stroke-width': '2' }));
+    addText(svg, sumX, sumY + 1, 'Σ', { 'text-anchor': 'middle', 'font-size': '20', 'font-weight': '700' });
+    svg.appendChild(svgEl('line', { x1: sumX + 23, y1: sumY - 5, x2: 810, y2: sumY - 5, stroke: 'var(--accent)', 'stroke-width': '2' }));
+    addText(svg, 808, sumY - 17, 'y[n]', { 'text-anchor': 'end', 'font-weight': '700' });
+
+    if (indices.length > shown.length) addText(svg, 410, 230, `Only the first ${shown.length} nonzero branches are shown.`, { 'text-anchor': 'middle' });
+  }
+
+  function renderText(state, taps) {
+    const indices = [...taps.keys()].sort((a, b) => a - b);
+    document.getElementById('tapCountMetric').textContent = String(indices.length);
+    document.getElementById('maxTapMetric').textContent = String(Math.max(0, ...indices));
+
+    document.getElementById('mappingText').innerHTML = state.paths.map(path =>
+      `<div><strong>Path ${path.key}</strong>: τ=${path.delayUs.toFixed(2)} μs, τ/T<sub>s</sub>=${path.exactIndex.toFixed(2)}, so l=${path.tapIndex}.</div>`
+    ).join('');
+
+    const terms = indices.map(l => {
+      const z = taps.get(l).coefficient;
+      return `(${complexText(z)})x[n−${l}]`;
+    });
+    document.getElementById('equationText').innerHTML =
+      `<div>y[n] = Σ<sub>l</sub> h[l]x[n−l] + w[n]</div><div style="margin-top:8px">Current model:</div><div>y[n] = ${terms.length ? terms.join(' + ') : '0'} + w[n]</div>`;
+
+    const merged = [...taps.entries()].filter(([, entry]) => entry.paths.length > 1);
+    if (merged.length) {
+      const descriptions = merged.map(([l, entry]) => `Paths ${entry.paths.map(p => p.key).join(' and ')} occupy tap ${l}`).join('; ');
+      document.getElementById('conclusion').innerHTML = `<strong>${descriptions}.</strong> They are not represented as separate taps. Their complex gains add inside the same delay bin, and their phases may either increase or reduce |h[${merged[0][0]}]|.`;
+    } else {
+      document.getElementById('conclusion').innerHTML = 'The active paths currently occupy different delay bins, so they appear as separate nonzero taps. A tap should therefore be interpreted as a <strong>resolvable discrete-delay component</strong>, not automatically as one unique physical propagation path.';
+    }
+  }
+
+  function render() {
+    const state = getState();
+    const taps = aggregateTaps(state.paths);
+    updateLabels(state);
+    renderTimeline(state);
+    renderTapPlot(state, taps);
+    renderTapTable(taps);
+    renderDelayLine(state, taps);
+    renderText(state, taps);
+  }
+
+  Object.values(controls).forEach(control => control.addEventListener('input', render));
+
+  function setPreset(values) {
+    Object.entries(values).forEach(([key, value]) => { controls[key].value = String(value); });
+    render();
+  }
+
+  document.getElementById('separatePreset').addEventListener('click', () => setPreset({
+    fs: 4, delayA: 0, gainA: 1, phaseA: 0,
+    delayB: 0.55, gainB: 0.6, phaseB: 45,
+    delayC: 1.30, gainC: 0.3, phaseC: -60
+  }));
+
+  document.getElementById('mergeConstructivePreset').addEventListener('click', () => setPreset({
+    fs: 4, delayA: 0, gainA: 1, phaseA: 0,
+    delayB: 0.55, gainB: 0.6, phaseB: 20,
+    delayC: 0.62, gainC: 0.3, phaseC: 20
+  }));
+
+  document.getElementById('mergeDestructivePreset').addEventListener('click', () => setPreset({
+    fs: 4, delayA: 0, gainA: 1, phaseA: 0,
+    delayB: 0.55, gainB: 0.6, phaseB: 0,
+    delayC: 0.62, gainC: 0.6, phaseC: 180
+  }));
+
+  document.getElementById('resetPreset').addEventListener('click', () => setPreset({
+    fs: 4, delayA: 0, gainA: 1, phaseA: 0,
+    delayB: 0.55, gainB: 0.6, phaseB: 45,
+    delayC: 1.30, gainC: 0.3, phaseC: -60
+  }));
+
+  render();
+</script>
+</body>
+</html>
