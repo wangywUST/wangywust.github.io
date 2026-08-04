@@ -1235,7 +1235,355 @@ Retain the first $L_1 + L_2 - 1$ samples of $y(n)$; that is $x(n) \ast h(n)$.
 
 ## 2.4 Fast Fourier Transform (FFT)
 
-### 2.4.1 Divide-and-Conquer Strategy and Twiddle Factor Properties
+### 2.4.1 How Much Faster Is FFT than Direct DFT on a CPU?
+
+The FFT does **not** compute a different transform. It computes the same DFT values, but reorganizes the calculation to reuse intermediate results.
+
+For an $N$-point transform, the direct DFT evaluates
+
+$$
+X(k)=\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}, \qquad k=0,1,\ldots,N-1.
+$$
+
+Each of the $N$ output bins uses all $N$ input samples, so the dominant computational cost grows as
+
+$$
+\boxed{O(N^2)}.
+$$
+
+A radix-2 FFT recursively splits the DFT into smaller transforms and reduces the dominant cost to
+
+$$
+\boxed{O(N\log_2N)}.
+$$
+
+Ignoring constant factors, the ratio of the two growth terms is
+
+$$
+\frac{N^2}{N\log_2N}=\frac{N}{\log_2N}.
+$$
+
+This ratio is useful for understanding asymptotic growth, but it is **not** an exact prediction of runtime. Real timing also depends on function-call overhead, implementation constants, cache behavior, memory traffic, vector instructions, and the quality of the underlying numerical libraries.
+
+#### CPU experiment: matrix DFT versus NumPy FFT
+
+The following program compares:
+
+1. a direct DFT implemented as multiplication by the full $N\times N$ DFT matrix; and
+2. `numpy.fft.fft`, an optimized CPU FFT implementation.
+
+The DFT matrix is constructed **outside** the timed region. Otherwise, the measurement would include the cost of evaluating $N^2$ complex exponentials and allocating the matrix, which would exaggerate the runtime difference.
+
+```python
+import time
+import numpy as np
+
+
+def make_dft_matrix(N):
+    """Construct the N x N DFT matrix."""
+    n = np.arange(N)
+    k = n[:, None]
+    return np.exp(-2j * np.pi * k * n / N)
+
+
+def average_time(func, repeat):
+    """Return the function result and average runtime in seconds."""
+    start = time.perf_counter_ns()
+
+    result = None
+    for _ in range(repeat):
+        result = func()
+
+    elapsed_ns = time.perf_counter_ns() - start
+    return result, elapsed_ns / repeat / 1e9
+
+
+def main():
+    sizes = [32, 64, 128, 256, 512, 1024, 2048]
+    rng = np.random.default_rng(42)
+
+    print(
+        f"{'N':>6}"
+        f"{'Theory ratio':>15}"
+        f"{'Matrix DFT (ms)':>18}"
+        f"{'FFT (ms)':>14}"
+        f"{'Measured speedup':>20}"
+        f"{'Maximum error':>18}"
+    )
+
+    for N in sizes:
+        x = rng.standard_normal(N) + 1j * rng.standard_normal(N)
+
+        # Construct the DFT matrix outside the timed region.
+        W = make_dft_matrix(N)
+
+        # Warm up both implementations.
+        _ = W @ x
+        _ = np.fft.fft(x)
+
+        dft_result, dft_time = average_time(
+            lambda: W @ x,
+            repeat=100
+        )
+
+        fft_result, fft_time = average_time(
+            lambda: np.fft.fft(x),
+            repeat=5000
+        )
+
+        theoretical_ratio = N / np.log2(N)
+        measured_speedup = dft_time / max(fft_time, 1e-15)
+        maximum_error = np.max(np.abs(dft_result - fft_result))
+
+        print(
+            f"{N:6d}"
+            f"{theoretical_ratio:15.1f}"
+            f"{dft_time * 1000:18.6f}"
+            f"{fft_time * 1000:14.6f}"
+            f"{measured_speedup:20.1f}"
+            f"{maximum_error:18.2e}"
+        )
+
+
+if __name__ == "__main__":
+    main()
+```
+
+One CPU run produced the following results:
+
+| $N$ | $N/\log_2N$ | Matrix DFT (ms) | FFT (ms) | Measured speedup | Maximum error |
+|---:|---:|---:|---:|---:|---:|
+| 32 | 6.4 | 0.004000 | 0.002860 | 1.4 | $7.30\times10^{-14}$ |
+| 64 | 10.7 | 0.005000 | 0.003240 | 1.5 | $2.10\times10^{-13}$ |
+| 128 | 18.3 | 0.012000 | 0.003380 | 3.6 | $1.35\times10^{-12}$ |
+| 256 | 32.0 | 0.048000 | 0.004700 | 10.2 | $4.12\times10^{-12}$ |
+| 512 | 56.9 | 0.194000 | 0.007320 | 26.5 | $1.20\times10^{-11}$ |
+| 1024 | 102.4 | 1.137000 | 0.012280 | 92.6 | $3.53\times10^{-11}$ |
+| 2048 | 186.2 | 4.461000 | 0.019880 | 224.4 | $1.03\times10^{-10}$ |
+
+The results illustrate three important points.
+
+**Small transforms are dominated by fixed overhead.** For $N=32$ and $N=64$, both computations finish extremely quickly. Function calls, loop overhead, timer resolution, and numerical-library setup occupy a substantial fraction of the measured time. Therefore, the practical speedup is much smaller than the asymptotic ratio.
+
+**The complexity difference becomes visible as $N$ grows.** At $N=1024$, the theoretical ratio is $102.4$, while the measured speedup is approximately $92.6$. At this size, the $N^2$ work of the matrix DFT dominates the fixed overhead, and the measured trend begins to resemble the complexity prediction.
+
+**Measured speedup may exceed the simple theoretical ratio.** At $N=2048$, the full complex DFT matrix contains $2048^2$ elements. With `complex128`, it occupies approximately
+
+$$
+2048^2\times16\ \text{bytes}\approx67\ \text{MB}.
+$$
+
+Reading this matrix stresses the CPU cache and memory hierarchy. The FFT does not store a full $N\times N$ transform matrix; it performs staged butterfly operations using only $O(N)$ working storage. Consequently, the FFT benefits not only from fewer arithmetic operations, but also from much lower memory traffic.
+
+The nonzero maximum error is expected. Direct DFT and FFT perform the same mathematical transform, but they add and multiply floating-point numbers in different orders. The resulting errors of approximately $10^{-14}$ to $10^{-10}$ are ordinary floating-point roundoff and confirm that the two outputs agree numerically.
+
+A logarithmic vertical axis makes the runtime difference easier to visualize:
+
+```python
+import matplotlib.pyplot as plt
+
+N = [32, 64, 128, 256, 512, 1024, 2048]
+dft_ms = [0.004, 0.005, 0.012, 0.048, 0.194, 1.137, 4.461]
+fft_ms = [0.002860, 0.003240, 0.003380, 0.004700,
+          0.007320, 0.012280, 0.019880]
+
+plt.plot(N, dft_ms, marker="o", label="Matrix DFT")
+plt.plot(N, fft_ms, marker="o", label="FFT")
+plt.xlabel("Transform size N")
+plt.ylabel("CPU runtime (ms)")
+plt.title("CPU Runtime: Direct DFT versus FFT")
+plt.yscale("log")
+plt.grid(True)
+plt.legend()
+plt.show()
+```
+
+> **Conclusion.** FFT acceleration is modest for very small $N$, but becomes dramatic as $N$ grows. The advantage comes from both the reduction from $O(N^2)$ to $O(N\log N)$ and the FFT's much better memory behavior.
+
+### 2.4.2 Is FFT Actually Deployed on CPUs in Real Systems?
+
+Yes. CPUs are probably the **most widespread general-purpose platform** for FFT software, although they are not always the platform with the highest throughput or lowest power.
+
+CPU FFTs are common in:
+
+- MATLAB, NumPy, SciPy, and engineering simulation programs;
+- audio spectrum analysis and acoustic measurement;
+- vibration monitoring and condition diagnosis;
+- image and video processing;
+- laboratory instruments and desktop signal-analysis software;
+- moderate-size filtering, correlation, and convolution;
+- control and monitoring systems where FFT is only one small step in a larger software pipeline.
+
+Typical optimized CPU libraries include FFTW, Intel oneMKL, Apple Accelerate, and the FFT backends used by NumPy and SciPy. They exploit vector instructions, multithreading, cache blocking, and specialized kernels for different transform lengths.
+
+The main reason to keep an FFT on the CPU is often **data locality**, not peak arithmetic performance. If the input data already resides in CPU memory and the next processing stage also runs on the CPU, transferring the data to another accelerator may cost more than the FFT itself.
+
+However, production systems use several different platforms depending on where the FFT sits in the system:
+
+| Deployment context | Common platform | Main reason |
+|---|---|---|
+| Desktop software, scientific scripts, moderate workloads | CPU | Simplicity, mature libraries, data already in host memory |
+| Large offline reconstruction and scientific computing | CPU + GPU or GPU | High throughput for large or batched transforms |
+| Real-time communication, radar, and sonar front ends | FPGA, DSP, or ASIC | Continuous streaming, deterministic latency, low power |
+| Smartphones, Wi-Fi, cellular modems, embedded products | DSP or dedicated ASIC block | Very high energy efficiency at massive production scale |
+| Research prototypes and flexible real-time systems | FPGA + CPU/GPU | FPGA handles the streaming front end; CPU/GPU handles flexible back-end processing |
+
+A typical real-time sensing chain is
+
+```text
+ADC
+ ↓
+FPGA / DSP / ASIC
+  digital down-conversion
+  filtering and decimation
+  FFT or pulse compression
+  preliminary beamforming
+ ↓
+CPU / GPU
+  visualization
+  tracking
+  detection and recognition
+  neural-network inference
+```
+
+Therefore, the most accurate practical summary is:
+
+- **CPU:** broadest software use;
+- **GPU:** strongest for large offline or batched FFT throughput;
+- **FPGA/DSP/ASIC:** common in continuous real-time signal chains;
+- **dedicated ASIC/DSP blocks:** possibly responsible for the largest total number of FFT executions across phones, routers, modems, and mass-produced communication devices.
+
+The hardware choice is determined less by the abstract FFT algorithm than by four system questions:
+
+1. Where is the data produced?
+2. Where is the next processing stage executed?
+3. What latency and throughput are required?
+4. What are the power and programmability constraints?
+
+### 2.4.3 When Can a GPU Greatly Accelerate FFT?
+
+A GPU can accelerate both a **single large FFT** and **many repeated FFTs**. Nevertheless, its strongest and most reliable advantage usually appears when there is enough independent work to occupy many GPU execution units.
+
+#### Case 1: many independent transforms
+
+Suppose a sonar dataset has dimensions
+
+$$
+\text{ping}\times\text{channel}\times\text{fast-time sample}.
+$$
+
+For example,
+
+$$
+10{,}000\times128\times4096.
+$$
+
+If a 4096-point FFT is applied along the last dimension, the workload contains
+
+$$
+10{,}000\times128=1{,}280{,}000
+$$
+
+independent FFTs. This is an ideal GPU workload because many transforms can be scheduled concurrently.
+
+The same pattern occurs in:
+
+- multi-channel radar and sonar range processing;
+- Doppler processing over many range bins;
+- massive-MIMO and OFDM receivers;
+- MRI and ultrasound reconstruction over many slices or coils;
+- image or video frequency-domain processing;
+- spectral methods in computational fluid dynamics;
+- frequency-domain convolution for large batches of signals.
+
+GPU libraries refer to this arrangement as a **batched FFT**.
+
+#### Case 2: one sufficiently large transform
+
+One large FFT is also parallel. Within each FFT stage, many butterfly operations are independent and can execute simultaneously. Modern GPU FFT libraries can therefore outperform CPUs on large one-dimensional, two-dimensional, and three-dimensional transforms.
+
+However, a single large FFT is often limited by:
+
+- global-memory bandwidth;
+- repeated reading and writing between FFT stages;
+- stage-to-stage synchronization;
+- non-contiguous or strided access patterns;
+- cache capacity;
+- GPU launch and data-transfer overhead.
+
+Thus, one large FFT can benefit from a GPU, but it does not always achieve the same efficiency as a large batch of medium-size transforms.
+
+#### Case 3: the data already resides on the GPU
+
+GPU acceleration is most useful when the FFT is part of a longer GPU pipeline, for example:
+
+```text
+GPU-resident input
+ → FFT
+ → frequency-domain multiplication
+ → inverse FFT
+ → neural network or image reconstruction
+```
+
+If the program instead performs
+
+```text
+CPU memory
+ → copy to GPU
+ → one small FFT
+ → copy back to CPU
+```
+
+PCIe transfer and kernel-launch overhead may dominate the actual FFT computation. A small CPU FFT may then be faster end to end.
+
+#### Why GPU FFT is not identical to neural-network acceleration
+
+Both FFTs and neural networks involve parallel computation, synchronization, and memory access. The important distinction is **arithmetic intensity**: the amount of arithmetic performed per byte moved from memory.
+
+A butterfly performs only a small number of complex additions and multiplications after reading and before writing its data. FFT is therefore often relatively memory-bound.
+
+By contrast, a large matrix multiplication
+
+$$
+C=AB
+$$
+
+reuses blocks of $A$ and $B$ many times while producing many multiply-accumulate operations. Its arithmetic intensity can be much higher, and GPU Tensor Cores are explicitly optimized for this pattern. This is why neural-network layers can use GPU compute resources more efficiently than some FFT workloads, even though both are highly parallel.
+
+#### GPU, FPGA, and DSP are all parallel
+
+It is incorrect to describe a GPU as one high-frequency execution path and an FPGA as the only parallel device. GPUs contain many parallel execution units and deeply pipelined arithmetic units. The difference is that:
+
+- a **GPU** provides a fixed, programmable, massively parallel architecture;
+- an **FPGA** allows the designer to construct a custom spatial pipeline and choose the exact parallelism, buffering, and numerical precision;
+- a **DSP** provides programmable signal-processing cores with specialized multiply-accumulate and addressing instructions;
+- an **ASIC** fixes a custom design permanently for maximum efficiency at production scale.
+
+For a fixed streaming chain such as
+
+```text
+DDC → FIR → FFT → beamforming
+```
+
+an FPGA or ASIC can connect dedicated stages directly with on-chip FIFOs, use carefully selected fixed-point widths, and avoid repeated trips through general-purpose memory. This can give much lower and more predictable latency and power.
+
+For a flexible offline pipeline with many frames, channels, or experiments, the GPU is often more practical because it combines high throughput with mature software libraries and easy reprogramming.
+
+#### Practical decision guide
+
+| Situation | Usually preferred |
+|---|---|
+| One small FFT with data in CPU memory | CPU |
+| Many medium-size independent FFTs | GPU |
+| One very large 1D/2D/3D FFT | GPU or multicore CPU; benchmark both |
+| FFT embedded in a larger GPU reconstruction or AI pipeline | GPU |
+| Continuous real-time FFT directly after ADC | FPGA, DSP, or ASIC |
+| Fixed low-power embedded communication or sensing product | DSP or ASIC |
+| Rapidly changing research algorithm | CPU or GPU |
+
+> **Key conclusion.** A GPU provides the largest FFT acceleration when the workload is large enough to amortize launch and transfer overhead, exposes substantial parallelism, and keeps the data on the GPU for subsequent processing. Large batches of independent transforms are the clearest example.
+
+### 2.4.4 Divide-and-Conquer Strategy and Twiddle Factor Properties
 
 Direct DFT computation requires $O(N^2)$ complex multiplications and additions. The FFT exploits two fundamental properties of the twiddle factor $W_N = e^{-j2\pi/N}$:
 
@@ -1249,7 +1597,7 @@ $$W_N^{r+N/2} = -W_N^r, \qquad W_N^{N/2} = -1, \qquad W_{2N}^{2r} = W_N^r$$
 
 Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively split into two $N/2$-point DFTs, reducing complexity from $O(N^2)$ to $O(N\log_2 N)$.
 
-### 2.4.2 Radix-2 DIT and DIF FFT
+### 2.4.5 Radix-2 DIT and DIF FFT
 
 #### Decimation-in-Time (DIT) FFT
 
@@ -1290,7 +1638,7 @@ $$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]\, W_N^n\, W_{N/2}^{nk}$$
 | Structure | Butterfly inputs combined | Butterfly outputs split |
 | Complexity | $O(N\log_2 N)$ | $O(N\log_2 N)$ |
 
-### 2.4.3 Computational Complexity
+### 2.4.6 Computational Complexity
 
 For $N = 2^m$:
 
@@ -1302,9 +1650,9 @@ For $N = 2^m$:
 
 **Example** ($N = 1024 = 2^{10}$): Direct DFT requires $1{,}048{,}576$ multiplications; the FFT requires only $5{,}120$ — a speedup of $\approx 200\times$.
 
-### 2.4.4 Bit-Reversal Permutation
+### 2.4.7 Bit-Reversal Permutation
 
-> **Why DIT requires bit-reversed input.** Recall that DIT (Decimation-in-Time, §2.4.2) splits the input **recursively by even/odd indices** at each stage:
+> **Why DIT requires bit-reversed input.** Recall that DIT (Decimation-in-Time, §2.4.5) splits the input **recursively by even/odd indices** at each stage:
 > - Stage 1: separate by bit 0 (even/odd) → two groups of $N/2$
 > - Stage 2: within each group, separate by bit 1 → four groups of $N/4$
 > - $\vdots$
@@ -1312,7 +1660,7 @@ For $N = 2^m$:
 >
 > Because each stage sorts by one bit, starting from the **rightmost bit** (bit 0, which determines even/odd) and moving leftward to bit $m-1$, after all $m$ stages the element originally at index $n$ ends up at the position whose binary representation is $n$'s bits **written in reverse order**. This bit-reversed ordering is therefore not an arbitrary pre-processing step — it is the **natural outcome of DIT's recursive even/odd decomposition**, baked into the algorithm itself.
 >
-> By contrast, **DIF** (Decimation-in-Frequency, §2.4.2) splits the *output* spectrum first (even/odd frequency bins), so the *output* ends up in bit-reversed order while the input remains in natural order — a perfect input/output duality between DIT and DIF.
+> By contrast, **DIF** (Decimation-in-Frequency, §2.4.5) splits the *output* spectrum first (even/odd frequency bins), so the *output* ends up in bit-reversed order while the input remains in natural order — a perfect input/output duality between DIT and DIF.
 
 In **DIT-FFT** (Decimation-in-Time FFT), the input sequence must therefore be reordered into **bit-reversed** order before the butterfly stages can proceed. The bit-reversed index is obtained by reversing the $m$-bit binary representation of $n$:
 
