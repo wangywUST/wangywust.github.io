@@ -1267,136 +1267,48 @@ This ratio is useful for understanding asymptotic growth, but it is **not** an e
 
 #### CPU experiment: matrix DFT versus NumPy FFT
 
-The following program compares:
+The linked Colab notebook compares:
 
 1. a direct DFT implemented as multiplication by the full $N\times N$ DFT matrix; and
 2. `numpy.fft.fft`, an optimized CPU FFT implementation.
 
 The DFT matrix is constructed **outside** the timed region. Otherwise, the measurement would include the cost of evaluating $N^2$ complex exponentials and allocating the matrix, which would exaggerate the runtime difference.
 
-```python
-import time
-import numpy as np
-
-
-def make_dft_matrix(N):
-    """Construct the N x N DFT matrix."""
-    n = np.arange(N)
-    k = n[:, None]
-    return np.exp(-2j * np.pi * k * n / N)
-
-
-def average_time(func, repeat):
-    """Return the function result and average runtime in seconds."""
-    start = time.perf_counter_ns()
-
-    result = None
-    for _ in range(repeat):
-        result = func()
-
-    elapsed_ns = time.perf_counter_ns() - start
-    return result, elapsed_ns / repeat / 1e9
-
-
-def main():
-    sizes = [32, 64, 128, 256, 512, 1024, 2048]
-    rng = np.random.default_rng(42)
-
-    print(
-        f"{'N':>6}"
-        f"{'Theory ratio':>15}"
-        f"{'Matrix DFT (ms)':>18}"
-        f"{'FFT (ms)':>14}"
-        f"{'Measured speedup':>20}"
-        f"{'Maximum error':>18}"
-    )
-
-    for N in sizes:
-        x = rng.standard_normal(N) + 1j * rng.standard_normal(N)
-
-        # Construct the DFT matrix outside the timed region.
-        W = make_dft_matrix(N)
-
-        # Warm up both implementations.
-        _ = W @ x
-        _ = np.fft.fft(x)
-
-        dft_result, dft_time = average_time(
-            lambda: W @ x,
-            repeat=100
-        )
-
-        fft_result, fft_time = average_time(
-            lambda: np.fft.fft(x),
-            repeat=5000
-        )
-
-        theoretical_ratio = N / np.log2(N)
-        measured_speedup = dft_time / max(fft_time, 1e-15)
-        maximum_error = np.max(np.abs(dft_result - fft_result))
-
-        print(
-            f"{N:6d}"
-            f"{theoretical_ratio:15.1f}"
-            f"{dft_time * 1000:18.6f}"
-            f"{fft_time * 1000:14.6f}"
-            f"{measured_speedup:20.1f}"
-            f"{maximum_error:18.2e}"
-        )
-
-
-if __name__ == "__main__":
-    main()
-```
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1HJm8PkVRJNkw1eqGHrdmDUhIaXHwp28v?usp=sharing)
 
 One CPU run produced the following results:
 
-| $N$ | $N/\log_2N$ | Matrix DFT (ms) | FFT (ms) | Measured speedup | Maximum error |
-|---:|---:|---:|---:|---:|---:|
-| 32 | 6.4 | 0.004000 | 0.002860 | 1.4 | $7.30\times10^{-14}$ |
-| 64 | 10.7 | 0.005000 | 0.003240 | 1.5 | $2.10\times10^{-13}$ |
-| 128 | 18.3 | 0.012000 | 0.003380 | 3.6 | $1.35\times10^{-12}$ |
-| 256 | 32.0 | 0.048000 | 0.004700 | 10.2 | $4.12\times10^{-12}$ |
-| 512 | 56.9 | 0.194000 | 0.007320 | 26.5 | $1.20\times10^{-11}$ |
-| 1024 | 102.4 | 1.137000 | 0.012280 | 92.6 | $3.53\times10^{-11}$ |
-| 2048 | 186.2 | 4.461000 | 0.019880 | 224.4 | $1.03\times10^{-10}$ |
+**Total system RAM: 12.67 GB**
+
+| $N$ | Theory $N/\log_2(N)$ | Matrix DFT (ms) | FFT (ms) | Measured speedup | Maximum error | DFT memory (MB) | FFT memory (MB) | DFT/RAM | FFT/RAM |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 32 | 6.4 | 0.001974 | 0.008433 | 0.2 | $7.30\times10^{-14}$ | 0.017 | 0.001 | 0.0001% | 0.000008% |
+| 64 | 10.7 | 0.043887 | 0.014811 | 3.0 | $2.10\times10^{-13}$ | 0.064 | 0.002 | 0.0005% | 0.000015% |
+| 128 | 18.3 | 0.008932 | 0.016706 | 0.5 | $1.35\times10^{-12}$ | 0.254 | 0.004 | 0.0020% | 0.000030% |
+| 256 | 32.0 | 0.032389 | 0.019282 | 1.7 | $4.11\times10^{-12}$ | 1.008 | 0.008 | 0.0078% | 0.000060% |
+| 512 | 56.9 | 0.183227 | 0.025618 | 7.2 | $1.20\times10^{-11}$ | 4.016 | 0.016 | 0.0309% | 0.000120% |
+| 1024 | 102.4 | 0.859150 | 0.033769 | 25.4 | $3.53\times10^{-11}$ | 16.031 | 0.031 | 0.1235% | 0.000241% |
+| 2048 | 186.2 | 7.523412 | 0.050983 | 147.6 | $1.03\times10^{-10}$ | 64.062 | 0.062 | 0.4937% | 0.000482% |
+| 4096 | 341.3 | 30.291469 | 0.081899 | 369.9 | $4.10\times10^{-10}$ | 256.125 | 0.125 | 1.9739% | 0.000963% |
+| 8192 | 630.2 | 123.321082 | 0.173684 | 710.0 | $1.32\times10^{-9}$ | 1024.250 | 0.250 | 7.8937% | 0.001927% |
 
 The results illustrate three important points.
 
 **Small transforms are dominated by fixed overhead.** For $N=32$ and $N=64$, both computations finish extremely quickly. Function calls, loop overhead, timer resolution, and numerical-library setup occupy a substantial fraction of the measured time. Therefore, the practical speedup is much smaller than the asymptotic ratio.
 
-**The complexity difference becomes visible as $N$ grows.** At $N=1024$, the theoretical ratio is $102.4$, while the measured speedup is approximately $92.6$. At this size, the $N^2$ work of the matrix DFT dominates the fixed overhead, and the measured trend begins to resemble the complexity prediction.
+**The complexity difference becomes visible as $N$ grows.** At $N=1024$, the measured speedup is approximately $25.4$; it increases to $147.6$ at $N=2048$ and $710.0$ at $N=8192$. As $N$ grows, the $N^2$ work of the matrix DFT increasingly dominates fixed overhead.
 
-**Measured speedup may exceed the simple theoretical ratio.** At $N=2048$, the full complex DFT matrix contains $2048^2$ elements. With `complex128`, it occupies approximately
+**Measured speedup may exceed the simple theoretical ratio.** At $N=8192$, the full complex DFT matrix contains $8192^2$ elements. With `complex128`, it occupies approximately
 
 $$
-2048^2\times16\ \text{bytes}\approx67\ \text{MB}.
+8192^2\times16\ \text{bytes}\approx1.07\ \text{GB}.
 $$
 
 Reading this matrix stresses the CPU cache and memory hierarchy. The FFT does not store a full $N\times N$ transform matrix; it performs staged butterfly operations using only $O(N)$ working storage. Consequently, the FFT benefits not only from fewer arithmetic operations, but also from much lower memory traffic.
 
-The nonzero maximum error is expected. Direct DFT and FFT perform the same mathematical transform, but they add and multiply floating-point numbers in different orders. The resulting errors of approximately $10^{-14}$ to $10^{-10}$ are ordinary floating-point roundoff and confirm that the two outputs agree numerically.
+The nonzero maximum error is expected. Direct DFT and FFT perform the same mathematical transform, but they add and multiply floating-point numbers in different orders. The resulting errors of approximately $10^{-14}$ to $10^{-9}$ are ordinary floating-point roundoff and confirm that the two outputs agree numerically.
 
-A logarithmic vertical axis makes the runtime difference easier to visualize:
-
-```python
-import matplotlib.pyplot as plt
-
-N = [32, 64, 128, 256, 512, 1024, 2048]
-dft_ms = [0.004, 0.005, 0.012, 0.048, 0.194, 1.137, 4.461]
-fft_ms = [0.002860, 0.003240, 0.003380, 0.004700,
-          0.007320, 0.012280, 0.019880]
-
-plt.plot(N, dft_ms, marker="o", label="Matrix DFT")
-plt.plot(N, fft_ms, marker="o", label="FFT")
-plt.xlabel("Transform size N")
-plt.ylabel("CPU runtime (ms)")
-plt.title("CPU Runtime: Direct DFT versus FFT")
-plt.yscale("log")
-plt.grid(True)
-plt.legend()
-plt.show()
-```
+A logarithmic vertical axis makes the runtime difference easier to visualize; the linked Colab notebook generates this plot directly.
 
 > **Conclusion.** FFT acceleration is modest for very small $N$, but becomes dramatic as $N$ grows. The advantage comes from both the reduction from $O(N^2)$ to $O(N\log N)$ and the FFT's much better memory behavior.
 
