@@ -1235,6 +1235,61 @@ Retain the first $L_1 + L_2 - 1$ samples of $y(n)$; that is $x(n) \ast h(n)$.
 
 ## 2.4 Fast Fourier Transform (FFT)
 
+### 2.4.4 Divide-and-Conquer Strategy and Twiddle Factor Properties
+
+Direct DFT computation requires $O(N^2)$ complex multiplications and additions. The FFT exploits two fundamental properties of the twiddle factor $W_N = e^{-j2\pi/N}$:
+
+**Periodicity**:
+
+$$W_N^{r+N} = W_N^r$$
+
+**Symmetry**:
+
+$$W_N^{r+N/2} = -W_N^r, \qquad W_N^{N/2} = -1, \qquad W_{2N}^{2r} = W_N^r$$
+
+Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively split into two $N/2$-point DFTs, reducing complexity from $O(N^2)$ to $O(N\log_2 N)$.
+
+### 2.4.5 Radix-2 DIT and DIF FFT
+
+#### Decimation-in-Time (DIT) FFT
+
+Split $x(n)$ into even-indexed and odd-indexed subsequences:
+
+$$x_1(n) = x(2n), \quad x_2(n) = x(2n+1), \quad n = 0, 1, \ldots, N/2-1$$
+
+Then:
+
+$$X(k) = \underbrace{\sum_{n=0}^{N/2-1} x(2n)\, W_{N/2}^{nk}}_{U(k)} + W_N^k \underbrace{\sum_{n=0}^{N/2-1} x(2n+1)\, W_{N/2}^{nk}}_{V(k)}$$
+
+Using the symmetry $W_N^{k+N/2} = -W_N^k$, the **butterfly equations** are:
+
+$$\boxed{X(k) = U(k) + W_N^k V(k)} \qquad k = 0, 1, \ldots, N/2-1$$
+
+$$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
+
+Apply recursively for $m = \log_2 N$ stages.
+
+> ![Figure 2.3](<./CourseADSP2026/Fig/Chapter_1/fig_2_3.jpg>)
+>
+> *Figure 2.3: 8-point DIT-FFT signal flow graph.*
+
+#### Decimation-in-Frequency (DIF) FFT
+
+Split $x(n)$ into the first half and second half:
+
+$$X(2k) = \sum_{n=0}^{N/2-1}[x(n) + x(n+N/2)]\, W_{N/2}^{nk}$$
+
+$$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]\, W_N^n\, W_{N/2}^{nk}$$
+
+**Comparison**:
+
+| | DIT-FFT | DIF-FFT |
+|---|---------|---------|
+| Input order | Bit-reversed | Natural |
+| Output order | Natural | Bit-reversed |
+| Structure | Butterfly inputs combined | Butterfly outputs split |
+| Complexity | $O(N\log_2 N)$ | $O(N\log_2 N)$ |
+
 ### 2.4.1 How Much Faster Is FFT than Direct DFT on a CPU?
 
 The FFT does **not** compute a different transform. It computes the same DFT values, but reorganizes the calculation to reuse intermediate results.
@@ -1494,61 +1549,6 @@ For a flexible offline pipeline with many frames, channels, or experiments, the 
 | Rapidly changing research algorithm | CPU or GPU |
 
 > **Key conclusion.** A GPU provides the largest FFT acceleration when the workload is large enough to amortize launch and transfer overhead, exposes substantial parallelism, and keeps the data on the GPU for subsequent processing. Large batches of independent transforms are the clearest example.
-
-### 2.4.4 Divide-and-Conquer Strategy and Twiddle Factor Properties
-
-Direct DFT computation requires $O(N^2)$ complex multiplications and additions. The FFT exploits two fundamental properties of the twiddle factor $W_N = e^{-j2\pi/N}$:
-
-**Periodicity**:
-
-$$W_N^{r+N} = W_N^r$$
-
-**Symmetry**:
-
-$$W_N^{r+N/2} = -W_N^r, \qquad W_N^{N/2} = -1, \qquad W_{2N}^{2r} = W_N^r$$
-
-Using a divide-and-conquer strategy, an $N$-point DFT ($N = 2^m$) is recursively split into two $N/2$-point DFTs, reducing complexity from $O(N^2)$ to $O(N\log_2 N)$.
-
-### 2.4.5 Radix-2 DIT and DIF FFT
-
-#### Decimation-in-Time (DIT) FFT
-
-Split $x(n)$ into even-indexed and odd-indexed subsequences:
-
-$$x_1(n) = x(2n), \quad x_2(n) = x(2n+1), \quad n = 0, 1, \ldots, N/2-1$$
-
-Then:
-
-$$X(k) = \underbrace{\sum_{n=0}^{N/2-1} x(2n)\, W_{N/2}^{nk}}_{U(k)} + W_N^k \underbrace{\sum_{n=0}^{N/2-1} x(2n+1)\, W_{N/2}^{nk}}_{V(k)}$$
-
-Using the symmetry $W_N^{k+N/2} = -W_N^k$, the **butterfly equations** are:
-
-$$\boxed{X(k) = U(k) + W_N^k V(k)} \qquad k = 0, 1, \ldots, N/2-1$$
-
-$$\boxed{X(k+N/2) = U(k) - W_N^k V(k)}$$
-
-Apply recursively for $m = \log_2 N$ stages.
-
-> ![Figure 2.3](<./CourseADSP2026/Fig/Chapter_1/fig_2_3.jpg>)
->
-> *Figure 2.3: 8-point DIT-FFT signal flow graph.*
-
-#### Decimation-in-Frequency (DIF) FFT
-
-Split $x(n)$ into the first half and second half:
-
-$$X(2k) = \sum_{n=0}^{N/2-1}[x(n) + x(n+N/2)]\, W_{N/2}^{nk}$$
-
-$$X(2k+1) = \sum_{n=0}^{N/2-1}[x(n) - x(n+N/2)]\, W_N^n\, W_{N/2}^{nk}$$
-
-**Comparison**:
-
-| | DIT-FFT | DIF-FFT |
-|---|---------|---------|
-| Input order | Bit-reversed | Natural |
-| Output order | Natural | Bit-reversed |
-| Structure | Butterfly inputs combined | Butterfly outputs split |
-| Complexity | $O(N\log_2 N)$ | $O(N\log_2 N)$ |
 
 ### 2.4.6 Computational Complexity
 
