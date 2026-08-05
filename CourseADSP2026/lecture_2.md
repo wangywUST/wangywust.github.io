@@ -1103,6 +1103,52 @@ On the unit circle: $R_x(e^{j\omega}) = \sigma_0^2 \lvert H_+(e^{j\omega})\rvert
 
 $$x(n) = H_+(z)\, w(n), \quad w(n) \sim \mathrm{WN}(0, \sigma_0^2)$$
 
+This interpretation follows directly by reversing the filtering relation developed in the previous section. For a WSS input $u(n)$ passed through an LTI filter $H(z)$,
+
+$$x(n)=H(z)u(n)
+\quad\Longrightarrow\quad
+R_x(z)=H(z)H^{\ast}\!\left(\frac{1}{z^{\ast}}\right)R_u(z).$$
+
+White noise has autocorrelation and PSD
+
+$$r_w(l)=\sigma_0^2\delta(l)
+\quad\Longleftrightarrow\quad
+R_w(z)=\sigma_0^2,$$
+
+so its spectrum is flat: it contains equal power per unit frequency and has no spectral coloring. If this white noise is passed through $H_+(z)$, the output PSD is
+
+$$
+\begin{aligned}
+R_x(z)
+&=H_+(z)R_w(z)H_+^{\ast}\!\left(\frac{1}{z^{\ast}}\right)\\
+&=\sigma_0^2H_+(z)H_+^{\ast}\!\left(\frac{1}{z^{\ast}}\right).
+\end{aligned}
+$$
+
+This is exactly the expression supplied by the spectral factorization theorem. Therefore the theorem is not merely an algebraic decomposition of $R_x(z)$: it constructs a linear stochastic model whose output has the prescribed PSD. The logical relationship with the preceding filtering results is
+
+$$
+\underbrace{H(z),\ R_u(z)}_{\text{known}}
+\xrightarrow{\text{forward filtering}}
+\underbrace{R_x(z)}_{\text{computed}},
+\qquad
+\underbrace{R_x(z)}_{\text{known}}
+\xrightarrow{\text{spectral factorization}}
+\underbrace{H_+(z)}_{\text{recovered shaping filter}}.
+$$
+
+In words, $H_+(z)$ reshapes the flat spectrum of white noise into the colored spectrum $R_x(e^{j\omega})$:
+
+$$
+\underbrace{R_w(e^{j\omega})=\sigma_0^2}_{\text{flat white spectrum}}
+\xrightarrow{\ \lvert H_+(e^{j\omega})\rvert^2\ }
+\underbrace{R_x(e^{j\omega})}_{\text{desired colored spectrum}}.
+$$
+
+The PSD determines only $\lvert H(e^{j\omega})\rvert^2$, not the phase of $H(e^{j\omega})$. Hence many filters, differing for example by an all-pass factor, can produce the same PSD. Selecting the minimum-phase factor $H_+(z)$ chooses the canonical realization: subject to the usual normalization of a positive real leading gain, it is unique, causal, and stable, and its inverse is also causal and stable.
+
+There is also an important statistical qualification. Starting from the PSD alone, the construction guarantees that the generated output has the same autocorrelation, and hence the same **second-order statistics**, as the specified process $x(n)$. It does not in general determine all higher-order distributions. If $x(n)$ is Gaussian, however, its mean and covariance determine all of its finite-dimensional distributions, so the shaping-filter model specifies the full Gaussian process law rather than only a second-order-equivalent process.
+
 Its inverse $1/H_+(z)$ is the **whitening filter** — it converts $x(n)$ back to white noise, because
 
 $$\frac{1}{H_+(z)}\, R_x(z)\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \frac{1}{H_+(z)}\, \sigma_0^2 H_+(z) H_+^{\ast}(1/z^{\ast})\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \sigma_0^2$$
