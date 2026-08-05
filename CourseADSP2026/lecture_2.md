@@ -1295,11 +1295,34 @@ This is a system of linear equations in the unknown AR coefficients $\lbrace a_k
 
 ### Definition
 
-An **AR($p$) process** is the special case $q = 0$ — an **all-pole model** driven by white noise:
+An **AR($p$) process** is the special case $q=0$ of the ARMA model. When $q=0$, the moving-average polynomial is simply $B(z)=1$: the excitation contains only the current white-noise sample, while past output samples are fed back through the autoregressive coefficients:
 
 $$\boxed{x(n) = -\sum_{k=1}^{p} a_k\, x(n-k) + w(n), \qquad w(n) \sim \mathrm{WN}(0, \sigma_w^2)}$$
 
-The filter is $H(z) = 1/A(z)$ where $A(z) = 1 + \sum_{k=1}^p a_k z^{-k}$.
+To see why this is called an **all-pole model**, first move all terms involving $x(n)$ to the left:
+
+$$x(n)+\sum_{k=1}^{p}a_kx(n-k)=w(n).$$
+
+Taking the $z$-transform (with zero initial conditions) gives
+
+$$X(z)+\sum_{k=1}^{p}a_kz^{-k}X(z)=W(z),$$
+
+and hence
+
+$$
+\underbrace{\left(1+\sum_{k=1}^{p}a_kz^{-k}\right)}_{A(z)}X(z)=W(z).
+$$
+
+Thus $x(n)$ can be viewed as the output of an LTI shaping filter driven by white noise:
+
+$$
+X(z)=H(z)W(z),
+\qquad
+\boxed{H(z)\triangleq\frac{X(z)}{W(z)}=\frac{1}{A(z)}
+=\frac{1}{1+\sum_{k=1}^{p}a_kz^{-k}}.}
+$$
+
+The transfer function has a constant numerator in $z^{-1}$ and therefore has no adjustable zeros with which to shape the spectrum; its frequency-selective behavior is determined entirely by the roots of the denominator $A(z)$, which are the **poles** of $H(z)$. This is the meaning of “all-pole.” (If the expression is rewritten as a ratio of polynomials in positive powers of $z$, algebraic zeros appear at the origin, but they do not provide independently adjustable spectral notches.) For a causal stable AR process, all poles must lie strictly inside the unit circle.
 
 ### Yule-Walker Equations for AR
 
@@ -1325,9 +1348,25 @@ $$\sigma_w^2 = r_x(0) + \sum_{k=1}^{p} a_k\, r_x(k) = r_x(0) + \mathbf{a}^T\math
 
 ### Power Spectral Density of AR($p$)
 
+Since white noise has the flat PSD $R_w(e^{j\omega})=\sigma_w^2$ and the output of an LTI filter satisfies $R_x=|H|^2R_w$,
+
+$$
+R_x(e^{j\omega})
+=\left|H(e^{j\omega})\right|^2R_w(e^{j\omega})
+=\frac{1}{|A(e^{j\omega})|^2}\sigma_w^2.
+$$
+
+Therefore,
+
 $$\boxed{R_x(e^{j\omega}) = \frac{\sigma_w^2}{\lvert A(e^{j\omega})\rvert^2} = \frac{\sigma_w^2}{\left\lvert1 + \sum_{k=1}^p a_k e^{-j\omega k}\right\rvert^2}}$$
 
-The AR spectrum has **peaks at frequencies near the poles** of $H(z)$. This makes AR models excellent for processes with **sharp spectral peaks** (narrowband resonances), such as voiced speech, sonar echoes at discrete angles, or vibration resonance modes.
+The phrase “a spectral peak near a pole” refers to the pole's **angle** in the $z$-plane. If a pole is located at
+
+$$z_i=r_i e^{j\omega_i}, \qquad r_i<1,$$
+
+then evaluating the frequency response on the unit circle at $z=e^{j\omega}$ makes the denominator small when $\omega\approx\omega_i$. Consequently, $|H(e^{j\omega})|$ and $R_x(e^{j\omega})$ become large near $\omega_i$. The closer $r_i$ is to $1$, the smaller the minimum denominator and the sharper and higher the resonance peak (while $r_i<1$ is still required for stability).
+
+This makes AR models excellent for processes with **sharp spectral peaks** (narrowband resonances), such as voiced speech, sonar echoes at discrete angles, or vibration resonance modes.
 
 > **Key use case:** AR processes are the workhorse of **linear prediction** (Chapter 3). Because the Yule-Walker equations are Toeplitz, the AR coefficients can be estimated efficiently from the autocorrelation using the Levinson-Durbin algorithm. This will be the bridge between Chapter 2 (analysis) and Chapter 3 (prediction and estimation).
 
