@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AR, MA, and ARMA Spectrum Explorer</title>
+<style>
+  :root { color-scheme:light dark; --bg:#fff; --ink:#172033; --muted:#5f6879; --line:#d8deea; --panel:#f6f8fc; --ar:#d34f4f; --ma:#2869c7; --arma:#34835b; --unit:#8a93a5; }
+  @media (prefers-color-scheme:dark) { :root { --bg:#11151d; --ink:#edf1f7; --muted:#aeb7c6; --line:#343c49; --panel:#191f2a; --ar:#ff7770; --ma:#69a8ff; --arma:#62cf91; --unit:#788396; } }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--ink); font-family:Inter,Segoe UI,Arial,sans-serif; }
+  .shell { max-width:1120px; margin:auto; border:1px solid var(--line); border-radius:16px; padding:18px; }
+  h2 { margin:0 0 5px; font-size:22px; }
+  .intro { margin:0 0 14px; color:var(--muted); line-height:1.45; }
+  .controls { display:grid; grid-template-columns:repeat(2,minmax(240px,1fr)); gap:12px 22px; padding:14px; background:var(--panel); border-radius:12px; }
+  label { display:block; font-weight:650; margin-bottom:5px; }
+  input[type=range] { width:100%; accent-color:var(--arma); }
+  .plots { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(260px,.75fr); gap:16px; margin-top:16px; align-items:start; }
+  .plotBlock { min-width:0; }
+  canvas { display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:var(--bg); }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; margin:9px 2px 0; color:var(--muted); font-size:13px; }
+  .key { display:inline-flex; align-items:center; gap:6px; }
+  .swatch { width:21px; height:3px; border-radius:2px; }
+  .modelSelect { display:flex; gap:7px; margin-bottom:9px; }
+  button { flex:1; border:1px solid var(--line); border-radius:9px; padding:7px 8px; background:var(--bg); color:var(--ink); cursor:pointer; font-weight:650; }
+  button.active { color:var(--bg); background:var(--ink); border-color:var(--ink); }
+  .equations { margin-top:14px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .eq { border-left:4px solid; padding:9px 11px; background:var(--panel); line-height:1.5; min-width:0; overflow-wrap:anywhere; }
+  .eq strong { display:block; margin-bottom:3px; }
+  .eq.ar { border-color:var(--ar); } .eq.ma { border-color:var(--ma); } .eq.arma { border-color:var(--arma); }
+  .readout { margin-top:10px; color:var(--muted); line-height:1.45; }
+  @media (max-width:760px) { .controls,.plots,.equations { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main class="shell">
+  <h2>AR / MA / ARMA power-spectrum explorer</h2>
+  <p class="intro">The three curves use the same white-noise power. Move the conjugate pole pair and zero pair to see how poles create peaks, zeros create notches, and ARMA combines both effects.</p>
+
+  <section class="controls" aria-label="Model parameters">
+    <div>
+      <label for="pr">Pole radius r<sub>p</sub> = <span id="prv">0.88</span></label>
+      <input id="pr" type="range" min="0.05" max="0.98" step="0.01" value="0.88" />
+    </div>
+    <div>
+      <label for="pa">Pole angle θ<sub>p</sub> = <span id="pav">0.30π</span></label>
+      <input id="pa" type="range" min="0.03" max="0.97" step="0.01" value="0.30" />
+    </div>
+    <div>
+      <label for="zr">Zero radius r<sub>z</sub> = <span id="zrv">0.95</span></label>
+      <input id="zr" type="range" min="0.05" max="1.00" step="0.01" value="0.95" />
+    </div>
+    <div>
+      <label for="za">Zero angle θ<sub>z</sub> = <span id="zav">0.68π</span></label>
+      <input id="za" type="range" min="0.03" max="0.97" step="0.01" value="0.68" />
+    </div>
+  </section>
+
+  <section class="plots">
+    <div class="plotBlock">
+      <canvas id="spectrum" width="820" height="500" role="img" aria-label="Power spectral density comparison for AR, MA, and ARMA models"></canvas>
+      <div class="legend" aria-label="Spectrum legend">
+        <span class="key"><span class="swatch" style="background:var(--ar)"></span>AR(2): poles only</span>
+        <span class="key"><span class="swatch" style="background:var(--ma)"></span>MA(2): zeros only</span>
+        <span class="key"><span class="swatch" style="background:var(--arma)"></span>ARMA(2,2): poles + zeros</span>
+      </div>
+    </div>
+    <div class="plotBlock">
+      <div class="modelSelect" aria-label="Pole-zero diagram model">
+        <button type="button" data-model="ar">AR</button>
+        <button type="button" data-model="ma">MA</button>
+        <button type="button" data-model="arma" class="active">ARMA</button>
+      </div>
+      <canvas id="pz" width="500" height="500" role="img" aria-label="Pole-zero diagram for the selected model"></canvas>
+      <div class="legend"><span>× pole</span><span>○ zero</span><span>dashed circle: |z| = 1</span></div>
+    </div>
+  </section>
+
+  <section class="equations" aria-label="Current model equations">
+    <div class="eq ar"><strong>AR(2)</strong><span id="areq"></span></div>
+    <div class="eq ma"><strong>MA(2)</strong><span id="maeq"></span></div>
+    <div class="eq arma"><strong>ARMA(2,2)</strong><span id="armaeq"></span></div>
+  </section>
+  <div id="readout" class="readout" aria-live="polite"></div>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const pr=$('pr'),pa=$('pa'),zr=$('zr'),za=$('za');
+  const sc=$('spectrum'), pc=$('pz'), sx=sc.getContext('2d'), px=pc.getContext('2d');
+  let selected='arma';
+  const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const coeffs = (r,t) => [-2*r*Math.cos(t), r*r];
+  const mag2 = (r,t,w) => {
+    const a=coeffs(r,t), re=1+a[0]*Math.cos(w)+a[1]*Math.cos(2*w), im=-a[0]*Math.sin(w)-a[1]*Math.sin(2*w);
+    return re*re+im*im;
+  };
+  function line(ctx,pts,color,width=2.5){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
+  function spectrum(){
+    const W=sc.width,H=sc.height,L=64,R=18,T=22,B=48,pR=+pr.value,pT=+pa.value*Math.PI,zR=+zr.value,zT=+za.value*Math.PI;
+    sx.clearRect(0,0,W,H); sx.fillStyle=css('--bg'); sx.fillRect(0,0,W,H);
+    const ymin=-40,ymax=40, xp=w=>L+w/Math.PI*(W-L-R), yp=d=>T+(ymax-d)/(ymax-ymin)*(H-T-B);
+    sx.font='13px Segoe UI,Arial'; sx.fillStyle=css('--muted'); sx.strokeStyle=css('--line'); sx.lineWidth=1;
+    for(let d=-40;d<=40;d+=20){const y=yp(d);sx.beginPath();sx.moveTo(L,y);sx.lineTo(W-R,y);sx.stroke();sx.fillText(d+' dB',8,y+4);}
+    [['0',0],['0.25π',.25],['0.5π',.5],['0.75π',.75],['π',1]].forEach(([s,v])=>{const x=xp(v*Math.PI);sx.beginPath();sx.moveTo(x,T);sx.lineTo(x,H-B);sx.stroke();sx.textAlign='center';sx.fillText(s,x,H-20);}); sx.textAlign='start';
+    const curves={ar:[],ma:[],arma:[]};
+    for(let i=0;i<=500;i++){const w=i/500*Math.PI, den=mag2(pR,pT,w),num=mag2(zR,zT,w); curves.ar.push([xp(w),yp(Math.max(ymin,Math.min(ymax,10*Math.log10(1/den))))]);curves.ma.push([xp(w),yp(Math.max(ymin,Math.min(ymax,10*Math.log10(num))))]);curves.arma.push([xp(w),yp(Math.max(ymin,Math.min(ymax,10*Math.log10(num/den))))]);}
+    line(sx,curves.ar,css('--ar'));line(sx,curves.ma,css('--ma'));line(sx,curves.arma,css('--arma'),3);
+    sx.fillStyle=css('--ink');sx.font='14px Segoe UI,Arial';sx.fillText('PSD (dB, σ²w = 1)',L,T-6);sx.textAlign='right';sx.fillText('ω (rad/sample)',W-R,H-5);sx.textAlign='start';
+  }
+  function marker(ctx,x,y,type,color){ctx.strokeStyle=color;ctx.lineWidth=3;if(type==='pole'){ctx.beginPath();ctx.moveTo(x-7,y-7);ctx.lineTo(x+7,y+7);ctx.moveTo(x+7,y-7);ctx.lineTo(x-7,y+7);ctx.stroke();}else{ctx.beginPath();ctx.arc(x,y,8,0,2*Math.PI);ctx.stroke();}}
+  function pz(){
+    const W=pc.width,H=pc.height,cx=W/2,cy=H/2,rad=Math.min(W,H)*.38,pR=+pr.value,pT=+pa.value*Math.PI,zR=+zr.value,zT=+za.value*Math.PI;
+    px.clearRect(0,0,W,H);px.fillStyle=css('--bg');px.fillRect(0,0,W,H);px.strokeStyle=css('--line');px.lineWidth=1;px.beginPath();px.moveTo(28,cy);px.lineTo(W-28,cy);px.moveTo(cx,28);px.lineTo(cx,H-28);px.stroke();px.setLineDash([6,5]);px.strokeStyle=css('--unit');px.beginPath();px.arc(cx,cy,rad,0,2*Math.PI);px.stroke();px.setLineDash([]);
+    const pair=(r,t,type,color)=>{[t,-t].forEach(a=>marker(px,cx+rad*r*Math.cos(a),cy-rad*r*Math.sin(a),type,color));};
+    if(selected!=='ma') pair(pR,pT,'pole',css('--ar')); if(selected!=='ar') pair(zR,zT,'zero',css('--ma'));
+    px.fillStyle=css('--muted');px.font='14px Segoe UI,Arial';px.fillText('Re{z}',W-62,cy-8);px.fillText('Im{z}',cx+8,38);px.fillText('1',cx+rad+4,cy+18);px.fillStyle=css('--ink');px.font='15px Segoe UI,Arial';px.fillText(selected.toUpperCase()+' pole-zero diagram',18,24);
+  }
+  const f=n=>(n>=0?'+ ':'− ')+Math.abs(n).toFixed(3);
+  function text(){
+    const p=coeffs(+pr.value,+pa.value*Math.PI),z=coeffs(+zr.value,+za.value*Math.PI);
+    $('prv').textContent=(+pr.value).toFixed(2);$('pav').textContent=(+pa.value).toFixed(2)+'π';$('zrv').textContent=(+zr.value).toFixed(2);$('zav').textContent=(+za.value).toFixed(2)+'π';
+    $('areq').innerHTML='x[n] '+f(-p[0])+'x[n−1] '+f(-p[1])+'x[n−2] = w[n]';
+    $('maeq').innerHTML='x[n] = w[n] '+f(z[0])+'w[n−1] '+f(z[1])+'w[n−2]';
+    $('armaeq').innerHTML='x[n] '+f(p[0])+'x[n−1] '+f(p[1])+'x[n−2] = w[n] '+f(z[0])+'w[n−1] '+f(z[1])+'w[n−2]';
+    $('readout').innerHTML='Pole-controlled peak near <strong>'+ (+pa.value).toFixed(2)+'π</strong>; zero-controlled notch near <strong>'+ (+za.value).toFixed(2)+'π</strong>. Moving either radius toward 1 strengthens its effect.';
+  }
+  function draw(){text();spectrum();pz();}
+  [pr,pa,zr,za].forEach(el=>el.addEventListener('input',draw));
+  document.querySelectorAll('[data-model]').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.model;document.querySelectorAll('[data-model]').forEach(x=>x.classList.toggle('active',x===b));pz();}));
+  draw();
+})();
+</script>
+</body>
+</html>
