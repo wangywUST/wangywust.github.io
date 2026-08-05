@@ -823,6 +823,62 @@ The output PSD formula $R_y(z) = H(z) H^{\ast}(1/z^{\ast}) R_x(z)$ invites a rev
 
 > Given a non-negative PSD $R_x(z)$ (or equivalently, a positive semi-definite autocorrelation sequence $r_x(l)$), can we write it as $R_x(z) = H_+(z) H_+^{\ast}(1/z^{\ast})$ for some **minimum-phase** filter $H_+(z)$?
 
+### How This Question Follows from the Previous Section
+
+The previous section studied the **forward filtering problem**. If a WSS input $u(n)$ is passed through an LTI filter $H(z)$, then the output $x(n)$ has PSD
+
+$$R_x(z)=H(z)H^{\ast}\!\left(\frac{1}{z^{\ast}}\right)R_u(z).$$
+
+In particular, let the input be white noise $w(n)$ with variance $\sigma_w^2$. Since its PSD is flat,
+
+$$R_w(z)=\sigma_w^2,$$
+
+the output PSD becomes
+
+$$R_x(z)=\sigma_w^2 H(z)H^{\ast}\!\left(\frac{1}{z^{\ast}}\right),$$
+
+or, on the unit circle,
+
+$$R_x(e^{j\omega})=\sigma_w^2\lvert H(e^{j\omega})\rvert^2.$$
+
+Thus, a filter transforms spectrally flat white noise into a process with a shaped, or "colored," spectrum. Spectral factorization asks whether this interpretation can be reversed:
+
+$$\boxed{\text{Given }R_x \quad \Longrightarrow \quad \text{find a white-noise shaping filter }H_+.}$$
+
+Equivalently, can every admissible PSD be interpreted as the output spectrum of a causal stable filter driven by white noise? If the factorization exists, the corresponding stochastic model is
+
+$$x(n)=H_+(z)w(n), \qquad w(n)\sim \mathrm{WN}(0,\sigma_0^2),$$
+
+with
+
+$$R_x(z)=\sigma_0^2H_+(z)H_+^{\ast}\!\left(\frac{1}{z^{\ast}}\right).$$
+
+The formulation in terms of $r_x(l)$ is equivalent because the autocorrelation sequence and the PSD are a Fourier-transform pair:
+
+$$R_x(e^{j\omega})=\sum_{l=-\infty}^{\infty}r_x(l)e^{-j\omega l}.$$
+
+### Why Require a Minimum-Phase Factor?
+
+The PSD determines only the **squared magnitude** $\lvert H(e^{j\omega})\rvert^2$, not the phase of $H(e^{j\omega})$. Consequently, without an additional constraint, the spectral factor is generally not unique. For example, reflecting a zero across the unit circle changes the phase response but, after the appropriate gain adjustment, leaves the magnitude response unchanged. Multiplication by an all-pass filter likewise changes phase without changing magnitude.
+
+Requiring $H_+(z)$ to be **minimum-phase** selects a canonical factor from all filters having the same magnitude response: its zeros lie inside the unit circle, and under the usual causal-stable assumptions both $H_+(z)$ and its inverse $1/H_+(z)$ are causal and stable. This requirement therefore provides:
+
+- **uniqueness** of the spectral factor, apart from a constant unit-magnitude phase factor (removed by choosing a positive real gain);
+- a **causal stable shaping filter** that generates $x(n)$ from white noise; and
+- a **causal stable whitening filter** $1/H_+(z)$ that recovers the innovation $w(n)$ from $x(n)$.
+
+The logical transition is therefore
+
+$$\underbrace{H(z)\text{ and an input PSD}}_{\text{known}}
+\xrightarrow{\text{forward filtering}}
+\underbrace{\text{output PSD}}_{\text{computed}},$$
+
+followed by
+
+$$\underbrace{\text{a PSD }R_x(z)}_{\text{known}}
+\xrightarrow{\text{spectral factorization}}
+\underbrace{\text{its minimum-phase shaping filter }H_+(z)}_{\text{recovered}}.$$
+
 The answer is **yes** for any rational PSD satisfying the Paley–Wiener condition, and the factorization is **unique** if we require $H_+(z)$ to be minimum-phase (all zeros inside the unit circle). This is the **spectral factorization theorem**.
 
 ## 4.2 Pole-Zero Structure of the PSD
