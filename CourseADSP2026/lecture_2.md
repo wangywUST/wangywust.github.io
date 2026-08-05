@@ -1149,9 +1149,25 @@ The PSD determines only $\lvert H(e^{j\omega})\rvert^2$, not the phase of $H(e^{
 
 There is also an important statistical qualification. Starting from the PSD alone, the construction guarantees that the generated output has the same autocorrelation, and hence the same **second-order statistics**, as the specified process $x(n)$. It does not in general determine all higher-order distributions. If $x(n)$ is Gaussian, however, its mean and covariance determine all of its finite-dimensional distributions, so the shaping-filter model specifies the full Gaussian process law rather than only a second-order-equivalent process.
 
-Its inverse $1/H_+(z)$ is the **whitening filter** — it converts $x(n)$ back to white noise, because
+Its inverse $1/H_+(z)$ is the **whitening filter**. To make this statement explicit, define the output of the inverse filter as
 
-$$\frac{1}{H_+(z)}\, R_x(z)\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \frac{1}{H_+(z)}\, \sigma_0^2 H_+(z) H_+^{\ast}(1/z^{\ast})\, \frac{1}{H_+^{\ast}(1/z^{\ast})} = \sigma_0^2$$
+$$\widetilde{w}(n)\triangleq \frac{1}{H_+(z)}x(n).$$
+
+Applying the LTI input-output PSD relation to this inverse filter gives
+
+$$
+\begin{aligned}
+R_{\widetilde{w}}(z)
+&\triangleq \frac{1}{H_+(z)}\,R_x(z)\,
+\frac{1}{H_+^{\ast}(1/z^{\ast})}\\
+&=\frac{1}{H_+(z)}
+\left[\sigma_0^2H_+(z)H_+^{\ast}\!\left(\frac{1}{z^{\ast}}\right)\right]
+\frac{1}{H_+^{\ast}(1/z^{\ast})}\\
+&=\sigma_0^2.
+\end{aligned}
+$$
+
+Thus $\widetilde{w}(n)$ has a flat PSD and is therefore white, with variance $\sigma_0^2$. For the shaping model $x(n)=H_+(z)w(n)$, causal stable invertibility further gives $\widetilde{w}(n)=w(n)$.
 
 ## 4.4 Innovations Representation
 
