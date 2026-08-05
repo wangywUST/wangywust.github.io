@@ -1179,7 +1179,31 @@ where $e(n)$ is the **innovations process** (white noise with variance $\sigma_e
 
 **White noise processes** are their own innovations — they are completely non-predictable.
 
-**Example of a non-factorizable process:** Any process containing a deterministic sinusoidal component $A_0\cos(\omega_0 n + \phi_0)$ has a PSD with an **impulse** at $\omega_0$. The spectral density has zeros on the unit circle at $z = e^{\pm j\omega_0}$ — but these zeros must have even multiplicity (since $R_x(e^{j\omega}) \ge 0$), meaning the factorization exists formally but $H_+(z)$ has zeros on the unit circle. Such a process is **predictable** (not regular), and the innovations variance $\sigma_e^2 = 0$ — a purely predictable process has zero entropy.
+**Example of a process not covered by ordinary spectral factorization:** Consider the random-phase sinusoidal process
+
+$$x_s(n)=A_0\cos(\omega_0n+\phi_0),$$
+
+where $\phi_0$ is uniformly distributed on $[0,2\pi)$. Its autocorrelation and PSD are
+
+$$r_{x_s}(l)=\frac{A_0^2}{2}\cos(\omega_0l),$$
+
+$$
+R_{x_s}(e^{j\omega})
+=\frac{\pi A_0^2}{2}
+\sum_{m=-\infty}^{\infty}
+\left[
+\delta(\omega-\omega_0-2\pi m)
++\delta(\omega+\omega_0-2\pi m)
+\right].
+$$
+
+Thus the spectrum contains **Dirac impulses (spectral lines)** at $\omega=\pm\omega_0$ modulo $2\pi$. Formally, these lines are associated with poles on the unit circle at $z=e^{\pm j\omega_0}$, not zeros. More precisely, because $r_{x_s}(l)$ does not decay, its bilateral z-transform has no ordinary annular region of convergence; the PSD must be interpreted as a generalized function rather than as an ordinary rational spectral density. Consequently, the usual causal-stable spectral factorization theorem for a regular process does not apply.
+
+A purely sinusoidal process is completely predictable from its past and has zero innovations variance. However, if a sinusoidal component is added to a regular stochastic component,
+
+$$x(n)=x_r(n)+x_s(n),$$
+
+only the sinusoidal component is perfectly predictable. The regular component $x_r(n)$ still contributes new innovations, so the innovations variance of the complete process need not be zero.
 
 ---
 
