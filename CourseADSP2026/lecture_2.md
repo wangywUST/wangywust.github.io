@@ -1233,9 +1233,59 @@ $$R_x(e^{j\omega}) = \sigma_w^2 \left\lvert\frac{B(e^{j\omega})}{A(e^{j\omega})}
 
 ### Yule-Walker Equations for ARMA
 
-Multiplying the ARMA difference equation by $x^{\ast}(n-l)$ and taking expectations, one can show that for lags $l > q$, the moving-average terms vanish and only the AR coefficients appear:
+Let $b_0=1$, so that the ARMA difference equation can be written as
 
-$$r_x(l) + \sum_{k=1}^{p} a_k r_x(l-k) = 0, \qquad l > q$$
+$$x(n)+\sum_{k=1}^{p}a_kx(n-k)=\sum_{j=0}^{q}b_jw(n-j).$$
+
+Postmultiply both sides by $x^{\ast}(n-l)$ and take expectations. By linearity,
+
+$$
+E\!\left\{x(n)x^{\ast}(n-l)\right\}
++\sum_{k=1}^{p}a_kE\!\left\{x(n-k)x^{\ast}(n-l)\right\}
+=\sum_{j=0}^{q}b_jE\!\left\{w(n-j)x^{\ast}(n-l)\right\}.
+$$
+
+Because $x(n)$ is WSS and the time separation between $x(n-k)$ and $x(n-l)$ is $l-k$,
+
+$$E\!\left\{x(n)x^{\ast}(n-l)\right\}=r_x(l),$$
+
+$$E\!\left\{x(n-k)x^{\ast}(n-l)\right\}=r_x(l-k).$$
+
+Hence the correlation equation at an arbitrary lag is
+
+$$
+r_x(l)+\sum_{k=1}^{p}a_kr_x(l-k)
+=\sum_{j=0}^{q}b_jr_{wx}(l-j),
+\qquad
+r_{wx}(l-j)\triangleq E\!\left\{w(n-j)x^{\ast}(n-l)\right\}.
+$$
+
+It remains to determine when the right-hand side is zero. For a causal, stable ARMA model, write the output in terms of its causal impulse response $h(m)$:
+
+$$x(n-l)=\sum_{m=0}^{\infty}h(m)w(n-l-m).$$
+
+Therefore, using $E\{w(t)w^{\ast}(s)\}=\sigma_w^2\delta(t-s)$,
+
+$$
+\begin{aligned}
+E\!\left\{w(n-j)x^{\ast}(n-l)\right\}
+&=E\!\left\{w(n-j)\sum_{m=0}^{\infty}h^{\ast}(m)w^{\ast}(n-l-m)\right\}\\
+&=\sum_{m=0}^{\infty}h^{\ast}(m)
+E\!\left\{w(n-j)w^{\ast}(n-l-m)\right\}\\
+&=\sigma_w^2\sum_{m=0}^{\infty}h^{\ast}(m)\delta(l+m-j).
+\end{aligned}
+$$
+
+If $l>q$, then for every $j\in\{0,1,\ldots,q\}$ we have $l>j$. Since $m\ge0$, the equality $l+m-j=0$ is impossible; consequently,
+
+$$E\!\left\{w(n-j)x^{\ast}(n-l)\right\}=0,
+\qquad j=0,1,\ldots,q,\quad l>q.$$
+
+Thus every term on the moving-average side vanishes, leaving the homogeneous AR recursion
+
+$$\boxed{r_x(l)+\sum_{k=1}^{p}a_kr_x(l-k)=0,\qquad l>q.}$$
+
+Equivalently, $w(n-j)$ is a future innovation relative to $x(n-l)$ when $l>q$, so it is orthogonal to that past output sample. Notice that the condition is strictly $l>q$; at $l\le q$, some terms on the right-hand side generally remain nonzero.
 
 This is a system of linear equations in the unknown AR coefficients $\lbrace a_k\rbrace$ that becomes exploitable for ARMA estimation (Chapter 4).
 
