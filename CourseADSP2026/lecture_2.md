@@ -1027,6 +1027,64 @@ From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1
 
 On the unit circle ($\lvert z_0\rvert = 1$), conjugate reciprocals coincide ($z_0^{\ast} = 1/z_0$ for $\lvert z_0\rvert=1$), so zeros on the unit circle appear in conjugate pairs with **even multiplicity** (to maintain $R_x(e^{j\omega}) \ge 0$).
 
+### What Does “Even Multiplicity” Mean?
+
+The **multiplicity** of a zero tells us how many times its factor is repeated. If a function contains
+
+$$R_x(z)=(z-z_0)^mQ(z), \qquad Q(z_0)\ne0,$$
+
+then $z_0$ is a zero of multiplicity $m$:
+
+- $m=1$: a **simple** zero;
+- $m=2$: a **double** zero;
+- $m=3$: a **triple** zero; and so on.
+
+“Even multiplicity” means that $m$ must be an even integer, such as $2,4,6,\ldots$. Thus, saying that a unit-circle zero has even multiplicity means that its factor occurs as
+
+$$(z-z_0)^2,\quad (z-z_0)^4,\quad\ldots,$$
+
+rather than as $(z-z_0)$ or $(z-z_0)^3$.
+
+To see why, parameterize the unit circle by $z=e^{j\omega}$ and suppose that $z_0=e^{j\omega_0}$. Near $\omega_0$, a real rational PSD behaves locally like
+
+$$R_x(e^{j\omega})\approx C(\omega-\omega_0)^m,$$
+
+for some nonzero real constant $C$. If $m$ is odd, $(\omega-\omega_0)^m$ changes sign as $\omega$ passes through $\omega_0$. The spectrum would cross the horizontal axis and become negative on one side, contradicting
+
+$$R_x(e^{j\omega})\ge0.$$
+
+If $m$ is even, the local factor has the same sign on both sides. The PSD merely touches zero and turns back upward:
+
+$$
+\begin{array}{ccl}
+m=1&:&C(\omega-\omega_0)\quad\text{crosses zero and changes sign},\\
+m=2&:&C(\omega-\omega_0)^2\quad\text{touches zero and remains nonnegative}.
+\end{array}
+$$
+
+A simple example is
+
+$$R_x(z)=2-z-z^{-1}=-\frac{(z-1)^2}{z}.$$
+
+The point $z_0=1$ lies on the unit circle and is a **double zero** because the factor $(z-1)^2$ occurs. On the unit circle,
+
+$$R_x(e^{j\omega})=2-2\cos\omega
+=4\sin^2\!\left(\frac{\omega}{2}\right)\ge0.$$
+
+Near $\omega=0$, this behaves like $\omega^2$, so the curve touches zero without becoming negative.
+
+The same conclusion is also visible directly from spectral factorization. If $H(z)$ has a zero at a unit-circle point $z_0$, then its conjugate-reciprocal factor $H^{\ast}(1/z^{\ast})$ has a zero at the same point because
+
+$$\frac{1}{z_0^{\ast}}=z_0 \qquad (\lvert z_0\rvert=1).$$
+
+Therefore the two factors contribute at least two copies of the zero to
+
+$$R_x(z)=H(z)H^{\ast}\!\left(\frac{1}{z^{\ast}}\right),$$
+
+making it a double zero; if $H$ contains the zero twice, the PSD contains it four times, and so forth.
+
+Finally, **conjugate pairing** and **even multiplicity** describe different facts. For a real process, a non-real unit-circle zero $z_0=e^{j\omega_0}$ is accompanied by the conjugate zero $z_0^{\ast}=e^{-j\omega_0}$. Nonnegativity then requires **each** of these locations to have even multiplicity. For example, $z_0$ may be a double zero and $z_0^{\ast}$ another double zero.
+
 ## 4.3 Minimum-Phase Spectral Factor
 
 > **Theorem 2.1 (Spectral Factorization).** Any real-valued PSD $R_x(z)$ of a rational form can be uniquely factored as:
