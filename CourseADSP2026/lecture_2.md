@@ -1564,9 +1564,79 @@ Having derived all three model classes, we can now compare their spectral behavi
 
 ---
 
-# §6 Basic Orthogonal Transforms
+# §6 Covariance Diagonalization, Whitening, and Orthogonal Transforms
 
 > 📖 Textbook §3.5 (Whitening and Innovations; KL Transform: §3.5.1, §3.5.3)
+
+### Why Does This Section Belong Here?
+
+Sections 2–5 described a random process through its autocorrelation, covariance matrix, PSD, and linear signal model. All of those descriptions concern the same second-order dependence. For an $M$-sample observation vector
+
+$$
+\mathbf{x}(n)=[x(n),x(n-1),\ldots,x(n-M+1)]^T,
+$$
+
+that dependence is collected in the generally non-diagonal covariance matrix
+
+$$
+\boldsymbol{\Sigma}_x
+=E\!\left\{(\mathbf{x}-\boldsymbol{\mu}_x)
+(\mathbf{x}-\boldsymbol{\mu}_x)^H\right\}.
+$$
+
+A nonzero off-diagonal entry means that two coordinates contain overlapping statistical information. This creates three practical problems:
+
+- storing or coding all coordinates wastes capacity when most signal energy lies in only a few statistical directions;
+- estimation formulas couple all coordinates through a full covariance matrix rather than separate scalar variances;
+- in adaptive filtering, a large covariance eigenvalue spread produces an elongated MSE surface and slows LMS convergence (Chapter 7).
+
+Section 6 therefore asks a direct follow-up question:
+
+$$
+\boxed{
+\text{Can we change coordinates so that correlated samples become uncorrelated components?}
+}
+$$
+
+An orthogonal transform does not change the information or total energy; it only rotates the coordinate system. Choosing that rotation from the eigenvectors of $\boldsymbol{\Sigma}_x$ gives the **KL transform**, which diagonalizes the covariance. An additional variance normalization gives a **whitening transform**. The **DCT** then appears as a fixed, fast approximation to the KL basis for highly correlated AR(1)-like signals.
+
+The logical connection to the surrounding sections is
+
+$$
+\boxed{
+\begin{aligned}
+&\text{§§2–5: describe correlation}
+&&r_x(l),\ R_x(e^{j\omega}),\ \boldsymbol{\Sigma}_x,\ \text{AR/MA/ARMA}\\
+&\text{§6: reorganize correlation}
+&&\boldsymbol{\Sigma}_x\to\boldsymbol{\Lambda}_x\to\mathbf{I}\\
+&\text{§7: estimate unknown quantities}
+&&\boldsymbol{\theta}\ \text{from finite observations}
+\end{aligned}}
+$$
+
+Here $\boldsymbol{\Sigma}_x\to\boldsymbol{\Lambda}_x$ denotes decorrelation by rotation, and $\boldsymbol{\Lambda}_x\to\mathbf I$ denotes variance normalization (whitening).
+
+### Concrete Connection to the AR Models of §5
+
+For the real-valued stationary AR(1) process
+
+$$x(n)=a x(n-1)+w(n),\qquad |a|<1,$$
+
+the covariance of an $M$-sample vector is
+
+$$
+\boldsymbol{\Sigma}_x
+=\frac{\sigma_w^2}{1-a^2}
+\begin{bmatrix}
+1&a&a^2&\cdots&a^{M-1}\\
+a&1&a&\cdots&a^{M-2}\\
+a^2&a&1&\cdots&a^{M-3}\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+a^{M-1}&a^{M-2}&a^{M-3}&\cdots&1
+\end{bmatrix}.
+$$
+
+When $a$ is close to $1$, adjacent samples are strongly correlated: the matrix has large off-diagonal entries and its energy is concentrated in a few eigen-directions. The KL transform finds those exact directions. The DCT provides a signal-independent approximation to them, which explains why the DCT follows AR modeling here rather than appearing as an unrelated transform topic.
 
 ## 6.1 Hilbert Space and Orthogonal Transforms
 
@@ -1704,6 +1774,15 @@ where $c(0) = 1/\sqrt{2}$, $c(k) = 1$ for $k \ge 1$.
 - **Near-optimal for correlated signals:** Within 1–2 dB of the optimal KL transform for typical image/audio signals.
 
 **Relation to DFT:** DCT-II of $x(n)$ equals the real part of the DFT of a symmetrically extended version of $x(n)$. This connection enables fast computation via the FFT.
+
+### Where These Ideas Reappear
+
+- **Chapter 3 (linear prediction):** decorrelation and innovations separate predictable structure from new information;
+- **Chapter 6 (Wiener estimation):** covariance eigenstructure determines which observation directions contain useful signal power;
+- **Chapter 7 (adaptive filtering):** whitening or approximate decorrelation reduces eigenvalue spread, while transform-domain LMS uses a DFT, DCT, or related basis to accelerate convergence;
+- **compression and denoising:** KL/PCA keeps high-variance components and discards low-energy components, while the DCT supplies a practical fixed transform.
+
+There is also an important link to the next section. The optimal KL and whitening matrices depend on the unknown mean and covariance of the data. In practice these quantities must be inferred from finitely many observations. This leads naturally to §7: how estimators are constructed and how their bias, variance, MSE, and efficiency are evaluated.
 
 ---
 
