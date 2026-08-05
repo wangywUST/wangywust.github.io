@@ -487,17 +487,157 @@ $$r_x^{\ast}(-l) = r_x(l)$$
 
 For real-valued $x(n)$, this simplifies to $r_x(-l) = r_x(l)$ — the autocorrelation is an **even function**.
 
-**Property 3 (Nonnegative definiteness):** For any $M > 0$ and any vector $\boldsymbol{\alpha} \in \mathbb{R}^M$:
+**Property 3 (Nonnegative definiteness):** For every $M>0$ and every coefficient vector $\boldsymbol{\alpha}\in\mathbb{C}^M$,
 
-$$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast} \alpha_l\, r_x(k-l) \ge 0$$
+$$\boxed{\sum_{k=0}^{M-1}\sum_{l=0}^{M-1}
+\alpha_k^{\ast}\alpha_l\,r_x(k-l)\ge 0.}$$
 
-This ensures that the **power spectral density is nonnegative** at all frequencies (proved in §2.5, Property 2).
+This property is the precise reason that the power spectral density is nonnegative. The complete logical chain is developed below.
 
-> **Linear-algebra reading of Property 3.** The double sum is nothing but a **quadratic form**. Collect the lags into the $M \times M$ **autocorrelation matrix** $\mathbf{R}$ with entries $\mathbf{R}_{kl} = r_x(k-l)$; then
-> $$\sum_{k=1}^{M}\sum_{l=1}^{M} \alpha_k^{\ast}\alpha_l\, r_x(k-l) \;=\; \boldsymbol{\alpha}^H \mathbf{R}\,\boldsymbol{\alpha} \;\ge\; 0,$$
-> where $\boldsymbol{\alpha}^H$ is the conjugate transpose. So Property 3 says exactly that **$\mathbf{R}$ is positive semidefinite** — equivalently, all its eigenvalues satisfy $\lambda_i \ge 0$. Combined with Properties 1–2, $\mathbf{R}$ is a **Hermitian, Toeplitz, positive-semidefinite** matrix (this is the matrix $\mathbf{R}_x$ built explicitly in §2.6). The presence of the conjugate $\alpha_k^{\ast}$ signals that $\boldsymbol{\alpha}$ should be taken in $\mathbb{C}^M$ rather than $\mathbb{R}^M$ for the guarantee to cover complex-valued processes and all frequencies.
->
-> **Bridge to the PSD.** Choosing $\alpha_k = e^{j\omega k}$ turns the quadratic form into a Fejér-kernel-weighted sum of $r_x(m)e^{-j\omega m}$, which is $\ge 0$ for every $M$; letting $M \to \infty$ yields $R_x(e^{j\omega}) \ge 0$ directly. In other words, "$\mathbf{R}$ positive semidefinite" (time domain) and "PSD nonnegative everywhere" (frequency domain) are the same statement — the discrete form of **Bochner's theorem**. The next section (§2.5) makes this precise: it defines the PSD as the DTFT of the autocorrelation sequence and establishes its properties.
+### Why Autocorrelation Is Positive Semidefinite
+
+Form an arbitrary finite linear combination of samples,
+
+$$y=\sum_{k=0}^{M-1}\alpha_k^{\ast}x(n+k).$$
+
+Its squared magnitude cannot be negative, so its expected power must satisfy
+
+$$E\{\lvert y\rvert^2\}\ge 0.$$
+
+Expanding this expectation gives
+
+$$
+\begin{aligned}
+E\{\lvert y\rvert^2\}
+&=E\!\left\{
+\left(\sum_k\alpha_k^{\ast}x(n+k)\right)
+\left(\sum_l\alpha_l x^{\ast}(n+l)\right)
+\right\}\\
+&=\sum_k\sum_l\alpha_k^{\ast}\alpha_l
+E\{x(n+k)x^{\ast}(n+l)\}\\
+&=\sum_k\sum_l\alpha_k^{\ast}\alpha_l r_x(k-l)\\
+&\ge 0.
+\end{aligned}
+$$
+
+The last equality uses stationarity: the correlation depends only on the time difference $k-l$. If the $M\times M$ autocorrelation matrix is defined by
+
+$$[\mathbf R_x]_{kl}=r_x(k-l),$$
+
+then the same result is
+
+$$\boxed{\boldsymbol{\alpha}^H\mathbf R_x\boldsymbol{\alpha}
+=E\{\lvert y\rvert^2\}\ge0.}$$
+
+Because this holds for every $\boldsymbol{\alpha}$, $\mathbf R_x$ is **positive semidefinite**. It is only *semidefinite*, rather than necessarily positive definite, because a nonzero coefficient vector can sometimes produce $y=0$; for example, the samples may obey an exact linear dependence.
+
+### From the Quadratic Form to a PSD-Weighted Integral
+
+The PSD and autocorrelation are the DTFT pair
+
+$$R_x(e^{j\omega})=\sum_{m=-\infty}^{\infty}r_x(m)e^{-j\omega m},
+\qquad
+r_x(m)=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\omega})e^{j\omega m}\,d\omega.$$
+
+Substitute the inverse DTFT with $m=k-l$ into the quadratic form:
+
+$$
+\begin{aligned}
+\boldsymbol{\alpha}^H\mathbf R_x\boldsymbol{\alpha}
+&=\sum_k\sum_l\alpha_k^{\ast}\alpha_l r_x(k-l)\\
+&=\sum_k\sum_l\alpha_k^{\ast}\alpha_l
+\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\omega})e^{j\omega(k-l)}\,d\omega\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}R_x(e^{j\omega})
+\left[\sum_k\sum_l\alpha_k^{\ast}\alpha_l
+e^{j\omega(k-l)}\right]d\omega.
+\end{aligned}
+$$
+
+Now separate the two indices in the bracket:
+
+$$
+\begin{aligned}
+\sum_k\sum_l\alpha_k^{\ast}\alpha_l e^{j\omega(k-l)}
+&=\left(\sum_k\alpha_k^{\ast}e^{j\omega k}\right)
+  \left(\sum_l\alpha_l e^{-j\omega l}\right).
+\end{aligned}
+$$
+
+Define the DTFT of the coefficient sequence as
+
+$$A(e^{j\omega})=\sum_l\alpha_l e^{-j\omega l}.$$
+
+The first factor is $A^{\ast}(e^{j\omega})$, so the bracket is
+
+$$A^{\ast}(e^{j\omega})A(e^{j\omega})
+=\lvert A(e^{j\omega})\rvert^2.$$
+
+Therefore,
+
+$$\boxed{
+\boldsymbol{\alpha}^H\mathbf R_x\boldsymbol{\alpha}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\omega})\lvert A(e^{j\omega})\rvert^2\,d\omega.}$$
+
+The left side is the output power of a finite linear combiner. The right side says the same thing in the frequency domain: the PSD is weighted by the nonnegative squared magnitude $\lvert A\rvert^2$.
+
+### Why Positive Semidefiniteness Forces the PSD to Be Nonnegative
+
+Since the autocorrelation is positive semidefinite, the preceding integral must be nonnegative for **every** finite coefficient sequence:
+
+$$\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\omega})\lvert A(e^{j\omega})\rvert^2\,d\omega\ge0.$$
+
+Suppose instead that a continuous PSD were negative at some frequency $\omega_0$. It would then be negative throughout a small neighborhood of $\omega_0$. Choose
+
+$$\alpha_k=\frac{1}{\sqrt M}e^{j\omega_0k},
+\qquad k=0,\ldots,M-1.$$
+
+Its squared frequency response is
+
+$$\lvert A_M(e^{j\omega})\rvert^2
+=\frac{1}{M}\left\lvert
+\sum_{k=0}^{M-1}e^{-j(\omega-\omega_0)k}
+\right\rvert^2.$$
+
+This is a shifted **Fejér kernel**: it is nonnegative, has total normalized area one, and becomes increasingly concentrated around $\omega_0$ as $M\to\infty$. Consequently,
+
+$$
+\frac{1}{2\pi}\int_{-\pi}^{\pi}
+R_x(e^{j\omega})\lvert A_M(e^{j\omega})\rvert^2\,d\omega
+\longrightarrow R_x(e^{j\omega_0}).
+$$
+
+Every integral on the left is a nonnegative quadratic form. Its limit must therefore also be nonnegative, giving
+
+$$\boxed{R_x(e^{j\omega_0})\ge0.}$$
+
+Since $\omega_0$ was arbitrary, the PSD is nonnegative at every frequency. Equivalently, if the PSD were negative in some band, a sufficiently selective filter could isolate that band and would appear to produce negative output power—an impossibility.
+
+### Symmetry and Nonnegativity Play Different Roles
+
+It is important not to attribute nonnegativity merely to the even symmetry of autocorrelation:
+
+- $r_x(m)=r_x^{\ast}(-m)$ ensures that $R_x(e^{j\omega})$ is **real-valued**;
+- positive semidefiniteness ensures that $R_x(e^{j\omega})$ is **nonnegative**.
+
+Even symmetry alone is insufficient. For example, the even sequence $r(1)=r(-1)=1$ and $r(m)=0$ otherwise has DTFT
+
+$$R(e^{j\omega})=2\cos\omega,$$
+
+which is negative for part of the frequency range. Therefore this even sequence cannot be a valid autocorrelation sequence.
+
+The complete chain is
+
+$$\boxed{
+\text{squared magnitude is nonnegative}
+\Rightarrow \text{autocorrelation is positive semidefinite}
+\Rightarrow \text{every PSD-weighted output power is nonnegative}
+\Rightarrow R_x(e^{j\omega})\ge0.}$$
+
+This equivalence between positive-semidefinite correlation sequences and nonnegative spectral measures is the discrete-time form of **Bochner's theorem**.
 
 ---
 
