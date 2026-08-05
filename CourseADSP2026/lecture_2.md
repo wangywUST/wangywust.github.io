@@ -1211,7 +1211,72 @@ only the sinusoidal component is perfectly predictable. The regular component $x
 
 > 📖 Textbook §4.1–§4.3 (Linear Signal Models: All-Pole, All-Zero, Pole-Zero); §3.3.6 (Harmonic Processes)
 
-The spectral factorization framework tells us that any regular WSS process can be represented as white noise filtered through a causal minimum-phase filter. Three important special cases correspond to specific filter structures:
+The spectral factorization framework tells us that a regular WSS process can be interpreted as white noise passed through a causal shaping filter. In general that filter may require infinitely many coefficients. Section 5 asks whether its second-order behavior can instead be represented, or approximated, by a **finite number of parameters** using AR, MA, or ARMA models.
+
+### Why Study AR, MA, and ARMA Models?
+
+Suppose that a real-world random signal $x(n)$ is observed, but its PSD $R_x(e^{j\omega})$ and its generating mechanism are unknown. There are two closely related ways to use the models in this section.
+
+**1. Generative interpretation (forward problem).** Choose a simple linear filter $H(z)$ and drive it with white noise:
+
+$$
+w(n)\xrightarrow{\;H(z)\;}x(n),
+\qquad
+R_x(e^{j\omega})=\sigma_w^2|H(e^{j\omega})|^2.
+$$
+
+The poles and zeros of $H(z)$ provide an interpretable mechanism for creating a colored random signal: poles create resonances and long memory, whereas zeros create spectral notches and finite-memory cancellation. Once the parameters are specified, the model can generate simulated signals having the desired autocorrelation and PSD.
+
+**2. Parametric modeling and spectral estimation (inverse problem).** Given only a finite record
+
+$$x(0),x(1),\ldots,x(N-1),$$
+
+estimate a small parameter set
+
+$$
+\{a_1,\ldots,a_p,\;b_1,\ldots,b_q,\;\sigma_w^2\},
+$$
+
+and use it to estimate the PSD:
+
+$$
+\widehat{R}_x(e^{j\omega})
+=\widehat{\sigma}_w^2
+\frac{|\widehat{B}(e^{j\omega})|^2}
+{|\widehat{A}(e^{j\omega})|^2}.
+$$
+
+This is called **parametric spectral estimation**. Instead of estimating the PSD independently at many frequency bins, it describes the whole spectral curve using only $p+q+1$ parameters. When the model order is modest and appropriate, this can reveal sharp peaks from a short or noisy data record more clearly than a nonparametric periodogram.
+
+The fitted model should usually be understood as a useful **second-order approximation**, not proof that the physical source literally contains an AR or MA recursion. Different physical systems can have the same PSD, and PSD/autocorrelation alone contain no phase information with which to identify a unique shaping filter. A model becomes a physical claim only when additional domain knowledge justifies that interpretation.
+
+### Typical Examples
+
+| Observed process | Useful model | What the parameters represent | What the model is used for |
+|---|---|---|---|
+| Short segment of voiced speech | AR | Pole pairs approximate vocal-tract formant resonances | Formant estimation, speech coding, linear prediction |
+| Mechanical vibration near structural modes | AR or ARMA | Poles locate resonant frequencies and damping; zeros represent anti-resonances | Modal monitoring and fault detection |
+| A measured sensor noise sequence with short-lived correlation | MA | Delayed innovation terms reproduce a finite correlation span | Colored-noise simulation and covariance modeling |
+| Communication channel or acoustic response containing resonances and notches | ARMA | Poles model resonances; zeros model cancellations or notches | Compact channel/noise modeling and equalizer design |
+| Unknown narrowband random signal observed for only a short time | Low-order AR | Pole angles and radii encode peak frequency and bandwidth | High-resolution parametric PSD estimation |
+
+Thus the main purpose of Section 5 is not merely to calculate a known PSD. It establishes a compact bridge in both directions:
+
+$$
+\boxed{
+\text{finite model parameters}
+\;\xleftrightarrow[\text{estimation from data}]{\text{signal generation}}\;
+\text{autocorrelation and PSD}
+}
+$$
+
+The three model classes correspond to different restrictions on the shaping filter:
+
+- **AR:** $H(z)=1/A(z)$ — poles only; efficient for spectra dominated by sharp peaks;
+- **MA:** $H(z)=B(z)$ — zeros only; efficient for finite correlation and spectral notches;
+- **ARMA:** $H(z)=B(z)/A(z)$ — poles and zeros; the most flexible of the three at a given model order.
+
+The following subsections derive how each model generates its PSD and autocorrelation. Later chapters address the inverse step: estimating these parameters from measured data.
 
 ## 5.1 ARMA (Autoregressive Moving-Average) Processes
 
