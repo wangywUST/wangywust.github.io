@@ -1213,18 +1213,6 @@ only the sinusoidal component is perfectly predictable. The regular component $x
 
 The spectral factorization framework tells us that any regular WSS process can be represented as white noise filtered through a causal minimum-phase filter. Three important special cases correspond to specific filter structures:
 
-### Interactive Comparison of AR, MA, and ARMA Spectra
-
-The visualization below uses a conjugate pole pair and a conjugate zero pair so that all coefficients remain real. Adjust their radii and angles to compare the three model classes under the same white-noise excitation:
-
-- **AR(2):** only the pole pair is present, producing a resonance peak near the pole angle;
-- **MA(2):** only the zero pair is present, producing a spectral notch near the zero angle;
-- **ARMA(2,2):** both pairs are present, so peaks and notches can be controlled independently.
-
-<iframe src="./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html" width="100%" height="1080" style="border:0; border-radius:12px;" title="Interactive comparison of AR, MA, and ARMA power spectra"></iframe>
-
-> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive AR/MA/ARMA spectrum explorer](./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html) directly.
-
 ## 5.1 ARMA (Autoregressive Moving-Average) Processes
 
 ### Definition
@@ -1483,7 +1471,21 @@ For an MA($q$) polynomial, each zero not on the unit circle can similarly be ass
 
 ---
 
-## 5.4 ARMA, AR, MA: Summary and Comparison
+## 5.4 Interactive Comparison of AR, MA, and ARMA Spectra
+
+Having derived all three model classes, we can now compare their spectral behavior directly. The visualization below uses a conjugate pole pair and a conjugate zero pair so that all coefficients remain real. Adjust their radii and angles under the same white-noise excitation:
+
+- **AR(2):** only the pole pair is present, producing a resonance peak near the pole angle;
+- **MA(2):** only the zero pair is present, producing a spectral notch near the zero angle;
+- **ARMA(2,2):** both pairs are present, so peaks and notches can be controlled independently.
+
+<iframe src="./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html" width="100%" height="1080" style="border:0; border-radius:12px;" title="Interactive comparison of AR, MA, and ARMA power spectra"></iframe>
+
+> If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive AR/MA/ARMA spectrum explorer](./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html) directly.
+
+---
+
+## 5.5 ARMA, AR, MA: Summary and Comparison
 
 | Property | AR($p$) | MA($q$) | ARMA($p$,$q$) |
 |----------|---------|---------|--------------|
