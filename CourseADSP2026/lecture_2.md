@@ -1875,9 +1875,17 @@ A fundamental limit on how accurately any **unbiased** estimator can perform:
 >
 > $$\text{var}(\hat{\theta}_i) \ge [\mathbf{J}^{-1}(\boldsymbol{\theta})]_{ii}$$
 >
-> where $\mathbf{J}(\boldsymbol{\theta})$ is the **Fisher information matrix** with elements:
+> Here $\mathbf{x}=[x_1,\ldots,x_N]^T$ is the observed data vector, $\boldsymbol{\theta}=[\theta_1,\ldots,\theta_p]^T$ is the unknown deterministic parameter vector, and
+>
+> $$f_x(\mathbf{x};\boldsymbol{\theta})$$
+>
+> denotes the joint probability density function of $\mathbf{x}$ parameterized by $\boldsymbol{\theta}$ (or the joint probability mass function when the observations are discrete). Once the observed value $\mathbf{x}$ is fixed and the expression is viewed as a function of $\boldsymbol{\theta}$, it is the **likelihood function**; $\ln f_x(\mathbf{x};\boldsymbol{\theta})$ is the **log-likelihood**.
+>
+> The matrix $\mathbf{J}(\boldsymbol{\theta})$ is the **Fisher information matrix**, with elements
 >
 > $$J_{ij}(\boldsymbol{\theta}) = E\!\left\lbrace \frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i}\cdot\frac{\partial \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_j}\right\rbrace = -E\!\left\lbrace \frac{\partial^2 \ln f_x(\mathbf{x};\boldsymbol{\theta})}{\partial \theta_i \partial \theta_j}\right\rbrace$$
+>
+> The expectation is taken over $\mathbf{x}\sim f_x(\mathbf{x};\boldsymbol{\theta})$, with $\boldsymbol{\theta}$ held fixed. The two expressions for $J_{ij}$ are equal under the usual regularity conditions that permit differentiation under the integral (or sum).
 
 The CRLB gives a performance benchmark: if we can achieve $\text{var}(\hat{\theta}) = [\mathbf{J}^{-1}]_{ii}$, the estimator is **efficient** (achieves the MVUE — minimum variance unbiased estimator). In general, achieving the CRLB requires the score function to have a specific form related to the estimator.
 
