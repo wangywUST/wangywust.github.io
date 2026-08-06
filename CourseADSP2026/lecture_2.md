@@ -1957,9 +1957,30 @@ But it is **asymptotically unbiased** as $N \to \infty$, and — more importantl
 
 $$\hat{r}_x^{(\text{unb})}(l) = \frac{1}{N-\lvert l\rvert}\sum_{n=0}^{N-1-\lvert l\rvert} x(n+\lvert l\rvert)\, x^{\ast}(n)$$
 
-This is unbiased but may yield a non-positive-definite matrix — leading to unstable models. It also has higher variance at large lags (few samples available).
+Here the “matrix” is the Toeplitz autocorrelation matrix formed from the estimated lags. For example, an AR model of order $p$ uses
 
-**In practice:** The biased estimate is preferred in most applications (linear prediction, AR modeling) because of its guaranteed positive definiteness.
+$$
+\hat{\mathbf R}_x=
+\begin{bmatrix}
+\hat r_x(0) & \hat r_x^*(1) & \cdots & \hat r_x^*(p-1)\\
+\hat r_x(1) & \hat r_x(0)   & \cdots & \hat r_x^*(p-2)\\
+\vdots      & \vdots        & \ddots & \vdots\\
+\hat r_x(p-1)&\hat r_x(p-2)& \cdots & \hat r_x(0)
+\end{bmatrix},
+\qquad
+[\hat{\mathbf R}_x]_{ij}=\hat r_x(i-j).
+$$
+
+A valid covariance matrix must be **positive semi-definite**, meaning
+
+$$
+\mathbf c^H\hat{\mathbf R}_x\mathbf c\ge 0
+\qquad\text{for every vector }\mathbf c,
+$$
+
+or, equivalently, all its eigenvalues must be nonnegative. The lag-dependent normalization $1/(N-|l|)$ in the unbiased estimator can produce a sequence of estimated lags that does not satisfy this condition; the resulting Toeplitz matrix may have a negative eigenvalue and is then **indefinite**. Consequently, the Yule--Walker equations may produce an invalid or unstable AR model. The unbiased estimate also has high variance at large lags because only $N-|l|$ sample products are averaged.
+
+**In practice:** The biased estimate is often preferred in linear prediction and AR modeling because its Toeplitz autocorrelation matrix is guaranteed to be positive semi-definite. It is positive definite when it is nonsingular.
 
 ---
 
