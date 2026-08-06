@@ -1891,11 +1891,40 @@ The CRLB gives a performance benchmark: if we can achieve $\text{var}(\hat{\thet
 
 ### Consistency
 
-An estimator $\hat{\theta}(x_1, \ldots, x_N)$ is **mean-square consistent** if:
+Let $N$ denote the number of observations and let
 
-$$\lim_{N\to\infty} E\lbrace \lvert\hat{\theta}_N - \theta\rvert^2\rbrace = 0$$
+$$
+\hat{\theta}_N=\hat{\theta}_N(x_1,\ldots,x_N)
+$$
 
-This requires both bias $\to 0$ and variance $\to 0$ as $N \to \infty$. A consistent estimator becomes arbitrarily accurate with enough data.
+denote the estimator constructed from the first $N$ observations. Thus, $N\to\infty$ means that the amount of available data grows; it does not mean that a signal index or the parameter $\theta$ tends to infinity.
+
+The estimator sequence $\{\hat{\theta}_N\}$ is **consistent** for $\theta$ if it converges to $\theta$ in probability:
+
+$$
+\hat{\theta}_N\xrightarrow{p}\theta,
+\qquad\text{that is,}\qquad
+\lim_{N\to\infty}
+P\!\left(\left|\hat{\theta}_N-\theta\right|>\varepsilon\right)=0
+\quad\text{for every }\varepsilon>0.
+$$
+
+A stronger property is **mean-square consistency**:
+
+$$
+\lim_{N\to\infty}
+E\!\left\{\left|\hat{\theta}_N-\theta\right|^2\right\}=0.
+$$
+
+Since
+
+$$
+E\!\left\{\left|\hat{\theta}_N-\theta\right|^2\right\}
+=\operatorname{var}(\hat{\theta}_N)
++\left(E\{\hat{\theta}_N\}-\theta\right)^2,
+$$
+
+mean-square consistency requires both the variance and the squared bias to approach zero. Mean-square consistency implies consistency in probability, but the converse does not hold in general.
 
 ---
 
