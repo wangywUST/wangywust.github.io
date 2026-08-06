@@ -1658,7 +1658,35 @@ The **Euclidean space** $\mathbb{R}^M$ (or $\mathbb{C}^M$) is the finite-dimensi
 An **orthogonal (unitary) transform** $\mathbf{y} = \mathbf{A}\mathbf{x}$ satisfies $\mathbf{A}^H \mathbf{A} = \mathbf{I}$, which implies:
 - **Parseval's theorem:** $\|\mathbf{y}\|^2 = \|\mathbf{x}\|^2$ — the $L^2$-norm (total energy) is preserved.
 - **Unique invertibility:** $\mathbf{x} = \mathbf{A}^H \mathbf{y}$ — the inverse transform is $\mathbf{A}^H$.
-- **Decorrelation potential:** Can diagonalize the covariance matrix if $\mathbf{A}$ is chosen as the eigenmatrix of $\mathbf{R}_x$.
+- **Decorrelation potential:** The transform can diagonalize the covariance matrix when its rows are chosen as the eigenvectors of $\mathbf{R}_x$.
+
+To see this, assume $\mathbf{x}$ is zero-mean (or replace it by $\mathbf{x}-E\{\mathbf{x}\}$), and let the covariance eigendecomposition be
+
+$$
+\mathbf{R}_x=\mathbf{Q}\boldsymbol{\Lambda}\mathbf{Q}^H,
+$$
+
+where the columns of $\mathbf{Q}$ are orthonormal eigenvectors and $\boldsymbol{\Lambda}$ is diagonal. Since this section defines the transform as $\mathbf{y}=\mathbf{A}\mathbf{x}$, choose
+
+$$
+\mathbf{A}=\mathbf{Q}^H.
+$$
+
+The covariance of the transformed vector is then
+
+$$
+\begin{aligned}
+\mathbf{R}_y
+&=E\!\left\{\mathbf{y}\mathbf{y}^H\right\} \\
+&=\mathbf{A}\mathbf{R}_x\mathbf{A}^H \\
+&=\mathbf{Q}^H
+  \left(\mathbf{Q}\boldsymbol{\Lambda}\mathbf{Q}^H\right)
+  \mathbf{Q} \\
+&=\boldsymbol{\Lambda}.
+\end{aligned}
+$$
+
+Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\{y_i y_j^*\}=0$ for $i\ne j$; hence the components of $\mathbf{y}$ are uncorrelated. Equivalently, one may define $\mathbf{y}=\mathbf{Q}^H\mathbf{x}$ and call $\mathbf{Q}$ the eigenvector matrix.
 
 ### Advantages of Orthogonal Transforms
 
