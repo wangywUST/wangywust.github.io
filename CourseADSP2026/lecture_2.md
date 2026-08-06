@@ -1636,7 +1636,7 @@ a^{M-1}&a^{M-2}&a^{M-3}&\cdots&1
 \end{bmatrix}.
 $$
 
-When $a$ is close to $1$, adjacent samples are strongly correlated: the matrix has large off-diagonal entries and its energy is concentrated in a few eigen-directions. The KL transform finds those exact directions. The DCT provides a signal-independent approximation to them, which explains why the DCT follows AR modeling here rather than appearing as an unrelated transform topic.
+When $a$ is close to $1$, adjacent samples are strongly correlated: the matrix has large off-diagonal entries and its energy is concentrated in a few eigen-directions. The KL transform finds those exact directions, but its basis must be recomputed from the signal covariance. This motivates looking for a fixed basis with nearly the same directions. For a highly correlated AR(1) process, the KL eigenvectors approach sampled cosine waveforms; the **discrete cosine transform (DCT)** uses precisely such a fixed set of orthogonal cosine basis vectors. The DCT can therefore approximate the decorrelation and energy compaction of the KL transform without estimating or diagonalizing the covariance matrix. This is why the DCT follows AR modeling here rather than appearing as an unrelated transform topic.
 
 ## 6.1 Hilbert Space and Orthogonal Transforms
 
