@@ -1636,7 +1636,36 @@ a^{M-1}&a^{M-2}&a^{M-3}&\cdots&1
 \end{bmatrix}.
 $$
 
-When $a$ is close to $1$, adjacent samples are strongly correlated: the matrix has large off-diagonal entries and its energy is concentrated in a few eigen-directions. The KL transform finds those exact directions, but its basis must be recomputed from the signal covariance. This motivates looking for a fixed basis with nearly the same directions. For a highly correlated AR(1) process, the KL eigenvectors approach sampled cosine waveforms; the **discrete cosine transform (DCT)** uses precisely such a fixed set of orthogonal cosine basis vectors. The DCT can therefore approximate the decorrelation and energy compaction of the KL transform without estimating or diagonalizing the covariance matrix. This is why the DCT follows AR modeling here rather than appearing as an unrelated transform topic.
+The entries $a^{|i-j|}$ now connect the AR model directly to transform design. When $a$ is close to $1$, nearby samples have similar values, so the off-diagonal entries of $\boldsymbol{\Sigma}_x$ are large. The sample coordinates are therefore strongly coupled rather than statistically separate.
+
+To remove this coupling, diagonalize this particular covariance matrix:
+
+$$
+\boldsymbol{\Sigma}_x
+=\mathbf Q_x\boldsymbol{\Lambda}_x\mathbf Q_x^H,
+\qquad
+\mathbf w=\mathbf Q_x^H\mathbf x,
+\qquad
+\boldsymbol{\Sigma}_w=\boldsymbol{\Lambda}_x.
+$$
+
+This is the **KL transform**. Its basis vectors are the columns of $\mathbf Q_x$, so they depend on $\boldsymbol{\Sigma}_x$ and hence on the AR parameter $a$. If the signal statistics change, the covariance must be estimated and its eigenvectors computed again.
+
+For strongly correlated AR(1) data, however, these eigenvectors have smooth, oscillatory shapes that are closely approximated by sampled cosine functions. This suggests replacing the data-dependent matrix $\mathbf Q_x^H$ by a fixed orthogonal cosine-transform matrix. That fixed transform is the **discrete cosine transform (DCT)**. Thus the sequence of ideas is
+
+$$
+\boxed{
+\text{AR(1) model}
+\;\longrightarrow\;
+\boldsymbol{\Sigma}_x
+\;\longrightarrow\;
+\text{exact KL eigenbasis}
+\;\longrightarrow\;
+\text{fixed DCT approximation}.
+}
+$$
+
+The DCT is introduced here because it retains much of the KL transform's decorrelation and energy-compaction ability for correlated AR(1)-like signals, while avoiding covariance estimation and eigendecomposition.
 
 ## 6.1 Hilbert Space and Orthogonal Transforms
 
