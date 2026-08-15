@@ -1438,15 +1438,16 @@
          Markdown stays untouched. JavaScript below automatically turns
          top-level H1/H2/H3 sections into slide-like cards.
          ============================================================ */
-      body { background: #eef2f7; }
+      /* Minimal lecture-card system: quieter borders, tighter spacing, no decorative gradients. */
+      body { background: #f4f6f8; }
 
       .wrapper {
         max-width: 1320px;
-        padding: 0 28px;
+        padding: 0 24px;
       }
 
       .main-content {
-        padding: 40px 0 72px;
+        padding: 26px 0 52px;
         counter-reset: lecture-slide;
       }
 
@@ -1456,93 +1457,84 @@
         overflow: hidden;
         box-sizing: border-box;
         width: 100%;
-        margin: 28px 0;
-        padding: clamp(28px, 3.2vw, 46px) clamp(28px, 4vw, 56px);
+        margin: 20px 0;
+        padding: clamp(22px, 2.2vw, 30px) clamp(28px, 3.5vw, 46px);
         background: #ffffff;
-        border: 1px solid #dbe3ee;
-        border-radius: 20px;
-        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08),
-                    0 2px 8px rgba(15, 23, 42, 0.04);
+        border: 1px solid #e1e6ec;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.045);
         scroll-margin-top: 24px;
       }
 
+      /* No colored top stripe. The card boundary itself is enough. */
       .lecture-slide::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #2563eb 0%, #06b6d4 55%, #10b981 100%);
+        content: none;
       }
 
       .lecture-slide::after {
         content: counter(lecture-slide, decimal-leading-zero);
         position: absolute;
-        right: 24px;
-        bottom: 16px;
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        color: #94a3b8;
+        right: 20px;
+        bottom: 12px;
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: #a7b0bd;
       }
 
-      /* H1 = compact chapter title card, not a full-screen cover. */
+      /* H1 = compact chapter divider, not a presentation cover. */
       .slide-level-1 {
-        min-height: 280px;
-        padding: clamp(34px, 3.5vw, 50px) clamp(34px, 4.5vw, 62px);
+        min-height: 165px;
+        padding: 26px 44px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background:
-          radial-gradient(circle at 92% 16%, rgba(59, 130, 246, 0.12), transparent 28%),
-          linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        background: #ffffff;
       }
 
       .slide-level-1 > h1:first-child {
-        max-width: 1120px;
+        max-width: 1160px;
         margin: 0;
-        font-size: clamp(2rem, 3vw, 3.25rem);
+        font-size: clamp(2rem, 2.55vw, 2.8rem);
         line-height: 1.12;
-        letter-spacing: -0.018em;
-        color: #0f172a;
+        letter-spacing: -0.015em;
+        color: #111827;
       }
 
-      /* A short visual anchor keeps the compact title card intentional rather
-         than looking like a content slide with missing text. */
+      /* Keep only a very quiet section marker. */
       .slide-level-1 > h1:first-child::after {
         content: '';
         display: block;
-        width: 72px;
-        height: 4px;
-        margin-top: 22px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #2563eb, #06b6d4);
+        width: 46px;
+        height: 2px;
+        margin-top: 14px;
+        border-radius: 2px;
+        background: #cbd5e1;
       }
 
-      /* H2 = section divider / overview. */
+      /* H2 = compact section divider. */
       .slide-level-2 {
-        min-height: 220px;
-        background: linear-gradient(110deg, rgba(239, 246, 255, 0.9), rgba(255, 255, 255, 0.98) 42%);
+        min-height: 150px;
+        background: #ffffff;
       }
 
       .slide-level-2 > h2:first-child {
         margin-top: 0;
-        padding-bottom: 0.55em;
-        border-bottom: 2px solid #dbeafe;
-        font-size: clamp(1.75rem, 2.6vw, 2.45rem);
-        color: #172554;
+        padding-bottom: 0.42em;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: clamp(1.7rem, 2.25vw, 2.2rem);
+        color: #1f2937;
       }
 
       /* H3 = normal content slide. Long topics grow instead of clipping. */
-      .slide-level-3 { min-height: 540px; }
+      .slide-level-3 { min-height: 0; }
 
       .slide-level-3 > h3:first-child {
         margin-top: 0;
-        padding-bottom: 0.55em;
-        border-bottom: 1px solid #dbe3ee;
-        font-size: clamp(1.6rem, 2.5vw, 2.15rem);
-        color: #0f172a;
+        padding-bottom: 0.42em;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: clamp(1.55rem, 2.1vw, 2rem);
+        color: #111827;
       }
 
       .lecture-slide > :last-child { margin-bottom: 0; }
@@ -1562,49 +1554,49 @@
       }
 
       @media screen and (max-width: 768px) {
-        body { background: #f5f7fa; }
+        body { background: #f5f6f8; }
         .wrapper { padding: 0 12px; }
-        .main-content { padding: 18px 0 42px; }
+        .main-content { padding: 14px 0 34px; }
         .lecture-slide {
-          margin: 18px 0;
-          padding: 28px 20px 42px;
-          border-radius: 16px;
+          margin: 14px 0;
+          padding: 20px 18px 30px;
+          border-radius: 12px;
         }
         .slide-level-1 {
-          min-height: 210px;
-          padding: 30px 24px 36px;
+          min-height: 125px;
+          padding: 22px 20px 26px;
         }
         .slide-level-1 > h1:first-child {
-          font-size: clamp(1.85rem, 9vw, 2.55rem);
+          font-size: clamp(1.75rem, 8vw, 2.35rem);
         }
         .slide-level-1 > h1:first-child::after {
-          width: 56px;
-          margin-top: 16px;
+          width: 38px;
+          margin-top: 12px;
         }
-        .slide-level-2 { min-height: 180px; }
+        .slide-level-2 { min-height: 120px; }
         .slide-level-3 { min-height: 0; }
-        .lecture-slide::after { right: 16px; bottom: 11px; }
+        .lecture-slide::after { right: 14px; bottom: 9px; }
       }
 
       @media (prefers-color-scheme: dark) {
-        body { background: #0b1120; }
+        body { background: #111418; }
         .lecture-slide,
         .slide-level-1,
         .slide-level-2,
         .slide-level-3 {
-          background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
-          border-color: #334155;
-          box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28),
-                      0 3px 10px rgba(0, 0, 0, 0.18);
+          background: #181c22;
+          border-color: #2d333b;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
         }
         .slide-level-1 > h1:first-child,
         .slide-level-2 > h2:first-child,
         .slide-level-3 > h3:first-child {
-          color: #f8fafc;
-          border-color: #334155;
+          color: #f3f4f6;
+          border-color: #343a43;
         }
-        .lecture-slide h4 { border-top-color: #334155; }
-        .lecture-slide::after { color: #64748b; }
+        .slide-level-1 > h1:first-child::after { background: #4b5563; }
+        .lecture-slide h4 { border-top-color: #343a43; }
+        .lecture-slide::after { color: #6b7280; }
       }
 
       @media print {
@@ -1693,11 +1685,11 @@
       }
 
       .main-content .lecture-toggle[open] > summary {
-        margin: 0 0 28px !important;
-        padding: 18px 24px !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+        margin: 0 0 18px !important;
+        padding: 14px 20px !important;
+        border: 1px solid #d9dee5 !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
       }
 
       .main-content .lecture-toggle[open] > .lecture-slide {
@@ -1717,8 +1709,8 @@
           background: transparent !important;
         }
         .main-content .lecture-toggle[open] > summary {
-          border-color: #475569 !important;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+          border-color: #3b4149 !important;
+          box-shadow: none !important;
         }
       }
     </style>
