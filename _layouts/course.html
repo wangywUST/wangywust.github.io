@@ -1927,6 +1927,86 @@
           slideifyDirectChildren(root);
         }
 
+        /* ============================================================
+           Fix Markdown TOC anchor IDs
+           ------------------------------------------------------------
+           The Markdown TOC may contain GitHub-style links such as:
+             #14-review-of-undergraduate-dsp-course-structure
+
+           while kramdown may generate:
+             #review-of-undergraduate-dsp-course-structure
+
+           Keep the original heading id, but add a compatible alias.
+           ============================================================ */
+        function addTocAnchorAliases() {
+          const links = Array.from(root.querySelectorAll('a[href^="#"]'));
+
+          links.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const wantedId = decodeURIComponent(href.slice(1));
+
+            /* The desired ID already exists — nothing to fix. */
+            if (document.getElementById(wantedId)) return;
+
+            /*
+             * Examples:
+             * 14-review-...   -> review-...
+             * 111-speech-... -> speech-...
+             * 231-from-...   -> from-...
+             */
+            const kramdownId = wantedId.replace(/^\d+-?/, '');
+            if (!kramdownId || kramdownId === wantedId) return;
+
+            /* Prefer searching inside the current lecture. */
+            const scope = link.closest('.lecture-toggle') || root;
+            const target = scope.querySelector(`#${CSS.escape(kramdownId)}`);
+            if (!target) return;
+
+            /*
+             * H1/H2/H3 have already been wrapped in .lecture-slide.
+             * Put the compatibility ID on that slide, while preserving
+             * kramdown's original heading ID.
+             */
+            const slide = target.closest('.lecture-slide');
+
+            if (slide && !slide.id) {
+              slide.id = wantedId;
+            } else {
+              /* Fallback for H4/H5/H6 or other non-slide headings. */
+              const alias = document.createElement('span');
+              alias.id = wantedId;
+              alias.setAttribute('aria-hidden', 'true');
+              alias.style.display = 'block';
+              alias.style.height = '0';
+              alias.style.position = 'relative';
+              alias.style.top = '-24px';
+              target.before(alias);
+            }
+          });
+        }
+
+        addTocAnchorAliases();
+
+        /* Support opening the page directly with a hash URL. */
+        if (location.hash) {
+          const hashId = decodeURIComponent(location.hash.slice(1));
+          const hashTarget = document.getElementById(hashId);
+
+          if (hashTarget) {
+            const details = hashTarget.closest('details');
+            if (details) details.open = true;
+
+            requestAnimationFrame(() => {
+              hashTarget.scrollIntoView({
+                behavior: 'auto',
+                block: 'start'
+              });
+            });
+          }
+        }
+
         root.dataset.slideified = 'true';
       })();
     </script>
