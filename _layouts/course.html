@@ -1879,26 +1879,49 @@
           if (!host || host.dataset.slideHostProcessed === 'true') return;
 
           const nodes = Array.from(host.childNodes);
-          const hasDirectHeading = nodes.some((node) =>
-            node.nodeType === Node.ELEMENT_NODE && /^(H1|H2|H3)$/.test(node.tagName)
+          const hasDirectDivider = nodes.some((node) =>
+            node.nodeType === Node.ELEMENT_NODE && node.tagName === 'HR'
           );
-          if (!hasDirectHeading) return;
+          const hasDirectBoundary = nodes.some((node) =>
+            node.nodeType === Node.ELEMENT_NODE &&
+            (/^(H1|H2|H3)$/.test(node.tagName) || node.tagName === 'HR')
+          );
+          if (!hasDirectBoundary) return;
 
           const fragment = document.createDocumentFragment();
           let currentSlide = null;
 
+          function startSlide(level) {
+            currentSlide = document.createElement('section');
+            currentSlide.className = level
+              ? `lecture-slide slide-level-${level}`
+              : 'lecture-slide slide-level-3 slide-from-divider';
+            fragment.appendChild(currentSlide);
+          }
+
           nodes.forEach((node) => {
             const isHeading =
               node.nodeType === Node.ELEMENT_NODE && /^(H1|H2|H3)$/.test(node.tagName);
+            const isDivider =
+              node.nodeType === Node.ELEMENT_NODE && node.tagName === 'HR';
 
             if (isHeading) {
               const level = Number(node.tagName.substring(1));
-              currentSlide = document.createElement('section');
-              currentSlide.className = `lecture-slide slide-level-${level}`;
+              startSlide(level);
               if (node.id) currentSlide.setAttribute('aria-labelledby', node.id);
-              fragment.appendChild(currentSlide);
               currentSlide.appendChild(node);
+            } else if (isDivider) {
+              /* Markdown thematic breaks (`---`) delimit cards and are not shown. */
+              currentSlide = null;
             } else if (currentSlide) {
+              currentSlide.appendChild(node);
+            } else if (
+              hasDirectDivider &&
+              node.nodeType === Node.ELEMENT_NODE &&
+              !/^(SUMMARY|STYLE|SCRIPT)$/.test(node.tagName)
+            ) {
+              /* Content after `---` forms a normal, untitled card. */
+              startSlide(null);
               currentSlide.appendChild(node);
             } else {
               /* summary/style/script and any preface stay outside the first slide. */
@@ -1917,9 +1940,9 @@
             /* Usually the rendered headings are direct children of <details>.
                If Jekyll adds another wrapper, process the actual parent(s) of
                H1/H2/H3 instead, so one extra nesting level cannot block styling. */
-            const headings = Array.from(lecture.querySelectorAll('h1, h2, h3'))
-              .filter((heading) => !heading.closest('summary'));
-            const hosts = Array.from(new Set(headings.map((heading) => heading.parentElement)));
+            const boundaries = Array.from(lecture.querySelectorAll('h1, h2, h3, hr'))
+              .filter((boundary) => !boundary.closest('summary'));
+            const hosts = Array.from(new Set(boundaries.map((boundary) => boundary.parentElement)));
             hosts.forEach(slideifyDirectChildren);
           });
         } else {
