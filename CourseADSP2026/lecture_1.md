@@ -1,20 +1,28 @@
 # Modern Digital Signal Processing
-> **Modern Digital Signal Processing**
->
-> - [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-> - [Table of Contents](#table-of-contents)
-> - [Notation and Variable Definitions](#notation-and-variable-definitions)
+---
+
+**Modern Digital Signal Processing**
+
+- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
+- [Table of Contents](#table-of-contents)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+
+---
 
 ## Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review
 
 > 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005
 > Chapters covered: Ch. 1 (Introduction) + Ch. 2 (Fundamentals of Discrete-Time Signal Processing)
 
-> **Modern Digital Signal Processing**
->
-> - [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-> - [Table of Contents](#table-of-contents)
-> - [Notation and Variable Definitions](#notation-and-variable-definitions)
+---
+
+**Modern Digital Signal Processing**
+
+- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
+- [Table of Contents](#table-of-contents)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+
+---
 
 ## Table of Contents
 
@@ -123,11 +131,13 @@
 
 ---
 
-> **Modern Digital Signal Processing**
->
-> - [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-> - [Table of Contents](#table-of-contents)
-> - [Notation and Variable Definitions](#notation-and-variable-definitions)
+**Modern Digital Signal Processing**
+
+- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
+- [Table of Contents](#table-of-contents)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+
+---
 
 ## Notation and Variable Definitions
 
@@ -326,13 +336,15 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 
 ---
 
-> **Part I: Digital Signals and DSP Overview**
->
-> - [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
-> - [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
-> - [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
-> - [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
-> - [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+**Part I: Digital Signals and DSP Overview**
+
+- [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
+- [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
+- [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
+- [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
+- [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+
+---
 
 ## 1.1 Basic Types and Examples of Digital Signals
 
@@ -600,13 +612,15 @@ After sampling: $x(n) = e^{j\pi\mu(nT_s)^2}$. LFM enables pulse compression: a l
 
 ---
 
-> **Part I: Digital Signals and DSP Overview**
->
-> - [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
-> - [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
-> - [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
-> - [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
-> - [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+**Part I: Digital Signals and DSP Overview**
+
+- [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
+- [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
+- [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
+- [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
+- [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+
+---
 
 ## 1.2 Applications of Digital Signal Processing
 
@@ -628,13 +642,15 @@ DSP methods underpin virtually every modern technology domain:
 
 ---
 
-> **Part I: Digital Signals and DSP Overview**
->
-> - [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
-> - [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
-> - [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
-> - [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
-> - [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+**Part I: Digital Signals and DSP Overview**
+
+- [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
+- [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
+- [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
+- [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
+- [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+
+---
 
 ## 1.3 General Digital Signal Processing System
 
@@ -761,13 +777,15 @@ How do we characterize discrete-time systems and design them to perform desired 
 
 ---
 
-> **Part I: Digital Signals and DSP Overview**
->
-> - [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
-> - [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
-> - [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
-> - [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
-> - [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+**Part I: Digital Signals and DSP Overview**
+
+- [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
+- [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
+- [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
+- [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
+- [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+
+---
 
 ## 1.4 Review of Undergraduate DSP Course Structure
 
@@ -791,13 +809,15 @@ This chapter reviews these foundations as preparation for the **stochastic signa
 
 ---
 
-> **Part I: Digital Signals and DSP Overview**
->
-> - [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
-> - [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
-> - [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
-> - [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
-> - [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+**Part I: Digital Signals and DSP Overview**
+
+- [1.1 Basic Types and Examples of Digital Signals](#11-basic-types-and-examples-of-digital-signals)
+- [1.2 Applications of Digital Signal Processing](#12-applications-of-digital-signal-processing)
+- [1.3 General Digital Signal Processing System](#13-general-digital-signal-processing-system)
+- [1.4 Review of Undergraduate DSP Course Structure](#14-review-of-undergraduate-dsp-course-structure)
+- [1.5 Elementary Sequences (Fundamental Building Blocks)](#15-elementary-sequences-fundamental-building-blocks)
+
+---
 
 ## 1.5 Elementary Sequences (Fundamental Building Blocks)
 
@@ -889,12 +909,14 @@ $e^{j\omega_0 n}$ is $2\pi$-periodic: $e^{j(\omega_0 + 2\pi)n} = e^{j\omega_0 n}
 
 ---
 
-> **Part II: Transforms for Discrete-Time Signals**
->
-> - [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
-> - [2.2 z-Transform](#22-z-transform)
-> - [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
-> - [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+**Part II: Transforms for Discrete-Time Signals**
+
+- [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
+- [2.2 z-Transform](#22-z-transform)
+- [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
+- [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+
+---
 
 ## 2.1 Discrete-Time Fourier Transform (DTFT)
 
@@ -950,12 +972,14 @@ Total energy is preserved between the time and frequency domains.
 
 ---
 
-> **Part II: Transforms for Discrete-Time Signals**
->
-> - [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
-> - [2.2 z-Transform](#22-z-transform)
-> - [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
-> - [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+**Part II: Transforms for Discrete-Time Signals**
+
+- [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
+- [2.2 z-Transform](#22-z-transform)
+- [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
+- [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+
+---
 
 ## 2.2 z-Transform
 
@@ -1042,12 +1066,14 @@ where each variable carries a distinct physical meaning:
 
 ---
 
-> **Part II: Transforms for Discrete-Time Signals**
->
-> - [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
-> - [2.2 z-Transform](#22-z-transform)
-> - [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
-> - [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+**Part II: Transforms for Discrete-Time Signals**
+
+- [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
+- [2.2 z-Transform](#22-z-transform)
+- [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
+- [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+
+---
 
 ## 2.3 Discrete Fourier Transform (DFT)
 
@@ -1410,12 +1436,14 @@ Retain the first $L_1 + L_2 - 1$ samples of $y(n)$; that is $x(n) \ast h(n)$.
 
 ---
 
-> **Part II: Transforms for Discrete-Time Signals**
->
-> - [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
-> - [2.2 z-Transform](#22-z-transform)
-> - [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
-> - [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+**Part II: Transforms for Discrete-Time Signals**
+
+- [2.1 Discrete-Time Fourier Transform (DTFT)](#21-discrete-time-fourier-transform-dtft)
+- [2.2 z-Transform](#22-z-transform)
+- [2.3 Discrete Fourier Transform (DFT)](#23-discrete-fourier-transform-dft)
+- [2.4 Fast Fourier Transform (FFT)](#24-fast-fourier-transform-fft)
+
+---
 
 ## 2.4 Fast Fourier Transform (FFT)
 
@@ -1814,12 +1842,14 @@ The permutation can be performed in-place with an $O(N)$ algorithm: compare each
 
 ---
 
-> **Part III: Digital Filter Structures and Design**
->
-> - [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
-> - [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
-> - [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
-> - [3.3 Digital Filter Design](#33-digital-filter-design)
+**Part III: Digital Filter Structures and Design**
+
+- [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
+- [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
+- [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
+- [3.3 Digital Filter Design](#33-digital-filter-design)
+
+---
 
 ## 3.0 Characterizing Discrete-Time Systems
 
@@ -2183,12 +2213,14 @@ Every filter design begins with choosing between FIR and IIR. The difference equ
 
 ---
 
-> **Part III: Digital Filter Structures and Design**
->
-> - [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
-> - [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
-> - [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
-> - [3.3 Digital Filter Design](#33-digital-filter-design)
+**Part III: Digital Filter Structures and Design**
+
+- [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
+- [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
+- [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
+- [3.3 Digital Filter Design](#33-digital-filter-design)
+
+---
 
 ## 3.1 FIR Filter Implementations
 
@@ -2281,12 +2313,14 @@ This is a **comb filter** cascaded with a **bank of $N$ first-order resonators**
 
 ---
 
-> **Part III: Digital Filter Structures and Design**
->
-> - [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
-> - [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
-> - [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
-> - [3.3 Digital Filter Design](#33-digital-filter-design)
+**Part III: Digital Filter Structures and Design**
+
+- [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
+- [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
+- [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
+- [3.3 Digital Filter Design](#33-digital-filter-design)
+
+---
 
 ## 3.2 IIR Filter Implementations
 
@@ -2342,12 +2376,14 @@ Each branch is an independent second-order section computed in parallel.
 
 ---
 
-> **Part III: Digital Filter Structures and Design**
->
-> - [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
-> - [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
-> - [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
-> - [3.3 Digital Filter Design](#33-digital-filter-design)
+**Part III: Digital Filter Structures and Design**
+
+- [3.0 Characterizing Discrete-Time Systems](#30-characterizing-discrete-time-systems)
+- [3.1 FIR Filter Implementations](#31-fir-filter-implementations)
+- [3.2 IIR Filter Implementations](#32-iir-filter-implementations)
+- [3.3 Digital Filter Design](#33-digital-filter-design)
+
+---
 
 ## 3.3 Digital Filter Design
 
@@ -2459,13 +2495,15 @@ The parameter $\alpha$ (and $a_1, a_2$ for bandpass/bandstop) is determined by t
 
 ---
 
-> **Part IV: Special Sequences and Corresponding Filters**
->
-> - [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
-> - [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
-> - [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
-> - [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
-> - [Chapter 1 Summary](#chapter-1-summary)
+**Part IV: Special Sequences and Corresponding Filters**
+
+- [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
+- [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
+- [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
+- [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
+- [Chapter 1 Summary](#chapter-1-summary)
+
+---
 
 ## 4.1 Allpass Sequences and Allpass Filters
 
@@ -2531,13 +2569,15 @@ This is a sum of positive terms. An allpass filter is a pure **phase-lag device*
 
 ---
 
-> **Part IV: Special Sequences and Corresponding Filters**
->
-> - [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
-> - [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
-> - [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
-> - [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
-> - [Chapter 1 Summary](#chapter-1-summary)
+**Part IV: Special Sequences and Corresponding Filters**
+
+- [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
+- [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
+- [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
+- [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
+- [Chapter 1 Summary](#chapter-1-summary)
+
+---
 
 ## 4.2 Minimum-Phase Sequences and Minimum-Phase Filters
 
@@ -2599,13 +2639,15 @@ The resulting $H_m(z)$ is causal, stable, and all-zeros-inside — minimum-phase
 
 ---
 
-> **Part IV: Special Sequences and Corresponding Filters**
->
-> - [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
-> - [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
-> - [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
-> - [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
-> - [Chapter 1 Summary](#chapter-1-summary)
+**Part IV: Special Sequences and Corresponding Filters**
+
+- [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
+- [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
+- [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
+- [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
+- [Chapter 1 Summary](#chapter-1-summary)
+
+---
 
 ## 4.3 Linear-Phase Sequences and Linear-Phase Filters
 
@@ -2679,13 +2721,15 @@ Classified by symmetry type (even or odd) and filter length (odd or even):
 
 ---
 
-> **Part IV: Special Sequences and Corresponding Filters**
->
-> - [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
-> - [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
-> - [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
-> - [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
-> - [Chapter 1 Summary](#chapter-1-summary)
+**Part IV: Special Sequences and Corresponding Filters**
+
+- [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
+- [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
+- [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
+- [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
+- [Chapter 1 Summary](#chapter-1-summary)
+
+---
 
 ## 4.4 Positive Semi-Definite Sequences
 
@@ -2738,13 +2782,15 @@ This spectral factorization theorem is **fundamental** to:
 
 ---
 
-> **Part IV: Special Sequences and Corresponding Filters**
->
-> - [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
-> - [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
-> - [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
-> - [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
-> - [Chapter 1 Summary](#chapter-1-summary)
+**Part IV: Special Sequences and Corresponding Filters**
+
+- [4.1 Allpass Sequences and Allpass Filters](#41-allpass-sequences-and-allpass-filters)
+- [4.2 Minimum-Phase Sequences and Minimum-Phase Filters](#42-minimum-phase-sequences-and-minimum-phase-filters)
+- [4.3 Linear-Phase Sequences and Linear-Phase Filters](#43-linear-phase-sequences-and-linear-phase-filters)
+- [4.4 Positive Semi-Definite Sequences](#44-positive-semi-definite-sequences)
+- [Chapter 1 Summary](#chapter-1-summary)
+
+---
 
 ## Chapter 1 Summary
 
