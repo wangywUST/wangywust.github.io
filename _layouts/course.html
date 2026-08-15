@@ -1456,13 +1456,13 @@
         overflow: hidden;
         box-sizing: border-box;
         width: 100%;
-        margin: 34px 0;
-        padding: clamp(34px, 4.5vw, 64px) clamp(30px, 5vw, 72px);
+        margin: 28px 0;
+        padding: clamp(28px, 3.2vw, 46px) clamp(28px, 4vw, 56px);
         background: #ffffff;
         border: 1px solid #dbe3ee;
-        border-radius: 22px;
-        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.09),
-                    0 3px 10px rgba(15, 23, 42, 0.05);
+        border-radius: 20px;
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08),
+                    0 2px 8px rgba(15, 23, 42, 0.04);
         scroll-margin-top: 24px;
       }
 
@@ -1487,27 +1487,42 @@
         color: #94a3b8;
       }
 
-      /* H1 = chapter / Part cover. */
+      /* H1 = compact chapter title card, not a full-screen cover. */
       .slide-level-1 {
-        min-height: min(62vh, 680px);
+        min-height: 280px;
+        padding: clamp(34px, 3.5vw, 50px) clamp(34px, 4.5vw, 62px);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: radial-gradient(circle at 88% 18%, rgba(59, 130, 246, 0.16), transparent 34%),
-                    linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        background:
+          radial-gradient(circle at 92% 16%, rgba(59, 130, 246, 0.12), transparent 28%),
+          linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
       }
 
       .slide-level-1 > h1:first-child {
-        max-width: 950px;
-        margin: 0 0 0.55em;
-        font-size: clamp(2.25rem, 5vw, 4.4rem);
-        line-height: 1.08;
+        max-width: 1120px;
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3.25rem);
+        line-height: 1.12;
+        letter-spacing: -0.018em;
         color: #0f172a;
+      }
+
+      /* A short visual anchor keeps the compact title card intentional rather
+         than looking like a content slide with missing text. */
+      .slide-level-1 > h1:first-child::after {
+        content: '';
+        display: block;
+        width: 72px;
+        height: 4px;
+        margin-top: 22px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #2563eb, #06b6d4);
       }
 
       /* H2 = section divider / overview. */
       .slide-level-2 {
-        min-height: 280px;
+        min-height: 220px;
         background: linear-gradient(110deg, rgba(239, 246, 255, 0.9), rgba(255, 255, 255, 0.98) 42%);
       }
 
@@ -1515,7 +1530,7 @@
         margin-top: 0;
         padding-bottom: 0.55em;
         border-bottom: 2px solid #dbeafe;
-        font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+        font-size: clamp(1.75rem, 2.6vw, 2.45rem);
         color: #172554;
       }
 
@@ -1555,8 +1570,18 @@
           padding: 28px 20px 42px;
           border-radius: 16px;
         }
-        .slide-level-1 { min-height: 360px; }
-        .slide-level-2 { min-height: 220px; }
+        .slide-level-1 {
+          min-height: 210px;
+          padding: 30px 24px 36px;
+        }
+        .slide-level-1 > h1:first-child {
+          font-size: clamp(1.85rem, 9vw, 2.55rem);
+        }
+        .slide-level-1 > h1:first-child::after {
+          width: 56px;
+          margin-top: 16px;
+        }
+        .slide-level-2 { min-height: 180px; }
         .slide-level-3 { min-height: 0; }
         .lecture-slide::after { right: 16px; bottom: 11px; }
       }
