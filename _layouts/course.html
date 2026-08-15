@@ -1614,6 +1614,159 @@
         }
       }
 
+      /* ============================================================
+         Markdown lists
+         ------------------------------------------------------------
+         Keep the first level readable and use quiet guide rails and
+         marker changes for nesting instead of stacking colored cards.
+         ============================================================ */
+      .main-content {
+        --md-list-text: #26364a;
+        --md-list-muted: #52647a;
+        --md-list-marker: #2563eb;
+        --md-list-marker-muted: #7590ae;
+        --md-list-guide: #d8e3ef;
+        --md-list-hover: rgba(37, 99, 235, 0.055);
+      }
+
+      .main-content :is(ul, ol) {
+        margin: 0.9em 0 1.25em;
+        padding-left: 1.65rem;
+        list-style-position: outside;
+      }
+
+      .main-content ul { list-style-type: disc; }
+      .main-content ol { list-style-type: decimal; }
+
+      .main-content :is(ul, ol) > li {
+        position: relative;
+        margin: 0.28rem 0;
+        padding: 0.3rem 0.48rem;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        box-shadow: none;
+        color: var(--md-list-text) !important;
+        font-size: 1em;
+        font-weight: 400;
+        line-height: 1.65;
+        transition: background-color 160ms ease, color 160ms ease;
+      }
+
+      .main-content :is(ul, ol) > li:hover {
+        transform: none;
+        border: 0;
+        background: var(--md-list-hover);
+        box-shadow: none;
+        color: var(--md-list-text) !important;
+      }
+
+      .main-content :is(ul, ol) > li::marker {
+        color: var(--md-list-marker);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Use the browser's native ordered-list marker, not duplicated counters. */
+      .main-content ol > li::before { content: none; }
+
+      .main-content :is(ul, ol) :is(ul, ol) {
+        margin: 0.42rem 0 0.22rem 0.12rem;
+        padding: 0.16rem 0 0.16rem 1.3rem;
+        border: 0;
+        border-left: 1px solid var(--md-list-guide);
+        background: transparent;
+      }
+
+      .main-content :is(ul, ol) :is(ul, ol) > li {
+        margin: 0.16rem 0;
+        padding: 0.22rem 0.42rem;
+        border: 0;
+        border-radius: 5px;
+        background: transparent;
+        box-shadow: none;
+        color: var(--md-list-muted) !important;
+        font-size: 0.97em;
+        font-weight: 400;
+      }
+
+      .main-content :is(ul, ol) :is(ul, ol) > li:hover {
+        transform: none;
+        border: 0;
+        background: var(--md-list-hover);
+        box-shadow: none;
+        color: var(--md-list-text) !important;
+      }
+
+      .main-content :is(ul, ol) :is(ul, ol) > li::marker {
+        color: var(--md-list-marker-muted);
+      }
+
+      .main-content :is(ul, ol) ul { list-style-type: circle; }
+      .main-content :is(ul, ol) ol { list-style-type: lower-alpha; }
+      .main-content :is(ul, ol) :is(ul, ol) ul { list-style-type: square; }
+      .main-content :is(ul, ol) :is(ul, ol) ol { list-style-type: lower-roman; }
+
+      .main-content :is(ul, ol) li > p { margin: 0.18em 0 0.45em; }
+      .main-content :is(ul, ol) li > p:last-child { margin-bottom: 0.18em; }
+
+      .main-content :is(ul, ol) li a {
+        margin: 0 -0.05em;
+        padding: 0.08em 0.18em;
+        border-radius: 4px;
+      }
+
+      .main-content .task-list-item { list-style: none; }
+      .main-content .task-list-item > input[type="checkbox"] {
+        width: 1em;
+        height: 1em;
+        margin: 0 0.5em 0 -1.35em;
+        accent-color: var(--md-list-marker);
+        vertical-align: -0.08em;
+      }
+
+      /* Publication entries have their own card treatment and no markers. */
+      .main-content :is(.publications ol, ol.bibliography, .bibliography) {
+        padding-left: 0;
+        border-left: 0;
+        list-style: none;
+      }
+
+      @media screen and (max-width: 768px) {
+        .main-content :is(ul, ol) { padding-left: 1.35rem; }
+        .main-content :is(ul, ol) > li { padding: 0.28rem 0.36rem; }
+        .main-content :is(ul, ol) :is(ul, ol) {
+          margin-left: 0;
+          padding-left: 1.05rem;
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .main-content {
+          --md-list-text: #dbe5f0;
+          --md-list-muted: #afbdcc;
+          --md-list-marker: #60a5fa;
+          --md-list-marker-muted: #7f9bb9;
+          --md-list-guide: #34465b;
+          --md-list-hover: rgba(96, 165, 250, 0.09);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .main-content :is(ul, ol) > li { transition: none; }
+      }
+
+      @media print {
+        .main-content {
+          --md-list-text: #111827;
+          --md-list-muted: #374151;
+          --md-list-marker: #1d4ed8;
+          --md-list-marker-muted: #64748b;
+          --md-list-guide: #d1d5db;
+          --md-list-hover: transparent;
+        }
+      }
+
     </style>
   </head>
   <body>
