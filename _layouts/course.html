@@ -1649,34 +1649,114 @@
     </footer>
 
 
-    <!-- Automatically group Markdown sections into PPT-like pages. -->
+    <!--
+      The course index Markdown wraps each lecture in <details class="lecture-toggle">
+      and then includes lecture_N.md inside it.  These overrides intentionally live
+      AFTER {{ content }} so they beat the inline <style> from that intermediate file.
+    -->
+    <style id="nested-lecture-slide-overrides">
+      /* Keep the compact card when a lecture is closed, but remove the giant outer
+         card once it is opened.  The real visual boundaries are the slide cards. */
+      .main-content .lecture-toggle[open] {
+        margin: 1.4rem 0 3rem !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        counter-reset: lecture-slide;
+      }
+
+      .main-content .lecture-toggle[open] > summary {
+        margin: 0 0 28px !important;
+        padding: 18px 24px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      }
+
+      .main-content .lecture-toggle[open] > .lecture-slide {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      /* Some Markdown/Jekyll combinations insert one extra wrapper around the
+         included lecture.  Do not let that wrapper constrain the slide width. */
+      .main-content .lecture-toggle[open] > div,
+      .main-content .lecture-toggle[open] > section:not(.lecture-slide) {
+        max-width: none;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .main-content .lecture-toggle[open] {
+          background: transparent !important;
+        }
+        .main-content .lecture-toggle[open] > summary {
+          border-color: #475569 !important;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+      }
+    </style>
+
+    <!-- Automatically group Markdown sections into PPT-like pages, even when
+         lecture Markdown is nested inside the intermediate course-index file. -->
     <script>
       (function () {
         const root = document.querySelector('.main-content');
         if (!root || root.dataset.slideified === 'true') return;
 
-        const nodes = Array.from(root.childNodes);
-        const fragment = document.createDocumentFragment();
-        let currentSlide = null;
+        function slideifyDirectChildren(host) {
+          if (!host || host.dataset.slideHostProcessed === 'true') return;
 
-        nodes.forEach((node) => {
-          const isHeading = node.nodeType === Node.ELEMENT_NODE && /^(H1|H2|H3)$/.test(node.tagName);
+          const nodes = Array.from(host.childNodes);
+          const hasDirectHeading = nodes.some((node) =>
+            node.nodeType === Node.ELEMENT_NODE && /^(H1|H2|H3)$/.test(node.tagName)
+          );
+          if (!hasDirectHeading) return;
 
-          if (isHeading) {
-            const level = Number(node.tagName.substring(1));
-            currentSlide = document.createElement('section');
-            currentSlide.className = `lecture-slide slide-level-${level}`;
-            if (node.id) currentSlide.setAttribute('aria-labelledby', node.id);
-            fragment.appendChild(currentSlide);
-            currentSlide.appendChild(node);
-          } else if (currentSlide) {
-            currentSlide.appendChild(node);
-          } else {
-            fragment.appendChild(node);
-          }
-        });
+          const fragment = document.createDocumentFragment();
+          let currentSlide = null;
 
-        root.replaceChildren(fragment);
+          nodes.forEach((node) => {
+            const isHeading =
+              node.nodeType === Node.ELEMENT_NODE && /^(H1|H2|H3)$/.test(node.tagName);
+
+            if (isHeading) {
+              const level = Number(node.tagName.substring(1));
+              currentSlide = document.createElement('section');
+              currentSlide.className = `lecture-slide slide-level-${level}`;
+              if (node.id) currentSlide.setAttribute('aria-labelledby', node.id);
+              fragment.appendChild(currentSlide);
+              currentSlide.appendChild(node);
+            } else if (currentSlide) {
+              currentSlide.appendChild(node);
+            } else {
+              /* summary/style/script and any preface stay outside the first slide. */
+              fragment.appendChild(node);
+            }
+          });
+
+          host.replaceChildren(fragment);
+          host.dataset.slideHostProcessed = 'true';
+        }
+
+        const lectureToggles = Array.from(root.querySelectorAll('.lecture-toggle'));
+
+        if (lectureToggles.length) {
+          lectureToggles.forEach((lecture) => {
+            /* Usually the rendered headings are direct children of <details>.
+               If Jekyll adds another wrapper, process the actual parent(s) of
+               H1/H2/H3 instead, so one extra nesting level cannot block styling. */
+            const headings = Array.from(lecture.querySelectorAll('h1, h2, h3'))
+              .filter((heading) => !heading.closest('summary'));
+            const hosts = Array.from(new Set(headings.map((heading) => heading.parentElement)));
+            hosts.forEach(slideifyDirectChildren);
+          });
+        } else {
+          /* Backward compatible: a page that contains lecture Markdown directly. */
+          slideifyDirectChildren(root);
+        }
+
         root.dataset.slideified = 'true';
       })();
     </script>
