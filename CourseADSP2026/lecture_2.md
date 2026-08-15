@@ -2037,19 +2037,26 @@ $$E\lbrace (\hat{\theta}_i - \theta_i)\, x^{\ast}(n)\rbrace = 0 \quad \text{for 
 
 **Physical meaning:** The estimation error must be **uncorrelated with every observation** $x(n)$. If any observation were correlated with the error, we could improve the estimate by using that observation more aggressively. At the optimum, we have already extracted all the information that the observations carry.
 
-This principle leads to the **Wiener-Hopf equations** (to be derived in detail in Chapter 6):
+For the scalar linear estimator $\hat\theta=\mathbf w^H\mathbf x$, this principle leads to the **Wiener--Hopf equation** (to be derived in detail in Chapter 6):
 
-$$\mathbf{R}_x \mathbf{w}_{\mathrm{opt}} = \mathbf{r}_{\theta x}$$
+$$
+\mathbf{R}_x\mathbf{w}_{\mathrm{opt}}=\mathbf{r}_{x\theta}.
+$$
 
-where
+The two quantities in this equation are defined by
 
 $$
 \mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace,
 \qquad
-\mathbf{r}_{\theta x} = E\lbrace \theta\, \mathbf{x}^H\rbrace.
+\mathbf{r}_{x\theta}=E\lbrace \mathbf{x}\theta^*\rbrace.
 $$
 
-Here, $\mathbf{R}_x$ is the observation autocorrelation matrix, and $\mathbf{r}_{\theta x}$ is the cross-correlation between the desired signal and the observations.
+Here:
+
+- $\mathbf{R}_x$ is the autocorrelation matrix of the observation vector $\mathbf{x}$;
+- $\mathbf{r}_{x\theta}$ is the cross-correlation vector between the observations $\mathbf{x}$ and the desired random variable $\theta$.
+
+If $\mathbf{x}\in\mathbb C^N$, then $\mathbf{R}_x\in\mathbb C^{N\times N}$ and $\mathbf{r}_{x\theta}\in\mathbb C^N$, so both sides of the Wiener--Hopf equation are $N$-dimensional column vectors.
 
 The LMMSE framework is the **bridge to Wiener filtering** (Chapter 6): when the parameter $\boldsymbol{\theta}$ is replaced by a random desired signal $d(n)$ and the observations are $\mathbf{x} = [x(n), x(n-1), \ldots]^T$, the LMMSE estimator becomes the FIR Wiener filter.
 
