@@ -36,6 +36,9 @@
     <!-- MathJax Configuration -->
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
+        /* Kramdown can mistake |...| inside $...$ for table separators.
+           Wait until the rendered HTML has been repaired before typesetting. */
+        skipStartupTypeset: true,
         tex2jax: {
           inlineMath: [['$','$'], ['\\(','\\)']],
           processEscapes: true
@@ -1825,6 +1828,62 @@
         {{ content }}
       </div>
     </div>
+
+    <script>
+      /*
+       * Kramdown's pipe-table extension runs before this layout and therefore
+       * before MathJax.  A paragraph containing $|a|=|b|$ may arrive here as a
+       * one-row table whose cells contain unmatched dollar delimiters.  Join
+       * only that distinctive shape back into a paragraph.  Real Markdown
+       * tables (including tables with complete $...$ formulas in cells) are
+       * deliberately left untouched.
+       */
+      (function repairMathPipeTables() {
+        const root = document.querySelector('.main-content');
+        if (!root) return;
+
+        function unescapedDollarCount(text) {
+          let count = 0;
+          for (let i = 0; i < text.length; i += 1) {
+            if (text[i] !== '$') continue;
+            let backslashes = 0;
+            for (let j = i - 1; j >= 0 && text[j] === '\\'; j -= 1) {
+              backslashes += 1;
+            }
+            if (backslashes % 2 === 0) count += 1;
+          }
+          return count;
+        }
+
+        Array.from(root.querySelectorAll('table')).forEach((table) => {
+          const rows = Array.from(table.rows);
+          if (rows.length !== 1) return;
+
+          const cells = Array.from(rows[0].cells);
+          if (cells.length < 2) return;
+
+          const dollarCounts = cells.map((cell) =>
+            unescapedDollarCount(cell.textContent || '')
+          );
+          const totalDollars = dollarCounts.reduce((sum, count) => sum + count, 0);
+
+          if (totalDollars < 2 || totalDollars % 2 !== 0) return;
+          if (!dollarCounts.some((count) => count % 2 === 1)) return;
+
+          const paragraph = document.createElement('p');
+          paragraph.className = 'repaired-math-pipe-paragraph';
+          paragraph.innerHTML = cells.map((cell) => cell.innerHTML.trim()).join('|');
+          table.replaceWith(paragraph);
+        });
+
+        /* MathJax is loaded asynchronously; window.load guarantees it is ready. */
+        window.addEventListener('load', function typesetRepairedContent() {
+          if (window.MathJax && MathJax.Hub) {
+            MathJax.Hub.Queue(['Typeset', MathJax.Hub, root]);
+          }
+        }, { once: true });
+      })();
+    </script>
 
     <!-- Footer -->
     <footer>
