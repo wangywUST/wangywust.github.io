@@ -254,7 +254,7 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 **Guiding Question**
 
-A receiver observes a sample $x=s+w$, where the deterministic signal level is $s=2$, and the noise is Gaussian, $w\sim\mathcal{N}(0,1)$. The receiver declares “signal present” when $x>3$. What is the detection probability? What are the mean and variance of $x$? If a second receiver observes $y=s+v$, where $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$, are $x$ and $y$ independent?
+An active sonar examines one matched-filter output from a range–bearing cell after transmitting a ping. When an underwater target is present, engineers model its echo as a deterministic normalized level $s=2$; ambient ocean noise and receiver self-noise are modeled together as $w\sim\mathcal{N}(0,1)$, so the measured output is $x=s+w$. The sonar declares a contact when $x>3$. Under this target-present model, what fraction of targets will be detected, and what mean and variance should appear in tank-test data? A second hydrophone channel measures $y=s+v$, with $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$ because both hydrophones sense part of the same ambient noise field. May the two channel outputs be treated as independent when fusing their contact decisions?
 
 Before this section, the words “Gaussian,” “variance,” and “independent” have not yet been turned into computational tools. By the end of §1, we will be able to answer every part—and explain why zero covariance alone is usually not enough to establish independence.
 
@@ -501,7 +501,7 @@ A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2
 
 ### Answer to the Guiding Question
 
-**Question.** A receiver observes a sample $x=s+w$, where the deterministic signal level is $s=2$, and the noise is Gaussian, $w\sim\mathcal{N}(0,1)$. The receiver declares “signal present” when $x>3$. What is the detection probability? What are the mean and variance of $x$? If a second receiver observes $y=s+v$, where $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$, are $x$ and $y$ independent?
+**Question.** An active sonar examines one matched-filter output from a range–bearing cell after transmitting a ping. When an underwater target is present, engineers model its echo as a deterministic normalized level $s=2$; ambient ocean noise and receiver self-noise are modeled together as $w\sim\mathcal{N}(0,1)$, so the measured output is $x=s+w$. The sonar declares a contact when $x>3$. Under this target-present model, what fraction of targets will be detected, and what mean and variance should appear in tank-test data? A second hydrophone channel measures $y=s+v$, with $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$ because both hydrophones sense part of the same ambient noise field. May the two channel outputs be treated as independent when fusing their contact decisions?
 
 **Answer.**
 
@@ -515,7 +515,7 @@ $$P_D=\Pr\{x>3\}=\Pr\{w>1\}=1-\Phi(1)\approx 0.1587.$$
 
 Linearity of expectation gives $E\{x\}=2+E\{w\}=2$, and adding a constant does not change variance, so $\operatorname{var}(x)=\operatorname{var}(w)=1$.
 
-For the two receivers,
+For the two hydrophone channels,
 
 $$\operatorname{cov}(x,y)=E\{(x-2)(y-2)\}=E\{wv\}=0.6.$$
 
@@ -531,11 +531,11 @@ Therefore $x$ and $y$ are correlated and cannot be independent: independence wou
 
 **Guiding Question**
 
-Consider
+A passive-sonar buoy monitors the radiated sound of a vessel with a rotating propeller. At a known blade-rate frequency $\omega_0$, the propeller produces a tonal component of amplitude $A$; because recording begins at an arbitrary propeller angle, its initial phase $\Theta$ is uniform on $[0,2\pi)$. The hydrophone also records zero-mean white background noise $w(n)$ of variance $\sigma_w^2$, assumed independent of the propeller phase. The acoustic record is
 
 $$x(n)=A\cos(\omega_0 n+\Theta)+w(n),$$
 
-where $\Theta$ is uniform on $[0,2\pi)$, $w(n)$ is zero-mean white noise with variance $\sigma_w^2$, and $\Theta$ is independent of the entire noise sequence. Is $x(n)$ wide-sense stationary? What are its mean, autocorrelation, and power spectral density? If we observe only one infinitely long realization, can its time-average mean and power recover the corresponding ensemble averages?
+Will the received sound have the same first- and second-order behavior regardless of when recording begins—that is, is it WSS? What mean, autocorrelation, and PSD should the sonar analyst use as the vessel’s acoustic baseline? If only one very long pass-by recording is available, can its time averages recover the ensemble mean, power, and autocorrelation used in that baseline?
 
 A random-variable description at one time instant cannot answer these questions: we need an ensemble indexed by time, stationarity, correlation sequences, spectra, and ergodicity.
 
@@ -1163,11 +1163,11 @@ White noise is the fundamental **building block** for constructing more complex 
 
 ### Answer to the Guiding Question
 
-**Question.** Consider
+**Question.** A passive-sonar buoy monitors the radiated sound of a vessel with a rotating propeller. At a known blade-rate frequency $\omega_0$, the propeller produces a tonal component of amplitude $A$; because recording begins at an arbitrary propeller angle, its initial phase $\Theta$ is uniform on $[0,2\pi)$. The hydrophone also records zero-mean white background noise $w(n)$ of variance $\sigma_w^2$, assumed independent of the propeller phase. The acoustic record is
 
 $$x(n)=A\cos(\omega_0 n+\Theta)+w(n),$$
 
-where $\Theta$ is uniform on $[0,2\pi)$, $w(n)$ is zero-mean white noise with variance $\sigma_w^2$, and $\Theta$ is independent of the entire noise sequence. Is $x(n)$ wide-sense stationary? What are its mean, autocorrelation, and power spectral density? If we observe only one infinitely long realization, can its time-average mean and power recover the corresponding ensemble averages?
+Will the received sound have the same first- and second-order behavior regardless of when recording begins—that is, is it WSS? What mean, autocorrelation, and PSD should the sonar analyst use as the vessel’s acoustic baseline? If only one very long pass-by recording is available, can its time averages recover the ensemble mean, power, and autocorrelation used in that baseline?
 
 **Answer.**
 
@@ -1199,11 +1199,11 @@ For the ordinary sinusoidal case $0<\omega_0<\pi$, the oscillatory terms vanish 
 
 **Guiding Question**
 
-Unit-variance white noise $w(n)$ is passed through the stable causal filter
+An acoustic engineer wants a simple statistical model of late reverberation in a room. Each new sound sample contains an independent unit-variance excitation $w(n)$ plus $80\%$ of the previous reverberant sample, so $x(n)=0.8x(n-1)+w(n)$. Equivalently, the room is modeled by the stable causal filter
 
 $$H(z)=\frac{1}{1-0.8z^{-1}}.$$
 
-Without simulating the system, determine the output mean, PSD, autocorrelation, and variance. Why does a flat-spectrum input become a lowpass, strongly correlated output?
+Before deploying a simulator, what mean, PSD, autocorrelation, and steady-state variance should the engineer expect for the reverberant sound? Explain physically why memoryless, flat-spectrum excitation becomes a lowpass, strongly correlated signal after propagating through this room model.
 
 The previous section tells us how to describe the input, but not yet how an LTI system transforms its second-order statistics.
 
@@ -1325,11 +1325,11 @@ This confirms that the variance of a first-order AR process driven by white nois
 
 ### Answer to the Guiding Question
 
-**Question.** Unit-variance white noise $w(n)$ is passed through the stable causal filter
+**Question.** An acoustic engineer wants a simple statistical model of late reverberation in a room. Each new sound sample contains an independent unit-variance excitation $w(n)$ plus $80\%$ of the previous reverberant sample, so $x(n)=0.8x(n-1)+w(n)$. Equivalently, the room is modeled by the stable causal filter
 
 $$H(z)=\frac{1}{1-0.8z^{-1}}.$$
 
-Without simulating the system, determine the output mean, PSD, autocorrelation, and variance. Why does a flat-spectrum input become a lowpass, strongly correlated output?
+Before deploying a simulator, what mean, PSD, autocorrelation, and steady-state variance should the engineer expect for the reverberant sound? Explain physically why memoryless, flat-spectrum excitation becomes a lowpass, strongly correlated signal after propagating through this room model.
 
 **Answer.**
 
@@ -1363,11 +1363,11 @@ The pole at $0.8$ gives the filter large gain near $\omega=0$ and memory across 
 
 **Guiding Question**
 
-A zero-mean WSS process has PSD
+An underwater-acoustics laboratory has estimated the normal ambient-noise spectrum at a seabed hydrophone. To test a passive-sonar detector, it needs a causal real-time generator that produces realistic ocean background noise from unit-variance white noise; during deployment, it also wants an inverse prefilter that turns the normal background into white residuals so that weak transient sounds from a target stand out more clearly. After normalization, the target PSD is
 
 $$R_x(z)=\frac{1}{(1-0.5z^{-1})(1-0.5z)}.$$
 
-Find a causal, stable, minimum-phase shaping filter driven by unit-variance white noise that generates this process. Then find a causal whitening filter and explain what its output represents. Could a different spectral factor generate the same PSD, and if so, why is the minimum-phase one preferred?
+What causal, stable shaping filter should the laboratory implement, and what causal whitening filter should precede the passive-sonar detector? What does the whitened residual represent acoustically? Could another real-time generator reproduce the same hydrophone PSD, and why is the minimum-phase design the useful engineering choice?
 
 §3 solves the forward problem “filter $\rightarrow$ spectrum.” This inverse problem requires the new factorization ideas of §4.
 
@@ -1667,11 +1667,11 @@ only the sinusoidal component is perfectly predictable. The regular component $x
 
 ### Answer to the Guiding Question
 
-**Question.** A zero-mean WSS process has PSD
+**Question.** An underwater-acoustics laboratory has estimated the normal ambient-noise spectrum at a seabed hydrophone. To test a passive-sonar detector, it needs a causal real-time generator that produces realistic ocean background noise from unit-variance white noise; during deployment, it also wants an inverse prefilter that turns the normal background into white residuals so that weak transient sounds from a target stand out more clearly. After normalization, the target PSD is
 
 $$R_x(z)=\frac{1}{(1-0.5z^{-1})(1-0.5z)}.$$
 
-Find a causal, stable, minimum-phase shaping filter driven by unit-variance white noise that generates this process. Then find a causal whitening filter and explain what its output represents. Could a different spectral factor generate the same PSD, and if so, why is the minimum-phase one preferred?
+What causal, stable shaping filter should the laboratory implement, and what causal whitening filter should precede the passive-sonar detector? What does the whitened residual represent acoustically? Could another real-time generator reproduce the same hydrophone PSD, and why is the minimum-phase design the useful engineering choice?
 
 **Answer.**
 
@@ -1703,7 +1703,7 @@ The output $e(n)$ is the **innovation**: the new component of $x(n)$ that cannot
 
 **Guiding Question**
 
-Two zero-mean WSS signals have autocorrelations $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which signal admits a first-order AR model and which admits a first-order MA model? Determine one valid difference equation and white-noise variance for each, and explain what their spectra must look like. Why is the MA factor not necessarily unique?
+An underwater-acoustics engineer wants compact generators for two measured signals. Dataset $a$ is low-frequency machinery noise from a distant vessel, whose successive hydrophone samples remain correlated for many lags; dataset $b$ is an active-sonar return formed by a direct echo plus one one-sample-delayed seabed echo. After removing their means, long-term measurements give $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which first-order model—AR or MA—fits each acoustic signal? Determine a difference equation and driving-noise variance for each generator, predict the main character of each spectrum, and decide whether correlation measurements uniquely determine the delayed-echo coefficient in the MA model.
 
 The previous sections guarantee that shaping-filter descriptions exist, but they do not tell us how to recognize or recover a compact finite-parameter model from correlation data.
 
@@ -2116,7 +2116,7 @@ Having derived all three model classes, we can now compare their spectral behavi
 
 ### Answer to the Guiding Question
 
-**Question.** Two zero-mean WSS signals have autocorrelations $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which signal admits a first-order AR model and which admits a first-order MA model? Determine one valid difference equation and white-noise variance for each, and explain what their spectra must look like. Why is the MA factor not necessarily unique?
+**Question.** An underwater-acoustics engineer wants compact generators for two measured signals. Dataset $a$ is low-frequency machinery noise from a distant vessel, whose successive hydrophone samples remain correlated for many lags; dataset $b$ is an active-sonar return formed by a direct echo plus one one-sample-delayed seabed echo. After removing their means, long-term measurements give $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which first-order model—AR or MA—fits each acoustic signal? Determine a difference equation and driving-noise variance for each generator, predict the main character of each spectrum, and decide whether correlation measurements uniquely determine the delayed-echo coefficient in the MA model.
 
 **Answer.**
 
@@ -2150,11 +2150,11 @@ The alternative $c=2$, $\sigma_{w_b}^2=1$, has the reciprocal zero and produces 
 
 **Guiding Question**
 
-A two-sample zero-mean observation vector has covariance
+An autonomous underwater vehicle forms a side-scan-sonar image of the seafloor. Two adjacent zero-mean pixel residuals are collected as $\mathbf x=[x_1,x_2]^T$; because neighboring pixels insonify nearly the same seabed patch, their calibrated covariance is
 
 $$\boldsymbol{\Sigma}_x=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
 
-Find an orthonormal transform whose output coefficients are uncorrelated. What are their variances? If only one coefficient may be retained, which one minimizes reconstruction MSE and what is that MSE? Finally, construct a transform whose output covariance is the identity.
+The onboard processor first wants two uncorrelated coefficients. Its limited storage budget permits retaining only one coefficient per pixel pair, so which coefficient should it keep to minimize sonar-image reconstruction MSE, and what error will result? A downstream seafloor-object classifier additionally expects uncorrelated unit-variance features; what whitening transform should be used?
 
 Correlation matrices and spectra describe dependence, but §1–§5 do not yet provide a coordinate system that removes that dependence or ranks directions by information-bearing variance.
 
@@ -2463,11 +2463,11 @@ There is also an important link to the next section. The optimal KL and whitenin
 
 ### Answer to the Guiding Question
 
-**Question.** A two-sample zero-mean observation vector has covariance
+**Question.** An autonomous underwater vehicle forms a side-scan-sonar image of the seafloor. Two adjacent zero-mean pixel residuals are collected as $\mathbf x=[x_1,x_2]^T$; because neighboring pixels insonify nearly the same seabed patch, their calibrated covariance is
 
 $$\boldsymbol{\Sigma}_x=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
 
-Find an orthonormal transform whose output coefficients are uncorrelated. What are their variances? If only one coefficient may be retained, which one minimizes reconstruction MSE and what is that MSE? Finally, construct a transform whose output covariance is the identity.
+The onboard processor first wants two uncorrelated coefficients. Its limited storage budget permits retaining only one coefficient per pixel pair, so which coefficient should it keep to minimize sonar-image reconstruction MSE, and what error will result? A downstream seafloor-object classifier additionally expects uncorrelated unit-variance features; what whitening transform should be used?
 
 **Answer.**
 
@@ -2500,7 +2500,7 @@ Consequently $E\{\mathbf z\mathbf z^T\}=\mathbf I$. The KL rotation decorrelates
 
 **Guiding Question**
 
-We observe $N$ independent samples $x(n)=\mu+w(n)$, where $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. Compare $\hat\mu_1=x(0)$ and $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Are they unbiased and consistent? What are their MSEs? What is the Cramér–Rao lower bound, and which estimator attains it? Show how least squares and maximum likelihood lead to the same estimate. If instead $\mu$ has a Gaussian prior $\mathcal N(\mu_0,\tau^2)$, how does the Bayesian estimate change?
+Before deploying a hydrophone array, an underwater-acoustics laboratory must estimate the constant electronic offset $\mu$ of each hydrophone channel in a quiet tank. With the known reference signal removed, each calibration reading is $x(n)=\mu+w(n)$, where the independent sensor noise satisfies $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. To shorten tank time, a technician proposes using only the first reading, $\hat\mu_1=x(0)$; a signal-processing engineer proposes averaging all $N$ readings, $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Which calibration is unbiased, which becomes reliable as $N$ grows, and how do their MSEs compare with the fundamental Cramér–Rao bound? Do least squares and maximum likelihood support the engineer's choice? If offsets of hydrophones from the previous production batch follow $\mu\sim\mathcal N(\mu_0,\tau^2)$, how should that prior sensor knowledge be combined with the new tank data?
 
 Earlier sections define the statistics we would like to know; this section supplies the principles for inferring unknown quantities from finite data and judging the quality of the result.
 
@@ -2867,7 +2867,7 @@ $$\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\
 
 ### Answer to the Guiding Question
 
-**Question.** We observe $N$ independent samples $x(n)=\mu+w(n)$, where $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. Compare $\hat\mu_1=x(0)$ and $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Are they unbiased and consistent? What are their MSEs? What is the Cramér–Rao lower bound, and which estimator attains it? Show how least squares and maximum likelihood lead to the same estimate. If instead $\mu$ has a Gaussian prior $\mathcal N(\mu_0,\tau^2)$, how does the Bayesian estimate change?
+**Question.** Before deploying a hydrophone array, an underwater-acoustics laboratory must estimate the constant electronic offset $\mu$ of each hydrophone channel in a quiet tank. With the known reference signal removed, each calibration reading is $x(n)=\mu+w(n)$, where the independent sensor noise satisfies $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. To shorten tank time, a technician proposes using only the first reading, $\hat\mu_1=x(0)$; a signal-processing engineer proposes averaging all $N$ readings, $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Which calibration is unbiased, which becomes reliable as $N$ grows, and how do their MSEs compare with the fundamental Cramér–Rao bound? Do least squares and maximum likelihood support the engineer's choice? If offsets of hydrophones from the previous production batch follow $\mu\sim\mathcal N(\mu_0,\tau^2)$, how should that prior sensor knowledge be combined with the new tank data?
 
 **Answer.**
 
