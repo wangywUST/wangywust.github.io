@@ -8,14 +8,89 @@
 
 ## Table of Contents
 
-1. [§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters](#0-chapter-roadmap-from-optimum-filters-to-adaptive-filters)
-2. [§1 Adaptive Filtering Framework and Typical Applications](#1-adaptive-filtering-framework-and-typical-applications)
-3. [§2 Steepest Descent: Deterministic Gradient Adaptation](#2-steepest-descent-deterministic-gradient-adaptation)
-4. [§3 Least-Mean-Square Adaptive Filters](#3-least-mean-square-adaptive-filters)
-5. [§4 LMS Variants and Practical Extensions](#4-lms-variants-and-practical-extensions)
-6. [§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization](#5-lms-applications-echo-cancelation-noise-cancelation-and-equalization)
-7. [§6 Recursive Least-Squares Adaptive Filters](#6-recursive-least-squares-adaptive-filters)
-8. [§7 Tracking, Algorithm Selection, and Figure Checklist](#7-tracking-algorithm-selection-and-figure-checklist)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Time, Order, and Adaptation Indices](#time-order-and-adaptation-indices)
+  - [Signals and Errors](#signals-and-errors)
+  - [Coefficients, Statistics, and Performance Measures](#coefficients-statistics-and-performance-measures)
+  - [RLS Quantities](#rls-quantities)
+- [§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters](#0-chapter-roadmap-from-optimum-filters-to-adaptive-filters)
+  - [0.1 Why Adaptive Filtering Is Needed](#01-why-adaptive-filtering-is-needed)
+  - [0.2 The Conceptual Bridge from Chapter 6 to Chapter 7](#02-the-conceptual-bridge-from-chapter-6-to-chapter-7)
+  - [0.3 The Three Questions We Will Keep Asking](#03-the-three-questions-we-will-keep-asking)
+  - [0.4 Representative Adaptive-Filtering Applications](#04-representative-adaptive-filtering-applications)
+  - [0.5 Chapter Map](#05-chapter-map)
+- [§1 Adaptive Filtering Framework and Typical Applications](#1-adaptive-filtering-framework-and-typical-applications)
+  - [1.1 Basic Elements of an Adaptive Filter](#11-basic-elements-of-an-adaptive-filter)
+  - [1.2 Supervised Adaptive Filtering](#12-supervised-adaptive-filtering)
+  - [1.3 Linear Combiner versus FIR Adaptive Filter](#13-linear-combiner-versus-fir-adaptive-filter)
+  - [1.4 Optimum Filters versus Adaptive Filters](#14-optimum-filters-versus-adaptive-filters)
+  - [1.5 A Priori and A Posteriori Errors](#15-a-priori-and-a-posteriori-errors)
+  - [1.6 Stationary and Nonstationary Modes of Operation](#16-stationary-and-nonstationary-modes-of-operation)
+- [§2 Steepest Descent: Deterministic Gradient Adaptation](#2-steepest-descent-deterministic-gradient-adaptation)
+  - [2.1 The MSE Surface](#21-the-mse-surface)
+  - [2.2 Gradient Search Intuition](#22-gradient-search-intuition)
+  - [2.3 Coefficient Error Dynamics](#23-coefficient-error-dynamics)
+  - [2.4 Stability Condition](#24-stability-condition)
+  - [2.5 Eigenvalue Spread and Convergence Rate](#25-eigenvalue-spread-and-convergence-rate)
+- [§3 Least-Mean-Square Adaptive Filters](#3-least-mean-square-adaptive-filters)
+  - [3.1 From Steepest Descent to LMS](#31-from-steepest-descent-to-lms)
+  - [3.2 Geometric Interpretation of LMS](#32-geometric-interpretation-of-lms)
+  - [3.3 Complete LMS Algorithm for an FIR Adaptive Filter](#33-complete-lms-algorithm-for-an-fir-adaptive-filter)
+  - [3.4 LMS in a Stationary Signal Operating Environment](#34-lms-in-a-stationary-signal-operating-environment)
+  - [3.5 Mean Convergence](#35-mean-convergence)
+  - [3.6 Mean-Square Behavior, EMSE, and Misadjustment](#36-mean-square-behavior-emse-and-misadjustment)
+  - [3.7 LMS Learning Curves and Eigenvalue Spread](#37-lms-learning-curves-and-eigenvalue-spread)
+  - [3.8 LMS Step-Size Selection](#38-lms-step-size-selection)
+- [§4 LMS Variants and Practical Extensions](#4-lms-variants-and-practical-extensions)
+  - [4.1 Normalized LMS (NLMS)](#41-normalized-lms-nlms)
+  - [4.2 LMS-Newton Idea](#42-lms-newton-idea)
+  - [4.3 Transform-Domain LMS](#43-transform-domain-lms)
+  - [4.4 Block LMS](#44-block-lms)
+  - [4.5 Affine Projection Algorithm](#45-affine-projection-algorithm)
+  - [4.6 Leaky LMS](#46-leaky-lms)
+  - [4.7 Reduced-Complexity and Variable-Step LMS Methods](#47-reduced-complexity-and-variable-step-lms-methods)
+  - [4.8 Gradient Adaptive Lattice Filters](#48-gradient-adaptive-lattice-filters)
+- [§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization](#5-lms-applications-echo-cancelation-noise-cancelation-and-equalization)
+  - [5.1 Adaptive Noise Cancelation Revisited](#51-adaptive-noise-cancelation-revisited)
+  - [5.2 Echo Cancelation in Full-Duplex Data Transmission](#52-echo-cancelation-in-full-duplex-data-transmission)
+  - [5.3 Convergence-Residual Tradeoff in Echo Cancelation](#53-convergence-residual-tradeoff-in-echo-cancelation)
+  - [5.4 Adaptive Channel Equalization](#54-adaptive-channel-equalization)
+  - [5.5 Eigenvalue Spread in Equalization](#55-eigenvalue-spread-in-equalization)
+  - [5.6 Step-Size Effect in Equalization](#56-step-size-effect-in-equalization)
+  - [5.7 Time-Domain Realizations of Equalization](#57-time-domain-realizations-of-equalization)
+- [§6 Recursive Least-Squares Adaptive Filters](#6-recursive-least-squares-adaptive-filters)
+  - [6.1 Motivation: Why RLS?](#61-motivation-why-rls)
+  - [6.2 Weighted Normal Equations](#62-weighted-normal-equations)
+  - [6.3 Matrix Inversion Lemma and RLS Gain](#63-matrix-inversion-lemma-and-rls-gain)
+  - [6.4 Conventional RLS Algorithm](#64-conventional-rls-algorithm)
+    - [Initialization](#initialization)
+    - [Recursion for each sample $n$](#recursion-for-each-sample-n)
+  - [6.5 Choosing the Forgetting Factor](#65-choosing-the-forgetting-factor)
+  - [6.6 RLS Performance in Equalization](#66-rls-performance-in-equalization)
+  - [6.7 Sliding-Window RLS](#67-sliding-window-rls)
+  - [6.8 Square-Root and QR-RLS Algorithms](#68-square-root-and-qr-rls-algorithms)
+  - [6.9 Fast RLS and Lattice-Ladder RLS](#69-fast-rls-and-lattice-ladder-rls)
+  - [6.10 LMS versus RLS: The Main Comparison](#610-lms-versus-rls-the-main-comparison)
+- [§7 Tracking, Algorithm Selection, and Figure Checklist](#7-tracking-algorithm-selection-and-figure-checklist)
+  - [7.1 Why Tracking Is Different from Convergence](#71-why-tracking-is-different-from-convergence)
+  - [7.2 Local Statistics: Exponential and Sliding Windows](#72-local-statistics-exponential-and-sliding-windows)
+  - [7.3 Tracking Model](#73-tracking-model)
+  - [7.4 Matched, Slow, and Fast Adaptation](#74-matched-slow-and-fast-adaptation)
+  - [7.5 Practical Algorithm Selection](#75-practical-algorithm-selection)
+  - [7.6 Common Implementation Pitfalls](#76-common-implementation-pitfalls)
+    - [Pitfall 1: Step Size Chosen Without Input Power](#pitfall-1-step-size-chosen-without-input-power)
+    - [Pitfall 2: Forgetting Factor Too Close to One in a Nonstationary System](#pitfall-2-forgetting-factor-too-close-to-one-in-a-nonstationary-system)
+    - [Pitfall 3: Insufficient Regularization in RLS Initialization](#pitfall-3-insufficient-regularization-in-rls-initialization)
+    - [Pitfall 4: Using a Desired Response That Is Not Available in Deployment](#pitfall-4-using-a-desired-response-that-is-not-available-in-deployment)
+    - [Pitfall 5: Treating a Noisy Learning Curve as Failure](#pitfall-5-treating-a-noisy-learning-curve-as-failure)
+  - [7.7 Chapter Summary](#77-chapter-summary)
+  - [7.8 Method Comparison at a Glance](#78-method-comparison-at-a-glance)
+  - [7.9 Figure Checklist](#79-figure-checklist)
+  - [7.10 Suggested Teaching Flow](#710-suggested-teaching-flow)
+    - [Pass 1: Motivation and Architecture](#pass-1-motivation-and-architecture)
+    - [Pass 2: LMS from the MSE Surface](#pass-2-lms-from-the-mse-surface)
+    - [Pass 3: Practical LMS Engineering](#pass-3-practical-lms-engineering)
+    - [Pass 4: RLS and Tracking](#pass-4-rls-and-tracking)
 
 ---
 
@@ -86,6 +161,18 @@ This chapter continues the notation of Chapters 3 and 6. In Chapter 6, the filte
 
 > 📖 Textbook §10.1 (Typical Applications of Adaptive Filters); §10.2 (Principles of Adaptive Filters)
 
+---
+
+**§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters**
+
+- [0.1 Why Adaptive Filtering Is Needed](#01-why-adaptive-filtering-is-needed)
+- <a href="#02-the-conceptual-bridge-from-chapter-6-to-chapter-7" style="color: #a0a0a0;">0.2 The Conceptual Bridge from Chapter 6 to Chapter 7</a>
+- <a href="#03-the-three-questions-we-will-keep-asking" style="color: #a0a0a0;">0.3 The Three Questions We Will Keep Asking</a>
+- <a href="#04-representative-adaptive-filtering-applications" style="color: #a0a0a0;">0.4 Representative Adaptive-Filtering Applications</a>
+- <a href="#05-chapter-map" style="color: #a0a0a0;">0.5 Chapter Map</a>
+
+---
+
 ## 0.1 Why Adaptive Filtering Is Needed
 
 In Chapter 6, the Wiener filter was derived under an ideal assumption: the relevant second-order statistics are known. For an FIR Wiener filter, the coefficient vector is obtained from the normal equation
@@ -108,6 +195,18 @@ $$
 $$
 
 The correction is driven by an error signal. This is the central idea of the chapter.
+
+---
+
+**§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters**
+
+- <a href="#01-why-adaptive-filtering-is-needed" style="color: #a0a0a0;">0.1 Why Adaptive Filtering Is Needed</a>
+- [0.2 The Conceptual Bridge from Chapter 6 to Chapter 7](#02-the-conceptual-bridge-from-chapter-6-to-chapter-7)
+- <a href="#03-the-three-questions-we-will-keep-asking" style="color: #a0a0a0;">0.3 The Three Questions We Will Keep Asking</a>
+- <a href="#04-representative-adaptive-filtering-applications" style="color: #a0a0a0;">0.4 Representative Adaptive-Filtering Applications</a>
+- <a href="#05-chapter-map" style="color: #a0a0a0;">0.5 Chapter Map</a>
+
+---
 
 ## 0.2 The Conceptual Bridge from Chapter 6 to Chapter 7
 
@@ -132,6 +231,18 @@ The relationship can be summarized as follows.
 
 The big theme is that **adaptation replaces a priori statistical knowledge by data-driven updating**.
 
+---
+
+**§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters**
+
+- <a href="#01-why-adaptive-filtering-is-needed" style="color: #a0a0a0;">0.1 Why Adaptive Filtering Is Needed</a>
+- <a href="#02-the-conceptual-bridge-from-chapter-6-to-chapter-7" style="color: #a0a0a0;">0.2 The Conceptual Bridge from Chapter 6 to Chapter 7</a>
+- [0.3 The Three Questions We Will Keep Asking](#03-the-three-questions-we-will-keep-asking)
+- <a href="#04-representative-adaptive-filtering-applications" style="color: #a0a0a0;">0.4 Representative Adaptive-Filtering Applications</a>
+- <a href="#05-chapter-map" style="color: #a0a0a0;">0.5 Chapter Map</a>
+
+---
+
 ## 0.3 The Three Questions We Will Keep Asking
 
 Throughout this chapter, every algorithm should be evaluated using three questions.
@@ -143,6 +254,18 @@ Throughout this chapter, every algorithm should be evaluated using three questio
 | How well does it track? | If $\mathbf{c}_o(n)$ changes, can the algorithm follow it without excessive noise? |
 
 These questions already reveal the main tradeoff. A large adaptation gain gives fast response but large coefficient fluctuations. A small adaptation gain gives low steady-state noise but slow adaptation.
+
+---
+
+**§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters**
+
+- <a href="#01-why-adaptive-filtering-is-needed" style="color: #a0a0a0;">0.1 Why Adaptive Filtering Is Needed</a>
+- <a href="#02-the-conceptual-bridge-from-chapter-6-to-chapter-7" style="color: #a0a0a0;">0.2 The Conceptual Bridge from Chapter 6 to Chapter 7</a>
+- <a href="#03-the-three-questions-we-will-keep-asking" style="color: #a0a0a0;">0.3 The Three Questions We Will Keep Asking</a>
+- [0.4 Representative Adaptive-Filtering Applications](#04-representative-adaptive-filtering-applications)
+- <a href="#05-chapter-map" style="color: #a0a0a0;">0.5 Chapter Map</a>
+
+---
 
 ## 0.4 Representative Adaptive-Filtering Applications
 
@@ -166,6 +289,18 @@ In linear predictive coding, the predictor estimates the current sample from pas
 
 In noise cancelation, the filter does not directly observe the clean signal $s(n)$. Instead, it observes a primary input $s(n)+v_1(n)$ and a reference input $v_2(n)$ that is correlated with the noise but ideally uncorrelated with the signal of interest.
 
+---
+
+**§0 Chapter Roadmap: From Optimum Filters to Adaptive Filters**
+
+- <a href="#01-why-adaptive-filtering-is-needed" style="color: #a0a0a0;">0.1 Why Adaptive Filtering Is Needed</a>
+- <a href="#02-the-conceptual-bridge-from-chapter-6-to-chapter-7" style="color: #a0a0a0;">0.2 The Conceptual Bridge from Chapter 6 to Chapter 7</a>
+- <a href="#03-the-three-questions-we-will-keep-asking" style="color: #a0a0a0;">0.3 The Three Questions We Will Keep Asking</a>
+- <a href="#04-representative-adaptive-filtering-applications" style="color: #a0a0a0;">0.4 Representative Adaptive-Filtering Applications</a>
+- [0.5 Chapter Map](#05-chapter-map)
+
+---
+
 ## 0.5 Chapter Map
 
 The chapter will proceed in the following order.
@@ -182,6 +317,19 @@ The chapter will proceed in the following order.
 # §1 Adaptive Filtering Framework and Typical Applications
 
 > 📖 Textbook §10.1; §10.2
+
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- [1.1 Basic Elements of an Adaptive Filter](#11-basic-elements-of-an-adaptive-filter)
+- <a href="#12-supervised-adaptive-filtering" style="color: #a0a0a0;">1.2 Supervised Adaptive Filtering</a>
+- <a href="#13-linear-combiner-versus-fir-adaptive-filter" style="color: #a0a0a0;">1.3 Linear Combiner versus FIR Adaptive Filter</a>
+- <a href="#14-optimum-filters-versus-adaptive-filters" style="color: #a0a0a0;">1.4 Optimum Filters versus Adaptive Filters</a>
+- <a href="#15-a-priori-and-a-posteriori-errors" style="color: #a0a0a0;">1.5 A Priori and A Posteriori Errors</a>
+- <a href="#16-stationary-and-nonstationary-modes-of-operation" style="color: #a0a0a0;">1.6 Stationary and Nonstationary Modes of Operation</a>
+
+---
 
 ## 1.1 Basic Elements of an Adaptive Filter
 
@@ -200,6 +348,19 @@ An adaptive filter has three essential components.
 A fixed filter has only the first component. An adaptive filter has a feedback mechanism that changes the filter parameters while the system is running.
 
 This structure is useful only when the performance signal carries information about how the coefficients should change. In supervised adaptation, this information is provided by a desired response.
+
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- <a href="#11-basic-elements-of-an-adaptive-filter" style="color: #a0a0a0;">1.1 Basic Elements of an Adaptive Filter</a>
+- [1.2 Supervised Adaptive Filtering](#12-supervised-adaptive-filtering)
+- <a href="#13-linear-combiner-versus-fir-adaptive-filter" style="color: #a0a0a0;">1.3 Linear Combiner versus FIR Adaptive Filter</a>
+- <a href="#14-optimum-filters-versus-adaptive-filters" style="color: #a0a0a0;">1.4 Optimum Filters versus Adaptive Filters</a>
+- <a href="#15-a-priori-and-a-posteriori-errors" style="color: #a0a0a0;">1.5 A Priori and A Posteriori Errors</a>
+- <a href="#16-stationary-and-nonstationary-modes-of-operation" style="color: #a0a0a0;">1.6 Stationary and Nonstationary Modes of Operation</a>
+
+---
 
 ## 1.2 Supervised Adaptive Filtering
 
@@ -232,6 +393,19 @@ $$
 where $\Delta\mathbf{c}(n)$ is determined by the adaptive algorithm.
 
 The distinction between $\mathbf{c}(n-1)$ and $\mathbf{c}(n)$ is important. The old coefficients produce the current output; the current error then changes the coefficients for future samples.
+
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- <a href="#11-basic-elements-of-an-adaptive-filter" style="color: #a0a0a0;">1.1 Basic Elements of an Adaptive Filter</a>
+- <a href="#12-supervised-adaptive-filtering" style="color: #a0a0a0;">1.2 Supervised Adaptive Filtering</a>
+- [1.3 Linear Combiner versus FIR Adaptive Filter](#13-linear-combiner-versus-fir-adaptive-filter)
+- <a href="#14-optimum-filters-versus-adaptive-filters" style="color: #a0a0a0;">1.4 Optimum Filters versus Adaptive Filters</a>
+- <a href="#15-a-priori-and-a-posteriori-errors" style="color: #a0a0a0;">1.5 A Priori and A Posteriori Errors</a>
+- <a href="#16-stationary-and-nonstationary-modes-of-operation" style="color: #a0a0a0;">1.6 Stationary and Nonstationary Modes of Operation</a>
+
+---
 
 ## 1.3 Linear Combiner versus FIR Adaptive Filter
 
@@ -267,6 +441,19 @@ $$
 
 This is why adaptive-filter theory is often developed using vector notation. The same algorithm can apply to sensor arrays, echo cancelers, predictors, and equalizers.
 
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- <a href="#11-basic-elements-of-an-adaptive-filter" style="color: #a0a0a0;">1.1 Basic Elements of an Adaptive Filter</a>
+- <a href="#12-supervised-adaptive-filtering" style="color: #a0a0a0;">1.2 Supervised Adaptive Filtering</a>
+- <a href="#13-linear-combiner-versus-fir-adaptive-filter" style="color: #a0a0a0;">1.3 Linear Combiner versus FIR Adaptive Filter</a>
+- [1.4 Optimum Filters versus Adaptive Filters](#14-optimum-filters-versus-adaptive-filters)
+- <a href="#15-a-priori-and-a-posteriori-errors" style="color: #a0a0a0;">1.5 A Priori and A Posteriori Errors</a>
+- <a href="#16-stationary-and-nonstationary-modes-of-operation" style="color: #a0a0a0;">1.6 Stationary and Nonstationary Modes of Operation</a>
+
+---
+
 ## 1.4 Optimum Filters versus Adaptive Filters
 
 The optimum filter assumes that the statistics are known and solves
@@ -286,6 +473,19 @@ This distinction gives two useful interpretations.
 First, in a stationary environment, an adaptive filter tries to approach a fixed Wiener solution.
 
 Second, in a nonstationary environment, an adaptive filter tries to track a moving Wiener solution.
+
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- <a href="#11-basic-elements-of-an-adaptive-filter" style="color: #a0a0a0;">1.1 Basic Elements of an Adaptive Filter</a>
+- <a href="#12-supervised-adaptive-filtering" style="color: #a0a0a0;">1.2 Supervised Adaptive Filtering</a>
+- <a href="#13-linear-combiner-versus-fir-adaptive-filter" style="color: #a0a0a0;">1.3 Linear Combiner versus FIR Adaptive Filter</a>
+- <a href="#14-optimum-filters-versus-adaptive-filters" style="color: #a0a0a0;">1.4 Optimum Filters versus Adaptive Filters</a>
+- [1.5 A Priori and A Posteriori Errors](#15-a-priori-and-a-posteriori-errors)
+- <a href="#16-stationary-and-nonstationary-modes-of-operation" style="color: #a0a0a0;">1.6 Stationary and Nonstationary Modes of Operation</a>
+
+---
 
 ## 1.5 A Priori and A Posteriori Errors
 
@@ -311,6 +511,19 @@ In many LMS derivations, the a priori error is used to update the coefficients. 
 
 The practical lesson is simple: when implementing an adaptive filter, one must be precise about whether the error is computed before or after the update.
 
+---
+
+**§1 Adaptive Filtering Framework and Typical Applications**
+
+- <a href="#11-basic-elements-of-an-adaptive-filter" style="color: #a0a0a0;">1.1 Basic Elements of an Adaptive Filter</a>
+- <a href="#12-supervised-adaptive-filtering" style="color: #a0a0a0;">1.2 Supervised Adaptive Filtering</a>
+- <a href="#13-linear-combiner-versus-fir-adaptive-filter" style="color: #a0a0a0;">1.3 Linear Combiner versus FIR Adaptive Filter</a>
+- <a href="#14-optimum-filters-versus-adaptive-filters" style="color: #a0a0a0;">1.4 Optimum Filters versus Adaptive Filters</a>
+- <a href="#15-a-priori-and-a-posteriori-errors" style="color: #a0a0a0;">1.5 A Priori and A Posteriori Errors</a>
+- [1.6 Stationary and Nonstationary Modes of Operation](#16-stationary-and-nonstationary-modes-of-operation)
+
+---
+
 ## 1.6 Stationary and Nonstationary Modes of Operation
 
 > ![Figure 1.6](./CourseADSP2026/Fig/Chapter_7/fig_1_6_textbook_fig_10_12_p515.png)
@@ -328,6 +541,18 @@ This difference is the reason that one cannot choose a step size by only asking 
 # §2 Steepest Descent: Deterministic Gradient Adaptation
 
 > 📖 Textbook §10.3 (Method of Steepest Descent)
+
+---
+
+**§2 Steepest Descent: Deterministic Gradient Adaptation**
+
+- [2.1 The MSE Surface](#21-the-mse-surface)
+- <a href="#22-gradient-search-intuition" style="color: #a0a0a0;">2.2 Gradient Search Intuition</a>
+- <a href="#23-coefficient-error-dynamics" style="color: #a0a0a0;">2.3 Coefficient Error Dynamics</a>
+- <a href="#24-stability-condition" style="color: #a0a0a0;">2.4 Stability Condition</a>
+- <a href="#25-eigenvalue-spread-and-convergence-rate" style="color: #a0a0a0;">2.5 Eigenvalue Spread and Convergence Rate</a>
+
+---
 
 ## 2.1 The MSE Surface
 
@@ -367,6 +592,18 @@ $$
 
 The vector $\mathbf{d}-\mathbf{R}\mathbf{c}$ therefore points toward the minimum in the negative-gradient direction.
 
+---
+
+**§2 Steepest Descent: Deterministic Gradient Adaptation**
+
+- <a href="#21-the-mse-surface" style="color: #a0a0a0;">2.1 The MSE Surface</a>
+- [2.2 Gradient Search Intuition](#22-gradient-search-intuition)
+- <a href="#23-coefficient-error-dynamics" style="color: #a0a0a0;">2.3 Coefficient Error Dynamics</a>
+- <a href="#24-stability-condition" style="color: #a0a0a0;">2.4 Stability Condition</a>
+- <a href="#25-eigenvalue-spread-and-convergence-rate" style="color: #a0a0a0;">2.5 Eigenvalue Spread and Convergence Rate</a>
+
+---
+
 ## 2.2 Gradient Search Intuition
 
 > ![Figure 2.1](./CourseADSP2026/Fig/Chapter_7/fig_2_1_textbook_fig_10_13_p518.png)
@@ -380,6 +617,18 @@ $$
 $$
 
 Here $k$ is an iteration index, not necessarily the same as the sample index $n$. The algorithm assumes that $\mathbf{R}$ and $\mathbf{d}$ are known. Therefore, steepest descent is not yet a practical adaptive filter for unknown statistics; it is the conceptual bridge to LMS.
+
+---
+
+**§2 Steepest Descent: Deterministic Gradient Adaptation**
+
+- <a href="#21-the-mse-surface" style="color: #a0a0a0;">2.1 The MSE Surface</a>
+- <a href="#22-gradient-search-intuition" style="color: #a0a0a0;">2.2 Gradient Search Intuition</a>
+- [2.3 Coefficient Error Dynamics](#23-coefficient-error-dynamics)
+- <a href="#24-stability-condition" style="color: #a0a0a0;">2.4 Stability Condition</a>
+- <a href="#25-eigenvalue-spread-and-convergence-rate" style="color: #a0a0a0;">2.5 Eigenvalue Spread and Convergence Rate</a>
+
+---
 
 ## 2.3 Coefficient Error Dynamics
 
@@ -409,6 +658,18 @@ $$
 
 Thus each eigen-direction decays with its own factor $1-2\mu\lambda_i$.
 
+---
+
+**§2 Steepest Descent: Deterministic Gradient Adaptation**
+
+- <a href="#21-the-mse-surface" style="color: #a0a0a0;">2.1 The MSE Surface</a>
+- <a href="#22-gradient-search-intuition" style="color: #a0a0a0;">2.2 Gradient Search Intuition</a>
+- <a href="#23-coefficient-error-dynamics" style="color: #a0a0a0;">2.3 Coefficient Error Dynamics</a>
+- [2.4 Stability Condition](#24-stability-condition)
+- <a href="#25-eigenvalue-spread-and-convergence-rate" style="color: #a0a0a0;">2.5 Eigenvalue Spread and Convergence Rate</a>
+
+---
+
 ## 2.4 Stability Condition
 
 For convergence in every eigen-direction, we need
@@ -425,6 +686,18 @@ $$
 $$
 
 If $\mu$ is too small, convergence is slow. If $\mu$ is too large, the trajectory oscillates or diverges.
+
+---
+
+**§2 Steepest Descent: Deterministic Gradient Adaptation**
+
+- <a href="#21-the-mse-surface" style="color: #a0a0a0;">2.1 The MSE Surface</a>
+- <a href="#22-gradient-search-intuition" style="color: #a0a0a0;">2.2 Gradient Search Intuition</a>
+- <a href="#23-coefficient-error-dynamics" style="color: #a0a0a0;">2.3 Coefficient Error Dynamics</a>
+- <a href="#24-stability-condition" style="color: #a0a0a0;">2.4 Stability Condition</a>
+- [2.5 Eigenvalue Spread and Convergence Rate](#25-eigenvalue-spread-and-convergence-rate)
+
+---
 
 ## 2.5 Eigenvalue Spread and Convergence Rate
 
@@ -462,6 +735,21 @@ Colored inputs usually have large eigenvalue spread. Therefore LMS converges slo
 
 > 📖 Textbook §10.4 (Least-Mean-Square Adaptive Filters)
 
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- [3.1 From Steepest Descent to LMS](#31-from-steepest-descent-to-lms)
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
+
 ## 3.1 From Steepest Descent to LMS
 
 Steepest descent requires the exact gradient
@@ -498,6 +786,21 @@ $$
 
 Both conventions describe the same algorithm. In this lecture, when discussing textbook formulas, we use the $2\mu$ convention.
 
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- [3.2 Geometric Interpretation of LMS](#32-geometric-interpretation-of-lms)
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
+
 ## 3.2 Geometric Interpretation of LMS
 
 > ![Figure 3.1](./CourseADSP2026/Fig/Chapter_7/fig_3_1_textbook_fig_10_17_p525.png)
@@ -507,6 +810,21 @@ Both conventions describe the same algorithm. In this lecture, when discussing t
 The LMS update can be interpreted as a projection-like correction. At time $n$, the input vector $\mathbf{x}(n)$ gives only one direction in the coefficient space. The algorithm can reduce the part of the coefficient error that is visible along that direction. It cannot correct components that are orthogonal to $\mathbf{x}(n)$ using this sample alone.
 
 This explains why LMS needs many samples. Each new input vector gives another direction of information.
+
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- [3.3 Complete LMS Algorithm for an FIR Adaptive Filter](#33-complete-lms-algorithm-for-an-fir-adaptive-filter)
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
 
 ## 3.3 Complete LMS Algorithm for an FIR Adaptive Filter
 
@@ -547,6 +865,21 @@ The algorithm is attractive because it is simple. It requires no matrix inversio
 
 For complex-valued data, the conjugate on $e^\ast(n)$ is essential. For real-valued data, the conjugate has no effect.
 
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- [3.4 LMS in a Stationary Signal Operating Environment](#34-lms-in-a-stationary-signal-operating-environment)
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
+
 ## 3.4 LMS in a Stationary Signal Operating Environment
 
 For analysis, assume a stationary environment in which
@@ -568,6 +901,21 @@ e(n)=e_o(n)+[\mathbf{c}_o-\mathbf{c}(n-1)]^H\mathbf{x}(n).
 $$
 
 The first term is irreducible error. The second term is caused by coefficient mismatch. Adaptation tries to reduce the second term.
+
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- [3.5 Mean Convergence](#35-mean-convergence)
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
 
 ## 3.5 Mean Convergence
 
@@ -607,6 +955,21 @@ $$
 
 depending on the step-size convention.
 
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- [3.6 Mean-Square Behavior, EMSE, and Misadjustment](#36-mean-square-behavior-emse-and-misadjustment)
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
+
 ## 3.6 Mean-Square Behavior, EMSE, and Misadjustment
 
 Mean convergence only describes the average coefficient vector. It does not describe the steady-state random fluctuations around the optimum.
@@ -641,6 +1004,21 @@ For small step sizes, a useful approximation is that misadjustment grows approxi
 
 This is the central LMS design tradeoff.
 
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- [3.7 LMS Learning Curves and Eigenvalue Spread](#37-lms-learning-curves-and-eigenvalue-spread)
+- <a href="#38-lms-step-size-selection" style="color: #a0a0a0;">3.8 LMS Step-Size Selection</a>
+
+---
+
 ## 3.7 LMS Learning Curves and Eigenvalue Spread
 
 > ![Figure 3.4](./CourseADSP2026/Fig/Chapter_7/fig_3_4_textbook_fig_10_20_p537.png)
@@ -656,6 +1034,21 @@ These figures show a key difference between steepest descent and LMS.
 Steepest descent follows a deterministic path on the MSE surface. LMS follows a random path because each instantaneous gradient is noisy. Averaging many LMS trajectories recovers the deterministic trend, but each individual realization fluctuates.
 
 The figures also show why highly correlated inputs are difficult: large eigenvalue spread slows convergence.
+
+---
+
+**§3 Least-Mean-Square Adaptive Filters**
+
+- <a href="#31-from-steepest-descent-to-lms" style="color: #a0a0a0;">3.1 From Steepest Descent to LMS</a>
+- <a href="#32-geometric-interpretation-of-lms" style="color: #a0a0a0;">3.2 Geometric Interpretation of LMS</a>
+- <a href="#33-complete-lms-algorithm-for-an-fir-adaptive-filter" style="color: #a0a0a0;">3.3 Complete LMS Algorithm for an FIR Adaptive Filter</a>
+- <a href="#34-lms-in-a-stationary-signal-operating-environment" style="color: #a0a0a0;">3.4 LMS in a Stationary Signal Operating Environment</a>
+- <a href="#35-mean-convergence" style="color: #a0a0a0;">3.5 Mean Convergence</a>
+- <a href="#36-mean-square-behavior-emse-and-misadjustment" style="color: #a0a0a0;">3.6 Mean-Square Behavior, EMSE, and Misadjustment</a>
+- <a href="#37-lms-learning-curves-and-eigenvalue-spread" style="color: #a0a0a0;">3.7 LMS Learning Curves and Eigenvalue Spread</a>
+- [3.8 LMS Step-Size Selection](#38-lms-step-size-selection)
+
+---
 
 ## 3.8 LMS Step-Size Selection
 
@@ -682,6 +1075,21 @@ A good engineering approach is:
 
 > 📖 Textbook §10.4.4–§10.4.5; related practical discussion in §10.2 and §10.7
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- [4.1 Normalized LMS (NLMS)](#41-normalized-lms-nlms)
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
+
 ## 4.1 Normalized LMS (NLMS)
 
 The LMS update uses a fixed step size. If the input vector norm changes substantially, a fixed $\mu$ can be too small when the input power is low and too large when the input power is high.
@@ -704,6 +1112,21 @@ where $\epsilon>0$ is a small regularization constant.
 
 NLMS is especially useful when the input power varies over time, as in speech, audio, or communication channels with fading.
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- [4.2 LMS-Newton Idea](#42-lms-newton-idea)
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
+
 ## 4.2 LMS-Newton Idea
 
 The slow convergence of LMS for colored inputs is caused by eigenvalue spread. A Newton-type method would precondition the gradient by $\mathbf{R}^{-1}$:
@@ -715,6 +1138,21 @@ $$
 If $\mathbf{R}^{-1}$ were known, this would make the error surface effectively spherical and reduce dependence on eigenvalue spread.
 
 The difficulty is that estimating and inverting $\mathbf{R}$ can be expensive. RLS can be viewed as a practical recursive way of using inverse-correlation information.
+
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- [4.3 Transform-Domain LMS](#43-transform-domain-lms)
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
 
 ## 4.3 Transform-Domain LMS
 
@@ -740,6 +1178,21 @@ This is useful when:
 - fast convergence is needed;
 - full RLS is too expensive.
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- [4.4 Block LMS](#44-block-lms)
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
+
 ## 4.4 Block LMS
 
 > ![Figure 4.2](./CourseADSP2026/Fig/Chapter_7/fig_4_2_textbook_fig_10_31_p547.png)
@@ -757,6 +1210,21 @@ Block processing has two advantages.
 First, it can average gradient noise over multiple samples. Second, it can exploit FFT-based convolution for long filters.
 
 The disadvantage is latency: coefficients are updated only once per block.
+
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- [4.5 Affine Projection Algorithm](#45-affine-projection-algorithm)
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
 
 ## 4.5 Affine Projection Algorithm
 
@@ -782,6 +1250,21 @@ where $\mathbf{e}(n)$ is a vector of recent errors.
 
 When $K=1$, affine projection reduces to NLMS. For larger $K$, it often converges faster for correlated inputs, but its computational cost is higher.
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- [4.6 Leaky LMS](#46-leaky-lms)
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
+
 ## 4.6 Leaky LMS
 
 If the input correlation matrix is singular or nearly singular, some coefficient directions may be weakly controlled by data. Coefficients can drift in those directions.
@@ -800,6 +1283,21 @@ $$
 
 The leakage term pulls the coefficients toward zero. It improves robustness, but it introduces bias because the steady-state solution is no longer exactly the Wiener solution.
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- [4.7 Reduced-Complexity and Variable-Step LMS Methods](#47-reduced-complexity-and-variable-step-lms-methods)
+- <a href="#48-gradient-adaptive-lattice-filters" style="color: #a0a0a0;">4.8 Gradient Adaptive Lattice Filters</a>
+
+---
+
 ## 4.7 Reduced-Complexity and Variable-Step LMS Methods
 
 Several LMS variants trade accuracy, complexity, and convergence speed.
@@ -815,6 +1313,21 @@ Several LMS variants trade accuracy, complexity, and convergence speed.
 
 The guiding principle is always the same: modify the update to fit the signal environment and implementation constraints.
 
+---
+
+**§4 LMS Variants and Practical Extensions**
+
+- <a href="#41-normalized-lms-nlms" style="color: #a0a0a0;">4.1 Normalized LMS (NLMS)</a>
+- <a href="#42-lms-newton-idea" style="color: #a0a0a0;">4.2 LMS-Newton Idea</a>
+- <a href="#43-transform-domain-lms" style="color: #a0a0a0;">4.3 Transform-Domain LMS</a>
+- <a href="#44-block-lms" style="color: #a0a0a0;">4.4 Block LMS</a>
+- <a href="#45-affine-projection-algorithm" style="color: #a0a0a0;">4.5 Affine Projection Algorithm</a>
+- <a href="#46-leaky-lms" style="color: #a0a0a0;">4.6 Leaky LMS</a>
+- <a href="#47-reduced-complexity-and-variable-step-lms-methods" style="color: #a0a0a0;">4.7 Reduced-Complexity and Variable-Step LMS Methods</a>
+- [4.8 Gradient Adaptive Lattice Filters](#48-gradient-adaptive-lattice-filters)
+
+---
+
 ## 4.8 Gradient Adaptive Lattice Filters
 
 A lattice structure can orthogonalize prediction-error signals order by order. This reduces coupling between parameters and can accelerate convergence when the input is colored.
@@ -828,6 +1341,20 @@ Lattice structures are especially natural in linear prediction, speech modeling,
 # §5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization
 
 > 📖 Textbook §10.1; §10.4.4
+
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- [5.1 Adaptive Noise Cancelation Revisited](#51-adaptive-noise-cancelation-revisited)
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
 
 ## 5.1 Adaptive Noise Cancelation Revisited
 
@@ -848,6 +1375,20 @@ $$
 When the filter minimizes $E\{\vert e(n)\vert^2\}$, it suppresses the part of the primary-channel noise predictable from the reference input. The desired signal remains because it is not correlated with the reference noise.
 
 This is why the reference sensor must measure noise that is correlated with the interference but should not contain the desired signal.
+
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- [5.2 Echo Cancelation in Full-Duplex Data Transmission](#52-echo-cancelation-in-full-duplex-data-transmission)
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
 
 ## 5.2 Echo Cancelation in Full-Duplex Data Transmission
 
@@ -871,6 +1412,20 @@ where $\mathbf{c}_o$ represents the echo-path impulse response. The adaptive fil
 
 This is a system-identification configuration. The input $x(n)$ is known; the unknown system is the echo path; the adaptive filter tries to match it.
 
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- [5.3 Convergence-Residual Tradeoff in Echo Cancelation](#53-convergence-residual-tradeoff-in-echo-cancelation)
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
+
 ## 5.3 Convergence-Residual Tradeoff in Echo Cancelation
 
 > ![Figure 3.8](./CourseADSP2026/Fig/Chapter_7/fig_3_8_textbook_fig_10_24_p541.png)
@@ -884,6 +1439,20 @@ A large step size reduces the echo quickly. However, after convergence, the resi
 A small step size converges more slowly. However, the final residual echo can be lower.
 
 For echo cancelation, the best step size depends on how quickly the echo path changes. A slowly changing echo path favors small $\mu$. A rapidly changing echo path requires larger $\mu$ or a more advanced algorithm.
+
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- [5.4 Adaptive Channel Equalization](#54-adaptive-channel-equalization)
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
 
 ## 5.4 Adaptive Channel Equalization
 
@@ -907,6 +1476,20 @@ $$
 
 The delay $D$ is selected so that the equalizer can approximate a realizable inverse of the channel.
 
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- [5.5 Eigenvalue Spread in Equalization](#55-eigenvalue-spread-in-equalization)
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
+
 ## 5.5 Eigenvalue Spread in Equalization
 
 > ![Figure 3.11](./CourseADSP2026/Fig/Chapter_7/fig_3_11_textbook_fig_10_27_p544.png)
@@ -916,6 +1499,20 @@ The delay $D$ is selected so that the equalizer can approximate a realizable inv
 A more distorted channel often produces a more correlated equalizer input. This increases eigenvalue spread and slows LMS convergence.
 
 This explains why communication equalizers often benefit from normalized LMS, affine projection, transform-domain methods, or RLS.
+
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- [5.6 Step-Size Effect in Equalization](#56-step-size-effect-in-equalization)
+- <a href="#57-time-domain-realizations-of-equalization" style="color: #a0a0a0;">5.7 Time-Domain Realizations of Equalization</a>
+
+---
 
 ## 5.6 Step-Size Effect in Equalization
 
@@ -928,6 +1525,20 @@ The same pattern appears again.
 - Small $\mu$: slow learning, low fluctuation.
 - Medium $\mu$: useful compromise.
 - Large $\mu$: fast initial learning but possibly high steady-state error or instability.
+
+---
+
+**§5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization**
+
+- <a href="#51-adaptive-noise-cancelation-revisited" style="color: #a0a0a0;">5.1 Adaptive Noise Cancelation Revisited</a>
+- <a href="#52-echo-cancelation-in-full-duplex-data-transmission" style="color: #a0a0a0;">5.2 Echo Cancelation in Full-Duplex Data Transmission</a>
+- <a href="#53-convergence-residual-tradeoff-in-echo-cancelation" style="color: #a0a0a0;">5.3 Convergence-Residual Tradeoff in Echo Cancelation</a>
+- <a href="#54-adaptive-channel-equalization" style="color: #a0a0a0;">5.4 Adaptive Channel Equalization</a>
+- <a href="#55-eigenvalue-spread-in-equalization" style="color: #a0a0a0;">5.5 Eigenvalue Spread in Equalization</a>
+- <a href="#56-step-size-effect-in-equalization" style="color: #a0a0a0;">5.6 Step-Size Effect in Equalization</a>
+- [5.7 Time-Domain Realizations of Equalization](#57-time-domain-realizations-of-equalization)
+
+---
 
 ## 5.7 Time-Domain Realizations of Equalization
 
@@ -942,6 +1553,23 @@ The equalized sequence should look closer to the transmitted sequence than the r
 # §6 Recursive Least-Squares Adaptive Filters
 
 > 📖 Textbook §10.5 (Recursive Least-Squares Adaptive Filters); §10.7 (Fast RLS Algorithms)
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- [6.1 Motivation: Why RLS?](#61-motivation-why-rls)
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
 
 ## 6.1 Motivation: Why RLS?
 
@@ -969,6 +1597,23 @@ If $\lambda=1$, all past samples are weighted equally. If $\lambda<1$, older sam
 > ![Figure 5.1](./CourseADSP2026/Fig/Chapter_7/fig_5_1_textbook_fig_10_32_p549.png)
 >
 > *Figure 6.1 (Textbook Fig. 10.32, p. 549): Exponential weighting of observations. Older data receive smaller weights when $\lambda<1$.*
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- [6.2 Weighted Normal Equations](#62-weighted-normal-equations)
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
 
 ## 6.2 Weighted Normal Equations
 
@@ -1003,6 +1648,23 @@ $$
 $$
 
 A direct solution would require solving a linear system at every time step. RLS avoids this by updating the inverse correlation matrix.
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- [6.3 Matrix Inversion Lemma and RLS Gain](#63-matrix-inversion-lemma-and-rls-gain)
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
 
 ## 6.3 Matrix Inversion Lemma and RLS Gain
 
@@ -1040,6 +1702,23 @@ $$
 > ![Figure 5.2](./CourseADSP2026/Fig/Chapter_7/fig_5_2_textbook_fig_10_33_p552.png)
 >
 > *Figure 6.2 (Textbook Fig. 10.33, p. 552): Basic elements of the a priori LS adaptive filter. The gain vector controls how much the current error changes the coefficient vector.*
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- [6.4 Conventional RLS Algorithm](#64-conventional-rls-algorithm)
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
 
 ## 6.4 Conventional RLS Algorithm
 
@@ -1090,6 +1769,23 @@ $$
 \left[\mathbf{P}(n-1)-\mathbf{g}(n)\mathbf{x}^H(n)\mathbf{P}(n-1)\right].
 $$
 
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- [6.5 Choosing the Forgetting Factor](#65-choosing-the-forgetting-factor)
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
+
 ## 6.5 Choosing the Forgetting Factor
 
 The forgetting factor determines the memory of RLS.
@@ -1110,6 +1806,23 @@ $$
 
 Thus $\lambda=0.99$ remembers about 100 samples, while $\lambda=0.999$ remembers about 1000 samples in a rough engineering sense.
 
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- [6.6 RLS Performance in Equalization](#66-rls-performance-in-equalization)
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
+
 ## 6.6 RLS Performance in Equalization
 
 > ![Figure 5.3](./CourseADSP2026/Fig/Chapter_7/fig_5_3_textbook_fig_10_34_p559.png)
@@ -1124,6 +1837,23 @@ Compared with LMS, RLS usually converges in a number of samples proportional to 
 
 However, RLS has higher computational complexity, typically $O(M^2)$ per sample for conventional RLS, compared with $O(M)$ for LMS.
 
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- [6.7 Sliding-Window RLS](#67-sliding-window-rls)
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
+
 ## 6.7 Sliding-Window RLS
 
 Exponential forgetting is not the only way to localize the data. Sliding-window RLS uses only the most recent $L$ samples:
@@ -1137,6 +1867,23 @@ This gives equal weight to the recent window and zero weight to older samples.
 
 The advantage is a clear finite memory. The disadvantage is computational complexity: the algorithm must add the newest sample and remove the oldest sample, which makes the recursion more involved.
 
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- [6.8 Square-Root and QR-RLS Algorithms](#68-square-root-and-qr-rls-algorithms)
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
+
 ## 6.8 Square-Root and QR-RLS Algorithms
 
 Conventional RLS updates $\mathbf{P}(n)$ directly. In finite-precision arithmetic, this can lead to numerical problems such as loss of symmetry or loss of positive definiteness.
@@ -1144,6 +1891,23 @@ Conventional RLS updates $\mathbf{P}(n)$ directly. In finite-precision arithmeti
 Square-root algorithms update a factor of the correlation matrix or inverse correlation matrix, such as a Cholesky factor. QR-RLS uses orthogonal transformations to maintain numerical stability.
 
 The main idea is not to form unstable inverses directly. Instead, update a factorization.
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- [6.9 Fast RLS and Lattice-Ladder RLS](#69-fast-rls-and-lattice-ladder-rls)
+- <a href="#610-lms-versus-rls-the-main-comparison" style="color: #a0a0a0;">6.10 LMS versus RLS: The Main Comparison</a>
+
+---
 
 ## 6.9 Fast RLS and Lattice-Ladder RLS
 
@@ -1165,6 +1929,23 @@ The algorithm hierarchy can be understood by asking two questions.
 First, is the algorithm designed for a general linear combiner or for the special shift structure of an FIR filter?
 
 Second, does the implementation prioritize algebraic simplicity, computational speed, numerical robustness, or parallel hardware structure?
+
+---
+
+**§6 Recursive Least-Squares Adaptive Filters**
+
+- <a href="#61-motivation-why-rls" style="color: #a0a0a0;">6.1 Motivation: Why RLS?</a>
+- <a href="#62-weighted-normal-equations" style="color: #a0a0a0;">6.2 Weighted Normal Equations</a>
+- <a href="#63-matrix-inversion-lemma-and-rls-gain" style="color: #a0a0a0;">6.3 Matrix Inversion Lemma and RLS Gain</a>
+- <a href="#64-conventional-rls-algorithm" style="color: #a0a0a0;">6.4 Conventional RLS Algorithm</a>
+- <a href="#65-choosing-the-forgetting-factor" style="color: #a0a0a0;">6.5 Choosing the Forgetting Factor</a>
+- <a href="#66-rls-performance-in-equalization" style="color: #a0a0a0;">6.6 RLS Performance in Equalization</a>
+- <a href="#67-sliding-window-rls" style="color: #a0a0a0;">6.7 Sliding-Window RLS</a>
+- <a href="#68-square-root-and-qr-rls-algorithms" style="color: #a0a0a0;">6.8 Square-Root and QR-RLS Algorithms</a>
+- <a href="#69-fast-rls-and-lattice-ladder-rls" style="color: #a0a0a0;">6.9 Fast RLS and Lattice-Ladder RLS</a>
+- [6.10 LMS versus RLS: The Main Comparison](#610-lms-versus-rls-the-main-comparison)
+
+---
 
 ## 6.10 LMS versus RLS: The Main Comparison
 
@@ -1188,6 +1969,23 @@ A simple rule is:
 
 > 📖 Textbook §10.8 (Tracking Performance of Adaptive Algorithms)
 
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- [7.1 Why Tracking Is Different from Convergence](#71-why-tracking-is-different-from-convergence)
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
+
 ## 7.1 Why Tracking Is Different from Convergence
 
 Convergence analysis assumes a fixed optimum coefficient vector $\mathbf{c}_o$. Tracking analysis assumes a moving optimum $\mathbf{c}_o(n)$.
@@ -1201,6 +1999,23 @@ $$
 where $\boldsymbol{\psi}(n)$ represents random parameter drift. When $\rho=1$, this is a random-walk model.
 
 Tracking has a different tradeoff from stationary convergence. An algorithm must use recent data strongly enough to follow changes, but not so strongly that coefficient noise becomes excessive.
+
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- [7.2 Local Statistics: Exponential and Sliding Windows](#72-local-statistics-exponential-and-sliding-windows)
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
 
 ## 7.2 Local Statistics: Exponential and Sliding Windows
 
@@ -1218,6 +2033,23 @@ There are three common approaches.
 | Exponential forgetting | Downweight old data | RLS with $\lambda<1$ |
 | Sliding window | Use only recent samples | Sliding-window RLS |
 
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- [7.3 Tracking Model](#73-tracking-model)
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
+
 ## 7.3 Tracking Model
 
 > ![Figure 6.2](./CourseADSP2026/Fig/Chapter_7/fig_6_2_textbook_fig_10_42_p595.png)
@@ -1233,6 +2065,23 @@ $$
 Another is misadjustment, which measures excess output error relative to the irreducible error floor.
 
 The degree of nonstationarity compares the power introduced by the changing optimum filter to the irreducible error power. When the optimum changes quickly, the algorithm needs a shorter memory or larger step size.
+
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- [7.4 Matched, Slow, and Fast Adaptation](#74-matched-slow-and-fast-adaptation)
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
 
 ## 7.4 Matched, Slow, and Fast Adaptation
 
@@ -1264,6 +2113,23 @@ The matched LMS case shows a reasonable compromise. The coefficients follow the 
 
 RLS uses the forgetting factor $\lambda$ instead of the LMS step size $\mu$ as the main tracking-control parameter. A smaller $\lambda$ gives faster tracking but larger steady-state fluctuations.
 
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- [7.5 Practical Algorithm Selection](#75-practical-algorithm-selection)
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
+
 ## 7.5 Practical Algorithm Selection
 
 The following decision table is useful for applications.
@@ -1278,6 +2144,23 @@ The following decision table is useful for applications.
 | Numerical robustness is critical | QR-RLS or square-root RLS | Maintains stable matrix factors |
 | Rapidly changing system | Larger LMS step size or smaller RLS forgetting factor | Shorter effective memory |
 | Slowly changing system | Smaller LMS step size or $\lambda$ close to 1 | Lower steady-state EMSE |
+
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- [7.6 Common Implementation Pitfalls](#76-common-implementation-pitfalls)
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
 
 ## 7.6 Common Implementation Pitfalls
 
@@ -1307,6 +2190,23 @@ Supervised adaptation requires $y(n)$. In communication systems, $y(n)$ may be a
 
 LMS uses random instantaneous gradients. Individual learning curves are noisy by nature. Performance should often be assessed by averaging or by examining steady-state error statistics.
 
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- [7.7 Chapter Summary](#77-chapter-summary)
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
+
 ## 7.7 Chapter Summary
 
 The main concepts of the chapter are as follows.
@@ -1322,6 +2222,23 @@ The main concepts of the chapter are as follows.
 9. Tracking nonstationary systems requires local statistics: LMS uses constant adaptation, while RLS uses forgetting or sliding windows.
 10. Every adaptive algorithm involves a tradeoff among convergence speed, steady-state error, tracking ability, computational cost, and numerical robustness.
 
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- [7.8 Method Comparison at a Glance](#78-method-comparison-at-a-glance)
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
+
 ## 7.8 Method Comparison at a Glance
 
 | Method | Update Information | Main Tuning Parameter | Complexity | Strength | Weakness |
@@ -1333,6 +2250,23 @@ The main concepts of the chapter are as follows.
 | Affine projection | Recent $K$ input vectors | Projection order $K$ | Higher than LMS | Faster for correlated inputs | Matrix solve per update |
 | RLS | All past data with forgetting | $\lambda$, $\delta$ | $O(M^2)$ | Fast convergence | More complex, numerical care |
 | QR-RLS | Factorized LS problem | $\lambda$, $\delta$ | High | Numerically stable | More implementation effort |
+
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- [7.9 Figure Checklist](#79-figure-checklist)
+- <a href="#710-suggested-teaching-flow" style="color: #a0a0a0;">7.10 Suggested Teaching Flow</a>
+
+---
 
 ## 7.9 Figure Checklist
 
@@ -1379,6 +2313,21 @@ All figures used in this lecture were cropped from the uploaded textbook PDF and
 | Figure 7.4 | Fig. 10.44, p. 600 | `fig_6_4_textbook_fig_10_44_p600.png` |
 | Figure 7.5 | Fig. 10.49, p. 604 | `fig_6_5_textbook_fig_10_49_p604.png` |
 | Figure 7.6 | Fig. 10.50, p. 605 | `fig_6_6_textbook_fig_10_50_p605.png` |
+
+---
+
+**§7 Tracking, Algorithm Selection, and Figure Checklist**
+
+- <a href="#71-why-tracking-is-different-from-convergence" style="color: #a0a0a0;">7.1 Why Tracking Is Different from Convergence</a>
+- <a href="#72-local-statistics-exponential-and-sliding-windows" style="color: #a0a0a0;">7.2 Local Statistics: Exponential and Sliding Windows</a>
+- <a href="#73-tracking-model" style="color: #a0a0a0;">7.3 Tracking Model</a>
+- <a href="#74-matched-slow-and-fast-adaptation" style="color: #a0a0a0;">7.4 Matched, Slow, and Fast Adaptation</a>
+- <a href="#75-practical-algorithm-selection" style="color: #a0a0a0;">7.5 Practical Algorithm Selection</a>
+- <a href="#76-common-implementation-pitfalls" style="color: #a0a0a0;">7.6 Common Implementation Pitfalls</a>
+- <a href="#77-chapter-summary" style="color: #a0a0a0;">7.7 Chapter Summary</a>
+- <a href="#78-method-comparison-at-a-glance" style="color: #a0a0a0;">7.8 Method Comparison at a Glance</a>
+- <a href="#79-figure-checklist" style="color: #a0a0a0;">7.9 Figure Checklist</a>
+- [7.10 Suggested Teaching Flow](#710-suggested-teaching-flow)
 
 ---
 

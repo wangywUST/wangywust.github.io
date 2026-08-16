@@ -8,15 +8,106 @@
 
 ## Table of Contents
 
-1. [§0 Modeling Viewpoint and Chapter Roadmap](#0-modeling-viewpoint-and-chapter-roadmap)
-2. [§1 Linear Random Signal Models](#1-linear-random-signal-models)
-3. [§2 Parametric Pole-Zero Models](#2-parametric-pole-zero-models)
-4. [§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)](#3-model-signatures-acs-pacs-and-spectrum)
-5. [§4 ARMA Modeling and Modified Yule-Walker Ideas](#4-arma-modeling-and-modified-yule-walker-ideas)
-6. [§5 AR Modeling Methods](#5-ar-modeling-methods)
-7. [§6 MA Modeling Methods](#6-ma-modeling-methods)
-8. [§7 Parametric Power Spectrum Estimation](#7-parametric-power-spectrum-estimation)
-9. [§8 Chapter Summary, Figure Checklist, and Teaching Flow](#8-chapter-summary-figure-checklist-and-teaching-flow)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Time Index, Model Order, and Data Length](#time-index-model-order-and-data-length)
+  - [Signals, Excitations, and Errors](#signals-excitations-and-errors)
+  - [Model Polynomials and System Functions](#model-polynomials-and-system-functions)
+  - [Correlation, Spectrum, and Model Diagnostics](#correlation-spectrum-and-model-diagnostics)
+  - [Model Names](#model-names)
+- [§0 Modeling Viewpoint and Chapter Roadmap](#0-modeling-viewpoint-and-chapter-roadmap)
+  - [0.1 What Is a Signal Model?](#01-what-is-a-signal-model)
+  - [0.2 Why Model Random Signals This Way?](#02-why-model-random-signals-this-way)
+  - [0.3 Deterministic Modeling versus Random Signal Modeling](#03-deterministic-modeling-versus-random-signal-modeling)
+    - [Deterministic Signal Modeling](#deterministic-signal-modeling)
+    - [Random Signal Modeling](#random-signal-modeling)
+  - [0.4 The Three-Stage Modeling Process](#04-the-three-stage-modeling-process)
+    - [Why Model Order Is Not a Minor Detail](#why-model-order-is-not-a-minor-detail)
+  - [0.5 Chapter Roadmap](#05-chapter-roadmap)
+- [§1 Linear Random Signal Models](#1-linear-random-signal-models)
+  - [1.1 White Noise Through an LTI System](#11-white-noise-through-an-lti-system)
+  - [1.2 Nonparametric and Parametric Models](#12-nonparametric-and-parametric-models)
+    - [Nonparametric Model](#nonparametric-model)
+    - [Parametric Model](#parametric-model)
+    - [Teaching Note: Why the Polynomials Use $z^{-1}$](#teaching-note-why-the-polynomials-use-z-1)
+  - [1.3 Coloring and Whitening Filters](#13-coloring-and-whitening-filters)
+  - [1.4 Minimum Phase and Innovations](#14-minimum-phase-and-innovations)
+  - [1.5 Spectral Factorization](#15-spectral-factorization)
+  - [1.6 Spectral Flatness Measure](#16-spectral-flatness-measure)
+- [§2 Parametric Pole-Zero Models](#2-parametric-pole-zero-models)
+  - [2.1 The General PZ($P,Q$) Model](#21-the-general-pzpq-model)
+  - [2.2 Three Important Special Cases](#22-three-important-special-cases)
+    - [All-Pole / AR Model](#all-pole--ar-model)
+    - [All-Zero / MA Model](#all-zero--ma-model)
+    - [Pole-Zero / ARMA Model](#pole-zero--arma-model)
+  - [2.3 Why Poles and Zeros Matter](#23-why-poles-and-zeros-matter)
+    - [Poles Create Peaks](#poles-create-peaks)
+    - [Zeros Create Valleys or Notches](#zeros-create-valleys-or-notches)
+    - [Pole-Zero Models Combine Both](#pole-zero-models-combine-both)
+  - [2.4 Short-Memory Behavior](#24-short-memory-behavior)
+  - [2.5 A Detailed Example: AP(2)](#25-a-detailed-example-ap2)
+- [§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)](#3-model-signatures-acs-autocorrelation-sequence-pacs-partial-autocorrelation-sequence-and-spectrum-power-spectrum)
+  - [3.1 Why Model Signatures Matter](#31-why-model-signatures-matter)
+  - [3.2 All-Pole / AR Signature](#32-all-pole--ar-signature)
+  - [3.3 All-Zero / MA Signature](#33-all-zero--ma-signature)
+  - [3.4 Pole-Zero / ARMA Signature](#34-pole-zero--arma-signature)
+  - [3.5 Summary of Model Family Signatures](#35-summary-of-model-family-signatures)
+- [§4 ARMA Modeling and Modified Yule-Walker Ideas](#4-arma-modeling-and-modified-yule-walker-ideas)
+  - [4.1 The ARMA Modeling Problem](#41-the-arma-modeling-problem)
+  - [4.2 A Useful Intermediate Process](#42-a-useful-intermediate-process)
+  - [4.3 Deriving the Modified Yule-Walker Equations](#43-deriving-the-modified-yule-walker-equations)
+  - [4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)](#44-least-squares-modified-yule-walker-equation-ls-mywe)
+  - [4.5 Estimating the MA Part After the AR Part](#45-estimating-the-ma-part-after-the-ar-part)
+  - [4.6 Textbook Least-Squares View of PZ Estimation](#46-textbook-least-squares-view-of-pz-estimation)
+  - [4.7 Why ARMA Estimation Is Delicate](#47-why-arma-estimation-is-delicate)
+  - [4.8 PZ versus High-Order AR Approximation](#48-pz-versus-high-order-ar-approximation)
+- [§5 AR Modeling Methods](#5-ar-modeling-methods)
+  - [5.1 AR Modeling Problem](#51-ar-modeling-problem)
+  - [5.2 Yule-Walker / Autocorrelation Method](#52-yule-walker--autocorrelation-method)
+    - [Strengths](#strengths)
+    - [Weaknesses](#weaknesses)
+  - [5.3 Covariance Method](#53-covariance-method)
+    - [How Are the Coefficients $a_k$ Estimated?](#how-are-the-coefficients-a_k-estimated)
+    - [Strengths](#strengths-1)
+    - [Weaknesses](#weaknesses-1)
+  - [5.4 Modified Covariance Method](#54-modified-covariance-method)
+    - [Strengths](#strengths-2)
+    - [Weaknesses](#weaknesses-2)
+  - [5.5 Burg / Lattice Parameter Method](#55-burg--lattice-parameter-method)
+    - [Strengths](#strengths-3)
+    - [Weaknesses](#weaknesses-3)
+  - [5.6 Comparing AR Estimation Methods](#56-comparing-ar-estimation-methods)
+  - [5.7 Model Order Selection for AR Models](#57-model-order-selection-for-ar-models)
+- [§6 MA Modeling Methods](#6-ma-modeling-methods)
+  - [6.1 MA Modeling Problem](#61-ma-modeling-problem)
+  - [6.2 Autocorrelation Cutoff Property](#62-autocorrelation-cutoff-property)
+  - [6.3 Spectral Factorization Method](#63-spectral-factorization-method)
+    - [Steps](#steps)
+  - [6.4 Durbin's Method for MA Modeling](#64-durbins-method-for-ma-modeling)
+    - [Step 1: Fit a High-Order AR Model](#step-1-fit-a-high-order-ar-model)
+    - [Step 2: Convert the Approximation into an MA Model](#step-2-convert-the-approximation-into-an-ma-model)
+    - [Why This Works](#why-this-works)
+    - [Limitations](#limitations)
+  - [6.5 MA versus AR in Practice](#65-ma-versus-ar-in-practice)
+- [§7 Parametric Power Spectrum Estimation](#7-parametric-power-spectrum-estimation)
+  - [7.1 From Model Parameters to PSD](#71-from-model-parameters-to-psd)
+  - [7.2 Why Parametric Spectra Can Have High Resolution](#72-why-parametric-spectra-can-have-high-resolution)
+  - [7.3 Model Mismatch](#73-model-mismatch)
+  - [7.4 Comparing All-Pole PSD Estimation Methods](#74-comparing-all-pole-psd-estimation-methods)
+  - [7.5 Linear Prediction Prewhitening for Spectrum Estimation](#75-linear-prediction-prewhitening-for-spectrum-estimation)
+  - [7.6 Main Defects of Parametric Spectrum Estimation](#76-main-defects-of-parametric-spectrum-estimation)
+    - [Defect 1: Correct Model Assumption Is Not Guaranteed](#defect-1-correct-model-assumption-is-not-guaranteed)
+    - [Defect 2: Model Order Is Difficult](#defect-2-model-order-is-difficult)
+  - [7.7 Practical Diagnostic Checklist](#77-practical-diagnostic-checklist)
+- [§8 Chapter Summary, Figure Checklist, and Teaching Flow](#8-chapter-summary-figure-checklist-and-teaching-flow)
+  - [8.1 Chapter Summary](#81-chapter-summary)
+  - [8.2 Figure Source Checklist](#82-figure-source-checklist)
+  - [8.3 Suggested Teaching Flow](#83-suggested-teaching-flow)
+  - [8.4 Minimal Board Derivation Plan](#84-minimal-board-derivation-plan)
+    - [Step 1: White Noise Through a Filter](#step-1-white-noise-through-a-filter)
+    - [Step 2: Rational Model](#step-2-rational-model)
+    - [Step 3: AR Special Case](#step-3-ar-special-case)
+    - [Step 4: ARMA Long-Lag Equation](#step-4-arma-long-lag-equation)
+    - [Step 5: PSD Estimate](#step-5-psd-estimate)
 
 ---
 
@@ -91,6 +182,18 @@ This chapter uses the notation of the previous three lectures. The new emphasis 
 
 > 📖 Textbook §4.1 (Introduction); §9.1 (The Modeling Process: Theory and Practice)
 
+---
+
+**§0 Modeling Viewpoint and Chapter Roadmap**
+
+- [0.1 What Is a Signal Model?](#01-what-is-a-signal-model)
+- <a href="#02-why-model-random-signals-this-way" style="color: #a0a0a0;">0.2 Why Model Random Signals This Way?</a>
+- <a href="#03-deterministic-modeling-versus-random-signal-modeling" style="color: #a0a0a0;">0.3 Deterministic Modeling versus Random Signal Modeling</a>
+- <a href="#04-the-three-stage-modeling-process" style="color: #a0a0a0;">0.4 The Three-Stage Modeling Process</a>
+- <a href="#05-chapter-roadmap" style="color: #a0a0a0;">0.5 Chapter Roadmap</a>
+
+---
+
 ## 0.1 What Is a Signal Model?
 
 A **signal model** is a simplified mathematical description of how a signal could have been generated.
@@ -112,6 +215,18 @@ where
 
 If $H(z)$ is known, then the second-order behavior of $x(n)$ is known. If $H(z)$ is unknown, then signal modeling means estimating $H(z)$ from data.
 
+---
+
+**§0 Modeling Viewpoint and Chapter Roadmap**
+
+- <a href="#01-what-is-a-signal-model" style="color: #a0a0a0;">0.1 What Is a Signal Model?</a>
+- [0.2 Why Model Random Signals This Way?](#02-why-model-random-signals-this-way)
+- <a href="#03-deterministic-modeling-versus-random-signal-modeling" style="color: #a0a0a0;">0.3 Deterministic Modeling versus Random Signal Modeling</a>
+- <a href="#04-the-three-stage-modeling-process" style="color: #a0a0a0;">0.4 The Three-Stage Modeling Process</a>
+- <a href="#05-chapter-roadmap" style="color: #a0a0a0;">0.5 Chapter Roadmap</a>
+
+---
+
 ## 0.2 Why Model Random Signals This Way?
 
 Linear signal models are useful because they replace a complicated random signal by a small number of parameters.
@@ -130,6 +245,18 @@ Parametric modeling is especially attractive when:
 | Whitening | Remove predictable correlation and analyze residuals |
 
 The price is that the model may be wrong. A wrong model can create artificial spectral peaks, miss true notches, or give misleading interpretations.
+
+---
+
+**§0 Modeling Viewpoint and Chapter Roadmap**
+
+- <a href="#01-what-is-a-signal-model" style="color: #a0a0a0;">0.1 What Is a Signal Model?</a>
+- <a href="#02-why-model-random-signals-this-way" style="color: #a0a0a0;">0.2 Why Model Random Signals This Way?</a>
+- [0.3 Deterministic Modeling versus Random Signal Modeling](#03-deterministic-modeling-versus-random-signal-modeling)
+- <a href="#04-the-three-stage-modeling-process" style="color: #a0a0a0;">0.4 The Three-Stage Modeling Process</a>
+- <a href="#05-chapter-roadmap" style="color: #a0a0a0;">0.5 Chapter Roadmap</a>
+
+---
 
 ## 0.3 Deterministic Modeling versus Random Signal Modeling
 
@@ -158,6 +285,18 @@ The two viewpoints meet in practical algorithms:
 | Use $r_x(l)=E\{x(n)x^\ast(n-l)\}$ | Estimate $\hat r_x(l)$ from data |
 | Minimize $E\{\lvert e(n)\rvert^2\}$ | Minimize $\sum_n \lvert e(n)\rvert^2$ |
 | Obtain theoretical AR/MA/ARMA coefficients | Obtain estimated coefficients $\hat a_k,\hat d_k$ |
+
+---
+
+**§0 Modeling Viewpoint and Chapter Roadmap**
+
+- <a href="#01-what-is-a-signal-model" style="color: #a0a0a0;">0.1 What Is a Signal Model?</a>
+- <a href="#02-why-model-random-signals-this-way" style="color: #a0a0a0;">0.2 Why Model Random Signals This Way?</a>
+- <a href="#03-deterministic-modeling-versus-random-signal-modeling" style="color: #a0a0a0;">0.3 Deterministic Modeling versus Random Signal Modeling</a>
+- [0.4 The Three-Stage Modeling Process](#04-the-three-stage-modeling-process)
+- <a href="#05-chapter-roadmap" style="color: #a0a0a0;">0.5 Chapter Roadmap</a>
+
+---
 
 ## 0.4 The Three-Stage Modeling Process
 
@@ -215,6 +354,18 @@ A good model should satisfy three requirements:
 | Has interpretable residuals | The residual should look approximately white if the model has captured the predictable structure |
 | Serves the application | A model for spectrum estimation, coding, prediction, or detection may require different tradeoffs |
 
+---
+
+**§0 Modeling Viewpoint and Chapter Roadmap**
+
+- <a href="#01-what-is-a-signal-model" style="color: #a0a0a0;">0.1 What Is a Signal Model?</a>
+- <a href="#02-why-model-random-signals-this-way" style="color: #a0a0a0;">0.2 Why Model Random Signals This Way?</a>
+- <a href="#03-deterministic-modeling-versus-random-signal-modeling" style="color: #a0a0a0;">0.3 Deterministic Modeling versus Random Signal Modeling</a>
+- <a href="#04-the-three-stage-modeling-process" style="color: #a0a0a0;">0.4 The Three-Stage Modeling Process</a>
+- [0.5 Chapter Roadmap](#05-chapter-roadmap)
+
+---
+
 ## 0.5 Chapter Roadmap
 
 This chapter proceeds in the following logical order.
@@ -226,6 +377,19 @@ First, we define the broad class of white-noise-driven linear models. Second, we
 # §1 Linear Random Signal Models
 
 > 📖 Textbook §4.1.1 (Linear Nonparametric Signal Models); §4.1.2 (Parametric Pole-Zero Signal Models); §2.4.4 (Spectral Factorization)
+
+---
+
+**§1 Linear Random Signal Models**
+
+- [1.1 White Noise Through an LTI System](#11-white-noise-through-an-lti-system)
+- <a href="#12-nonparametric-and-parametric-models" style="color: #a0a0a0;">1.2 Nonparametric and Parametric Models</a>
+- <a href="#13-coloring-and-whitening-filters" style="color: #a0a0a0;">1.3 Coloring and Whitening Filters</a>
+- <a href="#14-minimum-phase-and-innovations" style="color: #a0a0a0;">1.4 Minimum Phase and Innovations</a>
+- <a href="#15-spectral-factorization" style="color: #a0a0a0;">1.5 Spectral Factorization</a>
+- <a href="#16-spectral-flatness-measure" style="color: #a0a0a0;">1.6 Spectral Flatness Measure</a>
+
+---
 
 ## 1.1 White Noise Through an LTI System
 
@@ -268,6 +432,19 @@ Here $x(n)$ and $x(n-1)$ both contain the same random variable $w(n-1)$, so they
 > ![Figure 1.1](./CourseADSP2026/Fig/Chapter_4/fig_0_1_textbook_fig_4_1_p150.png)
 >
 > *Figure 1.1 (Textbook Fig. 4.1, p. 150): Signal models with continuous and discrete power spectrum densities. White noise passed through an LTI system produces a continuous shaped PSD; a white harmonic process passed through a filter produces shaped spectral lines.*
+
+---
+
+**§1 Linear Random Signal Models**
+
+- <a href="#11-white-noise-through-an-lti-system" style="color: #a0a0a0;">1.1 White Noise Through an LTI System</a>
+- [1.2 Nonparametric and Parametric Models](#12-nonparametric-and-parametric-models)
+- <a href="#13-coloring-and-whitening-filters" style="color: #a0a0a0;">1.3 Coloring and Whitening Filters</a>
+- <a href="#14-minimum-phase-and-innovations" style="color: #a0a0a0;">1.4 Minimum Phase and Innovations</a>
+- <a href="#15-spectral-factorization" style="color: #a0a0a0;">1.5 Spectral Factorization</a>
+- <a href="#16-spectral-flatness-measure" style="color: #a0a0a0;">1.6 Spectral Flatness Measure</a>
+
+---
 
 ## 1.2 Nonparametric and Parametric Models
 
@@ -424,6 +601,19 @@ The important lesson is:
 
 Parametric models are less flexible than arbitrary impulse responses, but they are easier to estimate, interpret, and use.
 
+---
+
+**§1 Linear Random Signal Models**
+
+- <a href="#11-white-noise-through-an-lti-system" style="color: #a0a0a0;">1.1 White Noise Through an LTI System</a>
+- <a href="#12-nonparametric-and-parametric-models" style="color: #a0a0a0;">1.2 Nonparametric and Parametric Models</a>
+- [1.3 Coloring and Whitening Filters](#13-coloring-and-whitening-filters)
+- <a href="#14-minimum-phase-and-innovations" style="color: #a0a0a0;">1.4 Minimum Phase and Innovations</a>
+- <a href="#15-spectral-factorization" style="color: #a0a0a0;">1.5 Spectral Factorization</a>
+- <a href="#16-spectral-flatness-measure" style="color: #a0a0a0;">1.6 Spectral Flatness Measure</a>
+
+---
+
 ## 1.3 Coloring and Whitening Filters
 
 If $x(n)$ is generated by
@@ -512,6 +702,19 @@ This figure is one of the most important conceptual figures in the chapter. It e
 
   is what remains after subtracting the predictable part of $x(n)$; if this residual is the innovation, then everything predictable has been removed.
 
+---
+
+**§1 Linear Random Signal Models**
+
+- <a href="#11-white-noise-through-an-lti-system" style="color: #a0a0a0;">1.1 White Noise Through an LTI System</a>
+- <a href="#12-nonparametric-and-parametric-models" style="color: #a0a0a0;">1.2 Nonparametric and Parametric Models</a>
+- <a href="#13-coloring-and-whitening-filters" style="color: #a0a0a0;">1.3 Coloring and Whitening Filters</a>
+- [1.4 Minimum Phase and Innovations](#14-minimum-phase-and-innovations)
+- <a href="#15-spectral-factorization" style="color: #a0a0a0;">1.5 Spectral Factorization</a>
+- <a href="#16-spectral-flatness-measure" style="color: #a0a0a0;">1.6 Spectral Flatness Measure</a>
+
+---
+
 ## 1.4 Minimum Phase and Innovations
 
 The innovations interpretation requires more than stability. We usually want $H(z)$ to be **minimum phase**, meaning that both $H(z)$ and its inverse are causal and stable.
@@ -589,6 +792,19 @@ This equation has a direct meaning:
 
 This is why all-pole modeling and linear prediction are so closely related. If the prediction error is white, it is an estimate of the innovations sequence.
 
+---
+
+**§1 Linear Random Signal Models**
+
+- <a href="#11-white-noise-through-an-lti-system" style="color: #a0a0a0;">1.1 White Noise Through an LTI System</a>
+- <a href="#12-nonparametric-and-parametric-models" style="color: #a0a0a0;">1.2 Nonparametric and Parametric Models</a>
+- <a href="#13-coloring-and-whitening-filters" style="color: #a0a0a0;">1.3 Coloring and Whitening Filters</a>
+- <a href="#14-minimum-phase-and-innovations" style="color: #a0a0a0;">1.4 Minimum Phase and Innovations</a>
+- [1.5 Spectral Factorization](#15-spectral-factorization)
+- <a href="#16-spectral-flatness-measure" style="color: #a0a0a0;">1.6 Spectral Flatness Measure</a>
+
+---
+
 ## 1.5 Spectral Factorization
 
 Suppose a WSS process has a continuous PSD $R_x(e^{j\omega})$. If it can be written as
@@ -645,6 +861,19 @@ whose zero is at $z=2$. These two factors can produce the same magnitude respons
 In Chinese:
 
 > 幅度响应本来不能唯一决定相位，因为可以乘上全通因子来改变相位但不改变幅度。minimum-phase 条件禁止了这种额外的全通相位自由度：所有零点都必须在单位圆内。因此，在所有具有相同幅度响应的候选滤波器中，minimum-phase 因子给出一个标准的、因果的、稳定可逆的选择。也就是说，一旦要求谱因子是 minimum phase，相位就不再是任意的，而是由幅度响应唯一确定。
+
+---
+
+**§1 Linear Random Signal Models**
+
+- <a href="#11-white-noise-through-an-lti-system" style="color: #a0a0a0;">1.1 White Noise Through an LTI System</a>
+- <a href="#12-nonparametric-and-parametric-models" style="color: #a0a0a0;">1.2 Nonparametric and Parametric Models</a>
+- <a href="#13-coloring-and-whitening-filters" style="color: #a0a0a0;">1.3 Coloring and Whitening Filters</a>
+- <a href="#14-minimum-phase-and-innovations" style="color: #a0a0a0;">1.4 Minimum Phase and Innovations</a>
+- <a href="#15-spectral-factorization" style="color: #a0a0a0;">1.5 Spectral Factorization</a>
+- [1.6 Spectral Flatness Measure](#16-spectral-flatness-measure)
+
+---
 
 ## 1.6 Spectral Flatness Measure
 
@@ -713,6 +942,18 @@ This quantity is useful in modeling because whitening should increase spectral f
 
 > 📖 Textbook §4.1.2 (Parametric Pole-Zero Signal Models); §4.2 (All-Pole Models); §4.3 (All-Zero Models); §4.4 (Pole-Zero Models)
 
+---
+
+**§2 Parametric Pole-Zero Models**
+
+- [2.1 The General PZ($P,Q$) Model](#21-the-general-pzpq-model)
+- <a href="#22-three-important-special-cases" style="color: #a0a0a0;">2.2 Three Important Special Cases</a>
+- <a href="#23-why-poles-and-zeros-matter" style="color: #a0a0a0;">2.3 Why Poles and Zeros Matter</a>
+- <a href="#24-short-memory-behavior" style="color: #a0a0a0;">2.4 Short-Memory Behavior</a>
+- <a href="#25-a-detailed-example-ap2" style="color: #a0a0a0;">2.5 A Detailed Example: AP(2)</a>
+
+---
+
 ## 2.1 The General PZ($P,Q$) Model
 
 A rational parametric model is described by the difference equation
@@ -736,6 +977,18 @@ The model becomes stationary when the synthesis filter is stable. For a causal r
 $$\lvert p_k\rvert<1,\qquad k=1,\ldots,P.$$
 
 If we also want the inverse whitening filter to be stable, all zeros should lie inside the unit circle as well.
+
+---
+
+**§2 Parametric Pole-Zero Models**
+
+- <a href="#21-the-general-pzpq-model" style="color: #a0a0a0;">2.1 The General PZ($P,Q$) Model</a>
+- [2.2 Three Important Special Cases](#22-three-important-special-cases)
+- <a href="#23-why-poles-and-zeros-matter" style="color: #a0a0a0;">2.3 Why Poles and Zeros Matter</a>
+- <a href="#24-short-memory-behavior" style="color: #a0a0a0;">2.4 Short-Memory Behavior</a>
+- <a href="#25-a-detailed-example-ap2" style="color: #a0a0a0;">2.5 A Detailed Example: AP(2)</a>
+
+---
 
 ## 2.2 Three Important Special Cases
 
@@ -777,6 +1030,18 @@ $$\boxed{x(n)=-\sum_{k=1}^{P}a_kx(n-k)+\sum_{k=0}^{Q}d_kw(n-k)}.$$
 
 This is called a PZ($P,Q$) model in system language and an ARMA($P,Q$) model in random-process language.
 
+---
+
+**§2 Parametric Pole-Zero Models**
+
+- <a href="#21-the-general-pzpq-model" style="color: #a0a0a0;">2.1 The General PZ($P,Q$) Model</a>
+- <a href="#22-three-important-special-cases" style="color: #a0a0a0;">2.2 Three Important Special Cases</a>
+- [2.3 Why Poles and Zeros Matter](#23-why-poles-and-zeros-matter)
+- <a href="#24-short-memory-behavior" style="color: #a0a0a0;">2.4 Short-Memory Behavior</a>
+- <a href="#25-a-detailed-example-ap2" style="color: #a0a0a0;">2.5 A Detailed Example: AP(2)</a>
+
+---
+
 ## 2.3 Why Poles and Zeros Matter
 
 The pole-zero form tells us what kind of spectral shape the model can produce.
@@ -802,6 +1067,18 @@ This is why all-zero models are good at representing spectral valleys and notche
 An ARMA model can use poles for peaks and zeros for notches. This often gives a more accurate spectrum with fewer parameters than a pure AR or pure MA model.
 
 The tradeoff is that ARMA estimation is more difficult, because the unknown excitation appears inside a recursive relationship.
+
+---
+
+**§2 Parametric Pole-Zero Models**
+
+- <a href="#21-the-general-pzpq-model" style="color: #a0a0a0;">2.1 The General PZ($P,Q$) Model</a>
+- <a href="#22-three-important-special-cases" style="color: #a0a0a0;">2.2 Three Important Special Cases</a>
+- <a href="#23-why-poles-and-zeros-matter" style="color: #a0a0a0;">2.3 Why Poles and Zeros Matter</a>
+- [2.4 Short-Memory Behavior](#24-short-memory-behavior)
+- <a href="#25-a-detailed-example-ap2" style="color: #a0a0a0;">2.5 A Detailed Example: AP(2)</a>
+
+---
 
 ## 2.4 Short-Memory Behavior
 
@@ -868,6 +1145,18 @@ This expression explains the short-memory behavior:
 - poles closer to the unit circle produce slower decay and longer memory.
 
 Therefore, stable finite-order pole-zero models are usually appropriate for stationary signals with **short memory**.
+
+---
+
+**§2 Parametric Pole-Zero Models**
+
+- <a href="#21-the-general-pzpq-model" style="color: #a0a0a0;">2.1 The General PZ($P,Q$) Model</a>
+- <a href="#22-three-important-special-cases" style="color: #a0a0a0;">2.2 Three Important Special Cases</a>
+- <a href="#23-why-poles-and-zeros-matter" style="color: #a0a0a0;">2.3 Why Poles and Zeros Matter</a>
+- <a href="#24-short-memory-behavior" style="color: #a0a0a0;">2.4 Short-Memory Behavior</a>
+- [2.5 A Detailed Example: AP(2)](#25-a-detailed-example-ap2)
+
+---
 
 ## 2.5 A Detailed Example: AP(2)
 
@@ -1003,6 +1292,18 @@ This figure is useful for teaching because it links four descriptions of the sam
 
 Here, **ACS** means **autocorrelation sequence**, **PACS** means **partial autocorrelation sequence**, and **Spectrum** means the **power spectrum**, usually represented by the power spectral density (PSD).
 
+---
+
+**§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)**
+
+- [3.1 Why Model Signatures Matter](#31-why-model-signatures-matter)
+- <a href="#32-all-pole--ar-signature" style="color: #a0a0a0;">3.2 All-Pole / AR Signature</a>
+- <a href="#33-all-zero--ma-signature" style="color: #a0a0a0;">3.3 All-Zero / MA Signature</a>
+- <a href="#34-pole-zero--arma-signature" style="color: #a0a0a0;">3.4 Pole-Zero / ARMA Signature</a>
+- <a href="#35-summary-of-model-family-signatures" style="color: #a0a0a0;">3.5 Summary of Model Family Signatures</a>
+
+---
+
 ## 3.1 Why Model Signatures Matter
 
 Before estimating parameters, we should ask what model family is appropriate.
@@ -1018,6 +1319,18 @@ The main idea is:
 > Different model families leave different fingerprints in ACS, PACS, and PSD.
 
 These fingerprints guide model selection.
+
+---
+
+**§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)**
+
+- <a href="#31-why-model-signatures-matter" style="color: #a0a0a0;">3.1 Why Model Signatures Matter</a>
+- [3.2 All-Pole / AR Signature](#32-all-pole--ar-signature)
+- <a href="#33-all-zero--ma-signature" style="color: #a0a0a0;">3.3 All-Zero / MA Signature</a>
+- <a href="#34-pole-zero--arma-signature" style="color: #a0a0a0;">3.4 Pole-Zero / ARMA Signature</a>
+- <a href="#35-summary-of-model-family-signatures" style="color: #a0a0a0;">3.5 Summary of Model Family Signatures</a>
+
+---
 
 ## 3.2 All-Pole / AR Signature
 
@@ -1158,6 +1471,18 @@ $$\text{pole near unit circle at angle }\omega_0
 
 Therefore, AR models are especially useful for processes whose spectra contain resonant peaks or narrowband energy concentrations, such as speech formants, vibration signals, and other resonance-dominated data. This is also why AR models are often contrasted with MA/all-zero models: poles are naturally good at creating peaks, while zeros are naturally good at creating valleys or notches.
 
+---
+
+**§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)**
+
+- <a href="#31-why-model-signatures-matter" style="color: #a0a0a0;">3.1 Why Model Signatures Matter</a>
+- <a href="#32-all-pole--ar-signature" style="color: #a0a0a0;">3.2 All-Pole / AR Signature</a>
+- [3.3 All-Zero / MA Signature](#33-all-zero--ma-signature)
+- <a href="#34-pole-zero--arma-signature" style="color: #a0a0a0;">3.4 Pole-Zero / ARMA Signature</a>
+- <a href="#35-summary-of-model-family-signatures" style="color: #a0a0a0;">3.5 Summary of Model Family Signatures</a>
+
+---
+
 ## 3.3 All-Zero / MA Signature
 
 For an MA($Q$) process,
@@ -1209,6 +1534,18 @@ A first-order all-zero model can look low-pass or high-pass depending on the sig
 >
 > *Figure 3.2 (Textbook Fig. 4.10, p. 175): Output realization, ACS, PACS, and spectrum of an AZ(1) model with $d_1=-0.95$. Changing the sign of the zero coefficient changes the spectral shape from low-pass-like to high-pass-like.*
 
+---
+
+**§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)**
+
+- <a href="#31-why-model-signatures-matter" style="color: #a0a0a0;">3.1 Why Model Signatures Matter</a>
+- <a href="#32-all-pole--ar-signature" style="color: #a0a0a0;">3.2 All-Pole / AR Signature</a>
+- <a href="#33-all-zero--ma-signature" style="color: #a0a0a0;">3.3 All-Zero / MA Signature</a>
+- [3.4 Pole-Zero / ARMA Signature](#34-pole-zero--arma-signature)
+- <a href="#35-summary-of-model-family-signatures" style="color: #a0a0a0;">3.5 Summary of Model Family Signatures</a>
+
+---
+
 ## 3.4 Pole-Zero / ARMA Signature
 
 For an ARMA($P,Q$) process,
@@ -1230,6 +1567,18 @@ The PZ(1,1) model already shows that the admissible parameter region can be more
 > ![Figure 3.3](./CourseADSP2026/Fig/Chapter_4/fig_4_1_textbook_fig_4_12_p180.png)
 >
 > *Figure 3.3 (Textbook Fig. 4.12, p. 180): Minimum-phase and positive-definiteness regions for the PZ(1,1) model. The coefficient-domain condition and the autocorrelation-domain condition are not the same geometric object.*
+
+---
+
+**§3 Model Signatures: ACS (Autocorrelation Sequence), PACS (Partial Autocorrelation Sequence), and Spectrum (Power Spectrum)**
+
+- <a href="#31-why-model-signatures-matter" style="color: #a0a0a0;">3.1 Why Model Signatures Matter</a>
+- <a href="#32-all-pole--ar-signature" style="color: #a0a0a0;">3.2 All-Pole / AR Signature</a>
+- <a href="#33-all-zero--ma-signature" style="color: #a0a0a0;">3.3 All-Zero / MA Signature</a>
+- <a href="#34-pole-zero--arma-signature" style="color: #a0a0a0;">3.4 Pole-Zero / ARMA Signature</a>
+- [3.5 Summary of Model Family Signatures](#35-summary-of-model-family-signatures)
+
+---
 
 ## 3.5 Summary of Model Family Signatures
 
@@ -1259,6 +1608,21 @@ If both tail off and the spectrum has both resonant peaks and clear notches, try
 
 > 📖 Textbook §4.4 (Pole-Zero Models); §9.3 (Estimation of Pole-Zero Models)
 
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- [4.1 The ARMA Modeling Problem](#41-the-arma-modeling-problem)
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
+
 ## 4.1 The ARMA Modeling Problem
 
 The ARMA($P,Q$) model is
@@ -1280,6 +1644,21 @@ $$\{a_1,\ldots,a_P,d_1,\ldots,d_Q,\sigma_w^2\}$$
 from a finite observation $x(0),x(1),\ldots,x(N-1)$.
 
 This is harder than AR modeling because both the numerator and denominator are unknown. The denominator creates recursion in $x(n)$, while the numerator contains the unobserved excitation $w(n)$.
+
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- [4.2 A Useful Intermediate Process](#42-a-useful-intermediate-process)
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
 
 ## 4.2 A Useful Intermediate Process
 
@@ -1314,6 +1693,21 @@ This observation is the basis of modified Yule-Walker methods:
 1. Use long-lag autocorrelation equations to estimate the AR part $A(z)$.
 2. Filter $x(n)$ by the estimated $A(z)$ to obtain an estimated MA process $\hat c(n)$.
 3. Estimate the MA part $D(z)$ from the autocorrelation or spectrum of $\hat c(n)$.
+
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- [4.3 Deriving the Modified Yule-Walker Equations](#43-deriving-the-modified-yule-walker-equations)
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
 
 ## 4.3 Deriving the Modified Yule-Walker Equations
 
@@ -1350,6 +1744,21 @@ r_x(Q+P-1)&r_x(Q+P-2)&\cdots&r_x(Q)
 
 This system is Toeplitz-like and can be solved efficiently by specialized algorithms when the structure is exactly Toeplitz.
 
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- [4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)](#44-least-squares-modified-yule-walker-equation-ls-mywe)
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
+
 ## 4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)
 
 MYWE stands for the **Modified Yule-Walker Equation** method. It modifies the usual Yule-Walker idea for AR modeling by using the long-lag autocorrelation equations of an ARMA($P,Q$) process, where the MA contribution vanishes for $l>Q$.
@@ -1372,6 +1781,21 @@ $$\boxed{\hat{\mathbf{a}}=-(\mathbf{R}^H\mathbf{R})^{-1}\mathbf{R}^H\mathbf{r}}.
 
 This is the LS-MYWE method. It is usually more stable under correlation-estimation error because it averages information across many lags.
 
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- [4.5 Estimating the MA Part After the AR Part](#45-estimating-the-ma-part-after-the-ar-part)
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
+
 ## 4.5 Estimating the MA Part After the AR Part
 
 Once $\hat A(z)$ is known, form
@@ -1387,6 +1811,21 @@ $$R_c(z)=\sigma_w^2D(z)D^\ast\left(\frac{1}{z^\ast}\right)$$
 means that $D(z)$ can be recovered by spectral factorization of $R_c(z)$.
 
 Practical implementations usually choose the minimum-phase factor so that the resulting MA model is invertible.
+
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- [4.6 Textbook Least-Squares View of PZ Estimation](#46-textbook-least-squares-view-of-pz-estimation)
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
 
 ## 4.6 Textbook Least-Squares View of PZ Estimation
 
@@ -1422,6 +1861,21 @@ $$e(n)=-\sum_{k=1}^{Q}\hat d_ke(n-k)+x(n)+\sum_{k=1}^{P}\hat a_kx(n-k).$$
 
 Now $E(\mathbf{c})$ is no longer quadratic. Nonlinear optimization, such as a Gauss-Newton method, is needed.
 
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- [4.7 Why ARMA Estimation Is Delicate](#47-why-arma-estimation-is-delicate)
+- <a href="#48-pz-versus-high-order-ar-approximation" style="color: #a0a0a0;">4.8 PZ versus High-Order AR Approximation</a>
+
+---
+
 ## 4.7 Why ARMA Estimation Is Delicate
 
 ARMA estimation has several practical difficulties:
@@ -1435,6 +1889,21 @@ ARMA estimation has several practical difficulties:
 | Model order ambiguity | Different $P,Q$ combinations may fit the same finite data similarly |
 
 This is why pure AR modeling is often used even when ARMA would be more compact: AR estimation is much easier and more numerically robust.
+
+---
+
+**§4 ARMA Modeling and Modified Yule-Walker Ideas**
+
+- <a href="#41-the-arma-modeling-problem" style="color: #a0a0a0;">4.1 The ARMA Modeling Problem</a>
+- <a href="#42-a-useful-intermediate-process" style="color: #a0a0a0;">4.2 A Useful Intermediate Process</a>
+- <a href="#43-deriving-the-modified-yule-walker-equations" style="color: #a0a0a0;">4.3 Deriving the Modified Yule-Walker Equations</a>
+- <a href="#44-least-squares-modified-yule-walker-equation-ls-mywe" style="color: #a0a0a0;">4.4 Least-Squares Modified Yule-Walker Equation (LS-MYWE)</a>
+- <a href="#45-estimating-the-ma-part-after-the-ar-part" style="color: #a0a0a0;">4.5 Estimating the MA Part After the AR Part</a>
+- <a href="#46-textbook-least-squares-view-of-pz-estimation" style="color: #a0a0a0;">4.6 Textbook Least-Squares View of PZ Estimation</a>
+- <a href="#47-why-arma-estimation-is-delicate" style="color: #a0a0a0;">4.7 Why ARMA Estimation Is Delicate</a>
+- [4.8 PZ versus High-Order AR Approximation](#48-pz-versus-high-order-ar-approximation)
+
+---
 
 ## 4.8 PZ versus High-Order AR Approximation
 
@@ -1453,6 +1922,20 @@ The teaching point is not that PZ models are always better. The point is:
 # §5 AR Modeling Methods
 
 > 📖 Textbook §9.2 (Estimation of All-Pole Models); §4.2 (All-Pole Models); Chapter 3 lecture for detailed Levinson, covariance, modified covariance, and Burg recursions
+
+---
+
+**§5 AR Modeling Methods**
+
+- [5.1 AR Modeling Problem](#51-ar-modeling-problem)
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
 
 ## 5.1 AR Modeling Problem
 
@@ -1475,6 +1958,20 @@ AR modeling is equivalent to linear prediction because the residual
 $$e(n)=x(n)+\sum_{k=1}^{P}a_kx(n-k)$$
 
 should be white if the AR model is correct.
+
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- [5.2 Yule-Walker / Autocorrelation Method](#52-yule-walker--autocorrelation-method)
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
 
 ## 5.2 Yule-Walker / Autocorrelation Method
 
@@ -1520,6 +2017,20 @@ In practice, $r_x(l)$ is unknown and is replaced by $\hat r_x(l)$.
 - Uses estimated autocorrelation, which may be biased by finite-window effects.
 - Zero-padding/windowing assumptions can blur spectral details.
 - For short data records, peak locations and widths may be inaccurate.
+
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- [5.3 Covariance Method](#53-covariance-method)
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
 
 ## 5.3 Covariance Method
 
@@ -1637,6 +2148,20 @@ However, the normal equation matrix is not Toeplitz, so Levinson-Durbin cannot b
 - More expensive than Yule-Walker.
 - Estimated all-pole model may be unstable.
 
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- [5.4 Modified Covariance Method](#54-modified-covariance-method)
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
+
 ## 5.4 Modified Covariance Method
 
 The modified covariance method uses both forward and backward prediction errors.
@@ -1666,6 +2191,20 @@ Using both directions tends to reduce spectral bias. It is especially useful for
 - More computationally involved.
 - Still does not automatically guarantee stability unless implemented carefully.
 
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- [5.5 Burg / Lattice Parameter Method](#55-burg--lattice-parameter-method)
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
+
 ## 5.5 Burg / Lattice Parameter Method
 
 The Burg method estimates reflection coefficients directly by minimizing forward and backward prediction errors stage by stage.
@@ -1692,6 +2231,20 @@ This is why Burg-type methods are popular in parametric spectrum estimation.
 - Can have frequency bias in difficult cases.
 - Sensitive to model order.
 
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- [5.6 Comparing AR Estimation Methods](#56-comparing-ar-estimation-methods)
+- <a href="#57-model-order-selection-for-ar-models" style="color: #a0a0a0;">5.7 Model Order Selection for AR Models</a>
+
+---
+
 ## 5.6 Comparing AR Estimation Methods
 
 | Method | Main Criterion | Matrix Structure | Stability Guarantee | Typical Use |
@@ -1706,6 +2259,20 @@ A practical teaching summary is:
 - Use Yule-Walker when you want efficiency and stability.
 - Use covariance or modified covariance when short-record resolution matters.
 - Use Burg when stable high-resolution AR spectra are desired.
+
+---
+
+**§5 AR Modeling Methods**
+
+- <a href="#51-ar-modeling-problem" style="color: #a0a0a0;">5.1 AR Modeling Problem</a>
+- <a href="#52-yule-walker--autocorrelation-method" style="color: #a0a0a0;">5.2 Yule-Walker / Autocorrelation Method</a>
+- <a href="#53-covariance-method" style="color: #a0a0a0;">5.3 Covariance Method</a>
+- <a href="#54-modified-covariance-method" style="color: #a0a0a0;">5.4 Modified Covariance Method</a>
+- <a href="#55-burg--lattice-parameter-method" style="color: #a0a0a0;">5.5 Burg / Lattice Parameter Method</a>
+- <a href="#56-comparing-ar-estimation-methods" style="color: #a0a0a0;">5.6 Comparing AR Estimation Methods</a>
+- [5.7 Model Order Selection for AR Models](#57-model-order-selection-for-ar-models)
+
+---
 
 ## 5.7 Model Order Selection for AR Models
 
@@ -1738,6 +2305,18 @@ A robust workflow is:
 
 > 📖 Textbook §4.3 (All-Zero Models); §9.3 (Pole-Zero Estimation Ideas Applied to MA/PZ Cases)
 
+---
+
+**§6 MA Modeling Methods**
+
+- [6.1 MA Modeling Problem](#61-ma-modeling-problem)
+- <a href="#62-autocorrelation-cutoff-property" style="color: #a0a0a0;">6.2 Autocorrelation Cutoff Property</a>
+- <a href="#63-spectral-factorization-method" style="color: #a0a0a0;">6.3 Spectral Factorization Method</a>
+- <a href="#64-durbins-method-for-ma-modeling" style="color: #a0a0a0;">6.4 Durbin's Method for MA Modeling</a>
+- <a href="#65-ma-versus-ar-in-practice" style="color: #a0a0a0;">6.5 MA versus AR in Practice</a>
+
+---
+
 ## 6.1 MA Modeling Problem
 
 The MA($Q$) model is
@@ -1756,6 +2335,18 @@ Unlike AR modeling, MA modeling is not naturally a linear prediction problem in 
 
 This makes direct MA parameter estimation harder than AR parameter estimation.
 
+---
+
+**§6 MA Modeling Methods**
+
+- <a href="#61-ma-modeling-problem" style="color: #a0a0a0;">6.1 MA Modeling Problem</a>
+- [6.2 Autocorrelation Cutoff Property](#62-autocorrelation-cutoff-property)
+- <a href="#63-spectral-factorization-method" style="color: #a0a0a0;">6.3 Spectral Factorization Method</a>
+- <a href="#64-durbins-method-for-ma-modeling" style="color: #a0a0a0;">6.4 Durbin's Method for MA Modeling</a>
+- <a href="#65-ma-versus-ar-in-practice" style="color: #a0a0a0;">6.5 MA versus AR in Practice</a>
+
+---
+
 ## 6.2 Autocorrelation Cutoff Property
 
 Because an MA($Q$) process depends only on $Q+1$ consecutive white-noise samples, its autocorrelation satisfies
@@ -1767,6 +2358,18 @@ This property is the most important diagnostic for MA order selection.
 For example, if the sample autocorrelation is significant at lags 0, 1, 2 and approximately zero after lag 2, an MA(2) model may be appropriate.
 
 In practice, sample autocorrelations are noisy, so "cutoff" means statistically insignificant rather than exactly zero.
+
+---
+
+**§6 MA Modeling Methods**
+
+- <a href="#61-ma-modeling-problem" style="color: #a0a0a0;">6.1 MA Modeling Problem</a>
+- <a href="#62-autocorrelation-cutoff-property" style="color: #a0a0a0;">6.2 Autocorrelation Cutoff Property</a>
+- [6.3 Spectral Factorization Method](#63-spectral-factorization-method)
+- <a href="#64-durbins-method-for-ma-modeling" style="color: #a0a0a0;">6.4 Durbin's Method for MA Modeling</a>
+- <a href="#65-ma-versus-ar-in-practice" style="color: #a0a0a0;">6.5 MA versus AR in Practice</a>
+
+---
 
 ## 6.3 Spectral Factorization Method
 
@@ -1789,6 +2392,18 @@ The important subtlety is nonuniqueness. A given magnitude-squared spectrum can 
 3. Factor $R_x(z)$ into conjugate-reciprocal zero pairs.
 4. Select the zeros inside the unit circle to obtain the minimum-phase $D(z)$.
 5. Estimate $\sigma_w^2$ from the gain.
+
+---
+
+**§6 MA Modeling Methods**
+
+- <a href="#61-ma-modeling-problem" style="color: #a0a0a0;">6.1 MA Modeling Problem</a>
+- <a href="#62-autocorrelation-cutoff-property" style="color: #a0a0a0;">6.2 Autocorrelation Cutoff Property</a>
+- <a href="#63-spectral-factorization-method" style="color: #a0a0a0;">6.3 Spectral Factorization Method</a>
+- [6.4 Durbin's Method for MA Modeling](#64-durbins-method-for-ma-modeling)
+- <a href="#65-ma-versus-ar-in-practice" style="color: #a0a0a0;">6.5 MA versus AR in Practice</a>
+
+---
 
 ## 6.4 Durbin's Method for MA Modeling
 
@@ -1822,6 +2437,18 @@ A sufficiently high-order AR model can approximate many smooth spectra. Once an 
 - If the high-order AR model is poor, the MA estimate is poor.
 - MA spectral factorization still requires a minimum-phase/invertibility choice.
 
+---
+
+**§6 MA Modeling Methods**
+
+- <a href="#61-ma-modeling-problem" style="color: #a0a0a0;">6.1 MA Modeling Problem</a>
+- <a href="#62-autocorrelation-cutoff-property" style="color: #a0a0a0;">6.2 Autocorrelation Cutoff Property</a>
+- <a href="#63-spectral-factorization-method" style="color: #a0a0a0;">6.3 Spectral Factorization Method</a>
+- <a href="#64-durbins-method-for-ma-modeling" style="color: #a0a0a0;">6.4 Durbin's Method for MA Modeling</a>
+- [6.5 MA versus AR in Practice](#65-ma-versus-ar-in-practice)
+
+---
+
 ## 6.5 MA versus AR in Practice
 
 | Feature | AR Model | MA Model |
@@ -1841,6 +2468,20 @@ A common practical strategy is to start with AR modeling because it is simpler, 
 
 > 📖 Textbook §9.4.1 (Spectral Estimation)
 
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- [7.1 From Model Parameters to PSD](#71-from-model-parameters-to-psd)
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
+
 ## 7.1 From Model Parameters to PSD
 
 Once a model has been estimated, the PSD is obtained by substituting the estimated coefficients into the model spectrum.
@@ -1855,6 +2496,20 @@ $$\boxed{\hat R_x(e^{j\omega})=\frac{\hat\sigma_w^2}{\lvert \hat A(e^{j\omega})\
 
 This is a parametric spectrum estimate.
 
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- [7.2 Why Parametric Spectra Can Have High Resolution](#72-why-parametric-spectra-can-have-high-resolution)
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
+
 ## 7.2 Why Parametric Spectra Can Have High Resolution
 
 Classical nonparametric estimators such as the periodogram, Bartlett, Welch, and Blackman-Tukey methods estimate the spectrum directly from finite data. Their resolution is strongly tied to record length and windowing.
@@ -1866,6 +2521,20 @@ This can yield high spectral resolution from short records.
 The key phrase is **if the model is appropriate**.
 
 Parametric methods can perform very well for signals that are actually close to AR, MA, or ARMA. They can perform poorly when the true signal does not follow the assumed model.
+
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- [7.3 Model Mismatch](#73-model-mismatch)
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
 
 ## 7.3 Model Mismatch
 
@@ -1883,6 +2552,20 @@ Examples:
 
 Figure 4.1 earlier showed a PZ model outperforming a higher-order AP model when the target process has ARMA structure. This is a model-mismatch lesson, not just a numerical example.
 
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- [7.4 Comparing All-Pole PSD Estimation Methods](#74-comparing-all-pole-psd-estimation-methods)
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
+
 ## 7.4 Comparing All-Pole PSD Estimation Methods
 
 The textbook compares several all-pole PSD estimation methods using Monte Carlo simulations.
@@ -1897,6 +2580,20 @@ The main teaching message is:
 - short records produce variability across realizations,
 - all-pole methods can reveal narrow peaks, but they can also create spurious structure,
 - the method and model order should be validated with residual diagnostics.
+
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- [7.5 Linear Prediction Prewhitening for Spectrum Estimation](#75-linear-prediction-prewhitening-for-spectrum-estimation)
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
 
 ## 7.5 Linear Prediction Prewhitening for Spectrum Estimation
 
@@ -1933,6 +2630,20 @@ This approach is often practical because it combines strengths:
 | Nonparametric residual PSD | Captures remaining structure without forcing a pure AR model |
 | Postcoloring | Restores the original spectral envelope |
 
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- [7.6 Main Defects of Parametric Spectrum Estimation](#76-main-defects-of-parametric-spectrum-estimation)
+- <a href="#77-practical-diagnostic-checklist" style="color: #a0a0a0;">7.7 Practical Diagnostic Checklist</a>
+
+---
+
 ## 7.6 Main Defects of Parametric Spectrum Estimation
 
 The outline emphasizes two major defects.
@@ -1961,6 +2672,20 @@ Too high an order causes overfitting:
 
 Therefore, a careful modeler must check both the fitted spectrum and the residual.
 
+---
+
+**§7 Parametric Power Spectrum Estimation**
+
+- <a href="#71-from-model-parameters-to-psd" style="color: #a0a0a0;">7.1 From Model Parameters to PSD</a>
+- <a href="#72-why-parametric-spectra-can-have-high-resolution" style="color: #a0a0a0;">7.2 Why Parametric Spectra Can Have High Resolution</a>
+- <a href="#73-model-mismatch" style="color: #a0a0a0;">7.3 Model Mismatch</a>
+- <a href="#74-comparing-all-pole-psd-estimation-methods" style="color: #a0a0a0;">7.4 Comparing All-Pole PSD Estimation Methods</a>
+- <a href="#75-linear-prediction-prewhitening-for-spectrum-estimation" style="color: #a0a0a0;">7.5 Linear Prediction Prewhitening for Spectrum Estimation</a>
+- <a href="#76-main-defects-of-parametric-spectrum-estimation" style="color: #a0a0a0;">7.6 Main Defects of Parametric Spectrum Estimation</a>
+- [7.7 Practical Diagnostic Checklist](#77-practical-diagnostic-checklist)
+
+---
+
 ## 7.7 Practical Diagnostic Checklist
 
 When using parametric spectrum estimation, use the following checklist.
@@ -1980,6 +2705,17 @@ A parametric estimate should not be accepted solely because it has higher appare
 ---
 
 # §8 Chapter Summary, Figure Checklist, and Teaching Flow
+
+---
+
+**§8 Chapter Summary, Figure Checklist, and Teaching Flow**
+
+- [8.1 Chapter Summary](#81-chapter-summary)
+- <a href="#82-figure-source-checklist" style="color: #a0a0a0;">8.2 Figure Source Checklist</a>
+- <a href="#83-suggested-teaching-flow" style="color: #a0a0a0;">8.3 Suggested Teaching Flow</a>
+- <a href="#84-minimal-board-derivation-plan" style="color: #a0a0a0;">8.4 Minimal Board Derivation Plan</a>
+
+---
 
 ## 8.1 Chapter Summary
 
@@ -2003,6 +2739,17 @@ A parametric estimate should not be accepted solely because it has higher appare
 | Parametric PSD | Substitute estimated coefficients into model spectrum | High resolution if the model is appropriate |
 | Prewhitening/postcoloring | Estimate residual PSD after AR whitening | Combines parametric and nonparametric strengths |
 
+---
+
+**§8 Chapter Summary, Figure Checklist, and Teaching Flow**
+
+- <a href="#81-chapter-summary" style="color: #a0a0a0;">8.1 Chapter Summary</a>
+- [8.2 Figure Source Checklist](#82-figure-source-checklist)
+- <a href="#83-suggested-teaching-flow" style="color: #a0a0a0;">8.3 Suggested Teaching Flow</a>
+- <a href="#84-minimal-board-derivation-plan" style="color: #a0a0a0;">8.4 Minimal Board Derivation Plan</a>
+
+---
+
 ## 8.2 Figure Source Checklist
 
 All figures displayed in this lecture are rendered from the uploaded textbook PDF, *Statistical and Adaptive Signal Processing* by Manolakis, Ingle, and Kogon.
@@ -2022,6 +2769,17 @@ All figures displayed in this lecture are rendered from the uploaded textbook PD
 | Figure 7.1 | Fig. 9.14 | p. 468 | Comparison of all-pole PSD estimation techniques |
 | Figure 7.2 | Fig. 9.15 | p. 469 | Linear prediction prewhitening for PSD estimation |
 
+---
+
+**§8 Chapter Summary, Figure Checklist, and Teaching Flow**
+
+- <a href="#81-chapter-summary" style="color: #a0a0a0;">8.1 Chapter Summary</a>
+- <a href="#82-figure-source-checklist" style="color: #a0a0a0;">8.2 Figure Source Checklist</a>
+- [8.3 Suggested Teaching Flow](#83-suggested-teaching-flow)
+- <a href="#84-minimal-board-derivation-plan" style="color: #a0a0a0;">8.4 Minimal Board Derivation Plan</a>
+
+---
+
 ## 8.3 Suggested Teaching Flow
 
 1. Start with the white-noise-through-filter picture: $x(n)=H(z)w(n)$.
@@ -2033,6 +2791,17 @@ All figures displayed in this lecture are rendered from the uploaded textbook PD
 7. Present AR estimation first because it is linear and connects directly to Chapter 3.
 8. Present ARMA estimation as harder because the excitation is hidden and the least-squares surface is nonlinear.
 9. End with parametric PSD estimation, stressing both its power and its danger: high resolution is useful only when the model is credible.
+
+---
+
+**§8 Chapter Summary, Figure Checklist, and Teaching Flow**
+
+- <a href="#81-chapter-summary" style="color: #a0a0a0;">8.1 Chapter Summary</a>
+- <a href="#82-figure-source-checklist" style="color: #a0a0a0;">8.2 Figure Source Checklist</a>
+- <a href="#83-suggested-teaching-flow" style="color: #a0a0a0;">8.3 Suggested Teaching Flow</a>
+- [8.4 Minimal Board Derivation Plan](#84-minimal-board-derivation-plan)
+
+---
 
 ## 8.4 Minimal Board Derivation Plan
 

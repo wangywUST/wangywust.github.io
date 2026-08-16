@@ -23,14 +23,121 @@
 
 ## Table of Contents
 
-1. [§0 Spectrum-Estimation Roadmap](#0-spectrum-estimation-roadmap)
-2. [§1 Problem Statement and Performance Criteria](#1-problem-statement-and-performance-criteria)
-3. [§2 Classical Nonparametric Spectrum Estimation](#2-classical-nonparametric-spectrum-estimation)
-4. [§3 Parametric Spectrum Estimation](#3-parametric-spectrum-estimation)
-5. [§4 Minimum-Variance Spectrum Estimation](#4-minimum-variance-spectrum-estimation)
-6. [§5 Maximum-Entropy Spectrum Estimation](#5-maximum-entropy-spectrum-estimation)
-7. [§6 Frequency Estimation and Subspace Methods](#6-frequency-estimation-and-subspace-methods)
-8. [§7 Chapter Summary, Method Selection, and Figure Checklist](#7-chapter-summary-method-selection-and-figure-checklist)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Time, Data Length, and Frequency](#time-data-length-and-frequency)
+  - [Signals and Random Processes](#signals-and-random-processes)
+  - [Windows and Nonparametric Estimators](#windows-and-nonparametric-estimators)
+  - [Parametric and Subspace Quantities](#parametric-and-subspace-quantities)
+- [§0 Spectrum-Estimation Roadmap](#0-spectrum-estimation-roadmap)
+  - [0.1 Why Spectrum Estimation Is a Separate Topic](#01-why-spectrum-estimation-is-a-separate-topic)
+  - [0.2 Two Big Families: Nonparametric and Parametric](#02-two-big-families-nonparametric-and-parametric)
+  - [0.3 What This Chapter Adds Beyond Chapter 4](#03-what-this-chapter-adds-beyond-chapter-4)
+- [§1 Problem Statement and Performance Criteria](#1-problem-statement-and-performance-criteria)
+  - [1.1 The Basic Experimental Situation](#11-the-basic-experimental-situation)
+  - [1.2 Why Finite Data Causes Spectral Distortion](#12-why-finite-data-causes-spectral-distortion)
+  - [1.3 Four Performance Criteria](#13-four-performance-criteria)
+    - [1. Bias](#1-bias)
+    - [2. Variance](#2-variance)
+    - [3. Resolution](#3-resolution)
+    - [4. Consistency](#4-consistency)
+  - [1.4 The Bias-Variance-Resolution Triangle](#14-the-bias-variance-resolution-triangle)
+- [§2 Classical Nonparametric Spectrum Estimation](#2-classical-nonparametric-spectrum-estimation)
+  - [2.1 Periodogram Method](#21-periodogram-method)
+    - [2.1.1 Definition](#211-definition)
+      - [Why This Definition Is Natural](#why-this-definition-is-natural)
+      - [Why It Is Called a Periodogram](#why-it-is-called-a-periodogram)
+    - [2.1.2 Periodogram as an Autocorrelation-Based Estimator](#212-periodogram-as-an-autocorrelation-based-estimator)
+    - [2.1.3 Periodogram as a Filter-Bank Output](#213-periodogram-as-a-filter-bank-output)
+    - [2.1.4 Bias of the Periodogram](#214-bias-of-the-periodogram)
+      - [Why the Periodogram Is Unbiased for White Noise](#why-the-periodogram-is-unbiased-for-white-noise)
+    - [2.1.5 Variance of the Periodogram](#215-variance-of-the-periodogram)
+  - [2.2 Window Length, Zero Padding, Leakage, and Resolution](#22-window-length-zero-padding-leakage-and-resolution)
+    - [2.2.1 DFT Samples Are Samples of a Windowed Spectrum](#221-dft-samples-are-samples-of-a-windowed-spectrum)
+    - [2.2.2 Zero Padding Improves Display, Not True Resolution](#222-zero-padding-improves-display-not-true-resolution)
+      - [Frequency-Grid Spacing Is Not Resolving Power](#frequency-grid-spacing-is-not-resolving-power)
+    - [2.2.3 Leakage and the Rectangular Window](#223-leakage-and-the-rectangular-window)
+    - [2.2.4 Window Tradeoff: Mainlobe Width versus Sidelobe Level](#224-window-tradeoff-mainlobe-width-versus-sidelobe-level)
+    - [2.2.5 Modified Periodogram](#225-modified-periodogram)
+    - [2.2.6 Frequency Resolution Example](#226-frequency-resolution-example)
+  - [2.3 Bartlett Method: Averaging Nonoverlapping Periodograms](#23-bartlett-method-averaging-nonoverlapping-periodograms)
+    - [2.3.1 Basic Idea](#231-basic-idea)
+    - [2.3.2 Variance Reduction](#232-variance-reduction)
+    - [2.3.3 Resolution Loss](#233-resolution-loss)
+  - [2.4 Welch Method: Windowed and Overlapped Averaging](#24-welch-method-windowed-and-overlapped-averaging)
+    - [2.4.1 Motivation](#241-motivation)
+    - [2.4.2 Formula](#242-formula)
+    - [2.4.3 Why Overlap Helps](#243-why-overlap-helps)
+    - [2.4.4 Welch versus Bartlett](#244-welch-versus-bartlett)
+  - [2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing](#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing)
+    - [2.5.1 Basic Idea](#251-basic-idea)
+    - [2.5.2 Theory and Practical Computation](#252-theory-and-practical-computation)
+    - [2.5.3 Bias-Variance Behavior](#253-bias-variance-behavior)
+    - [2.5.4 Positive Spectrum Issue](#254-positive-spectrum-issue)
+  - [2.6 Statistical Comparison of Classical Methods](#26-statistical-comparison-of-classical-methods)
+  - [2.7 Practical Example: Ocean Wave Data](#27-practical-example-ocean-wave-data)
+- [§3 Parametric Spectrum Estimation](#3-parametric-spectrum-estimation)
+  - [3.0 Parametric versus Nonparametric Spectrum Estimation](#30-parametric-versus-nonparametric-spectrum-estimation)
+    - [3.0.1 Two Different Sources of Spectral Information](#301-two-different-sources-of-spectral-information)
+    - [3.0.2 Advantages and Disadvantages](#302-advantages-and-disadvantages)
+    - [3.0.3 Choosing Between the Two Families](#303-choosing-between-the-two-families)
+  - [3.1 AR Spectrum Estimation](#31-ar-spectrum-estimation)
+    - [3.1.1 AR Model and Spectrum](#311-ar-model-and-spectrum)
+    - [3.1.2 Why AR Methods Can Have High Resolution](#312-why-ar-methods-can-have-high-resolution)
+    - [3.1.3 Main AR Estimation Methods](#313-main-ar-estimation-methods)
+    - [3.1.4 Model Order Selection](#314-model-order-selection)
+  - [3.2 MA Spectrum Estimation](#32-ma-spectrum-estimation)
+    - [3.2.1 MA Model and Spectrum](#321-ma-model-and-spectrum)
+    - [3.2.2 Direct MA Estimation](#322-direct-ma-estimation)
+    - [3.2.3 Durbin's Indirect Method](#323-durbins-indirect-method)
+  - [3.3 ARMA Spectrum Estimation](#33-arma-spectrum-estimation)
+    - [3.3.1 ARMA Model and Spectrum](#331-arma-model-and-spectrum)
+    - [3.3.2 Modified Yule-Walker Idea](#332-modified-yule-walker-idea)
+    - [3.3.3 Practical Cautions](#333-practical-cautions)
+- [§4 Minimum-Variance Spectrum Estimation](#4-minimum-variance-spectrum-estimation)
+  - [4.1 From Fixed Filter Bank to Adaptive Filter Bank](#41-from-fixed-filter-bank-to-adaptive-filter-bank)
+  - [4.2 The MV Optimization Problem](#42-the-mv-optimization-problem)
+  - [4.3 Solution by Lagrange Multipliers](#43-solution-by-lagrange-multipliers)
+  - [4.4 Interpretation](#44-interpretation)
+  - [4.5 Relation to AR and Fourier Methods](#45-relation-to-ar-and-fourier-methods)
+  - [4.6 Choice of MV Order](#46-choice-of-mv-order)
+- [§5 Maximum-Entropy Spectrum Estimation](#5-maximum-entropy-spectrum-estimation)
+  - [5.1 Motivation: Autocorrelation Extrapolation](#51-motivation-autocorrelation-extrapolation)
+  - [5.2 Maximum-Entropy Solution Is All-Pole](#52-maximum-entropy-solution-is-all-pole)
+  - [5.3 Burg Method and MEM](#53-burg-method-and-mem)
+  - [5.4 MEM versus Classical Estimators](#54-mem-versus-classical-estimators)
+- [§6 Frequency Estimation and Subspace Methods](#6-frequency-estimation-and-subspace-methods)
+  - [6.0 Harmonic Model and Frequency-Estimation Problem](#60-harmonic-model-and-frequency-estimation-problem)
+    - [6.0.1 Signal Model](#601-signal-model)
+    - [6.0.2 Vector Form](#602-vector-form)
+  - [6.1 Eigen-Decomposition and Signal/Noise Subspaces](#61-eigen-decomposition-and-signalnoise-subspaces)
+  - [6.2 Pisarenko Harmonic Decomposition](#62-pisarenko-harmonic-decomposition)
+    - [6.2.1 Basic Idea](#621-basic-idea)
+    - [6.2.2 Pisarenko Pseudospectrum](#622-pisarenko-pseudospectrum)
+    - [6.2.3 Limitations](#623-limitations)
+  - [6.3 MUSIC Method](#63-music-method)
+    - [6.3.1 MUSIC Pseudospectrum](#631-music-pseudospectrum)
+    - [6.3.2 MUSIC Algorithm](#632-music-algorithm)
+    - [6.3.3 MUSIC versus MV](#633-music-versus-mv)
+  - [6.4 Eigenvector and Minimum-Norm Methods](#64-eigenvector-and-minimum-norm-methods)
+    - [6.4.1 Eigenvector Method](#641-eigenvector-method)
+    - [6.4.2 Minimum-Norm Method](#642-minimum-norm-method)
+  - [6.5 ESPRIT Method](#65-esprit-method)
+    - [6.5.1 Rotational Invariance Principle](#651-rotational-invariance-principle)
+    - [6.5.2 ESPRIT Processing Flow](#652-esprit-processing-flow)
+    - [6.5.3 Time-Staggered Windows](#653-time-staggered-windows)
+    - [6.5.4 LS-ESPRIT and TLS-ESPRIT](#654-ls-esprit-and-tls-esprit)
+    - [6.5.5 ESPRIT versus MUSIC](#655-esprit-versus-music)
+- [§7 Chapter Summary, Method Selection, and Figure Checklist](#7-chapter-summary-method-selection-and-figure-checklist)
+  - [7.1 One-Sentence Summary of Each Method](#71-one-sentence-summary-of-each-method)
+  - [7.2 How to Choose a Spectrum Estimator](#72-how-to-choose-a-spectrum-estimator)
+    - [Case 1: General-Purpose PSD Display](#case-1-general-purpose-psd-display)
+    - [Case 2: Weak Component Near Strong Component](#case-2-weak-component-near-strong-component)
+    - [Case 3: Short Data and Narrowband Peaks](#case-3-short-data-and-narrowband-peaks)
+    - [Case 4: Frequency Estimation of Sinusoids](#case-4-frequency-estimation-of-sinusoids)
+  - [7.3 Common Misunderstandings](#73-common-misunderstandings)
+  - [7.4 Teaching Flow for This Chapter](#74-teaching-flow-for-this-chapter)
+  - [7.5 Figure Checklist](#75-figure-checklist)
+  - [7.6 Final Concept Map](#76-final-concept-map)
 
 ---
 
@@ -106,6 +213,16 @@ This chapter uses the notation of the previous lectures. The new emphasis is tha
 
 > 📖 Textbook Ch. 5 introduction; Fig. 5.1; §9.5; §9.6
 
+---
+
+**§0 Spectrum-Estimation Roadmap**
+
+- [0.1 Why Spectrum Estimation Is a Separate Topic](#01-why-spectrum-estimation-is-a-separate-topic)
+- <a href="#02-two-big-families-nonparametric-and-parametric" style="color: #a0a0a0;">0.2 Two Big Families: Nonparametric and Parametric</a>
+- <a href="#03-what-this-chapter-adds-beyond-chapter-4" style="color: #a0a0a0;">0.3 What This Chapter Adds Beyond Chapter 4</a>
+
+---
+
 ## 0.1 Why Spectrum Estimation Is a Separate Topic
 
 In earlier chapters, the power spectrum was usually introduced as a theoretical object. For a WSS process,
@@ -126,6 +243,16 @@ The answer is not unique. Different estimators make different compromises among 
 >
 > *Figure 0.1 (Textbook Fig. 5.1, p. 196): Classification of spectrum-estimation methods. This chapter begins with Fourier/nonparametric methods, then connects them to parametric, minimum-variance, maximum-entropy, and subspace frequency-estimation methods.*
 
+---
+
+**§0 Spectrum-Estimation Roadmap**
+
+- <a href="#01-why-spectrum-estimation-is-a-separate-topic" style="color: #a0a0a0;">0.1 Why Spectrum Estimation Is a Separate Topic</a>
+- [0.2 Two Big Families: Nonparametric and Parametric](#02-two-big-families-nonparametric-and-parametric)
+- <a href="#03-what-this-chapter-adds-beyond-chapter-4" style="color: #a0a0a0;">0.3 What This Chapter Adds Beyond Chapter 4</a>
+
+---
+
 ## 0.2 Two Big Families: Nonparametric and Parametric
 
 The textbook classification is useful because it separates methods by what they assume about the signal.
@@ -138,6 +265,16 @@ The textbook classification is useful because it separates methods by what they 
 | Subspace frequency estimation | Signal is a sum of a small number of sinusoids plus noise | Pisarenko, MUSIC, EV, minimum-norm, ESPRIT | Very high frequency resolution | Needs correct model order and sufficiently high SNR |
 
 The main teaching point is that **spectrum estimation is not simply “take an FFT.”** The FFT is a computational tool. A spectrum estimator is a statistical procedure that turns finite noisy data into an estimate of a second-order quantity.
+
+---
+
+**§0 Spectrum-Estimation Roadmap**
+
+- <a href="#01-why-spectrum-estimation-is-a-separate-topic" style="color: #a0a0a0;">0.1 Why Spectrum Estimation Is a Separate Topic</a>
+- <a href="#02-two-big-families-nonparametric-and-parametric" style="color: #a0a0a0;">0.2 Two Big Families: Nonparametric and Parametric</a>
+- [0.3 What This Chapter Adds Beyond Chapter 4](#03-what-this-chapter-adds-beyond-chapter-4)
+
+---
 
 ## 0.3 What This Chapter Adds Beyond Chapter 4
 
@@ -181,6 +318,17 @@ limitations, and comparison as finite-data spectrum estimators.
 
 > 📖 Textbook §5.1-§5.3
 
+---
+
+**§1 Problem Statement and Performance Criteria**
+
+- [1.1 The Basic Experimental Situation](#11-the-basic-experimental-situation)
+- <a href="#12-why-finite-data-causes-spectral-distortion" style="color: #a0a0a0;">1.2 Why Finite Data Causes Spectral Distortion</a>
+- <a href="#13-four-performance-criteria" style="color: #a0a0a0;">1.3 Four Performance Criteria</a>
+- <a href="#14-the-bias-variance-resolution-triangle" style="color: #a0a0a0;">1.4 The Bias-Variance-Resolution Triangle</a>
+
+---
+
 ## 1.1 The Basic Experimental Situation
 
 The spectrum-estimation problem usually starts from a finite data record:
@@ -205,6 +353,17 @@ This figure should be read from left to right:
 
 Each step changes what we can observe. In particular, frame blocking and windowing are unavoidable in finite-data analysis. They are the source of many spectral-estimation effects.
 
+---
+
+**§1 Problem Statement and Performance Criteria**
+
+- <a href="#11-the-basic-experimental-situation" style="color: #a0a0a0;">1.1 The Basic Experimental Situation</a>
+- [1.2 Why Finite Data Causes Spectral Distortion](#12-why-finite-data-causes-spectral-distortion)
+- <a href="#13-four-performance-criteria" style="color: #a0a0a0;">1.3 Four Performance Criteria</a>
+- <a href="#14-the-bias-variance-resolution-triangle" style="color: #a0a0a0;">1.4 The Bias-Variance-Resolution Triangle</a>
+
+---
+
 ## 1.2 Why Finite Data Causes Spectral Distortion
 
 Suppose the infinite signal is $x(n)$, but we observe only $N$ samples. This is equivalent to multiplying the infinite signal by a rectangular window:
@@ -228,6 +387,17 @@ This has two immediate consequences:
 | Sidelobe leakage | Energy from a strong component leaks into other frequencies |
 
 Therefore, even before randomness is considered, the finite observation window has already introduced distortion.
+
+---
+
+**§1 Problem Statement and Performance Criteria**
+
+- <a href="#11-the-basic-experimental-situation" style="color: #a0a0a0;">1.1 The Basic Experimental Situation</a>
+- <a href="#12-why-finite-data-causes-spectral-distortion" style="color: #a0a0a0;">1.2 Why Finite Data Causes Spectral Distortion</a>
+- [1.3 Four Performance Criteria](#13-four-performance-criteria)
+- <a href="#14-the-bias-variance-resolution-triangle" style="color: #a0a0a0;">1.4 The Bias-Variance-Resolution Triangle</a>
+
+---
 
 ## 1.3 Four Performance Criteria
 
@@ -263,6 +433,17 @@ in an appropriate probabilistic sense. For practical purposes, consistency means
 
 The ordinary periodogram has an important defect: its bias can decrease with increasing $N$, but its variance does not vanish. Therefore, the periodogram is not a consistent PSD estimator.
 
+---
+
+**§1 Problem Statement and Performance Criteria**
+
+- <a href="#11-the-basic-experimental-situation" style="color: #a0a0a0;">1.1 The Basic Experimental Situation</a>
+- <a href="#12-why-finite-data-causes-spectral-distortion" style="color: #a0a0a0;">1.2 Why Finite Data Causes Spectral Distortion</a>
+- <a href="#13-four-performance-criteria" style="color: #a0a0a0;">1.3 Four Performance Criteria</a>
+- [1.4 The Bias-Variance-Resolution Triangle](#14-the-bias-variance-resolution-triangle)
+
+---
+
 ## 1.4 The Bias-Variance-Resolution Triangle
 
 Most spectrum-estimation methods can be understood as a tradeoff among three goals:
@@ -290,6 +471,18 @@ Classical nonparametric methods estimate the PSD directly from data without assu
 5. Blackman-Tukey autocorrelation windowing.
 
 These methods are called nonparametric because the spectrum is not represented by a small number of model parameters.
+
+---
+
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- [2.1 Periodogram Method](#21-periodogram-method)
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
 
 ---
 
@@ -761,6 +954,18 @@ This figure is one of the most important teaching figures in the chapter. Studen
 
 ---
 
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- [2.2 Window Length, Zero Padding, Leakage, and Resolution](#22-window-length-zero-padding-leakage-and-resolution)
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
+
+---
+
 ## 2.2 Window Length, Zero Padding, Leakage, and Resolution
 
 ### 2.2.1 DFT Samples Are Samples of a Windowed Spectrum
@@ -931,6 +1136,18 @@ The lesson is subtle:
 
 ---
 
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- [2.3 Bartlett Method: Averaging Nonoverlapping Periodograms](#23-bartlett-method-averaging-nonoverlapping-periodograms)
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
+
+---
+
 ## 2.3 Bartlett Method: Averaging Nonoverlapping Periodograms
 
 ### 2.3.1 Basic Idea
@@ -972,6 +1189,18 @@ The tradeoff is:
 $$\boxed{K\uparrow \Rightarrow \text{variance decreases, but } L=N/K\downarrow \Rightarrow \text{resolution worsens}.}$$
 
 Bartlett's method is therefore useful when a stable smooth estimate is more important than resolving very close peaks.
+
+---
+
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- [2.4 Welch Method: Windowed and Overlapped Averaging](#24-welch-method-windowed-and-overlapped-averaging)
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
 
 ---
 
@@ -1031,6 +1260,18 @@ Overlap does not create fully independent new data, but it often improves the pr
 | Welch | Usually tapered | Yes | Usually lower in practice | Controlled by segment length and window | Lower due to windowing |
 
 Welch's method is widely used because it is simple, robust, and available in most signal-processing software.
+
+---
+
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- [2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing](#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing)
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
 
 ---
 
@@ -1096,6 +1337,18 @@ The periodogram is always nonnegative because it is a squared magnitude. Blackma
 
 ---
 
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- [2.6 Statistical Comparison of Classical Methods](#26-statistical-comparison-of-classical-methods)
+- <a href="#27-practical-example-ocean-wave-data" style="color: #a0a0a0;">2.7 Practical Example: Ocean Wave Data</a>
+
+---
+
 ## 2.6 Statistical Comparison of Classical Methods
 
 The major classical estimators can be compared as follows.
@@ -1113,6 +1366,20 @@ The following textbook figure compares the effects of autocorrelation windowing 
 > ![Figure 2.9](./CourseADSP2026/Fig/Chapter_5/fig_2_9_textbook_fig_5_23_p236.png)
 >
 > *Figure 2.9 (Textbook Fig. 5.23, p. 236): Properties of power spectrum estimators using autocorrelation windowing and periodogram averaging. Both approaches reduce variance by smoothing, but they do so in different domains.*
+
+---
+
+**§2 Classical Nonparametric Spectrum Estimation**
+
+- <a href="#21-periodogram-method" style="color: #a0a0a0;">2.1 Periodogram Method</a>
+- <a href="#22-window-length-zero-padding-leakage-and-resolution" style="color: #a0a0a0;">2.2 Window Length, Zero Padding, Leakage, and Resolution</a>
+- <a href="#23-bartlett-method-averaging-nonoverlapping-periodograms" style="color: #a0a0a0;">2.3 Bartlett Method: Averaging Nonoverlapping Periodograms</a>
+- <a href="#24-welch-method-windowed-and-overlapped-averaging" style="color: #a0a0a0;">2.4 Welch Method: Windowed and Overlapped Averaging</a>
+- <a href="#25-blackman-tukey-method-smoothing-through-autocorrelation-windowing" style="color: #a0a0a0;">2.5 Blackman-Tukey Method: Smoothing through Autocorrelation Windowing</a>
+- <a href="#26-statistical-comparison-of-classical-methods" style="color: #a0a0a0;">2.6 Statistical Comparison of Classical Methods</a>
+- [2.7 Practical Example: Ocean Wave Data](#27-practical-example-ocean-wave-data)
+
+---
 
 ## 2.7 Practical Example: Ocean Wave Data
 
@@ -1137,6 +1404,17 @@ The teaching message is that different estimators may agree on broad spectral st
 Before introducing AR, MA, and ARMA estimators, it is useful to compare the
 parametric and nonparametric viewpoints. Neither family is universally better;
 they use different sources of information and fail in different ways.
+
+---
+
+**§3 Parametric Spectrum Estimation**
+
+- [3.0 Parametric versus Nonparametric Spectrum Estimation](#30-parametric-versus-nonparametric-spectrum-estimation)
+- <a href="#31-ar-spectrum-estimation" style="color: #a0a0a0;">3.1 AR Spectrum Estimation</a>
+- <a href="#32-ma-spectrum-estimation" style="color: #a0a0a0;">3.2 MA Spectrum Estimation</a>
+- <a href="#33-arma-spectrum-estimation" style="color: #a0a0a0;">3.3 ARMA Spectrum Estimation</a>
+
+---
 
 ## 3.0 Parametric versus Nonparametric Spectrum Estimation
 
@@ -1221,6 +1499,15 @@ automatically trusting the sharper curve.
 With this comparison in mind, the following sections introduce AR, MA, and ARMA
 spectral estimators and explain both their potential resolution advantage and
 their sensitivity to modeling choices.
+
+---
+
+**§3 Parametric Spectrum Estimation**
+
+- <a href="#30-parametric-versus-nonparametric-spectrum-estimation" style="color: #a0a0a0;">3.0 Parametric versus Nonparametric Spectrum Estimation</a>
+- [3.1 AR Spectrum Estimation](#31-ar-spectrum-estimation)
+- <a href="#32-ma-spectrum-estimation" style="color: #a0a0a0;">3.2 MA Spectrum Estimation</a>
+- <a href="#33-arma-spectrum-estimation" style="color: #a0a0a0;">3.3 ARMA Spectrum Estimation</a>
 
 ---
 
@@ -1313,6 +1600,15 @@ For short records, order selection can still be unreliable. AIC often selects la
 
 ---
 
+**§3 Parametric Spectrum Estimation**
+
+- <a href="#30-parametric-versus-nonparametric-spectrum-estimation" style="color: #a0a0a0;">3.0 Parametric versus Nonparametric Spectrum Estimation</a>
+- <a href="#31-ar-spectrum-estimation" style="color: #a0a0a0;">3.1 AR Spectrum Estimation</a>
+- [3.2 MA Spectrum Estimation](#32-ma-spectrum-estimation)
+- <a href="#33-arma-spectrum-estimation" style="color: #a0a0a0;">3.3 ARMA Spectrum Estimation</a>
+
+---
+
 ## 3.2 MA Spectrum Estimation
 
 ### 3.2.1 MA Model and Spectrum
@@ -1348,6 +1644,15 @@ A common indirect approach is:
 3. fit a lower-order MA model from that approximation.
 
 The indirect method avoids solving the original nonlinear MA equations directly, but its accuracy depends on the intermediate AR approximation.
+
+---
+
+**§3 Parametric Spectrum Estimation**
+
+- <a href="#30-parametric-versus-nonparametric-spectrum-estimation" style="color: #a0a0a0;">3.0 Parametric versus Nonparametric Spectrum Estimation</a>
+- <a href="#31-ar-spectrum-estimation" style="color: #a0a0a0;">3.1 AR Spectrum Estimation</a>
+- <a href="#32-ma-spectrum-estimation" style="color: #a0a0a0;">3.2 MA Spectrum Estimation</a>
+- [3.3 ARMA Spectrum Estimation](#33-arma-spectrum-estimation)
 
 ---
 
@@ -1405,6 +1710,17 @@ The minimum-variance method, also known as Capon's method in many contexts, is a
 
 ---
 
+**§4 Minimum-Variance Spectrum Estimation**
+
+- [4.1 From Fixed Filter Bank to Adaptive Filter Bank](#41-from-fixed-filter-bank-to-adaptive-filter-bank)
+- <a href="#42-the-mv-optimization-problem" style="color: #a0a0a0;">4.2 The MV Optimization Problem</a>
+- <a href="#43-solution-by-lagrange-multipliers" style="color: #a0a0a0;">4.3 Solution by Lagrange Multipliers</a>
+- <a href="#44-interpretation" style="color: #a0a0a0;">4.4 Interpretation</a>
+- <a href="#45-relation-to-ar-and-fourier-methods" style="color: #a0a0a0;">4.5 Relation to AR and Fourier Methods</a>
+- <a href="#46-choice-of-mv-order" style="color: #a0a0a0;">4.6 Choice of MV Order</a>
+
+---
+
 ## 4.1 From Fixed Filter Bank to Adaptive Filter Bank
 
 The periodogram uses fixed filters. At each frequency, it measures the output power of a narrowband filter centered at that frequency. But those filters are determined only by the window length, not by the data.
@@ -1414,6 +1730,19 @@ Minimum-variance spectrum estimation asks a different question:
 > At frequency $\omega$, can we design a filter that passes that frequency with unit gain but minimizes the output power contributed by all other frequencies?
 
 This leads to a constrained optimization problem.
+
+---
+
+**§4 Minimum-Variance Spectrum Estimation**
+
+- <a href="#41-from-fixed-filter-bank-to-adaptive-filter-bank" style="color: #a0a0a0;">4.1 From Fixed Filter Bank to Adaptive Filter Bank</a>
+- [4.2 The MV Optimization Problem](#42-the-mv-optimization-problem)
+- <a href="#43-solution-by-lagrange-multipliers" style="color: #a0a0a0;">4.3 Solution by Lagrange Multipliers</a>
+- <a href="#44-interpretation" style="color: #a0a0a0;">4.4 Interpretation</a>
+- <a href="#45-relation-to-ar-and-fourier-methods" style="color: #a0a0a0;">4.5 Relation to AR and Fourier Methods</a>
+- <a href="#46-choice-of-mv-order" style="color: #a0a0a0;">4.6 Choice of MV Order</a>
+
+---
 
 ## 4.2 The MV Optimization Problem
 
@@ -1437,6 +1766,19 @@ The MV design problem is
 
 $$\boxed{\min_{\mathbf{h}}\ \mathbf{h}^H\mathbf{R}_x\mathbf{h}\quad \text{subject to}\quad \mathbf{h}^H\mathbf{a}(\omega)=1.}$$
 
+---
+
+**§4 Minimum-Variance Spectrum Estimation**
+
+- <a href="#41-from-fixed-filter-bank-to-adaptive-filter-bank" style="color: #a0a0a0;">4.1 From Fixed Filter Bank to Adaptive Filter Bank</a>
+- <a href="#42-the-mv-optimization-problem" style="color: #a0a0a0;">4.2 The MV Optimization Problem</a>
+- [4.3 Solution by Lagrange Multipliers](#43-solution-by-lagrange-multipliers)
+- <a href="#44-interpretation" style="color: #a0a0a0;">4.4 Interpretation</a>
+- <a href="#45-relation-to-ar-and-fourier-methods" style="color: #a0a0a0;">4.5 Relation to AR and Fourier Methods</a>
+- <a href="#46-choice-of-mv-order" style="color: #a0a0a0;">4.6 Choice of MV Order</a>
+
+---
+
 ## 4.3 Solution by Lagrange Multipliers
 
 The solution has the form
@@ -1453,6 +1795,19 @@ $$\boxed{\hat R_{MV}(e^{j\omega})=\frac{p+1}{\mathbf{a}^H(\omega)\hat{\mathbf{R}
 
 The factor $p+1$ is a normalization convention used in the textbook form. The essential frequency dependence is in the denominator.
 
+---
+
+**§4 Minimum-Variance Spectrum Estimation**
+
+- <a href="#41-from-fixed-filter-bank-to-adaptive-filter-bank" style="color: #a0a0a0;">4.1 From Fixed Filter Bank to Adaptive Filter Bank</a>
+- <a href="#42-the-mv-optimization-problem" style="color: #a0a0a0;">4.2 The MV Optimization Problem</a>
+- <a href="#43-solution-by-lagrange-multipliers" style="color: #a0a0a0;">4.3 Solution by Lagrange Multipliers</a>
+- [4.4 Interpretation](#44-interpretation)
+- <a href="#45-relation-to-ar-and-fourier-methods" style="color: #a0a0a0;">4.5 Relation to AR and Fourier Methods</a>
+- <a href="#46-choice-of-mv-order" style="color: #a0a0a0;">4.6 Choice of MV Order</a>
+
+---
+
 ## 4.4 Interpretation
 
 The MV method designs a different filter for every frequency. At the frequency being tested, the response is constrained to be one. Everywhere else, the filter is chosen to minimize output power.
@@ -1463,6 +1818,19 @@ This has a useful interpretation:
 - If there is no signal energy at frequency $\omega$, the filter can suppress other components, so the output power is small.
 
 Therefore peaks of the MV estimate indicate likely spectral components.
+
+---
+
+**§4 Minimum-Variance Spectrum Estimation**
+
+- <a href="#41-from-fixed-filter-bank-to-adaptive-filter-bank" style="color: #a0a0a0;">4.1 From Fixed Filter Bank to Adaptive Filter Bank</a>
+- <a href="#42-the-mv-optimization-problem" style="color: #a0a0a0;">4.2 The MV Optimization Problem</a>
+- <a href="#43-solution-by-lagrange-multipliers" style="color: #a0a0a0;">4.3 Solution by Lagrange Multipliers</a>
+- <a href="#44-interpretation" style="color: #a0a0a0;">4.4 Interpretation</a>
+- [4.5 Relation to AR and Fourier Methods](#45-relation-to-ar-and-fourier-methods)
+- <a href="#46-choice-of-mv-order" style="color: #a0a0a0;">4.6 Choice of MV Order</a>
+
+---
 
 ## 4.5 Relation to AR and Fourier Methods
 
@@ -1479,6 +1847,19 @@ The typical qualitative behavior is:
 | Fourier / periodogram-based | Limited by window | High unless averaged | Simple and robust |
 | All-pole / MEM | Can be very sharp | Can be high or sensitive | Excellent if all-pole model is appropriate |
 | Minimum variance | Often good but sometimes less sharp than MEM | Often lower than MEM | Adaptive, less model-specific than pure AR |
+
+---
+
+**§4 Minimum-Variance Spectrum Estimation**
+
+- <a href="#41-from-fixed-filter-bank-to-adaptive-filter-bank" style="color: #a0a0a0;">4.1 From Fixed Filter Bank to Adaptive Filter Bank</a>
+- <a href="#42-the-mv-optimization-problem" style="color: #a0a0a0;">4.2 The MV Optimization Problem</a>
+- <a href="#43-solution-by-lagrange-multipliers" style="color: #a0a0a0;">4.3 Solution by Lagrange Multipliers</a>
+- <a href="#44-interpretation" style="color: #a0a0a0;">4.4 Interpretation</a>
+- <a href="#45-relation-to-ar-and-fourier-methods" style="color: #a0a0a0;">4.5 Relation to AR and Fourier Methods</a>
+- [4.6 Choice of MV Order](#46-choice-of-mv-order)
+
+---
 
 ## 4.6 Choice of MV Order
 
@@ -1512,6 +1893,15 @@ Maximum-entropy spectrum estimation is closely related to AR modeling and Burg's
 
 ---
 
+**§5 Maximum-Entropy Spectrum Estimation**
+
+- [5.1 Motivation: Autocorrelation Extrapolation](#51-motivation-autocorrelation-extrapolation)
+- <a href="#52-maximum-entropy-solution-is-all-pole" style="color: #a0a0a0;">5.2 Maximum-Entropy Solution Is All-Pole</a>
+- <a href="#53-burg-method-and-mem" style="color: #a0a0a0;">5.3 Burg Method and MEM</a>
+- <a href="#54-mem-versus-classical-estimators" style="color: #a0a0a0;">5.4 MEM versus Classical Estimators</a>
+
+---
+
 ## 5.1 Motivation: Autocorrelation Extrapolation
 
 Classical nonparametric methods implicitly choose how to handle unknown autocorrelation lags.
@@ -1529,6 +1919,17 @@ For a Gaussian process, maximizing entropy rate corresponds to maximizing
 $$\int_{-\pi}^{\pi}\log R_x(e^{j\omega})\,d\omega$$
 
 subject to matching the known autocorrelation constraints.
+
+---
+
+**§5 Maximum-Entropy Spectrum Estimation**
+
+- <a href="#51-motivation-autocorrelation-extrapolation" style="color: #a0a0a0;">5.1 Motivation: Autocorrelation Extrapolation</a>
+- [5.2 Maximum-Entropy Solution Is All-Pole](#52-maximum-entropy-solution-is-all-pole)
+- <a href="#53-burg-method-and-mem" style="color: #a0a0a0;">5.3 Burg Method and MEM</a>
+- <a href="#54-mem-versus-classical-estimators" style="color: #a0a0a0;">5.4 MEM versus Classical Estimators</a>
+
+---
 
 ## 5.2 Maximum-Entropy Solution Is All-Pole
 
@@ -1548,6 +1949,17 @@ $$\boxed{\text{Maximum-entropy spectrum estimation is equivalent to all-pole spe
 
 This equivalence is one reason AR spectral estimation is so important.
 
+---
+
+**§5 Maximum-Entropy Spectrum Estimation**
+
+- <a href="#51-motivation-autocorrelation-extrapolation" style="color: #a0a0a0;">5.1 Motivation: Autocorrelation Extrapolation</a>
+- <a href="#52-maximum-entropy-solution-is-all-pole" style="color: #a0a0a0;">5.2 Maximum-Entropy Solution Is All-Pole</a>
+- [5.3 Burg Method and MEM](#53-burg-method-and-mem)
+- <a href="#54-mem-versus-classical-estimators" style="color: #a0a0a0;">5.4 MEM versus Classical Estimators</a>
+
+---
+
 ## 5.3 Burg Method and MEM
 
 Burg's method estimates reflection coefficients by minimizing forward and backward prediction errors while preserving stability. It is often associated with maximum-entropy spectral estimation because it produces a stable all-pole model from finite data and avoids explicitly windowing the autocorrelation sequence in the same way as the autocorrelation method.
@@ -1561,6 +1973,17 @@ $$e_m^b(n)=e_{m-1}^b(n-1)+k_m^\ast e_{m-1}^f(n).$$
 At each order, $k_m$ is chosen to reduce the sum of forward and backward error energies. Stability follows when
 
 $$\vert k_m\vert < 1.$$
+
+---
+
+**§5 Maximum-Entropy Spectrum Estimation**
+
+- <a href="#51-motivation-autocorrelation-extrapolation" style="color: #a0a0a0;">5.1 Motivation: Autocorrelation Extrapolation</a>
+- <a href="#52-maximum-entropy-solution-is-all-pole" style="color: #a0a0a0;">5.2 Maximum-Entropy Solution Is All-Pole</a>
+- <a href="#53-burg-method-and-mem" style="color: #a0a0a0;">5.3 Burg Method and MEM</a>
+- [5.4 MEM versus Classical Estimators](#54-mem-versus-classical-estimators)
+
+---
 
 ## 5.4 MEM versus Classical Estimators
 
@@ -1589,6 +2012,17 @@ But MEM can also create misleading peaks if the model order is too high or if th
 The final part of this chapter studies a more specialized problem: estimating the frequencies of a small number of complex exponentials in noise.
 
 This is not just PSD estimation. It is a parameter-estimation problem.
+
+---
+
+**§6 Frequency Estimation and Subspace Methods**
+
+- [6.0 Harmonic Model and Frequency-Estimation Problem](#60-harmonic-model-and-frequency-estimation-problem)
+- <a href="#61-eigen-decomposition-and-signalnoise-subspaces" style="color: #a0a0a0;">6.1 Eigen-Decomposition and Signal/Noise Subspaces</a>
+- <a href="#62-pisarenko-harmonic-decomposition" style="color: #a0a0a0;">6.2 Pisarenko Harmonic Decomposition</a>
+- <a href="#63-music-method" style="color: #a0a0a0;">6.3 MUSIC Method</a>
+- <a href="#64-eigenvector-and-minimum-norm-methods" style="color: #a0a0a0;">6.4 Eigenvector and Minimum-Norm Methods</a>
+- <a href="#65-esprit-method" style="color: #a0a0a0;">6.5 ESPRIT Method</a>
 
 ---
 
@@ -1638,6 +2072,17 @@ Here $\mathbf{A}$ contains signal powers and cross terms depending on the amplit
 
 ---
 
+**§6 Frequency Estimation and Subspace Methods**
+
+- <a href="#60-harmonic-model-and-frequency-estimation-problem" style="color: #a0a0a0;">6.0 Harmonic Model and Frequency-Estimation Problem</a>
+- [6.1 Eigen-Decomposition and Signal/Noise Subspaces](#61-eigen-decomposition-and-signalnoise-subspaces)
+- <a href="#62-pisarenko-harmonic-decomposition" style="color: #a0a0a0;">6.2 Pisarenko Harmonic Decomposition</a>
+- <a href="#63-music-method" style="color: #a0a0a0;">6.3 MUSIC Method</a>
+- <a href="#64-eigenvector-and-minimum-norm-methods" style="color: #a0a0a0;">6.4 Eigenvector and Minimum-Norm Methods</a>
+- <a href="#65-esprit-method" style="color: #a0a0a0;">6.5 ESPRIT Method</a>
+
+---
+
 ## 6.1 Eigen-Decomposition and Signal/Noise Subspaces
 
 Suppose $\mathbf{R}_x$ has eigen-decomposition
@@ -1662,6 +2107,17 @@ Therefore they are orthogonal to the noise subspace:
 $$\boxed{\mathbf{Q}_n^H\mathbf{v}(f_p)=\mathbf{0}.}$$
 
 This orthogonality is the core idea behind Pisarenko, MUSIC, EV, minimum-norm, and related methods.
+
+---
+
+**§6 Frequency Estimation and Subspace Methods**
+
+- <a href="#60-harmonic-model-and-frequency-estimation-problem" style="color: #a0a0a0;">6.0 Harmonic Model and Frequency-Estimation Problem</a>
+- <a href="#61-eigen-decomposition-and-signalnoise-subspaces" style="color: #a0a0a0;">6.1 Eigen-Decomposition and Signal/Noise Subspaces</a>
+- [6.2 Pisarenko Harmonic Decomposition](#62-pisarenko-harmonic-decomposition)
+- <a href="#63-music-method" style="color: #a0a0a0;">6.3 MUSIC Method</a>
+- <a href="#64-eigenvector-and-minimum-norm-methods" style="color: #a0a0a0;">6.4 Eigenvector and Minimum-Norm Methods</a>
+- <a href="#65-esprit-method" style="color: #a0a0a0;">6.5 ESPRIT Method</a>
 
 ---
 
@@ -1699,6 +2155,17 @@ Pisarenko's method is historically important but fragile:
 4. It works best in idealized settings.
 
 These limitations motivate MUSIC, which uses the entire noise subspace.
+
+---
+
+**§6 Frequency Estimation and Subspace Methods**
+
+- <a href="#60-harmonic-model-and-frequency-estimation-problem" style="color: #a0a0a0;">6.0 Harmonic Model and Frequency-Estimation Problem</a>
+- <a href="#61-eigen-decomposition-and-signalnoise-subspaces" style="color: #a0a0a0;">6.1 Eigen-Decomposition and Signal/Noise Subspaces</a>
+- <a href="#62-pisarenko-harmonic-decomposition" style="color: #a0a0a0;">6.2 Pisarenko Harmonic Decomposition</a>
+- [6.3 MUSIC Method](#63-music-method)
+- <a href="#64-eigenvector-and-minimum-norm-methods" style="color: #a0a0a0;">6.4 Eigenvector and Minimum-Norm Methods</a>
+- <a href="#65-esprit-method" style="color: #a0a0a0;">6.5 ESPRIT Method</a>
 
 ---
 
@@ -1743,6 +2210,17 @@ MUSIC is not a true PSD estimate. It is a pseudospectrum for frequency localizat
 
 ---
 
+**§6 Frequency Estimation and Subspace Methods**
+
+- <a href="#60-harmonic-model-and-frequency-estimation-problem" style="color: #a0a0a0;">6.0 Harmonic Model and Frequency-Estimation Problem</a>
+- <a href="#61-eigen-decomposition-and-signalnoise-subspaces" style="color: #a0a0a0;">6.1 Eigen-Decomposition and Signal/Noise Subspaces</a>
+- <a href="#62-pisarenko-harmonic-decomposition" style="color: #a0a0a0;">6.2 Pisarenko Harmonic Decomposition</a>
+- <a href="#63-music-method" style="color: #a0a0a0;">6.3 MUSIC Method</a>
+- [6.4 Eigenvector and Minimum-Norm Methods](#64-eigenvector-and-minimum-norm-methods)
+- <a href="#65-esprit-method" style="color: #a0a0a0;">6.5 ESPRIT Method</a>
+
+---
+
 ## 6.4 Eigenvector and Minimum-Norm Methods
 
 The textbook also discusses other eigenvector-based methods.
@@ -1768,6 +2246,17 @@ The details are more specialized, but the conceptual connection is simple:
 > *Figure 6.3 (Textbook Fig. 9.23, p. 488): Comparison of eigendecomposition-based frequency-estimation methods: Pisarenko, MUSIC, eigenvector method, and minimum-norm method.*
 
 This figure is useful for teaching because it shows that different subspace methods can produce different peak sharpness and sidelobe behavior, even though they share the same signal/noise subspace principle.
+
+---
+
+**§6 Frequency Estimation and Subspace Methods**
+
+- <a href="#60-harmonic-model-and-frequency-estimation-problem" style="color: #a0a0a0;">6.0 Harmonic Model and Frequency-Estimation Problem</a>
+- <a href="#61-eigen-decomposition-and-signalnoise-subspaces" style="color: #a0a0a0;">6.1 Eigen-Decomposition and Signal/Noise Subspaces</a>
+- <a href="#62-pisarenko-harmonic-decomposition" style="color: #a0a0a0;">6.2 Pisarenko Harmonic Decomposition</a>
+- <a href="#63-music-method" style="color: #a0a0a0;">6.3 MUSIC Method</a>
+- <a href="#64-eigenvector-and-minimum-norm-methods" style="color: #a0a0a0;">6.4 Eigenvector and Minimum-Norm Methods</a>
+- [6.5 ESPRIT Method](#65-esprit-method)
 
 ---
 
@@ -1838,6 +2327,19 @@ In array processing, MUSIC and ESPRIT become direction-of-arrival estimators. In
 
 # §7 Chapter Summary, Method Selection, and Figure Checklist
 
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- [7.1 One-Sentence Summary of Each Method](#71-one-sentence-summary-of-each-method)
+- <a href="#72-how-to-choose-a-spectrum-estimator" style="color: #a0a0a0;">7.2 How to Choose a Spectrum Estimator</a>
+- <a href="#73-common-misunderstandings" style="color: #a0a0a0;">7.3 Common Misunderstandings</a>
+- <a href="#74-teaching-flow-for-this-chapter" style="color: #a0a0a0;">7.4 Teaching Flow for This Chapter</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#76-final-concept-map" style="color: #a0a0a0;">7.6 Final Concept Map</a>
+
+---
+
 ## 7.1 One-Sentence Summary of Each Method
 
 | Method | One-Sentence Description |
@@ -1854,6 +2356,19 @@ In array processing, MUSIC and ESPRIT become direction-of-arrival estimators. In
 | MEM | Choose the all-pole spectrum with maximum entropy subject to autocorrelation constraints. |
 | MUSIC | Locate frequencies by finding steering vectors orthogonal to the noise subspace. |
 | ESPRIT | Estimate frequencies from the eigenvalues of a shift-invariance operator. |
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-one-sentence-summary-of-each-method" style="color: #a0a0a0;">7.1 One-Sentence Summary of Each Method</a>
+- [7.2 How to Choose a Spectrum Estimator](#72-how-to-choose-a-spectrum-estimator)
+- <a href="#73-common-misunderstandings" style="color: #a0a0a0;">7.3 Common Misunderstandings</a>
+- <a href="#74-teaching-flow-for-this-chapter" style="color: #a0a0a0;">7.4 Teaching Flow for This Chapter</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#76-final-concept-map" style="color: #a0a0a0;">7.6 Final Concept Map</a>
+
+---
 
 ## 7.2 How to Choose a Spectrum Estimator
 
@@ -1897,6 +2412,19 @@ Use subspace methods if the model is appropriate:
 - ESPRIT for direct estimates without grid search,
 - Root-MUSIC if the uniform structure is available and polynomial rooting is preferred.
 
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-one-sentence-summary-of-each-method" style="color: #a0a0a0;">7.1 One-Sentence Summary of Each Method</a>
+- <a href="#72-how-to-choose-a-spectrum-estimator" style="color: #a0a0a0;">7.2 How to Choose a Spectrum Estimator</a>
+- [7.3 Common Misunderstandings](#73-common-misunderstandings)
+- <a href="#74-teaching-flow-for-this-chapter" style="color: #a0a0a0;">7.4 Teaching Flow for This Chapter</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#76-final-concept-map" style="color: #a0a0a0;">7.6 Final Concept Map</a>
+
+---
+
 ## 7.3 Common Misunderstandings
 
 | Misunderstanding | Correction |
@@ -1907,6 +2435,19 @@ Use subspace methods if the model is appropriate:
 | Welch destroys information because segments are shorter. | It trades resolution for variance reduction; this is often desirable. |
 | MUSIC is a PSD estimator. | MUSIC produces a pseudospectrum for frequency localization, not a power-calibrated PSD. |
 | AR models are always better than nonparametric methods for short data. | They are better only if the all-pole assumption is appropriate and the order is chosen well. |
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-one-sentence-summary-of-each-method" style="color: #a0a0a0;">7.1 One-Sentence Summary of Each Method</a>
+- <a href="#72-how-to-choose-a-spectrum-estimator" style="color: #a0a0a0;">7.2 How to Choose a Spectrum Estimator</a>
+- <a href="#73-common-misunderstandings" style="color: #a0a0a0;">7.3 Common Misunderstandings</a>
+- [7.4 Teaching Flow for This Chapter](#74-teaching-flow-for-this-chapter)
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#76-final-concept-map" style="color: #a0a0a0;">7.6 Final Concept Map</a>
+
+---
 
 ## 7.4 Teaching Flow for This Chapter
 
@@ -1923,6 +2464,19 @@ A good lecture sequence is:
 9. Introduce MV as a data-adaptive filter-bank estimator.
 10. Explain MEM as maximum-entropy/all-pole extrapolation.
 11. Finish with subspace frequency estimation: signal/noise subspaces, MUSIC, and ESPRIT.
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-one-sentence-summary-of-each-method" style="color: #a0a0a0;">7.1 One-Sentence Summary of Each Method</a>
+- <a href="#72-how-to-choose-a-spectrum-estimator" style="color: #a0a0a0;">7.2 How to Choose a Spectrum Estimator</a>
+- <a href="#73-common-misunderstandings" style="color: #a0a0a0;">7.3 Common Misunderstandings</a>
+- <a href="#74-teaching-flow-for-this-chapter" style="color: #a0a0a0;">7.4 Teaching Flow for This Chapter</a>
+- [7.5 Figure Checklist](#75-figure-checklist)
+- <a href="#76-final-concept-map" style="color: #a0a0a0;">7.6 Final Concept Map</a>
+
+---
 
 ## 7.5 Figure Checklist
 
@@ -1954,6 +2508,19 @@ All figures used in this chapter are screenshots from the textbook and are store
 | Figure 6.3 | Fig. 9.23, p. 488 | `fig_6_3_textbook_fig_9_23_p488.png` |
 | Figure 6.4 | Fig. 9.24, p. 489 | `fig_6_4_textbook_fig_9_24_p489.png` |
 | Figure 6.5 | Fig. 9.25, p. 490 | `fig_6_5_textbook_fig_9_25_p490.png` |
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-one-sentence-summary-of-each-method" style="color: #a0a0a0;">7.1 One-Sentence Summary of Each Method</a>
+- <a href="#72-how-to-choose-a-spectrum-estimator" style="color: #a0a0a0;">7.2 How to Choose a Spectrum Estimator</a>
+- <a href="#73-common-misunderstandings" style="color: #a0a0a0;">7.3 Common Misunderstandings</a>
+- <a href="#74-teaching-flow-for-this-chapter" style="color: #a0a0a0;">7.4 Teaching Flow for This Chapter</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- [7.6 Final Concept Map](#76-final-concept-map)
+
+---
 
 ## 7.6 Final Concept Map
 

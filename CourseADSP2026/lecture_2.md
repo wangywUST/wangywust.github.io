@@ -8,13 +8,137 @@
 
 ## Table of Contents
 
-1. [§1 Random Variables](#1-random-variables)
-2. [§2 Stochastic Processes and Their Statistical Description](#2-stochastic-processes-and-their-statistical-description)
-3. [§3 Random Processes through Filters](#3-random-processes-through-filters)
-4. [§4 Spectral Factorization](#4-spectral-factorization)
-5. [§5 Special Types of Random Processes](#5-special-types-of-random-processes)
-6. [§6 Basic Orthogonal Transforms](#6-basic-orthogonal-transforms)
-7. [§7 Basic Parametric Estimation Methods](#7-basic-parametric-estimation-methods)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Probability and Statistics](#probability-and-statistics)
+  - [Random Vectors](#random-vectors)
+  - [Random Processes (Sequences)](#random-processes-sequences)
+  - [Power Spectral Density and z-Domain](#power-spectral-density-and-z-domain)
+  - [Correlation Matrices](#correlation-matrices)
+  - [Linear Signal Models](#linear-signal-models)
+  - [Estimation Theory](#estimation-theory)
+- [§1 Random Variables](#1-random-variables)
+  - [1.1 Probability Distribution and Density Functions](#11-probability-distribution-and-density-functions)
+    - [Motivation: From Abstract Events to Numbers](#motivation-from-abstract-events-to-numbers)
+    - [Cumulative Distribution Function (CDF)](#cumulative-distribution-function-cdf)
+    - [Probability Density Function (PDF)](#probability-density-function-pdf)
+  - [1.2 Statistical Averages (Moments)](#12-statistical-averages-moments)
+    - [Mean (First Moment)](#mean-first-moment)
+    - [Moments and Central Moments](#moments-and-central-moments)
+    - [Variance and Standard Deviation](#variance-and-standard-deviation)
+    - [Higher-Order Descriptors](#higher-order-descriptors)
+  - [1.3 Joint Statistical Description of Two Random Variables](#13-joint-statistical-description-of-two-random-variables)
+    - [Cross-Correlation and Covariance](#cross-correlation-and-covariance)
+    - [Independence vs. Uncorrelated](#independence-vs-uncorrelated)
+  - [1.4 Common Random Variable Distributions](#14-common-random-variable-distributions)
+    - [Gaussian (Normal) Distribution](#gaussian-normal-distribution)
+    - [Uniform Distribution](#uniform-distribution)
+    - [Bernoulli Distribution](#bernoulli-distribution)
+- [§2 Stochastic Processes and Their Statistical Description](#2-stochastic-processes-and-their-statistical-description)
+  - [2.1 Definition of a Stochastic Process](#21-definition-of-a-stochastic-process)
+  - [2.2 Ensemble Averages (First- and Second-Order Statistics)](#22-ensemble-averages-first--and-second-order-statistics)
+    - [Mean and Variance](#mean-and-variance)
+    - [Autocorrelation and Autocovariance](#autocorrelation-and-autocovariance)
+    - [Cross-Correlation and Cross-Covariance](#cross-correlation-and-cross-covariance)
+    - [Special Process Types Defined by Their Statistics](#special-process-types-defined-by-their-statistics)
+  - [2.3 Gaussian Random Sequences](#23-gaussian-random-sequences)
+  - [2.4 Stationarity](#24-stationarity)
+    - [Strict-Sense Stationarity (SSS)](#strict-sense-stationarity-sss)
+    - [Wide-Sense Stationarity (WSS)](#wide-sense-stationarity-wss)
+    - [Properties of the WSS Autocorrelation Sequence](#properties-of-the-wss-autocorrelation-sequence)
+    - [Why Autocorrelation Is Positive Semidefinite](#why-autocorrelation-is-positive-semidefinite)
+    - [From the Quadratic Form to a PSD-Weighted Integral](#from-the-quadratic-form-to-a-psd-weighted-integral)
+    - [Why Positive Semidefiniteness Forces the PSD to Be Nonnegative](#why-positive-semidefiniteness-forces-the-psd-to-be-nonnegative)
+    - [Symmetry and Nonnegativity Play Different Roles](#symmetry-and-nonnegativity-play-different-roles)
+  - [2.5 Power Spectral Density (Wiener–Khinchin Theorem)](#25-power-spectral-density-wienerkhinchin-theorem)
+    - [Properties of the PSD](#properties-of-the-psd)
+    - [Complex Spectral Density (z-Domain)](#complex-spectral-density-z-domain)
+    - [Cross-Power Spectral Density](#cross-power-spectral-density)
+    - [Harmonic Processes](#harmonic-processes)
+  - [2.6 Correlation Matrices of Stationary Processes](#26-correlation-matrices-of-stationary-processes)
+  - [2.7 Ergodicity](#27-ergodicity)
+    - [Ensemble Averages vs. Time Averages](#ensemble-averages-vs-time-averages)
+    - [Ergodic Processes](#ergodic-processes)
+  - [2.8 White Noise](#28-white-noise)
+- [§3 Random Processes through Filters](#3-random-processes-through-filters)
+  - [3.1 Time-Domain Analysis](#31-time-domain-analysis)
+    - [Setup](#setup)
+    - [Output Mean](#output-mean)
+    - [Input-Output Cross-Correlation](#input-output-cross-correlation)
+    - [Output Autocorrelation](#output-autocorrelation)
+    - [Output Power (Mean-Square Value)](#output-power-mean-square-value)
+  - [3.2 Frequency-Domain Analysis](#32-frequency-domain-analysis)
+    - [Output Variance Calculation Example](#output-variance-calculation-example)
+- [§4 Spectral Factorization](#4-spectral-factorization)
+  - [4.1 The Central Question](#41-the-central-question)
+    - [How This Question Follows from the Previous Section](#how-this-question-follows-from-the-previous-section)
+    - [Why Require a Minimum-Phase Factor?](#why-require-a-minimum-phase-factor)
+  - [4.2 Pole-Zero Structure of the PSD](#42-pole-zero-structure-of-the-psd)
+    - [What Does “Even Multiplicity” Mean?](#what-does-even-multiplicity-mean)
+  - [4.3 Minimum-Phase Spectral Factor](#43-minimum-phase-spectral-factor)
+  - [4.4 Innovations Representation](#44-innovations-representation)
+- [§5 Special Types of Random Processes](#5-special-types-of-random-processes)
+    - [Why Study AR, MA, and ARMA Models?](#why-study-ar-ma-and-arma-models)
+    - [Typical Examples](#typical-examples)
+  - [5.1 ARMA (Autoregressive Moving-Average) Processes](#51-arma-autoregressive-moving-average-processes)
+    - [Definition](#definition)
+    - [Power Spectral Density](#power-spectral-density)
+    - [Yule-Walker Equations for ARMA](#yule-walker-equations-for-arma)
+  - [5.2 AR (Autoregressive) Processes](#52-ar-autoregressive-processes)
+    - [Definition](#definition-1)
+    - [Yule-Walker Equations for AR](#yule-walker-equations-for-ar)
+    - [Power Spectral Density of AR($p$)](#power-spectral-density-of-arp)
+  - [5.3 MA (Moving-Average) Processes](#53-ma-moving-average-processes)
+    - [Definition](#definition-2)
+    - [Power Spectral Density of MA($q$)](#power-spectral-density-of-maq)
+    - [Autocorrelation of MA($q$)](#autocorrelation-of-maq)
+    - [Why the MA Representation Is Not Unique](#why-the-ma-representation-is-not-unique)
+  - [5.4 Interactive Comparison of AR, MA, and ARMA Spectra](#54-interactive-comparison-of-ar-ma-and-arma-spectra)
+  - [5.5 ARMA, AR, MA: Summary and Comparison](#55-arma-ar-ma-summary-and-comparison)
+- [§6 Covariance Diagonalization, Whitening, and Orthogonal Transforms](#6-covariance-diagonalization-whitening-and-orthogonal-transforms)
+    - [Why Does This Section Belong Here?](#why-does-this-section-belong-here)
+    - [Concrete Connection to the AR Models of §5](#concrete-connection-to-the-ar-models-of-5)
+  - [6.1 Hilbert Space and Orthogonal Transforms](#61-hilbert-space-and-orthogonal-transforms)
+    - [Hierarchy of Vector Spaces](#hierarchy-of-vector-spaces)
+    - [Orthogonal Transforms in Finite Dimensions](#orthogonal-transforms-in-finite-dimensions)
+    - [Advantages of Orthogonal Transforms](#advantages-of-orthogonal-transforms)
+  - [6.2 KL Transform (Karhunen-Loève Transform)](#62-kl-transform-karhunen-loève-transform)
+    - [Motivation](#motivation)
+    - [Derivation: Diagonalizing the Covariance Matrix via Eigendecomposition](#derivation-diagonalizing-the-covariance-matrix-via-eigendecomposition)
+    - [Optimal Reduced-Basis Representation (PCA)](#optimal-reduced-basis-representation-pca)
+    - [Properties of the KL Transform (Advantages and Disadvantages)](#properties-of-the-kl-transform-advantages-and-disadvantages)
+    - [Isotropic (Whitening) Transformation](#isotropic-whitening-transformation)
+  - [6.3 Discrete Cosine Transform (DCT)](#63-discrete-cosine-transform-dct)
+    - [Motivation](#motivation-1)
+    - [DCT-II Definition](#dct-ii-definition)
+    - [Four Variants of DCT](#four-variants-of-dct)
+    - [Advantages over KL Transform](#advantages-over-kl-transform)
+    - [Where These Ideas Reappear](#where-these-ideas-reappear)
+- [§7 Basic Parametric Estimation Methods](#7-basic-parametric-estimation-methods)
+  - [7.1 Performance of Estimators](#71-performance-of-estimators)
+    - [The Estimation Problem](#the-estimation-problem)
+    - [Bias](#bias)
+    - [Variance and MSE](#variance-and-mse)
+    - [Cramér-Rao Lower Bound (CRLB)](#cramér-rao-lower-bound-crlb)
+    - [Consistency](#consistency)
+  - [7.2 Sample Estimates of Random Signal Statistics (Method of Moments)](#72-sample-estimates-of-random-signal-statistics-method-of-moments)
+    - [Sample Mean](#sample-mean)
+    - [Sample Autocorrelation — Biased Estimate](#sample-autocorrelation--biased-estimate)
+    - [Sample Autocorrelation — Unbiased Estimate](#sample-autocorrelation--unbiased-estimate)
+  - [7.3 Least-Squares (LS) Estimation](#73-least-squares-ls-estimation)
+    - [Problem Setup](#problem-setup)
+    - [Normal Equations and LS Solution](#normal-equations-and-ls-solution)
+    - [Properties of the LS Estimate](#properties-of-the-ls-estimate)
+    - [Weighted Least Squares (WLS)](#weighted-least-squares-wls)
+  - [7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation](#74-linear-minimum-mean-square-error-lmmse-estimation)
+    - [Orthogonality Principle](#orthogonality-principle)
+  - [7.5 Maximum Likelihood (ML) Estimation](#75-maximum-likelihood-ml-estimation)
+    - [Definition](#definition-3)
+    - [Properties of ML Estimates](#properties-of-ml-estimates)
+    - [Example: ML Estimation of the Mean of a Gaussian Process](#example-ml-estimation-of-the-mean-of-a-gaussian-process)
+    - [Application: Time-Delay Estimation via Generalized Cross-Correlation (GCC)](#application-time-delay-estimation-via-generalized-cross-correlation-gcc)
+  - [7.6 Bayesian Estimation (Introduction)](#76-bayesian-estimation-introduction)
+  - [Chapter 2 Summary](#chapter-2-summary)
+    - [Looking Ahead](#looking-ahead)
 
 ---
 
@@ -126,6 +250,17 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 > 📖 Textbook §3.1 (Random Variables)
 
+---
+
+**§1 Random Variables**
+
+- [1.1 Probability Distribution and Density Functions](#11-probability-distribution-and-density-functions)
+- <a href="#12-statistical-averages-moments" style="color: #a0a0a0;">1.2 Statistical Averages (Moments)</a>
+- <a href="#13-joint-statistical-description-of-two-random-variables" style="color: #a0a0a0;">1.3 Joint Statistical Description of Two Random Variables</a>
+- <a href="#14-common-random-variable-distributions" style="color: #a0a0a0;">1.4 Common Random Variable Distributions</a>
+
+---
+
 ## 1.1 Probability Distribution and Density Functions
 
 ### Motivation: From Abstract Events to Numbers
@@ -163,6 +298,15 @@ Any valid PDF satisfies:
 $$f_x(x) \ge 0 \quad \text{and} \quad \int_{-\infty}^{+\infty} f_x(x)\, dx = 1$$
 
 For **discrete-valued** random variables, the **probability mass function (PMF)** $p_k = \Pr\lbrace x(\zeta) = x_k\rbrace$ replaces the PDF. We can unify both cases by allowing impulses in the PDF: $f_x(x) = \sum_k p_k \delta(x - x_k)$.
+
+---
+
+**§1 Random Variables**
+
+- <a href="#11-probability-distribution-and-density-functions" style="color: #a0a0a0;">1.1 Probability Distribution and Density Functions</a>
+- [1.2 Statistical Averages (Moments)](#12-statistical-averages-moments)
+- <a href="#13-joint-statistical-description-of-two-random-variables" style="color: #a0a0a0;">1.3 Joint Statistical Description of Two Random Variables</a>
+- <a href="#14-common-random-variable-distributions" style="color: #a0a0a0;">1.4 Common Random Variable Distributions</a>
 
 ---
 
@@ -225,6 +369,15 @@ $$\Pr\lbrace \lvert x(\zeta) - \mu_x\rvert \ge k\sigma_x\rbrace \le \frac{1}{k^2
 
 ---
 
+**§1 Random Variables**
+
+- <a href="#11-probability-distribution-and-density-functions" style="color: #a0a0a0;">1.1 Probability Distribution and Density Functions</a>
+- <a href="#12-statistical-averages-moments" style="color: #a0a0a0;">1.2 Statistical Averages (Moments)</a>
+- [1.3 Joint Statistical Description of Two Random Variables](#13-joint-statistical-description-of-two-random-variables)
+- <a href="#14-common-random-variable-distributions" style="color: #a0a0a0;">1.4 Common Random Variable Distributions</a>
+
+---
+
 ## 1.3 Joint Statistical Description of Two Random Variables
 
 When two random variables $x_1(\zeta)$ and $x_2(\zeta)$ are defined on the same probability space, they are jointly described by the **joint PDF** $f_{x_1 x_2}(x_1, x_2)$. The individual (marginal) PDFs are recovered by integration:
@@ -268,6 +421,15 @@ Two random variables are:
 - **Uncorrelated** if $\gamma_{x_1 x_2} = 0$, equivalently $r_{x_1 x_2} = \mu_{x_1}\mu_{x_2}^{\ast}$ — only the second-order moment factors.
 
 > **Important distinction:** Independence implies uncorrelated. The converse is **not** true in general — uncorrelated random variables can still be statistically dependent through higher-order moments. The **only exception** is the Gaussian distribution: for jointly Gaussian random variables, uncorrelated implies independence.
+
+---
+
+**§1 Random Variables**
+
+- <a href="#11-probability-distribution-and-density-functions" style="color: #a0a0a0;">1.1 Probability Distribution and Density Functions</a>
+- <a href="#12-statistical-averages-moments" style="color: #a0a0a0;">1.2 Statistical Averages (Moments)</a>
+- <a href="#13-joint-statistical-description-of-two-random-variables" style="color: #a0a0a0;">1.3 Joint Statistical Description of Two Random Variables</a>
+- [1.4 Common Random Variable Distributions](#14-common-random-variable-distributions)
 
 ---
 
@@ -333,6 +495,21 @@ A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2
 
 > 📖 Textbook §3.3 (Discrete-Time Stochastic Processes, §3.3.1–§3.3.6)
 
+---
+
+**§2 Stochastic Processes and Their Statistical Description**
+
+- [2.1 Definition of a Stochastic Process](#21-definition-of-a-stochastic-process)
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
+
+---
+
 ## 2.1 Definition of a Stochastic Process
 
 A **discrete-time stochastic process** (or random sequence) is a family of random variables indexed by the discrete time $n$:
@@ -355,6 +532,19 @@ There are four possible interpretations of $x(n, \zeta)$, depending on whether $
 | Both variable | — | The **stochastic process** itself |
 
 **Compact notation:** We drop $\zeta$ and simply write $x(n)$ to denote either the process or a single realization, with meaning clear from context.
+
+---
+
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- [2.2 Ensemble Averages (First- and Second-Order Statistics)](#22-ensemble-averages-first--and-second-order-statistics)
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
 
 ---
 
@@ -412,6 +602,19 @@ $$\rho_{xy}(n_1, n_2) = \frac{\gamma_{xy}(n_1, n_2)}{\sigma_x(n_1)\sigma_y(n_2)}
 
 ---
 
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- [2.3 Gaussian Random Sequences](#23-gaussian-random-sequences)
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
+
+---
+
 ## 2.3 Gaussian Random Sequences
 
 If all kth-order joint distributions of a process $x(n)$ are jointly Gaussian for every $k$ and every choice of time indices $(n_1, \ldots, n_k)$, then $x(n)$ is called a **Gaussian random sequence**.
@@ -423,6 +626,19 @@ $$f_x(\mathbf{x}; n_1, \ldots, n_k) = \frac{1}{(2\pi)^{k/2}\lvert\mathbf{R}\rver
 where $\boldsymbol{\mu}$ is the mean vector and $\mathbf{R}$ is the covariance matrix at those time indices.
 
 **Critical property:** A Gaussian process is **completely characterized by its first- and second-order statistics** — the mean $\mu_x(n)$ and the correlation $r_{xx}(n_1, n_2)$. No higher-order statistics are needed. This is why Gaussian process models are so widely used: they are tractable while still capturing the key dependence structure.
+
+---
+
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- [2.4 Stationarity](#24-stationarity)
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
 
 ---
 
@@ -641,6 +857,19 @@ This equivalence between positive-semidefinite correlation sequences and nonnega
 
 ---
 
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- [2.5 Power Spectral Density (Wiener–Khinchin Theorem)](#25-power-spectral-density-wienerkhinchin-theorem)
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
+
+---
+
 ## 2.5 Power Spectral Density (Wiener–Khinchin Theorem)
 
 Section 2.4 built the autocorrelation sequence $r_x(l)$ and showed, through nonnegative definiteness (Property 3) and Bochner's theorem, that its frequency-domain image is real and nonnegative. We now define that image explicitly and collect its properties.
@@ -734,6 +963,19 @@ The impulse strength on each line is proportional to the power $A_k^2/2$ of the 
 
 ---
 
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- [2.6 Correlation Matrices of Stationary Processes](#26-correlation-matrices-of-stationary-processes)
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
+
+---
+
 ## 2.6 Correlation Matrices of Stationary Processes
 
 Having described the second-order structure in the frequency domain (§2.5), we now return to the time domain and arrange the autocorrelation samples into a matrix. Its eigenvalues, as we will see below, are governed directly by the PSD just defined — the link that later controls adaptive-filter convergence.
@@ -789,6 +1031,19 @@ This is the core motivation for the remedies developed later: **normalized LMS**
 
 ---
 
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- [2.7 Ergodicity](#27-ergodicity)
+- <a href="#28-white-noise" style="color: #a0a0a0;">2.8 White Noise</a>
+
+---
+
 ## 2.7 Ergodicity
 
 A fundamental practical problem: in real applications, we never observe the entire ensemble — we have only **one realization** of the process. Can we still estimate ensemble averages from a single finite-length record?
@@ -827,6 +1082,19 @@ In practice, however, almost all stationary processes encountered in engineering
 
 ---
 
+**§2 Stochastic Processes and Their Statistical Description**
+
+- <a href="#21-definition-of-a-stochastic-process" style="color: #a0a0a0;">2.1 Definition of a Stochastic Process</a>
+- <a href="#22-ensemble-averages-first--and-second-order-statistics" style="color: #a0a0a0;">2.2 Ensemble Averages (First- and Second-Order Statistics)</a>
+- <a href="#23-gaussian-random-sequences" style="color: #a0a0a0;">2.3 Gaussian Random Sequences</a>
+- <a href="#24-stationarity" style="color: #a0a0a0;">2.4 Stationarity</a>
+- <a href="#25-power-spectral-density-wienerkhinchin-theorem" style="color: #a0a0a0;">2.5 Power Spectral Density (Wiener–Khinchin Theorem)</a>
+- <a href="#26-correlation-matrices-of-stationary-processes" style="color: #a0a0a0;">2.6 Correlation Matrices of Stationary Processes</a>
+- <a href="#27-ergodicity" style="color: #a0a0a0;">2.7 Ergodicity</a>
+- [2.8 White Noise](#28-white-noise)
+
+---
+
 ## 2.8 White Noise
 
 The simplest possible random sequence is one with no temporal structure:
@@ -852,6 +1120,15 @@ White noise is the fundamental **building block** for constructing more complex 
 # §3 Random Processes through Filters
 
 > 📖 Textbook §3.4 (Linear Systems with Stationary Random Inputs, §3.4.1–§3.4.2)
+
+---
+
+**§3 Random Processes through Filters**
+
+- [3.1 Time-Domain Analysis](#31-time-domain-analysis)
+- <a href="#32-frequency-domain-analysis" style="color: #a0a0a0;">3.2 Frequency-Domain Analysis</a>
+
+---
 
 ## 3.1 Time-Domain Analysis
 
@@ -907,6 +1184,13 @@ where the last expression is the **quadratic form** for FIR filters with coeffic
 
 ---
 
+**§3 Random Processes through Filters**
+
+- <a href="#31-time-domain-analysis" style="color: #a0a0a0;">3.1 Time-Domain Analysis</a>
+- [3.2 Frequency-Domain Analysis](#32-frequency-domain-analysis)
+
+---
+
 ## 3.2 Frequency-Domain Analysis
 
 Taking the DTFT/z-transform of the time-domain relationships gives the elegant frequency-domain formulas. All results are collected in Table 2.1.
@@ -956,6 +1240,17 @@ This confirms that the variance of a first-order AR process driven by white nois
 # §4 Spectral Factorization
 
 > 📖 Textbook §2.4 (Minimum-Phase and System Invertibility) · §3.5.2 (Whitening and Innovations)
+
+---
+
+**§4 Spectral Factorization**
+
+- [4.1 The Central Question](#41-the-central-question)
+- <a href="#42-pole-zero-structure-of-the-psd" style="color: #a0a0a0;">4.2 Pole-Zero Structure of the PSD</a>
+- <a href="#43-minimum-phase-spectral-factor" style="color: #a0a0a0;">4.3 Minimum-Phase Spectral Factor</a>
+- <a href="#44-innovations-representation" style="color: #a0a0a0;">4.4 Innovations Representation</a>
+
+---
 
 ## 4.1 The Central Question
 
@@ -1021,6 +1316,17 @@ $$\underbrace{\text{a PSD }R_x(z)}_{\text{known}}
 
 The answer is **yes** for any rational PSD satisfying the Paley–Wiener condition, and the factorization is **unique** if we require $H_+(z)$ to be minimum-phase (all zeros inside the unit circle). This is the **spectral factorization theorem**.
 
+---
+
+**§4 Spectral Factorization**
+
+- <a href="#41-the-central-question" style="color: #a0a0a0;">4.1 The Central Question</a>
+- [4.2 Pole-Zero Structure of the PSD](#42-pole-zero-structure-of-the-psd)
+- <a href="#43-minimum-phase-spectral-factor" style="color: #a0a0a0;">4.3 Minimum-Phase Spectral Factor</a>
+- <a href="#44-innovations-representation" style="color: #a0a0a0;">4.4 Innovations Representation</a>
+
+---
+
 ## 4.2 Pole-Zero Structure of the PSD
 
 From Chapter 1, we know that for real autocorrelation sequences, $R_x(z) = R_x(1/z)$ — poles and zeros appear in **reciprocal pairs** $\lbrace z_0, 1/z_0\rbrace$. Combined with Hermitian symmetry $r_x(l) = r_x(-l)$ (real sequences), poles and zeros also appear in **conjugate pairs** $\lbrace z_0, z_0^{\ast}\rbrace$. Therefore, poles and zeros of $R_x(z)$ come in **quadruples**: $\lbrace z_0,\ z_0^{\ast},\ 1/z_0,\ 1/z_0^{\ast}\rbrace$.
@@ -1084,6 +1390,17 @@ $$R_x(z)=H(z)H^{\ast}\!\left(\frac{1}{z^{\ast}}\right),$$
 making it a double zero; if $H$ contains the zero twice, the PSD contains it four times, and so forth.
 
 Finally, **conjugate pairing** and **even multiplicity** describe different facts. For a real process, a non-real unit-circle zero $z_0=e^{j\omega_0}$ is accompanied by the conjugate zero $z_0^{\ast}=e^{-j\omega_0}$. Nonnegativity then requires **each** of these locations to have even multiplicity. For example, $z_0$ may be a double zero and $z_0^{\ast}$ another double zero.
+
+---
+
+**§4 Spectral Factorization**
+
+- <a href="#41-the-central-question" style="color: #a0a0a0;">4.1 The Central Question</a>
+- <a href="#42-pole-zero-structure-of-the-psd" style="color: #a0a0a0;">4.2 Pole-Zero Structure of the PSD</a>
+- [4.3 Minimum-Phase Spectral Factor](#43-minimum-phase-spectral-factor)
+- <a href="#44-innovations-representation" style="color: #a0a0a0;">4.4 Innovations Representation</a>
+
+---
 
 ## 4.3 Minimum-Phase Spectral Factor
 
@@ -1168,6 +1485,17 @@ R_{\widetilde{w}}(z)
 $$
 
 Thus $\widetilde{w}(n)$ has a flat PSD and is therefore white, with variance $\sigma_0^2$. For the shaping model $x(n)=H_+(z)w(n)$, causal stable invertibility further gives $\widetilde{w}(n)=w(n)$.
+
+---
+
+**§4 Spectral Factorization**
+
+- <a href="#41-the-central-question" style="color: #a0a0a0;">4.1 The Central Question</a>
+- <a href="#42-pole-zero-structure-of-the-psd" style="color: #a0a0a0;">4.2 Pole-Zero Structure of the PSD</a>
+- <a href="#43-minimum-phase-spectral-factor" style="color: #a0a0a0;">4.3 Minimum-Phase Spectral Factor</a>
+- [4.4 Innovations Representation](#44-innovations-representation)
+
+---
 
 ## 4.4 Innovations Representation
 
@@ -1278,6 +1606,18 @@ The three model classes correspond to different restrictions on the shaping filt
 
 The following subsections derive how each model generates its PSD and autocorrelation. Later chapters address the inverse step: estimating these parameters from measured data.
 
+---
+
+**§5 Special Types of Random Processes**
+
+- [5.1 ARMA (Autoregressive Moving-Average) Processes](#51-arma-autoregressive-moving-average-processes)
+- <a href="#52-ar-autoregressive-processes" style="color: #a0a0a0;">5.2 AR (Autoregressive) Processes</a>
+- <a href="#53-ma-moving-average-processes" style="color: #a0a0a0;">5.3 MA (Moving-Average) Processes</a>
+- <a href="#54-interactive-comparison-of-ar-ma-and-arma-spectra" style="color: #a0a0a0;">5.4 Interactive Comparison of AR, MA, and ARMA Spectra</a>
+- <a href="#55-arma-ar-ma-summary-and-comparison" style="color: #a0a0a0;">5.5 ARMA, AR, MA: Summary and Comparison</a>
+
+---
+
 ## 5.1 ARMA (Autoregressive Moving-Average) Processes
 
 ### Definition
@@ -1353,6 +1693,16 @@ $$\boxed{r_x(l)+\sum_{k=1}^{p}a_kr_x(l-k)=0,\qquad l>q.}$$
 Equivalently, $w(n-j)$ is a future innovation relative to $x(n-l)$ when $l>q$, so it is orthogonal to that past output sample. Notice that the condition is strictly $l>q$; at $l\le q$, some terms on the right-hand side generally remain nonzero.
 
 This is a system of linear equations in the unknown AR coefficients $\lbrace a_k\rbrace$ that becomes exploitable for ARMA estimation (Chapter 4).
+
+---
+
+**§5 Special Types of Random Processes**
+
+- <a href="#51-arma-autoregressive-moving-average-processes" style="color: #a0a0a0;">5.1 ARMA (Autoregressive Moving-Average) Processes</a>
+- [5.2 AR (Autoregressive) Processes](#52-ar-autoregressive-processes)
+- <a href="#53-ma-moving-average-processes" style="color: #a0a0a0;">5.3 MA (Moving-Average) Processes</a>
+- <a href="#54-interactive-comparison-of-ar-ma-and-arma-spectra" style="color: #a0a0a0;">5.4 Interactive Comparison of AR, MA, and ARMA Spectra</a>
+- <a href="#55-arma-ar-ma-summary-and-comparison" style="color: #a0a0a0;">5.5 ARMA, AR, MA: Summary and Comparison</a>
 
 ---
 
@@ -1434,6 +1784,16 @@ then evaluating the frequency response on the unit circle at $z=e^{j\omega}$ mak
 This makes AR models excellent for processes with **sharp spectral peaks** (narrowband resonances), such as voiced speech, sonar echoes at discrete angles, or vibration resonance modes.
 
 > **Key use case:** AR processes are the workhorse of **linear prediction** (Chapter 3). Because the Yule-Walker equations are Toeplitz, the AR coefficients can be estimated efficiently from the autocorrelation using the Levinson-Durbin algorithm. This will be the bridge between Chapter 2 (analysis) and Chapter 3 (prediction and estimation).
+
+---
+
+**§5 Special Types of Random Processes**
+
+- <a href="#51-arma-autoregressive-moving-average-processes" style="color: #a0a0a0;">5.1 ARMA (Autoregressive Moving-Average) Processes</a>
+- <a href="#52-ar-autoregressive-processes" style="color: #a0a0a0;">5.2 AR (Autoregressive) Processes</a>
+- [5.3 MA (Moving-Average) Processes](#53-ma-moving-average-processes)
+- <a href="#54-interactive-comparison-of-ar-ma-and-arma-spectra" style="color: #a0a0a0;">5.4 Interactive Comparison of AR, MA, and ARMA Spectra</a>
+- <a href="#55-arma-ar-ma-summary-and-comparison" style="color: #a0a0a0;">5.5 ARMA, AR, MA: Summary and Comparison</a>
 
 ---
 
@@ -1536,6 +1896,16 @@ For an MA($q$) polynomial, each zero not on the unit circle can similarly be ass
 
 ---
 
+**§5 Special Types of Random Processes**
+
+- <a href="#51-arma-autoregressive-moving-average-processes" style="color: #a0a0a0;">5.1 ARMA (Autoregressive Moving-Average) Processes</a>
+- <a href="#52-ar-autoregressive-processes" style="color: #a0a0a0;">5.2 AR (Autoregressive) Processes</a>
+- <a href="#53-ma-moving-average-processes" style="color: #a0a0a0;">5.3 MA (Moving-Average) Processes</a>
+- [5.4 Interactive Comparison of AR, MA, and ARMA Spectra](#54-interactive-comparison-of-ar-ma-and-arma-spectra)
+- <a href="#55-arma-ar-ma-summary-and-comparison" style="color: #a0a0a0;">5.5 ARMA, AR, MA: Summary and Comparison</a>
+
+---
+
 ## 5.4 Interactive Comparison of AR, MA, and ARMA Spectra
 
 Having derived all three model classes, we can now compare their spectral behavior directly. The visualization below uses a conjugate pole pair and a conjugate zero pair so that all coefficients remain real. Adjust their radii and angles under the same white-noise excitation:
@@ -1547,6 +1917,16 @@ Having derived all three model classes, we can now compare their spectral behavi
 <iframe src="./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html" width="100%" height="1080" style="border:0; border-radius:12px;" title="Interactive comparison of AR, MA, and ARMA power spectra"></iframe>
 
 > If the Markdown viewer blocks embedded HTML or JavaScript, open the [interactive AR/MA/ARMA spectrum explorer](./CourseADSP2026/Fig/Chapter_2/arma_spectrum_interactive.html) directly.
+
+---
+
+**§5 Special Types of Random Processes**
+
+- <a href="#51-arma-autoregressive-moving-average-processes" style="color: #a0a0a0;">5.1 ARMA (Autoregressive Moving-Average) Processes</a>
+- <a href="#52-ar-autoregressive-processes" style="color: #a0a0a0;">5.2 AR (Autoregressive) Processes</a>
+- <a href="#53-ma-moving-average-processes" style="color: #a0a0a0;">5.3 MA (Moving-Average) Processes</a>
+- <a href="#54-interactive-comparison-of-ar-ma-and-arma-spectra" style="color: #a0a0a0;">5.4 Interactive Comparison of AR, MA, and ARMA Spectra</a>
+- [5.5 ARMA, AR, MA: Summary and Comparison](#55-arma-ar-ma-summary-and-comparison)
 
 ---
 
@@ -1667,6 +2047,16 @@ $$
 
 The DCT is introduced here because it retains much of the KL transform's decorrelation and energy-compaction ability for correlated AR(1)-like signals, while avoiding covariance estimation and eigendecomposition.
 
+---
+
+**§6 Covariance Diagonalization, Whitening, and Orthogonal Transforms**
+
+- [6.1 Hilbert Space and Orthogonal Transforms](#61-hilbert-space-and-orthogonal-transforms)
+- <a href="#62-kl-transform-karhunen-loève-transform" style="color: #a0a0a0;">6.2 KL Transform (Karhunen-Loève Transform)</a>
+- <a href="#63-discrete-cosine-transform-dct" style="color: #a0a0a0;">6.3 Discrete Cosine Transform (DCT)</a>
+
+---
+
 ## 6.1 Hilbert Space and Orthogonal Transforms
 
 ### Hierarchy of Vector Spaces
@@ -1723,6 +2113,14 @@ Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\{y_i y_j^*\}=0$
 2. **Decorrelation:** The transformed components can be made uncorrelated (independent for Gaussian processes), simplifying analysis and processing.
 3. **Optimal truncation:** Representing the signal using only the most energetically significant transformed components minimizes the mean-squared reconstruction error (the KL transform achieves this optimally).
 4. **Fast algorithms:** Some special orthogonal transforms (DFT, DCT) have $O(N\log N)$ fast algorithms.
+
+---
+
+**§6 Covariance Diagonalization, Whitening, and Orthogonal Transforms**
+
+- <a href="#61-hilbert-space-and-orthogonal-transforms" style="color: #a0a0a0;">6.1 Hilbert Space and Orthogonal Transforms</a>
+- [6.2 KL Transform (Karhunen-Loève Transform)](#62-kl-transform-karhunen-loève-transform)
+- <a href="#63-discrete-cosine-transform-dct" style="color: #a0a0a0;">6.3 Discrete Cosine Transform (DCT)</a>
 
 ---
 
@@ -1792,6 +2190,14 @@ The result: $\boldsymbol{\Sigma}_y = \mathbf{I}$ — all components have unit va
 
 ---
 
+**§6 Covariance Diagonalization, Whitening, and Orthogonal Transforms**
+
+- <a href="#61-hilbert-space-and-orthogonal-transforms" style="color: #a0a0a0;">6.1 Hilbert Space and Orthogonal Transforms</a>
+- <a href="#62-kl-transform-karhunen-loève-transform" style="color: #a0a0a0;">6.2 KL Transform (Karhunen-Loève Transform)</a>
+- [6.3 Discrete Cosine Transform (DCT)](#63-discrete-cosine-transform-dct)
+
+---
+
 ## 6.3 Discrete Cosine Transform (DCT)
 
 ### Motivation
@@ -1846,6 +2252,20 @@ There is also an important link to the next section. The optimal KL and whitenin
 # §7 Basic Parametric Estimation Methods
 
 > 📖 Textbook §3.6 (Principles of Estimation Theory, §3.6.1–§3.6.3); §8.1–§8.2 (Least-Squares)
+
+---
+
+**§7 Basic Parametric Estimation Methods**
+
+- [7.1 Performance of Estimators](#71-performance-of-estimators)
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
+
+---
 
 ## 7.1 Performance of Estimators
 
@@ -1928,6 +2348,18 @@ mean-square consistency requires both the variance and the squared bias to appro
 
 ---
 
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- [7.2 Sample Estimates of Random Signal Statistics (Method of Moments)](#72-sample-estimates-of-random-signal-statistics-method-of-moments)
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
+
+---
+
 ## 7.2 Sample Estimates of Random Signal Statistics (Method of Moments)
 
 ### Sample Mean
@@ -1984,6 +2416,18 @@ or, equivalently, all its eigenvalues must be nonnegative. The lag-dependent nor
 
 ---
 
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- [7.3 Least-Squares (LS) Estimation](#73-least-squares-ls-estimation)
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
+
+---
+
 ## 7.3 Least-Squares (LS) Estimation
 
 ### Problem Setup
@@ -2027,6 +2471,18 @@ When $\mathbf{W} = \boldsymbol{\Sigma}_e^{-1}$ (inverse of the error covariance)
 
 ---
 
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- [7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation](#74-linear-minimum-mean-square-error-lmmse-estimation)
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
+
+---
+
 ## 7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation
 
 ### Orthogonality Principle
@@ -2059,6 +2515,18 @@ Here:
 If $\mathbf{x}\in\mathbb C^N$, then $\mathbf{R}_x\in\mathbb C^{N\times N}$ and $\mathbf{r}_{x\theta}\in\mathbb C^N$, so both sides of the Wiener--Hopf equation are $N$-dimensional column vectors.
 
 The LMMSE framework is the **bridge to Wiener filtering** (Chapter 6): when the parameter $\boldsymbol{\theta}$ is replaced by a random desired signal $d(n)$ and the observations are $\mathbf{x} = [x(n), x(n-1), \ldots]^T$, the LMMSE estimator becomes the FIR Wiener filter.
+
+---
+
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- [7.5 Maximum Likelihood (ML) Estimation](#75-maximum-likelihood-ml-estimation)
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
 
 ---
 
@@ -2104,6 +2572,18 @@ The choice of window (PHAT, SCOT, Roth processor) prewhitens the cross-spectrum 
 
 ---
 
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- [7.6 Bayesian Estimation (Introduction)](#76-bayesian-estimation-introduction)
+- <a href="#chapter-2-summary" style="color: #a0a0a0;">Chapter 2 Summary</a>
+
+---
+
 ## 7.6 Bayesian Estimation (Introduction)
 
 In the **Bayesian framework**, the parameter $\boldsymbol{\theta}$ is treated as a **random variable** with a known **prior distribution** $f_\theta(\boldsymbol{\theta})$ that encodes any prior knowledge before observing $\mathbf{x}$. After observing $\mathbf{x}$, the **posterior distribution** is:
@@ -2131,6 +2611,18 @@ $$\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\
 **Relationship to ML:** MAP reduces to ML when the prior $f_\theta(\boldsymbol{\theta})$ is **uniform** (no prior preference for any value of $\boldsymbol{\theta}$) — ML is a special case of MAP with an uninformative (flat) prior.
 
 **LMMSE as linear Bayesian estimation:** When the prior is Gaussian and the likelihood is Gaussian, the MMSE estimate is linear in $\mathbf{x}$ and coincides with the LMMSE estimate. This provides the statistical justification for the Wiener filter (Chapter 6).
+
+---
+
+**§7 Basic Parametric Estimation Methods**
+
+- <a href="#71-performance-of-estimators" style="color: #a0a0a0;">7.1 Performance of Estimators</a>
+- <a href="#72-sample-estimates-of-random-signal-statistics-method-of-moments" style="color: #a0a0a0;">7.2 Sample Estimates of Random Signal Statistics (Method of Moments)</a>
+- <a href="#73-least-squares-ls-estimation" style="color: #a0a0a0;">7.3 Least-Squares (LS) Estimation</a>
+- <a href="#74-linear-minimum-mean-square-error-lmmse-estimation" style="color: #a0a0a0;">7.4 Linear Minimum Mean-Square-Error (LMMSE) Estimation</a>
+- <a href="#75-maximum-likelihood-ml-estimation" style="color: #a0a0a0;">7.5 Maximum Likelihood (ML) Estimation</a>
+- <a href="#76-bayesian-estimation-introduction" style="color: #a0a0a0;">7.6 Bayesian Estimation (Introduction)</a>
+- [Chapter 2 Summary](#chapter-2-summary)
 
 ---
 

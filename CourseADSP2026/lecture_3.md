@@ -8,17 +8,102 @@
 
 ## Table of Contents
 
-1. [§1 Basic Linear Prediction Model and the Autocorrelation Method](#1-basic-linear-prediction-model-and-the-autocorrelation-method)
-2. [§2 Equivalence Between AR All-Pole Modeling and Linear Prediction](#2-equivalence-between-ar-all-pole-modeling-and-linear-prediction)
-3. [§3 Levinson-Durbin Recursive Algorithm](#3-levinson-durbin-recursive-algorithm)
-4. [§4 Three Equivalent Sets of Recursive Parameters](#4-three-equivalent-sets-of-recursive-parameters)
-5. [§5 Schur Recursive Algorithm](#5-schur-recursive-algorithm)
-6. [§6 General Levinson Recursion for Toeplitz Equations](#6-general-levinson-recursion-for-toeplitz-equations)
-7. [§7 Covariance Algorithm for Linear Prediction](#7-covariance-algorithm-for-linear-prediction)
-8. [§8 Forward/Backward Prediction and Lattice Filters](#8-forwardbackward-prediction-and-lattice-filters)
-9. [§9 Lattice Modeling and the Burg Algorithm](#9-lattice-modeling-and-the-burg-algorithm)
-10. [§10 Modified Covariance Algorithm](#10-modified-covariance-algorithm)
-11. [§11 Application Example: Linear Prediction in Speech Coding](#11-application-example-linear-prediction-in-speech-coding)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Time Index, Data Length, and Model Order](#time-index-data-length-and-model-order)
+  - [Signals, Predictors, and Errors](#signals-predictors-and-errors)
+  - [Correlation Quantities](#correlation-quantities)
+  - [Recursive and Lattice Parameters](#recursive-and-lattice-parameters)
+  - [Model Types](#model-types)
+- [§1 Basic Linear Prediction Model and the Autocorrelation Method](#1-basic-linear-prediction-model-and-the-autocorrelation-method)
+  - [1.1 Why Linear Prediction Is Important](#11-why-linear-prediction-is-important)
+  - [1.2 Linear Prediction as LMMSE Estimation](#12-linear-prediction-as-lmmse-estimation)
+  - [1.3 Minimum Prediction Error Power](#13-minimum-prediction-error-power)
+  - [1.4 The Autocorrelation Method for Finite Data](#14-the-autocorrelation-method-for-finite-data)
+    - [Important Practical Consequence: Stability](#important-practical-consequence-stability)
+    - [Weakness of the Autocorrelation Method](#weakness-of-the-autocorrelation-method)
+  - [1.5 Windowing and Model Accuracy](#15-windowing-and-model-accuracy)
+- [§2 Equivalence Between AR All-Pole Modeling and Linear Prediction](#2-equivalence-between-ar-all-pole-modeling-and-linear-prediction)
+  - [2.1 The AR($p$) Model](#21-the-arp-model)
+  - [2.2 Prediction Error Filter Equals Whitening Filter](#22-prediction-error-filter-equals-whitening-filter)
+  - [2.3 Yule-Walker Equations from the AR Model](#23-yule-walker-equations-from-the-ar-model)
+  - [2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction](#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction)
+    - [Statistical AR Modeling](#statistical-ar-modeling)
+    - [Deterministic Linear Prediction](#deterministic-linear-prediction)
+  - [2.5 Why All-Pole Models Are Useful](#25-why-all-pole-models-are-useful)
+- [§3 Levinson-Durbin Recursive Algorithm](#3-levinson-durbin-recursive-algorithm)
+  - [3.1 The Computational Problem](#31-the-computational-problem)
+  - [3.2 The Order-Recursive View](#32-the-order-recursive-view)
+  - [3.3 Levinson-Durbin Recursion Formulas](#33-levinson-durbin-recursion-formulas)
+  - [3.4 Why the Error Recursion Makes Sense](#34-why-the-error-recursion-makes-sense)
+  - [3.5 Reflection Coefficient as Partial Correlation](#35-reflection-coefficient-as-partial-correlation)
+  - [3.6 Direct Form vs Recursive Structure](#36-direct-form-vs-recursive-structure)
+  - [3.7 Algorithm Table](#37-algorithm-table)
+  - [3.8 Simple First-Order Example](#38-simple-first-order-example)
+- [§4 Three Equivalent Sets of Recursive Parameters](#4-three-equivalent-sets-of-recursive-parameters)
+  - [4.1 Three Equivalent Descriptions](#41-three-equivalent-descriptions)
+  - [4.2 Positive Definiteness, Reflection Coefficients, and Stability](#42-positive-definiteness-reflection-coefficients-and-stability)
+  - [4.3 Boundary Case: Zero on the Unit Circle](#43-boundary-case-zero-on-the-unit-circle)
+  - [4.4 Cholesky / LDL$^H$ Decomposition View](#44-cholesky--ldlh-decomposition-view)
+  - [4.5 Autocorrelation Extension and Maximum Entropy](#45-autocorrelation-extension-and-maximum-entropy)
+  - [4.6 Step-Up Recursion: Lattice to Direct Form](#46-step-up-recursion-lattice-to-direct-form)
+  - [4.7 Step-Down Recursion: Direct Form to Lattice](#47-step-down-recursion-direct-form-to-lattice)
+  - [4.8 Why Reflection Coefficients Are Numerically Attractive](#48-why-reflection-coefficients-are-numerically-attractive)
+- [§5 Schur Recursive Algorithm](#5-schur-recursive-algorithm)
+  - [5.1 Goal of the Schur Algorithm](#51-goal-of-the-schur-algorithm)
+  - [5.2 Gapped Correlation Functions](#52-gapped-correlation-functions)
+  - [5.3 Algorithmic Interpretation](#53-algorithmic-interpretation)
+  - [5.4 Schur Algorithm Summary](#54-schur-algorithm-summary)
+  - [5.5 Relationship to Levinson-Durbin](#55-relationship-to-levinson-durbin)
+- [§6 General Levinson Recursion for Toeplitz Equations](#6-general-levinson-recursion-for-toeplitz-equations)
+  - [6.1 Beyond Linear Prediction](#61-beyond-linear-prediction)
+  - [6.2 The Optimum Nesting Property](#62-the-optimum-nesting-property)
+  - [6.3 Partitioned Matrix Inversion View](#63-partitioned-matrix-inversion-view)
+  - [6.4 General Levinson Recursion Idea](#64-general-levinson-recursion-idea)
+  - [6.5 Complexity](#65-complexity)
+- [§7 Covariance Algorithm for Linear Prediction](#7-covariance-algorithm-for-linear-prediction)
+  - [7.1 Motivation](#71-motivation)
+  - [7.2 Error Criterion](#72-error-criterion)
+  - [7.3 Why the Matrix Is Not Toeplitz](#73-why-the-matrix-is-not-toeplitz)
+  - [7.4 Advantages and Disadvantages](#74-advantages-and-disadvantages)
+  - [7.5 When to Use the Covariance Method](#75-when-to-use-the-covariance-method)
+- [§8 Forward/Backward Prediction and Lattice Filters](#8-forwardbackward-prediction-and-lattice-filters)
+  - [8.1 Forward and Backward Prediction Errors](#81-forward-and-backward-prediction-errors)
+  - [8.2 Lattice Recursions](#82-lattice-recursions)
+  - [8.3 Intuition Behind the Lattice Stage](#83-intuition-behind-the-lattice-stage)
+  - [8.4 All-Pole Lattice Synthesis](#84-all-pole-lattice-synthesis)
+  - [8.5 Advantages of Lattice Filters](#85-advantages-of-lattice-filters)
+  - [8.6 Lattice-Ladder Structure](#86-lattice-ladder-structure)
+- [§9 Lattice Modeling and the Burg Algorithm](#9-lattice-modeling-and-the-burg-algorithm)
+  - [9.1 Why Burg's Algorithm Was Introduced](#91-why-burgs-algorithm-was-introduced)
+  - [9.2 Forward and Backward Error Criterion](#92-forward-and-backward-error-criterion)
+  - [9.3 Burg Reflection Coefficient Update](#93-burg-reflection-coefficient-update)
+  - [9.4 Burg Algorithm Steps](#94-burg-algorithm-steps)
+  - [9.5 Burg, Forward Covariance, and Backward Covariance](#95-burg-forward-covariance-and-backward-covariance)
+    - [Forward Lattice Covariance Method](#forward-lattice-covariance-method)
+    - [Backward Lattice Covariance Method](#backward-lattice-covariance-method)
+    - [Burg Method](#burg-method)
+  - [9.6 Itakura-Saito / Geometric Mean Variant](#96-itakura-saito--geometric-mean-variant)
+  - [9.7 Maximum Entropy Interpretation](#97-maximum-entropy-interpretation)
+  - [9.8 Strengths and Weaknesses of Burg's Algorithm](#98-strengths-and-weaknesses-of-burgs-algorithm)
+- [§10 Modified Covariance Algorithm](#10-modified-covariance-algorithm)
+  - [10.1 Motivation](#101-motivation)
+  - [10.2 Difference Between Burg and Modified Covariance](#102-difference-between-burg-and-modified-covariance)
+  - [10.3 Modified Covariance Normal Equations](#103-modified-covariance-normal-equations)
+  - [10.4 Advantages](#104-advantages)
+  - [10.5 Disadvantages](#105-disadvantages)
+  - [10.6 Comparison of Main Linear Prediction Estimation Methods](#106-comparison-of-main-linear-prediction-estimation-methods)
+- [§11 Application Example: Linear Prediction in Speech Coding](#11-application-example-linear-prediction-in-speech-coding)
+  - [11.1 Why Speech Is Predictable](#111-why-speech-is-predictable)
+  - [11.2 LPC Model](#112-lpc-model)
+  - [11.3 Three Coding Paradigms](#113-three-coding-paradigms)
+    - [Waveform Coding](#waveform-coding)
+    - [Parametric Coding](#parametric-coding)
+    - [Hybrid Coding](#hybrid-coding)
+  - [11.4 Why Reflection Coefficients Are Useful in Speech](#114-why-reflection-coefficients-are-useful-in-speech)
+  - [11.5 Speech Spectrum and All-Pole Envelope](#115-speech-spectrum-and-all-pole-envelope)
+  - [Chapter 3 Summary](#chapter-3-summary)
+  - [Figure Source Checklist](#figure-source-checklist)
+  - [Suggested Teaching Flow](#suggested-teaching-flow)
 
 ---
 
@@ -91,6 +176,18 @@ All symbols used in this chapter are collected below. The notation follows the c
 
 > 📖 Textbook §6.5 (Linear Prediction); §7.1 (Fundamentals of Order-Recursive Algorithms)
 
+---
+
+**§1 Basic Linear Prediction Model and the Autocorrelation Method**
+
+- [1.1 Why Linear Prediction Is Important](#11-why-linear-prediction-is-important)
+- <a href="#12-linear-prediction-as-lmmse-estimation" style="color: #a0a0a0;">1.2 Linear Prediction as LMMSE Estimation</a>
+- <a href="#13-minimum-prediction-error-power" style="color: #a0a0a0;">1.3 Minimum Prediction Error Power</a>
+- <a href="#14-the-autocorrelation-method-for-finite-data" style="color: #a0a0a0;">1.4 The Autocorrelation Method for Finite Data</a>
+- <a href="#15-windowing-and-model-accuracy" style="color: #a0a0a0;">1.5 Windowing and Model Accuracy</a>
+
+---
+
 ## 1.1 Why Linear Prediction Is Important
 
 Linear prediction is one of the central ideas in modern digital signal processing. The basic question is simple:
@@ -147,6 +244,18 @@ The second viewpoint is especially important. If $A_p(z)$ removes all correlatio
 > ![Figure 1.1](./CourseADSP2026/Fig/Chapter_3/fig_1_1_textbook_fig_6_16_p283.png)
 >
 > *Figure 1.1 (Textbook Fig. 6.16, p. 283): Linear signal estimation, forward linear prediction, and backward linear prediction. This figure is the most useful starting point for this chapter because it shows that prediction is a special case of linear signal estimation.*
+
+---
+
+**§1 Basic Linear Prediction Model and the Autocorrelation Method**
+
+- <a href="#11-why-linear-prediction-is-important" style="color: #a0a0a0;">1.1 Why Linear Prediction Is Important</a>
+- [1.2 Linear Prediction as LMMSE Estimation](#12-linear-prediction-as-lmmse-estimation)
+- <a href="#13-minimum-prediction-error-power" style="color: #a0a0a0;">1.3 Minimum Prediction Error Power</a>
+- <a href="#14-the-autocorrelation-method-for-finite-data" style="color: #a0a0a0;">1.4 The Autocorrelation Method for Finite Data</a>
+- <a href="#15-windowing-and-model-accuracy" style="color: #a0a0a0;">1.5 Windowing and Model Accuracy</a>
+
+---
 
 ## 1.2 Linear Prediction as LMMSE Estimation
 
@@ -210,6 +319,18 @@ r(p-1)&r(p-2)&\cdots&r(0)
 =-\begin{bmatrix}r(1)\\r(2)\\\vdots\\r(p)\end{bmatrix}.$$
 
 The matrix is Toeplitz: each diagonal is constant. This Toeplitz structure is the reason why Levinson-Durbin recursion can solve the system much faster than generic Gaussian elimination.
+
+---
+
+**§1 Basic Linear Prediction Model and the Autocorrelation Method**
+
+- <a href="#11-why-linear-prediction-is-important" style="color: #a0a0a0;">1.1 Why Linear Prediction Is Important</a>
+- <a href="#12-linear-prediction-as-lmmse-estimation" style="color: #a0a0a0;">1.2 Linear Prediction as LMMSE Estimation</a>
+- [1.3 Minimum Prediction Error Power](#13-minimum-prediction-error-power)
+- <a href="#14-the-autocorrelation-method-for-finite-data" style="color: #a0a0a0;">1.4 The Autocorrelation Method for Finite Data</a>
+- <a href="#15-windowing-and-model-accuracy" style="color: #a0a0a0;">1.5 Windowing and Model Accuracy</a>
+
+---
 
 ## 1.3 Minimum Prediction Error Power
 
@@ -293,6 +414,18 @@ we get $\mathbf{a}_p=\mathbf{0}$ when $\mathbf{R}_p$ is invertible. Consequently
 $$P_p=r_x(0).$$
 
 In that case prediction cannot improve anything.
+
+---
+
+**§1 Basic Linear Prediction Model and the Autocorrelation Method**
+
+- <a href="#11-why-linear-prediction-is-important" style="color: #a0a0a0;">1.1 Why Linear Prediction Is Important</a>
+- <a href="#12-linear-prediction-as-lmmse-estimation" style="color: #a0a0a0;">1.2 Linear Prediction as LMMSE Estimation</a>
+- <a href="#13-minimum-prediction-error-power" style="color: #a0a0a0;">1.3 Minimum Prediction Error Power</a>
+- [1.4 The Autocorrelation Method for Finite Data](#14-the-autocorrelation-method-for-finite-data)
+- <a href="#15-windowing-and-model-accuracy" style="color: #a0a0a0;">1.5 Windowing and Model Accuracy</a>
+
+---
 
 ## 1.4 The Autocorrelation Method for Finite Data
 
@@ -565,6 +698,18 @@ The zero-extension assumption is not always physically accurate. If the true sig
 
 This motivates the covariance and modified covariance methods, discussed later in §7 and §10.
 
+---
+
+**§1 Basic Linear Prediction Model and the Autocorrelation Method**
+
+- <a href="#11-why-linear-prediction-is-important" style="color: #a0a0a0;">1.1 Why Linear Prediction Is Important</a>
+- <a href="#12-linear-prediction-as-lmmse-estimation" style="color: #a0a0a0;">1.2 Linear Prediction as LMMSE Estimation</a>
+- <a href="#13-minimum-prediction-error-power" style="color: #a0a0a0;">1.3 Minimum Prediction Error Power</a>
+- <a href="#14-the-autocorrelation-method-for-finite-data" style="color: #a0a0a0;">1.4 The Autocorrelation Method for Finite Data</a>
+- [1.5 Windowing and Model Accuracy](#15-windowing-and-model-accuracy)
+
+---
+
 ## 1.5 Windowing and Model Accuracy
 
 The autocorrelation method with zero extension is equivalent to using a rectangular data window. A rectangular window has strong sidelobes in frequency, which can create spectral leakage.
@@ -584,6 +729,18 @@ The choice of window changes the estimated autocorrelation sequence and therefor
 
 > 📖 Textbook §6.5 (Linear Prediction); §9.2 (Estimation of All-Pole Models)
 
+---
+
+**§2 Equivalence Between AR All-Pole Modeling and Linear Prediction**
+
+- [2.1 The AR($p$) Model](#21-the-arp-model)
+- <a href="#22-prediction-error-filter-equals-whitening-filter" style="color: #a0a0a0;">2.2 Prediction Error Filter Equals Whitening Filter</a>
+- <a href="#23-yule-walker-equations-from-the-ar-model" style="color: #a0a0a0;">2.3 Yule-Walker Equations from the AR Model</a>
+- <a href="#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction" style="color: #a0a0a0;">2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction</a>
+- <a href="#25-why-all-pole-models-are-useful" style="color: #a0a0a0;">2.5 Why All-Pole Models Are Useful</a>
+
+---
+
 ## 2.1 The AR($p$) Model
 
 An autoregressive process of order $p$ is defined by
@@ -601,6 +758,18 @@ The corresponding synthesis model is
 $$\boxed{x(n)=H_p(z)w(n),\qquad H_p(z)=\frac{1}{A_p(z)}.}$$
 
 Because $H_p(z)$ has only poles, AR modeling is also called all-pole modeling.
+
+---
+
+**§2 Equivalence Between AR All-Pole Modeling and Linear Prediction**
+
+- <a href="#21-the-arp-model" style="color: #a0a0a0;">2.1 The AR($p$) Model</a>
+- [2.2 Prediction Error Filter Equals Whitening Filter](#22-prediction-error-filter-equals-whitening-filter)
+- <a href="#23-yule-walker-equations-from-the-ar-model" style="color: #a0a0a0;">2.3 Yule-Walker Equations from the AR Model</a>
+- <a href="#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction" style="color: #a0a0a0;">2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction</a>
+- <a href="#25-why-all-pole-models-are-useful" style="color: #a0a0a0;">2.5 Why All-Pole Models Are Useful</a>
+
+---
 
 ## 2.2 Prediction Error Filter Equals Whitening Filter
 
@@ -625,6 +794,18 @@ Thus the same coefficients appear in three places:
 | AR difference equation | $A_p(z)x(n)=w(n)$ |
 | Prediction error filter | $e_p^f(n)=A_p(z)x(n)$ |
 | All-pole synthesis filter | $x(n)=\dfrac{1}{A_p(z)}w(n)$ |
+
+---
+
+**§2 Equivalence Between AR All-Pole Modeling and Linear Prediction**
+
+- <a href="#21-the-arp-model" style="color: #a0a0a0;">2.1 The AR($p$) Model</a>
+- <a href="#22-prediction-error-filter-equals-whitening-filter" style="color: #a0a0a0;">2.2 Prediction Error Filter Equals Whitening Filter</a>
+- [2.3 Yule-Walker Equations from the AR Model](#23-yule-walker-equations-from-the-ar-model)
+- <a href="#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction" style="color: #a0a0a0;">2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction</a>
+- <a href="#25-why-all-pole-models-are-useful" style="color: #a0a0a0;">2.5 Why All-Pole Models Are Useful</a>
+
+---
 
 ## 2.3 Yule-Walker Equations from the AR Model
 
@@ -707,6 +888,18 @@ $$P_p=E\{|e_p^f(n)|^2\}=E\{|w(n)|^2\}=\sigma_w^2.$$
 In words, the innovation variance is the average power of the part of the
 current sample that cannot be predicted from the past $p$ samples.
 
+---
+
+**§2 Equivalence Between AR All-Pole Modeling and Linear Prediction**
+
+- <a href="#21-the-arp-model" style="color: #a0a0a0;">2.1 The AR($p$) Model</a>
+- <a href="#22-prediction-error-filter-equals-whitening-filter" style="color: #a0a0a0;">2.2 Prediction Error Filter Equals Whitening Filter</a>
+- <a href="#23-yule-walker-equations-from-the-ar-model" style="color: #a0a0a0;">2.3 Yule-Walker Equations from the AR Model</a>
+- [2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction](#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction)
+- <a href="#25-why-all-pole-models-are-useful" style="color: #a0a0a0;">2.5 Why All-Pole Models Are Useful</a>
+
+---
+
 ## 2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction
 
 There are two related but distinct problems.
@@ -784,6 +977,18 @@ Here $x(n)$ is treated as a finite deterministic data record. We choose coeffici
 
 The two formulations become equivalent when the finite-sample correlation estimates are used as approximations to ensemble correlations. This is why the same algorithms appear in both AR spectrum estimation and deterministic linear prediction.
 
+---
+
+**§2 Equivalence Between AR All-Pole Modeling and Linear Prediction**
+
+- <a href="#21-the-arp-model" style="color: #a0a0a0;">2.1 The AR($p$) Model</a>
+- <a href="#22-prediction-error-filter-equals-whitening-filter" style="color: #a0a0a0;">2.2 Prediction Error Filter Equals Whitening Filter</a>
+- <a href="#23-yule-walker-equations-from-the-ar-model" style="color: #a0a0a0;">2.3 Yule-Walker Equations from the AR Model</a>
+- <a href="#24-statistical-all-pole-modeling-vs-deterministic-linear-prediction" style="color: #a0a0a0;">2.4 Statistical All-Pole Modeling vs Deterministic Linear Prediction</a>
+- [2.5 Why All-Pole Models Are Useful](#25-why-all-pole-models-are-useful)
+
+---
+
 ## 2.5 Why All-Pole Models Are Useful
 
 All-pole models are especially effective for signals with spectral peaks. A pole near the unit circle creates a sharp spectral peak at the corresponding frequency. Therefore, an all-pole model can represent narrowband resonances with relatively few parameters.
@@ -805,6 +1010,21 @@ Typical examples include:
 # §3 Levinson-Durbin Recursive Algorithm
 
 > 📖 Textbook §7.4 (Algorithms of Levinson and Levinson-Durbin); §7.1.3
+
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- [3.1 The Computational Problem](#31-the-computational-problem)
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
 
 ## 3.1 The Computational Problem
 
@@ -860,6 +1080,21 @@ $$r(0)a_1=-r(1).$$
 
 Each solution is built from the previous-order solution.
 
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- [3.2 The Order-Recursive View](#32-the-order-recursive-view)
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
+
 ## 3.2 The Order-Recursive View
 
 Let
@@ -877,6 +1112,21 @@ The new coefficient is the reflection coefficient
 $$\kappa_m=a_m^{(m)}.$$
 
 It measures how much correlation remains between the forward and backward prediction errors at order $m-1$.
+
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- [3.3 Levinson-Durbin Recursion Formulas](#33-levinson-durbin-recursion-formulas)
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
 
 ## 3.3 Levinson-Durbin Recursion Formulas
 
@@ -906,6 +1156,21 @@ $$\boxed{P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2).}$$
 
 These equations are the core of the Levinson-Durbin algorithm.
 
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- [3.4 Why the Error Recursion Makes Sense](#34-why-the-error-recursion-makes-sense)
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
+
 ## 3.4 Why the Error Recursion Makes Sense
 
 The update
@@ -919,6 +1184,21 @@ If $\lvert\kappa_m\rvert$ is close to zero, the new stage adds little predictive
 If $\lvert\kappa_m\rvert$ is large, the new lag explains a significant part of the residual correlation, so the error power decreases strongly.
 
 If $\lvert\kappa_m\rvert<1$, then $P_m>0$. This connects numerical recursion, signal predictability, and filter stability.
+
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- [3.5 Reflection Coefficient as Partial Correlation](#35-reflection-coefficient-as-partial-correlation)
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
 
 ## 3.5 Reflection Coefficient as Partial Correlation
 
@@ -955,6 +1235,21 @@ $$\kappa_1,\kappa_2,\kappa_3,\ldots$$
 and look for the point after which the coefficients are no longer significantly different from zero. The last significant reflection coefficient suggests the AR order. For example, if $\kappa_1,\ldots,\kappa_4$ are significant but $\kappa_5,\kappa_6,\ldots$ are small, then AR(4) is a natural candidate.
 
 In real finite data, the coefficients after the true order will not be exactly zero because of sample variability and noise. Thus $p$ is not known in advance; it is estimated from the data by checking where the PARCOR sequence effectively cuts off, often together with criteria such as prediction error power, AIC/BIC, or residual whiteness.
+
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- [3.6 Direct Form vs Recursive Structure](#36-direct-form-vs-recursive-structure)
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
 
 ## 3.6 Direct Form vs Recursive Structure
 
@@ -1073,6 +1368,21 @@ $$e_m^b(n)=e_{m-1}^b(n-1)+\kappa_m e_{m-1}^f(n).$$
 
 These equations say that the $m$-th lattice stage combines the previous forward and backward prediction errors using one parameter $\kappa_m$. The goal is local decorrelation: after the update, the order-$m$ errors contain less predictable structure than the order-$(m-1)$ errors.
 
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- [3.7 Algorithm Table](#37-algorithm-table)
+- <a href="#38-simple-first-order-example" style="color: #a0a0a0;">3.8 Simple First-Order Example</a>
+
+---
+
 ## 3.7 Algorithm Table
 
 | Step | Operation |
@@ -1084,6 +1394,21 @@ These equations say that the $m$-th lattice stage combines the previous forward 
 | 5 | Set $a_m^{(m)}=\kappa_m$ |
 | 6 | Update $P_m=P_{m-1}(1-\lvert\kappa_m\rvert^2)$ |
 | 7 | Continue until $m=p$ |
+
+---
+
+**§3 Levinson-Durbin Recursive Algorithm**
+
+- <a href="#31-the-computational-problem" style="color: #a0a0a0;">3.1 The Computational Problem</a>
+- <a href="#32-the-order-recursive-view" style="color: #a0a0a0;">3.2 The Order-Recursive View</a>
+- <a href="#33-levinson-durbin-recursion-formulas" style="color: #a0a0a0;">3.3 Levinson-Durbin Recursion Formulas</a>
+- <a href="#34-why-the-error-recursion-makes-sense" style="color: #a0a0a0;">3.4 Why the Error Recursion Makes Sense</a>
+- <a href="#35-reflection-coefficient-as-partial-correlation" style="color: #a0a0a0;">3.5 Reflection Coefficient as Partial Correlation</a>
+- <a href="#36-direct-form-vs-recursive-structure" style="color: #a0a0a0;">3.6 Direct Form vs Recursive Structure</a>
+- <a href="#37-algorithm-table" style="color: #a0a0a0;">3.7 Algorithm Table</a>
+- [3.8 Simple First-Order Example](#38-simple-first-order-example)
+
+---
 
 ## 3.8 Simple First-Order Example
 
@@ -1110,6 +1435,21 @@ This result says: the more strongly $x(n)$ is correlated with $x(n-1)$, the more
 # §4 Three Equivalent Sets of Recursive Parameters
 
 > 📖 Textbook §7.1–§7.3, §7.5, §7.7
+
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- [4.1 Three Equivalent Descriptions](#41-three-equivalent-descriptions)
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
 
 ## 4.1 Three Equivalent Descriptions
 
@@ -1141,6 +1481,21 @@ $$\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.$$
 >
 > *Figure 4.2 (Textbook Fig. 7.7, p. 361): Equivalent representations for minimum-phase linear prediction error filters. Autocorrelation values, reflection coefficients, direct-form coefficients, and error powers are different parameterizations of the same object.*
 
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- [4.2 Positive Definiteness, Reflection Coefficients, and Stability](#42-positive-definiteness-reflection-coefficients-and-stability)
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
+
 ## 4.2 Positive Definiteness, Reflection Coefficients, and Stability
 
 For a valid WSS process, the autocorrelation matrix must be nonnegative definite. If it is positive definite, the Levinson-Durbin recursion gives
@@ -1161,6 +1516,21 @@ This condition has a filter interpretation:
 
 This is extremely useful because checking stability through roots of $A_p(z)$ can be expensive and numerically sensitive. Checking reflection coefficients is simple.
 
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- [4.3 Boundary Case: Zero on the Unit Circle](#43-boundary-case-zero-on-the-unit-circle)
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
+
 ## 4.3 Boundary Case: Zero on the Unit Circle
 
 If $\lvert\kappa_m\rvert=1$ for some stage, then
@@ -1168,6 +1538,21 @@ If $\lvert\kappa_m\rvert=1$ for some stage, then
 $$P_m=0.$$
 
 This means that the signal becomes perfectly predictable at order $m$. The corresponding prediction error filter has a zero on the unit circle. In theory this may occur for deterministic sinusoidal components. In practice, for noisy data, exact equality is rare, but values very close to one indicate strong predictability or numerical ill-conditioning.
+
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- [4.4 Cholesky / LDL$^H$ Decomposition View](#44-cholesky--ldlh-decomposition-view)
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
 
 ## 4.4 Cholesky / LDL$^H$ Decomposition View
 
@@ -1189,6 +1574,21 @@ The key equivalence is:
 
 $$\mathbf{R}_p>0 \quad\Longleftrightarrow\quad P_m>0\ \text{for all }m \quad\Longleftrightarrow\quad \lvert\kappa_m\rvert<1\ \text{for all }m.$$
 
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- [4.5 Autocorrelation Extension and Maximum Entropy](#45-autocorrelation-extension-and-maximum-entropy)
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
+
 ## 4.5 Autocorrelation Extension and Maximum Entropy
 
 Suppose we know only
@@ -1209,6 +1609,21 @@ $$\kappa_{p+1}=\kappa_{p+2}=\cdots=0.$$
 
 This is equivalent to choosing an AR($p$) model. In other words, the AR($p$) model is the least committed extension: it preserves the known correlations but assumes no additional partial correlation beyond order $p$.
 
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- [4.6 Step-Up Recursion: Lattice to Direct Form](#46-step-up-recursion-lattice-to-direct-form)
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
+
 ## 4.6 Step-Up Recursion: Lattice to Direct Form
 
 Given reflection coefficients $\kappa_1,\ldots,\kappa_p$, we can recover direct-form coefficients using the step-up recursion.
@@ -1220,6 +1635,21 @@ $$a_m^{(m)}=\kappa_m,$$
 $$a_k^{(m)}=a_k^{(m-1)}+\kappa_m[a_{m-k}^{(m-1)}]^\ast,\qquad k=1,\ldots,m-1.$$
 
 This is exactly the coefficient update used inside Levinson-Durbin.
+
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- [4.7 Step-Down Recursion: Direct Form to Lattice](#47-step-down-recursion-direct-form-to-lattice)
+- <a href="#48-why-reflection-coefficients-are-numerically-attractive" style="color: #a0a0a0;">4.8 Why Reflection Coefficients Are Numerically Attractive</a>
+
+---
 
 ## 4.7 Step-Down Recursion: Direct Form to Lattice
 
@@ -1234,6 +1664,21 @@ Then for $k=1,\ldots,m-1$,
 $$\boxed{a_k^{(m-1)}=\frac{a_k^{(m)}-\kappa_m[a_{m-k}^{(m)}]^\ast}{1-\lvert\kappa_m\rvert^2}.}$$
 
 This recursion is also a stability test. If at any stage $\lvert\kappa_m\rvert\ge 1$, the polynomial is not minimum phase.
+
+---
+
+**§4 Three Equivalent Sets of Recursive Parameters**
+
+- <a href="#41-three-equivalent-descriptions" style="color: #a0a0a0;">4.1 Three Equivalent Descriptions</a>
+- <a href="#42-positive-definiteness-reflection-coefficients-and-stability" style="color: #a0a0a0;">4.2 Positive Definiteness, Reflection Coefficients, and Stability</a>
+- <a href="#43-boundary-case-zero-on-the-unit-circle" style="color: #a0a0a0;">4.3 Boundary Case: Zero on the Unit Circle</a>
+- <a href="#44-cholesky--ldlh-decomposition-view" style="color: #a0a0a0;">4.4 Cholesky / LDL$^H$ Decomposition View</a>
+- <a href="#45-autocorrelation-extension-and-maximum-entropy" style="color: #a0a0a0;">4.5 Autocorrelation Extension and Maximum Entropy</a>
+- <a href="#46-step-up-recursion-lattice-to-direct-form" style="color: #a0a0a0;">4.6 Step-Up Recursion: Lattice to Direct Form</a>
+- <a href="#47-step-down-recursion-direct-form-to-lattice" style="color: #a0a0a0;">4.7 Step-Down Recursion: Direct Form to Lattice</a>
+- [4.8 Why Reflection Coefficients Are Numerically Attractive](#48-why-reflection-coefficients-are-numerically-attractive)
+
+---
 
 ## 4.8 Why Reflection Coefficients Are Numerically Attractive
 
@@ -1251,6 +1696,18 @@ This is one of the practical reasons why lattice filters are common in speech pr
 
 > 📖 Textbook §7.6 (Algorithm of Schür)
 
+---
+
+**§5 Schur Recursive Algorithm**
+
+- [5.1 Goal of the Schur Algorithm](#51-goal-of-the-schur-algorithm)
+- <a href="#52-gapped-correlation-functions" style="color: #a0a0a0;">5.2 Gapped Correlation Functions</a>
+- <a href="#53-algorithmic-interpretation" style="color: #a0a0a0;">5.3 Algorithmic Interpretation</a>
+- <a href="#54-schur-algorithm-summary" style="color: #a0a0a0;">5.4 Schur Algorithm Summary</a>
+- <a href="#55-relationship-to-levinson-durbin" style="color: #a0a0a0;">5.5 Relationship to Levinson-Durbin</a>
+
+---
+
 ## 5.1 Goal of the Schur Algorithm
 
 The Levinson-Durbin algorithm computes both:
@@ -1261,6 +1718,18 @@ The Levinson-Durbin algorithm computes both:
 The Schur algorithm focuses on computing the reflection coefficients directly from the autocorrelation sequence without explicitly computing all direct-form coefficients.
 
 This is useful when the final implementation is a lattice filter, because the lattice filter only needs the reflection coefficients.
+
+---
+
+**§5 Schur Recursive Algorithm**
+
+- <a href="#51-goal-of-the-schur-algorithm" style="color: #a0a0a0;">5.1 Goal of the Schur Algorithm</a>
+- [5.2 Gapped Correlation Functions](#52-gapped-correlation-functions)
+- <a href="#53-algorithmic-interpretation" style="color: #a0a0a0;">5.3 Algorithmic Interpretation</a>
+- <a href="#54-schur-algorithm-summary" style="color: #a0a0a0;">5.4 Schur Algorithm Summary</a>
+- <a href="#55-relationship-to-levinson-durbin" style="color: #a0a0a0;">5.5 Relationship to Levinson-Durbin</a>
+
+---
 
 ## 5.2 Gapped Correlation Functions
 
@@ -1282,6 +1751,18 @@ The reflection coefficient is then obtained by
 
 $$\boxed{\kappa_m=-\frac{\xi_m^f(m+1)}{\xi_m^b(m)}.}$$
 
+---
+
+**§5 Schur Recursive Algorithm**
+
+- <a href="#51-goal-of-the-schur-algorithm" style="color: #a0a0a0;">5.1 Goal of the Schur Algorithm</a>
+- <a href="#52-gapped-correlation-functions" style="color: #a0a0a0;">5.2 Gapped Correlation Functions</a>
+- [5.3 Algorithmic Interpretation](#53-algorithmic-interpretation)
+- <a href="#54-schur-algorithm-summary" style="color: #a0a0a0;">5.4 Schur Algorithm Summary</a>
+- <a href="#55-relationship-to-levinson-durbin" style="color: #a0a0a0;">5.5 Relationship to Levinson-Durbin</a>
+
+---
+
 ## 5.3 Algorithmic Interpretation
 
 At stage $m$, the Schur algorithm asks:
@@ -1293,6 +1774,18 @@ That residual correlation determines the next reflection coefficient.
 If the remaining correlation is small, $\kappa_m$ is small and the next lattice stage contributes little.
 
 If the remaining correlation is large, the next stage is important.
+
+---
+
+**§5 Schur Recursive Algorithm**
+
+- <a href="#51-goal-of-the-schur-algorithm" style="color: #a0a0a0;">5.1 Goal of the Schur Algorithm</a>
+- <a href="#52-gapped-correlation-functions" style="color: #a0a0a0;">5.2 Gapped Correlation Functions</a>
+- <a href="#53-algorithmic-interpretation" style="color: #a0a0a0;">5.3 Algorithmic Interpretation</a>
+- [5.4 Schur Algorithm Summary](#54-schur-algorithm-summary)
+- <a href="#55-relationship-to-levinson-durbin" style="color: #a0a0a0;">5.5 Relationship to Levinson-Durbin</a>
+
+---
 
 ## 5.4 Schur Algorithm Summary
 
@@ -1317,6 +1810,18 @@ If the remaining correlation is large, the next stage is important.
 >
 > *Figure 5.3 (Textbook Fig. 7.10, p. 368): Superladder structure used in the extended Schur algorithm for lattice-ladder filtering.*
 
+---
+
+**§5 Schur Recursive Algorithm**
+
+- <a href="#51-goal-of-the-schur-algorithm" style="color: #a0a0a0;">5.1 Goal of the Schur Algorithm</a>
+- <a href="#52-gapped-correlation-functions" style="color: #a0a0a0;">5.2 Gapped Correlation Functions</a>
+- <a href="#53-algorithmic-interpretation" style="color: #a0a0a0;">5.3 Algorithmic Interpretation</a>
+- <a href="#54-schur-algorithm-summary" style="color: #a0a0a0;">5.4 Schur Algorithm Summary</a>
+- [5.5 Relationship to Levinson-Durbin](#55-relationship-to-levinson-durbin)
+
+---
+
 ## 5.5 Relationship to Levinson-Durbin
 
 Both algorithms solve the same underlying Toeplitz prediction problem. The difference is what they compute along the way.
@@ -1333,6 +1838,18 @@ The Schur algorithm has good numerical properties because its internal quantitie
 # §6 General Levinson Recursion for Toeplitz Equations
 
 > 📖 Textbook §7.3 (Order-Recursive Algorithms for Optimum FIR Filters); §7.7 (Triangularization and Inversion of Toeplitz Matrices)
+
+---
+
+**§6 General Levinson Recursion for Toeplitz Equations**
+
+- [6.1 Beyond Linear Prediction](#61-beyond-linear-prediction)
+- <a href="#62-the-optimum-nesting-property" style="color: #a0a0a0;">6.2 The Optimum Nesting Property</a>
+- <a href="#63-partitioned-matrix-inversion-view" style="color: #a0a0a0;">6.3 Partitioned Matrix Inversion View</a>
+- <a href="#64-general-levinson-recursion-idea" style="color: #a0a0a0;">6.4 General Levinson Recursion Idea</a>
+- <a href="#65-complexity" style="color: #a0a0a0;">6.5 Complexity</a>
+
+---
 
 ## 6.1 Beyond Linear Prediction
 
@@ -1356,6 +1873,18 @@ Examples include:
 - smoothing and interpolation,
 - lattice-ladder filtering.
 
+---
+
+**§6 General Levinson Recursion for Toeplitz Equations**
+
+- <a href="#61-beyond-linear-prediction" style="color: #a0a0a0;">6.1 Beyond Linear Prediction</a>
+- [6.2 The Optimum Nesting Property](#62-the-optimum-nesting-property)
+- <a href="#63-partitioned-matrix-inversion-view" style="color: #a0a0a0;">6.3 Partitioned Matrix Inversion View</a>
+- <a href="#64-general-levinson-recursion-idea" style="color: #a0a0a0;">6.4 General Levinson Recursion Idea</a>
+- <a href="#65-complexity" style="color: #a0a0a0;">6.5 Complexity</a>
+
+---
+
 ## 6.2 The Optimum Nesting Property
 
 The key condition behind order-recursive algorithms is the optimum nesting property. When the filter order increases from $m$ to $m+1$, the new correlation matrix contains the old one as a principal submatrix:
@@ -1366,6 +1895,18 @@ $$\mathbf{R}_{m+1}=\begin{bmatrix}
 \end{bmatrix}.$$
 
 This nesting makes it possible to express $\mathbf{R}_{m+1}^{-1}$ in terms of $\mathbf{R}_{m}^{-1}$ plus a rank-one correction.
+
+---
+
+**§6 General Levinson Recursion for Toeplitz Equations**
+
+- <a href="#61-beyond-linear-prediction" style="color: #a0a0a0;">6.1 Beyond Linear Prediction</a>
+- <a href="#62-the-optimum-nesting-property" style="color: #a0a0a0;">6.2 The Optimum Nesting Property</a>
+- [6.3 Partitioned Matrix Inversion View](#63-partitioned-matrix-inversion-view)
+- <a href="#64-general-levinson-recursion-idea" style="color: #a0a0a0;">6.4 General Levinson Recursion Idea</a>
+- <a href="#65-complexity" style="color: #a0a0a0;">6.5 Complexity</a>
+
+---
 
 ## 6.3 Partitioned Matrix Inversion View
 
@@ -1383,6 +1924,18 @@ $$S_m=\gamma-\mathbf{q}_m^H\mathbf{R}_m^{-1}\mathbf{q}_m.$$
 The quantity $S_m$ is exactly an error power. In prediction language, it is the part of the new sample that cannot be predicted from the previous $m$ samples.
 
 Thus the matrix inversion lemma and the prediction interpretation are the same idea seen from two angles.
+
+---
+
+**§6 General Levinson Recursion for Toeplitz Equations**
+
+- <a href="#61-beyond-linear-prediction" style="color: #a0a0a0;">6.1 Beyond Linear Prediction</a>
+- <a href="#62-the-optimum-nesting-property" style="color: #a0a0a0;">6.2 The Optimum Nesting Property</a>
+- <a href="#63-partitioned-matrix-inversion-view" style="color: #a0a0a0;">6.3 Partitioned Matrix Inversion View</a>
+- [6.4 General Levinson Recursion Idea](#64-general-levinson-recursion-idea)
+- <a href="#65-complexity" style="color: #a0a0a0;">6.5 Complexity</a>
+
+---
 
 ## 6.4 General Levinson Recursion Idea
 
@@ -1402,6 +1955,18 @@ This is why many optimum FIR filtering structures contain both:
 - a lattice part, which orthogonalizes the input data,
 - a ladder part, which combines orthogonalized components to estimate the desired response.
 
+---
+
+**§6 General Levinson Recursion for Toeplitz Equations**
+
+- <a href="#61-beyond-linear-prediction" style="color: #a0a0a0;">6.1 Beyond Linear Prediction</a>
+- <a href="#62-the-optimum-nesting-property" style="color: #a0a0a0;">6.2 The Optimum Nesting Property</a>
+- <a href="#63-partitioned-matrix-inversion-view" style="color: #a0a0a0;">6.3 Partitioned Matrix Inversion View</a>
+- <a href="#64-general-levinson-recursion-idea" style="color: #a0a0a0;">6.4 General Levinson Recursion Idea</a>
+- [6.5 Complexity](#65-complexity)
+
+---
+
 ## 6.5 Complexity
 
 | Method | Complexity for order $p$ | Uses Toeplitz structure? |
@@ -1419,6 +1984,18 @@ The main message is that Toeplitz structure should never be ignored in large pre
 
 > 📖 Textbook §7.1; §9.2.1 (Direct Structures)
 
+---
+
+**§7 Covariance Algorithm for Linear Prediction**
+
+- [7.1 Motivation](#71-motivation)
+- <a href="#72-error-criterion" style="color: #a0a0a0;">7.2 Error Criterion</a>
+- <a href="#73-why-the-matrix-is-not-toeplitz" style="color: #a0a0a0;">7.3 Why the Matrix Is Not Toeplitz</a>
+- <a href="#74-advantages-and-disadvantages" style="color: #a0a0a0;">7.4 Advantages and Disadvantages</a>
+- <a href="#75-when-to-use-the-covariance-method" style="color: #a0a0a0;">7.5 When to Use the Covariance Method</a>
+
+---
+
 ## 7.1 Motivation
 
 The autocorrelation method assumes samples outside the data record are zero. This is convenient because it preserves Toeplitz structure and guarantees stable all-pole models. But the zero-extension assumption can distort short data records.
@@ -1430,6 +2007,18 @@ For a $p$-th order predictor and data $x(0),x(1),\ldots,x(N)$, use
 $$n=p,p+1,\ldots,N.$$
 
 Then every term $x(n-k)$ for $k=1,\ldots,p$ lies inside the observed data interval.
+
+---
+
+**§7 Covariance Algorithm for Linear Prediction**
+
+- <a href="#71-motivation" style="color: #a0a0a0;">7.1 Motivation</a>
+- [7.2 Error Criterion](#72-error-criterion)
+- <a href="#73-why-the-matrix-is-not-toeplitz" style="color: #a0a0a0;">7.3 Why the Matrix Is Not Toeplitz</a>
+- <a href="#74-advantages-and-disadvantages" style="color: #a0a0a0;">7.4 Advantages and Disadvantages</a>
+- <a href="#75-when-to-use-the-covariance-method" style="color: #a0a0a0;">7.5 When to Use the Covariance Method</a>
+
+---
 
 ## 7.2 Error Criterion
 
@@ -1451,6 +2040,18 @@ In matrix form,
 
 $$\boxed{\boldsymbol{\Phi}\mathbf{a}_p=-\boldsymbol{\phi}.}$$
 
+---
+
+**§7 Covariance Algorithm for Linear Prediction**
+
+- <a href="#71-motivation" style="color: #a0a0a0;">7.1 Motivation</a>
+- <a href="#72-error-criterion" style="color: #a0a0a0;">7.2 Error Criterion</a>
+- [7.3 Why the Matrix Is Not Toeplitz](#73-why-the-matrix-is-not-toeplitz)
+- <a href="#74-advantages-and-disadvantages" style="color: #a0a0a0;">7.4 Advantages and Disadvantages</a>
+- <a href="#75-when-to-use-the-covariance-method" style="color: #a0a0a0;">7.5 When to Use the Covariance Method</a>
+
+---
+
 ## 7.3 Why the Matrix Is Not Toeplitz
 
 The covariance matrix entries depend on both $i$ and $k$:
@@ -1461,6 +2062,18 @@ Although $x(n-i)$ and $x(n-k)$ differ by lag $i-k$, the summation limits do not 
 
 So, unlike the autocorrelation method, the covariance method usually produces a non-Toeplitz matrix.
 
+---
+
+**§7 Covariance Algorithm for Linear Prediction**
+
+- <a href="#71-motivation" style="color: #a0a0a0;">7.1 Motivation</a>
+- <a href="#72-error-criterion" style="color: #a0a0a0;">7.2 Error Criterion</a>
+- <a href="#73-why-the-matrix-is-not-toeplitz" style="color: #a0a0a0;">7.3 Why the Matrix Is Not Toeplitz</a>
+- [7.4 Advantages and Disadvantages](#74-advantages-and-disadvantages)
+- <a href="#75-when-to-use-the-covariance-method" style="color: #a0a0a0;">7.5 When to Use the Covariance Method</a>
+
+---
+
 ## 7.4 Advantages and Disadvantages
 
 | Method | Advantage | Disadvantage |
@@ -1469,6 +2082,18 @@ So, unlike the autocorrelation method, the covariance method usually produces a 
 | Covariance method | Uses only valid data; often better for short records | Non-Toeplitz; more computation; no automatic stability guarantee |
 
 The covariance method is attractive when the data record is short and boundary distortion is serious. But because it does not guarantee a minimum-phase prediction error filter, one must check stability if the coefficients are used as an all-pole synthesis model.
+
+---
+
+**§7 Covariance Algorithm for Linear Prediction**
+
+- <a href="#71-motivation" style="color: #a0a0a0;">7.1 Motivation</a>
+- <a href="#72-error-criterion" style="color: #a0a0a0;">7.2 Error Criterion</a>
+- <a href="#73-why-the-matrix-is-not-toeplitz" style="color: #a0a0a0;">7.3 Why the Matrix Is Not Toeplitz</a>
+- <a href="#74-advantages-and-disadvantages" style="color: #a0a0a0;">7.4 Advantages and Disadvantages</a>
+- [7.5 When to Use the Covariance Method](#75-when-to-use-the-covariance-method)
+
+---
 
 ## 7.5 When to Use the Covariance Method
 
@@ -1493,6 +2118,19 @@ Use the autocorrelation method when:
 
 > 📖 Textbook §7.5 (Lattice Structures for Optimum FIR Filters and Predictors)
 
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- [8.1 Forward and Backward Prediction Errors](#81-forward-and-backward-prediction-errors)
+- <a href="#82-lattice-recursions" style="color: #a0a0a0;">8.2 Lattice Recursions</a>
+- <a href="#83-intuition-behind-the-lattice-stage" style="color: #a0a0a0;">8.3 Intuition Behind the Lattice Stage</a>
+- <a href="#84-all-pole-lattice-synthesis" style="color: #a0a0a0;">8.4 All-Pole Lattice Synthesis</a>
+- <a href="#85-advantages-of-lattice-filters" style="color: #a0a0a0;">8.5 Advantages of Lattice Filters</a>
+- <a href="#86-lattice-ladder-structure" style="color: #a0a0a0;">8.6 Lattice-Ladder Structure</a>
+
+---
+
 ## 8.1 Forward and Backward Prediction Errors
 
 The forward prediction error estimates the present sample from the past:
@@ -1510,6 +2148,19 @@ $$\boxed{\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.}$$
 The forward and backward error powers are equal:
 
 $$\boxed{E\{\lvert e_m^f(n)\rvert^2\}=E\{\lvert e_m^b(n)\rvert^2\}=P_m.}$$
+
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- <a href="#81-forward-and-backward-prediction-errors" style="color: #a0a0a0;">8.1 Forward and Backward Prediction Errors</a>
+- [8.2 Lattice Recursions](#82-lattice-recursions)
+- <a href="#83-intuition-behind-the-lattice-stage" style="color: #a0a0a0;">8.3 Intuition Behind the Lattice Stage</a>
+- <a href="#84-all-pole-lattice-synthesis" style="color: #a0a0a0;">8.4 All-Pole Lattice Synthesis</a>
+- <a href="#85-advantages-of-lattice-filters" style="color: #a0a0a0;">8.5 Advantages of Lattice Filters</a>
+- <a href="#86-lattice-ladder-structure" style="color: #a0a0a0;">8.6 Lattice-Ladder Structure</a>
+
+---
 
 ## 8.2 Lattice Recursions
 
@@ -1529,6 +2180,19 @@ Each lattice stage removes the residual correlation between the current forward 
 >
 > *Figure 8.1 (Textbook Fig. 7.5, p. 357): All-zero lattice structure for forward and backward prediction error filters.*
 
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- <a href="#81-forward-and-backward-prediction-errors" style="color: #a0a0a0;">8.1 Forward and Backward Prediction Errors</a>
+- <a href="#82-lattice-recursions" style="color: #a0a0a0;">8.2 Lattice Recursions</a>
+- [8.3 Intuition Behind the Lattice Stage](#83-intuition-behind-the-lattice-stage)
+- <a href="#84-all-pole-lattice-synthesis" style="color: #a0a0a0;">8.4 All-Pole Lattice Synthesis</a>
+- <a href="#85-advantages-of-lattice-filters" style="color: #a0a0a0;">8.5 Advantages of Lattice Filters</a>
+- <a href="#86-lattice-ladder-structure" style="color: #a0a0a0;">8.6 Lattice-Ladder Structure</a>
+
+---
+
 ## 8.3 Intuition Behind the Lattice Stage
 
 At stage $m-1$, suppose we already removed all predictable structure up to lag $m-1$. The remaining correlation between $e_{m-1}^f(n)$ and $e_{m-1}^b(n-1)$ represents the new information at lag $m$.
@@ -1536,6 +2200,19 @@ At stage $m-1$, suppose we already removed all predictable structure up to lag $
 The reflection coefficient $\kappa_m$ is chosen to remove this remaining correlation. After the update, the new errors satisfy a stronger orthogonality condition.
 
 Thus each lattice stage performs a local decorrelation operation.
+
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- <a href="#81-forward-and-backward-prediction-errors" style="color: #a0a0a0;">8.1 Forward and Backward Prediction Errors</a>
+- <a href="#82-lattice-recursions" style="color: #a0a0a0;">8.2 Lattice Recursions</a>
+- <a href="#83-intuition-behind-the-lattice-stage" style="color: #a0a0a0;">8.3 Intuition Behind the Lattice Stage</a>
+- [8.4 All-Pole Lattice Synthesis](#84-all-pole-lattice-synthesis)
+- <a href="#85-advantages-of-lattice-filters" style="color: #a0a0a0;">8.5 Advantages of Lattice Filters</a>
+- <a href="#86-lattice-ladder-structure" style="color: #a0a0a0;">8.6 Lattice-Ladder Structure</a>
+
+---
 
 ## 8.4 All-Pole Lattice Synthesis
 
@@ -1549,6 +2226,19 @@ This inverse can also be implemented in lattice form.
 >
 > *Figure 8.2 (Textbook Fig. 7.6, p. 359): All-pole lattice structure for recovering the input signal from the forward prediction error.*
 
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- <a href="#81-forward-and-backward-prediction-errors" style="color: #a0a0a0;">8.1 Forward and Backward Prediction Errors</a>
+- <a href="#82-lattice-recursions" style="color: #a0a0a0;">8.2 Lattice Recursions</a>
+- <a href="#83-intuition-behind-the-lattice-stage" style="color: #a0a0a0;">8.3 Intuition Behind the Lattice Stage</a>
+- <a href="#84-all-pole-lattice-synthesis" style="color: #a0a0a0;">8.4 All-Pole Lattice Synthesis</a>
+- [8.5 Advantages of Lattice Filters](#85-advantages-of-lattice-filters)
+- <a href="#86-lattice-ladder-structure" style="color: #a0a0a0;">8.6 Lattice-Ladder Structure</a>
+
+---
+
 ## 8.5 Advantages of Lattice Filters
 
 Lattice filters have several important advantages:
@@ -1558,6 +2248,19 @@ Lattice filters have several important advantages:
 3. **Numerical robustness.** Reflection coefficients are bounded for stable models.
 4. **Order-recursive implementation.** The same structure naturally supports model-order selection.
 5. **Reduced sensitivity to coefficient quantization.** Quantization of reflection coefficients is often safer than quantization of direct-form coefficients.
+
+---
+
+**§8 Forward/Backward Prediction and Lattice Filters**
+
+- <a href="#81-forward-and-backward-prediction-errors" style="color: #a0a0a0;">8.1 Forward and Backward Prediction Errors</a>
+- <a href="#82-lattice-recursions" style="color: #a0a0a0;">8.2 Lattice Recursions</a>
+- <a href="#83-intuition-behind-the-lattice-stage" style="color: #a0a0a0;">8.3 Intuition Behind the Lattice Stage</a>
+- <a href="#84-all-pole-lattice-synthesis" style="color: #a0a0a0;">8.4 All-Pole Lattice Synthesis</a>
+- <a href="#85-advantages-of-lattice-filters" style="color: #a0a0a0;">8.5 Advantages of Lattice Filters</a>
+- [8.6 Lattice-Ladder Structure](#86-lattice-ladder-structure)
+
+---
 
 ## 8.6 Lattice-Ladder Structure
 
@@ -1581,6 +2284,21 @@ This separation is conceptually powerful:
 
 > 📖 Textbook §9.2.3 (Maximum Entropy Method); §9.2 lattice AP estimation
 
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- [9.1 Why Burg's Algorithm Was Introduced](#91-why-burgs-algorithm-was-introduced)
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
+
 ## 9.1 Why Burg's Algorithm Was Introduced
 
 The autocorrelation method is stable but uses artificial zero extension. The covariance method uses the data more directly but does not guarantee stability.
@@ -1591,6 +2309,21 @@ Burg's algorithm attempts to combine useful features of both:
 - it uses both forward and backward prediction errors,
 - it estimates reflection coefficients stage by stage,
 - it guarantees a stable all-pole model because $\lvert\kappa_m\rvert<1$ under its update.
+
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- [9.2 Forward and Backward Error Criterion](#92-forward-and-backward-error-criterion)
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
 
 ## 9.2 Forward and Backward Error Criterion
 
@@ -1605,6 +2338,21 @@ $$e_m^f(n)=e_{m-1}^f(n)+\kappa_m^{\ast}e_{m-1}^b(n-1),$$
 $$e_m^b(n)=e_{m-1}^b(n-1)+\kappa_m e_{m-1}^f(n),$$
 
 only one new parameter $\kappa_m$ is optimized at stage $m$.
+
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- [9.3 Burg Reflection Coefficient Update](#93-burg-reflection-coefficient-update)
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
 
 ## 9.3 Burg Reflection Coefficient Update
 
@@ -1622,6 +2370,21 @@ $$\lvert\kappa_m\rvert\le 1.$$
 
 For non-degenerate data, $\lvert\kappa_m\rvert<1$, so the resulting all-pole model is stable.
 
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- [9.4 Burg Algorithm Steps](#94-burg-algorithm-steps)
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
+
 ## 9.4 Burg Algorithm Steps
 
 | Step | Operation |
@@ -1631,6 +2394,21 @@ For non-degenerate data, $\lvert\kappa_m\rvert<1$, so the resulting all-pole mod
 | 3 | Update $e_m^f(n)$ and $e_m^b(n)$ using the lattice recursions |
 | 4 | Update the residual variance, often by $\hat\sigma_m^2\approx\hat\sigma_{m-1}^2(1-\lvert\kappa_m\rvert^2)$ |
 | 5 | After the final stage, convert reflection coefficients to direct AR coefficients if needed |
+
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- [9.5 Burg, Forward Covariance, and Backward Covariance](#95-burg-forward-covariance-and-backward-covariance)
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
 
 ## 9.5 Burg, Forward Covariance, and Backward Covariance
 
@@ -1660,6 +2438,21 @@ $$\sum_n \left(\lvert e_m^f(n)\rvert^2+\lvert e_m^b(n)\rvert^2\right).$$
 
 The combined criterion leads to a stable lattice model and is usually preferred for AR spectral estimation from short records.
 
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- [9.6 Itakura-Saito / Geometric Mean Variant](#96-itakura-saito--geometric-mean-variant)
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
+
 ## 9.6 Itakura-Saito / Geometric Mean Variant
 
 Another estimate uses a geometric-mean normalization. In simplified notation,
@@ -1667,6 +2460,21 @@ Another estimate uses a geometric-mean normalization. In simplified notation,
 $$\kappa_m^{IS}\propto -\frac{\beta_m^{fb}}{\sqrt{E_m^fE_m^b}}.$$
 
 This can be viewed as replacing the arithmetic normalization in Burg's method with a geometric one. Both methods are designed to keep reflection coefficients within the unit disk under appropriate conditions.
+
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- [9.7 Maximum Entropy Interpretation](#97-maximum-entropy-interpretation)
+- <a href="#98-strengths-and-weaknesses-of-burgs-algorithm" style="color: #a0a0a0;">9.8 Strengths and Weaknesses of Burg's Algorithm</a>
+
+---
 
 ## 9.7 Maximum Entropy Interpretation
 
@@ -1683,6 +2491,21 @@ The reason is that the entropy can be expressed in terms of reflection coefficie
 $$\kappa_m=0,\qquad m>p.$$
 
 Thus no additional partial correlation is assumed beyond what is supported by the known data. This leads exactly to an AR($p$) all-pole model.
+
+---
+
+**§9 Lattice Modeling and the Burg Algorithm**
+
+- <a href="#91-why-burgs-algorithm-was-introduced" style="color: #a0a0a0;">9.1 Why Burg's Algorithm Was Introduced</a>
+- <a href="#92-forward-and-backward-error-criterion" style="color: #a0a0a0;">9.2 Forward and Backward Error Criterion</a>
+- <a href="#93-burg-reflection-coefficient-update" style="color: #a0a0a0;">9.3 Burg Reflection Coefficient Update</a>
+- <a href="#94-burg-algorithm-steps" style="color: #a0a0a0;">9.4 Burg Algorithm Steps</a>
+- <a href="#95-burg-forward-covariance-and-backward-covariance" style="color: #a0a0a0;">9.5 Burg, Forward Covariance, and Backward Covariance</a>
+- <a href="#96-itakura-saito--geometric-mean-variant" style="color: #a0a0a0;">9.6 Itakura-Saito / Geometric Mean Variant</a>
+- <a href="#97-maximum-entropy-interpretation" style="color: #a0a0a0;">9.7 Maximum Entropy Interpretation</a>
+- [9.8 Strengths and Weaknesses of Burg's Algorithm](#98-strengths-and-weaknesses-of-burgs-algorithm)
+
+---
 
 ## 9.8 Strengths and Weaknesses of Burg's Algorithm
 
@@ -1713,6 +2536,19 @@ Thus no additional partial correlation is assumed beyond what is supported by th
 
 > 📖 Textbook §9.2.1 (Modified Covariance Method); §7.3.2 (Lattice-Ladder Structure)
 
+---
+
+**§10 Modified Covariance Algorithm**
+
+- [10.1 Motivation](#101-motivation)
+- <a href="#102-difference-between-burg-and-modified-covariance" style="color: #a0a0a0;">10.2 Difference Between Burg and Modified Covariance</a>
+- <a href="#103-modified-covariance-normal-equations" style="color: #a0a0a0;">10.3 Modified Covariance Normal Equations</a>
+- <a href="#104-advantages" style="color: #a0a0a0;">10.4 Advantages</a>
+- <a href="#105-disadvantages" style="color: #a0a0a0;">10.5 Disadvantages</a>
+- <a href="#106-comparison-of-main-linear-prediction-estimation-methods" style="color: #a0a0a0;">10.6 Comparison of Main Linear Prediction Estimation Methods</a>
+
+---
+
 ## 10.1 Motivation
 
 The covariance method minimizes only the forward prediction error:
@@ -1724,6 +2560,19 @@ But for finite data, forward and backward errors are not statistically identical
 $$\boxed{E_p^{fb}=\sum_{n=p}^{N}\left(\lvert e_p^f(n)\rvert^2+\lvert e_p^b(n)\rvert^2\right).}$$
 
 This is similar in spirit to Burg's method, but the optimization is different.
+
+---
+
+**§10 Modified Covariance Algorithm**
+
+- <a href="#101-motivation" style="color: #a0a0a0;">10.1 Motivation</a>
+- [10.2 Difference Between Burg and Modified Covariance](#102-difference-between-burg-and-modified-covariance)
+- <a href="#103-modified-covariance-normal-equations" style="color: #a0a0a0;">10.3 Modified Covariance Normal Equations</a>
+- <a href="#104-advantages" style="color: #a0a0a0;">10.4 Advantages</a>
+- <a href="#105-disadvantages" style="color: #a0a0a0;">10.5 Disadvantages</a>
+- <a href="#106-comparison-of-main-linear-prediction-estimation-methods" style="color: #a0a0a0;">10.6 Comparison of Main Linear Prediction Estimation Methods</a>
+
+---
 
 ## 10.2 Difference Between Burg and Modified Covariance
 
@@ -1737,6 +2586,19 @@ The distinction is crucial.
 Burg's method is greedy: once it chooses $\kappa_1$, it keeps that decision while choosing $\kappa_2$, and so on.
 
 The modified covariance method optimizes the whole $p$-th order coefficient vector at once using both forward and backward errors.
+
+---
+
+**§10 Modified Covariance Algorithm**
+
+- <a href="#101-motivation" style="color: #a0a0a0;">10.1 Motivation</a>
+- <a href="#102-difference-between-burg-and-modified-covariance" style="color: #a0a0a0;">10.2 Difference Between Burg and Modified Covariance</a>
+- [10.3 Modified Covariance Normal Equations](#103-modified-covariance-normal-equations)
+- <a href="#104-advantages" style="color: #a0a0a0;">10.4 Advantages</a>
+- <a href="#105-disadvantages" style="color: #a0a0a0;">10.5 Disadvantages</a>
+- <a href="#106-comparison-of-main-linear-prediction-estimation-methods" style="color: #a0a0a0;">10.6 Comparison of Main Linear Prediction Estimation Methods</a>
+
+---
 
 ## 10.3 Modified Covariance Normal Equations
 
@@ -1756,6 +2618,19 @@ The precise matrix entries depend on how the data vectors are arranged, but the 
 
 > The normal matrix contains both forward and backward covariance information, so it is generally not Toeplitz.
 
+---
+
+**§10 Modified Covariance Algorithm**
+
+- <a href="#101-motivation" style="color: #a0a0a0;">10.1 Motivation</a>
+- <a href="#102-difference-between-burg-and-modified-covariance" style="color: #a0a0a0;">10.2 Difference Between Burg and Modified Covariance</a>
+- <a href="#103-modified-covariance-normal-equations" style="color: #a0a0a0;">10.3 Modified Covariance Normal Equations</a>
+- [10.4 Advantages](#104-advantages)
+- <a href="#105-disadvantages" style="color: #a0a0a0;">10.5 Disadvantages</a>
+- <a href="#106-comparison-of-main-linear-prediction-estimation-methods" style="color: #a0a0a0;">10.6 Comparison of Main Linear Prediction Estimation Methods</a>
+
+---
+
 ## 10.4 Advantages
 
 The modified covariance method often gives high-resolution spectral estimates. It is especially useful when:
@@ -1767,11 +2642,37 @@ The modified covariance method often gives high-resolution spectral estimates. I
 
 Compared with the ordinary covariance method, the modified covariance method uses more error information and can reduce variance and spectral peak displacement.
 
+---
+
+**§10 Modified Covariance Algorithm**
+
+- <a href="#101-motivation" style="color: #a0a0a0;">10.1 Motivation</a>
+- <a href="#102-difference-between-burg-and-modified-covariance" style="color: #a0a0a0;">10.2 Difference Between Burg and Modified Covariance</a>
+- <a href="#103-modified-covariance-normal-equations" style="color: #a0a0a0;">10.3 Modified Covariance Normal Equations</a>
+- <a href="#104-advantages" style="color: #a0a0a0;">10.4 Advantages</a>
+- [10.5 Disadvantages](#105-disadvantages)
+- <a href="#106-comparison-of-main-linear-prediction-estimation-methods" style="color: #a0a0a0;">10.6 Comparison of Main Linear Prediction Estimation Methods</a>
+
+---
+
 ## 10.5 Disadvantages
 
 The modified covariance method is more expensive than the autocorrelation method because the normal matrix is not Toeplitz. It also does not automatically provide the simple stability guarantee of the autocorrelation method.
 
 Practical implementations often use specialized algorithms, such as Marple-type algorithms, to solve the modified covariance equations efficiently.
+
+---
+
+**§10 Modified Covariance Algorithm**
+
+- <a href="#101-motivation" style="color: #a0a0a0;">10.1 Motivation</a>
+- <a href="#102-difference-between-burg-and-modified-covariance" style="color: #a0a0a0;">10.2 Difference Between Burg and Modified Covariance</a>
+- <a href="#103-modified-covariance-normal-equations" style="color: #a0a0a0;">10.3 Modified Covariance Normal Equations</a>
+- <a href="#104-advantages" style="color: #a0a0a0;">10.4 Advantages</a>
+- <a href="#105-disadvantages" style="color: #a0a0a0;">10.5 Disadvantages</a>
+- [10.6 Comparison of Main Linear Prediction Estimation Methods](#106-comparison-of-main-linear-prediction-estimation-methods)
+
+---
 
 ## 10.6 Comparison of Main Linear Prediction Estimation Methods
 
@@ -1788,6 +2689,21 @@ Practical implementations often use specialized algorithms, such as Marple-type 
 
 > 📖 Textbook §9.4.2 (Speech Modeling); §1.4 adaptive filtering applications
 
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- [11.1 Why Speech Is Predictable](#111-why-speech-is-predictable)
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
+
+---
+
 ## 11.1 Why Speech Is Predictable
 
 Speech is highly structured. Over short intervals, typically 10–30 ms, the vocal tract shape is approximately constant. During such a short-time frame, speech can be modeled as the output of an all-pole filter:
@@ -1801,6 +2717,21 @@ where:
 - $G$ is a gain factor.
 
 Voiced sounds have quasi-periodic excitation due to vocal-fold vibration. Unvoiced sounds have noise-like excitation. In both cases, the vocal tract acts like a resonant filter.
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- [11.2 LPC Model](#112-lpc-model)
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
+
+---
 
 ## 11.2 LPC Model
 
@@ -1822,6 +2753,21 @@ This decomposition is the foundation of LPC speech coding:
 > ![Figure 11.1](./CourseADSP2026/Fig/Chapter_3/fig_11_1_textbook_fig_9_17_p465.png)
 >
 > *Figure 11.1 (Textbook Fig. 9.17, p. 465): Block diagram of an all-pole modeling processor for speech coding and recognition.*
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- [11.3 Three Coding Paradigms](#113-three-coding-paradigms)
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
+
+---
 
 ## 11.3 Three Coding Paradigms
 
@@ -1850,6 +2796,21 @@ The decoder reconstructs speech by exciting the all-pole synthesis filter.
 
 Hybrid coding combines waveform accuracy with model-based compression. Code-excited linear prediction (CELP) is the classic example conceptually, although detailed CELP standards and implementation details are beyond the scope of this lecture.
 
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- [11.4 Why Reflection Coefficients Are Useful in Speech](#114-why-reflection-coefficients-are-useful-in-speech)
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
+
+---
+
 ## 11.4 Why Reflection Coefficients Are Useful in Speech
 
 Speech coders often transform LPC coefficients into more robust parameter sets before quantization. Reflection coefficients are useful because stability corresponds to
@@ -1859,6 +2820,21 @@ $$\lvert\kappa_m\rvert<1.$$
 If quantization keeps all reflection coefficients inside the unit interval, then the decoded synthesis filter remains stable.
 
 This is safer than directly quantizing the polynomial coefficients $a_k$, where small coefficient errors can destabilize the all-pole filter.
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- [11.5 Speech Spectrum and All-Pole Envelope](#115-speech-spectrum-and-all-pole-envelope)
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
+
+---
 
 ## 11.5 Speech Spectrum and All-Pole Envelope
 
@@ -1872,6 +2848,19 @@ Thus LPC separates source and filter in a computationally efficient way.
 > ![Figure 11.2](./CourseADSP2026/Fig/Chapter_3/fig_9_5_textbook_fig_9_15_p464.png)
 >
 > *Figure 11.2 (Textbook Fig. 9.15, p. 464): Nonparametric PSD estimation using linear prediction prewhitening. The same idea appears in speech processing: remove predictable spectral envelope, process residual, then recolor if needed.*
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- [Chapter 3 Summary](#chapter-3-summary)
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
 
 ---
 
@@ -1891,6 +2880,19 @@ Thus LPC separates source and filter in a computationally efficient way.
 | Burg algorithm | Sequentially minimizes forward/backward errors | Stable high-resolution AR modeling without explicit autocorrelation |
 | Modified covariance | Globally minimizes forward/backward errors | High-resolution estimates, higher computation |
 | Speech LPC | All-pole short-time speech model | Efficient coding and spectral-envelope representation |
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- [Figure Source Checklist](#figure-source-checklist)
+- <a href="#suggested-teaching-flow" style="color: #a0a0a0;">Suggested Teaching Flow</a>
 
 ---
 
@@ -1916,6 +2918,19 @@ All figures displayed in this lecture are rendered from the uploaded textbook PD
 | Figure 9.3 | Fig. 9.14 | p. 463 | Comparison of AP PSD estimation methods |
 | Figure 11.1 | Fig. 9.17 | p. 465 | Speech all-pole modeling processor |
 | Figure 11.2 | Fig. 9.15 | p. 464 | Prewhitening / postcoloring concept |
+
+---
+
+**§11 Application Example: Linear Prediction in Speech Coding**
+
+- <a href="#111-why-speech-is-predictable" style="color: #a0a0a0;">11.1 Why Speech Is Predictable</a>
+- <a href="#112-lpc-model" style="color: #a0a0a0;">11.2 LPC Model</a>
+- <a href="#113-three-coding-paradigms" style="color: #a0a0a0;">11.3 Three Coding Paradigms</a>
+- <a href="#114-why-reflection-coefficients-are-useful-in-speech" style="color: #a0a0a0;">11.4 Why Reflection Coefficients Are Useful in Speech</a>
+- <a href="#115-speech-spectrum-and-all-pole-envelope" style="color: #a0a0a0;">11.5 Speech Spectrum and All-Pole Envelope</a>
+- <a href="#chapter-3-summary" style="color: #a0a0a0;">Chapter 3 Summary</a>
+- <a href="#figure-source-checklist" style="color: #a0a0a0;">Figure Source Checklist</a>
+- [Suggested Teaching Flow](#suggested-teaching-flow)
 
 ---
 

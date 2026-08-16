@@ -8,14 +8,76 @@
 
 ## Table of Contents
 
-1. [§0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation](#0-chapter-roadmap-from-optimum-filtering-to-recursive-state-estimation)
-2. [§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering](#1-linear-mmse-estimation-the-mathematical-core-of-wiener-filtering)
-3. [§2 FIR Wiener Filters](#2-fir-wiener-filters)
-4. [§3 Important FIR Wiener Filtering Applications](#3-important-fir-wiener-filtering-applications)
-5. [§4 Optimum IIR Wiener Filters](#4-optimum-iir-wiener-filters)
-6. [§5 Matched Filters and Eigenfilters](#5-matched-filters-and-eigenfilters)
-7. [§6 Discrete Kalman Filtering](#6-discrete-kalman-filtering)
-8. [§7 Chapter Summary, Method Selection, and Figure Checklist](#7-chapter-summary-method-selection-and-figure-checklist)
+- [Notation and Variable Definitions](#notation-and-variable-definitions)
+  - [Time, Order, and Delays](#time-order-and-delays)
+  - [Signals and Observations](#signals-and-observations)
+  - [Linear Estimator and FIR Filter Quantities](#linear-estimator-and-fir-filter-quantities)
+  - [Correlation and Spectral Quantities](#correlation-and-spectral-quantities)
+  - [Kalman Filtering Quantities](#kalman-filtering-quantities)
+- [§0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation](#0-chapter-roadmap-from-optimum-filtering-to-recursive-state-estimation)
+  - [0.1 What Problem Are We Solving?](#01-what-problem-are-we-solving)
+  - [0.2 Four Main Wiener Filtering Problems](#02-four-main-wiener-filtering-problems)
+  - [0.3 Why Mean-Square Error?](#03-why-mean-square-error)
+- [§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering](#1-linear-mmse-estimation-the-mathematical-core-of-wiener-filtering)
+  - [1.1 General Linear Estimator](#11-general-linear-estimator)
+  - [1.2 Expanding the MSE](#12-expanding-the-mse)
+  - [1.3 The Error Performance Surface](#13-the-error-performance-surface)
+  - [1.4 Deriving the Normal Equations](#14-deriving-the-normal-equations)
+  - [1.5 Orthogonality Principle](#15-orthogonality-principle)
+  - [1.6 Two Essential Properties to Remember](#16-two-essential-properties-to-remember)
+- [§2 FIR Wiener Filters](#2-fir-wiener-filters)
+  - [2.1 From Linear Estimator to FIR Filter](#21-from-linear-estimator-to-fir-filter)
+  - [2.2 Stationary FIR Wiener-Hopf Equations](#22-stationary-fir-wiener-hopf-equations)
+  - [2.3 Design and Implementation Are Separate](#23-design-and-implementation-are-separate)
+  - [2.4 Why Filter Order Matters](#24-why-filter-order-matters)
+  - [2.5 Frequency-Domain Interpretation of FIR Wiener Filtering](#25-frequency-domain-interpretation-of-fir-wiener-filtering)
+  - [2.6 FIR Wiener Filtering Algorithm](#26-fir-wiener-filtering-algorithm)
+- [§3 Important FIR Wiener Filtering Applications](#3-important-fir-wiener-filtering-applications)
+  - [3.1 Application 1: Additive-Noise Filtering](#31-application-1-additive-noise-filtering)
+  - [3.2 Application 2: Linear Prediction](#32-application-2-linear-prediction)
+  - [3.3 Application 3: Noise Cancellation with an Auxiliary Reference](#33-application-3-noise-cancellation-with-an-auxiliary-reference)
+  - [3.4 Application 4: Deconvolution and MMSE Equalization](#34-application-4-deconvolution-and-mmse-equalization)
+    - [Zero-Forcing Equalizer versus MMSE Equalizer](#zero-forcing-equalizer-versus-mmse-equalizer)
+  - [3.5 Data Transmission and ISI](#35-data-transmission-and-isi)
+- [§4 Optimum IIR Wiener Filters](#4-optimum-iir-wiener-filters)
+  - [4.1 Noncausal IIR Wiener Filter: Performance Upper Bound](#41-noncausal-iir-wiener-filter-performance-upper-bound)
+  - [4.2 Why the Causal IIR Filter Is Harder](#42-why-the-causal-iir-filter-is-harder)
+  - [4.3 Spectral Factorization Design](#43-spectral-factorization-design)
+  - [4.4 Causal versus Noncausal IIR Filters](#44-causal-versus-noncausal-iir-filters)
+  - [4.5 Linear Prediction Using the Infinite Past](#45-linear-prediction-using-the-infinite-past)
+  - [4.6 IIR Deconvolution and Inverse Filtering](#46-iir-deconvolution-and-inverse-filtering)
+- [§5 Matched Filters and Eigenfilters](#5-matched-filters-and-eigenfilters)
+  - [5.1 Deterministic Signal in Colored Noise](#51-deterministic-signal-in-colored-noise)
+  - [5.2 Random Signal in Noise and Eigenfilters](#52-random-signal-in-noise-and-eigenfilters)
+  - [5.3 Interference Rejection Filters](#53-interference-rejection-filters)
+- [§6 Discrete Kalman Filtering](#6-discrete-kalman-filtering)
+  - [6.1 Why Wiener Filtering Is Not Enough](#61-why-wiener-filtering-is-not-enough)
+  - [6.2 State-Space Model](#62-state-space-model)
+  - [6.3 Prediction Step](#63-prediction-step)
+  - [6.4 Innovation and Kalman Gain](#64-innovation-and-kalman-gain)
+  - [6.5 Update Step](#65-update-step)
+  - [6.6 Complete Kalman Filter Recursion](#66-complete-kalman-filter-recursion)
+    - [Initialization](#initialization)
+    - [For each $n=1,2,\ldots$](#for-each-n12ldots)
+  - [6.7 Scalar Example: Kalman Estimation of an AR(1) Process](#67-scalar-example-kalman-estimation-of-an-ar1-process)
+  - [6.8 Kalman Filter Examples from the Textbook](#68-kalman-filter-examples-from-the-textbook)
+  - [6.9 Kalman Filter Interpretation](#69-kalman-filter-interpretation)
+    - [Viewpoint 1: Recursive Wiener Filter](#viewpoint-1-recursive-wiener-filter)
+    - [Viewpoint 2: Model-Based Predictor plus Measurement Corrector](#viewpoint-2-model-based-predictor-plus-measurement-corrector)
+    - [Viewpoint 3: Information Compression](#viewpoint-3-information-compression)
+  - [6.10 Practical Strengths and Limitations](#610-practical-strengths-and-limitations)
+- [§7 Chapter Summary, Method Selection, and Figure Checklist](#7-chapter-summary-method-selection-and-figure-checklist)
+  - [7.1 Core Equations](#71-core-equations)
+    - [Linear MMSE Estimator](#linear-mmse-estimator)
+    - [FIR Wiener Filter](#fir-wiener-filter)
+    - [Noncausal IIR Wiener Filter](#noncausal-iir-wiener-filter)
+    - [Causal IIR Wiener Filter](#causal-iir-wiener-filter)
+    - [Kalman Filter](#kalman-filter)
+  - [7.2 Method Selection Guide](#72-method-selection-guide)
+  - [7.3 Conceptual Links to Previous Lectures](#73-conceptual-links-to-previous-lectures)
+  - [7.4 Teaching Flow for a 2–3 Lecture Delivery](#74-teaching-flow-for-a-23-lecture-delivery)
+  - [7.5 Figure Checklist](#75-figure-checklist)
+  - [End-of-Chapter Takeaway](#end-of-chapter-takeaway)
 
 ---
 
@@ -106,6 +168,16 @@ The notation below follows the previous lectures: bold lower-case letters denote
 
 > 📖 Textbook §6.1 (Optimum Signal Estimation); §6.2 (Linear Mean Square Error Estimation); §7.8 (Kalman Filter Algorithm)
 
+---
+
+**§0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation**
+
+- [0.1 What Problem Are We Solving?](#01-what-problem-are-we-solving)
+- <a href="#02-four-main-wiener-filtering-problems" style="color: #a0a0a0;">0.2 Four Main Wiener Filtering Problems</a>
+- <a href="#03-why-mean-square-error" style="color: #a0a0a0;">0.3 Why Mean-Square Error?</a>
+
+---
+
 ## 0.1 What Problem Are We Solving?
 
 In a conventional deterministic DSP course, a filter is often designed by specifying a desired frequency response. For example, we may design a low-pass filter, a high-pass filter, or a band-pass filter. The filter design target is then mostly stated in the frequency domain.
@@ -130,6 +202,16 @@ Here:
 - the expectation is taken over the ensemble of possible signal realizations.
 
 This is the core idea behind the **Wiener filter**.
+
+---
+
+**§0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation**
+
+- <a href="#01-what-problem-are-we-solving" style="color: #a0a0a0;">0.1 What Problem Are We Solving?</a>
+- [0.2 Four Main Wiener Filtering Problems](#02-four-main-wiener-filtering-problems)
+- <a href="#03-why-mean-square-error" style="color: #a0a0a0;">0.3 Why Mean-Square Error?</a>
+
+---
 
 ## 0.2 Four Main Wiener Filtering Problems
 
@@ -157,6 +239,16 @@ The textbook begins by emphasizing that the data used by an estimator may come f
 >
 > *Figure 0.1 (Textbook Fig. 6.1, p. 262): Data vectors for array processing and for FIR filtering/prediction. In this lecture we mainly use the single-sensor time-series case, where the vector is made from delayed samples of one signal.*
 
+---
+
+**§0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation**
+
+- <a href="#01-what-problem-are-we-solving" style="color: #a0a0a0;">0.1 What Problem Are We Solving?</a>
+- <a href="#02-four-main-wiener-filtering-problems" style="color: #a0a0a0;">0.2 Four Main Wiener Filtering Problems</a>
+- [0.3 Why Mean-Square Error?](#03-why-mean-square-error)
+
+---
+
 ## 0.3 Why Mean-Square Error?
 
 Many error measures are possible. We could penalize $\vert e\vert$, $\vert e\vert^2$, $\vert e\vert^3$, or even a nonconvex application-specific loss. The squared error has two major advantages:
@@ -183,6 +275,19 @@ $$
 # §1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering
 
 > 📖 Textbook §6.2 (Linear Mean Square Error Estimation)
+
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- [1.1 General Linear Estimator](#11-general-linear-estimator)
+- <a href="#12-expanding-the-mse" style="color: #a0a0a0;">1.2 Expanding the MSE</a>
+- <a href="#13-the-error-performance-surface" style="color: #a0a0a0;">1.3 The Error Performance Surface</a>
+- <a href="#14-deriving-the-normal-equations" style="color: #a0a0a0;">1.4 Deriving the Normal Equations</a>
+- <a href="#15-orthogonality-principle" style="color: #a0a0a0;">1.5 Orthogonality Principle</a>
+- <a href="#16-two-essential-properties-to-remember" style="color: #a0a0a0;">1.6 Two Essential Properties to Remember</a>
+
+---
 
 ## 1.1 General Linear Estimator
 
@@ -229,6 +334,19 @@ The block diagram is a linear combiner: each data component is weighted, the wei
 > ![Figure 1.1](./CourseADSP2026/Fig/Chapter_6/fig_1_1_textbook_fig_6_3_p265.png)
 >
 > *Figure 1.1 (Textbook Fig. 6.3, p. 265): Block diagram of the linear estimator. This is the algebraic template behind FIR Wiener filters, matched filters, and Kalman measurement updates.*
+
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- <a href="#11-general-linear-estimator" style="color: #a0a0a0;">1.1 General Linear Estimator</a>
+- [1.2 Expanding the MSE](#12-expanding-the-mse)
+- <a href="#13-the-error-performance-surface" style="color: #a0a0a0;">1.3 The Error Performance Surface</a>
+- <a href="#14-deriving-the-normal-equations" style="color: #a0a0a0;">1.4 Deriving the Normal Equations</a>
+- <a href="#15-orthogonality-principle" style="color: #a0a0a0;">1.5 Orthogonality Principle</a>
+- <a href="#16-two-essential-properties-to-remember" style="color: #a0a0a0;">1.6 Two Essential Properties to Remember</a>
+
+---
 
 ## 1.2 Expanding the MSE
 
@@ -278,6 +396,19 @@ This equation is the most important algebraic expression in Wiener filtering. It
 
 No higher-order distributions are needed for the linear MMSE solution.
 
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- <a href="#11-general-linear-estimator" style="color: #a0a0a0;">1.1 General Linear Estimator</a>
+- <a href="#12-expanding-the-mse" style="color: #a0a0a0;">1.2 Expanding the MSE</a>
+- [1.3 The Error Performance Surface](#13-the-error-performance-surface)
+- <a href="#14-deriving-the-normal-equations" style="color: #a0a0a0;">1.4 Deriving the Normal Equations</a>
+- <a href="#15-orthogonality-principle" style="color: #a0a0a0;">1.5 Orthogonality Principle</a>
+- <a href="#16-two-essential-properties-to-remember" style="color: #a0a0a0;">1.6 Two Essential Properties to Remember</a>
+
+---
+
 ## 1.3 The Error Performance Surface
 
 For a second-order estimator with two real coefficients, $P(c_1,c_2)$ is a quadratic surface. If $\mathbf{R}$ is positive definite, the surface is bowl-shaped and has one unique minimum. If $\mathbf{R}$ is not positive definite, the surface may be flat or saddle-shaped, and the minimization problem may become ill-posed.
@@ -287,6 +418,19 @@ For a second-order estimator with two real coefficients, $P(c_1,c_2)$ is a quadr
 > *Figure 1.2 (Textbook Fig. 6.4, p. 266): Quadratic error-performance surfaces. The positive-definite case gives a unique bowl-shaped minimum; the indefinite case does not define a proper MMSE optimum.*
 
 This figure is pedagogically important because it shows why the correlation matrix matters. The normal equations may be written down algebraically, but a stable and unique solution requires $\mathbf{R}$ to be positive definite or at least nonsingular on the relevant subspace.
+
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- <a href="#11-general-linear-estimator" style="color: #a0a0a0;">1.1 General Linear Estimator</a>
+- <a href="#12-expanding-the-mse" style="color: #a0a0a0;">1.2 Expanding the MSE</a>
+- <a href="#13-the-error-performance-surface" style="color: #a0a0a0;">1.3 The Error Performance Surface</a>
+- [1.4 Deriving the Normal Equations](#14-deriving-the-normal-equations)
+- <a href="#15-orthogonality-principle" style="color: #a0a0a0;">1.5 Orthogonality Principle</a>
+- <a href="#16-two-essential-properties-to-remember" style="color: #a0a0a0;">1.6 Two Essential Properties to Remember</a>
+
+---
 
 ## 1.4 Deriving the Normal Equations
 
@@ -326,6 +470,19 @@ $$
 If $\mathbf{x}$ carries no information about $y$, then $\mathbf{d}=\mathbf{0}$ and $P_o=P_y$. The filter cannot help.
 
 If $y$ is perfectly linearly determined by $\mathbf{x}$, then the second term can equal $P_y$ and $P_o=0$.
+
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- <a href="#11-general-linear-estimator" style="color: #a0a0a0;">1.1 General Linear Estimator</a>
+- <a href="#12-expanding-the-mse" style="color: #a0a0a0;">1.2 Expanding the MSE</a>
+- <a href="#13-the-error-performance-surface" style="color: #a0a0a0;">1.3 The Error Performance Surface</a>
+- <a href="#14-deriving-the-normal-equations" style="color: #a0a0a0;">1.4 Deriving the Normal Equations</a>
+- [1.5 Orthogonality Principle](#15-orthogonality-principle)
+- <a href="#16-two-essential-properties-to-remember" style="color: #a0a0a0;">1.6 Two Essential Properties to Remember</a>
+
+---
 
 ## 1.5 Orthogonality Principle
 
@@ -367,6 +524,19 @@ $$
 
 So orthogonality means uncorrelatedness in the second-order sense.
 
+---
+
+**§1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering**
+
+- <a href="#11-general-linear-estimator" style="color: #a0a0a0;">1.1 General Linear Estimator</a>
+- <a href="#12-expanding-the-mse" style="color: #a0a0a0;">1.2 Expanding the MSE</a>
+- <a href="#13-the-error-performance-surface" style="color: #a0a0a0;">1.3 The Error Performance Surface</a>
+- <a href="#14-deriving-the-normal-equations" style="color: #a0a0a0;">1.4 Deriving the Normal Equations</a>
+- <a href="#15-orthogonality-principle" style="color: #a0a0a0;">1.5 Orthogonality Principle</a>
+- [1.6 Two Essential Properties to Remember](#16-two-essential-properties-to-remember)
+
+---
+
 ## 1.6 Two Essential Properties to Remember
 
 The linear MMSE estimator has two central properties:
@@ -389,6 +559,19 @@ These two facts will reappear in every section:
 # §2 FIR Wiener Filters
 
 > 📖 Textbook §6.4 (Optimum Finite Impulse Response Filters); §6.5 (Linear Prediction)
+
+---
+
+**§2 FIR Wiener Filters**
+
+- [2.1 From Linear Estimator to FIR Filter](#21-from-linear-estimator-to-fir-filter)
+- <a href="#22-stationary-fir-wiener-hopf-equations" style="color: #a0a0a0;">2.2 Stationary FIR Wiener-Hopf Equations</a>
+- <a href="#23-design-and-implementation-are-separate" style="color: #a0a0a0;">2.3 Design and Implementation Are Separate</a>
+- <a href="#24-why-filter-order-matters" style="color: #a0a0a0;">2.4 Why Filter Order Matters</a>
+- <a href="#25-frequency-domain-interpretation-of-fir-wiener-filtering" style="color: #a0a0a0;">2.5 Frequency-Domain Interpretation of FIR Wiener Filtering</a>
+- <a href="#26-fir-wiener-filtering-algorithm" style="color: #a0a0a0;">2.6 FIR Wiener Filtering Algorithm</a>
+
+---
 
 ## 2.1 From Linear Estimator to FIR Filter
 
@@ -440,6 +623,19 @@ $$
 >
 > *Figure 2.1 (Textbook Fig. 6.10, p. 278): General optimum filtering problem. The filter produces an estimate of the desired response and the error is minimized in the MMSE sense.*
 
+---
+
+**§2 FIR Wiener Filters**
+
+- <a href="#21-from-linear-estimator-to-fir-filter" style="color: #a0a0a0;">2.1 From Linear Estimator to FIR Filter</a>
+- [2.2 Stationary FIR Wiener-Hopf Equations](#22-stationary-fir-wiener-hopf-equations)
+- <a href="#23-design-and-implementation-are-separate" style="color: #a0a0a0;">2.3 Design and Implementation Are Separate</a>
+- <a href="#24-why-filter-order-matters" style="color: #a0a0a0;">2.4 Why Filter Order Matters</a>
+- <a href="#25-frequency-domain-interpretation-of-fir-wiener-filtering" style="color: #a0a0a0;">2.5 Frequency-Domain Interpretation of FIR Wiener Filtering</a>
+- <a href="#26-fir-wiener-filtering-algorithm" style="color: #a0a0a0;">2.6 FIR Wiener Filtering Algorithm</a>
+
+---
+
 ## 2.2 Stationary FIR Wiener-Hopf Equations
 
 If $x(n)$ and $y(n)$ are jointly wide-sense stationary, then the entries of $\mathbf{R}$ and $\mathbf{d}$ do not depend on absolute time. They depend only on lags.
@@ -482,6 +678,19 @@ $$
 \boxed{P_o=P_y-\mathbf{d}^H\mathbf{h}_o}.
 $$
 
+---
+
+**§2 FIR Wiener Filters**
+
+- <a href="#21-from-linear-estimator-to-fir-filter" style="color: #a0a0a0;">2.1 From Linear Estimator to FIR Filter</a>
+- <a href="#22-stationary-fir-wiener-hopf-equations" style="color: #a0a0a0;">2.2 Stationary FIR Wiener-Hopf Equations</a>
+- [2.3 Design and Implementation Are Separate](#23-design-and-implementation-are-separate)
+- <a href="#24-why-filter-order-matters" style="color: #a0a0a0;">2.4 Why Filter Order Matters</a>
+- <a href="#25-frequency-domain-interpretation-of-fir-wiener-filtering" style="color: #a0a0a0;">2.5 Frequency-Domain Interpretation of FIR Wiener Filtering</a>
+- <a href="#26-fir-wiener-filtering-algorithm" style="color: #a0a0a0;">2.6 FIR Wiener Filtering Algorithm</a>
+
+---
+
 ## 2.3 Design and Implementation Are Separate
 
 A very important practical distinction is:
@@ -506,6 +715,19 @@ $$
 $$
 
 This is one motivation for adaptive filtering and Kalman filtering.
+
+---
+
+**§2 FIR Wiener Filters**
+
+- <a href="#21-from-linear-estimator-to-fir-filter" style="color: #a0a0a0;">2.1 From Linear Estimator to FIR Filter</a>
+- <a href="#22-stationary-fir-wiener-hopf-equations" style="color: #a0a0a0;">2.2 Stationary FIR Wiener-Hopf Equations</a>
+- <a href="#23-design-and-implementation-are-separate" style="color: #a0a0a0;">2.3 Design and Implementation Are Separate</a>
+- [2.4 Why Filter Order Matters](#24-why-filter-order-matters)
+- <a href="#25-frequency-domain-interpretation-of-fir-wiener-filtering" style="color: #a0a0a0;">2.5 Frequency-Domain Interpretation of FIR Wiener Filtering</a>
+- <a href="#26-fir-wiener-filtering-algorithm" style="color: #a0a0a0;">2.6 FIR Wiener Filtering Algorithm</a>
+
+---
 
 ## 2.4 Why Filter Order Matters
 
@@ -534,6 +756,19 @@ PG_{\mathrm{dB}}=10\log_{10}\mathrm{SNR}_{\mathrm{out}}-10\log_{10}\mathrm{SNR}_
 $$
 
 For teaching, it is useful to emphasize that MMSE and SNR are related but not identical. MMSE measures estimation error power. SNR measures useful signal power relative to disturbance power. In many filtering problems, improving one improves the other, but the exact interpretation depends on how the desired response is defined.
+
+---
+
+**§2 FIR Wiener Filters**
+
+- <a href="#21-from-linear-estimator-to-fir-filter" style="color: #a0a0a0;">2.1 From Linear Estimator to FIR Filter</a>
+- <a href="#22-stationary-fir-wiener-hopf-equations" style="color: #a0a0a0;">2.2 Stationary FIR Wiener-Hopf Equations</a>
+- <a href="#23-design-and-implementation-are-separate" style="color: #a0a0a0;">2.3 Design and Implementation Are Separate</a>
+- <a href="#24-why-filter-order-matters" style="color: #a0a0a0;">2.4 Why Filter Order Matters</a>
+- [2.5 Frequency-Domain Interpretation of FIR Wiener Filtering](#25-frequency-domain-interpretation-of-fir-wiener-filtering)
+- <a href="#26-fir-wiener-filtering-algorithm" style="color: #a0a0a0;">2.6 FIR Wiener Filtering Algorithm</a>
+
+---
 
 ## 2.5 Frequency-Domain Interpretation of FIR Wiener Filtering
 
@@ -581,6 +816,19 @@ This formula is extremely intuitive:
 >
 > *Figure 2.4 (Textbook Fig. 6.14, p. 284): PSD of input signal, magnitude response of the optimum filter, and PSD of the filtered output. The optimum filter emphasizes the frequency region where the desired component is statistically reliable.*
 
+---
+
+**§2 FIR Wiener Filters**
+
+- <a href="#21-from-linear-estimator-to-fir-filter" style="color: #a0a0a0;">2.1 From Linear Estimator to FIR Filter</a>
+- <a href="#22-stationary-fir-wiener-hopf-equations" style="color: #a0a0a0;">2.2 Stationary FIR Wiener-Hopf Equations</a>
+- <a href="#23-design-and-implementation-are-separate" style="color: #a0a0a0;">2.3 Design and Implementation Are Separate</a>
+- <a href="#24-why-filter-order-matters" style="color: #a0a0a0;">2.4 Why Filter Order Matters</a>
+- <a href="#25-frequency-domain-interpretation-of-fir-wiener-filtering" style="color: #a0a0a0;">2.5 Frequency-Domain Interpretation of FIR Wiener Filtering</a>
+- [2.6 FIR Wiener Filtering Algorithm](#26-fir-wiener-filtering-algorithm)
+
+---
+
 ## 2.6 FIR Wiener Filtering Algorithm
 
 For a stationary FIR Wiener filter, the practical algorithm is:
@@ -616,6 +864,18 @@ The main numerical issue is the conditioning of $\mathbf{R}$. If the data sample
 > 📖 Textbook §6.4 (Optimum FIR Filters); §6.5 (Linear Prediction); §6.7–§6.8 (Inverse Filtering, Deconvolution, and Equalization)
 
 The same Wiener-Hopf equation solves many different problems. The only thing that changes is the definition of the desired response $y(n)$ and the data vector $\mathbf{x}(n)$.
+
+---
+
+**§3 Important FIR Wiener Filtering Applications**
+
+- [3.1 Application 1: Additive-Noise Filtering](#31-application-1-additive-noise-filtering)
+- <a href="#32-application-2-linear-prediction" style="color: #a0a0a0;">3.2 Application 2: Linear Prediction</a>
+- <a href="#33-application-3-noise-cancellation-with-an-auxiliary-reference" style="color: #a0a0a0;">3.3 Application 3: Noise Cancellation with an Auxiliary Reference</a>
+- <a href="#34-application-4-deconvolution-and-mmse-equalization" style="color: #a0a0a0;">3.4 Application 4: Deconvolution and MMSE Equalization</a>
+- <a href="#35-data-transmission-and-isi" style="color: #a0a0a0;">3.5 Data Transmission and ISI</a>
+
+---
 
 ## 3.1 Application 1: Additive-Noise Filtering
 
@@ -660,6 +920,18 @@ if $d$ and $v$ are uncorrelated.
 Therefore, the normal equation is built from the noisy observation autocorrelation but the right-hand side comes from the clean signal correlation.
 
 In practice, this is difficult because $r_d(l)$ and $r_v(l)$ are not always known. A model or a training period may be required.
+
+---
+
+**§3 Important FIR Wiener Filtering Applications**
+
+- <a href="#31-application-1-additive-noise-filtering" style="color: #a0a0a0;">3.1 Application 1: Additive-Noise Filtering</a>
+- [3.2 Application 2: Linear Prediction](#32-application-2-linear-prediction)
+- <a href="#33-application-3-noise-cancellation-with-an-auxiliary-reference" style="color: #a0a0a0;">3.3 Application 3: Noise Cancellation with an Auxiliary Reference</a>
+- <a href="#34-application-4-deconvolution-and-mmse-equalization" style="color: #a0a0a0;">3.4 Application 4: Deconvolution and MMSE Equalization</a>
+- <a href="#35-data-transmission-and-isi" style="color: #a0a0a0;">3.5 Data Transmission and ISI</a>
+
+---
 
 ## 3.2 Application 2: Linear Prediction
 
@@ -722,6 +994,18 @@ $$
 
 This is why Chapter 3 linear prediction and Chapter 6 Wiener filtering are not separate subjects. Linear prediction is one of the most important special cases of optimum filtering.
 
+---
+
+**§3 Important FIR Wiener Filtering Applications**
+
+- <a href="#31-application-1-additive-noise-filtering" style="color: #a0a0a0;">3.1 Application 1: Additive-Noise Filtering</a>
+- <a href="#32-application-2-linear-prediction" style="color: #a0a0a0;">3.2 Application 2: Linear Prediction</a>
+- [3.3 Application 3: Noise Cancellation with an Auxiliary Reference](#33-application-3-noise-cancellation-with-an-auxiliary-reference)
+- <a href="#34-application-4-deconvolution-and-mmse-equalization" style="color: #a0a0a0;">3.4 Application 4: Deconvolution and MMSE Equalization</a>
+- <a href="#35-data-transmission-and-isi" style="color: #a0a0a0;">3.5 Data Transmission and ISI</a>
+
+---
+
 ## 3.3 Application 3: Noise Cancellation with an Auxiliary Reference
 
 A common noise-cancellation setup has a primary observation
@@ -777,6 +1061,18 @@ $$
 $$
 
 This example is important because it shows a major practical strength of Wiener filtering: sometimes the desired clean signal is never observed directly, but a useful reference signal is available.
+
+---
+
+**§3 Important FIR Wiener Filtering Applications**
+
+- <a href="#31-application-1-additive-noise-filtering" style="color: #a0a0a0;">3.1 Application 1: Additive-Noise Filtering</a>
+- <a href="#32-application-2-linear-prediction" style="color: #a0a0a0;">3.2 Application 2: Linear Prediction</a>
+- <a href="#33-application-3-noise-cancellation-with-an-auxiliary-reference" style="color: #a0a0a0;">3.3 Application 3: Noise Cancellation with an Auxiliary Reference</a>
+- [3.4 Application 4: Deconvolution and MMSE Equalization](#34-application-4-deconvolution-and-mmse-equalization)
+- <a href="#35-data-transmission-and-isi" style="color: #a0a0a0;">3.5 Data Transmission and ISI</a>
+
+---
 
 ## 3.4 Application 4: Deconvolution and MMSE Equalization
 
@@ -852,6 +1148,18 @@ This is the key practical difference:
 | Zero-forcing | Remove channel distortion exactly | Can strongly amplify noise |
 | MMSE / Wiener | Balance residual ISI and noise enhancement | Needs statistical information |
 
+---
+
+**§3 Important FIR Wiener Filtering Applications**
+
+- <a href="#31-application-1-additive-noise-filtering" style="color: #a0a0a0;">3.1 Application 1: Additive-Noise Filtering</a>
+- <a href="#32-application-2-linear-prediction" style="color: #a0a0a0;">3.2 Application 2: Linear Prediction</a>
+- <a href="#33-application-3-noise-cancellation-with-an-auxiliary-reference" style="color: #a0a0a0;">3.3 Application 3: Noise Cancellation with an Auxiliary Reference</a>
+- <a href="#34-application-4-deconvolution-and-mmse-equalization" style="color: #a0a0a0;">3.4 Application 4: Deconvolution and MMSE Equalization</a>
+- [3.5 Data Transmission and ISI](#35-data-transmission-and-isi)
+
+---
+
 ## 3.5 Data Transmission and ISI
 
 In digital communications, the received sample can contain contributions from neighboring transmitted symbols. This is called **intersymbol interference** (ISI).
@@ -912,6 +1220,19 @@ The delay $D$ is not a cosmetic detail. It determines which part of the overall 
 
 FIR Wiener filters use a finite number of data samples. IIR Wiener filters allow, at least conceptually, infinitely many samples. This can improve performance, but it introduces causality and spectral-factorization issues.
 
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- [4.1 Noncausal IIR Wiener Filter: Performance Upper Bound](#41-noncausal-iir-wiener-filter-performance-upper-bound)
+- <a href="#42-why-the-causal-iir-filter-is-harder" style="color: #a0a0a0;">4.2 Why the Causal IIR Filter Is Harder</a>
+- <a href="#43-spectral-factorization-design" style="color: #a0a0a0;">4.3 Spectral Factorization Design</a>
+- <a href="#44-causal-versus-noncausal-iir-filters" style="color: #a0a0a0;">4.4 Causal versus Noncausal IIR Filters</a>
+- <a href="#45-linear-prediction-using-the-infinite-past" style="color: #a0a0a0;">4.5 Linear Prediction Using the Infinite Past</a>
+- <a href="#46-iir-deconvolution-and-inverse-filtering" style="color: #a0a0a0;">4.6 IIR Deconvolution and Inverse Filtering</a>
+
+---
+
 ## 4.1 Noncausal IIR Wiener Filter: Performance Upper Bound
 
 If the filter is allowed to be noncausal, the problem is easiest in the frequency domain. For jointly WSS processes, the optimum noncausal IIR filter is
@@ -933,6 +1254,19 @@ $$
 $$
 
 This is a theoretical performance limit for linear filtering because the noncausal filter may use future samples. It may not be physically realizable in real time, but it tells us how well any linear filter could do if causality were not a constraint.
+
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- <a href="#41-noncausal-iir-wiener-filter-performance-upper-bound" style="color: #a0a0a0;">4.1 Noncausal IIR Wiener Filter: Performance Upper Bound</a>
+- [4.2 Why the Causal IIR Filter Is Harder](#42-why-the-causal-iir-filter-is-harder)
+- <a href="#43-spectral-factorization-design" style="color: #a0a0a0;">4.3 Spectral Factorization Design</a>
+- <a href="#44-causal-versus-noncausal-iir-filters" style="color: #a0a0a0;">4.4 Causal versus Noncausal IIR Filters</a>
+- <a href="#45-linear-prediction-using-the-infinite-past" style="color: #a0a0a0;">4.5 Linear Prediction Using the Infinite Past</a>
+- <a href="#46-iir-deconvolution-and-inverse-filtering" style="color: #a0a0a0;">4.6 IIR Deconvolution and Inverse Filtering</a>
+
+---
 
 ## 4.2 Why the Causal IIR Filter Is Harder
 
@@ -956,6 +1290,19 @@ The main idea is:
 2. Use the inverse of the causal factor to whiten the input.
 3. Design the best causal filter for the whitened input.
 4. Cascade the whitening and causal filtering parts.
+
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- <a href="#41-noncausal-iir-wiener-filter-performance-upper-bound" style="color: #a0a0a0;">4.1 Noncausal IIR Wiener Filter: Performance Upper Bound</a>
+- <a href="#42-why-the-causal-iir-filter-is-harder" style="color: #a0a0a0;">4.2 Why the Causal IIR Filter Is Harder</a>
+- [4.3 Spectral Factorization Design](#43-spectral-factorization-design)
+- <a href="#44-causal-versus-noncausal-iir-filters" style="color: #a0a0a0;">4.4 Causal versus Noncausal IIR Filters</a>
+- <a href="#45-linear-prediction-using-the-infinite-past" style="color: #a0a0a0;">4.5 Linear Prediction Using the Infinite Past</a>
+- <a href="#46-iir-deconvolution-and-inverse-filtering" style="color: #a0a0a0;">4.6 IIR Deconvolution and Inverse Filtering</a>
+
+---
 
 ## 4.3 Spectral Factorization Design
 
@@ -992,6 +1339,19 @@ The notation $[\cdot]_+$ means: keep only the causal part of the Laurent series.
 >
 > *Figure 4.1 (Textbook Fig. 6.18, p. 298): Causal IIR Wiener filter design using spectral factorization. The input is first whitened, then a causal optimum filter is applied.*
 
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- <a href="#41-noncausal-iir-wiener-filter-performance-upper-bound" style="color: #a0a0a0;">4.1 Noncausal IIR Wiener Filter: Performance Upper Bound</a>
+- <a href="#42-why-the-causal-iir-filter-is-harder" style="color: #a0a0a0;">4.2 Why the Causal IIR Filter Is Harder</a>
+- <a href="#43-spectral-factorization-design" style="color: #a0a0a0;">4.3 Spectral Factorization Design</a>
+- [4.4 Causal versus Noncausal IIR Filters](#44-causal-versus-noncausal-iir-filters)
+- <a href="#45-linear-prediction-using-the-infinite-past" style="color: #a0a0a0;">4.5 Linear Prediction Using the Infinite Past</a>
+- <a href="#46-iir-deconvolution-and-inverse-filtering" style="color: #a0a0a0;">4.6 IIR Deconvolution and Inverse Filtering</a>
+
+---
+
 ## 4.4 Causal versus Noncausal IIR Filters
 
 The noncausal optimum filter can use both past and future information. The causal optimum filter can use only current and past samples.
@@ -1016,6 +1376,19 @@ A common source of confusion is the phrase “optimum filter.” We must always 
 - optimum under the assumed second-order statistics?
 
 These are different optimization classes. Their best achievable MMSE values are generally different.
+
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- <a href="#41-noncausal-iir-wiener-filter-performance-upper-bound" style="color: #a0a0a0;">4.1 Noncausal IIR Wiener Filter: Performance Upper Bound</a>
+- <a href="#42-why-the-causal-iir-filter-is-harder" style="color: #a0a0a0;">4.2 Why the Causal IIR Filter Is Harder</a>
+- <a href="#43-spectral-factorization-design" style="color: #a0a0a0;">4.3 Spectral Factorization Design</a>
+- <a href="#44-causal-versus-noncausal-iir-filters" style="color: #a0a0a0;">4.4 Causal versus Noncausal IIR Filters</a>
+- [4.5 Linear Prediction Using the Infinite Past](#45-linear-prediction-using-the-infinite-past)
+- <a href="#46-iir-deconvolution-and-inverse-filtering" style="color: #a0a0a0;">4.6 IIR Deconvolution and Inverse Filtering</a>
+
+---
 
 ## 4.5 Linear Prediction Using the Infinite Past
 
@@ -1053,6 +1426,19 @@ $$
 
 This connects Chapter 3 linear prediction, Chapter 4 AR modeling, Chapter 5 spectral estimation, and Chapter 6 Wiener filtering.
 
+---
+
+**§4 Optimum IIR Wiener Filters**
+
+- <a href="#41-noncausal-iir-wiener-filter-performance-upper-bound" style="color: #a0a0a0;">4.1 Noncausal IIR Wiener Filter: Performance Upper Bound</a>
+- <a href="#42-why-the-causal-iir-filter-is-harder" style="color: #a0a0a0;">4.2 Why the Causal IIR Filter Is Harder</a>
+- <a href="#43-spectral-factorization-design" style="color: #a0a0a0;">4.3 Spectral Factorization Design</a>
+- <a href="#44-causal-versus-noncausal-iir-filters" style="color: #a0a0a0;">4.4 Causal versus Noncausal IIR Filters</a>
+- <a href="#45-linear-prediction-using-the-infinite-past" style="color: #a0a0a0;">4.5 Linear Prediction Using the Infinite Past</a>
+- [4.6 IIR Deconvolution and Inverse Filtering](#46-iir-deconvolution-and-inverse-filtering)
+
+---
+
 ## 4.6 IIR Deconvolution and Inverse Filtering
 
 The IIR theory is especially useful for inverse filtering. If a signal passes through a system $G(z)$ and is corrupted by noise, a perfect inverse is usually not the best practical solution.
@@ -1078,6 +1464,16 @@ The practical teaching point is:
 > 📖 Textbook §6.9 (Matched Filters and Eigenfilters)
 
 Matched filtering is often taught in deterministic signal detection. In this textbook, it is connected to optimum linear filtering and second-order statistics.
+
+---
+
+**§5 Matched Filters and Eigenfilters**
+
+- [5.1 Deterministic Signal in Colored Noise](#51-deterministic-signal-in-colored-noise)
+- <a href="#52-random-signal-in-noise-and-eigenfilters" style="color: #a0a0a0;">5.2 Random Signal in Noise and Eigenfilters</a>
+- <a href="#53-interference-rejection-filters" style="color: #a0a0a0;">5.3 Interference Rejection Filters</a>
+
+---
 
 ## 5.1 Deterministic Signal in Colored Noise
 
@@ -1136,6 +1532,16 @@ If the noise is colored, the optimum filter first accounts for the noise covaria
 >
 > *Figure 5.1 (Textbook Fig. 6.35, p. 321): Signal and optimum matched-filter impulse responses in colored noise. When noise is highly correlated, the optimum filter shape can differ strongly from the signal shape.*
 
+---
+
+**§5 Matched Filters and Eigenfilters**
+
+- <a href="#51-deterministic-signal-in-colored-noise" style="color: #a0a0a0;">5.1 Deterministic Signal in Colored Noise</a>
+- [5.2 Random Signal in Noise and Eigenfilters](#52-random-signal-in-noise-and-eigenfilters)
+- <a href="#53-interference-rejection-filters" style="color: #a0a0a0;">5.3 Interference Rejection Filters</a>
+
+---
+
 ## 5.2 Random Signal in Noise and Eigenfilters
 
 If the signal is random, the signal power at the filter output is
@@ -1170,6 +1576,16 @@ The best filter is the generalized eigenvector corresponding to the largest gene
 >
 > *Figure 5.2 (Textbook Fig. 6.36, p. 323): Geometric interpretation of eigenfilter optimization. The optimum direction maximizes one quadratic form subject to another quadratic constraint.*
 
+---
+
+**§5 Matched Filters and Eigenfilters**
+
+- <a href="#51-deterministic-signal-in-colored-noise" style="color: #a0a0a0;">5.1 Deterministic Signal in Colored Noise</a>
+- <a href="#52-random-signal-in-noise-and-eigenfilters" style="color: #a0a0a0;">5.2 Random Signal in Noise and Eigenfilters</a>
+- [5.3 Interference Rejection Filters](#53-interference-rejection-filters)
+
+---
+
 ## 5.3 Interference Rejection Filters
 
 The textbook also compares matched filtering, linear prediction error filtering, and binomial filters for rejecting interference.
@@ -1202,6 +1618,23 @@ Wiener filtering assumes that the relevant second-order statistics are known. Fo
 
 Kalman filtering addresses this situation by using a **state-space model**. Instead of assuming a fixed stationary covariance, it assumes that the signal evolves according to a dynamic model.
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- [6.1 Why Wiener Filtering Is Not Enough](#61-why-wiener-filtering-is-not-enough)
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
+
 ## 6.1 Why Wiener Filtering Is Not Enough
 
 A Wiener filter is usually designed from correlation functions such as
@@ -1225,6 +1658,23 @@ Kalman filtering replaces the stationary-correlation viewpoint with a recursive 
 3. correct the prediction using a gain chosen by MMSE principles.
 
 This is why the Kalman filter can be viewed as a time-recursive MMSE estimator.
+
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- [6.2 State-Space Model](#62-state-space-model)
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
 
 ## 6.2 State-Space Model
 
@@ -1267,6 +1717,23 @@ The process noise and observation noise are usually assumed uncorrelated with ea
 >
 > *Figure 6.1 (Textbook Fig. 7.11, p. 384): Kalman filter model and algorithm. The filter alternates between model-based prediction and measurement-based correction.*
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- [6.3 Prediction Step](#63-prediction-step)
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
+
 ## 6.3 Prediction Step
 
 At time $n-1$, suppose we already have the best estimate after using all observations up to time $n-1$:
@@ -1298,6 +1765,23 @@ This equation is a Riccati-type covariance prediction equation. It says:
 
 - uncertainty from the previous time propagates through the dynamic model;
 - new process noise adds uncertainty.
+
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- [6.4 Innovation and Kalman Gain](#64-innovation-and-kalman-gain)
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
 
 ## 6.4 Innovation and Kalman Gain
 
@@ -1339,6 +1823,23 @@ $$
 
 So the Kalman gain is not a heuristic tuning factor. It is the MMSE-optimal linear gain for correcting the prediction using the current innovation.
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- [6.5 Update Step](#65-update-step)
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
+
 ## 6.5 Update Step
 
 The corrected state estimate is
@@ -1375,6 +1876,23 @@ $$
 $$
 
 which is the sum of posterior state estimation error variances.
+
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- [6.6 Complete Kalman Filter Recursion](#66-complete-kalman-filter-recursion)
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
 
 ## 6.6 Complete Kalman Filter Recursion
 
@@ -1440,6 +1958,23 @@ $$
 \hat{\mathbf{s}}(n\mid n),\qquad \mathbf{P}(n\mid n).
 $$
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- [6.7 Scalar Example: Kalman Estimation of an AR(1) Process](#67-scalar-example-kalman-estimation-of-an-ar1-process)
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
+
 ## 6.7 Scalar Example: Kalman Estimation of an AR(1) Process
 
 Consider the scalar state model
@@ -1498,6 +2033,23 @@ This example makes the meaning of $K(n)$ clear:
 
 When the gain converges, the Kalman filter becomes equivalent to a fixed recursive Wiener filter. Before convergence, it is time-varying.
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- [6.8 Kalman Filter Examples from the Textbook](#68-kalman-filter-examples-from-the-textbook)
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
+
 ## 6.8 Kalman Filter Examples from the Textbook
 
 The textbook first demonstrates Kalman filtering on an autoregressive process. The observations are noisy, but the state model allows the filter to recover a smoother estimate.
@@ -1523,6 +2075,23 @@ The Kalman gain and covariance trajectories show a transient period followed by 
 > ![Figure 6.5](./CourseADSP2026/Fig/Chapter_6/fig_6_5_textbook_fig_7_15_p387.png)
 >
 > *Figure 6.5 (Textbook Fig. 7.15, p. 387): Kalman gains and estimation-error variances. The posterior covariance decreases after each observation and then grows again during prediction.*
+
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- [6.9 Kalman Filter Interpretation](#69-kalman-filter-interpretation)
+- <a href="#610-practical-strengths-and-limitations" style="color: #a0a0a0;">6.10 Practical Strengths and Limitations</a>
+
+---
 
 ## 6.9 Kalman Filter Interpretation
 
@@ -1566,6 +2135,23 @@ $$
 
 Therefore the filter does not need to store the full observation history.
 
+---
+
+**§6 Discrete Kalman Filtering**
+
+- <a href="#61-why-wiener-filtering-is-not-enough" style="color: #a0a0a0;">6.1 Why Wiener Filtering Is Not Enough</a>
+- <a href="#62-state-space-model" style="color: #a0a0a0;">6.2 State-Space Model</a>
+- <a href="#63-prediction-step" style="color: #a0a0a0;">6.3 Prediction Step</a>
+- <a href="#64-innovation-and-kalman-gain" style="color: #a0a0a0;">6.4 Innovation and Kalman Gain</a>
+- <a href="#65-update-step" style="color: #a0a0a0;">6.5 Update Step</a>
+- <a href="#66-complete-kalman-filter-recursion" style="color: #a0a0a0;">6.6 Complete Kalman Filter Recursion</a>
+- <a href="#67-scalar-example-kalman-estimation-of-an-ar1-process" style="color: #a0a0a0;">6.7 Scalar Example: Kalman Estimation of an AR(1) Process</a>
+- <a href="#68-kalman-filter-examples-from-the-textbook" style="color: #a0a0a0;">6.8 Kalman Filter Examples from the Textbook</a>
+- <a href="#69-kalman-filter-interpretation" style="color: #a0a0a0;">6.9 Kalman Filter Interpretation</a>
+- [6.10 Practical Strengths and Limitations](#610-practical-strengths-and-limitations)
+
+---
+
 ## 6.10 Practical Strengths and Limitations
 
 | Strength | Explanation |
@@ -1590,6 +2176,19 @@ The standard Kalman filter is exactly optimal for linear Gaussian state-space mo
 ---
 
 # §7 Chapter Summary, Method Selection, and Figure Checklist
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- [7.1 Core Equations](#71-core-equations)
+- <a href="#72-method-selection-guide" style="color: #a0a0a0;">7.2 Method Selection Guide</a>
+- <a href="#73-conceptual-links-to-previous-lectures" style="color: #a0a0a0;">7.3 Conceptual Links to Previous Lectures</a>
+- <a href="#74-teaching-flow-for-a-23-lecture-delivery" style="color: #a0a0a0;">7.4 Teaching Flow for a 2–3 Lecture Delivery</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#end-of-chapter-takeaway" style="color: #a0a0a0;">End-of-Chapter Takeaway</a>
+
+---
 
 ## 7.1 Core Equations
 
@@ -1663,6 +2262,19 @@ $$
 \mathbf{P}(n\mid n)=[\mathbf{I}-\mathbf{K}(n)\mathbf{C}(n)]\mathbf{P}(n\mid n-1)
 $$
 
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-core-equations" style="color: #a0a0a0;">7.1 Core Equations</a>
+- [7.2 Method Selection Guide](#72-method-selection-guide)
+- <a href="#73-conceptual-links-to-previous-lectures" style="color: #a0a0a0;">7.3 Conceptual Links to Previous Lectures</a>
+- <a href="#74-teaching-flow-for-a-23-lecture-delivery" style="color: #a0a0a0;">7.4 Teaching Flow for a 2–3 Lecture Delivery</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#end-of-chapter-takeaway" style="color: #a0a0a0;">End-of-Chapter Takeaway</a>
+
+---
+
 ## 7.2 Method Selection Guide
 
 | Situation | Recommended Viewpoint |
@@ -1676,6 +2288,19 @@ $$
 | Random signal and noise covariance known | Eigenfilter / generalized eigenfilter |
 | Nonstationary state with dynamic model | Kalman filter |
 
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-core-equations" style="color: #a0a0a0;">7.1 Core Equations</a>
+- <a href="#72-method-selection-guide" style="color: #a0a0a0;">7.2 Method Selection Guide</a>
+- [7.3 Conceptual Links to Previous Lectures](#73-conceptual-links-to-previous-lectures)
+- <a href="#74-teaching-flow-for-a-23-lecture-delivery" style="color: #a0a0a0;">7.4 Teaching Flow for a 2–3 Lecture Delivery</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#end-of-chapter-takeaway" style="color: #a0a0a0;">End-of-Chapter Takeaway</a>
+
+---
+
 ## 7.3 Conceptual Links to Previous Lectures
 
 | Previous Topic | Link to This Chapter |
@@ -1686,6 +2311,19 @@ $$
 | Spectral factorization | Required for causal IIR Wiener filtering |
 | Parametric spectrum estimation | Can provide models used to design Wiener filters |
 | Subspace/eigen methods | Related to eigenfilters and quadratic-form optimization |
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-core-equations" style="color: #a0a0a0;">7.1 Core Equations</a>
+- <a href="#72-method-selection-guide" style="color: #a0a0a0;">7.2 Method Selection Guide</a>
+- <a href="#73-conceptual-links-to-previous-lectures" style="color: #a0a0a0;">7.3 Conceptual Links to Previous Lectures</a>
+- [7.4 Teaching Flow for a 2–3 Lecture Delivery](#74-teaching-flow-for-a-23-lecture-delivery)
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- <a href="#end-of-chapter-takeaway" style="color: #a0a0a0;">End-of-Chapter Takeaway</a>
+
+---
 
 ## 7.4 Teaching Flow for a 2–3 Lecture Delivery
 
@@ -1700,6 +2338,19 @@ A clear teaching sequence is:
 7. Explain why causal IIR Wiener filtering needs spectral factorization.
 8. Introduce Kalman filtering as recursive time-varying MMSE estimation.
 9. Emphasize prediction-correction and covariance propagation.
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-core-equations" style="color: #a0a0a0;">7.1 Core Equations</a>
+- <a href="#72-method-selection-guide" style="color: #a0a0a0;">7.2 Method Selection Guide</a>
+- <a href="#73-conceptual-links-to-previous-lectures" style="color: #a0a0a0;">7.3 Conceptual Links to Previous Lectures</a>
+- <a href="#74-teaching-flow-for-a-23-lecture-delivery" style="color: #a0a0a0;">7.4 Teaching Flow for a 2–3 Lecture Delivery</a>
+- [7.5 Figure Checklist](#75-figure-checklist)
+- <a href="#end-of-chapter-takeaway" style="color: #a0a0a0;">End-of-Chapter Takeaway</a>
+
+---
 
 ## 7.5 Figure Checklist
 
@@ -1736,6 +2387,17 @@ All figures displayed in this lecture are screenshots extracted from the textboo
 | Figure 6.3 | Fig. 7.13, p. 385 | `fig_6_3_textbook_fig_7_13_p385.png` |
 | Figure 6.4 | Fig. 7.14, p. 386 | `fig_6_4_textbook_fig_7_14_p386.png` |
 | Figure 6.5 | Fig. 7.15, p. 387 | `fig_6_5_textbook_fig_7_15_p387.png` |
+
+---
+
+**§7 Chapter Summary, Method Selection, and Figure Checklist**
+
+- <a href="#71-core-equations" style="color: #a0a0a0;">7.1 Core Equations</a>
+- <a href="#72-method-selection-guide" style="color: #a0a0a0;">7.2 Method Selection Guide</a>
+- <a href="#73-conceptual-links-to-previous-lectures" style="color: #a0a0a0;">7.3 Conceptual Links to Previous Lectures</a>
+- <a href="#74-teaching-flow-for-a-23-lecture-delivery" style="color: #a0a0a0;">7.4 Teaching Flow for a 2–3 Lecture Delivery</a>
+- <a href="#75-figure-checklist" style="color: #a0a0a0;">7.5 Figure Checklist</a>
+- [End-of-Chapter Takeaway](#end-of-chapter-takeaway)
 
 ---
 
