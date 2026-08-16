@@ -1550,7 +1550,7 @@ Suppose that a real-world random signal $x(n)$ is observed, but its PSD $R_x(e^{
 $$
 w(n)\xrightarrow{\;H(z)\;}x(n),
 \qquad
-R_x(e^{j\omega})=\sigma_w^2|H(e^{j\omega})|^2.
+R_x(e^{j\omega})=\sigma_w^2\lvert H(e^{j\omega})\rvert^2.
 $$
 
 The poles and zeros of $H(z)$ provide an interpretable mechanism for creating a colored random signal: poles create resonances and long memory, whereas zeros create spectral notches and finite-memory cancellation. Once the parameters are specified, the model can generate simulated signals having the desired autocorrelation and PSD.
@@ -1570,8 +1570,8 @@ and use it to estimate the PSD:
 $$
 \widehat{R}_x(e^{j\omega})
 =\widehat{\sigma}_w^2
-\frac{|\widehat{B}(e^{j\omega})|^2}
-{|\widehat{A}(e^{j\omega})|^2}.
+\frac{\lvert\widehat{B}(e^{j\omega})\rvert^2}
+{\lvert\widehat{A}(e^{j\omega})\rvert^2}.
 $$
 
 This is called **parametric spectral estimation**. Instead of estimating the PSD independently at many frequency bins, it describes the whole spectral curve using only $p+q+1$ parameters. When the model order is modest and appropriate, this can reveal sharp peaks from a short or noisy data record more clearly than a nonparametric periodogram.
@@ -1593,7 +1593,7 @@ Thus the main purpose of Section 5 is not merely to calculate a known PSD. It es
 $$
 \boxed{
 \text{finite model parameters}
-\;\xleftrightarrow[\text{estimation from data}]{\text{signal generation}}\;
+\;\underset{\text{estimation from data}}{\overset{\text{signal generation}}{\longleftrightarrow}}\;
 \text{autocorrelation and PSD}
 }
 $$
@@ -1763,12 +1763,12 @@ $$\sigma_w^2 = r_x(0) + \sum_{k=1}^{p} a_k\, r_x(k) = r_x(0) + \mathbf{a}^T\math
 
 ### Power Spectral Density of AR($p$)
 
-Since white noise has the flat PSD $R_w(e^{j\omega})=\sigma_w^2$ and the output of an LTI filter satisfies $R_x=|H|^2R_w$,
+Since white noise has the flat PSD $R_w(e^{j\omega})=\sigma_w^2$ and the output of an LTI filter satisfies $R_x=\lvert H\rvert^2R_w$,
 
 $$
 R_x(e^{j\omega})
-=\left|H(e^{j\omega})\right|^2R_w(e^{j\omega})
-=\frac{1}{|A(e^{j\omega})|^2}\sigma_w^2.
+=\left\lvert H(e^{j\omega})\right\rvert^2R_w(e^{j\omega})
+=\frac{1}{\lvert A(e^{j\omega})\rvert^2}\sigma_w^2.
 $$
 
 Therefore,
@@ -1779,7 +1779,7 @@ The phrase “a spectral peak near a pole” refers to the pole's **angle** in t
 
 $$z_i=r_i e^{j\omega_i}, \qquad r_i<1,$$
 
-then evaluating the frequency response on the unit circle at $z=e^{j\omega}$ makes the denominator small when $\omega\approx\omega_i$. Consequently, $|H(e^{j\omega})|$ and $R_x(e^{j\omega})$ become large near $\omega_i$. The closer $r_i$ is to $1$, the smaller the minimum denominator and the sharper and higher the resonance peak (while $r_i<1$ is still required for stability).
+then evaluating the frequency response on the unit circle at $z=e^{j\omega}$ makes the denominator small when $\omega\approx\omega_i$. Consequently, $\lvert H(e^{j\omega})\rvert$ and $R_x(e^{j\omega})$ become large near $\omega_i$. The closer $r_i$ is to $1$, the smaller the minimum denominator and the sharper and higher the resonance peak (while $r_i<1$ is still required for stability).
 
 This makes AR models excellent for processes with **sharp spectral peaks** (narrowband resonances), such as voiced speech, sonar echoes at discrete angles, or vibration resonance modes.
 
@@ -1834,13 +1834,13 @@ Thus an AR model shapes white noise through feedback poles, whereas an MA model 
 
 Since $x(n)$ is white noise passed through $H(z)=B(z)$,
 
-$$R_x(e^{j\omega})=|H(e^{j\omega})|^2R_w(e^{j\omega}),$$
+$$R_x(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2R_w(e^{j\omega}),$$
 
 and therefore
 
 $$\boxed{R_x(e^{j\omega}) = \sigma_w^2\, \lvert B(e^{j\omega})\rvert^2 = \sigma_w^2 \left\lvert1 + \sum_{k=1}^{q} b_k e^{-j\omega k}\right\rvert^2.}$$
 
-If a zero of $B(z)$ lies at $z_i=r_i e^{j\omega_i}$, then $|B(e^{j\omega})|$ becomes small near $\omega=\omega_i$. A zero on the unit circle produces an exact spectral null; a zero close to the unit circle produces a deep notch. This is why MA models are useful for spectra characterized by **notches**.
+If a zero of $B(z)$ lies at $z_i=r_i e^{j\omega_i}$, then $\lvert B(e^{j\omega})\rvert$ becomes small near $\omega=\omega_i$. A zero on the unit circle produces an exact spectral null; a zero close to the unit circle produces a deep notch. This is why MA models are useful for spectra characterized by **notches**.
 
 ### Autocorrelation of MA($q$)
 
@@ -1854,17 +1854,17 @@ $$r_x(l) = \begin{cases} \sigma_w^2 \sum_{k=0}^{q-\lvert l\rvert} b_k b_{k+\lver
 
 The PSD determines only the squared magnitude
 
-$$R_x(e^{j\omega})=\sigma_w^2|B(e^{j\omega})|^2,$$
+$$R_x(e^{j\omega})=\sigma_w^2\lvert B(e^{j\omega})\rvert^2,$$
 
 not the phase of $B(e^{j\omega})$. In particular, reflecting a zero across the unit circle changes the phase but, after rescaling the driving-noise variance, leaves the PSD unchanged. For one zero, the relevant identity is
 
 $$
-\left|1-z_i e^{-j\omega}\right|^2
-=|z_i|^2
-\left|1-\frac{1}{z_i^{\ast}}e^{-j\omega}\right|^2.
+\left\lvert1-z_i e^{-j\omega}\right\rvert^2
+=\lvert z_i\rvert^2
+\left\lvert1-\frac{1}{z_i^{\ast}}e^{-j\omega}\right\rvert^2.
 $$
 
-Thus the zero $z_i$ and its conjugate reciprocal $1/z_i^{\ast}$ produce the same spectral shape, apart from the constant factor $|z_i|^2$, which can be absorbed into $\sigma_w^2$.
+Thus the zero $z_i$ and its conjugate reciprocal $1/z_i^{\ast}$ produce the same spectral shape, apart from the constant factor $\lvert z_i\rvert^2$, which can be absorbed into $\sigma_w^2$.
 
 For example, consider the real MA(1) model
 
@@ -1872,14 +1872,14 @@ $$x(n)=w(n)-a\,w(n-1),$$
 
 whose PSD is
 
-$$R_x(e^{j\omega})=\sigma_w^2|1-ae^{-j\omega}|^2.$$
+$$R_x(e^{j\omega})=\sigma_w^2\lvert 1-ae^{-j\omega}\rvert^2.$$
 
 For $a\ne0$,
 
 $$
-\sigma_w^2|1-ae^{-j\omega}|^2
+\sigma_w^2\lvert1-ae^{-j\omega}\rvert^2
 =\underbrace{\sigma_w^2a^2}_{\widetilde{\sigma}_w^2}
-\left|1-\frac{1}{a}e^{-j\omega}\right|^2.
+\left\lvert1-\frac{1}{a}e^{-j\omega}\right\rvert^2.
 $$
 
 Therefore the two parameter sets
@@ -2000,7 +2000,7 @@ Here $\boldsymbol{\Sigma}_x\to\boldsymbol{\Lambda}_x$ denotes decorrelation by r
 
 For the real-valued stationary AR(1) process
 
-$$x(n)=a x(n-1)+w(n),\qquad |a|<1,$$
+$$x(n)=a x(n-1)+w(n),\qquad \lvert a\rvert<1,$$
 
 the covariance of an $M$-sample vector is
 
@@ -2016,7 +2016,7 @@ a^{M-1}&a^{M-2}&a^{M-3}&\cdots&1
 \end{bmatrix}.
 $$
 
-The entries $a^{|i-j|}$ now connect the AR model directly to transform design. When $a$ is close to $1$, nearby samples have similar values, so the off-diagonal entries of $\boldsymbol{\Sigma}_x$ are large. The sample coordinates are therefore strongly coupled rather than statistically separate.
+The entries $a^{\lvert i-j\rvert}$ now connect the AR model directly to transform design. When $a$ is close to $1$, nearby samples have similar values, so the off-diagonal entries of $\boldsymbol{\Sigma}_x$ are large. The sample coordinates are therefore strongly coupled rather than statistically separate.
 
 To remove this coupling, diagonalize this particular covariance matrix:
 
@@ -2066,7 +2066,7 @@ Signal processing transforms live in a hierarchy of mathematical spaces:
 $$\text{Linear vector space} \subset \text{Normed linear space} \subset \text{Inner product space} \subset \text{Hilbert space}$$
 
 - **Linear vector space:** Closed under addition and scalar multiplication.
-- **Normed space:** Equipped with a length (norm) $\|\mathbf{x}\|$.
+- **Normed space:** Equipped with a length (norm) $\lVert\mathbf{x}\rVert$.
 - **Inner product space:** Equipped with an inner product $\langle \mathbf{x}, \mathbf{y}\rangle$ that induces a norm and notion of angle/orthogonality.
 - **Hilbert space:** A complete inner product space — every Cauchy sequence converges within the space. The space $\ell^2$ of square-summable sequences and $L^2[-\pi, \pi]$ are Hilbert spaces.
 
@@ -2075,7 +2075,7 @@ The **Euclidean space** $\mathbb{R}^M$ (or $\mathbb{C}^M$) is the finite-dimensi
 ### Orthogonal Transforms in Finite Dimensions
 
 An **orthogonal (unitary) transform** $\mathbf{y} = \mathbf{A}\mathbf{x}$ satisfies $\mathbf{A}^H \mathbf{A} = \mathbf{I}$, which implies:
-- **Parseval's theorem:** $\|\mathbf{y}\|^2 = \|\mathbf{x}\|^2$ — the $L^2$-norm (total energy) is preserved.
+- **Parseval's theorem:** $\lVert\mathbf{y}\rVert^2 = \lVert\mathbf{x}\rVert^2$ — the $L^2$-norm (total energy) is preserved.
 - **Unique invertibility:** $\mathbf{x} = \mathbf{A}^H \mathbf{y}$ — the inverse transform is $\mathbf{A}^H$.
 - **Decorrelation potential:** The transform can diagonalize the covariance matrix when its rows are chosen as the eigenvectors of $\mathbf{R}_x$.
 
@@ -2159,7 +2159,7 @@ $$\hat{\mathbf{x}} = \boldsymbol{\mu}_x + \sum_{i=1}^{K} w_i \mathbf{q}_i, \qqua
 
 The resulting MSE is:
 
-$$E_K = E\!\left\lbrace \|\mathbf{x} - \hat{\mathbf{x}}\|^2\right\rbrace = \sum_{i=K+1}^{M} \lambda_i$$
+$$E_K = E\!\left\lbrace \lVert\mathbf{x} - \hat{\mathbf{x}}\rVert^2\right\rbrace = \sum_{i=K+1}^{M} \lambda_i$$
 
 To minimize $E_K$, retain the $K$ eigenvectors with the **largest** eigenvalues $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_M$. This is **Principal Component Analysis (PCA)** — the KL transform is the optimal linear dimensionality reduction in the MSE sense.
 
@@ -2325,7 +2325,7 @@ $$
 \hat{\theta}_N\xrightarrow{p}\theta,
 \qquad\text{that is,}\qquad
 \lim_{N\to\infty}
-P\!\left(\left|\hat{\theta}_N-\theta\right|>\varepsilon\right)=0
+P\!\left(\left\lvert\hat{\theta}_N-\theta\right\rvert>\varepsilon\right)=0
 \quad\text{for every }\varepsilon>0.
 $$
 
@@ -2333,13 +2333,13 @@ A stronger property is **mean-square consistency**:
 
 $$
 \lim_{N\to\infty}
-E\!\left\{\left|\hat{\theta}_N-\theta\right|^2\right\}=0.
+E\!\left\{\left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\}=0.
 $$
 
 Since
 
 $$
-E\!\left\{\left|\hat{\theta}_N-\theta\right|^2\right\}
+E\!\left\{\left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\}
 =\operatorname{var}(\hat{\theta}_N)
 +\left(E\{\hat{\theta}_N\}-\theta\right)^2,
 $$
@@ -2410,7 +2410,7 @@ $$
 \qquad\text{for every vector }\mathbf c,
 $$
 
-or, equivalently, all its eigenvalues must be nonnegative. The lag-dependent normalization $1/(N-|l|)$ in the unbiased estimator can produce a sequence of estimated lags that does not satisfy this condition; the resulting Toeplitz matrix may have a negative eigenvalue and is then **indefinite**. Consequently, the Yule--Walker equations may produce an invalid or unstable AR model. The unbiased estimate also has high variance at large lags because only $N-|l|$ sample products are averaged.
+or, equivalently, all its eigenvalues must be nonnegative. The lag-dependent normalization $1/(N-\lvert l\rvert)$ in the unbiased estimator can produce a sequence of estimated lags that does not satisfy this condition; the resulting Toeplitz matrix may have a negative eigenvalue and is then **indefinite**. Consequently, the Yule--Walker equations may produce an invalid or unstable AR model. The unbiased estimate also has high variance at large lags because only $N-\lvert l\rvert$ sample products are averaged.
 
 **In practice:** The biased estimate is often preferred in linear prediction and AR modeling because its Toeplitz autocorrelation matrix is guaranteed to be positive semi-definite. It is positive definite when it is nonsingular.
 
@@ -2440,7 +2440,7 @@ where $\mathbf{x} \in \mathbb{R}^N$ is observed, $\mathbf{H} \in \mathbb{R}^{N\t
 
 The **least-squares estimate** minimizes the sum of squared residuals:
 
-$$J(\boldsymbol{\theta}) = \|\mathbf{x} - \mathbf{H}\boldsymbol{\theta}\|^2 = (\mathbf{x} - \mathbf{H}\boldsymbol{\theta})^T(\mathbf{x} - \mathbf{H}\boldsymbol{\theta})$$
+$$J(\boldsymbol{\theta}) = \lVert\mathbf{x} - \mathbf{H}\boldsymbol{\theta}\rVert^2 = (\mathbf{x} - \mathbf{H}\boldsymbol{\theta})^T(\mathbf{x} - \mathbf{H}\boldsymbol{\theta})$$
 
 ### Normal Equations and LS Solution
 
@@ -2459,7 +2459,7 @@ where $\mathbf{H}^\dagger = (\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T$ is the **
 1. **Unbiased:** $E\lbrace \hat{\boldsymbol{\theta}}_{\mathrm{LS}}\rbrace = \boldsymbol{\theta}$ (if errors have zero mean).
 2. **Error covariance:** $\boldsymbol{\Sigma}_{\hat{\theta}} = E\lbrace (\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})(\hat{\boldsymbol{\theta}}-\boldsymbol{\theta})^T\rbrace = \sigma_e^2 (\mathbf{H}^T\mathbf{H})^{-1}$ (if errors are IID with variance $\sigma_e^2$).
 3. **Gauss-Markov theorem:** Among all **linear unbiased** estimators, the LS estimate is the Best Linear Unbiased Estimator (BLUE) when errors are IID — it has the smallest variance for each parameter.
-4. **Minimum achieved cost:** $J(\hat{\boldsymbol{\theta}}_{\mathrm{LS}}) = \|\mathbf{x}\|^2 - \mathbf{x}^T\mathbf{H}(\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T\mathbf{x}$.
+4. **Minimum achieved cost:** $J(\hat{\boldsymbol{\theta}}_{\mathrm{LS}}) = \lVert\mathbf{x}\rVert^2 - \mathbf{x}^T\mathbf{H}(\mathbf{H}^T\mathbf{H})^{-1}\mathbf{H}^T\mathbf{x}$.
 
 ### Weighted Least Squares (WLS)
 
