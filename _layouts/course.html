@@ -1767,6 +1767,38 @@
         }
       }
 
+      /* ============================================================
+         Keep site table styles out of MathJax 2's layout tables
+         ------------------------------------------------------------
+         MathJax may use nested tables to typeset TeX (notably formulas
+         containing alignment, fractions, matrices, or repeated |...|
+         delimiters).  The generic table/th/td rules above must not turn
+         those private layout tables into full-width Markdown tables.
+         ============================================================ */
+      :is(.MathJax, .MathJax_Display, .MathJax_PHTML, .MathJax_SVG)
+        :is(table, thead, tbody, tfoot, tr, th, td) {
+        width: auto !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: inherit !important;
+        font: inherit !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        transform: none !important;
+        transition: none !important;
+        overflow: visible !important;
+      }
+
+      :is(.MathJax, .MathJax_Display, .MathJax_PHTML, .MathJax_SVG)
+        :is(table, thead, tbody, tfoot, tr, th, td)::before {
+        content: none !important;
+      }
+
     </style>
   </head>
   <body>
