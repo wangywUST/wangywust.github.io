@@ -1,28 +1,9 @@
 # Modern Digital Signal Processing
----
-
-**Modern Digital Signal Processing**
-
-- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-- [Table of Contents](#table-of-contents)
-- [Notation and Variable Definitions](#notation-and-variable-definitions)
-
----
 
 ## Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review
 
 > 📖 Textbook: Manolakis, Ingle, Kogon — *Statistical and Adaptive Signal Processing*, Artech House, 2005
 > Chapters covered: Ch. 1 (Introduction) + Ch. 2 (Fundamentals of Discrete-Time Signal Processing)
-
----
-
-**Modern Digital Signal Processing**
-
-- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-- [Table of Contents](#table-of-contents)
-- [Notation and Variable Definitions](#notation-and-variable-definitions)
-
----
 
 ## Table of Contents
 
@@ -128,14 +109,6 @@
     - [4.4.2 Theorem 1.2: Zero Pairing in Rational Positive Semi-Definite Sequences](#442-theorem-12-zero-pairing-in-rational-positive-semi-definite-sequences)
 - [Chapter 1 Summary](#chapter-1-summary)
   - [Looking Ahead](#looking-ahead)
-
----
-
-**Modern Digital Signal Processing**
-
-- [Chapter 1: Discrete-Time Signal Processing — Undergraduate DSP Review](#chapter-1-discrete-time-signal-processing--undergraduate-dsp-review)
-- [Table of Contents](#table-of-contents)
-- [Notation and Variable Definitions](#notation-and-variable-definitions)
 
 ---
 
