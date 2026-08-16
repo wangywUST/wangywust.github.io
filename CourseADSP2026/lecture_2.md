@@ -252,11 +252,11 @@ All symbols used in this chapter are listed below. Where a symbol carries differ
 
 ---
 
-> ### Guiding Question
->
-> A receiver observes a sample $x=s+w$, where the deterministic signal level is $s=2$, and the noise is Gaussian, $w\sim\mathcal{N}(0,1)$. The receiver declares “signal present” when $x>3$. What is the detection probability? What are the mean and variance of $x$? If a second receiver observes $y=s+v$, where $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$, are $x$ and $y$ independent?
->
-> Before this section, the words “Gaussian,” “variance,” and “independent” have not yet been turned into computational tools. By the end of §1, we will be able to answer every part—and explain why zero covariance alone is usually not enough to establish independence.
+**Guiding Question**
+
+A receiver observes a sample $x=s+w$, where the deterministic signal level is $s=2$, and the noise is Gaussian, $w\sim\mathcal{N}(0,1)$. The receiver declares “signal present” when $x>3$. What is the detection probability? What are the mean and variance of $x$? If a second receiver observes $y=s+v$, where $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$, are $x$ and $y$ independent?
+
+Before this section, the words “Gaussian,” “variance,” and “independent” have not yet been turned into computational tools. By the end of §1, we will be able to answer every part—and explain why zero covariance alone is usually not enough to establish independence.
 
 ---
 
@@ -499,23 +499,27 @@ A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2
 
 ---
 
-> ### Answer to the Guiding Question
->
-> Since $x=2+w$ and $w\sim\mathcal{N}(0,1)$, translation of a Gaussian random variable gives
->
-> $$x\sim\mathcal{N}(2,1).$$
->
-> The decision event $x>3$ is equivalent to $w>1$. If $\Phi(a)$ denotes the standard-normal CDF,
->
-> $$P_D=\Pr\{x>3\}=\Pr\{w>1\}=1-\Phi(1)\approx 0.1587.$$
->
-> Linearity of expectation gives $E\{x\}=2+E\{w\}=2$, and adding a constant does not change variance, so $\operatorname{var}(x)=\operatorname{var}(w)=1$.
->
-> For the two receivers,
->
-> $$\operatorname{cov}(x,y)=E\{(x-2)(y-2)\}=E\{wv\}=0.6.$$
->
-> Therefore $x$ and $y$ are correlated and cannot be independent: independence would imply zero covariance. More generally, the converse is false—zero covariance does not normally imply independence. It would imply independence only with an additional condition such as joint Gaussianity. Here the nonzero covariance already settles the question.
+### Answer to the Guiding Question
+
+**Question.** A receiver observes a sample $x=s+w$, where the deterministic signal level is $s=2$, and the noise is Gaussian, $w\sim\mathcal{N}(0,1)$. The receiver declares “signal present” when $x>3$. What is the detection probability? What are the mean and variance of $x$? If a second receiver observes $y=s+v$, where $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$, are $x$ and $y$ independent?
+
+**Answer.**
+
+Since $x=2+w$ and $w\sim\mathcal{N}(0,1)$, translation of a Gaussian random variable gives
+
+$$x\sim\mathcal{N}(2,1).$$
+
+The decision event $x>3$ is equivalent to $w>1$. If $\Phi(a)$ denotes the standard-normal CDF,
+
+$$P_D=\Pr\{x>3\}=\Pr\{w>1\}=1-\Phi(1)\approx 0.1587.$$
+
+Linearity of expectation gives $E\{x\}=2+E\{w\}=2$, and adding a constant does not change variance, so $\operatorname{var}(x)=\operatorname{var}(w)=1$.
+
+For the two receivers,
+
+$$\operatorname{cov}(x,y)=E\{(x-2)(y-2)\}=E\{wv\}=0.6.$$
+
+Therefore $x$ and $y$ are correlated and cannot be independent: independence would imply zero covariance. More generally, the converse is false—zero covariance does not normally imply independence. It would imply independence only with an additional condition such as joint Gaussianity. Here the nonzero covariance already settles the question.
 
 ---
 
@@ -525,15 +529,15 @@ A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2
 
 ---
 
-> ### Guiding Question
->
-> Consider
->
-> $$x(n)=A\cos(\omega_0 n+\Theta)+w(n),$$
->
-> where $\Theta$ is uniform on $[0,2\pi)$, $w(n)$ is zero-mean white noise with variance $\sigma_w^2$, and $\Theta$ is independent of the entire noise sequence. Is $x(n)$ wide-sense stationary? What are its mean, autocorrelation, and power spectral density? If we observe only one infinitely long realization, can its time-average mean and power recover the corresponding ensemble averages?
->
-> A random-variable description at one time instant cannot answer these questions: we need an ensemble indexed by time, stationarity, correlation sequences, spectra, and ergodicity.
+**Guiding Question**
+
+Consider
+
+$$x(n)=A\cos(\omega_0 n+\Theta)+w(n),$$
+
+where $\Theta$ is uniform on $[0,2\pi)$, $w(n)$ is zero-mean white noise with variance $\sigma_w^2$, and $\Theta$ is independent of the entire noise sequence. Is $x(n)$ wide-sense stationary? What are its mean, autocorrelation, and power spectral density? If we observe only one infinitely long realization, can its time-average mean and power recover the corresponding ensemble averages?
+
+A random-variable description at one time instant cannot answer these questions: we need an ensemble indexed by time, stationarity, correlation sequences, spectra, and ergodicity.
 
 ---
 
@@ -1157,25 +1161,33 @@ White noise is the fundamental **building block** for constructing more complex 
 
 ---
 
-> ### Answer to the Guiding Question
->
-> Averaging over the random phase gives $E\{\cos(\omega_0n+\Theta)\}=0$, and the noise is zero mean, hence $m_x(n)=0$. Independence removes the sinusoid–noise cross terms. Using
->
-> $$E_\Theta\{\cos(\alpha+\Theta)\cos(\beta+\Theta)\}=\frac12\cos(\alpha-\beta),$$
->
-> we obtain
->
-> $$r_x(n_1,n_2)=\frac{A^2}{2}\cos\!\bigl(\omega_0(n_1-n_2)\bigr)+\sigma_w^2\delta(n_1-n_2).$$
->
-> This depends only on the lag $l=n_1-n_2$, so $x(n)$ is WSS, with
->
-> $$r_x(l)=\frac{A^2}{2}\cos(\omega_0l)+\sigma_w^2\delta(l),\qquad r_x(0)=\frac{A^2}{2}+\sigma_w^2.$$
->
-> By Wiener–Khinchin, the cosine produces two spectral lines and the white noise contributes a flat floor:
->
-> $$R_x(e^{j\omega})=\frac{\pi A^2}{2}\sum_{k\in\mathbb Z}\!\left[\delta(\omega-\omega_0-2\pi k)+\delta(\omega+\omega_0-2\pi k)\right]+\sigma_w^2.$$
->
-> For the ordinary sinusoidal case $0<\omega_0<\pi$, the oscillatory terms vanish in an infinite time average. Assuming the white-noise component obeys the usual ergodic law, almost every realization therefore has time-average mean $0$, time-average power $A^2/2+\sigma_w^2$, and time-average lag product $r_x(l)$. Thus this model is mean- and autocorrelation-ergodic for those statistics. The restriction matters: at the degenerate frequencies $\omega_0=0$ or $\pi$, a phase-dependent constant survives, so a single realization need not reproduce the ensemble power or autocorrelation. WSS alone never guarantees ergodicity; it must be checked for the statistic and model at hand.
+### Answer to the Guiding Question
+
+**Question.** Consider
+
+$$x(n)=A\cos(\omega_0 n+\Theta)+w(n),$$
+
+where $\Theta$ is uniform on $[0,2\pi)$, $w(n)$ is zero-mean white noise with variance $\sigma_w^2$, and $\Theta$ is independent of the entire noise sequence. Is $x(n)$ wide-sense stationary? What are its mean, autocorrelation, and power spectral density? If we observe only one infinitely long realization, can its time-average mean and power recover the corresponding ensemble averages?
+
+**Answer.**
+
+Averaging over the random phase gives $E\{\cos(\omega_0n+\Theta)\}=0$, and the noise is zero mean, hence $m_x(n)=0$. Independence removes the sinusoid–noise cross terms. Using
+
+$$E_\Theta\{\cos(\alpha+\Theta)\cos(\beta+\Theta)\}=\frac12\cos(\alpha-\beta),$$
+
+we obtain
+
+$$r_x(n_1,n_2)=\frac{A^2}{2}\cos\!\bigl(\omega_0(n_1-n_2)\bigr)+\sigma_w^2\delta(n_1-n_2).$$
+
+This depends only on the lag $l=n_1-n_2$, so $x(n)$ is WSS, with
+
+$$r_x(l)=\frac{A^2}{2}\cos(\omega_0l)+\sigma_w^2\delta(l),\qquad r_x(0)=\frac{A^2}{2}+\sigma_w^2.$$
+
+By Wiener–Khinchin, the cosine produces two spectral lines and the white noise contributes a flat floor:
+
+$$R_x(e^{j\omega})=\frac{\pi A^2}{2}\sum_{k\in\mathbb Z}\!\left[\delta(\omega-\omega_0-2\pi k)+\delta(\omega+\omega_0-2\pi k)\right]+\sigma_w^2.$$
+
+For the ordinary sinusoidal case $0<\omega_0<\pi$, the oscillatory terms vanish in an infinite time average. Assuming the white-noise component obeys the usual ergodic law, almost every realization therefore has time-average mean $0$, time-average power $A^2/2+\sigma_w^2$, and time-average lag product $r_x(l)$. Thus this model is mean- and autocorrelation-ergodic for those statistics. The restriction matters: at the degenerate frequencies $\omega_0=0$ or $\pi$, a phase-dependent constant survives, so a single realization need not reproduce the ensemble power or autocorrelation. WSS alone never guarantees ergodicity; it must be checked for the statistic and model at hand.
 
 ---
 
@@ -1185,15 +1197,15 @@ White noise is the fundamental **building block** for constructing more complex 
 
 ---
 
-> ### Guiding Question
->
-> Unit-variance white noise $w(n)$ is passed through the stable causal filter
->
-> $$H(z)=\frac{1}{1-0.8z^{-1}}.$$
->
-> Without simulating the system, determine the output mean, PSD, autocorrelation, and variance. Why does a flat-spectrum input become a lowpass, strongly correlated output?
->
-> The previous section tells us how to describe the input, but not yet how an LTI system transforms its second-order statistics.
+**Guiding Question**
+
+Unit-variance white noise $w(n)$ is passed through the stable causal filter
+
+$$H(z)=\frac{1}{1-0.8z^{-1}}.$$
+
+Without simulating the system, determine the output mean, PSD, autocorrelation, and variance. Why does a flat-spectrum input become a lowpass, strongly correlated output?
+
+The previous section tells us how to describe the input, but not yet how an LTI system transforms its second-order statistics.
 
 ---
 
@@ -1311,27 +1323,35 @@ This confirms that the variance of a first-order AR process driven by white nois
 
 ---
 
-> ### Answer to the Guiding Question
->
-> The input has $m_w=0$ and $R_w(e^{j\omega})=1$. A stable LTI filter preserves WSS, and its output mean is
->
-> $$m_x=H(1)m_w=0.$$
->
-> The frequency-domain filtering law gives
->
-> $$R_x(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2R_w(e^{j\omega})
-> =\frac{1}{\lvert1-0.8e^{-j\omega}\rvert^2}
-> =\frac{1}{1.64-1.6\cos\omega}.$$
->
-> The inverse DTFT, or the time-domain convolution $r_x=h*r_w*h^{\ast}(-n)$, yields
->
-> $$r_x(l)=\frac{0.8^{\lvert l\rvert}}{1-0.8^2}=\frac{25}{9}(0.8)^{\lvert l\rvert}.$$
->
-> Therefore the output variance (equal to its power because its mean is zero) is
->
-> $$\sigma_x^2=r_x(0)=\frac{1}{1-0.8^2}=\frac{25}{9}\approx2.778.$$
->
-> The pole at $0.8$ gives the filter large gain near $\omega=0$ and memory across time. Thus it reshapes the flat input spectrum into a lowpass spectrum and turns the impulse autocorrelation of white noise into an exponentially decaying autocorrelation.
+### Answer to the Guiding Question
+
+**Question.** Unit-variance white noise $w(n)$ is passed through the stable causal filter
+
+$$H(z)=\frac{1}{1-0.8z^{-1}}.$$
+
+Without simulating the system, determine the output mean, PSD, autocorrelation, and variance. Why does a flat-spectrum input become a lowpass, strongly correlated output?
+
+**Answer.**
+
+The input has $m_w=0$ and $R_w(e^{j\omega})=1$. A stable LTI filter preserves WSS, and its output mean is
+
+$$m_x=H(1)m_w=0.$$
+
+The frequency-domain filtering law gives
+
+$$R_x(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2R_w(e^{j\omega})
+=\frac{1}{\lvert1-0.8e^{-j\omega}\rvert^2}
+=\frac{1}{1.64-1.6\cos\omega}.$$
+
+The inverse DTFT, or the time-domain convolution $r_x=h*r_w*h^{\ast}(-n)$, yields
+
+$$r_x(l)=\frac{0.8^{\lvert l\rvert}}{1-0.8^2}=\frac{25}{9}(0.8)^{\lvert l\rvert}.$$
+
+Therefore the output variance (equal to its power because its mean is zero) is
+
+$$\sigma_x^2=r_x(0)=\frac{1}{1-0.8^2}=\frac{25}{9}\approx2.778.$$
+
+The pole at $0.8$ gives the filter large gain near $\omega=0$ and memory across time. Thus it reshapes the flat input spectrum into a lowpass spectrum and turns the impulse autocorrelation of white noise into an exponentially decaying autocorrelation.
 
 ---
 
@@ -1341,15 +1361,15 @@ This confirms that the variance of a first-order AR process driven by white nois
 
 ---
 
-> ### Guiding Question
->
-> A zero-mean WSS process has PSD
->
-> $$R_x(z)=\frac{1}{(1-0.5z^{-1})(1-0.5z)}.$$
->
-> Find a causal, stable, minimum-phase shaping filter driven by unit-variance white noise that generates this process. Then find a causal whitening filter and explain what its output represents. Could a different spectral factor generate the same PSD, and if so, why is the minimum-phase one preferred?
->
-> §3 solves the forward problem “filter $\rightarrow$ spectrum.” This inverse problem requires the new factorization ideas of §4.
+**Guiding Question**
+
+A zero-mean WSS process has PSD
+
+$$R_x(z)=\frac{1}{(1-0.5z^{-1})(1-0.5z)}.$$
+
+Find a causal, stable, minimum-phase shaping filter driven by unit-variance white noise that generates this process. Then find a causal whitening filter and explain what its output represents. Could a different spectral factor generate the same PSD, and if so, why is the minimum-phase one preferred?
+
+§3 solves the forward problem “filter $\rightarrow$ spectrum.” This inverse problem requires the new factorization ideas of §4.
 
 ---
 
@@ -1645,25 +1665,33 @@ only the sinusoidal component is perfectly predictable. The regular component $x
 
 ---
 
-> ### Answer to the Guiding Question
->
-> The PSD is already in conjugate-reciprocal form:
->
-> $$R_x(z)=H_+(z)H_+^{\ast}(1/z^{\ast}),\qquad H_+(z)=\frac{1}{1-0.5z^{-1}}.$$
->
-> With unit-variance white noise $w(n)$, the innovations representation is
->
-> $$x(n)=H_+(z)w(n),\qquad x(n)=0.5x(n-1)+w(n).$$
->
-> The pole of $H_+$ is at $z=0.5$, inside the unit circle, so the factor is causal and stable. It has no finite zeros, hence it is minimum phase. Its causal stable inverse is the whitening filter
->
-> $$W(z)=H_+^{-1}(z)=1-0.5z^{-1},$$
->
-> and therefore
->
-> $$e(n)=W(z)x(n)=x(n)-0.5x(n-1)=w(n).$$
->
-> The output $e(n)$ is the **innovation**: the new component of $x(n)$ that cannot be linearly predicted from its past. An all-pass factor $A(z)$ with $\lvert A(e^{j\omega})\rvert=1$ could be multiplied into $H_+$ without changing the PSD, because magnitude squared discards phase. The minimum-phase choice is preferred because both the shaping filter and its inverse are causal and stable, giving a unique physically useful innovations model (up to a constant unit-magnitude phase).
+### Answer to the Guiding Question
+
+**Question.** A zero-mean WSS process has PSD
+
+$$R_x(z)=\frac{1}{(1-0.5z^{-1})(1-0.5z)}.$$
+
+Find a causal, stable, minimum-phase shaping filter driven by unit-variance white noise that generates this process. Then find a causal whitening filter and explain what its output represents. Could a different spectral factor generate the same PSD, and if so, why is the minimum-phase one preferred?
+
+**Answer.**
+
+The PSD is already in conjugate-reciprocal form:
+
+$$R_x(z)=H_+(z)H_+^{\ast}(1/z^{\ast}),\qquad H_+(z)=\frac{1}{1-0.5z^{-1}}.$$
+
+With unit-variance white noise $w(n)$, the innovations representation is
+
+$$x(n)=H_+(z)w(n),\qquad x(n)=0.5x(n-1)+w(n).$$
+
+The pole of $H_+$ is at $z=0.5$, inside the unit circle, so the factor is causal and stable. It has no finite zeros, hence it is minimum phase. Its causal stable inverse is the whitening filter
+
+$$W(z)=H_+^{-1}(z)=1-0.5z^{-1},$$
+
+and therefore
+
+$$e(n)=W(z)x(n)=x(n)-0.5x(n-1)=w(n).$$
+
+The output $e(n)$ is the **innovation**: the new component of $x(n)$ that cannot be linearly predicted from its past. An all-pass factor $A(z)$ with $\lvert A(e^{j\omega})\rvert=1$ could be multiplied into $H_+$ without changing the PSD, because magnitude squared discards phase. The minimum-phase choice is preferred because both the shaping filter and its inverse are causal and stable, giving a unique physically useful innovations model (up to a constant unit-magnitude phase).
 
 ---
 
@@ -1673,11 +1701,11 @@ only the sinusoidal component is perfectly predictable. The regular component $x
 
 ---
 
-> ### Guiding Question
->
-> Two zero-mean WSS signals have autocorrelations $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which signal admits a first-order AR model and which admits a first-order MA model? Determine one valid difference equation and white-noise variance for each, and explain what their spectra must look like. Why is the MA factor not necessarily unique?
->
-> The previous sections guarantee that shaping-filter descriptions exist, but they do not tell us how to recognize or recover a compact finite-parameter model from correlation data.
+**Guiding Question**
+
+Two zero-mean WSS signals have autocorrelations $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which signal admits a first-order AR model and which admits a first-order MA model? Determine one valid difference equation and white-noise variance for each, and explain what their spectra must look like. Why is the MA factor not necessarily unique?
+
+The previous sections guarantee that shaping-filter descriptions exist, but they do not tell us how to recognize or recover a compact finite-parameter model from correlation data.
 
 ---
 
@@ -2086,27 +2114,31 @@ Having derived all three model classes, we can now compare their spectral behavi
 
 ---
 
-> ### Answer to the Guiding Question
->
-> For $r_a(l)$, the correlation extends to every lag and obeys $r_a(l)=0.6r_a(l-1)$ for $l\ge1$, the signature of AR(1). Thus
->
-> $$a(n)=0.6a(n-1)+w_a(n),\qquad \sigma_{w_a}^2=r_a(0)(1-0.6^2)=2.56,$$
->
-> and
->
-> $$R_a(e^{j\omega})=\frac{2.56}{\lvert1-0.6e^{-j\omega}\rvert^2}.$$
->
-> Its pole near $z=1$ creates a low-frequency peak and infinite exponentially decaying memory.
->
-> For $r_b(l)$, exact truncation beyond lag one is the signature of MA(1). Let $b(n)=w_b(n)+c\,w_b(n-1)$. Then
->
-> $$\sigma_{w_b}^2(1+c^2)=5,\qquad \sigma_{w_b}^2c=2.$$
->
-> Therefore $2c^2-5c+2=0$, so $c=0.5$ or $c=2$. The minimum-phase choice is $c=0.5$, for which
->
-> $$\sigma_{w_b}^2=4,\qquad R_b(e^{j\omega})=4\lvert1+0.5e^{-j\omega}\rvert^2=5+4\cos\omega.$$
->
-> The alternative $c=2$, $\sigma_{w_b}^2=1$, has the reciprocal zero and produces the same PSD. Thus second-order statistics determine the MA magnitude response but not its phase; imposing minimum phase selects a unique invertible representative.
+### Answer to the Guiding Question
+
+**Question.** Two zero-mean WSS signals have autocorrelations $r_a(l)=4(0.6)^{\lvert l\rvert}$ and $r_b(0)=5$, $r_b(\pm1)=2$, $r_b(l)=0$ for $\lvert l\rvert>1$. Which signal admits a first-order AR model and which admits a first-order MA model? Determine one valid difference equation and white-noise variance for each, and explain what their spectra must look like. Why is the MA factor not necessarily unique?
+
+**Answer.**
+
+For $r_a(l)$, the correlation extends to every lag and obeys $r_a(l)=0.6r_a(l-1)$ for $l\ge1$, the signature of AR(1). Thus
+
+$$a(n)=0.6a(n-1)+w_a(n),\qquad \sigma_{w_a}^2=r_a(0)(1-0.6^2)=2.56,$$
+
+and
+
+$$R_a(e^{j\omega})=\frac{2.56}{\lvert1-0.6e^{-j\omega}\rvert^2}.$$
+
+Its pole near $z=1$ creates a low-frequency peak and infinite exponentially decaying memory.
+
+For $r_b(l)$, exact truncation beyond lag one is the signature of MA(1). Let $b(n)=w_b(n)+c\,w_b(n-1)$. Then
+
+$$\sigma_{w_b}^2(1+c^2)=5,\qquad \sigma_{w_b}^2c=2.$$
+
+Therefore $2c^2-5c+2=0$, so $c=0.5$ or $c=2$. The minimum-phase choice is $c=0.5$, for which
+
+$$\sigma_{w_b}^2=4,\qquad R_b(e^{j\omega})=4\lvert1+0.5e^{-j\omega}\rvert^2=5+4\cos\omega.$$
+
+The alternative $c=2$, $\sigma_{w_b}^2=1$, has the reciprocal zero and produces the same PSD. Thus second-order statistics determine the MA magnitude response but not its phase; imposing minimum phase selects a unique invertible representative.
 
 ---
 
@@ -2116,15 +2148,15 @@ Having derived all three model classes, we can now compare their spectral behavi
 
 ---
 
-> ### Guiding Question
->
-> A two-sample zero-mean observation vector has covariance
->
-> $$\boldsymbol{\Sigma}_x=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
->
-> Find an orthonormal transform whose output coefficients are uncorrelated. What are their variances? If only one coefficient may be retained, which one minimizes reconstruction MSE and what is that MSE? Finally, construct a transform whose output covariance is the identity.
->
-> Correlation matrices and spectra describe dependence, but §1–§5 do not yet provide a coordinate system that removes that dependence or ranks directions by information-bearing variance.
+**Guiding Question**
+
+A two-sample zero-mean observation vector has covariance
+
+$$\boldsymbol{\Sigma}_x=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
+
+Find an orthonormal transform whose output coefficients are uncorrelated. What are their variances? If only one coefficient may be retained, which one minimizes reconstruction MSE and what is that MSE? Finally, construct a transform whose output covariance is the identity.
+
+Correlation matrices and spectra describe dependence, but §1–§5 do not yet provide a coordinate system that removes that dependence or ranks directions by information-bearing variance.
 
 ---
 
@@ -2429,26 +2461,34 @@ There is also an important link to the next section. The optimal KL and whitenin
 
 ---
 
-> ### Answer to the Guiding Question
->
-> The covariance matrix has eigenpairs
->
-> $$\lambda_1=3,\quad \mathbf q_1=\frac{1}{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix};
-> \qquad
-> \lambda_2=1,\quad \mathbf q_2=\frac{1}{\sqrt2}\begin{bmatrix}1\\-1\end{bmatrix}.$$
->
-> With $\mathbf Q=[\mathbf q_1\ \mathbf q_2]$ and $\mathbf y=\mathbf Q^T\mathbf x$,
->
-> $$E\{\mathbf y\mathbf y^T\}=\mathbf Q^T\boldsymbol{\Sigma}_x\mathbf Q=\begin{bmatrix}3&0\\0&1\end{bmatrix}.$$
->
-> Thus $y_1=(x_1+x_2)/\sqrt2$ and $y_2=(x_1-x_2)/\sqrt2$ are uncorrelated, with variances $3$ and $1$. Keeping $y_1$ gives the optimal rank-one reconstruction $\hat{\mathbf x}=\mathbf q_1y_1$, whose total mean-square error equals the discarded eigenvalue, $1$.
->
-> Whitening additionally normalizes each KL coefficient:
->
-> $$\mathbf z=\boldsymbol{\Lambda}^{-1/2}\mathbf Q^T\mathbf x,qquad
-> \boldsymbol{\Lambda}^{-1/2}=\begin{bmatrix}1/\sqrt3&0\\0&1\end{bmatrix}.$$
->
-> Consequently $E\{\mathbf z\mathbf z^T\}=\mathbf I$. The KL rotation decorrelates and orders the components; the scaling then gives every component unit variance.
+### Answer to the Guiding Question
+
+**Question.** A two-sample zero-mean observation vector has covariance
+
+$$\boldsymbol{\Sigma}_x=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
+
+Find an orthonormal transform whose output coefficients are uncorrelated. What are their variances? If only one coefficient may be retained, which one minimizes reconstruction MSE and what is that MSE? Finally, construct a transform whose output covariance is the identity.
+
+**Answer.**
+
+The covariance matrix has eigenpairs
+
+$$\lambda_1=3,\quad \mathbf q_1=\frac{1}{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix};
+\qquad
+\lambda_2=1,\quad \mathbf q_2=\frac{1}{\sqrt2}\begin{bmatrix}1\\-1\end{bmatrix}.$$
+
+With $\mathbf Q=[\mathbf q_1\ \mathbf q_2]$ and $\mathbf y=\mathbf Q^T\mathbf x$,
+
+$$E\{\mathbf y\mathbf y^T\}=\mathbf Q^T\boldsymbol{\Sigma}_x\mathbf Q=\begin{bmatrix}3&0\\0&1\end{bmatrix}.$$
+
+Thus $y_1=(x_1+x_2)/\sqrt2$ and $y_2=(x_1-x_2)/\sqrt2$ are uncorrelated, with variances $3$ and $1$. Keeping $y_1$ gives the optimal rank-one reconstruction $\hat{\mathbf x}=\mathbf q_1y_1$, whose total mean-square error equals the discarded eigenvalue, $1$.
+
+Whitening additionally normalizes each KL coefficient:
+
+$$\mathbf z=\boldsymbol{\Lambda}^{-1/2}\mathbf Q^T\mathbf x,qquad
+\boldsymbol{\Lambda}^{-1/2}=\begin{bmatrix}1/\sqrt3&0\\0&1\end{bmatrix}.$$
+
+Consequently $E\{\mathbf z\mathbf z^T\}=\mathbf I$. The KL rotation decorrelates and orders the components; the scaling then gives every component unit variance.
 
 ---
 
@@ -2458,11 +2498,11 @@ There is also an important link to the next section. The optimal KL and whitenin
 
 ---
 
-> ### Guiding Question
->
-> We observe $N$ independent samples $x(n)=\mu+w(n)$, where $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. Compare $\hat\mu_1=x(0)$ and $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Are they unbiased and consistent? What are their MSEs? What is the Cramér–Rao lower bound, and which estimator attains it? Show how least squares and maximum likelihood lead to the same estimate. If instead $\mu$ has a Gaussian prior $\mathcal N(\mu_0,\tau^2)$, how does the Bayesian estimate change?
->
-> Earlier sections define the statistics we would like to know; this section supplies the principles for inferring unknown quantities from finite data and judging the quality of the result.
+**Guiding Question**
+
+We observe $N$ independent samples $x(n)=\mu+w(n)$, where $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. Compare $\hat\mu_1=x(0)$ and $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Are they unbiased and consistent? What are their MSEs? What is the Cramér–Rao lower bound, and which estimator attains it? Show how least squares and maximum likelihood lead to the same estimate. If instead $\mu$ has a Gaussian prior $\mathcal N(\mu_0,\tau^2)$, how does the Bayesian estimate change?
+
+Earlier sections define the statistics we would like to know; this section supplies the principles for inferring unknown quantities from finite data and judging the quality of the result.
 
 ---
 
@@ -2825,33 +2865,37 @@ $$\hat{\boldsymbol{\theta}}_{\mathrm{MAP}} = \arg\max_{\boldsymbol{\theta}} f_{\
 
 ---
 
-> ### Answer to the Guiding Question
->
-> Both estimators are unbiased because $E\{x(n)\}=\mu$. For an unbiased estimator, MSE equals variance, so independence gives
->
-> $$\operatorname{MSE}(\hat\mu_1)=\sigma^2,\qquad
-> \operatorname{MSE}(\hat\mu_2)=\frac{\sigma^2}{N}.$$
->
-> Hence $\hat\mu_1$ is not consistent—its error variance never shrinks—whereas $\hat\mu_2$ is consistent. Up to constants, the log-likelihood is
->
-> $$\ell(\mu)=-\frac{1}{2\sigma^2}\sum_{n=0}^{N-1}(x(n)-\mu)^2.$$
->
-> Maximizing it is the same as minimizing the least-squares residual sum, and differentiation gives
->
-> $$\hat\mu_{\mathrm{ML}}=\hat\mu_{\mathrm{LS}}=\bar x=\hat\mu_2.$$
->
-> Each sample contributes Fisher information $1/\sigma^2$, so $J(\mu)=N/\sigma^2$ and every unbiased estimator obeys
->
-> $$\operatorname{var}(\hat\mu)\ge\frac{1}{J(\mu)}=\frac{\sigma^2}{N}.$$
->
-> The sample mean attains this bound and is efficient; the one-sample estimator does not when $N>1$.
->
-> With the prior $\mu\sim\mathcal N(\mu_0,\tau^2)$, Gaussian conjugacy gives the posterior mean (and both the MMSE and MAP estimate)
->
-> $$\hat\mu_{\mathrm{Bayes}}
-> =\frac{(N/\sigma^2)\bar x+(1/\tau^2)\mu_0}{N/\sigma^2+1/\tau^2}.$$
->
-> It is a precision-weighted compromise between the data mean and the prior mean. As $N$ grows, the data dominate; as $\tau^2$ shrinks, the prior dominates.
+### Answer to the Guiding Question
+
+**Question.** We observe $N$ independent samples $x(n)=\mu+w(n)$, where $w(n)\sim\mathcal N(0,\sigma^2)$ and $\sigma^2$ is known. Compare $\hat\mu_1=x(0)$ and $\hat\mu_2=N^{-1}\sum_{n=0}^{N-1}x(n)$. Are they unbiased and consistent? What are their MSEs? What is the Cramér–Rao lower bound, and which estimator attains it? Show how least squares and maximum likelihood lead to the same estimate. If instead $\mu$ has a Gaussian prior $\mathcal N(\mu_0,\tau^2)$, how does the Bayesian estimate change?
+
+**Answer.**
+
+Both estimators are unbiased because $E\{x(n)\}=\mu$. For an unbiased estimator, MSE equals variance, so independence gives
+
+$$\operatorname{MSE}(\hat\mu_1)=\sigma^2,\qquad
+\operatorname{MSE}(\hat\mu_2)=\frac{\sigma^2}{N}.$$
+
+Hence $\hat\mu_1$ is not consistent—its error variance never shrinks—whereas $\hat\mu_2$ is consistent. Up to constants, the log-likelihood is
+
+$$\ell(\mu)=-\frac{1}{2\sigma^2}\sum_{n=0}^{N-1}(x(n)-\mu)^2.$$
+
+Maximizing it is the same as minimizing the least-squares residual sum, and differentiation gives
+
+$$\hat\mu_{\mathrm{ML}}=\hat\mu_{\mathrm{LS}}=\bar x=\hat\mu_2.$$
+
+Each sample contributes Fisher information $1/\sigma^2$, so $J(\mu)=N/\sigma^2$ and every unbiased estimator obeys
+
+$$\operatorname{var}(\hat\mu)\ge\frac{1}{J(\mu)}=\frac{\sigma^2}{N}.$$
+
+The sample mean attains this bound and is efficient; the one-sample estimator does not when $N>1$.
+
+With the prior $\mu\sim\mathcal N(\mu_0,\tau^2)$, Gaussian conjugacy gives the posterior mean (and both the MMSE and MAP estimate)
+
+$$\hat\mu_{\mathrm{Bayes}}
+=\frac{(N/\sigma^2)\bar x+(1/\tau^2)\mu_0}{N/\sigma^2+1/\tau^2}.$$
+
+It is a precision-weighted compromise between the data mean and the prior mean. As $N$ grows, the data dominate; as $\tau^2$ shrinks, the prior dominates.
 
 ---
 
