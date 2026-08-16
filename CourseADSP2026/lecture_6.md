@@ -166,6 +166,16 @@ The notation below follows the previous lectures: bold lower-case letters denote
 
 # §0 Chapter Roadmap: From Optimum Filtering to Recursive State Estimation
 
+---
+
+### Guiding Question
+
+A scalar underwater target-strength estimate has prior error variance $4$ and is observed once with independent sensor-noise variance $1$. If a linear estimator blends the prior estimate and the new measurement, what gain should multiply the measurement innovation and what posterior error variance results? Why can the same numerical gain be viewed either as a one-step Wiener/LMMSE weight or as a Kalman update gain?
+
+The previous lecture estimates spectra rather than unknown signals or states. Section 0 maps the new optimum-filtering problems and introduces the common MSE geometry behind stationary Wiener filters and recursive Kalman estimation.
+
+---
+
 > 📖 Textbook §6.1 (Optimum Signal Estimation); §6.2 (Linear Mean Square Error Estimation); §7.8 (Kalman Filter Algorithm)
 
 ---
@@ -272,7 +282,35 @@ $$
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Blend a prior of error variance $4$ with one independent measurement of noise variance $1$. Find the innovation gain and posterior variance, and connect Wiener and Kalman views.
+
+**Answer.**
+
+Let the new estimate be the prior plus $K$ times the measurement innovation. The minimum-MSE gain is
+
+$$K=\frac{P^-}{P^-+R}=\frac4{4+1}=0.8.$$
+
+The posterior error variance is
+
+$$P^+=(1-K)P^-=0.2(4)=0.8.$$
+
+Equivalently, in a static LMMSE view, a zero-mean target-strength variable of variance $4$ is observed in independent noise of variance $1$. Then $r_{xz}=4$, $r_{zz}=5$, so the scalar Wiener weight is $4/5=0.8$ and its MSE is $4-4^2/5=0.8$. **Numerically, both viewpoints produce gain $0.8$ and remaining error variance $0.8$; the Kalman form simply applies this LMMSE projection recursively after a prediction step.**
+
+---
+
 # §1 Linear MMSE Estimation: The Mathematical Core of Wiener Filtering
+
+---
+
+### Guiding Question
+
+Two calibrated acoustic-sensor features have covariance $\mathbf R=[[4,1],[1,2]]$, their cross-correlation with a desired target-strength value is $\mathbf p=[2,1]^T$, and the desired-value power is $3$. Find the optimum two linear weights, the estimate for the observed feature vector $[2,-1]^T$, and the minimum MSE.
+
+The roadmap identifies MSE as the criterion but does not yet derive the normal equations, orthogonality principle, or performance surface needed for these numerical weights. Section 1 does.
+
+---
 
 > 📖 Textbook §6.2 (Linear Mean Square Error Estimation)
 
@@ -556,7 +594,45 @@ These two facts will reappear in every section:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For $\mathbf R=[[4,1],[1,2]]$, $\mathbf p=[2,1]^T$, and desired power $3$, find the optimum weights, the estimate for $[2,-1]^T$, and minimum MSE.
+
+**Answer.**
+
+The normal equations give
+
+$$\mathbf w_o=\mathbf R^{-1}\mathbf p
+=\frac17\begin{bmatrix}2&-1\\-1&4\end{bmatrix}
+\begin{bmatrix}2\\1\end{bmatrix}
+=\begin{bmatrix}3/7\\2/7\end{bmatrix}.$$
+
+For the observed feature vector,
+
+$$\hat d=\mathbf w_o^T\begin{bmatrix}2\\-1\end{bmatrix}
+=\frac67-\frac27=\frac47\approx0.5714.$$
+
+The minimum error is
+
+$$J_{\min}=\sigma_d^2-\mathbf p^T\mathbf w_o
+=3-\left(\frac67+\frac27\right)
+=\frac{13}{7}\approx1.857.$$
+
+**Numerically, the weights are $(0.4286,0.2857)$, the current target-strength estimate is $0.5714$, and the minimum MSE is $1.857$.** At these weights the error is orthogonal to both input features, so no further linear correction remains.
+
+---
+
 # §2 FIR Wiener Filters
+
+---
+
+### Guiding Question
+
+A two-tap FIR Wiener filter estimates a clean hydrophone sample from the current and previous noisy samples. The input covariance is $\mathbf R_x=[[5,2],[2,5]]$, the desired cross-correlation vector is $\mathbf p=[4,1]^T$, and desired-sample power is $6$. Calculate both filter taps, the minimum MSE, and the filter output for input vector $[3,2]^T$.
+
+Section 1 treats a generic linear combiner. Section 2 uses stationarity and time shifts to turn the same normal equations into a realizable FIR acoustic filter.
+
+---
 
 > 📖 Textbook §6.4 (Optimum Finite Impulse Response Filters); §6.5 (Linear Prediction)
 
@@ -859,7 +935,43 @@ The main numerical issue is the conditioning of $\mathbf{R}$. If the data sample
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For $\mathbf R_x=[[5,2],[2,5]]$, $\mathbf p=[4,1]^T$, and desired power $6$, find the two-tap FIR Wiener filter, its MSE, and output for $[3,2]^T$.
+
+**Answer.**
+
+The inverse covariance is $\mathbf R_x^{-1}=\frac1{21}[[5,-2],[-2,5]]$. Hence
+
+$$\mathbf w_o=\mathbf R_x^{-1}\mathbf p
+=\frac1{21}\begin{bmatrix}18\\-3\end{bmatrix}
+=\begin{bmatrix}6/7\\-1/7\end{bmatrix}.$$
+
+The minimum MSE is
+
+$$J_{\min}=6-\mathbf p^T\mathbf w_o
+=6-\left(4\cdot\frac67-\frac17\right)
+=\frac{19}{7}\approx2.714.$$
+
+For the current and previous noisy samples $[3,2]^T$,
+
+$$y(n)=\frac67(3)-\frac17(2)=\frac{16}{7}\approx2.286.$$
+
+**Numerically, the taps are $(0.8571,-0.1429)$, the minimum MSE is $2.714$, and the present filtered hydrophone value is $2.286$.**
+
+---
+
 # §3 Important FIR Wiener Filtering Applications
+
+---
+
+### Guiding Question
+
+In an active noise-control headset, the primary microphone is $d=s+n$, where desired external sound has variance $4$ and interfering fan noise has variance $9$. A reference microphone measures $x=n+v$, with independent reference-sensor noise variance $3$; all components are mutually uncorrelated except for the shared $n$. For a one-tap Wiener noise canceller, find the optimum weight, residual interference variance, percentage noise reduction, and input/output SNRs in decibels.
+
+The FIR equations alone do not show how their correlations are assembled for noise cancellation, prediction, or acoustic deconvolution. Section 3 works through those application structures.
+
+---
 
 > 📖 Textbook §6.4 (Optimum FIR Filters); §6.5 (Linear Prediction); §6.7–§6.8 (Inverse Filtering, Deconvolution, and Equalization)
 
@@ -1214,7 +1326,39 @@ The delay $D$ is not a cosmetic detail. It determines which part of the overall 
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** In the one-tap acoustic noise canceller, $\operatorname{var}(s)=4$, $\operatorname{var}(n)=9$, and reference-noise variance is $3$. Find the optimum weight, residual interference, noise reduction, and SNRs.
+
+**Answer.**
+
+The reference power is $E\{x^2\}=9+3=12$, while $E\{dx\}=E\{(s+n)(n+v)\}=9$. Therefore
+
+$$w_o=\frac{9}{12}=0.75.$$
+
+The canceller output is $e=s+n-0.75(n+v)=s+0.25n-0.75v$. Its residual interference variance is
+
+$$0.25^2(9)+0.75^2(3)=0.5625+1.6875=2.25.$$
+
+Relative to the original noise variance $9$, this is a $(9-2.25)/9=75\%$ reduction. The input SNR is $4/9=0.4444$, or
+
+$$10\log_{10}(4/9)=-3.52\ \text{dB}.$$
+
+The output SNR is $4/2.25=1.7778$, or $2.50\,\text{dB}$, an improvement of $6.02\,\text{dB}$. **Numerically, $w_o=0.75$, residual interference is $2.25$, noise falls $75\%$, and SNR improves from $-3.52$ to $2.50\,\text{dB}$.**
+
+---
+
 # §4 Optimum IIR Wiener Filters
+
+---
+
+### Guiding Question
+
+A hydrophone observes $x=s+v$, where the desired low-frequency acoustic process is AR(1), $s(n)=0.8s(n-1)+q(n)$, with innovation variance $0.36$, and the additive sensor noise $v$ is white with variance $1$. For the noncausal optimum Wiener filter, calculate the frequency-response gain and error PSD at $\omega=0$ and $\omega=\pi$. What numerical gain contrast shows why an IIR frequency-dependent solution is useful?
+
+A finite-tap Wiener filter only approximates long-memory spectra. Section 4 derives the ideal frequency-domain solution and the factorization needed when causality is imposed.
+
+---
 
 > 📖 Textbook §6.6 (Optimum Infinite Impulse Response Filters); §6.7 (Inverse Filtering and Deconvolution)
 
@@ -1459,7 +1603,40 @@ The practical teaching point is:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For AR(1) desired sound with coefficient $0.8$, innovation variance $0.36$, and additive white-noise variance $1$, calculate the noncausal Wiener gains and error PSDs at $0$ and $\pi$.
+
+**Answer.**
+
+The desired-signal PSD is
+
+$$R_s(e^{j\omega})=\frac{0.36}{|1-0.8e^{-j\omega}|^2}.$$
+
+Thus $R_s(0)=0.36/0.2^2=9$ and $R_s(\pi)=0.36/1.8^2=1/9$. For $x=s+v$, the noncausal Wiener response is $H_o=R_s/(R_s+1)$, giving
+
+$$H_o(0)=\frac9{10}=0.9,\qquad
+H_o(\pi)=\frac{1/9}{1+1/9}=0.1.$$
+
+The optimum error PSD is $R_e=R_sR_v/(R_s+R_v)$. Since $R_v=1$, its values are likewise
+
+$$R_e(0)=0.9,\qquad R_e(\pi)=0.1.$$
+
+**Numerically, the filter gain changes from $0.9$ at DC to $0.1$ at Nyquist, a $9:1$ contrast, while the error PSD changes from $0.9$ to $0.1$.** The filter preserves the low-frequency band where desired acoustic power dominates and suppresses the high-frequency band dominated by the sensor noise.
+
+---
+
 # §5 Matched Filters and Eigenfilters
+
+---
+
+### Guiding Question
+
+An active sonar expects a deterministic two-sample echo $\mathbf s=[1,2]^T$ in colored noise with covariance $\mathbf R_n=[[2,1],[1,2]]$. Find a colored-noise matched-filter vector normalized to produce unit response to the echo, its output-noise variance, and the maximum output SNR. Which of the two input samples receives zero weight?
+
+Wiener filtering estimates a random desired signal. Section 5 addresses the different acoustic task of detecting a known waveform or maximizing a Rayleigh quotient in colored noise.
+
+---
 
 > 📖 Textbook §6.9 (Matched Filters and Eigenfilters)
 
@@ -1603,7 +1780,43 @@ The main lesson is not that one filter is always best. The lesson is that the op
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Match $\mathbf s=[1,2]^T$ in colored noise $\mathbf R_n=[[2,1],[1,2]]$, with unit echo response normalization. Find the filter, output-noise variance, maximum SNR, and zero-weighted sample.
+
+**Answer.**
+
+The colored-noise matched direction is $\mathbf R_n^{-1}\mathbf s$. Since
+
+$$\mathbf R_n^{-1}\mathbf s
+=\frac13\begin{bmatrix}2&-1\\-1&2\end{bmatrix}
+\begin{bmatrix}1\\2\end{bmatrix}
+=\begin{bmatrix}0\\1\end{bmatrix},$$
+
+and $\mathbf s^T\mathbf R_n^{-1}\mathbf s=2$, unit-response normalization gives
+
+$$\mathbf w=\frac{\mathbf R_n^{-1}\mathbf s}{\mathbf s^T\mathbf R_n^{-1}\mathbf s}
+=\begin{bmatrix}0\\0.5\end{bmatrix}.$$
+
+Its output noise variance is
+
+$$\mathbf w^T\mathbf R_n\mathbf w=0.5,$$
+
+while the normalized echo amplitude is $1$, so output SNR is $1^2/0.5=2$. This equals the maximum Rayleigh quotient $\mathbf s^T\mathbf R_n^{-1}\mathbf s=2$. **Numerically, the filter is $[0,0.5]^T$, noise variance is $0.5$, maximum SNR is $2$, and the first input sample receives zero weight.**
+
+---
+
 # §6 Discrete Kalman Filtering
+
+---
+
+### Guiding Question
+
+An underwater vehicle tracks a slowly varying scalar depth offset with state model $x_k=x_{k-1}+q_k$, process-noise variance $Q=1$, and pressure-sensor measurement $z_k=x_k+v_k$ with $R=2$. Before a new sample, the estimate is $0$ with error variance $4$; the new pressure reading is $z_k=3$. Calculate the predicted state and variance, innovation, Kalman gain, updated state, and posterior variance.
+
+Wiener filters assume fixed second-order statistics and process a stationary record. Section 6 introduces the predict–innovate–update recursion required for a time-evolving underwater state.
+
+---
 
 > 📖 Textbook §7.8 (Kalman Filter Algorithm)
 
@@ -2175,7 +2388,45 @@ The standard Kalman filter is exactly optimal for linear Gaussian state-space mo
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For the scalar AUV state with $Q=1$, $R=2$, prior state $0$, prior variance $4$, and measurement $3$, perform one Kalman recursion.
+
+**Answer.**
+
+The random-walk prediction is
+
+$$\hat x_k^-=0,\qquad P_k^-=4+1=5.$$
+
+The innovation is
+
+$$\nu_k=z_k-\hat x_k^-=3-0=3,$$
+
+with innovation variance $S_k=P_k^-+R=7$. Therefore
+
+$$K_k=\frac{P_k^-}{S_k}=\frac57\approx0.7143.$$
+
+The update is
+
+$$\hat x_k^+=0+\frac57(3)=\frac{15}{7}\approx2.143,$$
+
+$$P_k^+=(1-K_k)P_k^-=\frac27(5)=\frac{10}{7}\approx1.429.$$
+
+**Numerically, prediction gives $(0,5)$, the innovation is $3$, the Kalman gain is $0.7143$, and the updated depth offset and uncertainty are $2.143$ and $1.429$.**
+
+---
+
 # §7 Chapter Summary, Method Selection, and Figure Checklist
+
+---
+
+### Guiding Question
+
+An acoustic system has three jobs: (A) detect a known 64-sample sonar ping at $f_s=8\,\text{kHz}$ in stationary colored noise; (B) continuously denoise stationary hydrophone audio with a 16-tap optimum filter; and (C) track AUV depth for $10\,\text{s}$ at 100 state updates per second. Assign matched, Wiener, or Kalman filtering to the three jobs. What ping duration, FIR multiplication rate, and number of state updates follow from the stated numbers?
+
+The final section consolidates the assumptions and costs of the chapter's methods into one practical selection exercise.
+
+---
 
 ---
 
@@ -2417,3 +2668,29 @@ The practical question is never only “what is the formula?” The practical qu
 6. How much complexity and delay are acceptable?
 
 Once these questions are answered, the correct filtering framework is usually clear.
+
+---
+
+### Answer to the Guiding Question
+
+**Question.** Assign matched, Wiener, and Kalman filters to a 64-sample ping detector at 8 kHz, a 16-tap stationary denoiser, and a 100-Hz, 10-s depth tracker; calculate the associated duration, multiplication rate, and update count.
+
+**Answer.**
+
+Job A has a known deterministic ping in colored noise, so it calls for a colored-noise matched filter. The 64-sample waveform lasts
+
+$$\frac{64}{8000}=0.008\ \text{s}=8\ \text{ms}.$$
+
+Job B estimates a stationary random desired signal from stationary noisy observations, so it calls for an FIR Wiener filter. A direct 16-tap implementation at 8 kHz performs
+
+$$16(8000)=128{,}000$$
+
+multiplications per second. Job C has an explicit evolving state and sequential measurements, so it calls for a Kalman filter. In ten seconds at 100 Hz it performs
+
+$$10(100)=1000$$
+
+predict–update recursions.
+
+**Numerically, use matched filtering for A with an $8\,\text{ms}$ template, Wiener filtering for B at $128{,}000$ tap multiplications per second, and Kalman filtering for C with $1000$ state updates.** These assignments follow from the signal assumptions, not merely from implementation size.
+
+---

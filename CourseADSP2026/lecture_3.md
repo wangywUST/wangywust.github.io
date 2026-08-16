@@ -174,6 +174,16 @@ All symbols used in this chapter are collected below. The notation follows the c
 
 # §1 Basic Linear Prediction Model and the Autocorrelation Method
 
+---
+
+### Guiding Question
+
+A seabed hydrophone records slowly varying pump noise. After mean removal, its measured autocorrelations are $r(0)=10$, $r(1)=6$, and $r(2)=3$. An embedded detector wants to predict the current sample from the preceding two samples so that unexpected target transients appear strongly in the residual. What are the two optimum prediction weights, what is the minimum residual power, and what percentage of the original power has prediction removed?
+
+The random-signal tools from Lecture 2 describe these correlations, but they do not yet turn them into a finite-order predictor. Section 1 develops that LMMSE construction.
+
+---
+
 > 📖 Textbook §6.5 (Linear Prediction); §7.1 (Fundamentals of Order-Recursive Algorithms)
 
 ---
@@ -725,7 +735,46 @@ The choice of window changes the estimated autocorrelation sequence and therefor
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A seabed hydrophone records slowly varying pump noise with $r(0)=10$, $r(1)=6$, and $r(2)=3$. What are the optimum two-sample prediction weights, minimum residual power, and percentage of original power removed?
+
+**Answer.**
+
+For the real second-order prediction-error filter $e(n)=x(n)+a_1x(n-1)+a_2x(n-2)$, the normal equations are
+
+$$\begin{bmatrix}10&6\\6&10\end{bmatrix}
+\begin{bmatrix}a_1\\a_2\end{bmatrix}
+=-\begin{bmatrix}6\\3\end{bmatrix}.$$
+
+The determinant is $100-36=64$, giving
+
+$$a_1=-\frac{42}{64}=-0.65625,\qquad a_2=\frac{6}{64}=0.09375.$$
+
+Because $e=x-\hat x$, the actual predictor is
+
+$$\hat x(n)=0.65625x(n-1)-0.09375x(n-2).$$
+
+The minimum residual power is
+
+$$P_2=r(0)+a_1r(1)+a_2r(2)
+=10-0.65625(6)+0.09375(3)=6.34375.$$
+
+Thus the removed predictable power is $10-6.34375=3.65625$, or $3.65625/10=36.5625\%$. **Numerically, the prediction weights are $0.65625$ and $-0.09375$, the residual power is $6.34375$, and prediction removes $36.56\%$ of the hydrophone-noise power.**
+
+---
+
 # §2 Equivalence Between AR All-Pole Modeling and Linear Prediction
+
+---
+
+### Guiding Question
+
+Low-frequency machinery sound at a passive sonar is modeled by $x(n)=0.75x(n-1)+w(n)$, where the innovation $w(n)$ is white with variance $4$. Determine the stationary signal power, lag-one autocorrelation, optimum one-step prediction coefficient, prediction-error power, and the causal whitening filter. Also calculate the PSD at $\omega=0$ and $\omega=\pi$ and their ratio.
+
+Section 1 can fit a predictor from correlations, but it does not yet explain why the same coefficients define an all-pole acoustic generator and a whitening filter. Section 2 establishes that equivalence.
+
+---
 
 > 📖 Textbook §6.5 (Linear Prediction); §9.2 (Estimation of All-Pole Models)
 
@@ -1007,7 +1056,44 @@ Typical examples include:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Low-frequency machinery sound is modeled by $x(n)=0.75x(n-1)+w(n)$ with white-innovation variance $4$. Find its power, lag-one autocorrelation, optimum prediction and whitening parameters, and its PSD values at $0$ and $\pi$.
+
+**Answer.**
+
+This is a stable AR(1) process because $|0.75|<1$. Its stationary power satisfies $r(0)=0.75^2r(0)+4$, so
+
+$$r(0)=\frac{4}{1-0.75^2}=\frac{64}{7}\approx9.143,$$
+
+and $r(1)=0.75r(0)=48/7\approx6.857$. The optimum predictor is $\hat x(n)=0.75x(n-1)$, and its error is exactly $w(n)$, with power $4$. Hence the prediction-error/whitening filter is
+
+$$A(z)=1-0.75z^{-1},$$
+
+while the acoustic synthesis filter is $1/A(z)$. The PSD is
+
+$$R_x(e^{j\omega})=\frac{4}{|1-0.75e^{-j\omega}|^2}.$$
+
+Therefore
+
+$$R_x(e^{j0})=\frac4{0.25^2}=64,\qquad
+R_x(e^{j\pi})=\frac4{1.75^2}=\frac{64}{49}\approx1.306.$$
+
+Their ratio is exactly $49$. **Numerically, $r(0)=9.143$, $r(1)=6.857$, the predictor weight is $0.75$, residual power is $4$, the whitener coefficient is $-0.75$, and the low-to-high-frequency PSD ratio is $49$.**
+
+---
+
 # §3 Levinson-Durbin Recursive Algorithm
+
+---
+
+### Guiding Question
+
+An underwater vehicle increases the order of a predictor for self-noise from one to two. Calibration gives $r(0)=10$, $r(1)=6$, and $r(2)=5$. Using an order-recursive calculation, find both reflection coefficients, the first- and second-order direct prediction-error-filter coefficients, and the residual powers after each stage. How much residual power does the second stage remove?
+
+Solving a new matrix system at every order would ignore the Toeplitz structure learned in §1. The Levinson-Durbin recursion in this section produces all requested numbers stage by stage.
+
+---
 
 > 📖 Textbook §7.4 (Algorithms of Levinson and Levinson-Durbin); §7.1.3
 
@@ -1432,7 +1518,51 @@ This result says: the more strongly $x(n)$ is correlated with $x(n-1)$, the more
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For self-noise with $r(0)=10$, $r(1)=6$, and $r(2)=5$, find the order-one and order-two Levinson-Durbin parameters and error powers, and quantify the second stage's benefit.
+
+**Answer.**
+
+Initialize $P_0=10$. At order one,
+
+$$\kappa_1=-\frac{r(1)}{P_0}=-0.6,\qquad
+a_1^{(1)}=-0.6,$$
+
+$$P_1=P_0(1-\kappa_1^2)=10(1-0.36)=6.4.$$
+
+At order two, the unexplained lag-two correlation is
+
+$$\alpha_2=r(2)+a_1^{(1)}r(1)=5-0.6(6)=1.4,$$
+
+so
+
+$$\kappa_2=-\frac{1.4}{6.4}=-0.21875.$$
+
+The step-up update gives
+
+$$a_1^{(2)}=-0.6+(-0.21875)(-0.6)=-0.46875,\qquad
+a_2^{(2)}=-0.21875.$$
+
+Finally,
+
+$$P_2=6.4(1-0.21875^2)=6.09375.$$
+
+The second stage removes $P_1-P_2=0.30625$ power units, which is $4.785\%$ of the order-one residual. **Numerically, $(\kappa_1,\kappa_2)=(-0.6,-0.21875)$, the final polynomial is $1-0.46875z^{-1}-0.21875z^{-2}$, and the error powers are $10\to6.4\to6.09375$.**
+
+---
+
 # §4 Three Equivalent Sets of Recursive Parameters
+
+---
+
+### Guiding Question
+
+A compact lattice model for correlated ocean ambient noise has initial power $P_0=8$ and reflection coefficients $\kappa_1=-0.5$, $\kappa_2=0.25$. Convert these lattice parameters into the second-order direct-form prediction polynomial, calculate $P_1$ and $P_2$, and locate both polynomial zeros numerically. Is the corresponding all-pole noise generator stable?
+
+Levinson-Durbin outputs several parameter sets, but the preceding section does not yet show how to convert among reflection coefficients, direct coefficients, error powers, and stable polynomial roots. Section 4 makes those descriptions interchangeable.
+
+---
 
 > 📖 Textbook §7.1–§7.3, §7.5, §7.7
 
@@ -1692,7 +1822,47 @@ This is one of the practical reasons why lattice filters are common in speech pr
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A lattice ambient-noise model has $P_0=8$, $\kappa_1=-0.5$, and $\kappa_2=0.25$. Convert it to a direct polynomial, calculate its stage powers and zeros, and test stability.
+
+**Answer.**
+
+At order one, $a_1^{(1)}=\kappa_1=-0.5$. The order-two step-up recursion gives
+
+$$a_1^{(2)}=a_1^{(1)}+\kappa_2a_1^{(1)}=-0.5+0.25(-0.5)=-0.625,$$
+
+$$a_2^{(2)}=\kappa_2=0.25.$$
+
+Thus
+
+$$A_2(z)=1-0.625z^{-1}+0.25z^{-2}.$$
+
+The error powers are
+
+$$P_1=8(1-0.5^2)=6,$$
+
+$$P_2=6(1-0.25^2)=5.625.$$
+
+Multiplying $A_2(z)=0$ by $z^2$ gives $z^2-0.625z+0.25=0$. Its zeros are
+
+$$z_{1,2}=0.3125\pm j0.3903,$$
+
+each with magnitude $\sqrt{0.3125^2+0.3903^2}=0.5$. Both zeros lie inside the unit circle; equivalently, both reflection-coefficient magnitudes are below one. **Numerically, the direct coefficients are $(-0.625,0.25)$, the powers are $8\to6\to5.625$, the zeros are $0.3125\pm j0.3903$, and the reciprocal all-pole generator is stable.**
+
+---
+
 # §5 Schur Recursive Algorithm
+
+---
+
+### Guiding Question
+
+A fixed-point processor in an underwater acoustic sensor will implement a two-stage lattice prewhitener and therefore needs reflection coefficients directly, not a direct-form predictor. Its measured autocorrelation sequence is $r(0)=4$, $r(1)=2$, $r(2)=1.5$. What two reflection coefficients and two stage error powers should be loaded, and does each stage satisfy the strict stability test?
+
+The conversion formulas of §4 work once direct coefficients are available. Section 5 instead develops a Schur recursion aimed directly at the bounded lattice parameters needed here.
+
+---
 
 > 📖 Textbook §7.6 (Algorithm of Schür)
 
@@ -1835,7 +2005,51 @@ The Schur algorithm has good numerical properties because its internal quantitie
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A lattice prewhitener is designed directly from $r(0)=4$, $r(1)=2$, and $r(2)=1.5$. Find its reflection coefficients, stage error powers, and stability result.
+
+**Answer.**
+
+The first Schur/Levinson reflection coefficient is the normalized negative lag-one correlation:
+
+$$\kappa_1=-\frac{2}{4}=-0.5.$$
+
+The remaining error power is
+
+$$P_1=4(1-0.5^2)=3.$$
+
+After the lag-one component is removed, the residual lag-two numerator is
+
+$$\alpha_2=r(2)+\kappa_1r(1)=1.5-1=0.5.$$
+
+Therefore
+
+$$\kappa_2=-\frac{0.5}{3}=-\frac16\approx-0.1667,$$
+
+and
+
+$$P_2=3\left(1-\frac1{36}\right)=\frac{35}{12}\approx2.9167.$$
+
+The strict lattice stability checks are $|\kappa_1|=0.5<1$ and $|\kappa_2|=0.1667<1$, so both stages pass. **The processor should be loaded with reflection coefficients $-0.5$ and $-0.1667$; the power sequence is $4\to3\to2.9167$, and the resulting model is stable.**
+
+---
+
 # §6 General Levinson Recursion for Toeplitz Equations
+
+---
+
+### Guiding Question
+
+Two adjacent hydrophone samples form the input to an optimum short acoustic-noise canceller. Their covariance and their cross-correlation with the desired clean pressure sample are
+
+$$\mathbf R=\begin{bmatrix}4&2\\2&4\end{bmatrix},\qquad \mathbf d=\begin{bmatrix}3\\1\end{bmatrix},$$
+
+and the desired-sample power is $5$. Find the two optimum FIR weights, the estimate produced when the current input vector is $[2,1]^T$, and the minimum MSE. How does the arithmetic complexity scale if this Toeplitz problem grows to order $p$?
+
+The earlier recursions solve the special prediction right-hand side built from autocorrelations. This acoustic estimator has an arbitrary cross-correlation vector, which requires the general Levinson viewpoint of §6.
+
+---
 
 > 📖 Textbook §7.3 (Order-Recursive Algorithms for Optimum FIR Filters); §7.7 (Triangularization and Inversion of Toeplitz Matrices)
 
@@ -1980,7 +2194,45 @@ The main message is that Toeplitz structure should never be ignored in large pre
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For $\mathbf R=[[4,2],[2,4]]$, $\mathbf d=[3,1]^T$, and desired power $5$, find the optimum two-tap acoustic estimator, its output for $[2,1]^T$, the minimum MSE, and the relevant complexity scaling.
+
+**Answer.**
+
+The optimum weights solve $\mathbf R\mathbf c=\mathbf d$. Since $\det\mathbf R=12$,
+
+$$\mathbf c=\frac1{12}\begin{bmatrix}4&-2\\-2&4\end{bmatrix}
+\begin{bmatrix}3\\1\end{bmatrix}
+=\begin{bmatrix}5/6\\-1/6\end{bmatrix}
+\approx\begin{bmatrix}0.8333\\-0.1667\end{bmatrix}.$$
+
+For the observed input vector,
+
+$$\hat d=\mathbf c^T\begin{bmatrix}2\\1\end{bmatrix}
+=\frac56(2)-\frac16(1)=1.5.$$
+
+At the optimum, the minimum MSE is
+
+$$J_{\min}=\sigma_d^2-\mathbf d^T\mathbf c
+=5-\left(3\cdot\frac56-\frac16\right)
+=\frac83\approx2.667.$$
+
+A generic order-$p$ solve costs $O(p^3)$, whereas exploiting the Toeplitz structure with general Levinson recursion costs $O(p^2)$. **The numerical weights are $(0.8333,-0.1667)$, the current estimate is $1.5$, and the minimum MSE is $2.667$.**
+
+---
+
 # §7 Covariance Algorithm for Linear Prediction
+
+---
+
+### Guiding Question
+
+Only four samples, $x(0),\ldots,x(3)=[1,2,3,4]$, are available from a short active-sonar echo. Fit the first-order prediction-error model $e(n)=x(n)+a_1x(n-1)$ using only indices for which both samples were actually observed. What coefficient minimizes the valid-data squared error, what is that minimum error, and would the corresponding first-order all-pole generator be stable?
+
+The autocorrelation method used earlier implicitly extends a finite record with zeros. Section 7 asks what changes when a short acoustic record is fitted only on its valid interval.
+
+---
 
 > 📖 Textbook §7.1; §9.2.1 (Direct Structures)
 
@@ -2114,7 +2366,45 @@ Use the autocorrelation method when:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Fit $e(n)=x(n)+a_1x(n-1)$ to the valid pairs of the four-sample echo $[1,2,3,4]$. Find $a_1$, the minimum error, and the stability of the implied all-pole model.
+
+**Answer.**
+
+The valid indices are $n=1,2,3$. Differentiating
+
+$$E_1=\sum_{n=1}^{3}[x(n)+a_1x(n-1)]^2$$
+
+gives
+
+$$a_1=-\frac{\sum_{n=1}^{3}x(n)x(n-1)}{\sum_{n=1}^{3}x^2(n-1)}
+=-\frac{2+6+12}{1+4+9}=-\frac{10}{7}\approx-1.4286.$$
+
+The three residuals are
+
+$$\left[2-\frac{10}{7},\ 3-\frac{20}{7},\ 4-\frac{30}{7}\right]
+=\left[\frac47,\frac17,-\frac27\right],$$
+
+so
+
+$$E_{\min}=\frac{16+1+4}{49}=\frac37\approx0.4286.$$
+
+However, $A(z)=1-(10/7)z^{-1}$ has a zero at $z=10/7\approx1.4286$. Its reciprocal all-pole generator therefore has a pole outside the unit circle and is unstable. **The covariance fit is numerically excellent—$a_1=-1.4286$ and error $0.4286$—but it illustrates that the method does not automatically guarantee a stable AR model.**
+
+---
+
 # §8 Forward/Backward Prediction and Lattice Filters
+
+---
+
+### Guiding Question
+
+At one stage of a lattice prewhitener for hull-vibration noise, the incoming forward error is $e_0^f(n)=3$, the delayed backward error is $e_0^b(n-1)=1$, and the real reflection coefficient is $\kappa_1=-0.5$. What forward and backward errors leave the stage? If the incoming error power is $P_0=4$, what outgoing error power is predicted, and does this stage correspond to a stable model?
+
+Direct-form coefficients do not reveal how a modular lattice updates errors in both time directions. Section 8 supplies the coupled forward/backward recursions needed to compute these numbers.
+
+---
 
 > 📖 Textbook §7.5 (Lattice Structures for Optimum FIR Filters and Predictors)
 
@@ -2280,7 +2570,39 @@ This separation is conceptually powerful:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A lattice stage receives $e_0^f(n)=3$, $e_0^b(n-1)=1$, $\kappa_1=-0.5$, and $P_0=4$. Find both output errors, the output power, and the stability result.
+
+**Answer.**
+
+For a real lattice stage,
+
+$$e_1^f(n)=e_0^f(n)+\kappa_1e_0^b(n-1)
+=3-0.5(1)=2.5,$$
+
+$$e_1^b(n)=e_0^b(n-1)+\kappa_1e_0^f(n)
+=1-0.5(3)=-0.5.$$
+
+The stage error-power recursion gives
+
+$$P_1=P_0(1-|\kappa_1|^2)=4(1-0.25)=3.$$
+
+Since $|\kappa_1|=0.5<1$, the stage satisfies the strict stability condition. **Numerically, the outgoing forward error is $2.5$, the outgoing backward error is $-0.5$, the error power falls from $4$ to $3$, and the model is stable.** The two different instantaneous errors are not themselves power estimates; the power value is the ensemble or time-averaged recursion result.
+
+---
+
 # §9 Lattice Modeling and the Burg Algorithm
+
+---
+
+### Guiding Question
+
+A very short hydrophone record gives paired zero-order forward and delayed-backward error vectors $\mathbf f=[2,1]$ and $\mathbf b=[1,2]$ at the first Burg stage. Find the Burg reflection coefficient, update both error vectors, and calculate the combined squared-error energy before and after the update. If the initial variance estimate is $5$, what is the updated variance, and is the resulting first-order model stable?
+
+Section 8 explains a lattice when its coefficient is known. Section 9 shows how Burg's short-record criterion estimates that coefficient directly from forward and backward acoustic residuals.
+
+---
 
 > 📖 Textbook §9.2.3 (Maximum Entropy Method); §9.2 lattice AP estimation
 
@@ -2532,7 +2854,50 @@ Thus no additional partial correlation is assumed beyond what is supported by th
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** At a Burg stage, $\mathbf f=[2,1]$ and $\mathbf b=[1,2]$. Find the reflection coefficient, updated errors, energy reduction, variance update, and stability.
+
+**Answer.**
+
+For real data, Burg's update is
+
+$$\kappa=-\frac{2\mathbf f^T\mathbf b}{\|\mathbf f\|^2+\|\mathbf b\|^2}
+=-\frac{2(2\cdot1+1\cdot2)}{(4+1)+(1+4)}=-0.8.$$
+
+Using $\mathbf f_1=\mathbf f+\kappa\mathbf b$ and $\mathbf b_1=\mathbf b+\kappa\mathbf f$,
+
+$$\mathbf f_1=[1.2,-0.6],\qquad \mathbf b_1=[-0.6,1.2].$$
+
+The combined energy before the update is $5+5=10$. Afterward it is
+
+$$1.2^2+(-0.6)^2+(-0.6)^2+1.2^2=3.6,$$
+
+a reduction of $6.4$, or $64\%$. The variance recursion gives
+
+$$P_1=5(1-0.8^2)=1.8.$$
+
+Because $|\kappa|=0.8<1$, the first-order all-pole model is stable. **Numerically, $\kappa=-0.8$, the updated error vectors are $[1.2,-0.6]$ and $[-0.6,1.2]$, combined energy is $3.6$, and the variance estimate is $1.8$.**
+
+---
+
 # §10 Modified Covariance Algorithm
+
+---
+
+### Guiding Question
+
+For a short underwater machinery-noise record, the final second-order forward and backward covariance accumulations are
+
+$$\mathbf X_f^H\mathbf X_f=\begin{bmatrix}5&1\\1&3\end{bmatrix},\quad
+\mathbf X_b^H\mathbf X_b=\begin{bmatrix}3&1\\1&5\end{bmatrix},\quad
+\mathbf g=\begin{bmatrix}4\\2\end{bmatrix}.$$
+
+The combined constant error-energy term is $C=10$. What globally optimum two-coefficient modified-covariance model results, what is its minimized combined error energy, and what are the two poles of its all-pole realization?
+
+Burg's method makes a sequence of local lattice decisions. Section 10 instead optimizes all final-order coefficients together using both forward and backward errors.
+
+---
 
 > 📖 Textbook §9.2.1 (Modified Covariance Method); §7.3.2 (Lattice-Ladder Structure)
 
@@ -2685,7 +3050,48 @@ Practical implementations often use specialized algorithms, such as Marple-type 
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Given the forward/backward covariance accumulations, $\mathbf g=[4,2]^T$, and $C=10$, find the globally optimum second-order modified-covariance model, minimized energy, and poles.
+
+**Answer.**
+
+The combined normal matrix is
+
+$$\mathbf M=\mathbf X_f^H\mathbf X_f+\mathbf X_b^H\mathbf X_b
+=\begin{bmatrix}8&2\\2&8\end{bmatrix}.$$
+
+The optimum satisfies $\mathbf M\mathbf a=-\mathbf g$, so
+
+$$\mathbf a=-\frac1{60}\begin{bmatrix}8&-2\\-2&8\end{bmatrix}
+\begin{bmatrix}4\\2\end{bmatrix}
+=\begin{bmatrix}-7/15\\-2/15\end{bmatrix}
+\approx\begin{bmatrix}-0.4667\\-0.1333\end{bmatrix}.$$
+
+For $J=C+2\mathbf g^T\mathbf a+\mathbf a^T\mathbf M\mathbf a$, the normal equation reduces the optimum value to
+
+$$J_{\min}=C+\mathbf g^T\mathbf a
+=10-\frac{32}{15}=\frac{118}{15}\approx7.867.$$
+
+The all-pole denominator is $A(z)=1-(7/15)z^{-1}-(2/15)z^{-2}$. Its zeros, and hence the synthesis poles, are
+
+$$z=\frac23\approx0.6667,\qquad z=-\frac15=-0.2.$$
+
+**Numerically, the coefficient vector is $(-0.4667,-0.1333)$, the minimized combined error is $7.867$, and both poles lie inside the unit circle.**
+
+---
+
 # §11 Application Example: Linear Prediction in Speech Coding
+
+---
+
+### Guiding Question
+
+An air-acoustic microphone analyzes a short, approximately stationary voiced segment for speaker-state sensing. Its measured power and lag-one autocorrelation are $r(0)=100$ and $r(1)=80$. For a first-order LPC analysis, find the prediction weight, prediction-error-filter coefficient, residual power and residual RMS. Also calculate the modeled spectral-envelope ratio between $\omega=0$ and $\omega=\pi$. How much smaller is the residual RMS than the original signal RMS?
+
+Sections 1–10 develop prediction algorithms abstractly. Section 11 connects their coefficients, residual, and all-pole envelope to a concrete air-acoustic voice analysis.
+
+---
 
 > 📖 Textbook §9.4.2 (Speech Modeling); §1.4 adaptive filtering applications
 
@@ -2944,3 +3350,33 @@ All figures displayed in this lecture are rendered from the uploaded textbook PD
 6. Use the stability equivalence $\lvert\kappa_m\rvert<1$ to motivate lattice filters.
 7. Compare autocorrelation, covariance, modified covariance, and Burg methods.
 8. End with speech LPC because it makes the whole chapter feel practical.
+
+---
+
+### Answer to the Guiding Question
+
+**Question.** An air-acoustic microphone measures $r(0)=100$ and $r(1)=80$ for a voiced segment. Find the first-order LPC predictor, residual statistics, spectral-envelope ratio, and RMS reduction.
+
+**Answer.**
+
+The first-order normal equation is $r(0)a_1=-r(1)$, hence
+
+$$a_1=-\frac{80}{100}=-0.8.$$
+
+The prediction-error filter is therefore
+
+$$A_1(z)=1-0.8z^{-1},$$
+
+and the predictor itself is $\hat x(n)=0.8x(n-1)$. The residual power is
+
+$$P_1=r(0)+a_1r(1)=100-0.8(80)=36.$$
+
+Thus the signal RMS is $\sqrt{100}=10$, whereas the residual RMS is $\sqrt{36}=6$: prediction lowers RMS by $4$ units, or $40\%$. The corresponding all-pole spectral envelope is proportional to $1/|1-0.8e^{-j\omega}|^2$, so
+
+$$\frac{R_x(e^{j0})}{R_x(e^{j\pi})}
+=\frac{|1+0.8|^2}{|1-0.8|^2}
+=\frac{1.8^2}{0.2^2}=81.$$
+
+**Numerically, the predictor weight is $0.8$, the prediction-error coefficient is $-0.8$, residual power is $36$, residual RMS is $6$, the envelope ratio is $81$, and the residual RMS is $40\%$ below the original.** This is why the residual exposes excitation or anomalies while the coefficient represents the slowly varying acoustic envelope.
+
+---

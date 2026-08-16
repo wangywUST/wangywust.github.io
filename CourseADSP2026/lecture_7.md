@@ -159,6 +159,16 @@ This chapter continues the notation of Chapters 3 and 6. In Chapter 6, the filte
 
 # §0 Chapter Roadmap: From Optimum Filters to Adaptive Filters
 
+---
+
+### Guiding Question
+
+A loudspeaker-to-microphone acoustic leakage path initially has gain $0.4$, so a fixed canceller is calibrated to subtract $0.4x(n)$. After a person moves near the loudspeaker, the true path gain becomes $0.9$. For a reference sample $x(n)=2$, what leakage amplitude is present, what amplitude does the fixed filter subtract, and what residual leakage remains? What residual would an adaptive filter leave after reaching the new optimum coefficient?
+
+Lecture 6 assumes known, fixed statistics. Section 0 explains why an acoustic path that changes after deployment requires coefficients that learn and track rather than a once-designed optimum filter.
+
+---
+
 > 📖 Textbook §10.1 (Typical Applications of Adaptive Filters); §10.2 (Principles of Adaptive Filters)
 
 ---
@@ -314,7 +324,35 @@ The chapter will proceed in the following order.
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A fixed acoustic canceller remains at gain $0.4$ after the actual path changes to $0.9$. For $x=2$, find the true leakage, subtraction, fixed residual, and converged adaptive residual.
+
+**Answer.**
+
+After the environment changes, the microphone leakage is
+
+$$0.9(2)=1.8.$$
+
+The old fixed canceller still subtracts
+
+$$0.4(2)=0.8,$$
+
+leaving residual leakage $1.8-0.8=1.0$. Once an adaptive filter identifies the new coefficient $0.9$, it subtracts $0.9(2)=1.8$ and the modeled leakage residual becomes $0$. **Numerically, the path change raises leakage to $1.8$ while the fixed filter removes only $0.8$, leaving $1.0$; a converged adaptive filter leaves $0$.** The example separates the purpose of adaptation—learning or tracking unknown coefficients—from the fixed optimum filtering problem of Lecture 6.
+
+---
+
 # §1 Adaptive Filtering Framework and Typical Applications
+
+---
+
+### Guiding Question
+
+During calibration of an underwater projector and hydrophone, the desired response is $d(n)=0.75x(n)+v(n)$, where the known excitation has variance $4$ and independent sensor noise has variance $1$. What is the optimum single adaptive coefficient and the minimum achievable MSE? For one observation $x=2$, $d=1.8$, what output and a priori error would the optimum coefficient produce?
+
+The roadmap motivates adaptation but does not yet define the input, desired response, coefficient vector, output, error, and supervised identification arrangement. Section 1 supplies that framework.
+
+---
 
 > 📖 Textbook §10.1; §10.2
 
@@ -538,7 +576,39 @@ This difference is the reason that one cannot choose a step size by only asking 
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For $d(n)=0.75x(n)+v(n)$ with input variance $4$ and independent-noise variance $1$, find the optimum scalar adaptive coefficient, MMSE, and one observed output/error pair.
+
+**Answer.**
+
+The input–desired cross-correlation is
+
+$$p=E\{x(0.75x+v)\}=0.75(4)=3,$$
+
+and $R=E\{x^2\}=4$. Thus the Wiener target of adaptation is
+
+$$c_o=\frac pR=\frac34=0.75.$$
+
+At this value the model removes the entire predictable $0.75x$ component, leaving only $v$, so the minimum MSE is exactly $1$. Equivalently, desired power is $0.75^2(4)+1=3.25$, and $3.25-p^2/R=3.25-9/4=1$. For $x=2$ and $d=1.8$,
+
+$$y=c_ox=0.75(2)=1.5,\qquad e=d-y=0.3.$$
+
+**Numerically, the optimum coefficient is $0.75$, minimum MSE is $1$, and the stated sample produces output $1.5$ and a priori error $0.3$.**
+
+---
+
 # §2 Steepest Descent: Deterministic Gradient Adaptation
+
+---
+
+### Guiding Question
+
+A scalar adaptive acoustic estimator has MSE surface $J(c)=5-6c+4c^2$. Starting at $c_0=0$, use the lecture's steepest-descent convention $c_{k+1}=c_k+2\mu(d-Rc_k)$ with $d=3$, $R=4$, and $\mu=0.1$. Calculate the optimum coefficient, the stability limit on $\mu$, the first two iterates, and $J(c_0)$, $J(c_1)$, $J(c_2)$.
+
+Section 1 shows the signal flow but not how a coefficient moves toward its optimum or how step size and curvature govern stability. Section 2 develops that deterministic geometry.
+
+---
 
 > 📖 Textbook §10.3 (Method of Steepest Descent)
 
@@ -731,7 +801,49 @@ Colored inputs usually have large eigenvalue spread. Therefore LMS converges slo
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Apply two steepest-descent steps to $J(c)=5-6c+4c^2$ from $c_0=0$ with $R=4$, $d=3$, and $\mu=0.1$, and test stability.
+
+**Answer.**
+
+The minimum occurs at
+
+$$c_o=\frac dR=\frac34=0.75,$$
+
+and the textbook $2\mu$ convention requires
+
+$$0<\mu<\frac1{\lambda_{\max}}=\frac14=0.25.$$
+
+Thus $\mu=0.1$ is stable. The first two iterations are
+
+$$c_1=0+0.2(3-4\cdot0)=0.6,$$
+
+$$c_2=0.6+0.2(3-4\cdot0.6)=0.72.$$
+
+The costs are
+
+$$J(c_0)=5,$$
+
+$$J(c_1)=5-6(0.6)+4(0.6)^2=2.84,$$
+
+$$J(c_2)=5-6(0.72)+4(0.72)^2=2.7536.$$
+
+The limiting minimum is $J(0.75)=2.75$. **Numerically, the coefficient moves $0\to0.6\to0.72$ while cost falls $5\to2.84\to2.7536$, approaching $(0.75,2.75)$.**
+
+---
+
 # §3 Least-Mean-Square Adaptive Filters
+
+---
+
+### Guiding Question
+
+A two-tap LMS filter learns an unknown short underwater reflection path. Use the textbook update $\mathbf c(n)=\mathbf c(n-1)+2\mu\mathbf x(n)e(n)$ with $\mu=0.05$ and $\mathbf c(0)=[0,0]^T$. The first training pair is $\mathbf x_1=[2,1]^T$, $d_1=3$; the second is $\mathbf x_2=[1,2]^T$, $d_2=2$. Calculate both outputs, errors, coefficient updates, and the final coefficient vector. If $\lambda_{\max}=5$, does this step size satisfy the mean-convergence bound?
+
+Steepest descent assumes exact correlations. Section 3 replaces the unavailable ensemble gradient with the current acoustic sample and turns the search into the practical LMS recursion.
+
+---
 
 > 📖 Textbook §10.4 (Least-Mean-Square Adaptive Filters)
 
@@ -1071,7 +1183,40 @@ A good engineering approach is:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Run two textbook-convention LMS updates from zero with $\mu=0.05$ for $([2,1]^T,3)$ and $([1,2]^T,2)$, then test the $\lambda_{\max}=5$ bound.
+
+**Answer.**
+
+For the first pair, $y_1=0$, so $e_1=3$. The update is
+
+$$\mathbf c_1=\mathbf0+2(0.05)[2,1]^T(3)=[0.6,0.3]^T.$$
+
+For the second pair,
+
+$$y_2=[0.6,0.3][1,2]^T=1.2,\qquad e_2=2-1.2=0.8.$$
+
+Therefore
+
+$$\mathbf c_2=[0.6,0.3]^T+0.1[1,2]^T(0.8)
+=[0.68,0.46]^T.$$
+
+Mean convergence under this convention requires $0<\mu<1/\lambda_{\max}=0.2$, and $0.05<0.2$. **Numerically, the outputs are $0$ and $1.2$, the errors are $3$ and $0.8$, the coefficient vectors are $[0.6,0.3]^T$ and $[0.68,0.46]^T$, and the chosen step size passes the mean-stability bound.**
+
+---
+
 # §4 LMS Variants and Practical Extensions
+
+---
+
+### Guiding Question
+
+An acoustic reference vector suddenly becomes loud: $\mathbf x=[3,4]^T$, desired sample $d=5$, and current coefficients are zero. Apply NLMS with normalized step $\tilde\mu=0.5$ and $\epsilon=0$. What coefficient vector results after one update? If both input and desired sample are scaled by ten, to $[30,40]^T$ and $50$, what NLMS update results, and by what factor would an unnormalized LMS update grow?
+
+Ordinary LMS uses one fixed step size even when acoustic level changes drastically. Section 4 introduces normalization and other extensions that control this sensitivity.
+
+---
 
 > 📖 Textbook §10.4.4–§10.4.5; related practical discussion in §10.2 and §10.7
 
@@ -1338,7 +1483,35 @@ Lattice structures are especially natural in linear prediction, speech modeling,
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Apply one NLMS update with $\tilde\mu=0.5$ to $(\mathbf x,d)=([3,4]^T,5)$ from zero, repeat after scaling both by ten, and compare unnormalized LMS scaling.
+
+**Answer.**
+
+Initially $e=d=5$ and $\|\mathbf x\|^2=3^2+4^2=25$. Hence
+
+$$\Delta\mathbf c=\frac{0.5}{25}[3,4]^T(5)=[0.3,0.4]^T.$$
+
+With the scaled pair, $e=50$ and $\|\mathbf x\|^2=30^2+40^2=2500$, so
+
+$$\Delta\mathbf c=\frac{0.5}{2500}[30,40]^T(50)=[0.3,0.4]^T.$$
+
+Thus NLMS produces exactly the same update despite a tenfold amplitude change. An unnormalized LMS update is proportional to $\mathbf x e$; scaling both by ten multiplies that product by $10\cdot10=100$. **Numerically, NLMS gives coefficient vector $[0.3,0.4]^T$ in both cases, whereas the ordinary LMS increment would grow by a factor of $100$.**
+
+---
+
 # §5 LMS Applications: Echo Cancelation, Noise Cancelation, and Equalization
+
+---
+
+### Guiding Question
+
+An audio playback system's microphone contains a desired environmental sound of amplitude $0.2$ plus loudspeaker leakage through a path of gain $0.8$. At one instant the known loudspeaker reference is $x=2$, so the microphone sample is $d=1.8$. A one-tap acoustic echo canceller currently has coefficient $c=0.5$. With the textbook LMS convention and $\mu=0.05$, calculate the canceller output, error, updated coefficient, and the residual leakage amplitude if the same reference occurs immediately after the update. What percentage of leakage amplitude has then been removed?
+
+The LMS recursion is generic. Section 5 shows how to assign reference, desired, output, and error signals so the same update removes a real acoustic echo while preserving unrelated sound.
+
+---
 
 > 📖 Textbook §10.1; §10.4.4
 
@@ -1550,7 +1723,39 @@ The equalized sequence should look closer to the transmitted sequence than the r
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For the one-tap acoustic echo canceller with true path $0.8$, $x=2$, desired sound $0.2$, microphone sample $1.8$, current coefficient $0.5$, and $\mu=0.05$, calculate one LMS update and the next residual leakage.
+
+**Answer.**
+
+The current cancellation output and error are
+
+$$y=cx=0.5(2)=1.0,\qquad e=d-y=1.8-1.0=0.8.$$
+
+Using the lecture's $2\mu$ convention,
+
+$$c^+=c+2\mu xe=0.5+2(0.05)(2)(0.8)=0.66.$$
+
+If the same reference occurs next, the actual leakage is still $0.8(2)=1.6$, while the updated canceller subtracts $0.66(2)=1.32$. Residual leakage is therefore $1.6-1.32=0.28$; including the unrelated desired sound, the microphone error would be $0.2+0.28=0.48$. The removed leakage-amplitude fraction is
+
+$$\frac{1.6-0.28}{1.6}=0.825=82.5\%.$$
+
+**Numerically, output/error are $1.0/0.8$, the coefficient moves from $0.5$ to $0.66$, residual leakage becomes $0.28$, and $82.5\%$ of leakage amplitude is canceled.**
+
+---
+
 # §6 Recursive Least-Squares Adaptive Filters
+
+---
+
+### Guiding Question
+
+A scalar RLS filter identifies a rapidly changing underwater acoustic path. Initialize $c(0)=0$ and $P(0)=1$, use forgetting factor $\lambda=0.98$, and observe $x(1)=2$, $d(1)=3$. Calculate the RLS gain, a priori error, updated coefficient, and updated inverse-correlation value. What is the approximate effective memory in samples, and in milliseconds at a $1\,\text{kHz}$ update rate?
+
+LMS follows a noisy local gradient and may converge slowly for colored acoustic inputs. Section 6 develops the weighted least-squares and matrix-inversion recursion used to obtain faster adaptation.
+
+---
 
 > 📖 Textbook §10.5 (Recursive Least-Squares Adaptive Filters); §10.7 (Fast RLS Algorithms)
 
@@ -1965,7 +2170,42 @@ A simple rule is:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Perform one scalar RLS update from $c_0=0$, $P_0=1$ with $\lambda=0.98$, $x=2$, $d=3$, and determine the effective memory at 1 kHz.
+
+**Answer.**
+
+The scalar RLS gain is
+
+$$g_1=\frac{P_0x}{\lambda+x^2P_0}
+=\frac{2}{0.98+4}
+=\frac2{4.98}\approx0.4016.$$
+
+The a priori error is $e_1=d-c_0x=3$. Thus
+
+$$c_1=c_0+g_1e_1\approx0+0.4016(3)=1.2048.$$
+
+The inverse-correlation update is
+
+$$P_1=\lambda^{-1}(P_0-g_1xP_0)
+=\frac{1-0.4016(2)}{0.98}\approx0.2008.$$
+
+The engineering memory estimate is $1/(1-\lambda)=50$ samples. At 1 kHz, that is $50/1000=0.05\,\text{s}=50\,\text{ms}$. **Numerically, the gain is $0.4016$, error is $3$, updated coefficient is $1.2048$, updated $P$ is $0.2008$, and effective memory is $50$ samples or $50\,\text{ms}$.**
+
+---
+
 # §7 Tracking, Algorithm Selection, and Figure Checklist
+
+---
+
+### Guiding Question
+
+An underwater echo path changes substantially about every $200\,\text{ms}$, and coefficients are updated at $1\,\text{kHz}$. Compare RLS forgetting factors $\lambda=0.99$ and $0.999$ by calculating their approximate memory lengths in samples and milliseconds; which is better matched to the changing path? For an LMS alternative with $\lambda_{\max}=20$, test candidate step sizes $\mu=0.04$ and $0.06$ under the lecture's $2\mu$ convention and identify which is mean-stable.
+
+The final section distinguishes convergence to a fixed optimum from tracking a moving acoustic path and turns step size or forgetting factor into a numerical design decision.
+
+---
 
 > 📖 Textbook §10.8 (Tracking Performance of Adaptive Algorithms)
 
@@ -2350,3 +2590,27 @@ Discuss step-size selection, EMSE, misadjustment, NLMS, transform-domain LMS, bl
 ### Pass 4: RLS and Tracking
 
 Introduce RLS as weighted least squares with recursive inverse-correlation updates. Compare LMS and RLS. Finish with tracking: local statistics, forgetting factors, and the matched/slow/fast adaptation tradeoff.
+
+---
+
+### Answer to the Guiding Question
+
+**Question.** For a path changing every $200\,\text{ms}$ at 1-kHz updates, compare $\lambda=0.99$ and $0.999$ memories; then test LMS steps $0.04$ and $0.06$ when $\lambda_{\max}=20$.
+
+**Answer.**
+
+The approximate RLS memory is $1/(1-\lambda)$. Therefore
+
+$$N_{0.99}=\frac1{0.01}=100\ \text{samples}=100\ \text{ms},$$
+
+$$N_{0.999}=\frac1{0.001}=1000\ \text{samples}=1000\ \text{ms}.$$
+
+The path changes on a 200-ms scale. The 100-ms memory responds within that scale, whereas the 1000-ms memory mixes data spanning roughly five path-change intervals and is likely to lag. Thus $\lambda=0.99$ is the better of the two tracking choices, accepting more coefficient fluctuation in exchange for speed.
+
+For LMS under the textbook $2\mu$ convention, mean stability requires
+
+$$0<\mu<\frac1{\lambda_{\max}}=\frac1{20}=0.05.$$
+
+Hence $\mu=0.04$ is mean-stable and $\mu=0.06$ violates the bound. **Numerically, the RLS memories are $100$ and $1000\,\text{ms}$, so choose $0.99$ for the 200-ms path; among the LMS candidates, $0.04$ is stable and $0.06$ is not.**
+
+---

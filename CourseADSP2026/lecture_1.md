@@ -305,6 +305,16 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 
 # Part I: Digital Signals and DSP Overview
 
+---
+
+### Guiding Question
+
+An autonomous underwater vehicle records a short active-sonar echo at $f_s=8\,\text{kHz}$. The useful echo lasts $3.25\,\text{ms}$, and one calibrated range cell contains the discrete sequence $x(n)=[2,1,-1]$. A two-path propagation model has impulse response $h(n)=[1,0.5]$, where the second coefficient represents a one-sample-delayed seabed reflection. How many samples cover the useful echo? If the propagation path is treated as a causal LTI system, what complete output sequence is recorded for this range cell, at which sample does its largest value occur, and is this two-path system BIBO stable?
+
+The introductory material before Part I names the course but does not yet define sampling, discrete sequences, LTI response, convolution, causality, or stability. Part I supplies exactly those tools.
+
+---
+
 > 📖 Textbook §1.1 (Random Signals overview); §2.1 (Discrete-Time Signals)
 
 ---
@@ -876,7 +886,50 @@ $e^{j\omega_0 n}$ is $2\pi$-periodic: $e^{j(\omega_0 + 2\pi)n} = e^{j\omega_0 n}
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** An autonomous underwater vehicle records a short active-sonar echo at $f_s=8\,\text{kHz}$. The useful echo lasts $3.25\,\text{ms}$, and one calibrated range cell contains the discrete sequence $x(n)=[2,1,-1]$. A two-path propagation model has impulse response $h(n)=[1,0.5]$, where the second coefficient represents a one-sample-delayed seabed reflection. How many samples cover the useful echo? If the propagation path is treated as a causal LTI system, what complete output sequence is recorded for this range cell, at which sample does its largest value occur, and is this two-path system BIBO stable?
+
+**Answer.**
+
+The sampling interval is $T_s=1/8000=0.125\,\text{ms}$. Hence the echo occupies
+
+$$N=f_sT=8000(3.25\times10^{-3})=26$$
+
+samples. For an LTI path, the recorded sequence is the linear convolution $y=x*h$. With samples outside the stated support equal to zero,
+
+$$
+\begin{aligned}
+y(0)&=2(1)=2,\\
+y(1)&=1(1)+2(0.5)=2,\\
+y(2)&=(-1)(1)+1(0.5)=-0.5,\\
+y(3)&=(-1)(0.5)=-0.5.
+\end{aligned}
+$$
+
+Thus $y(n)=[2,2,-0.5,-0.5]$. Its largest value is $2$, attained at both $n=0$ and $n=1$, corresponding to $0$ and $0.125\,\text{ms}$. The path is causal because $h(n)=0$ for $n<0$. It is BIBO stable because its absolute impulse-response sum is finite:
+
+$$\sum_n|h(n)|=1+0.5=1.5<\infty.$$
+
+**Numerically, the useful record contains $26$ samples, the two-path output is $[2,2,-0.5,-0.5]$, the peak is $2$ at samples $0$ and $1$, and the system is causal and stable.**
+
+---
+
 # Part II: Transforms for Discrete-Time Signals
+
+---
+
+### Guiding Question
+
+A passive hydrophone sampled at $f_s=8\,\text{kHz}$ captures eight noise-free samples of a propeller tone,
+
+$$x(n)=2\cos\!\left(\frac{\pi}{2}n\right),\qquad 0\le n\le7.$$
+
+Which two 8-point DFT bins contain the tone, what are their complex DFT values, and what physical frequencies do they represent? If an onboard processor computes the spectrum with a radix-2 FFT, how many complex multiplications are required instead of direct DFT evaluation, and what is the numerical reduction factor?
+
+Part I can describe and process the samples in time, but it cannot expose their frequency bins or explain the computational advantage of the FFT. Those are the transform tools developed in Part II.
+
+---
 
 > 📖 Textbook §2.2 (Transform-Domain Representation, §2.2.1–§2.2.4)
 
@@ -1809,7 +1862,49 @@ The permutation can be performed in-place with an $O(N)$ algorithm: compare each
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A passive hydrophone sampled at $f_s=8\,\text{kHz}$ captures eight noise-free samples of a propeller tone, $x(n)=2\cos(\pi n/2)$ for $0\le n\le7$. Which two 8-point DFT bins contain the tone, what are their complex DFT values, and what physical frequencies do they represent? If an onboard processor computes the spectrum with a radix-2 FFT, how many complex multiplications are required instead of direct DFT evaluation, and what is the numerical reduction factor?
+
+**Answer.**
+
+The DFT basis frequency is $2\pi k/N$. Since
+
+$$\frac{\pi}{2}=\frac{2\pi(2)}{8},$$
+
+the positive-frequency component lies in bin $k=2$ and its conjugate negative-frequency component lies in bin $k=8-2=6$. Writing the cosine as two exponentials,
+
+$$x(n)=e^{j\pi n/2}+e^{-j\pi n/2},$$
+
+shows that each aligned exponential contributes $N=8$ to its bin. Therefore
+
+$$X(2)=8+j0,\qquad X(6)=8+j0,$$
+
+and all other DFT coefficients are zero. The bin spacing is $f_s/N=1000\,\text{Hz}$, so $k=2$ represents $+2000\,\text{Hz}$ and $k=6$ represents $6000\,\text{Hz}$ on $[0,f_s)$, equivalently $-2000\,\text{Hz}$.
+
+A direct 8-point DFT needs $N^2=64$ complex multiplications under the standard count used here. A radix-2 FFT needs
+
+$$\frac{N}{2}\log_2N=\frac82\cdot3=12.$$
+
+The reduction factor is $64/12=5.333$. **Numerically, the only nonzero bins are $k=2$ and $k=6$, both equal to $8$, representing $\pm2\,\text{kHz}$; the FFT uses $12$ rather than $64$ complex multiplications, a $5.33\times$ reduction.**
+
+---
+
 # Part III: Digital Filter Structures and Design
+
+---
+
+### Guiding Question
+
+A four-tap FIR smoother is proposed for an underwater acoustic pressure sensor:
+
+$$H(z)=\frac14\left(1+z^{-1}+z^{-2}+z^{-3}\right).$$
+
+Determine its tap values, number of delay elements in a direct-form realization, DC gain, gains at $\omega=\pi/2$ and $\omega=\pi$, and group delay. For a sensor input $x(n)=4+2(-1)^n$ consisting of a constant pressure offset plus sample-to-sample electronic ripple, what steady-state output remains?
+
+The transform tools of Part II reveal what a given system does, but selecting a realizable structure and reading its filtering behavior from its coefficients requires Part III.
+
+---
 
 > 📖 Textbook §2.3 (Discrete-Time Systems); §2.4 (Minimum-Phase and System Invertibility); §2.5 (Lattice Filter Realizations)
 
@@ -2462,7 +2557,47 @@ The parameter $\alpha$ (and $a_1, a_2$ for bandpass/bandstop) is determined by t
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A four-tap FIR smoother is proposed for an underwater acoustic pressure sensor: $H(z)=\frac14(1+z^{-1}+z^{-2}+z^{-3})$. Determine its tap values, number of delay elements in a direct-form realization, DC gain, gains at $\omega=\pi/2$ and $\omega=\pi$, and group delay. For a sensor input $x(n)=4+2(-1)^n$ consisting of a constant pressure offset plus sample-to-sample electronic ripple, what steady-state output remains?
+
+**Answer.**
+
+The FIR taps are
+
+$$h(0)=h(1)=h(2)=h(3)=0.25,$$
+
+so a length-4 direct form uses $4-1=3$ delay elements. Its frequency response is
+
+$$H(e^{j\omega})=\frac14\sum_{n=0}^{3}e^{-j\omega n}.$$
+
+At DC, all four terms add, giving $H(e^{j0})=1$. At $\omega=\pi/2$, the terms are $1,-j,-1,j$, whose sum is zero, so the gain is $0$. At $\omega=\pi$, the terms are $1,-1,1,-1$, again giving gain $0$. Because the taps are symmetric, the filter has linear phase with group delay
+
+$$\tau_g=\frac{L-1}{2}=\frac32=1.5\ \text{samples}.$$
+
+The constant component of $x(n)$ is multiplied by the DC gain $1$, whereas $(-1)^n$ is the $\omega=\pi$ component and is multiplied by zero. Thus, after the initial transient,
+
+$$y(n)=4(1)+2(-1)^n(0)=4.$$
+
+**Numerically, the taps are four copies of $0.25$, the realization needs $3$ delays, the gains at $0$, $\pi/2$, and $\pi$ are $1$, $0$, and $0$, the group delay is $1.5$ samples, and the steady output is exactly $4$.**
+
+---
+
 # Part IV: Special Sequences and Corresponding Filters
+
+---
+
+### Guiding Question
+
+During hydrophone calibration, two causal two-tap filters are found to have identical magnitude response:
+
+$$H_1(z)=1-2z^{-1},\qquad H_2(z)=2-z^{-1}.$$
+
+Which filter is minimum phase? Give both zero locations, verify their equal gains at $\omega=0$ and $\omega=\pi$, and calculate the fraction of each filter's total impulse-response energy delivered in its first output sample. If low-latency transient detection favors the most front-loaded response, which filter should be used?
+
+Ordinary magnitude-response analysis does not distinguish these filters. Part IV introduces the zero geometry, allpass/minimum-phase decomposition, and energy-delay property needed to make the choice.
+
+---
 
 > 📖 Textbook §2.4 (Minimum-Phase and System Invertibility, §2.4.1–§2.4.4); §2.5 (Lattice Filter Realizations)
 
@@ -2790,6 +2925,32 @@ This spectral factorization theorem is **fundamental** to:
 ### Looking Ahead
 
 This chapter reviewed **deterministic** signal and system theory. Starting in Chapter 2, the focus shifts to **random (stochastic) signals** — characterized by statistical properties (mean, autocorrelation, power spectrum) rather than exact waveforms. The spectral factorization of $P_x(e^{j\omega})$ (Theorem 1.2) and the minimum-phase/allpass decomposition (Theorem 1.1) will recur as key tools throughout the course.
+
+---
+
+### Answer to the Guiding Question
+
+**Question.** During hydrophone calibration, two causal two-tap filters are found to have identical magnitude response: $H_1(z)=1-2z^{-1}$ and $H_2(z)=2-z^{-1}$. Which filter is minimum phase? Give both zero locations, verify their equal gains at $\omega=0$ and $\omega=\pi$, and calculate the fraction of each filter's total impulse-response energy delivered in its first output sample. If low-latency transient detection favors the most front-loaded response, which filter should be used?
+
+**Answer.**
+
+Factoring the two filters gives
+
+$$H_1(z)=1-2z^{-1}\quad\Rightarrow\quad z_1=2,$$
+
+$$H_2(z)=2(1-0.5z^{-1})\quad\Rightarrow\quad z_2=0.5.$$
+
+Only $H_2$ has its zero strictly inside the unit circle, so $H_2$ is minimum phase. At DC,
+
+$$|H_1(e^{j0})|=|1-2|=1,\qquad |H_2(e^{j0})|=|2-1|=1.$$
+
+At the Nyquist frequency,
+
+$$|H_1(e^{j\pi})|=|1+2|=3,\qquad |H_2(e^{j\pi})|=|2+1|=3.$$
+
+The identity $|1-2e^{-j\omega}|=|2-e^{-j\omega}|$ confirms equality at every frequency, not just these two checks. Both impulse responses have total energy $1^2+2^2=5$. For $h_1=[1,-2]$, the first-sample energy fraction is $1/5=0.20$. For $h_2=[2,-1]$, it is $4/5=0.80$.
+
+**Numerically, the zeros are $2$ and $0.5$; both filters have gains $1$ at DC and $3$ at $\pi$; their first-sample energy fractions are $20\%$ and $80\%$. The detector should use the minimum-phase filter $H_2$, which places four times as much of the total energy in the first sample.**
 
 ---
 

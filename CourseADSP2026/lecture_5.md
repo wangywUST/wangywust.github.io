@@ -211,6 +211,16 @@ This chapter uses the notation of the previous lectures. The new emphasis is tha
 
 # §0 Spectrum-Estimation Roadmap
 
+---
+
+### Guiding Question
+
+A passive-sonar buoy records $2\,\text{s}$ of hydrophone data at $f_s=4\,\text{kHz}$ and must separate two steady machinery tones at $1000$ and $1003\,\text{Hz}$ above a broadband ocean-noise floor. How many samples are available and what is the full-record Fourier-bin spacing? If only 512-sample blocks are analyzed, what is their bin spacing and how many bins apart are the tones under each choice? Which broad estimator family is the natural starting point when the two-tone model is trusted, and which family makes fewer modeling assumptions for the noise floor?
+
+Lecture 4 turns model parameters into an ideal PSD, but it does not yet organize how finite data, resolution, and modeling assumptions determine a spectrum estimator. Section 0 supplies that roadmap.
+
+---
+
 > 📖 Textbook Ch. 5 introduction; Fig. 5.1; §9.5; §9.6
 
 ---
@@ -314,7 +324,37 @@ limitations, and comparison as finite-data spectrum estimators.
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** A 2-s, 4-kHz passive-sonar record contains tones at 1000 and 1003 Hz. Compare the full record with 512-sample analysis blocks and choose broad estimator families.
+
+**Answer.**
+
+The record contains
+
+$$N=f_sT=4000(2)=8000\ \text{samples}.$$
+
+The full-record bin spacing is $4000/8000=0.5\,\text{Hz}$, so the tones are $3/0.5=6$ bins apart. A 512-sample block has spacing
+
+$$\Delta f=\frac{4000}{512}=7.8125\ \text{Hz},$$
+
+so the same tones are only $3/7.8125=0.384$ bin apart and cannot be resolved by nominal block bins. If the physical two-tone model is trustworthy, a parametric harmonic/subspace estimator is the natural high-resolution starting point. A nonparametric estimator makes fewer assumptions and is the safer baseline for the broadband floor.
+
+**Numerically, there are $8000$ samples; the spacings are $0.5$ and $7.8125\,\text{Hz}$; the tone separation is $6$ full-record bins but only $0.384$ short-block bin.**
+
+---
+
 # §1 Problem Statement and Performance Criteria
+
+---
+
+### Guiding Question
+
+An underwater acoustic recorder collects $N=1024$ samples at $8\,\text{kHz}$. A full-record estimate is compared with an average of eight nonoverlapping 128-sample estimates. Calculate both bin spacings. If independent averaging reduces normalized variance from approximately $1$ to $1/K$, what variance remains after eight averages? Can each design place two tones $20\,\text{Hz}$ apart in separate nominal Fourier bins, and what resolution–variance tradeoff has been made?
+
+The roadmap names estimator families, but it does not yet quantify bias, variance, leakage, and resolution. Section 1 provides the criteria needed to judge this experiment.
+
+---
 
 > 📖 Textbook §5.1-§5.3
 
@@ -458,7 +498,39 @@ A good spectrum estimate is not necessarily the one with the sharpest peaks. It 
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Compare a 1024-sample full estimate at 8 kHz with eight nonoverlapping 128-sample averages, including bin spacing, approximate variance, and 20-Hz tone separation.
+
+**Answer.**
+
+The full-record spacing is
+
+$$\Delta f_{1024}=\frac{8000}{1024}=7.8125\ \text{Hz}.$$
+
+The tones are $20/7.8125=2.56$ bins apart, so their nominal frequency locations are separable. For 128-sample blocks,
+
+$$\Delta f_{128}=\frac{8000}{128}=62.5\ \text{Hz},$$
+
+and the tones are only $20/62.5=0.32$ bin apart, so that design cannot resolve them. Eight independent estimates reduce normalized variance from about $1$ to
+
+$$\frac1K=\frac18=0.125,$$
+
+an eightfold variance reduction. **Numerically, averaging improves normalized variance to $0.125$ but coarsens spacing from $7.8125$ to $62.5\,\text{Hz}$; it trades away the ability to resolve a $20\,\text{Hz}$ separation.** This is the bias–variance–resolution triangle in a concrete acoustic measurement.
+
+---
+
 # §2 Classical Nonparametric Spectrum Estimation
+
+---
+
+### Guiding Question
+
+A $4096$-sample hydrophone record at $f_s=8192\,\text{Hz}$ contains two narrow acoustic lines $12\,\text{Hz}$ apart. Compare a full-record periodogram with a Welch estimate using 1024-sample windows and 50% overlap. What are the two nominal bin spacings, how many Welch segments are averaged, how many bins separate the tones in each estimate, and by what approximate factor does independent-segment averaging reduce the raw periodogram variance?
+
+Section 1 states the performance conflict. Section 2 develops periodogram, Bartlett, Welch, and correlation-window methods that make the numerical tradeoff explicit.
+
+---
 
 > 📖 Textbook Ch. 5, especially §5.1-§5.5
 
@@ -1397,7 +1469,41 @@ The teaching message is that different estimators may agree on broad spectral st
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Compare a full 4096-sample periodogram at 8192 Hz with 1024-sample, 50%-overlap Welch analysis for tones 12 Hz apart.
+
+**Answer.**
+
+The full-record bin spacing is
+
+$$\Delta f_{\text{per}}=\frac{8192}{4096}=2\ \text{Hz},$$
+
+so the tones are $12/2=6$ bins apart. Welch's 1024-sample window has spacing
+
+$$\Delta f_{\text{Welch}}=\frac{8192}{1024}=8\ \text{Hz},$$
+
+so the tones are only $12/8=1.5$ bins apart. The hop is $1024(1-0.5)=512$ samples, giving
+
+$$K=1+\left\lfloor\frac{4096-1024}{512}\right\rfloor=7$$
+
+segments. If the segment estimates were independent, averaging would reduce periodogram variance by a factor of $7$, to about $1/7=0.1429$ of its original normalized value. Overlap makes the actual factor somewhat smaller because neighboring segments are correlated.
+
+**Numerically, the spacings are $2$ and $8\,\text{Hz}$, tone separations are $6$ and $1.5$ bins, and Welch averages $7$ segments for an idealized sevenfold variance reduction.**
+
+---
+
 # §3 Parametric Spectrum Estimation
+
+---
+
+### Guiding Question
+
+A normalized vessel-radiated-noise record has estimated $r(0)=1$ and $r(1)=0.9$. Assume an AR(1) model. Estimate its predictor/denominator coefficient and innovation variance, then calculate the modeled PSD at $\omega=0$ and $\omega=\pi$ and their ratio. What pole does the spectrum estimator place?
+
+Classical estimators are tied to data-window length. Section 3 instead uses a compact AR model to infer a continuous spectrum from a few estimated statistics.
+
+---
 
 > 📖 Textbook §9.2-§9.4, connected to Chapter 4
 
@@ -1702,7 +1808,46 @@ In practice, ARMA models are most useful when there is physical reason to expect
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Fit an AR(1) spectrum to $r(0)=1$ and $r(1)=0.9$, then calculate its pole and endpoint PSDs.
+
+**Answer.**
+
+The first-order Yule-Walker coefficient is
+
+$$a_1=-\frac{r(1)}{r(0)}=-0.9,$$
+
+so $A(z)=1-0.9z^{-1}$ and the spectrum has a pole at $z=0.9$. The innovation variance is
+
+$$\sigma_w^2=r(0)+a_1r(1)=1-0.9^2=0.19.$$
+
+Therefore
+
+$$R_x(e^{j0})=\frac{0.19}{(1-0.9)^2}=19,$$
+
+$$R_x(e^{j\pi})=\frac{0.19}{(1+0.9)^2}
+=\frac{0.19}{3.61}\approx0.05263.$$
+
+The ratio is $19/0.05263=361$. **Numerically, the denominator coefficient is $-0.9$, innovation variance is $0.19$, the pole is $0.9$, and the PSD falls from $19$ at DC to $0.05263$ at $\pi$, a $361:1$ contrast.**
+
+---
+
 # §4 Minimum-Variance Spectrum Estimation
+
+---
+
+### Guiding Question
+
+A two-element acoustic array has snapshot covariance
+
+$$\mathbf R=\begin{bmatrix}2&1\\1&2\end{bmatrix}.$$
+
+For two trial look directions with steering vectors $\mathbf a_0=[1,1]^T$ and $\mathbf a_\pi=[1,-1]^T$, compute the minimum-variance distortionless weights and the MV spectral values $1/(\mathbf a^T\mathbf R^{-1}\mathbf a)$. What is the numerical spectrum ratio between the two directions?
+
+AR modeling assumes a global signal model. Section 4 instead designs a different distortionless minimum-output-power filter for every trial acoustic direction or frequency.
+
+---
 
 > 📖 Textbook §9.5 Minimum-Variance Spectrum Estimation
 
@@ -1885,7 +2030,41 @@ Practical remedies include:
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** For $\mathbf R=[[2,1],[1,2]]$, compute the MV weights and spectral values for $[1,1]^T$ and $[1,-1]^T$.
+
+**Answer.**
+
+The inverse covariance is
+
+$$\mathbf R^{-1}=\frac13\begin{bmatrix}2&-1\\-1&2\end{bmatrix}.$$
+
+For $\mathbf a_0=[1,1]^T$,
+
+$$\mathbf R^{-1}\mathbf a_0=\frac13[1,1]^T,\qquad
+\mathbf a_0^T\mathbf R^{-1}\mathbf a_0=\frac23.$$
+
+Thus the distortionless weights are $\mathbf w_0=[0.5,0.5]^T$, and the MV spectral value is $(2/3)^{-1}=1.5$. For $\mathbf a_\pi=[1,-1]^T$,
+
+$$\mathbf R^{-1}\mathbf a_\pi=[1,-1]^T,\qquad
+\mathbf a_\pi^T\mathbf R^{-1}\mathbf a_\pi=2,$$
+
+so $\mathbf w_\pi=[0.5,-0.5]^T$ and the spectral value is $1/2=0.5$. **Numerically, the MV spectrum is $1.5$ versus $0.5$, a ratio of $3$; the corresponding array weights are $[0.5,0.5]$ and $[0.5,-0.5]$.**
+
+---
+
 # §5 Maximum-Entropy Spectrum Estimation
+
+---
+
+### Guiding Question
+
+Only $r(0)=4$ and $r(1)=2$ are considered reliable for a short ocean-noise record. Under the maximum-entropy extension, what AR model and innovation variance result? What numerical values are assigned to the previously unknown $r(2)$ and $r(3)$, and what are the PSD values at $\omega=0$ and $\omega=\pi$?
+
+Minimum-variance estimation adapts a filter bank, but it does not answer how to complete unknown autocorrelations without inventing unsupported structure. Section 5 uses the maximum-entropy principle for that purpose.
+
+---
 
 > 📖 Textbook §9.2.3 Maximum Entropy Method; connection to Burg algorithm
 
@@ -2005,7 +2184,45 @@ But MEM can also create misleading peaks if the model order is too high or if th
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Extend $r(0)=4$ and $r(1)=2$ by maximum entropy and find the resulting model, $r(2)$, $r(3)$, and endpoint PSDs.
+
+**Answer.**
+
+Maximum entropy sets all partial correlations after the known first lag to zero, producing AR(1). The coefficient and innovation variance are
+
+$$a_1=-\frac24=-0.5,\qquad
+\sigma_w^2=4-\frac{2^2}{4}=3.$$
+
+The resulting recursion $r(l)=0.5r(l-1)$ gives
+
+$$r(2)=0.5(2)=1,\qquad r(3)=0.5(1)=0.5.$$
+
+The spectrum is $3/|1-0.5e^{-j\omega}|^2$, so
+
+$$R_x(e^{j0})=\frac3{0.5^2}=12,\qquad
+R_x(e^{j\pi})=\frac3{1.5^2}=\frac43\approx1.333.$$
+
+**Numerically, the maximum-entropy model is $x(n)=0.5x(n-1)+w(n)$ with innovation variance $3$; it assigns $r(2)=1$, $r(3)=0.5$, and endpoint PSDs $12$ and $1.333$.**
+
+---
+
 # §6 Frequency Estimation and Subspace Methods
+
+---
+
+### Guiding Question
+
+A two-sample complex snapshot model for a single underwater tonal source has covariance
+
+$$\mathbf R=\begin{bmatrix}2&e^{-j\pi/3}\\e^{j\pi/3}&2\end{bmatrix},$$
+
+where spatially white sensor noise has variance $1$. Find both eigenvalues, the dimensions of the signal and noise subspaces, the phase progression between components of the principal eigenvector, and the source frequency when the snapshot spacing is one sample at $f_s=6\,\text{kHz}$.
+
+The estimators in §§2–5 describe spectral power. Section 6 exploits eigenstructure to estimate the numerical frequencies of a small number of stable acoustic components more directly.
+
+---
 
 > 📖 Textbook §9.6 Harmonic Models and Frequency Estimation
 
@@ -2325,7 +2542,36 @@ In array processing, MUSIC and ESPRIT become direction-of-arrival estimators. In
 
 ---
 
+### Answer to the Guiding Question
+
+**Question.** Decompose $\mathbf R=[[2,e^{-j\pi/3}],[e^{j\pi/3},2]]$, identify the subspaces, and convert the principal phase progression to frequency at 6 kHz.
+
+**Answer.**
+
+The covariance can be written as
+
+$$\mathbf R=\mathbf I+\mathbf a\mathbf a^H,\qquad
+\mathbf a=\begin{bmatrix}1\\e^{j\pi/3}\end{bmatrix}.$$
+
+Since $\|\mathbf a\|^2=2$, the principal eigenvalue is $1+2=3$ and the orthogonal eigenvalue is $1$. Thus there is one-dimensional signal subspace and one-dimensional noise subspace. A unit principal eigenvector is $[1,e^{j\pi/3}]^T/\sqrt2$, whose second component advances in phase by $\pi/3$. That phase gives
+
+$$f=\frac{\pi/3}{2\pi}(6000)=1000\ \text{Hz}.$$
+
+**Numerically, the eigenvalues are $3$ and $1$, both subspaces have dimension $1$, the signal-vector phase progression is $+\pi/3$, and the estimated underwater tone is $1\,\text{kHz}$.** The smaller eigenvalue also recovers the stated white-noise variance $1$.
+
+---
+
 # §7 Chapter Summary, Method Selection, and Figure Checklist
+
+---
+
+### Guiding Question
+
+A hydrophone provides $8192$ samples at $f_s=8192\,\text{Hz}$. Engineers need both a smooth estimate of the broadband noise floor and separation of two persistent tones $3\,\text{Hz}$ apart. A full-record periodogram and a 1024-sample, 50%-overlap Welch estimate are available, and a two-tone subspace model is physically credible. Calculate both bin spacings and the number of Welch averages. Which method should be assigned to the smooth floor, and which should be assigned to the close-tone frequency estimates?
+
+The final section turns the chapter's formulas into a method-selection decision that cannot be made from any single estimator in isolation.
+
+---
 
 ---
 
@@ -2533,3 +2779,29 @@ Classical methods handle the problem by smoothing or averaging. Parametric metho
 The most important practical lesson is:
 
 $$\boxed{\text{A spectrum estimate is always a tradeoff, not a direct picture of truth.}}$$
+
+---
+
+### Answer to the Guiding Question
+
+**Question.** For 8192 hydrophone samples at 8192 Hz, compare the full periodogram with 1024-sample, 50%-overlap Welch analysis, then assign methods to a smooth floor and two tones 3 Hz apart.
+
+**Answer.**
+
+The full-record periodogram has spacing
+
+$$\Delta f_{\text{full}}=\frac{8192}{8192}=1\ \text{Hz},$$
+
+so a $3\,\text{Hz}$ tone separation spans three nominal bins. Welch has spacing
+
+$$\Delta f_{\text{Welch}}=\frac{8192}{1024}=8\ \text{Hz}.$$
+
+With a 512-sample hop, it averages
+
+$$K=1+\left\lfloor\frac{8192-1024}{512}\right\rfloor=15$$
+
+overlapped segments. The $3\,\text{Hz}$ separation is only $3/8=0.375$ Welch bin, so Welch sacrifices too much resolution for the tone task. Its averaging and windowing are nevertheless well suited to the requested smooth, lower-variance broadband floor. Because exactly two persistent tones are physically credible, MUSIC or ESPRIT with a two-tone signal model is the natural high-resolution frequency estimator.
+
+**Numerically, the spacings are $1$ and $8\,\text{Hz}$, Welch averages $15$ segments, the tones are $3$ full-record bins but only $0.375$ Welch bin apart; use Welch for the floor and a two-source subspace method for the tones.**
+
+---
