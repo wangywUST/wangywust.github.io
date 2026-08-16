@@ -1351,7 +1351,7 @@ $$R_x(e^{j\omega})=\lvert H(e^{j\omega})\rvert^2R_w(e^{j\omega})
 =\frac{1}{\lvert1-0.8e^{-j\omega}\rvert^2}
 =\frac{1}{1.64-1.6\cos\omega}.$$
 
-The inverse DTFT, or the time-domain convolution $r_x=h*r_w*h^{\ast}(-n)$, yields
+The inverse DTFT, or the time-domain convolution $r_x=h\ast r_w\ast h^{\ast}(-n)$, yields
 
 $$r_x(l)=\frac{0.8^{\lvert l\rvert}}{1-0.8^2}=\frac{25}{9}(0.8)^{\lvert l\rvert}.$$
 
@@ -2344,7 +2344,7 @@ $$
 \end{aligned}
 $$
 
-Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\lbrace y_i y_j^*\rbrace =0$ for $i\ne j$; hence the components of $\mathbf{y}$ are uncorrelated. Equivalently, one may define $\mathbf{y}=\mathbf{Q}^H\mathbf{x}$ and call $\mathbf{Q}$ the eigenvector matrix.
+Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\lbrace y_i y_j^\ast\rbrace =0$ for $i\ne j$; hence the components of $\mathbf{y}$ are uncorrelated. Equivalently, one may define $\mathbf{y}=\mathbf{Q}^H\mathbf{x}$ and call $\mathbf{Q}$ the eigenvector matrix.
 
 ### Advantages of Orthogonal Transforms
 
@@ -2688,8 +2688,8 @@ Here the “matrix” is the Toeplitz autocorrelation matrix formed from the est
 $$
 \hat{\mathbf R}_x=
 \begin{bmatrix}
-\hat r_x(0) & \hat r_x^*(1) & \cdots & \hat r_x^*(p-1)\\
-\hat r_x(1) & \hat r_x(0)   & \cdots & \hat r_x^*(p-2)\\
+\hat r_x(0) & \hat r_x^\ast(1) & \cdots & \hat r_x^\ast(p-1)\\
+\hat r_x(1) & \hat r_x(0)   & \cdots & \hat r_x^\ast(p-2)\\
 \vdots      & \vdots        & \ddots & \vdots\\
 \hat r_x(p-1)&\hat r_x(p-2)& \cdots & \hat r_x(0)
 \end{bmatrix},
@@ -2798,7 +2798,7 @@ The two quantities in this equation are defined by
 $$
 \mathbf{R}_x = E\lbrace \mathbf{x}\mathbf{x}^H\rbrace,
 \qquad
-\mathbf{r}_{x\theta}=E\lbrace \mathbf{x}\theta^*\rbrace.
+\mathbf{r}_{x\theta}=E\lbrace \mathbf{x}\theta^\ast\rbrace.
 $$
 
 Here:

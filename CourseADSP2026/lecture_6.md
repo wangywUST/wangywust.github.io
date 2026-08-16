@@ -1191,7 +1191,7 @@ This example is important because it shows a major practical strength of Wiener 
 Suppose the desired input passes through a distorting LTI system:
 
 $$
-x(n)=g(n)*d(n)+v(n).
+x(n)=g(n)\ast d(n)+v(n).
 $$
 
 Here:

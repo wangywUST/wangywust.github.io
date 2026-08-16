@@ -1204,7 +1204,7 @@ $$p_{1,2}=re^{\pm j\omega}.$$
 
 The two corresponding exponential terms have the form
 
-$$A(re^{j\omega})^n+A^*(re^{-j\omega})^n.$$
+$$A(re^{j\omega})^n+A^\ast(re^{-j\omega})^n.$$
 
 This can be rewritten as
 

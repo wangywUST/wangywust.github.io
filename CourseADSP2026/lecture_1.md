@@ -896,7 +896,7 @@ The sampling interval is $T_s=1/8000=0.125\,\text{ms}$. Hence the echo occupies
 
 $$N=f_sT=8000(3.25\times10^{-3})=26$$
 
-samples. For an LTI path, the recorded sequence is the linear convolution $y=x*h$. With samples outside the stated support equal to zero,
+samples. For an LTI path, the recorded sequence is the linear convolution $y=x\ast h$. With samples outside the stated support equal to zero,
 
 $$
 \begin{aligned}
@@ -1037,7 +1037,7 @@ where $C$ is a counterclockwise contour within the ROC. In practice, inverse z-t
 | Conjugate | $x^{\ast}(n)$ | $\leftrightarrow$ | $X^{\ast}(z^{\ast})$ | $\text{ROC}_x$ |
 | Time reversal | $x(-n)$ | $\leftrightarrow$ | $X(1/z)$ | $1/r_2 \lt \lvert z\rvert \lt 1/r_1$ |
 | Convolution | $x(n)\ast y(n)$ | $\leftrightarrow$ | $X(z)Y(z)$ | At least $\text{ROC}_x \cap \text{ROC}_y$ |
-| Correlation | $r_{xy}(n) = x(n)*y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
+| Correlation | $r_{xy}(n) = x(n)\ast y(-n)$ | $\leftrightarrow$ | $X(z)Y(z^{-1})$ | — |
 | z-domain differentiation | $n\cdot x(n)$ | $\leftrightarrow$ | $-z\dfrac{d}{dz}X(z)$ | $\text{ROC}_x$ |
 | Initial value | $x(0)$, causal $x$ | — | $\lim_{z\to\infty} X(z)$ | — |
 | Parseval | $\sum_n x(n)y^\ast(n)$ | $=$ | $\frac{1}{2\pi j}\oint X(v)Y^\ast(1/v^\ast)v^{-1}\,dv$ | — |
@@ -1289,7 +1289,7 @@ $$X(1) = 1 + 2\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac
 
 $$X(2) = 1 + 2\!\left(-\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) + 3\!\left(-\tfrac{1}{2}-j\tfrac{\sqrt3}{2}\right) = -\tfrac{3}{2} - j\tfrac{\sqrt3}{2}$$
 
-Note $X(2) = X^*(1)$, as expected for a real input sequence.
+Note $X(2) = X^\ast(1)$, as expected for a real input sequence.
 
 **2b — Compute $H(k)$**
 
@@ -1307,7 +1307,7 @@ $$Y(1) = \left(-\tfrac{3}{2}+j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}-j\tfr
 
 $$Y(2) = \left(-\tfrac{3}{2}-j\tfrac{\sqrt3}{2}\right)\!\left(\tfrac{1}{2}+j\tfrac{\sqrt3}{2}\right) = -j\sqrt{3}$$
 
-($Y(2) = Y^*(1)$, consistent with a real output sequence.)
+($Y(2) = Y^\ast(1)$, consistent with a real output sequence.)
 
 **2d — IDFT: $y(n) = \tfrac{1}{3}\sum_{k=0}^{2} Y(k)\,e^{j2\pi kn/3}$**
 
@@ -1375,7 +1375,7 @@ $$X(2) = 1\cdot 1 + 2\cdot(-1) + 3\cdot 1 + 0\cdot(-1) = 1 - 2 + 3 = 2$$
 
 $$X(3) = 1\cdot 1 + 2\cdot j + 3\cdot(-1) + 0\cdot(-j) = 1 + 2j - 3 = -2 + 2j$$
 
-Note $X(3) = X^*(1)$, as expected for a real input sequence.
+Note $X(3) = X^\ast(1)$, as expected for a real input sequence.
 
 **3b — Compute $H(k) = \sum_{n=0}^{3} h(n)\,W_4^{nk}$**
 
@@ -1387,7 +1387,7 @@ $$H(2) = 1\cdot 1 + 1\cdot(-1) + 0 + 0 = 0$$
 
 $$H(3) = 1\cdot 1 + 1\cdot j + 0 + 0 = 1 + j$$
 
-Again $H(3) = H^*(1)$, consistent with a real impulse response.
+Again $H(3) = H^\ast(1)$, consistent with a real impulse response.
 
 **3c — Pointwise multiply $Y(k) = X(k)\cdot H(k)$**
 
@@ -1399,7 +1399,7 @@ $$Y(2) = 2\times 0 = 0$$
 
 $$Y(3) = (-2 + 2j)(1 + j) = -2 - 2j + 2j + 2j^2 = -2 - 2 = -4$$
 
-Check: $Y(3) = Y^*(1) = (-4)^* = -4$ ✓
+Check: $Y(3) = Y^\ast(1) = (-4)^\ast = -4$ ✓
 
 **3d — IDFT: $y(n) = \dfrac{1}{4}\displaystyle\sum_{k=0}^{3} Y(k)\,W_4^{-nk}$**
 
