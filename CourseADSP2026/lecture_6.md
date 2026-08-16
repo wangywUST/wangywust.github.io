@@ -124,11 +124,11 @@ The notation below follows the previous lectures: bold lower-case letters denote
 | $\mathbf{x}(n)$ | FIR data vector, usually $[x(n),x(n-1),\ldots,x(n-M+1)]^T$ |
 | $\mathbf{c}$ | Linear estimator coefficient vector |
 | $\mathbf{h}$ | FIR Wiener filter coefficient vector |
-| $\mathbf{R}=E\{\mathbf{x}\mathbf{x}^H\}$ | Data correlation matrix |
-| $\mathbf{d}=E\{\mathbf{x}y^\ast\}$ | Cross-correlation vector between the data and the desired response |
+| $\mathbf{R}=E\lbrace \mathbf{x}\mathbf{x}^H\rbrace $ | Data correlation matrix |
+| $\mathbf{d}=E\lbrace \mathbf{x}y^\ast\rbrace $ | Cross-correlation vector between the data and the desired response |
 | $P(c)$ | Mean-square error as a function of estimator coefficients |
 | $P_o$ | Minimum mean-square error (MMSE) |
-| $P_y=E\{\vert y\vert^2\}$ | Desired-response powers |
+| $P_y=E\lbrace \vert y\vert^2\rbrace $ | Desired-response powers |
 
 ### Correlation and Spectral Quantities
 
@@ -136,7 +136,7 @@ The notation below follows the previous lectures: bold lower-case letters denote
 |--------|------------|
 | $r_x(l)$ | Autocorrelation sequence of $x(n)$ |
 | $r_y(l)$ | Autocorrelation sequence of $y(n)$ |
-| $r_{yx}(l)=E\{y(n)x^\ast(n-l)\}$ | Cross-correlation from $x$ to $y$ |
+| $r_{yx}(l)=E\lbrace y(n)x^\ast(n-l)\rbrace $ | Cross-correlation from $x$ to $y$ |
 | $R_x(e^{j\omega})$ | Power spectral density of $x(n)$ |
 | $R_{yx}(e^{j\omega})$ | Cross-power spectral density between $y(n)$ and $x(n)$ |
 | $H(e^{j\omega})$ | Frequency response of a Wiener filter |
@@ -201,7 +201,7 @@ The filter is called **optimum** not because it is universally best, but because
 The criterion is the mean-square error:
 
 $$
-P=E\{\vert e(n)\vert^2\}=E\{\vert y(n)-\hat y(n)\vert^2\}.
+P=E\lbrace \vert e(n)\vert^2\rbrace =E\lbrace \vert y(n)-\hat y(n)\vert^2\rbrace .
 $$
 
 Here:
@@ -364,7 +364,7 @@ $$
 The goal is to choose $\mathbf{c}$ to minimize
 
 $$
-P(\mathbf{c})=E\{\vert e\vert^2\}.
+P(\mathbf{c})=E\lbrace \vert e\vert^2\rbrace .
 $$
 
 The block diagram is a linear combiner: each data component is weighted, the weighted terms are added, and the result is compared with the desired response.
@@ -399,25 +399,25 @@ the MSE is
 $$
 \begin{aligned}
 P(\mathbf{c})
-&=E\{(y-\mathbf{c}^H\mathbf{x})(y^\ast-\mathbf{x}^H\mathbf{c})\} \\
-&=E\{\vert y\vert^2\}-\mathbf{c}^H E\{\mathbf{x}y^\ast\}-E\{y\mathbf{x}^H\}\mathbf{c}+\mathbf{c}^H E\{\mathbf{x}\mathbf{x}^H\}\mathbf{c}.
+&=E\lbrace (y-\mathbf{c}^H\mathbf{x})(y^\ast-\mathbf{x}^H\mathbf{c})\rbrace  \\
+&=E\lbrace \vert y\vert^2\rbrace -\mathbf{c}^H E\lbrace \mathbf{x}y^\ast\rbrace -E\lbrace y\mathbf{x}^H\rbrace \mathbf{c}+\mathbf{c}^H E\lbrace \mathbf{x}\mathbf{x}^H\rbrace \mathbf{c}.
 \end{aligned}
 $$
 
 Define
 
 $$
-\boxed{P_y=E\{\vert y\vert^2\}},
+\boxed{P_y=E\lbrace \vert y\vert^2\rbrace },
 $$
 
 $$
-\boxed{\mathbf{d}=E\{\mathbf{x}y^\ast\}},
+\boxed{\mathbf{d}=E\lbrace \mathbf{x}y^\ast\rbrace },
 $$
 
 and
 
 $$
-\boxed{\mathbf{R}=E\{\mathbf{x}\mathbf{x}^H\}}.
+\boxed{\mathbf{R}=E\lbrace \mathbf{x}\mathbf{x}^H\rbrace }.
 $$
 
 Then
@@ -527,7 +527,7 @@ If $y$ is perfectly linearly determined by $\mathbf{x}$, then the second term ca
 The same result can be understood geometrically. At the optimum, the error must be orthogonal to every data component:
 
 $$
-\boxed{E\{\mathbf{x}e_o^\ast\}=\mathbf{0}}.
+\boxed{E\lbrace \mathbf{x}e_o^\ast\rbrace =\mathbf{0}}.
 $$
 
 Since
@@ -539,7 +539,7 @@ $$
 we obtain
 
 $$
-E\{\mathbf{x}y^\ast\}-E\{\mathbf{x}\mathbf{x}^H\}\mathbf{c}_o=\mathbf{0},
+E\lbrace \mathbf{x}y^\ast\rbrace -E\lbrace \mathbf{x}\mathbf{x}^H\rbrace \mathbf{c}_o=\mathbf{0},
 $$
 
 which is exactly
@@ -557,7 +557,7 @@ Thus the normal equations and the orthogonality principle are the same statement
 The picture is easiest to understand in Euclidean geometry. The desired vector $y$ is projected onto the plane spanned by the data vectors. The residual $e_o$ is perpendicular to that plane. In random signal processing, the “inner product” is an expected correlation:
 
 $$
-\langle u,v\rangle=E\{u v^\ast\}.
+\langle u,v\rangle=E\lbrace u v^\ast\rbrace .
 $$
 
 So orthogonality means uncorrelatedness in the second-order sense.
@@ -674,7 +674,7 @@ $$
 The filter design problem is
 
 $$
-\boxed{\min_{\mathbf{h}} E\{\vert y(n)-\mathbf{h}^H\mathbf{x}(n)\vert^2\}}.
+\boxed{\min_{\mathbf{h}} E\lbrace \vert y(n)-\mathbf{h}^H\mathbf{x}(n)\vert^2\rbrace }.
 $$
 
 By the result from §1, the optimum coefficients satisfy
@@ -686,13 +686,13 @@ $$
 where
 
 $$
-\mathbf{R}=E\{\mathbf{x}(n)\mathbf{x}^H(n)\},
+\mathbf{R}=E\lbrace \mathbf{x}(n)\mathbf{x}^H(n)\rbrace ,
 $$
 
 and
 
 $$
-\mathbf{d}=E\{\mathbf{x}(n)y^\ast(n)\}.
+\mathbf{d}=E\lbrace \mathbf{x}(n)y^\ast(n)\rbrace .
 $$
 
 > ![Figure 2.1](./CourseADSP2026/Fig/Chapter_6/fig_2_1_textbook_fig_6_10_p278.png)
@@ -1024,7 +1024,7 @@ $$
 and
 
 $$
-r_{xd}(l)=E\{x(n-l)d^\ast(n)\}=r_d(l)
+r_{xd}(l)=E\lbrace x(n-l)d^\ast(n)\rbrace =r_d(l)
 $$
 
 if $d$ and $v$ are uncorrelated.
@@ -1070,7 +1070,7 @@ $$
 The right-hand-side vector becomes
 
 $$
-\mathbf{d}=E\{\mathbf{x}(n)x^\ast(n+1)\}.
+\mathbf{d}=E\lbrace \mathbf{x}(n)x^\ast(n+1)\rbrace .
 $$
 
 For a WSS process, its entries are determined by autocorrelation lags. For example, using a common convention,
@@ -1149,7 +1149,7 @@ $$
 If $u(n)$ is uncorrelated with $d(n)$, minimizing
 
 $$
-E\{\vert x_0(n)-\hat v_1(n)\vert^2\}
+E\lbrace \vert x_0(n)-\hat v_1(n)\vert^2\rbrace 
 $$
 
 causes the filter to remove the component of $x_0(n)$ that is linearly predictable from the reference. This is the basis of adaptive noise cancellation.
@@ -1163,13 +1163,13 @@ $$
 where
 
 $$
-\mathbf{R}_u=E\{\mathbf{u}(n)\mathbf{u}^H(n)\}
+\mathbf{R}_u=E\lbrace \mathbf{u}(n)\mathbf{u}^H(n)\rbrace 
 $$
 
 and
 
 $$
-\mathbf{d}_{ux_0}=E\{\mathbf{u}(n)x_0^\ast(n)\}.
+\mathbf{d}_{ux_0}=E\lbrace \mathbf{u}(n)x_0^\ast(n)\rbrace .
 $$
 
 This example is important because it shows a major practical strength of Wiener filtering: sometimes the desired clean signal is never observed directly, but a useful reference signal is available.
@@ -1248,7 +1248,7 @@ This removes intersymbol interference if the channel model is exact and noise is
 An **MMSE equalizer** minimizes
 
 $$
-E\{\vert a(n-D)-\hat a(n)\vert^2\}.
+E\lbrace \vert a(n-D)-\hat a(n)\vert^2\rbrace .
 $$
 
 It accepts a controlled amount of residual distortion if that avoids excessive noise amplification.
@@ -1332,7 +1332,7 @@ The delay $D$ is not a cosmetic detail. It determines which part of the overall 
 
 **Answer.**
 
-The reference power is $E\{x^2\}=9+3=12$, while $E\{dx\}=E\{(s+n)(n+v)\}=9$. Therefore
+The reference power is $E\lbrace x^2\rbrace =9+3=12$, while $E\lbrace dx\rbrace =E\lbrace (s+n)(n+v)\rbrace =9$. Therefore
 
 $$w_o=\frac{9}{12}=0.75.$$
 
@@ -1915,13 +1915,13 @@ Here:
 Assume
 
 $$
-E\{\boldsymbol{\eta}(n)\boldsymbol{\eta}^H(n)\}=\mathbf{Q}(n),
+E\lbrace \boldsymbol{\eta}(n)\boldsymbol{\eta}^H(n)\rbrace =\mathbf{Q}(n),
 $$
 
 and
 
 $$
-E\{\mathbf{v}(n)\mathbf{v}^H(n)\}=\mathbf{R}_v(n).
+E\lbrace \mathbf{v}(n)\mathbf{v}^H(n)\rbrace =\mathbf{R}_v(n).
 $$
 
 The process noise and observation noise are usually assumed uncorrelated with each other and with the initial state.
@@ -2085,7 +2085,7 @@ $$
 The textbook derivation minimizes a scalar measure of covariance, often
 
 $$
-\mathrm{tr}\{\mathbf{P}(n\mid n)\},
+\mathrm{tr}\lbrace \mathbf{P}(n\mid n)\rbrace ,
 $$
 
 which is the sum of posterior state estimation error variances.
@@ -2116,13 +2116,13 @@ A compact Kalman filtering loop is:
 Choose
 
 $$
-\boxed{\hat{\mathbf{s}}(0\mid 0)=E\{\mathbf{s}(0)\}}
+\boxed{\hat{\mathbf{s}}(0\mid 0)=E\lbrace \mathbf{s}(0)\rbrace }
 $$
 
 and
 
 $$
-\boxed{\mathbf{P}(0\mid 0)=E\{[\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)][\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)]^H\}}.
+\boxed{\mathbf{P}(0\mid 0)=E\lbrace [\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)][\mathbf{s}(0)-\hat{\mathbf{s}}(0\mid 0)]^H\rbrace }.
 $$
 
 If no observation has yet been processed, one may instead initialize $\hat{\mathbf{s}}(0\mid -1)$ and $\mathbf{P}(0\mid -1)$.
@@ -2458,7 +2458,7 @@ P_o=P_y-\mathbf{d}^H\mathbf{c}_o
 $$
 
 $$
-E\{\mathbf{x}e_o^\ast\}=\mathbf{0}
+E\lbrace \mathbf{x}e_o^\ast\rbrace =\mathbf{0}
 $$
 
 ### FIR Wiener Filter

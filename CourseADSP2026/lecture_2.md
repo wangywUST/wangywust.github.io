@@ -410,9 +410,9 @@ $\lvert\rho\rvert = 1$ indicates a perfect linear relationship; $\lvert\rho\rver
 
 > **Proof that $\lvert\rho\rvert \le 1$ (Cauchy-Schwarz inequality).** The Cauchy-Schwarz inequality for expectations states that for any two random variables $U$ and $V$:
 >
-> $$\lvert E\{UV\}\rvert^2 \le E\{\lvert U\rvert^2\} \cdot E\{\lvert V\rvert^2\}$$
+> $$\lvert E\lbrace UV\rbrace \rvert^2 \le E\lbrace \lvert U\rvert^2\rbrace  \cdot E\lbrace \lvert V\rvert^2\rbrace $$
 >
-> Set $U = x_1 - \mu_{x_1}$ and $V = x_2 - \mu_{x_2}$. Then $E\{UV\} = \gamma_{x_1 x_2}$, $E\{\lvert U\rvert^2\} = \sigma_{x_1}^2$, and $E\{\lvert V\rvert^2\} = \sigma_{x_2}^2$. Substituting:
+> Set $U = x_1 - \mu_{x_1}$ and $V = x_2 - \mu_{x_2}$. Then $E\lbrace UV\rbrace  = \gamma_{x_1 x_2}$, $E\lbrace \lvert U\rvert^2\rbrace  = \sigma_{x_1}^2$, and $E\lbrace \lvert V\rvert^2\rbrace  = \sigma_{x_2}^2$. Substituting:
 >
 > $$\lvert\gamma_{x_1 x_2}\rvert^2 \le \sigma_{x_1}^2 \cdot \sigma_{x_2}^2$$
 >
@@ -471,11 +471,11 @@ Used to model phase angles (uniformly on $[0, 2\pi]$) and to generate other dist
 
 The phase-angle example means that all angles in one full cycle are equally likely: no direction on the unit circle is preferred, so the probability of falling in an interval is proportional only to the interval length. For example, for $\Theta \sim \text{Uniform}[0,2\pi]$,
 
-$$\Pr\{ \alpha \le \Theta \le \beta \} = \frac{\beta-\alpha}{2\pi}, \qquad 0 \le \alpha \le \beta \le 2\pi.$$
+$$\Pr\lbrace  \alpha \le \Theta \le \beta \rbrace  = \frac{\beta-\alpha}{2\pi}, \qquad 0 \le \alpha \le \beta \le 2\pi.$$
 
 The inverse-transform method is a standard way to turn a uniform random number generator into samples from any desired distribution. Since the CDF $F_x(t)$ maps a value $t$ to a probability level in $[0,1]$, its inverse maps a probability level $U$ back to the corresponding value of $x$. Therefore,
 
-$$\Pr\{F_x^{-1}(U) \le t\} = \Pr\{U \le F_x(t)\} = F_x(t),$$
+$$\Pr\lbrace F_x^{-1}(U) \le t\rbrace  = \Pr\lbrace U \le F_x(t)\rbrace  = F_x(t),$$
 
 so $F_x^{-1}(U)$ indeed has CDF $F_x$. In simulations, this is why uniform random variables are often treated as the basic source of randomness.
 
@@ -489,7 +489,7 @@ $$U = 1 - e^{-\lambda t} \;\Longrightarrow\; e^{-\lambda t} = 1 - U \;\Longright
 
 Substituting into the identity above verifies the result:
 
-$$\Pr\{F_x^{-1}(U) \le t\} = \Pr\{U \le F_x(t)\} = 1 - e^{-\lambda t},$$
+$$\Pr\lbrace F_x^{-1}(U) \le t\rbrace  = \Pr\lbrace U \le F_x(t)\rbrace  = 1 - e^{-\lambda t},$$
 
 which is exactly the exponential CDF, so $x = -\frac{1}{\lambda}\ln(1-U)$ is exponentially distributed. Intuitively, the CDF compresses the $x$-axis onto the probability scale $[0,1]$; the inverse runs this backward, stretching regions of high density (where $F_x$ rises steeply) so that more uniform samples land there. Since $1-U$ and $U$ are identically distributed, one often writes simply $x = -\ln(U)/\lambda$ in code.
 
@@ -501,7 +501,7 @@ A discrete-valued distribution with $p_1 = \Pr\lbrace x = +1\rbrace = 1/2$, $p_2
 
 ### Answer to the Guiding Question
 
-**Question.** An active sonar examines one matched-filter output from a range–bearing cell after transmitting a ping. When an underwater target is present, engineers model its echo as a deterministic normalized level $s=2$; ambient ocean noise and receiver self-noise are modeled together as $w\sim\mathcal{N}(0,1)$, so the measured output is $x=s+w$. The sonar declares a contact when $x>3$. Under this target-present model, calculate the detection percentage, the mean, and the variance of $x$. A second hydrophone channel measures $y=s+v$, with $v\sim\mathcal{N}(0,1)$ and $E\{wv\}=0.6$ because both hydrophones sense part of the same ambient noise field. Calculate the covariance and correlation coefficient between $x$ and $y$, and decide whether the two outputs may be treated as independent.
+**Question.** An active sonar examines one matched-filter output from a range–bearing cell after transmitting a ping. When an underwater target is present, engineers model its echo as a deterministic normalized level $s=2$; ambient ocean noise and receiver self-noise are modeled together as $w\sim\mathcal{N}(0,1)$, so the measured output is $x=s+w$. The sonar declares a contact when $x>3$. Under this target-present model, calculate the detection percentage, the mean, and the variance of $x$. A second hydrophone channel measures $y=s+v$, with $v\sim\mathcal{N}(0,1)$ and $E\lbrace wv\rbrace =0.6$ because both hydrophones sense part of the same ambient noise field. Calculate the covariance and correlation coefficient between $x$ and $y$, and decide whether the two outputs may be treated as independent.
 
 **Answer.**
 
@@ -511,19 +511,19 @@ $$x\sim\mathcal{N}(2,1).$$
 
 The decision event $x>3$ is equivalent to $w>1$. If $\Phi(a)$ denotes the standard-normal CDF,
 
-$$P_D=\Pr\{x>3\}=\Pr\{w>1\}=1-\Phi(1)\approx 0.1587.$$
+$$P_D=\Pr\lbrace x>3\rbrace =\Pr\lbrace w>1\rbrace =1-\Phi(1)\approx 0.1587.$$
 
-Linearity of expectation gives $E\{x\}=2+E\{w\}=2$, and adding a constant does not change variance, so $\operatorname{var}(x)=\operatorname{var}(w)=1$.
+Linearity of expectation gives $E\lbrace x\rbrace =2+E\lbrace w\rbrace =2$, and adding a constant does not change variance, so $\operatorname{var}(x)=\operatorname{var}(w)=1$.
 
 For the two hydrophone channels,
 
-$$\operatorname{cov}(x,y)=E\{(x-2)(y-2)\}=E\{wv\}=0.6.$$
+$$\operatorname{cov}(x,y)=E\lbrace (x-2)(y-2)\rbrace =E\lbrace wv\rbrace =0.6.$$
 
 Because $\sigma_x=\sigma_y=1$, their correlation coefficient is
 
 $$\rho_{xy}=\frac{\operatorname{cov}(x,y)}{\sigma_x\sigma_y}=0.6.$$
 
-Therefore $x$ and $y$ are correlated and cannot be independent: independence would imply zero covariance. More generally, the converse is false—zero covariance does not normally imply independence. It would imply independence only with an additional condition such as joint Gaussianity. **Numerically, the detection rate is $15.87\%$, $E\{x\}=2$, $\operatorname{var}(x)=1$, $\operatorname{cov}(x,y)=0.6$, and $\rho_{xy}=0.6$.**
+Therefore $x$ and $y$ are correlated and cannot be independent: independence would imply zero covariance. More generally, the converse is false—zero covariance does not normally imply independence. It would imply independence only with an additional condition such as joint Gaussianity. **Numerically, the detection rate is $15.87\%$, $E\lbrace x\rbrace =2$, $\operatorname{var}(x)=1$, $\operatorname{cov}(x,y)=0.6$, and $\rho_{xy}=0.6$.**
 
 ---
 
@@ -737,12 +737,12 @@ $r_x(0)$ is the **total average power** — the DC component $\lvert\mu_x\rvert^
 > *Part 1: $r_x(0) = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0$.*
 > By definition at lag $l=0$:
 >
-> $$r_x(0) = E\bigl\{x(n)\,x^{\ast}(n)\bigr\} = E\bigl\{\lvert x(n)\rvert^2\bigr\} = \operatorname{var}(x) + \lvert E\{x\}\rvert^2 = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0$$
+> $$r_x(0) = E\bigl\lbrace x(n)\,x^{\ast}(n)\bigr\rbrace  = E\bigl\lbrace \lvert x(n)\rvert^2\bigr\rbrace  = \operatorname{var}(x) + \lvert E\lbrace x\rbrace \rvert^2 = \sigma_x^2 + \lvert\mu_x\rvert^2 \ge 0$$
 >
 > *Part 2: $r_x(0) \ge \lvert r_x(l)\rvert$ for all $l$.*
-> By the Cauchy–Schwarz inequality applied to expectations, $\lvert E\{u\,v^{\ast}\}\rvert^2 \le E\{\lvert u\rvert^2\}\cdot E\{\lvert v\rvert^2\}$. Setting $u = x(n+l)$ and $v = x(n)$:
+> By the Cauchy–Schwarz inequality applied to expectations, $\lvert E\lbrace u\,v^{\ast}\rbrace \rvert^2 \le E\lbrace \lvert u\rvert^2\rbrace \cdot E\lbrace \lvert v\rvert^2\rbrace $. Setting $u = x(n+l)$ and $v = x(n)$:
 >
-> $$\lvert r_x(l)\rvert^2 = \bigl\lvert E\{x(n+l)\,x^{\ast}(n)\}\bigr\rvert^2 \;\le\; E\bigl\{\lvert x(n+l)\rvert^2\bigr\} \cdot E\bigl\{\lvert x(n)\rvert^2\bigr\} = r_x(0)^2$$
+> $$\lvert r_x(l)\rvert^2 = \bigl\lvert E\lbrace x(n+l)\,x^{\ast}(n)\rbrace \bigr\rvert^2 \;\le\; E\bigl\lbrace \lvert x(n+l)\rvert^2\bigr\rbrace  \cdot E\bigl\lbrace \lvert x(n)\rvert^2\bigr\rbrace  = r_x(0)^2$$
 >
 > Since $r_x(0) \ge 0$, taking square roots gives $r_x(0) \ge \lvert r_x(l)\rvert$. $\blacksquare$
 
@@ -766,19 +766,19 @@ $$y=\sum_{k=0}^{M-1}\alpha_k^{\ast}x(n+k).$$
 
 Its squared magnitude cannot be negative, so its expected power must satisfy
 
-$$E\{\lvert y\rvert^2\}\ge 0.$$
+$$E\lbrace \lvert y\rvert^2\rbrace \ge 0.$$
 
 Expanding this expectation gives
 
 $$
 \begin{aligned}
-E\{\lvert y\rvert^2\}
-&=E\!\left\{
+E\lbrace \lvert y\rvert^2\rbrace 
+&=E\!\left\lbrace 
 \left(\sum_k\alpha_k^{\ast}x(n+k)\right)
 \left(\sum_l\alpha_l x^{\ast}(n+l)\right)
-\right\}\\
+\right\rbrace \\
 &=\sum_k\sum_l\alpha_k^{\ast}\alpha_l
-E\{x(n+k)x^{\ast}(n+l)\}\\
+E\lbrace x(n+k)x^{\ast}(n+l)\rbrace \\
 &=\sum_k\sum_l\alpha_k^{\ast}\alpha_l r_x(k-l)\\
 &\ge 0.
 \end{aligned}
@@ -791,7 +791,7 @@ $$[\mathbf R_x]_{kl}=r_x(k-l),$$
 then the same result is
 
 $$\boxed{\boldsymbol{\alpha}^H\mathbf R_x\boldsymbol{\alpha}
-=E\{\lvert y\rvert^2\}\ge0.}$$
+=E\lbrace \lvert y\rvert^2\rbrace \ge0.}$$
 
 Because this holds for every $\boldsymbol{\alpha}$, $\mathbf R_x$ is **positive semidefinite**. It is only *semidefinite*, rather than necessarily positive definite, because a nonzero coefficient vector can sometimes produce $y=0$; for example, the samples may obey an exact linear dependence.
 
@@ -1175,9 +1175,9 @@ Is the received sound WSS? Calculate its mean, total power $r_x(0)$, lag-one aut
 
 **Answer.**
 
-Averaging over the random phase gives $E\{\cos(\omega_0n+\Theta)\}=0$, and the noise is zero mean, hence $m_x(n)=0$. Independence removes the sinusoid–noise cross terms. Using
+Averaging over the random phase gives $E\lbrace \cos(\omega_0n+\Theta)\rbrace =0$, and the noise is zero mean, hence $m_x(n)=0$. Independence removes the sinusoid–noise cross terms. Using
 
-$$E_\Theta\{\cos(\alpha+\Theta)\cos(\beta+\Theta)\}=\frac12\cos(\alpha-\beta),$$
+$$E_\Theta\lbrace \cos(\alpha+\Theta)\cos(\beta+\Theta)\rbrace =\frac12\cos(\alpha-\beta),$$
 
 we obtain
 
@@ -1750,7 +1750,7 @@ $$x(0),x(1),\ldots,x(N-1),$$
 estimate a small parameter set
 
 $$
-\{a_1,\ldots,a_p,\;b_1,\ldots,b_q,\;\sigma_w^2\},
+\lbrace a_1,\ldots,a_p,\;b_1,\ldots,b_q,\;\sigma_w^2\rbrace ,
 $$
 
 and use it to estimate the PSD:
@@ -1833,16 +1833,16 @@ $$x(n)+\sum_{k=1}^{p}a_kx(n-k)=\sum_{j=0}^{q}b_jw(n-j).$$
 Postmultiply both sides by $x^{\ast}(n-l)$ and take expectations. By linearity,
 
 $$
-E\!\left\{x(n)x^{\ast}(n-l)\right\}
-+\sum_{k=1}^{p}a_kE\!\left\{x(n-k)x^{\ast}(n-l)\right\}
-=\sum_{j=0}^{q}b_jE\!\left\{w(n-j)x^{\ast}(n-l)\right\}.
+E\!\left\lbrace x(n)x^{\ast}(n-l)\right\rbrace 
++\sum_{k=1}^{p}a_kE\!\left\lbrace x(n-k)x^{\ast}(n-l)\right\rbrace 
+=\sum_{j=0}^{q}b_jE\!\left\lbrace w(n-j)x^{\ast}(n-l)\right\rbrace .
 $$
 
 Because $x(n)$ is WSS and the time separation between $x(n-k)$ and $x(n-l)$ is $l-k$,
 
-$$E\!\left\{x(n)x^{\ast}(n-l)\right\}=r_x(l),$$
+$$E\!\left\lbrace x(n)x^{\ast}(n-l)\right\rbrace =r_x(l),$$
 
-$$E\!\left\{x(n-k)x^{\ast}(n-l)\right\}=r_x(l-k).$$
+$$E\!\left\lbrace x(n-k)x^{\ast}(n-l)\right\rbrace =r_x(l-k).$$
 
 Hence the correlation equation at an arbitrary lag is
 
@@ -1850,28 +1850,28 @@ $$
 r_x(l)+\sum_{k=1}^{p}a_kr_x(l-k)
 =\sum_{j=0}^{q}b_jr_{wx}(l-j),
 \qquad
-r_{wx}(l-j)\triangleq E\!\left\{w(n-j)x^{\ast}(n-l)\right\}.
+r_{wx}(l-j)\triangleq E\!\left\lbrace w(n-j)x^{\ast}(n-l)\right\rbrace .
 $$
 
 It remains to determine when the right-hand side is zero. For a causal, stable ARMA model, write the output in terms of its causal impulse response $h(m)$:
 
 $$x(n-l)=\sum_{m=0}^{\infty}h(m)w(n-l-m).$$
 
-Therefore, using $E\{w(t)w^{\ast}(s)\}=\sigma_w^2\delta(t-s)$,
+Therefore, using $E\lbrace w(t)w^{\ast}(s)\rbrace =\sigma_w^2\delta(t-s)$,
 
 $$
 \begin{aligned}
-E\!\left\{w(n-j)x^{\ast}(n-l)\right\}
-&=E\!\left\{w(n-j)\sum_{m=0}^{\infty}h^{\ast}(m)w^{\ast}(n-l-m)\right\}\\
+E\!\left\lbrace w(n-j)x^{\ast}(n-l)\right\rbrace 
+&=E\!\left\lbrace w(n-j)\sum_{m=0}^{\infty}h^{\ast}(m)w^{\ast}(n-l-m)\right\rbrace \\
 &=\sum_{m=0}^{\infty}h^{\ast}(m)
-E\!\left\{w(n-j)w^{\ast}(n-l-m)\right\}\\
+E\!\left\lbrace w(n-j)w^{\ast}(n-l-m)\right\rbrace \\
 &=\sigma_w^2\sum_{m=0}^{\infty}h^{\ast}(m)\delta(l+m-j).
 \end{aligned}
 $$
 
-If $l>q$, then for every $j\in\{0,1,\ldots,q\}$ we have $l>j$. Since $m\ge0$, the equality $l+m-j=0$ is impossible; consequently,
+If $l>q$, then for every $j\in\lbrace 0,1,\ldots,q\rbrace $ we have $l>j$. Since $m\ge0$, the equality $l+m-j=0$ is impossible; consequently,
 
-$$E\!\left\{w(n-j)x^{\ast}(n-l)\right\}=0,
+$$E\!\left\lbrace w(n-j)x^{\ast}(n-l)\right\rbrace =0,
 \qquad j=0,1,\ldots,q,\quad l>q.$$
 
 Thus every term on the moving-average side vanishes, leaving the homogeneous AR recursion
@@ -2080,7 +2080,7 @@ $$
 
 generate exactly the same PSD and autocorrelation, even though one zero is at $a$ and the other is at $1/a$. Second-order statistics alone cannot distinguish these two filters.
 
-For an MA($q$) polynomial, each zero not on the unit circle can similarly be assigned to either member of the pair $\{z_i,1/z_i^{\ast}\}$. In the generic unconstrained case of $q$ distinct zeros, this gives up to $2^q$ spectral factors (with conjugate-pair choices linked when real coefficients are required). Imposing the **minimum-phase** condition—choosing every zero strictly inside the unit circle—selects one canonical MA model, together with a positive normalization of the driving-noise variance. This zero-reflection ambiguity is the precise meaning of MA non-uniqueness.
+For an MA($q$) polynomial, each zero not on the unit circle can similarly be assigned to either member of the pair $\lbrace z_i,1/z_i^{\ast}\rbrace $. In the generic unconstrained case of $q$ distinct zeros, this gives up to $2^q$ spectral factors (with conjugate-pair choices linked when real coefficients are required). Imposing the **minimum-phase** condition—choosing every zero strictly inside the unit circle—selects one canonical MA model, together with a positive normalization of the driving-noise variance. This zero-reflection ambiguity is the precise meaning of MA non-uniqueness.
 
 ---
 
@@ -2199,8 +2199,8 @@ that dependence is collected in the generally non-diagonal covariance matrix
 
 $$
 \boldsymbol{\Sigma}_x
-=E\!\left\{(\mathbf{x}-\boldsymbol{\mu}_x)
-(\mathbf{x}-\boldsymbol{\mu}_x)^H\right\}.
+=E\!\left\lbrace (\mathbf{x}-\boldsymbol{\mu}_x)
+(\mathbf{x}-\boldsymbol{\mu}_x)^H\right\rbrace .
 $$
 
 A nonzero off-diagonal entry means that two coordinates contain overlapping statistical information. This creates three practical problems:
@@ -2318,7 +2318,7 @@ An **orthogonal (unitary) transform** $\mathbf{y} = \mathbf{A}\mathbf{x}$ satisf
 - **Unique invertibility:** $\mathbf{x} = \mathbf{A}^H \mathbf{y}$ — the inverse transform is $\mathbf{A}^H$.
 - **Decorrelation potential:** The transform can diagonalize the covariance matrix when its rows are chosen as the eigenvectors of $\mathbf{R}_x$.
 
-To see this, assume $\mathbf{x}$ is zero-mean (or replace it by $\mathbf{x}-E\{\mathbf{x}\}$), and let the covariance eigendecomposition be
+To see this, assume $\mathbf{x}$ is zero-mean (or replace it by $\mathbf{x}-E\lbrace \mathbf{x}\rbrace $), and let the covariance eigendecomposition be
 
 $$
 \mathbf{R}_x=\mathbf{Q}\boldsymbol{\Lambda}\mathbf{Q}^H,
@@ -2335,7 +2335,7 @@ The covariance of the transformed vector is then
 $$
 \begin{aligned}
 \mathbf{R}_y
-&=E\!\left\{\mathbf{y}\mathbf{y}^H\right\} \\
+&=E\!\left\lbrace \mathbf{y}\mathbf{y}^H\right\rbrace  \\
 &=\mathbf{A}\mathbf{R}_x\mathbf{A}^H \\
 &=\mathbf{Q}^H
   \left(\mathbf{Q}\boldsymbol{\Lambda}\mathbf{Q}^H\right)
@@ -2344,7 +2344,7 @@ $$
 \end{aligned}
 $$
 
-Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\{y_i y_j^*\}=0$ for $i\ne j$; hence the components of $\mathbf{y}$ are uncorrelated. Equivalently, one may define $\mathbf{y}=\mathbf{Q}^H\mathbf{x}$ and call $\mathbf{Q}$ the eigenvector matrix.
+Because $\boldsymbol{\Lambda}$ has zero off-diagonal entries, $E\lbrace y_i y_j^*\rbrace =0$ for $i\ne j$; hence the components of $\mathbf{y}$ are uncorrelated. Equivalently, one may define $\mathbf{y}=\mathbf{Q}^H\mathbf{x}$ and call $\mathbf{Q}$ the eigenvector matrix.
 
 ### Advantages of Orthogonal Transforms
 
@@ -2506,7 +2506,7 @@ $$\lambda_1=3,\quad \mathbf q_1=\frac{1}{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix}
 
 With $\mathbf Q=[\mathbf q_1\ \mathbf q_2]$ and $\mathbf y=\mathbf Q^T\mathbf x$,
 
-$$E\{\mathbf y\mathbf y^T\}=\mathbf Q^T\boldsymbol{\Sigma}_x\mathbf Q=\begin{bmatrix}3&0\\0&1\end{bmatrix}.$$
+$$E\lbrace \mathbf y\mathbf y^T\rbrace =\mathbf Q^T\boldsymbol{\Sigma}_x\mathbf Q=\begin{bmatrix}3&0\\0&1\end{bmatrix}.$$
 
 Numerically,
 
@@ -2531,7 +2531,7 @@ $$\mathbf z\approx
 0.707&-0.707
 \end{bmatrix}\mathbf x,$$
 
-and $E\{\mathbf z\mathbf z^T\}=\mathbf I$. **Numerically, the output variances are $(3,1)$; retain $y_1$; the reconstruction MSE is $1$; and the whitening rows are $(0.408,0.408)$ and $(0.707,-0.707)$.**
+and $E\lbrace \mathbf z\mathbf z^T\rbrace =\mathbf I$. **Numerically, the output variances are $(3,1)$; retain $y_1$; the reconstruction MSE is $1$; and the whitening rows are $(0.408,0.408)$ and $(0.707,-0.707)$.**
 
 ---
 
@@ -2613,7 +2613,7 @@ $$
 
 denote the estimator constructed from the first $N$ observations. Thus, $N\to\infty$ means that the amount of available data grows; it does not mean that a signal index or the parameter $\theta$ tends to infinity.
 
-The estimator sequence $\{\hat{\theta}_N\}$ is **consistent** for $\theta$ if it converges to $\theta$ in probability:
+The estimator sequence $\lbrace \hat{\theta}_N\rbrace $ is **consistent** for $\theta$ if it converges to $\theta$ in probability:
 
 $$
 \hat{\theta}_N\xrightarrow{p}\theta,
@@ -2627,15 +2627,15 @@ A stronger property is **mean-square consistency**:
 
 $$
 \lim_{N\to\infty}
-E\!\left\{\left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\}=0.
+E\!\left\lbrace \left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\rbrace =0.
 $$
 
 Since
 
 $$
-E\!\left\{\left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\}
+E\!\left\lbrace \left\lvert\hat{\theta}_N-\theta\right\rvert^2\right\rbrace 
 =\operatorname{var}(\hat{\theta}_N)
-+\left(E\{\hat{\theta}_N\}-\theta\right)^2,
++\left(E\lbrace \hat{\theta}_N\rbrace -\theta\right)^2,
 $$
 
 mean-square consistency requires both the variance and the squared bias to approach zero. Mean-square consistency implies consistency in probability, but the converse does not hold in general.
@@ -2920,7 +2920,7 @@ $$\hat\mu_1=x(0)=3.0,
 \qquad
 \hat\mu_2=\bar x=1.5.$$
 
-Both estimators are unbiased because $E\{x(n)\}=\mu$. Their MSEs equal their variances:
+Both estimators are unbiased because $E\lbrace x(n)\rbrace =\mu$. Their MSEs equal their variances:
 
 $$\operatorname{MSE}(\hat\mu_1)=\sigma^2=4,$$
 

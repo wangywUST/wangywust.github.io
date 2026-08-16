@@ -279,7 +279,7 @@ $$e_p^f(n)=x(n)+\mathbf{a}_p^H\mathbf{x}_p(n).$$
 
 The optimal coefficient vector is the one that minimizes
 
-$$J(\mathbf{a}_p)=E\{\lvert e_p^f(n)\rvert^2\}.$$
+$$J(\mathbf{a}_p)=E\lbrace \lvert e_p^f(n)\rvert^2\rbrace .$$
 
 Before writing the normal equations, it is useful to understand the geometry of this minimization. The previous samples
 
@@ -299,11 +299,11 @@ The LMMSE orthogonality principle says:
 
 Thus, for $i=1,2,\ldots,p$,
 
-$$E\{e_p^f(n)x^{\ast}(n-i)\}=0.$$
+$$E\lbrace e_p^f(n)x^{\ast}(n-i)\rbrace =0.$$
 
 Substituting the prediction error gives
 
-$$E\left\{\left[x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right]x^{\ast}(n-i)\right\}=0.$$
+$$E\left\lbrace \left[x(n)+\sum_{k=1}^{p}a_k^{\ast}x(n-k)\right]x^{\ast}(n-i)\right\rbrace =0.$$
 
 For a WSS process, this becomes
 
@@ -346,7 +346,7 @@ The matrix is Toeplitz: each diagonal is constant. This Toeplitz structure is th
 
 After the optimal coefficients are found, the minimum prediction error power is
 
-$$\boxed{P_p=E\{\lvert e_p^f(n)\rvert^2\}=r_x(0)+\sum_{k=1}^{p}a_k^{\ast}r_x(k)}.$$
+$$\boxed{P_p=E\lbrace \lvert e_p^f(n)\rvert^2\rbrace =r_x(0)+\sum_{k=1}^{p}a_k^{\ast}r_x(k)}.$$
 
 In vector form,
 
@@ -596,7 +596,7 @@ $$e_m^f(n)=A_m(z)x(n).$$
 
 The corresponding minimum prediction error power is
 
-$$P_m=E\{\lvert e_m^f(n)\rvert^2\}.$$
+$$P_m=E\lbrace \lvert e_m^f(n)\rvert^2\rbrace .$$
 
 This is the same quantity introduced earlier as $P_p$, but with the final order $p$ replaced by an arbitrary intermediate order $m$. In other words, $P_p$ is the final error power after the full $p$-th order predictor is built, while
 
@@ -864,7 +864,7 @@ $$x(n)+\sum_{k=1}^{p}a_kx(n-k)=w(n),$$
 
 multiply both sides by $x^{\ast}(n-i)$ and take expectation. Since the white-noise innovation is orthogonal to past samples, for $i=1,2,\ldots,p$,
 
-$$E\{w(n)x^{\ast}(n-i)\}=0.$$
+$$E\lbrace w(n)x^{\ast}(n-i)\rbrace =0.$$
 
 Therefore,
 
@@ -880,12 +880,12 @@ The right-hand side is no longer zero because the multiplier is the current
 sample $x^{\ast}(n)$, not a past sample. More explicitly, after multiplying by
 $x^{\ast}(n-i)$ and taking expectation, the right-hand side is
 
-$$E\{w(n)x^{\ast}(n-i)\}.$$
+$$E\lbrace w(n)x^{\ast}(n-i)\rbrace .$$
 
 For $i=1,2,\ldots,p$, this term is zero because $w(n)$ is orthogonal to the
 past samples $x(n-i)$. For $i=0$, however,
 
-$$E\{w(n)x^{\ast}(n)\}$$
+$$E\lbrace w(n)x^{\ast}(n)\rbrace $$
 
 must be evaluated. From the AR equation,
 
@@ -899,15 +899,15 @@ Hence
 
 $$
 \begin{aligned}
-E\{w(n)x^{\ast}(n)\}
-&=E\{|w(n)|^2\}
--\sum_{k=1}^{p}a_k^{\ast}E\{w(n)x^{\ast}(n-k)\}\\
+E\lbrace w(n)x^{\ast}(n)\rbrace 
+&=E\lbrace |w(n)|^2\rbrace 
+-\sum_{k=1}^{p}a_k^{\ast}E\lbrace w(n)x^{\ast}(n-k)\rbrace \\
 &=\sigma_w^2.
 \end{aligned}
 $$
 
 The second term is zero because $w(n)$ is orthogonal to all past samples
-$x(n-k)$, while $E\{|w(n)|^2\}$ is exactly the white-noise variance
+$x(n-k)$, while $E\lbrace |w(n)|^2\rbrace $ is exactly the white-noise variance
 $\sigma_w^2$.
 
 This gives the innovation variance:
@@ -923,7 +923,7 @@ the term $-\sum_{k=1}^{p}a_kx(n-k)$ is the prediction of $x(n)$ from its past
 $p$ samples, while $w(n)$ is the part left over after prediction. Thus
 $w(n)$ is the innovation. Its variance is
 
-$$E\{|w(n)|^2\}=\sigma_w^2.$$
+$$E\lbrace |w(n)|^2\rbrace =\sigma_w^2.$$
 
 But the linear prediction error is
 
@@ -932,7 +932,7 @@ $$e_p^f(n)=x(n)+\sum_{k=1}^{p}a_kx(n-k).$$
 For an exact AR($p$) process, $e_p^f(n)=w(n)$. Therefore the prediction-error
 power is the same as the innovation variance:
 
-$$P_p=E\{|e_p^f(n)|^2\}=E\{|w(n)|^2\}=\sigma_w^2.$$
+$$P_p=E\lbrace |e_p^f(n)|^2\rbrace =E\lbrace |w(n)|^2\rbrace =\sigma_w^2.$$
 
 In words, the innovation variance is the average power of the part of the
 current sample that cannot be predicted from the past $p$ samples.
@@ -1694,7 +1694,7 @@ where $\mathbf{L}_p$ is lower triangular and $\mathbf{D}_p$ is diagonal.
 
 The diagonal entries of $\mathbf{D}_p$ are prediction error powers:
 
-$$\mathbf{D}_p=\mathrm{diag}\{P_0,P_1,\ldots,P_{p-1}\}$$
+$$\mathbf{D}_p=\mathrm{diag}\lbrace P_0,P_1,\ldots,P_{p-1}\rbrace $$
 
 up to conventions of indexing.
 
@@ -1905,9 +1905,9 @@ This is useful when the final implementation is a lattice filter, because the la
 
 The Schur algorithm introduces two auxiliary sequences:
 
-$$\xi_m^f(l)=E\{x(n-l)[e_m^f(n)]^{\ast}\},$$
+$$\xi_m^f(l)=E\lbrace x(n-l)[e_m^f(n)]^{\ast}\rbrace ,$$
 
-$$\xi_m^b(l)=E\{x(n-l)[e_m^b(n)]^{\ast}\}.$$
+$$\xi_m^b(l)=E\lbrace x(n-l)[e_m^b(n)]^{\ast}\rbrace .$$
 
 They are called gapped functions because orthogonality creates intervals of zeros. For example, the forward prediction error is orthogonal to the samples used by the forward predictor.
 
@@ -2437,7 +2437,7 @@ $$\boxed{\mathbf{b}_m=\mathbf{J}\mathbf{a}_m^{\ast}.}$$
 
 The forward and backward error powers are equal:
 
-$$\boxed{E\{\lvert e_m^f(n)\rvert^2\}=E\{\lvert e_m^b(n)\rvert^2\}=P_m.}$$
+$$\boxed{E\lbrace \lvert e_m^f(n)\rvert^2\rbrace =E\lbrace \lvert e_m^b(n)\rvert^2\rbrace =P_m.}$$
 
 ---
 

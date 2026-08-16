@@ -447,7 +447,7 @@ For a random process, $\hat R_x(e^{j\omega})$ is itself random. We evaluate a sp
 
 The bias at frequency $\omega$ is
 
-$$\operatorname{bias}\{\hat R_x(e^{j\omega})\}=E\{\hat R_x(e^{j\omega})\}-R_x(e^{j\omega}).$$
+$$\operatorname{bias}\lbrace \hat R_x(e^{j\omega})\rbrace =E\lbrace \hat R_x(e^{j\omega})\rbrace -R_x(e^{j\omega}).$$
 
 A biased estimator may systematically smooth peaks, lift valleys, or shift energy into nearby frequencies.
 
@@ -455,7 +455,7 @@ A biased estimator may systematically smooth peaks, lift valleys, or shift energ
 
 The variance is
 
-$$\operatorname{var}\{\hat R_x(e^{j\omega})\}=E\left\{\left\vert\hat R_x(e^{j\omega})-E\{\hat R_x(e^{j\omega})\}\right\vert^2\right\}.$$
+$$\operatorname{var}\lbrace \hat R_x(e^{j\omega})\rbrace =E\left\lbrace \left\vert\hat R_x(e^{j\omega})-E\lbrace \hat R_x(e^{j\omega})\rbrace \right\vert^2\right\rbrace .$$
 
 High variance means the estimate changes strongly from one data record to another.
 
@@ -586,7 +586,7 @@ process,
 
 $$R_x(e^{j\omega})=\sum_{l=-\infty}^{\infty}r_x(l)e^{-j\omega l},
 \qquad
-r_x(l)=E\{x(n+l)x^\ast(n)\}.$$
+r_x(l)=E\lbrace x(n+l)x^\ast(n)\rbrace .$$
 
 With only $N$ observed samples, replace the unknown autocorrelation by the
 finite-record estimate
@@ -713,12 +713,12 @@ $$
 
 WSS implies that the second moment depends only on the lag:
 
-$$E\{x(n)x^\ast(m)\}=r_x(n-m).$$
+$$E\lbrace x(n)x^\ast(m)\rbrace =r_x(n-m).$$
 
 Consequently,
 
 $$
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 =\frac{1}{N}\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
 r_x(n-m)e^{-j\omega(n-m)}.
 $$
@@ -728,7 +728,7 @@ $N-|l|$ pairs $(n,m)$ in the observed record satisfying $n-m=l$. Grouping the
 double sum by lag therefore gives
 
 $$
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 =\sum_{l=-(N-1)}^{N-1}
 \left(1-\frac{|l|}{N}\right)r_x(l)e^{-j\omega l}.
 $$
@@ -747,28 +747,28 @@ Because $v_N(l)=0$ outside the displayed finite-lag interval, the preceding
 sum may equivalently be extended over all integer lags:
 
 $$
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 =\sum_{l=-\infty}^{\infty}r_x(l)v_N(l)e^{-j\omega l}
-=\mathcal F\{r_x(l)v_N(l)\}.
+=\mathcal F\lbrace r_x(l)v_N(l)\rbrace .
 $$
 
 The last equality is simply the definition of the DTFT: for any sequence
 $g(l)$,
 
-$$\mathcal F\{g(l)\}=\sum_{l=-\infty}^{\infty}g(l)e^{-j\omega l},$$
+$$\mathcal F\lbrace g(l)\rbrace =\sum_{l=-\infty}^{\infty}g(l)e^{-j\omega l},$$
 
 with $g(l)=r_x(l)v_N(l)$ here. Now define
 
-$$R_x(e^{j\omega})=\mathcal F\{r_x(l)\},
+$$R_x(e^{j\omega})=\mathcal F\lbrace r_x(l)\rbrace ,
 \qquad
-W_N(e^{j\omega})=\mathcal F\{v_N(l)\}.$$
+W_N(e^{j\omega})=\mathcal F\lbrace v_N(l)\rbrace .$$
 
 Multiplication in the lag domain becomes $2\pi$-periodic convolution in the
 frequency domain. Hence
 
 $$
 \boxed{
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 =\frac{1}{2\pi}\int_{-\pi}^{\pi}
 R_x(e^{j\theta})W_N(e^{j(\omega-\theta)})\,d\theta.}
 $$
@@ -808,7 +808,7 @@ Substituting this constant PSD into the convolution formula gives
 
 $$
 \begin{aligned}
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 &=\frac{1}{2\pi}\int_{-\pi}^{\pi}
 \sigma_x^2 W_N(e^{j(\omega-\theta)})\,d\theta\\
 &=\sigma_x^2
@@ -832,7 +832,7 @@ It follows that
 
 $$
 \boxed{
-E\{\hat R_x^{(P)}(e^{j\omega})\}
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 =\sigma_x^2
 =R_x(e^{j\omega}).}
 $$
@@ -850,13 +850,13 @@ beside the peak are mixed with its larger value and are consequently raised.
 The sidelobes of $W_N$ can also transfer power from more distant frequencies;
 this is spectral leakage. Therefore, for a general non-flat spectrum,
 
-$$E\{\hat R_x^{(P)}(e^{j\omega})\}\ne R_x(e^{j\omega}),$$
+$$E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace \ne R_x(e^{j\omega}),$$
 
 and the frequency-dependent bias is
 
 $$
 \operatorname{Bias}(\omega)
-=E\{\hat R_x^{(P)}(e^{j\omega})\}-R_x(e^{j\omega}).
+=E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace -R_x(e^{j\omega}).
 $$
 
 Finally, **unbiased does not mean that one white-noise periodogram is flat**.
@@ -879,13 +879,13 @@ $$X_N(k)=\sum_{n=0}^{N-1}x(n)e^{-j\omega_k n}.$$
 A linear combination of independent Gaussian variables is Gaussian. Moreover,
 
 $$
-E\{|X_N(k)|^2\}
+E\lbrace |X_N(k)|^2\rbrace 
 =\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}
-E\{x(n)x^\ast(m)\}e^{-j\omega_k(n-m)}
+E\lbrace x(n)x^\ast(m)\rbrace e^{-j\omega_k(n-m)}
 =N\sigma_x^2,
 $$
 
-because $E\{x(n)x^\ast(m)\}=\sigma_x^2\delta(n-m)$. Therefore,
+because $E\lbrace x(n)x^\ast(m)\rbrace =\sigma_x^2\delta(n-m)$. Therefore,
 
 $$X_N(k)\sim\mathcal{CN}(0,N\sigma_x^2),$$
 
@@ -905,17 +905,17 @@ $$
 The factor $N$ has canceled completely. For a standard circular complex
 Gaussian variable, $|Z|^2$ has a unit-mean exponential distribution, so
 
-$$E\{|Z|^2\}=1,
+$$E\lbrace |Z|^2\rbrace =1,
 \qquad
-\operatorname{var}\{|Z|^2\}=1.$$
+\operatorname{var}\lbrace |Z|^2\rbrace =1.$$
 
 It follows exactly that
 
 $$
-E\{\hat R_x^{(P)}(e^{j\omega_k})\}=\sigma_x^2,
+E\lbrace \hat R_x^{(P)}(e^{j\omega_k})\rbrace =\sigma_x^2,
 \qquad
 \boxed{
-\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega_k})\}
+\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega_k})\rbrace 
 =\sigma_x^4.}
 $$
 
@@ -923,7 +923,7 @@ Since the white-noise PSD is $R_x(e^{j\omega})=\sigma_x^2$, this result can
 also be written as
 
 $$
-\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega_k})\}
+\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega_k})\rbrace 
 =R_x^2(e^{j\omega_k}),
 $$
 
@@ -958,30 +958,30 @@ $$
 and hence
 
 $$
-E\{\hat R_x^{(P)}(e^{j\omega})\}\approx R_x(e^{j\omega}),
+E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace \approx R_x(e^{j\omega}),
 \qquad
 \boxed{
-\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}
+\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 \approx R_x^2(e^{j\omega}).}
 $$
 
 The same conclusion follows directly from the fourth moment. Since
 
 $$
-\operatorname{var}\{\hat R_x^{(P)}\}
-=\frac{1}{N^2}E\{|X_N|^4\}
--\frac{1}{N^2}\left(E\{|X_N|^2\}\right)^2,
+\operatorname{var}\lbrace \hat R_x^{(P)}\rbrace 
+=\frac{1}{N^2}E\lbrace |X_N|^4\rbrace 
+-\frac{1}{N^2}\left(E\lbrace |X_N|^2\rbrace \right)^2,
 $$
 
 and a zero-mean circular complex Gaussian variable satisfies
 
-$$E\{|X_N|^4\}=2\left(E\{|X_N|^2\}\right)^2,$$
+$$E\lbrace |X_N|^4\rbrace =2\left(E\lbrace |X_N|^2\rbrace \right)^2,$$
 
-using $E\{|X_N|^2\}\approx N R_x(e^{j\omega})$ gives
+using $E\lbrace |X_N|^2\rbrace \approx N R_x(e^{j\omega})$ gives
 
 $$
 \begin{aligned}
-\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}
+\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace 
 &\approx\frac{1}{N^2}
 \left[2N^2R_x^2(e^{j\omega})-N^2R_x^2(e^{j\omega})\right]\\
 &=R_x^2(e^{j\omega}).
@@ -999,8 +999,8 @@ Another way to express the problem is through the coefficient of variation:
 
 $$
 \frac{
-\sqrt{\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}}}
-{E\{\hat R_x^{(P)}(e^{j\omega})\}}
+\sqrt{\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace }}
+{E\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace }
 \approx 1.
 $$
 
@@ -1248,7 +1248,7 @@ This is the Bartlett method.
 
 If the segments are approximately independent, averaging $K$ estimates reduces variance by about $K$:
 
-$$\operatorname{var}\{\hat R_x^{(B)}(e^{j\omega})\}\approx \frac{1}{K}\operatorname{var}\{\hat R_x^{(P)}(e^{j\omega})\}.$$
+$$\operatorname{var}\lbrace \hat R_x^{(B)}(e^{j\omega})\rbrace \approx \frac{1}{K}\operatorname{var}\lbrace \hat R_x^{(P)}(e^{j\omega})\rbrace .$$
 
 This is the main benefit of Bartlett averaging.
 
@@ -1905,7 +1905,7 @@ This means the filter has unit response at frequency $\omega$.
 
 The output power is
 
-$$E\{\vert y(n)\vert^2\}=\mathbf{h}^H\mathbf{R}_x\mathbf{h}.$$
+$$E\lbrace \vert y(n)\vert^2\rbrace =\mathbf{h}^H\mathbf{R}_x\mathbf{h}.$$
 
 The MV design problem is
 
@@ -2489,7 +2489,7 @@ $$s(n+1)=s(n)e^{j2\pi f}.$$
 
 A one-sample shift multiplies the signal by a phase factor. For multiple exponentials, the same idea becomes a matrix relation involving a diagonal matrix of phase factors:
 
-$$\boldsymbol{\Phi}=\operatorname{diag}\{e^{j2\pi f_1},e^{j2\pi f_2},\ldots,e^{j2\pi f_P}\}.$$
+$$\boldsymbol{\Phi}=\operatorname{diag}\lbrace e^{j2\pi f_1},e^{j2\pi f_2},\ldots,e^{j2\pi f_P}\rbrace .$$
 
 If we can estimate the shift relation between two overlapping subarrays or subwindows, then the eigenvalues of the shift operator reveal the frequencies.
 

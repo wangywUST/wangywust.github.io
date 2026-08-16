@@ -254,7 +254,7 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 | $z = re^{j\omega}$ | Complex z-domain variable (polar form) |
 | $r = \lvert z\rvert = e^{\sigma T_s}$ | Magnitude of $z$ |
 | $z = e^{sT_s}$ | s-plane to z-plane mapping |
-| $\mathrm{ROC}$ | Region of Convergence: $\{z\in\mathbb{C}:\sum_n\lvert x(n)\rvert\lvert z\rvert^{-n}<\infty\}$ |
+| $\mathrm{ROC}$ | Region of Convergence: $\lbrace z\in\mathbb{C}:\sum_n\lvert x(n)\rvert\lvert z\rvert^{-n}<\infty\rbrace $ |
 | $\langle n\rangle_N = n\bmod N$ | Modulo-$N$ reduction of integer $n$ |
 
 > $^{\dagger}$**Neper (Np)** is a logarithmic unit for amplitude ratios based on the natural logarithm: $1\,\text{Np} = \ln(A_1/A_2)$, corresponding to an amplitude ratio of $e \approx 2.718$. Conversion: $1\,\text{Np} = 20/\ln(10)\,\text{dB} \approx 8.686\,\text{dB}$. In the Laplace domain, $s = \sigma + j\Omega$ corresponds to the time-domain signal $e^{st} = e^{\sigma t}e^{j\Omega t}$: the real part $\sigma$ (Np/s) sets the exponential growth/decay rate of the amplitude, while the imaginary part $\Omega$ (rad/s) sets the oscillation frequency. For example, $\sigma = -2\,\text{Np/s}$ means the amplitude decays to $e^{-2} \approx 13.5\%$ of its initial value per second.
@@ -273,7 +273,7 @@ so $\omega/(2\pi)$ is the fraction of a full cycle completed per sample.
 | $\delta_1,\,\delta_2$ | Passband ripple / stopband attenuation (linear scale) |
 | $R_p,\,A_s$ | Passband ripple / stopband attenuation (dB) |
 | $\alpha$ | **(a)** Base of exponential sequence $\alpha^n u(n)$ and pole of first-order IIR/allpass, $\lvert\alpha\rvert<1$ (§1.5.3, §3.2, §4.1); **(b)** Constant group delay in samples (§4.3.1 only — local meaning, distinct from (a)) |
-| $\beta$ | **(a)** Kaiser window shape parameter (§3.3.2); **(b)** Linear-phase FIR phase offset $\beta\in\{0,\pm\pi/2\}$ (§4.3.1 only) |
+| $\beta$ | **(a)** Kaiser window shape parameter (§3.3.2); **(b)** Linear-phase FIR phase offset $\beta\in\lbrace 0,\pm\pi/2\rbrace $ (§4.3.1 only) |
 | $r$ | **(a)** Magnitude $\lvert z\rvert$ of the z-domain variable; **(b)** Decay parameter in sequences $r^n\cos(\omega_0 n)u(n)$ (§2.2.3) |
 
 ### Allpass, Minimum-Phase, and Spectral Factorization
@@ -2269,9 +2269,9 @@ Every filter design begins with choosing between FIR and IIR. The difference equ
 > **ROC perspective: the unified criterion.**
 > The most general stability condition, valid for any LTI system (causal or not), is:
 > $$\text{System is BIBO stable} \iff \text{ROC of } H(z) \text{ includes the unit circle } \lvert z\rvert=1$$
-> For a **causal** system, the ROC is the exterior of a disk: $\{z : \lvert z\rvert > r_{\max}\}$ where $r_{\max} = \max_k \lvert p_k\rvert$ is the outermost pole magnitude. The unit circle is inside this ROC precisely when $r_{\max} < 1$ - all poles strictly inside the unit circle.
+> For a **causal** system, the ROC is the exterior of a disk: $\lbrace z : \lvert z\rvert > r_{\max}\rbrace $ where $r_{\max} = \max_k \lvert p_k\rvert$ is the outermost pole magnitude. The unit circle is inside this ROC precisely when $r_{\max} < 1$ - all poles strictly inside the unit circle.
 >
-> For an **anti-causal** system (left-sided sequences), the ROC is the interior of a disk: $\{z : \lvert z\rvert < r_{\min}\}$. In that case, poles *outside* the unit circle ($\lvert p\rvert > 1$) would place the unit circle inside the ROC, making the anti-causal system stable. But this is a mathematical curiosity: anti-causal systems require future input samples, so they can only be implemented offline (e.g., `filtfilt` in MATLAB, which runs the filter forward then backward to achieve zero-phase response). In real-time signal processing, all practical filters are causal, and the condition reduces simply to: **all poles strictly inside the unit circle**.
+> For an **anti-causal** system (left-sided sequences), the ROC is the interior of a disk: $\lbrace z : \lvert z\rvert < r_{\min}\rbrace $. In that case, poles *outside* the unit circle ($\lvert p\rvert > 1$) would place the unit circle inside the ROC, making the anti-causal system stable. But this is a mathematical curiosity: anti-causal systems require future input samples, so they can only be implemented offline (e.g., `filtfilt` in MATLAB, which runs the filter forward then backward to achieve zero-phase response). In real-time signal processing, all practical filters are causal, and the condition reduces simply to: **all poles strictly inside the unit circle**.
 
 **Practical decision guide**:
 - **Choose FIR** when the application requires exactly linear phase (distortion-free signal transmission, matched filtering in radar/sonar, image processing) or when guaranteed stability is essential and the computational cost of many taps is acceptable.

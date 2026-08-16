@@ -134,14 +134,14 @@ This chapter continues the notation of Chapters 3 and 6. In Chapter 6, the filte
 | $\mathbf{c}_o$ | Optimum Wiener coefficient vector for a stationary SOE |
 | $\mathbf{c}_o(n)$ | Time-varying optimum coefficient vector in a nonstationary SOE |
 | $\tilde{\mathbf{c}}(n)=\mathbf{c}_o-\mathbf{c}(n)$ | Coefficient error vector in a stationary SOE |
-| $\mathbf{R}=E\{\mathbf{x}(n)\mathbf{x}^H(n)\}$ | Input correlation matrix |
-| $\mathbf{d}=E\{\mathbf{x}(n)y^\ast(n)\}$ | Cross-correlation vector between input and desired response |
-| $P(\mathbf{c})=E\{\vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\}$ | Mean-square error surface |
+| $\mathbf{R}=E\lbrace \mathbf{x}(n)\mathbf{x}^H(n)\rbrace $ | Input correlation matrix |
+| $\mathbf{d}=E\lbrace \mathbf{x}(n)y^\ast(n)\rbrace $ | Cross-correlation vector between input and desired response |
+| $P(\mathbf{c})=E\lbrace \vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\rbrace $ | Mean-square error surface |
 | $P_o$ | Minimum mean-square error (MMSE) |
 | $P(n)$ | Instantaneous or time-indexed MSE / learning-curve quantity |
 | EMSE | Excess mean-square error above the Wiener MMSE |
 | $\mathcal{M}$ | Misadjustment, usually EMSE divided by $P_o$ |
-| MSD | Mean-square deviation of coefficients, $E\{\lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\}$ |
+| MSD | Mean-square deviation of coefficients, $E\lbrace \lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\rbrace $ |
 
 ### RLS Quantities
 
@@ -584,9 +584,9 @@ This difference is the reason that one cannot choose a step size by only asking 
 
 The input–desired cross-correlation is
 
-$$p=E\{x(0.75x+v)\}=0.75(4)=3,$$
+$$p=E\lbrace x(0.75x+v)\rbrace =0.75(4)=3,$$
 
-and $R=E\{x^2\}=4$. Thus the Wiener target of adaptation is
+and $R=E\lbrace x^2\rbrace =4$. Thus the Wiener target of adaptation is
 
 $$c_o=\frac pR=\frac34=0.75.$$
 
@@ -629,7 +629,7 @@ Section 1 shows the signal flow but not how a coefficient moves toward its optim
 For a linear combiner or FIR adaptive filter, the MSE cost is
 
 $$
-P(\mathbf{c})=E\{\vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\}.
+P(\mathbf{c})=E\lbrace \vert y(n)-\mathbf{c}^H\mathbf{x}(n)\vert^2\rbrace .
 $$
 
 Expanding the square gives
@@ -643,9 +643,9 @@ $$
 where
 
 $$
-P_y=E\{\vert y(n)\vert^2\},\quad
-\mathbf{R}=E\{\mathbf{x}(n)\mathbf{x}^H(n)\},\quad
-\mathbf{d}=E\{\mathbf{x}(n)y^\ast(n)\}.
+P_y=E\lbrace \vert y(n)\vert^2\rbrace ,\quad
+\mathbf{R}=E\lbrace \mathbf{x}(n)\mathbf{x}^H(n)\rbrace ,\quad
+\mathbf{d}=E\lbrace \mathbf{x}(n)y^\ast(n)\rbrace .
 $$
 
 If $\mathbf{R}$ is positive definite, this is a quadratic bowl. Its minimum is obtained by the Wiener solution
@@ -1034,8 +1034,8 @@ The first term is irreducible error. The second term is caused by coefficient mi
 Under common independence assumptions used for LMS analysis, the expected coefficient error approximately follows
 
 $$
-E\{\tilde{\mathbf{c}}(n)\}
-=(\mathbf{I}-2\mu\mathbf{R})E\{\tilde{\mathbf{c}}(n-1)\}.
+E\lbrace \tilde{\mathbf{c}}(n)\rbrace 
+=(\mathbf{I}-2\mu\mathbf{R})E\lbrace \tilde{\mathbf{c}}(n-1)\rbrace .
 $$
 
 Therefore, the same eigenvalue argument gives the mean-convergence condition
@@ -1054,7 +1054,7 @@ $$
 A convenient conservative rule is based on the trace:
 
 $$
-\lambda_{\max}\le \operatorname{tr}(\mathbf{R})=E\{\lVert\mathbf{x}(n)\rVert^2\}.
+\lambda_{\max}\le \operatorname{tr}(\mathbf{R})=E\lbrace \lVert\mathbf{x}(n)\rVert^2\rbrace .
 $$
 
 Thus a simple practical bound is
@@ -1175,7 +1175,7 @@ A practical step-size choice must balance four constraints.
 
 A good engineering approach is:
 
-1. Estimate the average input power $E\{\lVert\mathbf{x}(n)\rVert^2\}$.
+1. Estimate the average input power $E\lbrace \lVert\mathbf{x}(n)\rVert^2\rbrace $.
 2. Choose a conservative initial $\mu$ well below the stability bound.
 3. Increase $\mu$ if convergence is too slow.
 4. Decrease $\mu$ if steady-state fluctuations or residual error are too large.
@@ -1545,7 +1545,7 @@ $$
 e(n)=d(n)-\hat v_1(n).
 $$
 
-When the filter minimizes $E\{\vert e(n)\vert^2\}$, it suppresses the part of the primary-channel noise predictable from the reference input. The desired signal remains because it is not correlated with the reference noise.
+When the filter minimizes $E\lbrace \vert e(n)\vert^2\rbrace $, it suppresses the part of the primary-channel noise predictable from the reference input. The desired signal remains because it is not correlated with the reference noise.
 
 This is why the reference sensor must measure noise that is correlated with the interference but should not contain the desired signal.
 
@@ -2299,7 +2299,7 @@ There are three common approaches.
 A common tracking performance metric is the mean-square deviation
 
 $$
-D(n)=E\{\lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\}.
+D(n)=E\lbrace \lVert\mathbf{c}(n)-\mathbf{c}_o(n)\rVert^2\rbrace .
 $$
 
 Another is misadjustment, which measures excess output error relative to the irreducible error floor.
