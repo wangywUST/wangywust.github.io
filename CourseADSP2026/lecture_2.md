@@ -2173,7 +2173,15 @@ For $r_b(l)$, exact truncation beyond lag one is the signature of MA(1). Let $b(
 
 $$\sigma_{w_b}^2(1+c^2)=5,\qquad \sigma_{w_b}^2c=2.$$
 
-Therefore $2c^2-5c+2=0$, so $c=0.5$ or $c=2$. The minimum-phase choice is $c=0.5$, for which
+Eliminating $\sigma_{w_b}^2$ from these two equations gives $\sigma_{w_b}^2=2/c$ and hence
+
+$$2c^2-5c+2=0,$$
+
+so the same autocorrelation admits two parameterizations, $c=0.5$ and $c=2$. To decide which one is minimum phase, note that the MA(1) transfer function is
+
+$$B(z)=1+cz^{-1},$$
+
+whose zero satisfies $1+cz^{-1}=0$, i.e. $z=-c$. A causal FIR filter is minimum phase precisely when all its zeros lie strictly inside the unit circle. Thus minimum phase requires $|-c|=|c|<1$: the solution $c=0.5$ has its zero at $z=-0.5$ and is minimum phase, whereas $c=2$ has its zero at $z=-2$ and is not. Therefore the minimum-phase choice is $c=0.5$, for which
 
 $$\sigma_{w_b}^2=4,\qquad R_b(e^{j\omega})=4\lvert1+0.5e^{-j\omega}\rvert^2=5+4\cos\omega.$$
 
