@@ -3128,14 +3128,85 @@ Thus LS and Gaussian ML coincide for this model. Since the observed sample mean 
 
 $$\boxed{\hat\mu_{\mathrm{LS}}=\hat\mu_{\mathrm{ML}}=\bar x=1.5.}$$
 
-For the Gaussian prior, the data precision is $N/\sigma^2=4$ and the prior precision is $1/\tau^2=1$. Therefore
+Now incorporate the prior information
 
-$$\hat\mu_{\mathrm{MMSE}}=\hat\mu_{\mathrm{MAP}}
-=\frac{4(1.5)+1(1)}{4+1}=\frac75=1.4,$$
+$$\mu\sim\mathcal N(\mu_0,\tau^2),
+\qquad \mu_0=1,quad \tau^2=1.$$
 
-and the posterior variance is
+Because the observations are conditionally independent Gaussian variables, their sample mean satisfies
 
-$$\sigma_{\mu\mid x}^2=\frac{1}{4+1}=0.2.$$
+$$\bar x\mid\mu\sim\mathcal N\!\left(\mu,\frac{\sigma^2}{N}\right).$$
+
+Thus the complete data can be summarized, for estimating $\mu$, by the observed value $\bar x=1.5$. The likelihood contribution has variance $\sigma^2/N=4/16=0.25$. It is convenient to express uncertainty using **precision**, the reciprocal of variance:
+
+$$\underbrace{\frac{1}{\sigma^2/N}}_{\text{data precision}}
+=\frac{N}{\sigma^2}=4,
+\qquad
+\underbrace{\frac{1}{\tau^2}}_{\text{prior precision}}=1.$$
+
+Bayes' rule gives the posterior density, up to a normalization constant, as
+
+$$
+\begin{aligned}
+p(\mu\mid\mathbf x)
+&\propto p(\mathbf x\mid\mu)p(\mu)\\
+&\propto
+\exp\!\left[-\frac{N}{2\sigma^2}(\mu-\bar x)^2\right]
+\exp\!\left[-\frac{1}{2\tau^2}(\mu-\mu_0)^2\right].
+\end{aligned}
+$$
+
+Combining the two exponents and collecting the terms involving $\mu$ gives
+
+$$
+p(\mu\mid\mathbf x)
+\propto\exp\!\left\{-\frac12
+\left[
+\left(\frac{N}{\sigma^2}+\frac{1}{\tau^2}\right)\mu^2
+-2\left(\frac{N}{\sigma^2}\bar x+
+\frac{1}{\tau^2}\mu_0\right)\mu
+\right]\right\}.
+$$
+
+Completing the square shows that this is a Gaussian posterior,
+
+$$\mu\mid\mathbf x\sim
+\mathcal N(\mu_{\mathrm{post}},\sigma_{\mathrm{post}}^2),$$
+
+whose precision is the sum of the data and prior precisions:
+
+$$
+\frac{1}{\sigma_{\mathrm{post}}^2}
+=\frac{N}{\sigma^2}+\frac{1}{\tau^2}.
+$$
+
+Therefore
+
+$$
+\sigma_{\mu\mid x}^2
+=\sigma_{\mathrm{post}}^2
+=\frac{1}{N/\sigma^2+1/\tau^2}
+=\frac{1}{4+1}=0.2.
+$$
+
+The posterior mean is the precision-weighted average of the data estimate $\bar x$ and the prior mean $\mu_0$:
+
+$$
+\begin{aligned}
+\mu_{\mathrm{post}}
+&=\frac{(N/\sigma^2)\bar x+(1/\tau^2)\mu_0}
+{N/\sigma^2+1/\tau^2}\\
+&=\frac{4(1.5)+1(1)}{4+1}
+=\frac75=1.4.
+\end{aligned}
+$$
+
+This weighting has a direct interpretation: the data are four times as precise as the prior, so the posterior mean gives weight $4/5$ to $1.5$ and weight $1/5$ to $1$.
+
+Under squared-error loss, the Bayesian MMSE estimator is the posterior mean. The MAP estimator is the posterior mode. Since a Gaussian density is symmetric and has its mean and mode at the same point, the two estimators coincide here:
+
+$$\boxed{\hat\mu_{\mathrm{MMSE}}=\hat\mu_{\mathrm{MAP}}
+=\mu_{\mathrm{post}}=1.4.}$$
 
 **Numerically: the two raw estimates are $3.0$ and $1.5$; their MSEs are $4$ and $0.25$; the CRLB is $0.25$; LS and ML give $1.5$; Bayesian MMSE/MAP gives $1.4$ with posterior variance $0.2$.**
 
