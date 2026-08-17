@@ -2983,7 +2983,37 @@ $$\operatorname{MSE}(\hat\mu_1)=\sigma^2=4,$$
 
 $$\operatorname{MSE}(\hat\mu_2)=\frac{\sigma^2}{N}=\frac{4}{16}=0.25.$$
 
-Thus $\hat\mu_1$ is not consistent—its MSE remains $4$—whereas $\hat\mu_2$ is consistent. The Fisher information is
+Consistency is an asymptotic property: an estimator sequence $\hat\mu_N$ is consistent if, as the number of observations grows,
+
+$$\hat\mu_N\xrightarrow{P}\mu,
+\qquad\text{that is,}\qquad
+P\bigl(|\hat\mu_N-\mu|>\epsilon\bigr)\to0
+\quad\text{for every }\epsilon>0.$$
+
+For the first estimator, increasing $N$ does not change the estimate because it always uses only the first observation:
+
+$$\hat\mu_{1,N}=x(0)=\mu+w(0),qquad
+\hat\mu_{1,N}-\mu=w(0).$$
+
+Hence its error distribution is independent of $N$. In particular, its variance and MSE remain $\sigma^2=4$ rather than tending to zero; more directly, for any threshold $\epsilon$ for which $P(|w(0)|>\epsilon)>0$,
+
+$$P\bigl(|\hat\mu_{1,N}-\mu|>\epsilon\bigr)
+=P(|w(0)|>\epsilon)$$
+
+is a positive constant and cannot converge to zero. Therefore $\hat\mu_1$ is not consistent, even though it is unbiased.
+
+By contrast, $\hat\mu_{2,N}=N^{-1}\sum_{n=0}^{N-1}x(n)$ uses all $N$ independent observations. It is unbiased and
+
+$$\operatorname{MSE}(\hat\mu_{2,N})
+=\operatorname{var}(\hat\mu_{2,N})
+=\frac{\sigma^2}{N}\longrightarrow0.$$
+
+Chebyshev's inequality then gives
+
+$$P\bigl(|\hat\mu_{2,N}-\mu|>\epsilon\bigr)
+\leq\frac{\sigma^2}{N\epsilon^2}\longrightarrow0,$$
+
+so $\hat\mu_2$ is consistent. Thus the preceding MSE calculations are not isolated numerical results: their behavior as $N\to\infty$ establishes the consistency comparison. For the given finite sample $N=16$, the Fisher information is
 
 $$J(\mu)=\frac{N}{\sigma^2}=\frac{16}{4}=4,$$
 
