@@ -1695,9 +1695,25 @@ The PSD is already in conjugate-reciprocal form:
 
 $$R_x(z)=H_+(z)H_+^{\ast}(1/z^{\ast}),\qquad H_+(z)=\frac{1}{1-0.5z^{-1}}.$$
 
-With unit-variance white noise $w(n)$, the innovations representation is
+This conclusion uses two results, in the following order. First, the **spectral factorization theorem** states that a regular rational PSD can be written as
+
+$$R_x(z)=\sigma_w^2H_+(z)H_+^{\ast}(1/z^{\ast}),$$
+
+where $H_+(z)$ is the causal, stable, minimum-phase spectral factor. By the LTI input--output PSD relation, driving this filter by white noise of variance $\sigma_w^2$ therefore produces a process having exactly the prescribed PSD. Here there is no scalar factor in front of $H_+H_+^{\ast}$, so $\sigma_w^2=1$.
+
+Second, the **Wold--Kolmogorov innovations representation theorem** says that, for a regular (purely nondeterministic) stationary process, the canonical minimum-phase spectral factor realizes the process from its one-step innovations. Because $H_+^{-1}(z)$ is causal, the recovered input
+
+$$w(n)=H_+^{-1}(z)x(n)$$
+
+depends only on $x(n),x(n-1),\ldots$ and is orthogonal to the entire past $\{x(n-1),x(n-2),\ldots\}$. Thus it is not merely an arbitrary white driving noise: it is the one-step prediction error (innovation). Hence, with unit-variance innovations $w(n)$,
 
 $$x(n)=H_+(z)w(n),\qquad x(n)=0.5x(n-1)+w(n).$$
+
+The second equality follows algebraically by multiplying the first one by $1-0.5z^{-1}$:
+
+$$(1-0.5z^{-1})x(n)=w(n)
+\quad\Longleftrightarrow\quad
+x(n)-0.5x(n-1)=w(n).$$
 
 The pole of $H_+$ is at $z=0.5$, inside the unit circle, so the factor is causal and stable. It has no finite zeros, hence it is minimum phase. Its causal stable inverse is the whitening filter
 
