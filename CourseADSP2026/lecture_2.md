@@ -2169,7 +2169,40 @@ R_a(e^{j\pi})=\frac{2.56}{(1+0.6)^2}=1.$$
 
 Its pole near $z=1$ creates a low-frequency peak and infinite exponentially decaying memory.
 
-For $r_b(l)$, exact truncation beyond lag one is the signature of MA(1). Let $b(n)=w_b(n)+c\,w_b(n-1)$. Then
+For $r_b(l)$, exact truncation beyond lag one is the signature of MA(1). Let
+
+$$b(n)=w_b(n)+c\,w_b(n-1),$$
+
+where $w_b(n)$ is zero-mean white noise with
+
+$$E\{w_b(n)w_b(n-k)\}=\sigma_{w_b}^2\delta(k).$$
+
+The zero-lag autocorrelation is the variance of $b(n)$. Expanding it and using the fact that distinct white-noise samples are uncorrelated gives
+
+$$
+\begin{aligned}
+r_b(0)
+&=E\{b^2(n)\}\\
+&=E\{[w_b(n)+cw_b(n-1)]^2\}\\
+&=\sigma_{w_b}^2+c^2\sigma_{w_b}^2
+=\sigma_{w_b}^2(1+c^2).
+\end{aligned}
+$$
+
+Similarly, at lag one,
+
+$$
+\begin{aligned}
+r_b(1)
+&=E\{b(n)b(n-1)\}\\
+&=E\{[w_b(n)+cw_b(n-1)]
+\,[w_b(n-1)+cw_b(n-2)]\}\\
+&=c\,E\{w_b^2(n-1)\}
+=c\sigma_{w_b}^2,
+\end{aligned}
+$$
+
+because all the other products involve white-noise samples at different time instants and therefore have zero expectation. For $|l|>1$, the two MA(1) outputs contain no common noise sample, so $r_b(l)=0$, consistent with the measured sequence. Matching the theoretical values above to the measured values $r_b(0)=5$ and $r_b(1)=2$ yields
 
 $$\sigma_{w_b}^2(1+c^2)=5,\qquad \sigma_{w_b}^2c=2.$$
 
