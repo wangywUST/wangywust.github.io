@@ -3070,9 +3070,63 @@ so the Cramér–Rao lower bound is
 
 $$\operatorname{var}(\hat\mu)\ge\frac{1}{J(\mu)}=0.25.$$
 
-The sample mean attains this bound. Minimizing the least-squares residual sum and maximizing the Gaussian likelihood both give
+The sample mean $\bar x=N^{-1}\sum_{n=0}^{N-1}x(n)$ is unbiased, and independence gives
 
-$$\hat\mu_{\mathrm{LS}}=\hat\mu_{\mathrm{ML}}=\bar x=1.5.$$
+$$
+\begin{aligned}
+\operatorname{var}(\bar x)
+&=\operatorname{var}\!\left(\frac{1}{N}\sum_{n=0}^{N-1}x(n)\right)\\
+&=\frac{1}{N^2}\sum_{n=0}^{N-1}\operatorname{var}(x(n))\\
+&=\frac{1}{N^2}N\sigma^2
+=\frac{\sigma^2}{N}
+=\frac{4}{16}=0.25.
+\end{aligned}
+$$
+
+This variance equals the Cramér--Rao lower bound $1/J(\mu)=0.25$. Therefore the sample mean **attains the bound** and is an efficient unbiased estimator in this Gaussian model.
+
+For least squares, the prediction supplied by the constant-mean model is $\mu$ for every observation. Hence the residual sum of squares is
+
+$$S(\mu)=\sum_{n=0}^{N-1}[x(n)-\mu]^2.$$
+
+Differentiate with respect to $\mu$ and set the derivative to zero:
+
+$$
+\frac{dS(\mu)}{d\mu}
+=-2\sum_{n=0}^{N-1}[x(n)-\mu]=0.
+$$
+
+It follows that
+
+$$
+\sum_{n=0}^{N-1}x(n)-N\hat\mu_{\mathrm{LS}}=0
+\quad\Longrightarrow\quad
+\hat\mu_{\mathrm{LS}}
+=\frac{1}{N}\sum_{n=0}^{N-1}x(n)=\bar x.
+$$
+
+Moreover, $d^2S/d\mu^2=2N>0$, so this stationary point is the unique minimum.
+
+For maximum likelihood, the Gaussian log-likelihood derived above is
+
+$$
+\ell(\mu)
+=-\frac{N}{2}\log(2\pi\sigma^2)
+-\frac{1}{2\sigma^2}\sum_{n=0}^{N-1}[x(n)-\mu]^2.
+$$
+
+The first term does not depend on $\mu$, and the coefficient $-1/(2\sigma^2)$ is negative. Consequently, maximizing $\ell(\mu)$ is exactly equivalent to minimizing the same residual sum $S(\mu)$. Alternatively, setting the score to zero gives
+
+$$
+\frac{\partial\ell}{\partial\mu}
+=\frac{1}{\sigma^2}\sum_{n=0}^{N-1}[x(n)-\mu]=0
+\quad\Longrightarrow\quad
+\hat\mu_{\mathrm{ML}}=\bar x.
+$$
+
+Thus LS and Gaussian ML coincide for this model. Since the observed sample mean is $\bar x=1.5$,
+
+$$\boxed{\hat\mu_{\mathrm{LS}}=\hat\mu_{\mathrm{ML}}=\bar x=1.5.}$$
 
 For the Gaussian prior, the data precision is $N/\sigma^2=4$ and the prior precision is $1/\tau^2=1$. Therefore
 
