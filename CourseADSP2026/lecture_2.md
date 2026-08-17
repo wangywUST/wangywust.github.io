@@ -3013,7 +3013,56 @@ Chebyshev's inequality then gives
 $$P\bigl(|\hat\mu_{2,N}-\mu|>\epsilon\bigr)
 \leq\frac{\sigma^2}{N\epsilon^2}\longrightarrow0,$$
 
-so $\hat\mu_2$ is consistent. Thus the preceding MSE calculations are not isolated numerical results: their behavior as $N\to\infty$ establishes the consistency comparison. For the given finite sample $N=16$, the Fisher information is
+so $\hat\mu_2$ is consistent. Thus the preceding MSE calculations are not isolated numerical results: their behavior as $N\to\infty$ establishes the consistency comparison.
+
+To calculate the Fisher information, use the Gaussian observation model assumed here:
+
+$$x(n)=\mu+w(n),\qquad
+w(n)\overset{\mathrm{i.i.d.}}{\sim}\mathcal N(0,\sigma^2),$$
+
+so each observation satisfies $x(n)\sim\mathcal N(\mu,\sigma^2)$. Because the $N$ observations are independent, their joint likelihood is the product of their individual densities:
+
+$$
+L(\mu;\mathbf x)
+=\prod_{n=0}^{N-1}\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\!\left[-\frac{(x(n)-\mu)^2}{2\sigma^2}\right].
+$$
+
+Taking the logarithm converts the product into a sum:
+
+$$
+\ell(\mu)
+=\log L(\mu;\mathbf x)
+=-\frac{N}{2}\log(2\pi\sigma^2)
+-\frac{1}{2\sigma^2}\sum_{n=0}^{N-1}(x(n)-\mu)^2.
+$$
+
+Its first derivative, called the score, is
+
+$$
+\frac{\partial\ell(\mu)}{\partial\mu}
+=\frac{1}{\sigma^2}\sum_{n=0}^{N-1}[x(n)-\mu],
+$$
+
+and its second derivative is
+
+$$
+\frac{\partial^2\ell(\mu)}{\partial\mu^2}
+=-\frac{N}{\sigma^2}.
+$$
+
+Using the negative-expected-Hessian definition of Fisher information gives
+
+$$
+\begin{aligned}
+J(\mu)
+&=-E\!\left\{\frac{\partial^2\ell(\mu)}{\partial\mu^2}\right\}\\
+&=-E\!\left\{-\frac{N}{\sigma^2}\right\}
+=\frac{N}{\sigma^2}.
+\end{aligned}
+$$
+
+Equivalently, one Gaussian observation provides information $1/\sigma^2$, and independence makes information additive, so $N$ observations provide $N/\sigma^2$. For the given values $N=16$ and $\sigma^2=4$,
 
 $$J(\mu)=\frac{N}{\sigma^2}=\frac{16}{4}=4,$$
 
