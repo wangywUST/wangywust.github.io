@@ -1719,11 +1719,59 @@ The pole of $H_+$ is at $z=0.5$, inside the unit circle, so the factor is causal
 
 $$W(z)=H_+^{-1}(z)=1-0.5z^{-1},$$
 
-and therefore
+The equality $e(n)=w(n)$ follows from the fact that the whitening filter is the exact inverse of the shaping filter. Starting from the generating model
+
+$$x(n)=H_+(z)w(n),$$
+
+apply $W(z)=H_+^{-1}(z)$ to both sides:
+
+$$
+\begin{aligned}
+e(n)
+&\triangleq W(z)x(n)\\
+&=H_+^{-1}(z)H_+(z)w(n)\\
+&=w(n),
+\end{aligned}
+$$
+
+where the last step uses $H_+^{-1}(z)H_+(z)=1$. The same cancellation is visible directly from the generator recursion. Since
+
+$$x(n)=0.5x(n-1)+w(n),$$
+
+moving the predictable term $0.5x(n-1)$ to the left gives
 
 $$e(n)=W(z)x(n)=x(n)-0.5x(n-1)=w(n).$$
 
-The output $e(n)$ is the **innovation**: the new component of $x(n)$ that cannot be linearly predicted from its past. Its variance is $1$ and its PSD is the constant $R_e(e^{j\omega})=1$. An all-pass factor $A(z)$ with $\lvert A(e^{j\omega})\rvert=1$ could be multiplied into $H_+$ without changing the PSD, because magnitude squared discards phase. The minimum-phase choice is preferred because both the shaping filter and its inverse are causal and stable.
+Thus $e(n)$ is not a separate noise sequence introduced without justification: it is the original driving noise recovered by exactly undoing the shaping filter. The equality is understood for the stationary steady-state model, or with compatible filter initial conditions.
+
+The variance follows immediately from the last equality. At the start of the construction, $w(n)$ was specified to be **unit-variance** white noise, so
+
+$$E\{w(n)\}=0,
+\qquad E\{|w(n)|^2\}=\operatorname{var}[w(n)]=1.$$
+
+Since the whitening operation recovers exactly the same sequence, $e(n)=w(n)$, it follows that
+
+$$\operatorname{var}[e(n)]
+=E\{|e(n)|^2\}
+=E\{|w(n)|^2\}=1.$$
+
+The same result can be checked from the PSD. Unit-variance white noise has autocorrelation
+
+$$r_e(l)=\delta(l),$$
+
+and hence a constant PSD
+
+$$R_e(e^{j\omega})=\sum_{l=-\infty}^{\infty}r_e(l)e^{-j\omega l}=1.$$
+
+Conversely, the variance is the zero-lag autocorrelation, which is the integral of the PSD:
+
+$$
+\operatorname{var}[e(n)]=r_e(0)
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}R_e(e^{j\omega})\,d\omega
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}1\,d\omega=1.
+$$
+
+Thus the output $e(n)$ is the **innovation**: the new component of $x(n)$ that cannot be linearly predicted from its past. Both its variance and its flat PSD level equal $1$. An all-pass factor $A(z)$ with $\lvert A(e^{j\omega})\rvert=1$ could be multiplied into $H_+$ without changing the PSD, because magnitude squared discards phase. The minimum-phase choice is preferred because both the shaping filter and its inverse are causal and stable.
 
 **Numerically, the generator is $x(n)=0.5x(n-1)+w(n)$, the whitener is $e(n)=x(n)-0.5x(n-1)$, and the whitened residual has variance and PSD level both equal to $1$.**
 
