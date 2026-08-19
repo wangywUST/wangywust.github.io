@@ -3040,7 +3040,7 @@ P\bigl(|\hat\mu_N-\mu|>\epsilon\bigr)\to0
 
 For the first estimator, increasing $N$ does not change the estimate because it always uses only the first observation:
 
-$$\hat\mu_{1,N}=x(0)=\mu+w(0),qquad
+$$\hat\mu_{1,N}=x(0)=\mu+w(0),\qquad
 \hat\mu_{1,N}-\mu=w(0).$$
 
 Hence its error distribution is independent of $N$. In particular, its variance and MSE remain $\sigma^2=4$ rather than tending to zero; more directly, for any threshold $\epsilon$ for which $P(|w(0)|>\epsilon)>0$,
