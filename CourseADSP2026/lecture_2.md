@@ -3179,7 +3179,7 @@ $$\boxed{\hat\mu_{\mathrm{LS}}=\hat\mu_{\mathrm{ML}}=\bar x=1.5.}$$
 Now incorporate the prior information
 
 $$\mu\sim\mathcal N(\mu_0,\tau^2),
-\qquad \mu_0=1,quad \tau^2=1.$$
+\qquad \mu_0=1,\quad \tau^2=1.$$
 
 Because the observations are conditionally independent Gaussian variables, their sample mean satisfies
 
