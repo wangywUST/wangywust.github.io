@@ -1,7 +1,6 @@
 ## 荣誉
 
-- **U.S. Bank 学术资助计划** (2026)
-- **NSF CISE Research Initiation Initiative（CRII）** (2025)
-- **NVIDIA 学术资助计划** (2025)
-- **新加坡数据科学学会杰出博士奖学金（每年10名）** (2021)
-- **中华人民共和国教育部国家奖学金（前3%）** (2015)
+- **U.S. Bank 学术基金** (2026)
+- **美国国家科学基金会 NSF CISE Research Initiation Initiative（NSF CRII）** (2025)
+- **NVIDIA 学术基金** (2025)
+- **加州大学默塞德分校 Faculty Research Award** (2025)

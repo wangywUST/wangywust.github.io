@@ -2,10 +2,9 @@
   "title_zh": "荣誉",
   "title_en": "Honors",
   "items": [
-    {"primary_zh": "U.S. Bank 学术资助计划", "primary_en": "U.S. Bank Academic Grants Program", "date": "2026"},
-    {"primary_zh": "NSF CISE Research Initiation Initiative（CRII）", "primary_en": "NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII)", "date": "2025"},
-    {"primary_zh": "NVIDIA 学术资助计划", "primary_en": "NVIDIA Academic Grants Program", "date": "2025"},
-    {"primary_zh": "新加坡数据科学学会杰出博士奖学金（每年10名）", "primary_en": "SDSC Dissertation Research Fellowship (10 annual quotas)", "date": "2021"},
-    {"primary_zh": "中华人民共和国教育部国家奖学金（前3%）", "primary_en": "National Scholarship, Ministry of Education of the People's Republic of China", "date": "2015"}
+    {"primary_zh": "U.S. Bank 学术基金", "primary_en": "U.S. Bank Academic Grants Program", "date": "2026"},
+    {"primary_zh": "美国国家科学基金会 NSF CISE Research Initiation Initiative（NSF CRII）", "primary_en": "NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII)", "date": "2025"},
+    {"primary_zh": "NVIDIA 学术基金", "primary_en": "NVIDIA Academic Grants Program", "date": "2025"},
+    {"primary_zh": "加州大学默塞德分校 Faculty Research Award", "primary_en": "University of California at Merced Faculty Research Award", "date": "2025"}
   ]
 }
