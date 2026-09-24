@@ -1,4 +1,4 @@
-## 荣誉
+## 主持经费
 
 - **U.S. Bank 学术基金** (2026)
 - **美国国家科学基金会 NSF CISE Research Initiation Initiative（NSF CRII）** (2025)

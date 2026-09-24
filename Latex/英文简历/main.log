@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.20)  24 SEP 2026 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.20)  24 SEP 2026 16:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -151,7 +151,7 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 7--7
 
 (../../MetaData/generated/en/work.tex)
 (../../MetaData/generated/en/education.tex)
-(../../MetaData/generated/en/honors.tex)
+(../../MetaData/generated/en/grants.tex)
 (../../MetaData/generated/en/awards.tex)
 (../../MetaData/generated/en/teaching.tex
 
@@ -195,7 +195,7 @@ live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (9 pages, 103421 bytes).
+Output written on main.pdf (9 pages, 103435 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream

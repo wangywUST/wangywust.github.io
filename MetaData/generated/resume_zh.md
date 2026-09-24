@@ -15,7 +15,7 @@
 - **香港科技大学， 研究型硕士（Master of Philosophy, MPhil）** (2017年 - 2019年)
 - **东南大学信息科学与工程学院， 本科** (2013年 - 2017年)
 
-## 荣誉
+## 主持经费
 
 - **U.S. Bank 学术基金** (2026)
 - **美国国家科学基金会 NSF CISE Research Initiation Initiative（NSF CRII）** (2025)

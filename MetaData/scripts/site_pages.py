@@ -53,6 +53,8 @@ def render_site_pages() -> None:
     ])
     write_page("services.md", "course", services)
 
+    write_page("awards.md", "course", section("awards", "en", 2))
+
     teaching = "\n\n".join([
         section("tutorial", "en", 2),
         section("teaching", "en", 2),

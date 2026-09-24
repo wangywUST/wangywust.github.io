@@ -1,4 +1,4 @@
-## Honors
+## Research Grants
 
 - **U.S. Bank Academic Grants Program** (2026)
 - **NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII)** (2025)

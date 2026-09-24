@@ -15,7 +15,7 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 - **Master of Philosophy in Electronic and Computer Engineering** (2017 - 2019) — Hong Kong University of Science and Technology
 - **Bachelor of Science in Information Engineering** (2013 - 2017) — Southeast University
 
-## Honors
+## Research Grants
 
 - **U.S. Bank Academic Grants Program** (2026)
 - **NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII)** (2025)
