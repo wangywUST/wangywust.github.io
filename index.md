@@ -13,7 +13,6 @@ layout: homepage
   - Mixup for Node and Graph Classification, 2021.
   - LLM-A*: Large Language Model Enhanced Incremental Heuristic Search on Path Planning, 2025.
 
-## Address
-**Address:** [5200 Lake Rd, Merced, CA 95343](https://g.co/kgs/4tVi9BQ)
-<br>
-**Office Location:**  Science & Engineering 2, Office 205
+## 通讯地址
+**地址:** [江苏省南京市江宁区东南大学九龙湖校区信息大楼320室](https://maps.app.goo.gl/bVUhyfKQAtFcET2v8)
+**微信:**  wangywseu
