@@ -265,6 +265,16 @@
         background: linear-gradient(135deg, #059669 0%, #047857 100%);
       }
 
+      .social-links a.cv-zh:hover {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      }
+
+      .cv-language {
+        font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
       .social-links a.linkedin:hover {
         background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
       }
@@ -1348,8 +1358,11 @@
             <a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ" class="google-scholar" title="Google Scholar" rel="noopener">
               <i class="ai ai-google-scholar"></i>
             </a>
-            <a href="./Latex/英文简历/main.pdf" class="cv" title="CV" rel="noopener">
+            <a href="./Latex/英文简历/main.pdf" class="cv cv-en" title="English CV" aria-label="English CV" rel="noopener">
               <i class="ai ai-cv"></i>
+            </a>
+            <a href="./Latex/中文简历/main.pdf" class="cv cv-zh" title="中文简历" aria-label="中文简历" rel="noopener">
+              <span class="cv-language" lang="zh-CN">中</span>
             </a>
             <a href="https://www.linkedin.com/in/yiwei-wang-b632a5118/" class="linkedin" title="LinkedIn" rel="noopener">
               <i class="fab fa-linkedin"></i>
