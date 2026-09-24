@@ -4,7 +4,7 @@ from common import GENERATED, render_profile, render_section
 from site_pages import render_site_pages
 
 
-SECTIONS = ("work", "education", "honors", "teaching", "tutorial", "editorship", "area_chair", "reviewing")
+SECTIONS = ("work", "education", "honors", "awards", "teaching", "tutorial", "editorship", "area_chair", "reviewing")
 
 
 def main() -> None:
