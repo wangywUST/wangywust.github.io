@@ -1,0 +1,9 @@
+{
+  "title_zh": "教育背景",
+  "title_en": "Education",
+  "items": [
+    {"primary_zh": "新加坡国立大学，计算机科学博士（Ph.D.）", "primary_en": "Doctor of Philosophy in Computer Science", "secondary_en": "National University of Singapore", "date_zh": "2019年7月 - 2023年3月", "date_en": "Jul. 2019 - Mar. 2023"},
+    {"primary_zh": "香港科技大学，电子与计算机工程研究型硕士（MPhil）", "primary_en": "Master of Philosophy in Electronic and Computer Engineering", "secondary_en": "Hong Kong University of Science and Technology", "date_zh": "2017年8月 - 2019年6月", "date_en": "Aug. 2017 - Jun. 2019"},
+    {"primary_zh": "东南大学，信息工程学士", "primary_en": "Bachelor of Science in Information Engineering", "secondary_en": "Southeast University", "date_zh": "2013年8月 - 2017年6月", "date_en": "Aug. 2013 - Jun. 2017"}
+  ]
+}

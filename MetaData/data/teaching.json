@@ -1,0 +1,12 @@
+{
+  "title_zh": "教学经历",
+  "title_en": "Teaching",
+  "items": [
+    {"primary_zh": "加州大学默塞德分校，大语言模型课程主讲教师", "primary_en": "Instructor, New Course on Large Language Models", "secondary_en": "University of California, Merced", "date": "2025"},
+    {"primary_zh": "新加坡国立大学，大数据系统课程助教", "primary_en": "Teaching Assistant, Big Data Systems for Data Science", "secondary_en": "National University of Singapore", "date": "2021"},
+    {"primary_zh": "新加坡国立大学，编程方法课程助教", "primary_en": "Teaching Assistant, Programming Methodology", "secondary_en": "National University of Singapore", "date": "2021"},
+    {"primary_zh": "新加坡国立大学，知识发现与数据挖掘课程助教", "primary_en": "Teaching Assistant, Knowledge Discovery and Data Mining", "secondary_en": "National University of Singapore", "date_zh": "2020、2021年", "date_en": "2020 and 2021"},
+    {"primary_zh": "新加坡国立大学，并行计算课程助教", "primary_en": "Teaching Assistant, Parallel Computing", "secondary_en": "National University of Singapore", "date": "2020"},
+    {"primary_zh": "香港科技大学，信号处理与通信课程助教", "primary_en": "Teaching Assistant, Signal Processing and Communications", "secondary_en": "Hong Kong University of Science and Technology", "date": "2018"}
+  ]
+}

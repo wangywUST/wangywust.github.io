@@ -1,0 +1,16 @@
+{
+  "title_zh": "学术会议（高级）领域主席",
+  "title_en": "Serving as (Senior) Area Chair",
+  "items": [
+    {"primary_zh": "AAAI 人工智能会议", "primary_en": "Association for the Advancement of Artificial Intelligence (AAAI)", "date": "2025"},
+    {"primary_zh": "NeurIPS 国际会议", "primary_en": "Conference on Neural Information Processing Systems (NeurIPS)", "date": "2025"},
+    {"primary_zh": "ICLR 国际会议", "primary_en": "International Conference on Learning Representations (ICLR)", "date": "2025"},
+    {"primary_zh": "ICML 国际会议", "primary_en": "International Conference on Machine Learning (ICML)", "date": "2025"},
+    {"primary_zh": "ACL Rolling Review", "primary_en": "Association for Computational Linguistics Rolling Review (ACL ARR)", "date_zh": "2024、2025年", "date_en": "2024, 2025"},
+    {"primary_zh": "EMNLP 国际会议", "primary_en": "Conference on Empirical Methods in Natural Language Processing (EMNLP)", "date": "2025"},
+    {"primary_zh": "COLM 语言建模会议", "primary_en": "Conference on Language Modeling (COLM)", "date": "2025"},
+    {"primary_zh": "IJCAI 人工智能联合会议", "primary_en": "International Joint Conference on Artificial Intelligence (IJCAI)", "date": "2025"},
+    {"primary_zh": "ICME 国际多媒体会议", "primary_en": "IEEE International Conference on Multimedia and Expo (ICME)", "date": "2025"},
+    {"primary_zh": "IJCNN 国际神经网络联合会议", "primary_en": "International Joint Conference on Neural Networks (IJCNN)", "date": "2025"}
+  ]
+}
