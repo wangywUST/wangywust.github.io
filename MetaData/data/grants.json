@@ -1,6 +1,7 @@
 {
   "title_zh": "主持经费",
   "title_en": "Research Grants",
+  "bold_en": false,
   "items": [
     {"primary_zh": "U.S. Bank 学术基金", "primary_en": "U.S. Bank Academic Grants Program", "date": "2026"},
     {"primary_zh": "美国国家科学基金会 NSF CISE Research Initiation Initiative（NSF CRII）", "primary_en": "NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII)", "date": "2025"},

@@ -24,6 +24,7 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 
 ## Awards
 
+- **Best Paper in ICML Workshop on AI for Science** (2026)
 - **Best Paper Finalist in EMNLP** (2024)
 - **Dean's Graduate Research Excellence Award (highest honor for NUS PhD students; 3-4 recipients annually)** (2022)
 - **Research Achievement Award, NUS School of Computing** (2020)
@@ -32,7 +33,8 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 
 ## Teaching
 
-- **Instructor, New Course on Large Language Models** (2025) — University of California, Merced
+- **Instructor, CSE 188 Natural Language Processing** (2026) — University of California, Merced
+- **Instructor, EECS 224 Large Language Models** (2025) — University of California, Merced
 - **Teaching Assistant, Big Data Systems for Data Science** (2021) — National University of Singapore
 - **Teaching Assistant, Programming Methodology** (2021) — National University of Singapore
 - **Teaching Assistant, Knowledge Discovery and Data Mining** (2020 and 2021) — National University of Singapore

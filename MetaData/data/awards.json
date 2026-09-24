@@ -1,8 +1,10 @@
 {
   "title_zh": "奖项荣誉",
   "title_en": "Awards",
+  "bold_en": false,
   "items": [
-    {"primary_zh": "EMNLP 最佳论文入围", "primary_en": "Best Paper Finalist in EMNLP", "date": "2024"},
+    {"primary_zh": "ICML AI for Science Workshop最佳论文", "primary_en": "Best Paper in ICML Workshop on AI for Science", "date": "2026"},
+    {"primary_zh": "EMNLP 最佳论文Finallist", "primary_en": "Best Paper Finalist in EMNLP", "date": "2024"},
     {"primary_zh": "新加坡国立大学研究生院杰出研究奖（全校博士生最高荣誉，每年3-4名）", "primary_en": "Dean's Graduate Research Excellence Award (highest honor for NUS PhD students; 3-4 recipients annually)", "date": "2022"},
     {"primary_zh": "新加坡国立大学计算学院研究成就奖", "primary_en": "Research Achievement Award, NUS School of Computing", "date": "2020"},
     {"primary_zh": "新加坡数据科学学会杰出博士奖学金（每年10名）", "primary_en": "SDSC Dissertation Research Fellowship (10 annual quotas)", "date": "2021"},

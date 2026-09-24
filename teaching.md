@@ -10,7 +10,8 @@ layout: course
 
 ## Teaching
 
-- Instructor, New Course on Large Language Models — University of California, Merced, 2025
+- [Instructor, CSE 188 Natural Language Processing](https://wangywust.github.io/nlp-course-2026) — University of California, Merced, 2026
+- Instructor, EECS 224 Large Language Models — University of California, Merced, 2025
 - Teaching Assistant, Big Data Systems for Data Science — National University of Singapore, 2021
 - Teaching Assistant, Programming Methodology — National University of Singapore, 2021
 - Teaching Assistant, Knowledge Discovery and Data Mining — National University of Singapore, 2020 and 2021

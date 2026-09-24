@@ -1,6 +1,7 @@
 ## Teaching
 
-- **Instructor, New Course on Large Language Models** (2025) — University of California, Merced
+- **Instructor, CSE 188 Natural Language Processing** (2026) — University of California, Merced
+- **Instructor, EECS 224 Large Language Models** (2025) — University of California, Merced
 - **Teaching Assistant, Big Data Systems for Data Science** (2021) — National University of Singapore
 - **Teaching Assistant, Programming Methodology** (2021) — National University of Singapore
 - **Teaching Assistant, Knowledge Discovery and Data Mining** (2020 and 2021) — National University of Singapore
