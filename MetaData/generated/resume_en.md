@@ -6,14 +6,14 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 
 - **Professor at Southeast University** (2026 - Present) — School of Information Science and Engineering. Research and teaching on intelligent signal processing.
 - **Assistant Professor at University of California, Merced** (2025 - 2026) — Department of Computer Science and Engineering. Research and teaching on intelligent signal processing.
-- **Postdoctoral Researcher at University of California, Los Angeles** (Sep. 2023 - Dec. 2024) — UCLA NLP group, advised by Prof. Kai-Wei Chang and Prof. Nanyun Peng.
-- **Applied Scientist at Amazon** (Sep. 2022 - Sep. 2023)
+- **Postdoctoral Researcher at University of California, Los Angeles** (2023 - 2024) — UCLA NLP group, advised by Prof. Kai-Wei Chang and Prof. Nanyun Peng.
+- **Applied Scientist at Amazon** (2022 - 2023)
 
 ## Education
 
-- **Doctor of Philosophy in Computer Science** (Jul. 2019 - Mar. 2023) — National University of Singapore
-- **Master of Philosophy in Electronic and Computer Engineering** (Aug. 2017 - Jun. 2019) — Hong Kong University of Science and Technology
-- **Bachelor of Science in Information Engineering** (Aug. 2013 - Jun. 2017) — Southeast University
+- **Doctor of Philosophy in Computer Science** (2019 - 2023) — National University of Singapore
+- **Master of Philosophy in Electronic and Computer Engineering** (2017 - 2019) — Hong Kong University of Science and Technology
+- **Bachelor of Science in Information Engineering** (2013 - 2017) — Southeast University
 
 ## Honors and Awards
 
