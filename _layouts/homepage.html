@@ -173,11 +173,18 @@
         max-width: 1500px;
         margin: 0 auto;
         padding: 0 20px;
-        display: grid;
-        grid-template-columns: 140px minmax(0, 1fr);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+      }
+
+      .profile-main {
+        display: flex;
         align-items: center;
-        column-gap: 60px;
-        row-gap: 28px;
+        justify-content: center;
+        gap: 60px;
+        width: 100%;
       }
 
       .profile-left {
@@ -225,10 +232,10 @@
       }
 
       .profile-actions {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        display: flex;
         align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 14px;
         width: 100%;
       }
@@ -237,13 +244,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 44px;
-        padding: 8px 14px;
+        min-width: 88px;
+        padding: 5px 16px;
         border: 1px solid #cbd5e1;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.72);
         color: #334155;
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 600;
         text-decoration: none;
         white-space: nowrap;
@@ -260,8 +267,8 @@
       }
 
       .profile-info {
-        flex: 1;
-        max-width: none;
+        flex: 0 1 auto;
+        max-width: 1000px;
         padding: 20px 0;
       }
 
@@ -726,8 +733,12 @@
         }
 
         .profile-container {
-          grid-template-columns: 1fr;
           text-align: center;
+          gap: 25px;
+        }
+
+        .profile-main {
+          flex-direction: column;
           gap: 25px;
         }
 
@@ -757,10 +768,11 @@
         }
 
         .profile-actions {
-          grid-column: 1;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 10px;
-          order: 3;
+        }
+
+        .profile-actions a {
+          min-width: 96px;
         }
 
         .profile-info .keywords {
@@ -1322,17 +1334,19 @@
     <!-- Profile Section -->
     <div class="profile-section">
       <div class="profile-container">
-        <div class="profile-left">
-          <div class="profile-image">
-            <img src="./photo.jpg" alt="Yiwei Wang" />
+        <div class="profile-main">
+          <div class="profile-left">
+            <div class="profile-image">
+              <img src="./photo.jpg" alt="Yiwei Wang" />
+            </div>
           </div>
-        </div>
-        
-        <div class="profile-info">
-          <h1>Yiwei Wang</h1>
-          <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">Department of Computer Science, University of California at Merced</a></div>
-          <div class="position-affiliation">Director, <a href="https://wangywust.github.io/ucmnlp" rel="noopener">UC Merced NLP Lab</a></div>
-          <div class="email">Email: yiweiwang2@ucmerced.edu, wangyw.evan@gmail.com</div>
+
+          <div class="profile-info">
+            <h1>Yiwei Wang</h1>
+            <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">Department of Computer Science, University of California at Merced</a></div>
+            <div class="position-affiliation">Director, <a href="https://wangywust.github.io/ucmnlp" rel="noopener">UC Merced NLP Lab</a></div>
+            <div class="email">Email: yiweiwang2@ucmerced.edu, wangyw.evan@gmail.com</div>
+          </div>
         </div>
 
         <nav class="profile-actions" aria-label="个人链接">
