@@ -50,16 +50,21 @@
 
 ## 学术会议（高级）领域主席
 
-- **AAAI 人工智能会议** (2025)
-- **NeurIPS 国际会议** (2025)
-- **ICLR 国际会议** (2025)
-- **ICML 国际会议** (2025)
-- **ACL Rolling Review** (2024、2025年)
-- **EMNLP 国际会议** (2025)
-- **COLM 语言建模会议** (2025)
-- **IJCAI 人工智能联合会议** (2025)
-- **ICME 国际多媒体会议** (2025)
-- **IJCNN 国际神经网络联合会议** (2025)
+- **Association for the Advancement of Artificial Intelligence (AAAI)**
+- **Conference on Neural Information Processing Systems (NeurIPS)**
+- **International Conference on Learning Representations (ICLR)**
+- **International Conference on Machine Learning (ICML)**
+- **Conference on Empirical Methods in Natural Language Processing (EMNLP)**
+- **Annual Meeting of the Association for Computational Linguistics (ACL)**
+- **North American Chapter of the Association for Computational Linguistics (NAACL)**
+- **Association for Computational Linguistics Rolling Review (ACL ARR)**
+- **European Conference on Computer Vision (ECCV)**
+- **International Conference on Computer Vision (ICCV)**
+- **IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)**
+- **Conference on Language Modeling (COLM)**
+- **International Joint Conference on Artificial Intelligence (IJCAI)**
+- **IEEE International Conference on Multimedia and Expo (ICME)**
+- **International Joint Conference on Neural Networks (IJCNN)**
 
 ## 会议与期刊审稿服务
 

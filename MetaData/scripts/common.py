@@ -38,6 +38,7 @@ def render_section(section: str) -> list[Path]:
     outputs: list[Path] = []
     for language in ("zh", "en"):
         title = value(data, "title", language)
+        bold = data.get(f"bold_{language}", data.get("bold", True))
         tex_lines = ([f"\\rSection{{{title}}}", "\\begin{itemize}"] if language == "zh"
                      else [f"\\begin{{rSection}}{{{title}}}"])
         md_lines = [f"## {title}", ""]
@@ -50,14 +51,15 @@ def render_section(section: str) -> list[Path]:
             secondary_tex = tex_escape(secondary)
             date_tex = tex_escape(date)
             if language == "zh":
-                line = f"  \\item \\textbf{{{primary_tex}}}"
+                formatted_primary = f"\\textbf{{{primary_tex}}}" if bold else primary_tex
+                line = f"  \\item {formatted_primary}"
                 if date:
                     line += f" \\hfill {date_tex}"
                 if secondary:
                     line += f"\\\\\n  {secondary_tex}"
                 tex_lines.append(line)
             else:
-                line = f"{{\\bf {primary_tex}}}"
+                line = f"{{\\bf {primary_tex}}}" if bold else primary_tex
                 if date:
                     line += f" \\hfill {{{date_tex}}}"
                 if secondary:

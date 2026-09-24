@@ -1,16 +1,22 @@
 {
   "title_zh": "学术会议（高级）领域主席",
   "title_en": "Serving as (Senior) Area Chair",
+  "bold_zh": false,
   "items": [
-    {"primary_zh": "AAAI 人工智能会议", "primary_en": "Association for the Advancement of Artificial Intelligence (AAAI)", "date": "2025"},
-    {"primary_zh": "NeurIPS 国际会议", "primary_en": "Conference on Neural Information Processing Systems (NeurIPS)", "date": "2025"},
-    {"primary_zh": "ICLR 国际会议", "primary_en": "International Conference on Learning Representations (ICLR)", "date": "2025"},
-    {"primary_zh": "ICML 国际会议", "primary_en": "International Conference on Machine Learning (ICML)", "date": "2025"},
-    {"primary_zh": "ACL Rolling Review", "primary_en": "Association for Computational Linguistics Rolling Review (ACL ARR)", "date_zh": "2024、2025年", "date_en": "2024, 2025"},
-    {"primary_zh": "EMNLP 国际会议", "primary_en": "Conference on Empirical Methods in Natural Language Processing (EMNLP)", "date": "2025"},
-    {"primary_zh": "COLM 语言建模会议", "primary_en": "Conference on Language Modeling (COLM)", "date": "2025"},
-    {"primary_zh": "IJCAI 人工智能联合会议", "primary_en": "International Joint Conference on Artificial Intelligence (IJCAI)", "date": "2025"},
-    {"primary_zh": "ICME 国际多媒体会议", "primary_en": "IEEE International Conference on Multimedia and Expo (ICME)", "date": "2025"},
-    {"primary_zh": "IJCNN 国际神经网络联合会议", "primary_en": "International Joint Conference on Neural Networks (IJCNN)", "date": "2025"}
+    {"primary_zh": "Association for the Advancement of Artificial Intelligence (AAAI)", "primary_en": "Association for the Advancement of Artificial Intelligence (AAAI)"},
+    {"primary_zh": "Conference on Neural Information Processing Systems (NeurIPS)", "primary_en": "Conference on Neural Information Processing Systems (NeurIPS)"},
+    {"primary_zh": "International Conference on Learning Representations (ICLR)", "primary_en": "International Conference on Learning Representations (ICLR)"},
+    {"primary_zh": "International Conference on Machine Learning (ICML)", "primary_en": "International Conference on Machine Learning (ICML)"},
+    {"primary_zh": "Conference on Empirical Methods in Natural Language Processing (EMNLP)", "primary_en": "Conference on Empirical Methods in Natural Language Processing (EMNLP)"},
+    {"primary_zh": "Annual Meeting of the Association for Computational Linguistics (ACL)", "primary_en": "Annual Meeting of the Association for Computational Linguistics (ACL)"},
+    {"primary_zh": "North American Chapter of the Association for Computational Linguistics (NAACL)", "primary_en": "North American Chapter of the Association for Computational Linguistics (NAACL)"},
+    {"primary_zh": "Association for Computational Linguistics Rolling Review (ACL ARR)", "primary_en": "Association for Computational Linguistics Rolling Review (ACL ARR)"},
+    {"primary_zh": "European Conference on Computer Vision (ECCV)", "primary_en": "European Conference on Computer Vision (ECCV)"},
+    {"primary_zh": "International Conference on Computer Vision (ICCV)", "primary_en": "International Conference on Computer Vision (ICCV)"},
+    {"primary_zh": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)", "primary_en": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"},
+    {"primary_zh": "Conference on Language Modeling (COLM)", "primary_en": "Conference on Language Modeling (COLM)"},
+    {"primary_zh": "International Joint Conference on Artificial Intelligence (IJCAI)", "primary_en": "International Joint Conference on Artificial Intelligence (IJCAI)"},
+    {"primary_zh": "IEEE International Conference on Multimedia and Expo (ICME)", "primary_en": "IEEE International Conference on Multimedia and Expo (ICME)"},
+    {"primary_zh": "International Joint Conference on Neural Networks (IJCNN)", "primary_en": "International Joint Conference on Neural Networks (IJCNN)"}
   ]
 }
