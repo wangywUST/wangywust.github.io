@@ -261,18 +261,24 @@
         background: linear-gradient(135deg, #4285f4 0%, #1a73e8 100%);
       }
 
-      .social-links a.cv:hover {
-        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      .resume-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        white-space: nowrap;
       }
 
-      .social-links a.cv-zh:hover {
-        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      .resume-links a {
+        color: #2563eb;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
       }
 
-      .cv-language {
-        font-family: "Microsoft YaHei", "SimHei", sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
+      .resume-links a:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
       }
 
       .social-links a.linkedin:hover {
@@ -713,7 +719,7 @@
       }
 
       /* Subtle underline animation for content links */
-      a:not(.logo a):not(#myLinks a):not(.social-links a)::after {
+      a:not(.logo a):not(#myLinks a):not(.social-links a):not(.resume-links a)::after {
         content: '';
         position: absolute;
         width: 0;
@@ -725,14 +731,14 @@
         transform: translateX(-50%);
       }
 
-      a:not(.logo a):not(#myLinks a):not(.social-links a):hover {
+      a:not(.logo a):not(#myLinks a):not(.social-links a):not(.resume-links a):hover {
         color: #000050;
         background-color: rgba(0, 0, 128, 0.05);
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0, 0, 128, 0.15);
       }
 
-      a:not(.logo a):not(#myLinks a):not(.social-links a):hover::after {
+      a:not(.logo a):not(#myLinks a):not(.social-links a):not(.resume-links a):hover::after {
         width: 100%;
       }
 
@@ -965,15 +971,23 @@
           border-color: #475569;
         }
 
+        .resume-links a {
+          color: #60a5fa;
+        }
+
+        .resume-links a:hover {
+          color: #93c5fd;
+        }
+
         a {
           color: #4da6ff;
         }
 
-        a:not(.logo a):not(#myLinks a):not(.social-links a)::after {
+        a:not(.logo a):not(#myLinks a):not(.social-links a):not(.resume-links a)::after {
           background: linear-gradient(90deg, #4da6ff, #1a75ff);
         }
 
-        a:not(.logo a):not(#myLinks a):not(.social-links a):hover {
+        a:not(.logo a):not(#myLinks a):not(.social-links a):not(.resume-links a):hover {
           color: #1a75ff;
           background-color: rgba(77, 166, 255, 0.1);
           box-shadow: 0 2px 8px rgba(77, 166, 255, 0.2);
@@ -1350,6 +1364,11 @@
           <div class="profile-image">
             <img src="./photo.jpg" alt="Yiwei Wang" />
           </div>
+
+          <div class="resume-links" aria-label="Curriculum vitae">
+            <a href="./Latex/英文简历/main.pdf" lang="en">English CV</a>
+            <a href="./Latex/中文简历/main.pdf" lang="zh-CN">中文简历</a>
+          </div>
           
 
           
@@ -1357,12 +1376,6 @@
           <div class="social-links">
             <a href="https://scholar.google.com/citations?user=Sh9QvBkAAAAJ" class="google-scholar" title="Google Scholar" rel="noopener">
               <i class="ai ai-google-scholar"></i>
-            </a>
-            <a href="./Latex/英文简历/main.pdf" class="cv cv-en" title="English CV" aria-label="English CV" rel="noopener">
-              <i class="ai ai-cv"></i>
-            </a>
-            <a href="./Latex/中文简历/main.pdf" class="cv cv-zh" title="中文简历" aria-label="中文简历" rel="noopener">
-              <span class="cv-language" lang="zh-CN">中</span>
             </a>
             <a href="https://www.linkedin.com/in/yiwei-wang-b632a5118/" class="linkedin" title="LinkedIn" rel="noopener">
               <i class="fab fa-linkedin"></i>
@@ -1381,15 +1394,6 @@
           <div class="position-affiliation">Assistant Professor, <a href="https://www.ucmerced.edu/" rel="noopener">Department of Computer Science, University of California at Merced</a></div>
           <div class="position-affiliation">Director, <a href="https://wangywust.github.io/ucmnlp" rel="noopener">UC Merced NLP Lab</a></div>
           <div class="email">Email: yiweiwang2@ucmerced.edu, wangyw.evan@gmail.com</div>
-          
-          <!-- 研究兴趣和关键词标签 -->
-          <div class="research-interests">
-            <h2>Research Interests</h2>
-            <div class="keywords">
-              <span class="keyword-tag">Natural Language Processing</span>
-              <span class="keyword-tag">Multimodal Large Language Models</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
