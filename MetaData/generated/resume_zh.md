@@ -48,9 +48,9 @@
 
 ## 学术会议中主办Tutorial
 
-- **从感知到模拟：多模态推理中世界模型的兴起** (ECCV 2026)
-- **从感知到模拟：多模态推理中世界模型的兴起** (CVPR 2026)
-- **面向视觉语言模型的综合推理** (ICCV 2025)
+- **[从感知到模拟：多模态推理中世界模型的兴起](https://wangywust.github.io/eccv-tutorial-world-model/)** (ECCV 2026)
+- **[从感知到模拟：多模态推理中世界模型的兴起](https://wangywust.github.io/cvpr-tutorial-world-model/)** (CVPR 2026)
+- **[面向视觉语言模型的综合推理](https://wangywust.github.io/iccv-tutorial-reasoning-vlm/)** (ICCV 2025)
 
 ## 主持经费
 
@@ -70,8 +70,8 @@
 
 ## 教学经历
 
-- **加州大学默塞德分校，CSE 188 自然语言处理课程主讲教师** (2026)
-- **加州大学默塞德分校，EECS 224 大语言模型课程主讲教师** (2025)
+- **[加州大学默塞德分校，CSE 188 自然语言处理课程主讲教师](https://wangywust.github.io/nlp-course-2026)** (2026)
+- **[加州大学默塞德分校，EECS 224 大语言模型课程主讲教师](https://wangywust.github.io/llm-course-2025)** (2025)
 - **新加坡国立大学，大数据系统课程助教** (2021)
 - **新加坡国立大学，编程方法课程助教** (2021)
 - **新加坡国立大学，知识发现与数据挖掘课程助教** (2020、2021年)

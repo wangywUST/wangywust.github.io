@@ -52,9 +52,12 @@ def render_section(section: str) -> list[Path]:
             primary = value(item, "primary", language)
             secondary = value(item, "secondary", language)
             date = value(item, "date", language)
+            url = value(item, "url", language)
             primary_tex = tex_escape(primary)
             secondary_tex = tex_escape(secondary)
             date_tex = tex_escape(date)
+            if url:
+                primary_tex = f"\\href{{{tex_escape(url)}}}{{{primary_tex}}}"
             ratings_tex = latex_rating_labels(item.get("ratings", []))
             if language == "zh":
                 formatted_primary = f"\\textbf{{{primary_tex}}}" if bold else primary_tex
@@ -76,7 +79,8 @@ def render_section(section: str) -> list[Path]:
                     line += f" {ratings_tex}"
                 tex_lines.extend([line, ""])
 
-            md = f"- **{primary}**"
+            primary_md = f"[{primary}]({url})" if url else primary
+            md = f"- **{primary_md}**"
             if date:
                 md += f" ({date})"
             if secondary:

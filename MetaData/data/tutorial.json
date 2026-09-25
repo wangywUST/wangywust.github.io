@@ -4,8 +4,8 @@
   "bold_zh": false,
   "bold_en": false,
   "items": [
-    {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "ECCV 2026"},
-    {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "CVPR 2026"},
-    {"primary_zh": "面向视觉语言模型的综合推理", "primary_en": "Towards Comprehensive Reasoning in Vision-Language Models", "date": "ICCV 2025"}
+    {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "ECCV 2026", "url": "https://wangywust.github.io/eccv-tutorial-world-model/"},
+    {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "CVPR 2026", "url": "https://wangywust.github.io/cvpr-tutorial-world-model/"},
+    {"primary_zh": "面向视觉语言模型的综合推理", "primary_en": "Towards Comprehensive Reasoning in Vision-Language Models", "date": "ICCV 2025", "url": "https://wangywust.github.io/iccv-tutorial-reasoning-vlm/"}
   ]
 }

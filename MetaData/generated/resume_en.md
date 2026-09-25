@@ -48,9 +48,9 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 
 ## Tutorial in Academic Conferences
 
-- **From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning** (ECCV 2026)
-- **From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning** (CVPR 2026)
-- **Towards Comprehensive Reasoning in Vision-Language Models** (ICCV 2025)
+- **[From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning](https://wangywust.github.io/eccv-tutorial-world-model/)** (ECCV 2026)
+- **[From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning](https://wangywust.github.io/cvpr-tutorial-world-model/)** (CVPR 2026)
+- **[Towards Comprehensive Reasoning in Vision-Language Models](https://wangywust.github.io/iccv-tutorial-reasoning-vlm/)** (ICCV 2025)
 
 ## Research Grants
 
@@ -70,8 +70,8 @@ Email: [wangyw.evan@gmail.com](mailto:wangyw.evan@gmail.com) · WeChat: wangywse
 
 ## Teaching
 
-- **Instructor, CSE 188 Natural Language Processing** (2026) — University of California, Merced
-- **Instructor, EECS 224 Large Language Models** (2025) — University of California, Merced
+- **[Instructor, CSE 188 Natural Language Processing](https://wangywust.github.io/nlp-course-2026)** (2026) — University of California, Merced
+- **[Instructor, EECS 224 Large Language Models](https://wangywust.github.io/llm-course-2025)** (2025) — University of California, Merced
 - **Teaching Assistant, Big Data Systems for Data Science** (2021) — National University of Singapore
 - **Teaching Assistant, Programming Methodology** (2021) — National University of Singapore
 - **Teaching Assistant, Knowledge Discovery and Data Mining** (2020 and 2021) — National University of Singapore
