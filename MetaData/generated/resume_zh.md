@@ -46,7 +46,7 @@
 - **国际会议审稿人** — EMNLP; ACL; NAACL; KDD; AISTATS; LoG; WWW; ICLR; NeurIPS; AAAI; CVPR; ICCV; ECCV; IJCAI; ICME; ECML-PKDD; IJCNN
 - **国际期刊审稿人** — IEEE TPAMI; IEEE TKDE; IET Image Processing; IEEE Transactions on Big Data; Pattern Recognition; Neurocomputing; Computer Science Review; Cybernetics and Systems; IEEE TSMC: Systems
 
-## 学术教程
+## 学术会议中主办Tutorial
 
 - **从感知到模拟：多模态推理中世界模型的兴起** (ECCV 2026)
 - **从感知到模拟：多模态推理中世界模型的兴起** (CVPR 2026)
