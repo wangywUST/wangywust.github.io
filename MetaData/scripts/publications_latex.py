@@ -7,6 +7,8 @@ from common import DATA, GENERATED
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    
+    'Transactions on Pattern Analysis and Machine Intelligence' : 'TPAMI',
     'ACM International Conference on Multimedia' : 'ACM MM',
     'COLM' : 'COLM',
     'Transactions on Machine Learning Research' : 'TMLR',
@@ -103,6 +105,7 @@ CCF_RATINGS = {
     'LOG': 'N/A',
     'TKDE': 'A',  # IEEE Transactions on Knowledge and Data Engineering
     'TSP': 'N/A',   # IEEE Transactions on Signal Processing
+    'TPAMI' : 'A',
     # Add more CCF ratings as needed
 }
 
