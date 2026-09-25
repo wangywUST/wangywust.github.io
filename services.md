@@ -2,8 +2,6 @@
 layout: course
 ---
 
-## Services
-
 ### Serving as Journal Associate Editor (AE)
 
 - Transactions on Machine Learning Research (TMLR)

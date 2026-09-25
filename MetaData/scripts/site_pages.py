@@ -46,7 +46,6 @@ def replace_managed_block(text: str, name: str, body: str) -> str:
 
 def render_site_pages() -> None:
     services = "\n\n".join([
-        "## Services",
         section("editorship", "en"),
         section("area_chair", "en"),
         section("reviewing", "en"),
