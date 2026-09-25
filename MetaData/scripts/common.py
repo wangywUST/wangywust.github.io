@@ -32,6 +32,11 @@ def tex_escape(text: str) -> str:
     return text.replace("&", "\\&").replace("%", "\\%").replace("#", "\\#")
 
 
+def latex_rating_labels(ratings: list[str]) -> str:
+    """Render metadata ratings in the same red style as publications."""
+    return " ".join(f"\\textcolor{{red}}{{({rating})}}" for rating in ratings)
+
+
 def render_section(section: str) -> list[Path]:
     """Render a conventional resume section to zh/en TeX and Markdown."""
     data = load(section)
@@ -50,6 +55,7 @@ def render_section(section: str) -> list[Path]:
             primary_tex = tex_escape(primary)
             secondary_tex = tex_escape(secondary)
             date_tex = tex_escape(date)
+            ratings_tex = latex_rating_labels(item.get("ratings", []))
             if language == "zh":
                 formatted_primary = f"\\textbf{{{primary_tex}}}" if bold else primary_tex
                 line = f"  \\item {formatted_primary}"
@@ -57,6 +63,8 @@ def render_section(section: str) -> list[Path]:
                     line += f" \\hfill {date_tex}"
                 if secondary:
                     line += f"\\\\\n  {secondary_tex}"
+                if ratings_tex:
+                    line += f" {ratings_tex}"
                 tex_lines.append(line)
             else:
                 line = f"{{\\bf {primary_tex}}}" if bold else primary_tex
@@ -64,6 +72,8 @@ def render_section(section: str) -> list[Path]:
                     line += f" \\hfill {{{date_tex}}}"
                 if secondary:
                     line += f"\\\\\n{secondary_tex}"
+                if ratings_tex:
+                    line += f" {ratings_tex}"
                 tex_lines.extend([line, ""])
 
             md = f"- **{primary}**"

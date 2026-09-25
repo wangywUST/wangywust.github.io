@@ -48,6 +48,34 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding--Refusal Coupling Failure</div>
+      <div class="author">Zhetong Zhang, Honghao Fu, Miao Xu, Yiwei Wang, Yujun Cai.</div>
+      <div class="periodical"><em>Conference on Language Modeling (COLM), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/zhang2026vdeal.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Prism-: Differential Subspace Steering for Prompt Highlighting in Large Language Models</div>
+      <div class="author">Yuyao Ge, Shenghua Liu, Yiwei Wang, Baolong Bi, Lingrui Mei, Jiayu Yao, Tianyu Liu, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="periodical"><em>Conference on Language Modeling (COLM), 2026.</em></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/ge2026prism.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">HighlightBench: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents</div>
       <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Yujun Cai, Yuyao Ge, Jiayu Yao, Jiafeng Guo, Xueqi Cheng.</div>
       <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em></div>

@@ -102,7 +102,7 @@ CCF_RATINGS = {
     'Preprint': 'N/A',
     'LOG': 'N/A',
     'TKDE': 'A',  # IEEE Transactions on Knowledge and Data Engineering
-    'TSP': 'A',   # IEEE Transactions on Signal Processing
+    'TSP': 'N/A',   # IEEE Transactions on Signal Processing
     # Add more CCF ratings as needed
 }
 

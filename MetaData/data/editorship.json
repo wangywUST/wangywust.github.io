@@ -6,8 +6,8 @@
   "items": [
     {"primary_zh": "Journal of Visual Communication and Image Representation", "primary_en": "Journal of Visual Communication and Image Representation"},
     {"primary_zh": "Transactions on Machine Learning Research (TMLR)", "primary_en": "Transactions on Machine Learning Research (TMLR)"},
-    {"primary_zh": "IEEE Transactions on Industrial Informatics（IEEE TII）", "primary_en": "IEEE Transactions on Industrial Informatics (IEEE TII)"},
-    {"primary": "Pattern Recognition"},
-    {"primary": "Neurocomputing"}
+    {"primary_zh": "IEEE Transactions on Industrial Informatics（IEEE TII）", "primary_en": "IEEE Transactions on Industrial Informatics (IEEE TII)", "ratings": ["JCR Q1"]},
+    {"primary": "Pattern Recognition", "ratings": ["JCR Q1"]},
+    {"primary": "Neurocomputing", "ratings": ["JCR Q1"]}
   ]
 }
