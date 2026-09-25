@@ -7,6 +7,7 @@ from common import DATA, GENERATED
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    'ACM International Conference on Multimedia' : 'ACM MM',
     'COLM' : 'COLM',
     'Transactions on Machine Learning Research' : 'TMLR',
     'International Conference on Machine Learning' : 'ICML',
@@ -75,6 +76,7 @@ CCF_RATINGS = {
     'WWW': 'A',
     'AAAI': 'A',
     'ICLR': 'A',
+    'ACM MM' : 'A',
     
     'CIKM': 'B',
     'WSDM': 'B',
@@ -104,6 +106,15 @@ CCF_RATINGS = {
     # Add more CCF ratings as needed
 }
 
+# Journals in the publication list that are ranked in JCR Q1.  Keep this
+# explicit rather than checking the BibTeX ``journal`` field because several
+# conference papers in the source file are also stored as @article entries.
+JCR_Q1_JOURNALS = {
+    'TKDE',
+    'TSP',
+    'TPAMI',
+}
+
 # Colors for different CCF ratings
 CCF_COLORS = {
     'A': 'red',
@@ -115,8 +126,11 @@ CCF_COLORS = {
 # 定义会议时间顺序
 CONFERENCE_TIME_ORDER = [
     'TMLR',
+    'TPAMI',
+    'TKDE',
     'NeurIPS',
     'EMNLP',
+    'ACM MM',
     'COLM',
     'ECCV',
     'ACL',
@@ -208,7 +222,8 @@ def bib_to_paper_list(bib_file):
     return "\n\n".join(numbered_papers)
 
 # 新函数：带有CCF评级的论文列表（仅显示A类会议/期刊）
-def bib_to_paper_list_ccf(bib_file):
+def bib_to_paper_list_with_ratings(bib_file):
+    """Build a publication list with CCF-A and JCR Q1 labels."""
     # 读取.bib文件并使用BibTexParser
     with open(bib_file, encoding="utf-8") as bibtex_file:
         parser = BibTexParser(common_strings=True)  # 保留特殊字符并禁用多余的转义
@@ -228,16 +243,15 @@ def bib_to_paper_list_ccf(bib_file):
         venue = entry.get('booktitle', entry.get('journal', ''))
         venue_abbr = abbreviate_venue(venue)  # 使用缩写规则
         
-        # 获取CCF评级
-        ccf_rating = CCF_RATINGS.get(venue_abbr, '')
-        
-        # 仅为A类会议/期刊添加CCF标签，其他不添加
-        if ccf_rating == 'A':
-            # 使用字符串作为颜色名称
-            ccf_label = f"\\textcolor{{red}}{{(CCF-A)}}"
-            formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}. {ccf_label}".strip()
-        else:
-            formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}.".strip()
+        labels = []
+        if CCF_RATINGS.get(venue_abbr, '') == 'A':
+            labels.append("\\textcolor{red}{(CCF-A)}")
+        if venue_abbr in JCR_Q1_JOURNALS:
+            labels.append("\\textcolor{red}{(JCR Q1)}")
+
+        formatted_entry = f"{authors[0]}, {', '.join(authors[1:])}. {title}, \\textit{{{venue_abbr} {year}}}.".strip()
+        if labels:
+            formatted_entry += " " + " ".join(labels)
 
         # 存储年份、venue和条目，用于排序
         paper_list.append((int(year), venue_abbr, formatted_entry))
@@ -258,8 +272,9 @@ def generate_latex_publications() -> tuple[Path, Path]:
     zh_output = GENERATED / "zh" / "publications.tex"
     en_output.parent.mkdir(parents=True, exist_ok=True)
     zh_output.parent.mkdir(parents=True, exist_ok=True)
-    en_output.write_text(bib_to_paper_list(bib_file) + "\n", encoding="utf-8")
-    zh_output.write_text(bib_to_paper_list_ccf(bib_file) + "\n", encoding="utf-8")
+    publications = bib_to_paper_list_with_ratings(bib_file) + "\n"
+    en_output.write_text(publications, encoding="utf-8")
+    zh_output.write_text(publications, encoding="utf-8")
     return en_output, zh_output
 
 

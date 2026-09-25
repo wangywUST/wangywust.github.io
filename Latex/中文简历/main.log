@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.20)  25 SEP 2026 13:32
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.20)  25 SEP 2026 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -616,16 +616,17 @@ LaTeX Font Warning: Font shape `TU/KaiTi(0)/b/n' undefined
 
 [4]
 
-[5]) (../../MetaData/generated/zh/area_chair.tex)
-(../../MetaData/generated/zh/editorship.tex
+[5]) (../../MetaData/generated/zh/area_chair.tex
 
-[6]) (../../MetaData/generated/zh/reviewing.tex)
+[6]) (../../MetaData/generated/zh/editorship.tex)
+(../../MetaData/generated/zh/reviewing.tex)
 (../../MetaData/generated/zh/tutorial.tex)
 (../../MetaData/generated/zh/grants.tex)
-(../../MetaData/generated/zh/awards.tex)
-(../../MetaData/generated/zh/teaching.tex)
+(../../MetaData/generated/zh/awards.tex
 
-[7] (./main.aux)
+[7]) (../../MetaData/generated/zh/teaching.tex)
+
+[8] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -638,12 +639,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15802 strings out of 473831
- 350709 string characters out of 5733137
- 780557 words of memory out of 5000000
- 38660 multiletter control sequences out of 15000+600000
+ 15814 strings out of 473831
+ 351497 string characters out of 5733137
+ 779557 words of memory out of 5000000
+ 38672 multiletter control sequences out of 15000+600000
  561031 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,12n,111p,1188b,534s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,12n,111p,1188b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (7 pages).
+Output written on main.pdf (8 pages).
