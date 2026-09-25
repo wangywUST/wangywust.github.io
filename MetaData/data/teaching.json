@@ -1,6 +1,7 @@
 {
   "title_zh": "教学经历",
   "title_en": "Teaching",
+  "bold_zh": false,
   "bold_en": false,
   "items": [
     {"primary_zh": "加州大学默塞德分校，CSE 188 自然语言处理课程主讲教师", "primary_en": "Instructor, CSE 188 Natural Language Processing", "secondary_en": "University of California, Merced", "date": "2026", "url": "https://wangywust.github.io/nlp-course-2026"},

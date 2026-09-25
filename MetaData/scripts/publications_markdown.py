@@ -1,8 +1,12 @@
-import os
 import bibtexparser
+from pathlib import Path
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
-print('done')
+
+from common import DATA, GENERATED, ROOT
+
+
+REPOSITORY = ROOT.parent
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
@@ -88,7 +92,7 @@ def clean_title(title):
 def generate_image_filename(entry):
     # Get the entry ID, which is typically the bibtex citation key
     entry_id = entry.get('ID', 'default')
-    return f"../Image/{entry_id}.png"
+    return f"Image/{entry_id}.png"
 
 # Function to generate PDF URL based on the bib entry ID
 def generate_pdf_url(entry):
@@ -129,7 +133,7 @@ def generate_html(entry):
     img_src = generate_image_filename(entry)
     
     # Check if the image file exists
-    image_exists = os.path.exists(img_src)
+    image_exists = (REPOSITORY / img_src).exists()
     
     # Get code URL or default code link (if 'code_url' field is present in the bib file, use it)
     code_url = entry.get('code_url', entry.get('code', '#'))
@@ -146,7 +150,7 @@ def generate_html(entry):
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="{img_src[3:]}" class="teaser img-fluid z-depth-1" style="{image_style}">
+    <img src="{img_src}" class="teaser img-fluid z-depth-1" style="{image_style}">
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">{abbreviated_venue}</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -183,7 +187,7 @@ def generate_html(entry):
 
 # Load the .bib file
 def load_bib_file(file_path):
-    with open(file_path, 'r') as bib_file:
+    with open(file_path, 'r', encoding='utf-8') as bib_file:
         bib_database = bibtexparser.load(bib_file, parser=BibTexParser(customization=homogenize_latex_encoding))
     return bib_database.entries
 
@@ -283,10 +287,18 @@ def convert_bib_to_html(bib_file_path, output_html_path):
     html_content = generate_bibliography_html(entries)
     
     # Write the HTML to the output file
-    with open(output_html_path, 'w') as html_file:
+    with open(output_html_path, 'w', encoding='utf-8') as html_file:
         html_file.write(html_content)
     
     print(f"HTML file successfully written to {output_html_path}")
 
-# Example usage:
-convert_bib_to_html('../citations.bib', '../output_file.md')
+def generate_markdown_publications() -> Path:
+    """Generate the website publication list from the canonical BibTeX file."""
+    output = GENERATED / "publications.md"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    convert_bib_to_html(DATA / "citations.bib", output)
+    return output
+
+
+if __name__ == "__main__":
+    generate_markdown_publications()

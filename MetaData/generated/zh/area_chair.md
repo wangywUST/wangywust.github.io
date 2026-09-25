@@ -1,4 +1,4 @@
-## 学术会议（高级）领域主席
+## 学术会议（高级）领域主席((Senior) Area Chair)
 
 - **Association for the Advancement of Artificial Intelligence (AAAI)**
 - **Conference on Neural Information Processing Systems (NeurIPS)**

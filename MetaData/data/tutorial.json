@@ -1,6 +1,8 @@
 {
   "title_zh": "学术教程",
-  "title_en": "Tutorial",
+  "title_en": "Tutorial in Academic Conferences",
+  "bold_zh": false,
+  "bold_en": false,
   "items": [
     {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "ECCV 2026"},
     {"primary_zh": "从感知到模拟：多模态推理中世界模型的兴起", "primary_en": "From Perception to Simulation: The Emergence of World Models in Multi-modal Reasoning", "date": "CVPR 2026"},

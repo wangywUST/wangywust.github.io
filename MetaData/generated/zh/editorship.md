@@ -1,5 +1,7 @@
-## 学术期刊副编辑（Journal Associate Editor）
+## 学术期刊副编辑(Journal Associate Editor)
 
-- **IEEE Transactions on Industrial Informatics（IEEE TII）** (2025)
-- **Pattern Recognition** (2025)
-- **Neurocomputing** (2025)
+- **Journal of Visual Communication and Image Representation**
+- **Transactions on Machine Learning Research (TMLR)**
+- **IEEE Transactions on Industrial Informatics（IEEE TII）**
+- **Pattern Recognition**
+- **Neurocomputing**

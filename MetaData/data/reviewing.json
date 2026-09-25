@@ -1,8 +1,10 @@
 {
   "title_zh": "会议与期刊审稿服务",
   "title_en": "Serving as Reviewer",
+  "bold_zh": false,
+  "bold_en": false,
   "items": [
-    {"primary_zh": "国际会议审稿人", "primary_en": "Conference Reviewer", "secondary": "EMNLP; ACL; NAACL; KDD; AISTATS; LoG; WWW; ICLR; NeurIPS; AAAI; CVPR; ICCV; ECCV; IJCAI; ICME; ECML-PKDD; IJCNN", "date_zh": "2020-2025年", "date_en": "2020-2025"},
+    {"primary_zh": "国际会议审稿人", "primary_en": "Conference Reviewer", "secondary": "EMNLP; ACL; NAACL; KDD; AISTATS; LoG; WWW; ICLR; NeurIPS; AAAI; CVPR; ICCV; ECCV; IJCAI; ICME; ECML-PKDD; IJCNN"},
     {"primary_zh": "国际期刊审稿人", "primary_en": "Journal Reviewer", "secondary": "IEEE TPAMI; IEEE TKDE; IET Image Processing; IEEE Transactions on Big Data; Pattern Recognition; Neurocomputing; Computer Science Review; Cybernetics and Systems; IEEE TSMC: Systems"}
   ]
 }

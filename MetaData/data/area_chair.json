@@ -1,7 +1,8 @@
 {
-  "title_zh": "学术会议（高级）领域主席",
+  "title_zh": "学术会议（高级）领域主席((Senior) Area Chair)",
   "title_en": "Serving as (Senior) Area Chair",
   "bold_zh": false,
+  "bold_en": false,
   "items": [
     {"primary_zh": "Association for the Advancement of Artificial Intelligence (AAAI)", "primary_en": "Association for the Advancement of Artificial Intelligence (AAAI)"},
     {"primary_zh": "Conference on Neural Information Processing Systems (NeurIPS)", "primary_en": "Conference on Neural Information Processing Systems (NeurIPS)"},

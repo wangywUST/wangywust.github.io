@@ -1,6 +1,7 @@
 {
   "title_zh": "主持经费",
   "title_en": "Research Grants",
+  "bold_zh": false,
   "bold_en": false,
   "items": [
     {"primary_zh": "U.S. Bank 学术基金", "primary_en": "U.S. Bank Academic Grants Program", "date": "2026"},

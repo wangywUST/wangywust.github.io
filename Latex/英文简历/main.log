@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.20)  24 SEP 2026 18:53
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.20)  25 SEP 2026 13:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -155,17 +155,13 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 7--7
 
 (../../MetaData/generated/en/work.tex)
 (../../MetaData/generated/en/education.tex)
-(../../MetaData/generated/en/grants.tex)
-(../../MetaData/generated/en/awards.tex)
-(../../MetaData/generated/en/teaching.tex
+(../../MetaData/generated/en/publications.tex
 
 [1
 
-]) (../../MetaData/generated/en/tutorial.tex)
-(../../MetaData/generated/en/editorship.tex)
-(../../MetaData/generated/en/area_chair.tex
+]
 
-[2]) (../../MetaData/generated/en/reviewing.tex) (./paper_list.tex
+[2]
 
 [3]
 
@@ -173,9 +169,14 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 7--7
 
 [5]
 
-[6]
+[6]) (../../MetaData/generated/en/area_chair.tex)
+(../../MetaData/generated/en/editorship.tex
 
-[7]
+[7]) (../../MetaData/generated/en/reviewing.tex)
+(../../MetaData/generated/en/tutorial.tex)
+(../../MetaData/generated/en/grants.tex)
+(../../MetaData/generated/en/awards.tex)
+(../../MetaData/generated/en/teaching.tex
 
 [8])
 
@@ -187,11 +188,11 @@ L3 programming layer <2025-01-18>
  ) 
 Here is how much of TeX's memory you used:
  2025 strings out of 473831
- 34793 string characters out of 5733137
+ 35003 string characters out of 5733137
  436086 words of memory out of 5000000
  25082 multiletter control sequences out of 15000+600000
  561616 words of font info for 50 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,6n,79p,644b,213s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,6n,79p,644b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (9 pages).

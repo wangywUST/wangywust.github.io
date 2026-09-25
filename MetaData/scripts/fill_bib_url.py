@@ -1,5 +1,6 @@
 from habanero import Crossref
 import bibtexparser
+from common import DATA
 import requests
 from bs4 import BeautifulSoup
 import difflib
@@ -132,5 +133,5 @@ def fill_bib_urls(bib_file):
     with open(bib_file, 'w', encoding='utf-8') as bibtex_file:
         bibtexparser.dump(bib_database, bibtex_file)
 
-# 示例：自动填充 url 字段
-fill_bib_urls('citations.bib')
+if __name__ == "__main__":
+    fill_bib_urls(DATA / "citations.bib")

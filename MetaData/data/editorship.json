@@ -1,9 +1,13 @@
 {
-  "title_zh": "学术期刊副编辑（Journal Associate Editor）",
+  "title_zh": "学术期刊副编辑(Journal Associate Editor)",
   "title_en": "Serving as Journal Associate Editor (AE)",
+  "bold_zh": false,
+  "bold_en": false,
   "items": [
-    {"primary_zh": "IEEE Transactions on Industrial Informatics（IEEE TII）", "primary_en": "IEEE Transactions on Industrial Informatics (IEEE TII)", "date": "2025"},
-    {"primary": "Pattern Recognition", "date": "2025"},
-    {"primary": "Neurocomputing", "date": "2025"}
+    {"primary_zh": "Journal of Visual Communication and Image Representation", "primary_en": "Journal of Visual Communication and Image Representation"},
+    {"primary_zh": "Transactions on Machine Learning Research (TMLR)", "primary_en": "Transactions on Machine Learning Research (TMLR)"},
+    {"primary_zh": "IEEE Transactions on Industrial Informatics（IEEE TII）", "primary_en": "IEEE Transactions on Industrial Informatics (IEEE TII)"},
+    {"primary": "Pattern Recognition"},
+    {"primary": "Neurocomputing"}
   ]
 }

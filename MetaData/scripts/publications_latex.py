@@ -1,7 +1,9 @@
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
-from bibtexparser.customization import homogenize_latex_encoding
 import re
+from pathlib import Path
+
+from common import DATA, GENERATED
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
@@ -172,7 +174,7 @@ def get_conference_order(venue):
 
 def bib_to_paper_list(bib_file):
     # 读取.bib文件并使用BibTexParser
-    with open(bib_file) as bibtex_file:
+    with open(bib_file, encoding="utf-8") as bibtex_file:
         parser = BibTexParser(common_strings=True)  # 保留特殊字符并禁用多余的转义
         bib_database = bibtexparser.load(bibtex_file, parser=parser)
     
@@ -208,7 +210,7 @@ def bib_to_paper_list(bib_file):
 # 新函数：带有CCF评级的论文列表（仅显示A类会议/期刊）
 def bib_to_paper_list_ccf(bib_file):
     # 读取.bib文件并使用BibTexParser
-    with open(bib_file) as bibtex_file:
+    with open(bib_file, encoding="utf-8") as bibtex_file:
         parser = BibTexParser(common_strings=True)  # 保留特殊字符并禁用多余的转义
         bib_database = bibtexparser.load(bibtex_file, parser=parser)
     
@@ -249,17 +251,17 @@ def bib_to_paper_list_ccf(bib_file):
     # 返回带有编号的论文列表
     return "\n\n".join(numbered_papers)
 
-# 示例用法
-bib_file = "../citations.bib"
-output_file = "paper_list.tex"  # 生成的 LaTeX 文件
-output_file_ccf = "paper_list_ccf.tex"  # 生成的带CCF评级的 LaTeX 文件
+def generate_latex_publications() -> tuple[Path, Path]:
+    """Generate the English and Chinese resume publication fragments."""
+    bib_file = DATA / "citations.bib"
+    en_output = GENERATED / "en" / "publications.tex"
+    zh_output = GENERATED / "zh" / "publications.tex"
+    en_output.parent.mkdir(parents=True, exist_ok=True)
+    zh_output.parent.mkdir(parents=True, exist_ok=True)
+    en_output.write_text(bib_to_paper_list(bib_file) + "\n", encoding="utf-8")
+    zh_output.write_text(bib_to_paper_list_ccf(bib_file) + "\n", encoding="utf-8")
+    return en_output, zh_output
 
-# 将结果写入到 LaTeX 文件
-with open(output_file, "w") as f:
-    f.write(bib_to_paper_list(bib_file))
 
-# 将带CCF评级的结果写入到 LaTeX 文件
-with open(output_file_ccf, "w") as f:
-    f.write(bib_to_paper_list_ccf(bib_file))
-
-print('done')
+if __name__ == "__main__":
+    generate_latex_publications()
