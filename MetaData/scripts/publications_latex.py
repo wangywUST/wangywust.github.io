@@ -73,13 +73,13 @@ CCF_RATINGS = {
     'STOC': 'A',
     'ISCA': 'A',
     'VLDB': 'A',
-    'ECCV': 'A',
     'ICDE': 'A',
     'WWW': 'A',
     'AAAI': 'A',
     'ICLR': 'A',
     'ACM MM' : 'A',
-    
+
+    'ECCV': 'B',
     'CIKM': 'B',
     'WSDM': 'B',
     'ICAPS': 'B',
