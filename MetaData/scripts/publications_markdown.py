@@ -4,12 +4,20 @@ from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import homogenize_latex_encoding
 
 from common import DATA, GENERATED, ROOT
+from publications_latex import (
+    CCF_RATINGS,
+    CONFERENCE_TIME_ORDER,
+    JCR_Q1_JOURNALS,
+    abbreviate_venue as abbreviate_venue_latex,
+)
 
 
 REPOSITORY = ROOT.parent
 
 # Dictionary to map venue keywords to abbreviations (CCF Recommended Conferences and more specific examples)
 VENUE_ABBREVIATIONS = {
+    'Transactions on Pattern Analysis and Machine Intelligence' : 'TPAMI',
+    'ACM International Conference on Multimedia' : 'ACM MM',
     'COLM' : 'COLM',
     'Transactions on Machine Learning Research' : 'TMLR',
     'International Conference on Machine Learning' : 'ICML',
@@ -115,6 +123,16 @@ def get_venue_abbreviation(entry):
     venue = entry.get('journal', entry.get('booktitle', ''))
     return abbreviate_venue(venue)
 
+
+def generate_rating_html(venue_abbreviation):
+    """Render the same CCF-A and JCR Q1 labels used by the TeX export."""
+    labels = []
+    if CCF_RATINGS.get(venue_abbreviation, '') == 'A':
+        labels.append('<span style="color: red;">(CCF-A)</span>')
+    if venue_abbreviation in JCR_Q1_JOURNALS:
+        labels.append('<span style="color: red;">(JCR Q1)</span>')
+    return ' '.join(labels)
+
 # Function to generate HTML from bib entry, adjusting image size and center-aligning content
 def generate_html(entry):
     # Handling multiple authors by splitting and formatting them
@@ -128,6 +146,7 @@ def generate_html(entry):
     full_venue = entry.get('journal', entry.get('booktitle', 'Preprint'))
     abbreviated_venue = abbreviate_venue(full_venue)
     cleaned_full_venue = clean_full_venue(full_venue)  # Cleaned full venue without abbreviations
+    rating_html = generate_rating_html(abbreviate_venue_latex(full_venue))
 
     # Use the entry's ID to generate the image filename
     img_src = generate_image_filename(entry)
@@ -156,7 +175,7 @@ def generate_html(entry):
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">{clean_title_text}</div>
       <div class="author">{formatted_authors}.</div>
-      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em> {rating_html}</div>
       <div class="links" style="margin-top: -5px;">
         <a href="{pdf_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
@@ -173,7 +192,7 @@ def generate_html(entry):
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">{clean_title_text}</div>
       <div class="author">{formatted_authors}.</div>
-      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em></div>
+      <div class="periodical"><em>{cleaned_full_venue}, {entry.get('year', '2024')}.</em> {rating_html}</div>
       <div class="links" style="margin-top: -5px;">
         <a href="{pdf_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="{code_url}" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
@@ -191,74 +210,29 @@ def load_bib_file(file_path):
         bib_database = bibtexparser.load(bib_file, parser=BibTexParser(customization=homogenize_latex_encoding))
     return bib_database.entries
 
-# 会议时间排序列表，基于缩写
-CONFERENCE_TIME_ORDER = [
-    'TMLR',
-    'NeurIPS',
-    'EMNLP',
-    'COLM',
-    'ECCV',
-    'ACL',
-    'ICML',
-    'CVPR',
-    'ICCV',
-    'ICLR',
-    'NAACL',
-    'AAAI'
-    # 你可以根据需要添加更多的会议
-]
-
 # 获取会议时间的排序
 def get_conference_time_rank(venue):
-    abbreviated_venue = abbreviate_venue(venue)
+    abbreviated_venue = abbreviate_venue_latex(venue)
     if abbreviated_venue in CONFERENCE_TIME_ORDER:
         return CONFERENCE_TIME_ORDER.index(abbreviated_venue)
     return len(CONFERENCE_TIME_ORDER)  # 未在列表中的会议放在最后
 
-# 按会议时间排序
-def sort_entries_by_conference_time(entries):
-    def get_entry_type_rank(entry):
-        # 根据 venue abbreviation 判断是否为会议，优先检查会议
-        venue = entry.get('booktitle', entry.get('journal', ''))
-        abbreviation = abbreviate_venue(venue)
-        
-        # 如果是会议，返回 0，表示会议优先；如果是期刊，返回 1；预印本返回 2
-        if abbreviation in CONFERENCE_TIME_ORDER:
-            return 0  # 会议条目优先
-        elif 'journal' in entry:
-            return 1  # 期刊条目次优
-        else:
-            return 2  # 预印本/ArXiv 条目最后
-        
-    return sorted(
-        entries,
-        key=lambda x: (
-            get_entry_type_rank(x),  # 按条目类型排序，会议 > 期刊 > 预印本
-            get_conference_time_rank(x.get('booktitle', x.get('journal', ''))),  # 按会议时间顺序排序
-        )
-    )
-
 # 按年份和会议时间排序
 def sort_entries_by_year(entries):
-    # 按年份分组
-    entries_by_year = {}
-
-    for entry in entries:
-        year = int(entry.get('year', 0))
-        if year not in entries_by_year:
-            entries_by_year[year] = []
-        entries_by_year[year].append(entry)
-
-    # 在每个年份内按会议时间排序
-    for year, year_entries in entries_by_year.items():
-        entries_by_year[year] = sort_entries_by_conference_time(year_entries)
-
-    # 按年份从新到旧返回所有的条目
-    sorted_entries = []
-    for year in sorted(entries_by_year.keys(), reverse=True):
-        sorted_entries.extend(entries_by_year[year])
-
-    return sorted_entries
+    # Match the TeX key exactly: year descending, configured venue order,
+    # then venue name for deterministic ordering of unlisted venues.
+    return sorted(
+        (entry for entry in entries if not is_arxiv(entry)),
+        key=lambda entry: (
+            -int(entry.get('year', 0)),
+            get_conference_time_rank(
+                entry.get('booktitle', entry.get('journal', ''))
+            ),
+            abbreviate_venue_latex(
+                entry.get('booktitle', entry.get('journal', ''))
+            ).lower(),
+        ),
+    )
 
 # Generate HTML for all entries in the bib file, adding a divider for each year
 def generate_bibliography_html(entries):
