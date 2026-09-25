@@ -54,6 +54,8 @@ def render_site_pages() -> None:
 
     write_page("awards.md", "course", section("awards", "en", 2))
 
+    write_page("sponsors.md", "course", section("grants", "en", 2))
+
     teaching = "\n\n".join([
         section("tutorial", "en", 2),
         section("teaching", "en", 2),

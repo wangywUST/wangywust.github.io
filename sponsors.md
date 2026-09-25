@@ -2,7 +2,9 @@
 layout: course
 ---
 
-## Funding
-- Lead PI, NSF CRII 2025 (Computer and Information Science and Engineering Research Initiation Initiative)
-- Lead PI, NVIDIA Academic Grants Program
-- Lead PI, University of California at Merced Faculty Research Award
+## Research Grants
+
+- U.S. Bank Academic Grants Program — 2026
+- NSF Computer and Information Science and Engineering Research Initiation Initiative (CRII) — 2025
+- NVIDIA Academic Grants Program — 2025
+- University of California at Merced Faculty Research Award — 2025
