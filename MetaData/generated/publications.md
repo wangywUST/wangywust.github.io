@@ -76,11 +76,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">When Can Large Reasoning Models Save Thinking? Mechanistic Analysis of Behavioral Divergence in Reasoning</div>
-      <div class="author">Rongzhi Zhu, Yi Liu, Jiancheng Wang, Xiangyu Liu, Zequn Sun, Yiwei Wang, Yu Deng, Zijian Zhou, Wei Hu.</div>
+      <div class="title">Readable Yet Unpredictable: Rotated-Outcome Prediction in Vision-Language Models</div>
+      <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Jiafeng Guo, Xueqi Cheng.</div>
       <div class="periodical"><em>Findings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2026.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/zhu2026save.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wang2026readable.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -104,11 +104,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Readable Yet Unpredictable: Rotated-Outcome Prediction in Vision-Language Models</div>
-      <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="title">When Can Large Reasoning Models Save Thinking? Mechanistic Analysis of Behavioral Divergence in Reasoning</div>
+      <div class="author">Rongzhi Zhu, Yi Liu, Jiancheng Wang, Xiangyu Liu, Zequn Sun, Yiwei Wang, Yu Deng, Zijian Zhou, Wei Hu.</div>
       <div class="periodical"><em>Findings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2026.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/wang2026readable.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhu2026save.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -132,20 +132,6 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding--Refusal Coupling Failure</div>
-      <div class="author">Zhetong Zhang, Honghao Fu, Miao Xu, Yiwei Wang, Yujun Cai.</div>
-      <div class="periodical"><em>Conference on Language Modeling (COLM), 2026.</em> </div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/zhang2026vdeal.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Prism-: Differential Subspace Steering for Prompt Highlighting in Large Language Models</div>
       <div class="author">Yuyao Ge, Shenghua Liu, Yiwei Wang, Baolong Bi, Lingrui Mei, Jiayu Yao, Tianyu Liu, Jiafeng Guo, Xueqi Cheng.</div>
       <div class="periodical"><em>Conference on Language Modeling (COLM), 2026.</em> </div>
@@ -160,11 +146,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">HighlightBench: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents</div>
-      <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Yujun Cai, Yuyao Ge, Jiayu Yao, Jiafeng Guo, Xueqi Cheng.</div>
-      <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em> </div>
+      <div class="title">V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding--Refusal Coupling Failure</div>
+      <div class="author">Zhetong Zhang, Honghao Fu, Miao Xu, Yiwei Wang, Yujun Cai.</div>
+      <div class="periodical"><em>Conference on Language Modeling (COLM), 2026.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/wang2026highlightbench.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/zhang2026vdeal.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -202,11 +188,25 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Mitigating Coordinate Prediction Bias from Positional Encoding Failures</div>
-      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Kai Han, Jing Tang.</div>
+      <div class="title">HighlightBench: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents</div>
+      <div class="author">Lexin Wang, Shenghua Liu, Yiwei Wang, Yujun Cai, Yuyao Ge, Jiayu Yao, Jiafeng Guo, Xueqi Cheng.</div>
+      <div class="periodical"><em>Computer Vision--ECCV 2026: 19th European Conference, 2026.</em> </div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/wang2026highlightbench.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">VideoStir: Understanding Long Videos via Spatio-Temporally Structured and Intent-Aware RAG</div>
+      <div class="author">Honghao Fu, Miao Xu, Yiwei Wang, Dailing Zhang, Jun Liu, Yujun Cai.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/tao2026mitigating.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/fu2026videostir.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -230,39 +230,25 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Hard to Read, Easy to Jailbreak: How Visual Degradation Bypasses MLLM Safety Alignment</div>
-      <div class="author">Zhixue Song, Boyan Han, Yiwei Wang, Chi Zhang.</div>
-      <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/song2026hard.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Rectifying Coordinate Drift in MLLMs via Counterfactual Positional Guidance</div>
-      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Jing Tang.</div>
-      <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/tao2026rectifying.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">ReCon: Active Defense against Large Vision-Language Model Jailbreaks via Reverse Safety Concept Injection</div>
       <div class="author">Zheng He, Yiwei Wang, Hongxing Wang, Yujun Cai.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
         <a href="https://wangywust.github.io/pdfs/he2026recon.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">SQLAgent: Learning to Explore Before Generating as a Data Engineer</div>
+      <div class="author">Wenjia Jiang, Yiwei Wang, Boyan Han, Joey Tianyi Zhou, Chi Zhang.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/jiang2026sqlagent.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -314,11 +300,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">VideoStir: Understanding Long Videos via Spatio-Temporally Structured and Intent-Aware RAG</div>
-      <div class="author">Honghao Fu, Miao Xu, Yiwei Wang, Dailing Zhang, Jun Liu, Yujun Cai.</div>
+      <div class="title">Hard to Read, Easy to Jailbreak: How Visual Degradation Bypasses MLLM Safety Alignment</div>
+      <div class="author">Zhixue Song, Boyan Han, Yiwei Wang, Chi Zhang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/fu2026videostir.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/song2026hard.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -328,11 +314,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">SQLAgent: Learning to Explore Before Generating as a Data Engineer</div>
-      <div class="author">Wenjia Jiang, Yiwei Wang, Boyan Han, Joey Tianyi Zhou, Chi Zhang.</div>
+      <div class="title">Mitigating Coordinate Prediction Bias from Positional Encoding Failures</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Kai Han, Jing Tang.</div>
       <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/jiang2026sqlagent.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2026mitigating.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -342,25 +328,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Depth-Breadth Synergy in RLVR: Unlocking LLM Reasoning Gains with Adaptive Exploration</div>
-      <div class="author">Zhicheng Yang, Zhijiang Guo, Yinya Huang, Yongxin Wang, Dongchun Xie, Hanhui Li, Yiwei Wang, Xiaodan Liang, Jing Tang.</div>
-      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="title">Rectifying Coordinate Drift in MLLMs via Counterfactual Positional Guidance</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Jing Tang.</div>
+      <div class="periodical"><em>Association for Computational Linguistics ACL, 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/yang2026depthbreadth.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">AuTAgent: A Reinforcement Learning Framework for Tool-Augmented Audio Reasoning</div>
-      <div class="author">Siqian Tong, Li Xuan, Yiwei Wang, Baolong Bi, Yujun Cai, Shenghua Liu, Yuchen He, HAO Chengpeng.</div>
-      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/tong2026autagent.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2026rectifying.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -398,6 +370,20 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">AuTAgent: A Reinforcement Learning Framework for Tool-Augmented Audio Reasoning</div>
+      <div class="author">Siqian Tong, Li Xuan, Yiwei Wang, Baolong Bi, Yujun Cai, Shenghua Liu, Yuchen He, HAO Chengpeng.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/tong2026autagent.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
       <div class="title">Accordion-Thinking: Self-Regulated Step Summaries for Efficient and Readable LLM Reasoning</div>
       <div class="author">Zhicheng Yang, Zhijiang Guo, Yinya Huang, Yongxin Wang, Wenlei Shi, Yiwei Wang, Xiaodan Liang, Jing Tang.</div>
       <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
@@ -412,11 +398,25 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs</div>
-      <div class="author">Bowen Sun, Yujun Cai, Ming-Hsuan Yang, Hang Wu, Yiwei Wang.</div>
+      <div class="title">Depth-Breadth Synergy in RLVR: Unlocking LLM Reasoning Gains with Adaptive Exploration</div>
+      <div class="author">Zhicheng Yang, Zhijiang Guo, Yinya Huang, Yongxin Wang, Dongchun Xie, Hanhui Li, Yiwei Wang, Xiaodan Liang, Jing Tang.</div>
+      <div class="periodical"><em>International Conference on Machine Learning (ICML), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yang2026depthbreadth.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation</div>
+      <div class="author">Bingxuan Li, Yiming Cui, Yicheng He, Yiwei Wang, Shu Zhang, Longyin Wen, Yulei Niu.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/sun2026pas.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2026echofoley.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -440,11 +440,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Improving Diffusion Generalization with Weak-to-Strong Segmented Guidance</div>
-      <div class="author">Liangyu Yuan, Yufei splinter Huang, Mingkun Lei, Tong Zhao, Ruoyu Wang, Changxi Chi, Yiwei Wang, Chi Zhang.</div>
+      <div class="title">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs</div>
+      <div class="author">Bowen Sun, Yujun Cai, Ming-Hsuan Yang, Hang Wu, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/yuan2026improving.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/sun2026pas.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -454,65 +454,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation</div>
-      <div class="author">Bingxuan Li, Yiming Cui, Yicheng He, Yiwei Wang, Shu Zhang, Longyin Wen, Yulei Niu.</div>
+      <div class="title">Improving Diffusion Generalization with Weak-to-Strong Segmented Guidance</div>
+      <div class="author">Liangyu Yuan, Yufei splinter Huang, Mingkun Lei, Tong Zhao, Ruoyu Wang, Changxi Chi, Yiwei Wang, Chi Zhang.</div>
       <div class="periodical"><em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/li2026echofoley.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/yuan2026videostar.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
-  </div>
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Video-STAR: Reinforcing Open-Vocabulary Action Recognition with Tools</div>
-      <div class="author">Zhenlong Yuan, Xiangyan Qu, Chengxuan Qian, Rui Chen, Jing Tang, Lei Sun, Xiangxiang Chu, Dapeng Zhang, Yiwei Wang, Yujun Cai, Shuo Li.</div>
-      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/yuan2026videostar.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/fu2026contextnav.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
-  </div>
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">ContextNav: Towards Agentic Multimodal In-Context Learning</div>
-      <div class="author">Honghao Fu, Yuan Ouyang, Kai-Wei Chang, Yiwei Wang, Zi Huang, Yujun Cai.</div>
-      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/fu2026contextnav.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/yang2026wavefrontdiffusion.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
-  </div>
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">WavefrontDiffusion: Dynamic Decoding Schedule for Improved Reasoning</div>
-      <div class="author">Haojin Yang, Rui Hu, Zequn Sun, Rui Zhou, Yujun Cai, Yiwei Wang.</div>
-      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/yang2026wavefrontdiffusion.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/yuan2026improving.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -540,33 +486,15 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/wu2026chainmpq.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <img src="Image/fu2026contextnav.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
   </div>
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">ChainMPQ: Interleaved Text-Image Reasoning Chains for Mitigating Relation Hallucinations</div>
-      <div class="author">Yike Wu, Yiwei Wang, Yujun Cai.</div>
+      <div class="title">ContextNav: Towards Agentic Multimodal In-Context Learning</div>
+      <div class="author">Honghao Fu, Yuan Ouyang, Kai-Wei Chang, Yiwei Wang, Zi Huang, Yujun Cai.</div>
       <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/wu2026chainmpq.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
-  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
-    <img src="Image/tao2026arellmsknowledgeable.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
-    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
-  </div>
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Are LLMs Really Not Knowledgeable? Mining the Submerged Knowledge in LLMs'  Memory</div>
-      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
-      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/tao2026arellmsknowledgeable.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/fu2026contextnav.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -594,6 +522,42 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
   <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/tao2026arellmsknowledgeable.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Are LLMs Really Not Knowledgeable? Mining the Submerged Knowledge in LLMs'  Memory</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
+      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/tao2026arellmsknowledgeable.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/wu2026chainmpq.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">ChainMPQ: Interleaved Text-Image Reasoning Chains for Mitigating Relation Hallucinations</div>
+      <div class="author">Yike Wu, Yiwei Wang, Yujun Cai.</div>
+      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/wu2026chainmpq.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
     <img src="Image/xiong2026diffusionllm.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
     <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
   </div>
@@ -603,6 +567,42 @@
       <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
         <a href="https://wangywust.github.io/pdfs/xiong2026diffusionllm.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/yang2026wavefrontdiffusion.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">WavefrontDiffusion: Dynamic Decoding Schedule for Improved Reasoning</div>
+      <div class="author">Haojin Yang, Rui Hu, Zequn Sun, Rui Zhou, Yujun Cai, Yiwei Wang.</div>
+      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yang2026wavefrontdiffusion.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;"> <!-- Center-align the content -->
+  <div class="image-container" style="flex: 0 0 auto; margin-right: 25px; position: relative;">
+    <img src="Image/yuan2026videostar.png" class="teaser img-fluid z-depth-1" style="width: 240px; height: 170px; object-fit: cover; margin-bottom: 0;">
+    <abbr class="badge" style="position: absolute; top: 0px; left: 0px; background-color: #007bff; color: white; padding: 5px;">ICLR</abbr>
+  </div>
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Video-STAR: Reinforcing Open-Vocabulary Action Recognition with Tools</div>
+      <div class="author">Zhenlong Yuan, Xiangyan Qu, Chengxuan Qian, Rui Chen, Jing Tang, Lei Sun, Xiangxiang Chu, Dapeng Zhang, Yiwei Wang, Yujun Cai, Shuo Li.</div>
+      <div class="periodical"><em>The Fourteenth International Conference on Learning Representations (ICLR), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yuan2026videostar.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -714,25 +714,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation</div>
-      <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
+      <div class="title">MRFD: Multi-Region Fusion Decoding with Self-Consistency for Mitigating Hallucinations in LVLMs</div>
+      <div class="author">Haonan Ge, Yiwei Wang, Ming-Hsuan Yang, Yujun Cai.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/yao2025who.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
-      <div class="author">Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang.</div>
-      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/xiong2025map.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/ge2025mrfd.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -756,25 +742,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">MRFD: Multi-Region Fusion Decoding with Self-Consistency for Mitigating Hallucinations in LVLMs</div>
-      <div class="author">Haonan Ge, Yiwei Wang, Ming-Hsuan Yang, Yujun Cai.</div>
+      <div class="title">SemVink: Advancing VLMs'  Semantic Understanding of Optical Illusions via Visual Global Thinking</div>
+      <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/ge2025mrfd.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
-        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
-      </div>
-  </div>
-</div>
-</li>
-
-<li style="margin-bottom: 20px;">
-<div class="pub-row" style="display: flex; align-items: center;">
-  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning</div>
-      <div class="author">Hang Wu, Hongkai Chen, Yujun Cai, Chang Liu, Qingwen Ye, Ming-Hsuan Yang, Yiwei Wang.</div>
-      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
-      <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/wu2025dimo.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/li2025semvink.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -798,11 +770,11 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">SemVink: Advancing VLMs'  Semantic Understanding of Optical Illusions via Visual Global Thinking</div>
-      <div class="author">Sifan Li, Yujun Cai, Yiwei Wang.</div>
+      <div class="title">Understanding GUI Agent Localization Biases through Logit Sharpness</div>
+      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/li2025semvink.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/tao2025understanding.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
@@ -812,11 +784,39 @@
 <li style="margin-bottom: 20px;">
 <div class="pub-row" style="display: flex; align-items: center;">
   <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-      <div class="title">Understanding GUI Agent Localization Biases through Logit Sharpness</div>
-      <div class="author">Xingjian Tao, Yiwei Wang, Yujun Cai, Zhicheng Yang, Jing Tang.</div>
+      <div class="title">DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning</div>
+      <div class="author">Hang Wu, Hongkai Chen, Yujun Cai, Chang Liu, Qingwen Ye, Ming-Hsuan Yang, Yiwei Wang.</div>
       <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/tao2025understanding.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/wu2025dimo.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs</div>
+      <div class="author">Zhen Xiong, Yujun Cai, Zhecheng Li, Yiwei Wang.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/xiong2025map.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
+      </div>
+  </div>
+</div>
+</li>
+
+<li style="margin-bottom: 20px;">
+<div class="pub-row" style="display: flex; align-items: center;">
+  <div class="text-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <div class="title">Who is in the Spotlight: The Hidden Bias Undermining Multimodal Retrieval-Augmented Generation</div>
+      <div class="author">Jiayu Yao, Shenghua Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Yuyao Ge, Zhecheng Li, Xueqi Cheng.</div>
+      <div class="periodical"><em>Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), 2025.</em> </div>
+      <div class="links" style="margin-top: -5px;">
+        <a href="https://wangywust.github.io/pdfs/yao2025who.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
