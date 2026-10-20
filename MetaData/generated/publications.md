@@ -690,7 +690,7 @@
       <div class="author">Yifan Lu, Pengfei Jiao, Xuan Guo, Ziyun Zou, Yiwei Wang, Mengzhou Gao, Huaming Wu, Imran Razzak.</div>
       <div class="periodical"><em>Proceedings of the Web Conference 2026 (WWW), 2026.</em> <span style="color: red;">(CCF-A)</span></div>
       <div class="links" style="margin-top: -5px;">
-        <a href="https://wangywust.github.io/pdfs/wang2021curgraph.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
+        <a href="https://wangywust.github.io/pdfs/lu2026towards.pdf" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">PDF</a>
         <a href="#" class="btn btn-sm z-depth-0" role="button" target="_blank" style="font-size:17px;">Code</a>
       </div>
   </div>
