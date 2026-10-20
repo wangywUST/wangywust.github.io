@@ -1,0 +1,102 @@
+[
+  {
+    "citekey": "wang2020detecting",
+    "title": "Detecting implementation bugs in graph convolutional network based node classifiers",
+    "status": "manual",
+    "source_url": "https://ieeexplore.ieee.org/document/9251083",
+    "pdf_url": "",
+    "filename": "wang2020detecting.pdf",
+    "verify": "source-trust",
+    "message": "No reachable open-access PDF. Semantic Scholar marks openAccessPdf CLOSED (DOI 10.1109/ISSRE5003.2020.00037, IEEE Xplore paywalled). The author previously hosted a copy at https://wangywust.github.io/Paper/2020det.pdf but the live site now returns 404 (GitHub Pages); Google has a cached text snapshot of it, suggesting the local file was moved/renamed rather than absent. Wayback Machine (archive.org) was unreachable from this network. Suggest: re-add the local PDF that previously backed /Paper/2020det.pdf, or export from IEEE Xplore doc 9251083."
+  },
+  {
+    "citekey": "wang2020nodeaug",
+    "title": "NodeAug: Semi-supervised node classification with data augmentation",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/nodeaug_kdd20.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/nodeaug_kdd20.pdf",
+    "filename": "wang2020nodeaug.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from co-author Bryan Hooi's NUS publication page (bhooi.github.io). 2,077,460 bytes, 11 pages, first-page text contains 'NodeAug' and 'Data Augmentation'."
+  },
+  {
+    "citekey": "wang2020provably",
+    "title": "Provably robust node classification via low-pass message passing",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/lpgcn_icdm20.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/lpgcn_icdm20.pdf",
+    "filename": "wang2020provably.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from bhooi.github.io (co-hosted author copy, ICDM 2020). 704,319 bytes, 10 pages, first-page text contains 'Provably Robust' and 'Low-Pass Message'."
+  },
+  {
+    "citekey": "wang2021adaptive",
+    "title": "Adaptive data augmentation on temporal graphs",
+    "status": "downloaded",
+    "source_url": "https://proceedings.neurips.cc/paper/2021/file/0b0b0994d12ad343511adfbfc364256e-Paper.pdf",
+    "pdf_url": "https://proceedings.neurips.cc/paper/2021/file/0b0b0994d12ad343511adfbfc364256e-Paper.pdf",
+    "filename": "wang2021adaptive.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from official NeurIPS 2021 proceedings open-access PDF. 417,790 bytes, 13 pages, first-page text contains 'Adaptive Data Augmentation' and 'Temporal Graph'."
+  },
+  {
+    "citekey": "wang2021curgraph",
+    "title": "CurGraph: Curriculum learning for graph classification",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/curgraph_web21.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/curgraph_web21.pdf",
+    "filename": "wang2021curgraph.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from bhooi.github.io (CurGraph WWW 2021, DOI 10.1145/3442381.3450025). 1,485,124 bytes, 11 pages, first-page text contains 'CurGraph' and 'Curriculum'. This is the WWW'21 CurGraph paper as required, not the unrelated 2026 heterogeneous-graph-explanation entry that shares the citekey."
+  },
+  {
+    "citekey": "wang2021mixup",
+    "title": "Mixup for node and graph classification",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/mixup_web21.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/mixup_web21.pdf",
+    "filename": "wang2021mixup.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from bhooi.github.io (WWW 2021). 1,516,847 bytes, 12 pages, first-page text contains 'Mixup' and 'Node and Graph'."
+  },
+  {
+    "citekey": "wang2021progressive",
+    "title": "Progressive supervision for node classification",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/prosup_ecml20.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/prosup_ecml20.pdf",
+    "filename": "wang2021progressive.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from bhooi.github.io (ECML-PKDD 2020). 1,396,127 bytes, 16 pages, first-page text contains 'Progressive Supervision'."
+  },
+  {
+    "citekey": "wang2023graph",
+    "title": "Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference",
+    "status": "downloaded",
+    "source_url": "https://bhooi.github.io/papers/genn_wsdm23.pdf",
+    "pdf_url": "https://bhooi.github.io/papers/genn_wsdm23.pdf",
+    "filename": "wang2023graph.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from bhooi.github.io (GENN, WSDM 2023). 1,260,426 bytes, 9 pages, first-page text contains 'Graph Explicit' and 'Explicitly Encoding'."
+  },
+  {
+    "citekey": "wang2025vulnerability",
+    "title": "Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety",
+    "status": "downloaded",
+    "source_url": "https://aclanthology.org/2025.findings-naacl.219.pdf",
+    "pdf_url": "https://aclanthology.org/2025.findings-naacl.219.pdf",
+    "filename": "wang2025vulnerability.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from ACL Anthology open access (Findings of NAACL 2025, paper 219). 684,850 bytes, 14 pages, first-page text contains 'Output Prefix Jailbreak' and 'Positions'. (pypdf emitted a non-fatal annotation-object parse warning; text extraction succeeded and header/size are valid.)"
+  },
+  {
+    "citekey": "wang2026highlightbench",
+    "title": "HighlightBench: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/pdf/2603.26784",
+    "pdf_url": "https://arxiv.org/pdf/2603.26784",
+    "filename": "wang2026highlightbench.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv (2603.26784; ECCV 2026). 8,394,315 bytes, 24 pages, first-page text contains 'HighlightBench' and 'Table Reasoning'."
+  }
+]

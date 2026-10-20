@@ -1,0 +1,102 @@
+[
+  {
+    "citekey": "gao2026orbitpsibench",
+    "title": "OrbitPSIBench: Benchmarking Vision-Free LLMs' Anatomical Reasoning in Orbital Bone",
+    "status": "manual",
+    "source_url": "https://wangywust.github.io/publications",
+    "pdf_url": "",
+    "filename": "gao2026orbitpsibench.pdf",
+    "verify": "source-trust",
+    "message": "No open PDF found. MICCAI 2026 (Springer LNCS, paywalled); not on arXiv (exact-title API query empty), not indexed in Semantic Scholar, no bioRxiv/medRxiv/researchSquare preprint located. Suggest obtaining from Springer MICCAI 2026 proceedings or author Yao Gao / Yi Sun group; user's own publications page lists it with no PDF."
+  },
+  {
+    "citekey": "ge2026prism",
+    "title": "Prism-: Differential Subspace Steering for Prompt Highlighting in Large Language Models",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2603.10705",
+    "pdf_url": "https://arxiv.org/pdf/2603.10705",
+    "filename": "ge2026prism.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2603.10705 (Prism-Delta, Yuyao Ge et al., ICT CAS). First-page text matched Prism/Subspace Steering/Prompt Highlighting."
+  },
+  {
+    "citekey": "ge2026skillforge",
+    "title": "SkillForge: Co-Evolving Skills and Agents via Dynamic Skill Lifecycles",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2610.09832",
+    "pdf_url": "https://arxiv.org/pdf/2610.09832",
+    "filename": "ge2026skillforge.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2610.09832 (S2 externalIds ArXiv=2610.09832, title exact match). First-page text matched SkillForge/Dynamic Skill Lifecycles."
+  },
+  {
+    "citekey": "ge2026streaming",
+    "title": "What Should a Streaming Video Model Remember?",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2606.16353",
+    "pdf_url": "https://arxiv.org/pdf/2606.16353",
+    "filename": "ge2026streaming.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2606.16353 (S2 exact title match, ArXiv=2606.16353). First-page text matched Streaming Video Model/Remember."
+  },
+  {
+    "citekey": "han2026dynamic",
+    "title": "Dynamic Infilling Anchors for Format-Constrained Generation in Diffusion Large Language Models",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2606.04535",
+    "pdf_url": "https://arxiv.org/pdf/2606.04535",
+    "filename": "han2026dynamic.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2606.04535 (abstract title exact match). First-page text matched Dynamic Infilling Anchors/Diffusion."
+  },
+  {
+    "citekey": "he2026recon",
+    "title": "ReCon: Active Defense against Large Vision-Language Model Jailbreaks via Reverse Safety Concept Injection",
+    "status": "downloaded",
+    "source_url": "https://aclanthology.org/2026.findings-acl.1173/",
+    "pdf_url": "https://aclanthology.org/2026.findings-acl.1173.pdf",
+    "filename": "he2026recon.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from ACL Anthology open-access PDF https://aclanthology.org/2026.findings-acl.1173.pdf (S2 openAccessPdf). First-page text matched ReCon/Jailbreak/Safety Concept."
+  },
+  {
+    "citekey": "jiang2026sqlagent",
+    "title": "SQLAgent: Learning to Explore Before Generating as a Data Engineer",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2602.01952",
+    "pdf_url": "https://arxiv.org/pdf/2602.01952",
+    "filename": "jiang2026sqlagent.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2602.01952 (also ACL Findings 2026.findings-acl.1959). First-page text matched SQLAgent/Data Engineer."
+  },
+  {
+    "citekey": "li2026stdr",
+    "title": "STDR: Spatio-Temporal Decoupling for Real-Time Dynamic Scene Rendering",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2505.22400",
+    "pdf_url": "https://export.arxiv.org/pdf/2505.22400",
+    "filename": "li2026stdr.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from arXiv https://arxiv.org/pdf/2505.22400 via export mirror (title exact match; note arXiv ID is 2505.22400 despite 2026 citekey). First-page text matched STDR/Spatio-Temporal Decoupling."
+  },
+  {
+    "citekey": "liang2021fine",
+    "title": "Fine-grained urban flow prediction",
+    "status": "downloaded",
+    "source_url": "https://yuxuanliang.com (author copy)",
+    "pdf_url": "http://urban-computing.com/pdf/WWW2021UrbanFlowPrediction.pdf",
+    "filename": "liang2021fine.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from author-hosted PDF http://urban-computing.com/pdf/WWW2021UrbanFlowPrediction.pdf (Yuxuan Liang research page, STRN WWW'21). ACM DOI 10.1145/3442381.3449792 is paywalled; this author copy is the open version. First-page text matched Urban Flow."
+  },
+  {
+    "citekey": "liang2022mixed",
+    "title": "Mixed-order relation-aware recurrent neural networks for spatio-temporal forecasting",
+    "status": "downloaded",
+    "source_url": "https://zhangjunbo.org (author copy)",
+    "pdf_url": "https://zhangjunbo.org/pdf/2022_TKDE_MixRNN.pdf",
+    "filename": "liang2022mixed.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from author-hosted PDF https://zhangjunbo.org/pdf/2022_TKDE_MixRNN.pdf (MixRNN+, IEEE TKDE 2023, DOI 10.1109/TKDE.2022.3222373). IEEE Xplore is paywalled; this author copy is the open version. First-page text matched Mixed-Order Relation-Aware/Recurrent Neural."
+  }
+]

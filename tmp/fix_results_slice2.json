@@ -1,0 +1,102 @@
+[
+  {
+    "citekey": "mei2026gated",
+    "title": "Gated Differentiable Working Memory for Long-Context Language Modeling",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2601.12906",
+    "pdf_url": "https://arxiv.org/pdf/2601.12906",
+    "filename": "mei2026gated.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2601.12906 (title/authors Lingrui Mei et al. match). 1,046,297 bytes, %PDF header OK."
+  },
+  {
+    "citekey": "mei2026hiddenguard",
+    "title": "HiddenGuard: Fine-Grained Safe Generation with Specialized Representation Router",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2410.02684",
+    "pdf_url": "https://arxiv.org/pdf/2410.02684",
+    "filename": "mei2026hiddenguard.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2410.02684 (authors Lingrui Mei, Shenghua Liu, Yiwei Wang, Baolong Bi, Ruibin Yuan, Xueqi Cheng match). 1,036,989 bytes, %PDF header OK."
+  },
+  {
+    "citekey": "mei2026steep",
+    "title": "Steep Test-time Scaling Law via Environment Augmented Generation",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2504.14597",
+    "pdf_url": "https://arxiv.org/pdf/2504.14597",
+    "filename": "mei2026steep.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2504.14597 ('a1: Steep Test-time Scaling Law via Environment Augmented Generation', EAG, a1-32B matches). 4,462,416 bytes, %PDF header OK. Note: OpenReview lists this as an ICLR 2026 withdrawn submission; the arXiv preprint is the open version."
+  },
+  {
+    "citekey": "nan2026scti",
+    "title": "SCTI: Self-Calibrated Trident Identification of Black-Box LLM Watermarks",
+    "status": "manual",
+    "source_url": "https://openreview.net/forum?id=sSXd2zEa4O",
+    "pdf_url": "",
+    "filename": "",
+    "verify": "source-trust",
+    "message": "NeurIPS 2026 paper with no arXiv preprint (arXiv API author/title search by Zhixiong Nan returned empty) and no other open copy. OpenReview direct PDF download is 403 (Cloudflare JS challenge, script-blocked). Proceedings.neurips.cc not yet posted (conference Dec 2026). Manually download from OpenReview: https://openreview.net/forum?id=sSXd2zEa4O (PDF link on that page)."
+  },
+  {
+    "citekey": "shen2025oida",
+    "title": "OIDA-QA: A Multimodal Benchmark for Analyzing the Opioid Industry Documents Archive",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2511.09914",
+    "pdf_url": "https://arxiv.org/pdf/2511.09914",
+    "filename": "shen2025oida.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2511.09914 (Xuan Shen et al., OIDA-QA benchmark matches). 7,384,518 bytes, %PDF header OK."
+  },
+  {
+    "citekey": "song2026hard",
+    "title": "Hard to Read, Easy to Jailbreak: How Visual Degradation Bypasses MLLM Safety Alignment",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2605.07250",
+    "pdf_url": "https://arxiv.org/pdf/2605.07250",
+    "filename": "song2026hard.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2605.07250 (also ACL Anthology 2026.findings-acl.983; abstract 'Cognitive Overload' matches). First attempt timed out, retry succeeded. 3,012,244 bytes, %PDF header OK."
+  },
+  {
+    "citekey": "song2026mimolp",
+    "title": "MIMO-LP: A Multi-Input Multi-Output Framework for Subgraph-based Link Prediction",
+    "status": "manual",
+    "source_url": "https://openreview.net/forum?id=5Ls1FrQflg",
+    "pdf_url": "",
+    "filename": "",
+    "verify": "source-trust",
+    "message": "ICML 2026 paper with no arXiv preprint (arXiv title/author search empty; Guangchi Liu and Yixin Song publication pages list it with no PDF/arXiv link). OpenReview attachment download returns 403 (Cloudflare). PMLR proceedings.mlr.press page not yet posted. Manually download from OpenReview: https://openreview.net/forum?id=5Ls1FrQflg (PDF link on that page)."
+  },
+  {
+    "citekey": "tao2026mitigating",
+    "title": "Mitigating Coordinate Prediction Bias from Positional Encoding Failures",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2510.22102",
+    "pdf_url": "https://arxiv.org/pdf/2510.22102",
+    "filename": "tao2026mitigating.pdf",
+    "verify": "header+size",
+    "message": "Downloaded from arXiv 2510.22102 (Xingjian Tao, Yiwei Wang, Yujun Cai, Yihong Luo, Kai Han, Jing Tang; VPSG method matches). 3,138,515 bytes, %PDF header OK."
+  },
+  {
+    "citekey": "tao2026rectifying",
+    "title": "Rectifying Coordinate Drift in MLLMs via Counterfactual Positional Guidance",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2510.22102",
+    "pdf_url": "https://arxiv.org/pdf/2510.22102",
+    "filename": "tao2026rectifying.pdf",
+    "verify": "header+size",
+    "message": "IMPORTANT: This citekey appears to be the SAME work as tao2026mitigating under a different title. OpenReview 'Rectifying Coordinate Drift...' (forum id t6gnlciXzA) abstract describes the identical VPSG method (shuffle VPEs, finite-state machine, ScreenSpot-Pro), word-for-word matching arXiv 2510.22102. No separate arXiv preprint exists. Copied the VPSG preprint (2510.22102) to tao2026rectifying.pdf (byte-identical, 3,138,515 bytes, %PDF OK). User may want to merge these two bib entries."
+  },
+  {
+    "citekey": "wang2017using",
+    "title": "Using knowledge graphs to explain entity co-occurrence in Twitter",
+    "status": "manual",
+    "source_url": "https://doi.org/10.1145/3132847.3133161",
+    "pdf_url": "",
+    "filename": "",
+    "verify": "source-trust",
+    "message": "CIKM 2017 short paper (4 pages). Semantic Scholar reports isOpenAccess=false, openAccessPdf status CLOSED. No arXiv preprint; author pages (Yuan-Fang Li Monash, Monash pure portal) link only to the ACM DOI paywall with no free copy. Manually obtain via ACM: https://doi.org/10.1145/3132847.3133161 (author Yiwei Wang likely has an institutional/author copy)."
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "citekey": "wang2026readable",
+    "title": "Readable Yet Unpredictable: Rotated-Outcome Prediction in Vision-Language Models",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2606.07641",
+    "pdf_url": "https://arxiv.org/pdf/2606.07641",
+    "filename": "wang2026readable.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2606.07641 (7.70MB). First-page text contains title keywords 'readable yet unpredictable'/'rotated'. Title matches bib exactly."
+  },
+  {
+    "citekey": "wu2025evostealer",
+    "title": "EvoStealer: Differential Evolution for Prompt Template Stealing Against Text-to-Image Synthesis",
+    "status": "downloaded",
+    "source_url": "https://aclanthology.org/2025.findings-acl.868/",
+    "pdf_url": "https://aclanthology.org/2025.findings-acl.868.pdf",
+    "filename": "wu2025evostealer.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from ACL Anthology open-access camera-ready (45.25MB). Published title is 'Vulnerability of Text-to-Image Models to Prompt Template Stealing: A Differential Evolution Approach' = same EvoStealer paper (arXiv preprint 2502.14285). First-page text contains 'evostealer'/'differential evolution'."
+  },
+  {
+    "citekey": "xie2026hierarchical",
+    "title": "Hierarchical, Interpretable, Label-Free Concept Bottleneck Model",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2604.02468",
+    "pdf_url": "https://arxiv.org/pdf/2604.02468",
+    "filename": "xie2026hierarchical.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2604.02468 (1.95MB). First-page text contains 'concept bottleneck'/'hierarchical'. Title matches bib exactly (HIL-CBM)."
+  },
+  {
+    "citekey": "yao2026multimodal",
+    "title": "Multimodal Reward Hacking in Reinforcement Learning",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2607.09492",
+    "pdf_url": "https://arxiv.org/pdf/2607.09492",
+    "filename": "yao2026multimodal.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2607.09492 (1.40MB). First-page text contains 'reward hacking'. Title matches bib exactly."
+  },
+  {
+    "citekey": "yao2026notsync",
+    "title": "Not in Sync: Unveiling Temporal Bias in Large Audio-Language Models",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2510.12185",
+    "pdf_url": "https://arxiv.org/pdf/2510.12185",
+    "filename": "yao2026notsync.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2510.12185 (3.71MB; first attempt timed out, retry with 120s timeout succeeded). arXiv preprint titled 'Not in Sync: Unveiling Temporal Bias in Audio Chat Models' - same paper, authors (Jiayu Yao, Shenghua Liu, Yiwei Wang, Xueqi Cheng et al.) match bib. First-page text contains 'temporal bias'/'audio'."
+  },
+  {
+    "citekey": "zhai2025peripheral",
+    "title": "Peripheral Memory for LLMs: Integration of Sequential Memory Banks with Adaptive Querying",
+    "status": "downloaded",
+    "source_url": "https://proceedings.mlr.press/v267/zhai25b.html",
+    "pdf_url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/zhai25b/zhai25b.pdf",
+    "filename": "zhai2025peripheral.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from PMLR v267 (ICML 2025, zhai25b, 1.86MB; proceedings.mlr.press mirror worked via raw.githubusercontent asset host). First-page text contains 'peripheral memory'/'memory banks'. Title matches bib exactly."
+  },
+  {
+    "citekey": "zhang2026vdeal",
+    "title": "V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding--Refusal Coupling Failure",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2607.21151",
+    "pdf_url": "https://arxiv.org/pdf/2607.21151",
+    "filename": "zhang2026vdeal.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2607.21151 (653KB). First-page text contains 'v-deal'/'refusal'. Title matches bib (COLM 2026)."
+  },
+  {
+    "citekey": "zhao2019optimization",
+    "title": "Optimization algorithms for graph Laplacian estimation via ADMM and MM",
+    "status": "downloaded",
+    "source_url": "https://palomar.home.ece.ust.hk/papers/2019/ZhaoWangKumarPalomar-TSP2019.pdf",
+    "pdf_url": "https://palomar.home.ece.ust.hk/papers/2019/ZhaoWangKumarPalomar-TSP2019.pdf",
+    "filename": "zhao2019optimization.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from author Daniel Palomar's HKUST homepage (1.70MB), the open-access version of the IEEE TSP 2019 paper (DOI 10.1109/tsp.2019.2925602, paywalled on IEEE Xplore). First-page text contains 'graph laplacian'/'admm'."
+  },
+  {
+    "citekey": "zhong2025mquake",
+    "title": "MQuAKE-Remastered: Multi-Hop Knowledge Editing Can Only Be Advanced With Reliable Evaluations",
+    "status": "manual",
+    "source_url": "https://openreview.net/forum?id=m9wG6ai2Xk",
+    "pdf_url": "https://openreview.net/pdf?id=m9wG6ai2Xk",
+    "filename": "zhong2025mquake.pdf",
+    "verify": "source-trust",
+    "message": "No free script-accessible PDF found. No arXiv preprint exists for this ICLR 2025 paper (Google Scholar's 'arXiv:2410.05331' belongs to a different co-authored paper 'Taylor Unswift'). OpenReview PDF (https://openreview.net/pdf?id=m9wG6ai2Xk) is blocked by Cloudflare JS challenge for all scripted access - verified twice: urllib returns an HTML challenge page (~4.8KB) instead of PDF, and server-side fetch also only gets the 'Verifying your browser' page. Recommend manual download in a browser from https://openreview.net/forum?id=m9wG6ai2Xk (Download PDF button)."
+  },
+  {
+    "citekey": "zhu2026save",
+    "title": "When Can Large Reasoning Models Save Thinking? Mechanistic Analysis of Behavioral Divergence in Reasoning",
+    "status": "downloaded",
+    "source_url": "https://arxiv.org/abs/2505.15276",
+    "pdf_url": "https://arxiv.org/pdf/2505.15276",
+    "filename": "zhu2026save.pdf",
+    "verify": "header+size+text",
+    "message": "Downloaded from https://arxiv.org/pdf/2505.15276 (951KB). First-page text contains 'save thinking'/'behavioral divergence'. Title matches bib exactly (Findings of EMNLP 2026)."
+  }
+]
