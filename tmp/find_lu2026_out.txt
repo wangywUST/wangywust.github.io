@@ -1,0 +1,2 @@
+S2 by DOI: {"paperId": "2222458d70d1b0ab52a4fb256c037865a5b538e1", "externalIds": {"DBLP": "conf/www/LuJGZWGWR26", "DOI": "10.1145/3774904.3792516", "CorpusId": 287400858}, "title": "Towards Robust Heterogeneous Graph Explanations under Structural Perturbations", "venue": "The Web Conference", "year": 2026, "openAccessPdf": {"url": "https://doi.org/10.1145/3774904.3792516", "status": "HYBRID", "license": "CCBY"}}
+
