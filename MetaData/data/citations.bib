@@ -1,5 +1,6 @@
 @article{tong2026audio,
   title={Audio-Zero: Label-Free Self-Evolution for Fine-Grained Audio Reasoning},
+  abstract={Large audio-language models understand acoustic content well but struggle with fine-grained reasoning such as event order, repetition, and duration, and current post-training relies on costly labels. Audio-Zero turns unlabeled audio contrast pairs into a self-play odd-listener game: the model describes what it hears as clues and identifies which listener heard a subtly different variant, yielding verifiable rewards without annotation. Trained on Qwen2-Audio-7B and Qwen2.5-Omni-7B, the method improves fine-grained reasoning on TREA, MMAU, and MMAR while retaining broad audio understanding, with finer auditory descriptions emerging under game pressure.},
   author={Tong, Siqian and Li, Xuan and Li, Chaozhuo and Bi, Baolong and Wang, Yiwei and Cai, Yujun and Liu, Shenghua and Hao, Chengpeng},
   journal={arXiv preprint arXiv:2607.20166},
   year={2026}
@@ -7,6 +8,7 @@
 
 @article{xiong2025thinking,
   title={Thinking with sound: Audio chain-of-thought enables multimodal reasoning in large audio-language models},
+  abstract={Large audio-language models reason poorly under complex acoustic conditions and cannot call acoustic tools such as noise suppression, source separation, or temporal alignment. Thinking-with-Sound equips them with audio chain-of-thought, letting the model actively analyze and manipulate the audio signal through multimodal reasoning instead of treating audio as a static input. On a new perturbation-based benchmark, MELD-Hard1k, state-of-the-art models lose over half their accuracy, while the framework raises absolute accuracy by 24.73 percent for small models and up to 36.61 percent for larger ones, improving robustness without retraining.},
   author={Xiong, Zhen and Cai, Yujun and Li, Zhecheng and Yuan, Junsong and Wang, Yiwei},
   journal={arXiv preprint arXiv:2509.21749},
   url = {https://arxiv.org/pdf/2509.21749?},
@@ -15,6 +17,7 @@
 
 @article{sun2025audiomotionbench,
   title={AudioMotionBench: Evaluating Auditory Motion Perception in Audio LLMs},
+  abstract={Whether audio-language models can perceive the spatial motion of sound sources has remained untested. AudioMotionBench is a controlled question-answering benchmark built on binaural audio that asks models to infer the direction and trajectory of moving sources. Experiments show that current models average below 50 percent accuracy and cannot reliably recognize motion cues or directional patterns, exposing a systematic deficit in auditory spatial reasoning. The benchmark provides a diagnostic tool and a baseline for future work on spatial cognition in audio-language models.},
   author={Sun, Zhe and Cai, Yujun and Yao, Jiayu and Wang, Yiwei},
   journal={arXiv preprint arXiv:2511.13273},
   url = {https://arxiv.org/pdf/2511.13273},
@@ -27,6 +30,7 @@
   doi = {10.18653/v1/2024.findings-acl.215},
   pages = {3615--3625},
   title = {Lpnl: Scalable link prediction with large language models},
+  abstract = {Applying large language models to graph learning is hindered by the sheer volume of information in large graphs. LPNL frames link prediction as natural-language reasoning: it describes graph details in prompts, uses a two-stage sampling pipeline to extract relevant subgraph information, and applies a divide-and-conquer strategy that keeps input tokens within limits. A T5 model is then fine-tuned with self-supervised link-prediction objectives. On large-scale heterogeneous graphs, the framework outperforms strong baselines, showing that LLMs can perform scalable link prediction without ingesting entire graphs.},
   url = {https://doi.org/10.18653/v1/2024.findings-acl.215},
   year = {2024}
 }
@@ -37,6 +41,7 @@
   doi = {10.18653/v1/2025.findings-acl.536},
   pages = {XXXX--XXXX},
   title = {Context-DPO: Aligning Language Models for Context-Faithfulness},
+  abstract = {Language models must stay faithful to retrieved context, yet alignment methods target values and intent rather than context adherence. Context-DPO is a direct-preference optimization method built specifically for context-faithfulness, paired with ConFiQA, a benchmark that simulates retrieval-augmented generation under knowledge conflicts. Using faithful and stubborn responses generated from ConFiQA as preference pairs, it aligns models to follow provided context. Across popular open-source models it improves context-faithfulness by 35 to 280 percent while preserving general generation quality and offering interpretable insight into context use.},
   url = {https://doi.org/10.18653/v1/2025.findings-acl.536},
   year = {2025}
 }
@@ -47,6 +52,7 @@
   doi = {10.18653/v1/2025.acl-long.841},
   pages = {XXXX--XXXX},
   title = {Decoding by Contrasting Knowledge: Enhancing Large Language Model Confidence on Edited Facts},
+  abstract = {In-context editing is the most effective knowledge-editing method but remains a black box, and its gains are undermined by stubborn parametric knowledge. DeCK analyzes token-level logits and finds that edited knowledge boosts logits yet competes with stale memorized facts. At decoding time it contrasts the next-token distribution produced by the edited context against that from the unedited parametric model, amplifying the new knowledge. Applied to Llama3-8B-Instruct on MQuAKE, it raises edited-fact accuracy by up to 219 percent and can be plugged into any in-context editing method as a training-free decoding component.},
   url = {https://doi.org/10.18653/v1/2025.acl-long.841},
   year = {2025}
 }
@@ -56,6 +62,7 @@
   booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
   doi = {10.36227/techrxiv.173160875.51599596/v1},
   title = {Is Factuality Enhancement a Free Lunch For LLMs? Better Factuality Can Lead to Worse Context-Faithfulness},
+  abstract = {Factuality enhancement methods reduce hallucination by strengthening parametric knowledge, but this may make models ignore the input context. The paper revisits such methods, first verifying their effect on factual accuracy and then testing their impact on knowledge editing and context-faithfulness. Across methods, improvements in factuality are inconsistent, while context-faithfulness drops sharply by as much as 69.7 percent. Hidden-state and logit analyses trace the decline to overconfidence in memorized knowledge, showing that making models more factual is not a free lunch and that future methods must protect context adherence.},
   url = {https://doi.org/10.36227/techrxiv.173160875.51599596/v1},
   year = {2025}
 }
@@ -64,6 +71,7 @@
   author = {Bi, Baolong and Liu, Shenghua and Wang, Yiwei and Xu, Yilong and Fang, Junfeng and Mei, Lingrui and Cheng, Xueqi},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models},
+  abstract = {When retrieved context conflicts with parametric knowledge, language models cannot reliably decide whether to trust their parameters or the passage. CK-PLUG introduces Confidence Gain, a metric that detects such conflicts from entropy shifts in token probabilities after context insertion, and then adjusts the distribution of tokens with negative confidence gain through one tuning parameter. This gives fine-grained, plug-and-play control over knowledge reliance. On counterfactual retrieval scenarios with Llama3-8B, it sweeps memory recall from 9.9 to 71.9 percent around a 42.1 percent baseline while keeping text fluent and accurate, and improves general retrieval-augmented tasks.},
   url = {https://arxiv.org/abs/2503.15888},
   year = {2026}
 }
@@ -73,6 +81,7 @@
   journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
   note = {Manuscript TPAMI-2026-01-0324},
   title = {PromptCD: Test-Time Behavior Enhancement via Polarity-Prompt Contrastive Decoding},
+  abstract = {Most alignment happens at training time and needs costly labeled data, while contrastive decoding has been limited to narrow capabilities. PromptCD turns contrastive decoding into a general test-time behavior controller: for a target behavior it builds paired positive and negative prompts and contrasts the model responses, in token-level probability distributions for language models and visual attention maps for vision-language models, to reinforce the desired behavior. Requiring no extra training, it improves helpfulness, honesty, and harmlessness on large language models and strengthens behavior-consistent visual grounding and VQA accuracy in vision-language models.},
   url = {https://arxiv.org/abs/2602.20696},
   year = {2026}
 }
@@ -82,6 +91,7 @@
   journal = {International Conference on Machine Learning (ICML)},
   note = {Spotlight},
   title = {Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning},
+  abstract = {Reinforcement learning with verifiable rewards largely targets single domains such as mathematics, and purely online training restricts exploration. RGR-GRPO uses rubrics to supply both dense reward signals and offline guidance during GRPO training, letting models explore a wider solution space across domains. Across 14 benchmarks it beats methods relying only on outcome rewards or offline guidance, improving over the verifiable online RL baseline by 7.0, 5.4, 8.4, and 6.6 percent on math, physics, chemistry, and general reasoning. It keeps entropy stable during off-policy training and yields better pass@k, reflecting sustained exploration beyond current limits.},
   url = {https://arxiv.org/abs/2511.12344},
   year = {2026}
 }
@@ -93,6 +103,7 @@
   organization = {Springer International Publishing},
   pages = {226--242},
   title = {Learning progressive joint propagation for human motion prediction},
+  abstract = {Human motion prediction is hard because of the complex structural dynamics of body behavior. The method uses a transformer with global attention over temporally encoded joint sequences to capture long-range spatial correlations and temporal dependencies. A progressive-decoding strategy then predicts joints from the body center outward along kinematic chains, and a memory-based dictionary stores global motion patterns from training to guide prediction. Evaluated on Human3.6M and CMU-Mocap, the approach outperforms prior state-of-the-art methods on challenging motion prediction benchmarks.},
   url = {https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123520222.pdf},
   year = {2020}
 }
@@ -103,6 +114,7 @@
   doi = {10.1109/iccv48922.2021.01144},
   pages = {11645--11655},
   title = {A unified 3d human motion synthesis model via conditional variational auto-encoder},
+  abstract = {Motion prediction, completion, interpolation, and spatiotemporal recovery each demand different input constraints, so prior work builds separate architectures. A unified conditional variational autoencoder treats any input as a masked motion series and learns to sample missing regions from a distribution conditioned on the observed parts. Action-Adaptive Modulation injects semantic style guidance across the whole sequence, and cross-attention links encoder and decoder features for realism. On Human3.6M and CMU-Mocap the single framework produces coherent, style-controlled motion across all four tasks.},
   url = {https://doi.org/10.1109/iccv48922.2021.01144},
   year = {2021}
 }
@@ -112,6 +124,7 @@
   booktitle = {ICML 2026 Workshop on AI for Science},
   note = {Best Paper, Spotlight},
   title = {FabScore: Fine-Grained Evaluation of Fabrications in Automated AI Research},
+  abstract = {Automated AI research can accelerate discovery, but AI-generated papers may fabricate results. FabScore evaluates such papers by extracting numerical results and figure labels as individual claims, then having a coding agent check each claim through static analysis and code execution, assigning one of six verdicts such as fabricated, reproducible, or unverifiable. Human evaluation gives it 98.6 percent precision in detecting fabrications. Applied to 144 papers, it finds a 21.2 percent claim-level fabrication rate, with over 70 percent of AI-authored conference submissions containing fabrications and experiment fabrication the most common type, while current AI reviewers miss more than 85 percent of detected cases.},
   url = {https://openreview.net/forum?id=6gYWcYQcWM},
   year = {2026}
 }
@@ -120,6 +133,7 @@
   author = {Fu, Honghao and Chen, Jiacheng and Lin, Manxi and Zheng, Junjun and Kong, Xiangheng and Wang, Yiwei and Yu, Xin and Xu, Miao and Jiang, Yuning and Cai, Yujun},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   title = {AdaM-Rec: Adaptive Modality Routing for Multimodal Recommendation},
+  abstract = {Multimodal recommenders usually fuse visual and textual signals statically, even though some queries need fine-grained visual cues and others are better served by text, so indiscriminate fusion hurts quality. AdaM-Rec is an LLM-based framework that routes between modalities dynamically per query. From structured natural-language item and preference representations, it generates pseudo-queries matching the actual query granularity but pointing to the user's positively interacted items, then uses proxy recall to estimate which modality is more reliable in analogous situations and optimizes routing agentically. It performs routed recall, enriches candidates with collaborative items, and ranks by query and preference relevance, outperforming state-of-the-art multimodal recommenders.},
   url = {https://openreview.net/forum?id=zXa9cVWJdT},
   year = {2026}
 }
@@ -128,6 +142,7 @@
   author = {Fu, Honghao and Ouyang, Yuan and Chang, Kai-Wei and Wang, Yiwei and Huang, Zi and Cai, Yujun},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {ContextNav: Towards Agentic Multimodal In-Context Learning},
+  abstract = {Multimodal in-context learning adapts models from a few examples, but hand-picked contexts are laborious while retrieved contexts bring noisy, structurally inconsistent samples. ContextNav is an agentic framework that combines scalable automated retrieval with human-like curation. It builds a resource-aware multimodal embedding pipeline over a vector database, uses agentic retrieval and structural alignment to assemble noise-robust contexts, and plans its workflow through an Operational Grammar Graph that adapts to downstream feedback. The closed loop refines context selection from ICL performance itself, reaching state-of-the-art results across diverse vision-language datasets.},
   url = {https://arxiv.org/abs/2510.04560},
   year = {2026}
 }
@@ -138,6 +153,7 @@
   doi = {10.18653/v1/2026.acl-main.XXXX},
   pages = {XXXX--XXXX},
   title = {VideoStir: Understanding Long Videos via Spatio-Temporally Structured and Intent-Aware RAG},
+  abstract = {Long-video question answering is limited by context windows, and existing retrieval-augmented methods flatten videos into independent segments and match semantics explicitly, missing structure and intent-implicit cues. VideoStir structures a video as a clip-level spatio-temporal graph and performs multi-hop retrieval to connect distant but related events. An MLLM-backed intent scorer ranks frames by alignment with the query's reasoning purpose, and a curated 600K-frame dataset, IR-600K, trains this alignment. Without auxiliary information, the framework matches state-of-the-art long-video baselines, shifting long-video RAG from flat semantic matching toward structured, intent-aware reasoning.},
   url = {https://arxiv.org/pdf/2604.05418},
   year = {2026}
 }
@@ -155,6 +171,7 @@
   doi = {10.18653/v1/2025.acl-long.321},
   pages = {3615--3625},
   title = {Can Graph Descriptive Order Affect Solving Graph Problems with LLMs?},
+  abstract = {How a graph is described to a language model can change its reasoning, but this ordering effect has been overlooked. The paper presents the first comprehensive study of how graph descriptive order affects LLM performance, evaluating four description orders across six graph problems with six mainstream models. Ordered descriptions significantly improve structural comprehension, robustness to ordering varies by task, and the impact closely tracks inherent task characteristics. The findings show that prompt ordering is a controllable factor for graph reasoning and open a route to improving performance through strategic graph description design.},
   url = {https://doi.org/10.18653/v1/2025.acl-long.321},
   year = {2025}
 }
@@ -163,6 +180,7 @@
   author = {Ge, Haonan and Wang, Yiwei and Yang, Ming-Hsuan and Cai, Yujun},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {MRFD: Multi-Region Fusion Decoding with Self-Consistency for Mitigating Hallucinations in LVLMs},
+  abstract = {Large vision-language models hallucinate because they cannot verify information across different image regions. Multi-Region Fusion Decoding is a training-free method that models inter-region consistency: it finds salient regions with cross-attention, generates an initial response for each region under chain-of-thought-style prompts, and weighs the responses by Jensen-Shannon divergence so that consistent, reliable views dominate. A consistency-aware fusion then combines per-region predictions into the final answer. Across multiple LVLMs and hallucination benchmarks, the decoding method reduces hallucinations and improves factual grounding without any model update.},
   url = {https://arxiv.org/abs/2508.10264},
   year = {2025}
 }
@@ -172,6 +190,7 @@
   booktitle = {Computer Vision--ECCV 2026: 19th European Conference},
   organization = {Springer},
   title = {Focusing by Contrastive Attention: Enhancing {VLMs}' Visual Reasoning},
+  abstract = {Vision-language models degrade in complex visual scenes, and existing fixes require extra training or external segmentation. Analyzing attention, the work finds that visual complexity correlates with attention entropy and harms reasoning, that attention refines from global scanning in shallow layers to focused convergence in deeper ones, and that contrasting attention maps from general versus task-specific queries separates signal from visual noise. Building on this, CARVE is a training-free method that extracts task-relevant visual signals by contrasting attention maps at the pixel level. On seven benchmarks it improves visual perception on both recent and older models.},
   url = {https://arxiv.org/abs/2509.06461},
   year = {2026}
 }
@@ -180,6 +199,7 @@
   author = {Ge, Yuyao and Liu, Shenghua and Wang, Yiwei and Bi, Baolong and Mei, Lingrui and Yao, Jiayu and Liu, Tianyu and Guo, Jiafeng and Cheng, Xueqi},
   booktitle = {Conference on Language Modeling (COLM)},
   title = {Prism-: Differential Subspace Steering for Prompt Highlighting in Large Language Models},
+  abstract = {Prompt highlighting steers a model toward user-specified text spans, but existing key-editing methods extract directions that mix relevant and shared context structure. Prism-delta decomposes the difference between positive and negative cross-covariance matrices to maximize discriminative energy while discarding shared directions, gives each attention head a continuous softplus importance weight, and extends the steering to value representations. Across four benchmarks and five models it matches or beats the best prior method on 19 of 20 configurations by up to 13 percent while halving the fluency cost, and improves long-context retrieval by up to 5.1 percent with negligible memory overhead under FlashAttention.},
   url = {https://openreview.net/forum?id=nS0e1g9r0B},
   year = {2026}
 }
@@ -188,6 +208,7 @@
   author = {Ge, Yuyao and Wang, Yiwei and He, Yuchen and Bi, Baolong and Mei, Lingrui and Yao, Jiayu and Chen, Lizhe and Liu, Shenghua},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   title = {SkillForge: Co-Evolving Skills and Agents via Dynamic Skill Lifecycles},
+  abstract = {Memory-augmented reinforcement learning lets LLM agents reuse skills, but retaining every skill indiscriminately lets obsolete or harmful entries accumulate and mislead the agent. SkillForge manages a skill library through a fitness-driven lifecycle of trial, active, stable, and retired states that co-evolves skills with the policy. A pre-RL phase uses the base model's own rollouts to retire low-fitness skills before supervised fine-tuning, then reinforcement learning continues selective retirement, stabilization, and LLM-guided mutation. Across interactive agent benchmarks it reaches the highest aggregate success rate, up to 7.8 percent over the strongest baseline, with a compact skill library, and it releases a 5K-record dataset of filtered trajectories and retirement events.},
   url = {https://openreview.net/forum?id=Z3a0qCfhFi},
   year = {2026}
 }
@@ -196,6 +217,7 @@
   author = {Ge, Haonan and Wang, Yiwei and Wu, Hang and Cai, Yujun},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   title = {What Should a Streaming Video Model Remember?},
+  abstract = {Streaming video models must answer queries at any moment under fixed memory budgets, and indiscriminate history injection can dilute current-scene perception. The work frames this as budgeted online latent evidence allocation and proposes SelectStream, which keeps the current observation directly visible to a frozen VLM while exposing history only through a compact query-conditioned evidence budget. Surprise-driven adaptive windowing decides when to write, priority-preserving consolidation decides what to keep, and a fixed-capacity latent memory graph supports query-conditioned retrieval. Retrieved evidence is injected as latent tokens without replaying frames. On StreamingBench it reaches 82.67 percent, on OVO-Bench 67.03 percent, while preserving 74.4 percent average accuracy on offline video benchmarks.},
   url = {https://openreview.net/forum?id=tZME4ewq9U},
   year = {2026}
 }
@@ -206,6 +228,7 @@
   doi = {10.18653/v1/2026.acl-main.XXXX},
   pages = {XXXX--XXXX},
   title = {Dynamic Infilling Anchors for Format-Constrained Generation in Diffusion Large Language Models},
+  abstract = {Diffusion language models support bidirectional attention and parallel generation, suiting format-constrained outputs such as JSON or reasoning templates, but fixed anchor positions rigidly enforce spans and cause truncated reasoning or redundant text. Dynamic Infilling Anchors is a training-free method that estimates end-anchor positions on the fly to adjust generation length before iterative infilling, keeping structure correct and content coherent. On reasoning benchmarks it substantially improves format compliance and answer accuracy, with significant zero-shot gains on GSM8K and MATH, offering a robust path to reliable structure-aware generation.},
   url = {https://openreview.net/forum?id=2972},
   year = {2026}
 }
@@ -214,6 +237,7 @@
   author = {Hao, Shuyang and Wang, Yiwei and Hooi, Bryan and Liu, Jun and Chen, Muhao and Huang, Zi and Cai, Yujun},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {Making every step effective: Jailbreaking large vision-language models through hierarchical kv equalization},
+  abstract = {Jailbreak attacks red-team vision-language models, but not every adversarial optimization step helps, and accepting all steps can lower attack success. HKVE, Hierarchical Key-Value Equalization, selectively accepts gradient updates based on the distribution of attention scores across layers so that every step moves the attack forward. It achieves attack success rates of 75.08 percent on MiniGPT-4, 85.84 percent on LLaVA, and 81.00 percent on Qwen-VL, outperforming prior methods by 20.43, 21.01, and 26.43 points, while needing fewer iterations and less compute. The result highlights how layer-wise attention statistics can guide more efficient adversarial optimization.},
   url = {https://arxiv.org/abs/2503.11750},
   year = {2025}
 }
@@ -224,6 +248,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {ReCon: Active Defense against Large Vision-Language Model Jailbreaks via Reverse Safety Concept Injection},
+  abstract = {Multimodal jailbreak attacks against vision-language models now exploit visual perturbations, yet defenses ignore visual threats, lack attack-specific specificity, and block benign inputs because they have no dedicated detector. ReCon is a black-box defense that pairs a diffusion-based image purifier to neutralize visual perturbations with an autoencoder-based anomaly detector. Its core Reverse Safety Concept Injection maps detected unsafe concepts to fine-grained constructive safe concepts and generates targeted prompts that rectify the attack semantics. Experiments show it raises robustness against jailbreaks while preserving accuracy on benign tasks.},
   url = {https://openreview.net/forum?id=3559},
   year = {2026}
 }
@@ -234,6 +259,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {SQLAgent: Learning to Explore Before Generating as a Data Engineer},
+  abstract = {Text-to-SQL fails to generalize across databases because SQL reasoning depends on each schema's unique tables, ambiguous semantics, and join paths. SQLAgent decouples exploration from generation. In an exploration stage, it navigates the schema with a Monte Carlo Tree Search-inspired strategy and builds a database-specific knowledge base of triplets linking schema fragments, executable queries, and natural-language descriptions. At deployment, a dual-agent system retrieves relevant knowledge as in-context examples and iteratively generates SQL for user questions. On large text-to-SQL benchmarks it substantially outperforms strong baselines, generalizing to unseen databases through proactive exploration.},
   url = {https://openreview.net/forum?id=6015},
   year = {2026}
 }
@@ -243,6 +269,7 @@
   booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   doi = {10.18653/v1/2024.emnlp-main.850},
   title = {Control Large Language Models via Divide-and-Conquer},
+  abstract = {Prompt-based control is attractive for lexically constrained generation, but language models struggle to impose required words reliably. Systematic evaluation identifies three failures: position bias, where models satisfy constraints only at certain input positions; insensitivity to decoding parameters; and trouble with complex constraints such as compound words. A divide-and-conquer generation strategy splits constraints into smaller ones and is effective for both white-box and black-box models, raising success by over 90 percent on the hardest lexical-constrained task. The analysis clarifies when prompt control works and offers a practical route to customizable generation.},
   url = {https://doi.org/10.18653/v1/2024.emnlp-main.850},
   year = {2024}
 }
@@ -251,6 +278,7 @@
   author = {Li, Zhecheng and Wang, Yiwei and Hooi, Bryan and Cai, Yujun and Cheung, Naifan and Peng, Nanyun and Chang, Kai-wei},
   journal = {arXiv preprint arXiv:2410.20021},
   title = {Think Carefully and Check Again! Meta-Generation Unlocking LLMs for Low-Resource Cross-Lingual Summarization},
+  abstract = {Instruction-tuned models summarize English well but do poorly on low-resource language cross-lingual summarization even in few-shot settings. A four-step zero-shot pipeline, SITR, summarizes the source, improves the summary, translates it, and refines the translation, each step with a tailored prompt. Tested with multiple LLMs on two cross-lingual summarization benchmarks across low-resource target languages, the method lets GPT-3.5 and GPT-4 consistently and significantly outperform baselines, showing that low-resource cross-lingual summarization is achievable for large models without task-specific training data.},
   url = {https://arxiv.org/pdf/2410.20021},
   year = {2024}
 }
@@ -261,6 +289,7 @@
   doi = {10.18653/v1/2025.findings-acl.666},
   pages = {XXXX--XXXX},
   title = {DRS: Deep Question Reformulation With Structured Output},
+  abstract = {When readers meet unfamiliar concepts they ask questions the text cannot answer, and models can flag such questions but struggle to help reformulate them. DRS is a zero-shot method that combines an LLM with a depth-first search algorithm to iteratively explore combinations of candidate entities and constrain outputs to those entities, producing structured reformulations that draw out the needed information. The method raises reformulation accuracy for GPT-3.5 from 23.03 to 70.42 percent and for open-source Gemma 2-9B from 26.35 to 56.75 percent, showing how structured search turns weak model reformulation into a usable reading assistant.},
   url = {https://doi.org/10.18653/v1/2025.findings-acl.666},
   year = {2025}
 }
@@ -271,6 +300,7 @@
   doi = {10.18653/v1/2025.acl-long.1452},
   pages = {XXXX--XXXX},
   title = {METAL: A Multi-Agent Framework for Chart Generation with Test-Time Scaling},
+  abstract = {Chart generation requires both visual design sense and precise code, which direct VLM prompting cannot combine. METAL decomposes the task into collaborating specialized agents that iteratively design and produce chart code satisfying desired text, layout, color, and type properties. It improves F1 by 5.2 percent over the previous best chart-generation result and by 11.33 percent over direct prompting with Llama 3.2-11B. The framework also exhibits test-time scaling: performance rises monotonically with the log of compute budget, from 29 to 213 tokens, showing that agentic collaboration trades extra inference for better charts.},
   url = {https://doi.org/10.18653/v1/2025.acl-long.1452},
   year = {2025}
 }
@@ -279,6 +309,7 @@
   author = {Li, Sifan and Cai, Yujun and Wang, Yiwei},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {SemVink: Advancing VLMs' Semantic Understanding of Optical Illusions via Visual Global Thinking},
+  abstract = {Vision-language models cannot detect hidden text or objects in optical illusions unless they perceptually adjust like humans. HC-Bench, 112 images with hidden content, shows leading VLMs near zero accuracy, 0 to 5.36 percent, even with explicit prompts, because they overrely on high-level semantics. Simply downscaling images to 32 to 128 pixels removes redundant visual noise and, surprisingly, unlocks over 99 percent accuracy. The result exposes an architectural bias toward abstract reasoning over low-level visual operations and argues for multi-scale hybrid models for medical imaging, security, and related tasks.},
   url = {https://arxiv.org/abs/2506.02803},
   year = {2025}
 }
@@ -288,6 +319,7 @@
   journal = {Second Conference on Language Modeling (COLM)},
   pages = {18762--18773},
   title = {Texture or Semantics? Vision-Language Models Get Lost in Font Recognition.},
+  abstract = {VLMs seem like natural tools for recognizing fonts in magazines, papers, and branding, but their fine-grained visual ability is untested. The Font Recognition Benchmark contains 15 common fonts in an easy version with sentences in different fonts and a hard version where each sample renders the names of all 15 fonts, creating a Stroop effect. Evaluations across VLMs find weak font recognition easily disrupted by textual Stroop cues, little benefit from few-shot or chain-of-thought prompting, and attention analysis revealing an inability to capture semantic typographic features.},
   url = {https://arxiv.org/abs/2503.23768},
   volume = {34},
   year = {2025}
@@ -299,6 +331,7 @@
   doi = {10.18653/v1/2025.acl-long.978},
   pages = {XXXX--XXXX},
   title = {Vulnerability of LLMs to Vertically Aligned Text Manipulations},
+  abstract = {Vertical text appears in math and word puzzles, and prior work showed encoder models break when words are aligned vertically, but decoder LLMs were untested. Across text-classification datasets, vertical input sharply degrades accuracy, even though humans read it easily, raising a bypass risk for content filters. Chain-of-thought reasoning does not mitigate the drop, whereas carefully analyzed few-shot examples do. Analysis of tokenization and attention matrices traces the vulnerability to how vertical formatting fragments tokens and disrupts attention, showing that formatting perturbations remain a security concern for modern decoder models.},
   url = {https://doi.org/10.18653/v1/2025.acl-long.978},
   year = {2025}
 }
@@ -307,6 +340,7 @@
   author = {Li, Bingxuan and Cui, Yiming and He, Yicheng and Wang, Yiwei and Zhang, Shu and Longyin Wen and Niu, Yulei},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   title = {EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation},
+  abstract = {Video-to-audio generation suffers from visual dominance over text, lacks fine-grained controllability, and follows only brief categorical tags. EchoFoley defines a new task for video-grounded sound generation with event-level local control and hierarchical semantics, using a symbolic representation that specifies when, what, and how each sound occurs so that models can generate, insert, or edit sounds. An expert-curated dataset, EchoFoley-6k, provides over 6,000 video-instruction-annotation triplets and 42,000 event annotations. The EchoVidia agentic framework with slow-fast thinking beats recent video-to-audio models by 40.7 percent in controllability and 12.5 percent in perceptual quality.},
   url = {https://arxiv.org/abs/2512.24731},
   year = {2026}
 }
@@ -315,6 +349,7 @@
   author = {Li, Zehao and Jiang, Hao and Cai, Yujun and Chen, Jianing and Bi, Baolong and Gao, Shuqin and Zhao, Honglong and Wang, Yiwei and Mao, Tianlu and Wang, Zhaoqi},
   booktitle = {Proceedings of the 34th ACM International Conference on Multimedia (ACM MM)},
   title = {{STDR}: Spatio-Temporal Decoupling for Real-Time Dynamic Scene Rendering},
+  abstract = {3D Gaussian Splatting renders dynamic scenes in real time, but canonical Gaussians built by aggregating all frames mix space and time, causing incoherence during initialization and poor motion modeling. STDR is a plug-and-play module that learns spatio-temporal distributions per Gaussian: a spatio-temporal mask separates static and dynamic regions, a separated deformation field handles motion, and consistency regularization keeps the two coherent. Added to existing 3DGS dynamic frameworks, it improves reconstruction quality and spatio-temporal consistency on both synthetic and real-world benchmarks without redesigning the base method.},
   url = {https://openreview.net/forum?id=OsZo5plnVA},
   year = {2026}
 }
@@ -322,6 +357,7 @@
 @article{liang2020revisiting,
   author = {Liang, Yuxuan and Ouyang, Kun and Wang, Yiwei and Rosenblum, David Samuel},
   title = {Revisiting convolutional neural networks for urban flow analytics},
+  abstract = {Citywide crowd-flow analytics models inflow and outflow per region from raster data, and CNNs are standard for spatial modeling, yet they learn global dependencies poorly and ignore that regions serve different functions. DeepLGR combines a local feature extractor per region, a global context module that captures global priors and upsamples them back to the grid, and a region-specific predictor based on tensor decomposition that gives each region a customized, parameter-efficient head. On two typical crowd-flow tasks it shows better effectiveness, stability, and generality than prior CNN models.},
   url = {https://arxiv.org/abs/2003.00895},
   year = {2020}
 }
@@ -332,6 +368,7 @@
   doi = {10.1145/3442381.3449792},
   pages = {1833--1845},
   title = {Fine-grained urban flow prediction},
+  abstract = {Fine-grained urban flow prediction must model per-grid transitions across a whole city and separate external factors such as weather for thousands of cells, which coarse-grained methods avoid. STRN uses a backbone to encode each grid, a Global Relation Module that captures global spatial dependencies far more efficiently than prior methods, and a meta learner that turns external factors and land functions such as POI density into meta-knowledge to boost prediction. On two real-world datasets it cuts error by 7.1 to 11.5 percent over the state of the art with fewer parameters and is deployed in the UrbanFlow 3.0 cloud system.},
   url = {https://doi.org/10.1145/3442381.3449792},
   year = {2021}
 }
@@ -342,6 +379,7 @@
   doi = {10.24963/ijcai.2021/207},
   pages = {1498--1504},
   title = {Modeling Trajectories with Neural Ordinary Differential Equations.},
+  abstract = {RNNs model trajectories in discrete time and update only when a new point arrives, which fits poorly with continuous-time movement, and deterministic RNNs are fragile to sensor noise. TrajODE combines the continuous-time dynamics of neural ordinary differential equations with a stochastic latent space that tolerates observation noise. On trajectory classification it outperforms RNN baselines, showing that continuous-time latent dynamics fit mobility data better than discrete sequence models.},
   url = {https://doi.org/10.24963/ijcai.2021/207},
   year = {2021}
 }
@@ -353,6 +391,7 @@
   organization = {Springer International Publishing},
   pages = {578--594},
   title = {Revisiting convolutional neural networks for citywide crowd flow analytics},
+  abstract = {Raster CNNs dominate citywide crowd-flow analysis but learn global spatial dependencies inefficiently and ignore that regions have different latent functions. DeepLGR adds a local feature extractor per region, a global context module that computes global priors and upsamples them to the grid, and a tensor-decomposition region-specific predictor that customizes outputs per region with few parameters. On standard crowd-flow tasks it is more effective, stable, and general than prior CNN models, and the design extends across multiple analytics tasks.},
   url = {https://doi.org/10.1007/978-3-030-67658-2_33},
   year = {2021}
 }
@@ -365,6 +404,7 @@
   pages = {9254--9268},
   publisher = {IEEE},
   title = {Mixed-order relation-aware recurrent neural networks for spatio-temporal forecasting},
+  abstract = {Graph convolutional RNNs forecast spatio-temporal city data with pairwise adjacency, but real spatial relations are often higher order across several nodes, and physical laws underlying the data are ignored. MixRNN+ introduces a Mixer block that captures mixed-order spatial relations and a residual update strategy that embeds known and unknown physical constraints. Across traffic speed, taxi flow, and air-quality forecasting it beats state-of-the-art baselines, and a cloud system deploys it as the foundation for smart-city forecasting.},
   url = {https://doi.org/10.1109/tkde.2022.3222373},
   volume = {35},
   year = {2022}
@@ -377,6 +417,7 @@
   number = {12},
   pages = {14329--14337},
   title = {Airformer: Predicting nationwide air quality in china with transformers},
+  abstract = {Air-quality forecasting over thousands of stations is a large-scale spatio-temporal problem with inherent uncertainty. AirFormer decouples prediction into a bottom-up deterministic stage with two new attention mechanisms that learn spatio-temporal representations efficiently, and a top-down stochastic stage with latent variables that models uncertainty. Trained and evaluated on four years of data from 1,085 stations across mainland China, it reduces 72-hour forecast error by 5 to 8 percent over the previous best model while covering unprecedented spatial granularity.},
   url = {https://doi.org/10.1609/aaai.v37i12.26676},
   volume = {37},
   year = {2023}
@@ -386,6 +427,7 @@
   author = {Liu, Juncheng and Wang, Yiwei and Hooi, Bryan and Yang, Renchi and Xiao, Xiaokui},
   journal = {arXiv preprint arXiv:2012.07065},
   title = {Active learning for node classification: The additional learning ability from unlabelled nodes},
+  abstract = {Labeled nodes are expensive in graph node classification, but active learning usually ignores the representation power of unlabeled nodes. LSCALE uses K-Medoids clustering in a latent space built by dynamically combining unsupervised and supervised features to pick which nodes to label, so that unlabeled structure informs selection. An incremental clustering module prevents redundant choices across labeling rounds. On five datasets it consistently outperforms state-of-the-art graph active learning methods, showing that unlabeled nodes provide useful additional learning signal under a fixed labeling budget.},
   url = {https://arxiv.org/abs/2012.07065},
   year = {2020}
 }
@@ -395,6 +437,7 @@
   journal = {Advances in Neural Information Processing Systems (NeurIPS)},
   pages = {18762--18773},
   title = {Eignn: Efficient infinite-depth graph neural networks},
+  abstract = {Finite-layer GNNs struggle to capture very long-range graph dependencies. EIGNN is an infinite-depth GNN whose closed-form equilibrium solution makes infinite-depth training tractable, and eigendecomposition further speeds computation. On synthetic and real graphs it captures long-range dependencies better than recent baselines, reaches state-of-the-art node classification, and is more robust to feature noise and adversarial perturbations, showing that infinite-depth message passing can be both expressive and efficient.},
   url = {https://arxiv.org/abs/2202.10720},
   volume = {34},
   year = {2021}
@@ -406,6 +449,7 @@
   doi = {10.18653/v1/2022.findings-naacl.88},
   pages = {1172--1184},
   title = {Dangling-Aware Entity Alignment with Mixed High-Order Proximities},
+  abstract = {Knowledge graphs built independently contain dangling entities with no counterpart elsewhere, but conventional entity alignment ignores them. The framework uses local high-order proximity within a nearest-neighbor subgraph and global high-order proximity in the embedding space, jointly for dangling detection and entity matching. Under two evaluation settings it detects dangling entities more precisely and aligns matchable entities better, and further analysis shows it mitigates the hubness problem that plagues dangling-aware alignment.},
   url = {https://doi.org/10.18653/v1/2022.findings-naacl.88},
   year = {2022}
 }
@@ -417,6 +461,7 @@
   organization = {Springer International Publishing Cham},
   pages = {55--70},
   title = {Lscale: latent space clustering-based active learning for node classification},
+  abstract = {Active learning for node classification picks nodes to label under a budget, yet prior methods learn representations only from labeled nodes and waste unlabeled structure. LSCALE clusters a latent space formed by dynamically mixing unsupervised and supervised features with K-Medoids to select informative nodes, and adds an incremental clustering module that avoids choosing similar nodes across rounds. On five graph datasets it beats state-of-the-art active learning methods by a large margin, confirming that unlabeled node representations carry signal that improves label efficiency.},
   url = {https://doi.org/10.1007/978-3-031-26387-3_4},
   year = {2022}
 }
@@ -433,6 +478,7 @@
   author = {Liu, Juncheng and Liu, Chenghao and Woo, Gerald and Wang, Yiwei and Hooi, Bryan and Xiong, Caiming and Sahoo, Doyen},
   journal = {Transactions on Machine Learning Research (TMLR)},
   title = {UniTST: Effectively Modeling Inter-Series and Intra-Series Dependencies for Multivariate Time Series Forecasting},
+  abstract = {Multivariate time-series forecasting models usually capture variate and temporal dependencies through separate sequential or parallel attention blocks, which cannot explicitly model how series interact within themselves and with each other. UniTST applies one unified attention over flattened patch tokens so that inter-series and intra-series dependencies are learned directly and jointly, with a dispatcher module cutting complexity so the model scales to many variates. Despite its simplicity, it outperforms more complex transformer forecasters on several benchmark datasets.},
   url = {https://arxiv.org/abs/2406.04975},
   year = {2025}
 }
@@ -442,6 +488,7 @@
   journal = {Advances in Neural Information Processing Systems (NeurIPS)},
   pages = {18762--18773},
   title = {Fast Graph Sharpness-Aware Minimization for Enhancing and Accelerating Few-Shot Node Classification},
+  abstract = {Sharpness-aware minimization improves generalization by finding flat minima, but its two forward-backward steps double training cost, a problem for GNNs under few-shot node classification. FGSAM uses a GNN only to compute the weight perturbation and an MLP to minimize the perturbed loss, reusing the perturbation gradient to inject graph topology into the update at almost no extra cost; FGSAM+ applies exact perturbations periodically. With lower compute it beats standard SAM on few-shot node classification, often optimizes faster than the base Adam, and stays competitive on heterophilic node classification.},
   url = {https://arxiv.org/abs/2410.16845},
   volume = {34},
   year = {2024}
@@ -451,6 +498,7 @@
   author = {Mei, Lingrui and Liu, Shenghua and Wang, Yiwei and Bi, Baolong and Chen, Xueqi},
   booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {SLANG: New Concept Comprehension of Large Language Models},
+  abstract = {Language evolves rapidly online through slang and memes, but LLMs trained on static corpora cannot adapt without costly continual retraining. SLANG is a benchmark that continuously integrates fresh data and tests how well models grasp emerging concepts. FOCUS, a companion method, uses causal inference to connect new phrases with real contextual instances of their colloquial use, rather than memorizing isolated definitions. Experiments on internet slang and memes show FOCUS improves precision and relevance over baselines, offering a way to adapt models to linguistic change without retraining.},
   url = {https://arxiv.org/abs/2401.12585},
   year = {2024}
 }
@@ -460,6 +508,7 @@
   journal = {International Conference on Computational Linguistics (COLING)},
   pages = {18762--18773},
   title = {"Not Aligned" is Not" Malicious": Being Careful about Hallucinations of Large Language Models' Jailbreak},
+  abstract = {Jailbreak evaluations often flag outputs as successful breaches when they are actually hallucinated and therefore harmless, inflating perceived risk. BABY BLUE is a benchmark and validation framework that adds specialized evaluators to check whether a jailbroken answer actually gives useful malicious instructions. It also augments existing red-teaming datasets with cases that isolate hallucinated jailbreaks. The result lets red-teamers measure the real harm potential of outputs rather than counting any off-policy reply as an attack, making safety evaluation more precise.},
   url = {https://arxiv.org/abs/2406.11668},
   volume = {34},
   year = {2025}
@@ -471,6 +520,7 @@
   doi = {10.18653/v1/2026.acl-main.XXXX},
   pages = {XXXX--XXXX},
   title = {Gated Differentiable Working Memory for Long-Context Language Modeling},
+  abstract = {Test-time adaptation for long contexts updates transient working-memory parameters, but uniform write policies waste gradient steps on low-value text and suffer high variance. GDWM reframes adaptation as budget-constrained memory consolidation: a Write Controller estimates Contextual Utility, an information-theoretic measure of how much each context region relies on long-range information, and allocates gradient steps accordingly under a coverage constraint. On ZeroSCROLLS and LongBench v2 it matches or beats uniform baselines with four times fewer gradient steps, advancing the efficiency-performance trade-off for test-time long-context adaptation.},
   url = {https://openreview.net/forum?id=3748},
   year = {2026}
 }
@@ -481,6 +531,7 @@
   doi = {10.18653/v1/2026.acl-main.XXXX},
   pages = {XXXX--XXXX},
   title = {HiddenGuard: Fine-Grained Safe Generation with Specialized Representation Router},
+  abstract = {Refusal-based safety is binary: it either blocks a whole answer or grants it, causing over-censorship of benign requests and missing subtle harmful content. HiddenGuard adds PRISM, a representation router that runs alongside the model and uses intermediate hidden states for token-level, real-time detection and redaction of sensitive content. Instead of refusing, it selectively redacts or replaces harmful spans while keeping the rest of the answer informative. With a token-level annotated dataset across diverse contexts, it reaches over 90 percent F1 in detecting and redacting harmful spans, enabling nuanced context-aware moderation.},
   url = {https://openreview.net/forum?id=3773},
   year = {2026}
 }
@@ -491,6 +542,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {a1: Steep Test-time Scaling Law via Environment Augmented Generation},
+  abstract = {Reasoning LLMs still hallucinate and fail to self-correct over long steps, and chain-of-thought offers no way to validate intermediate steps. Environment Augmented Generation gives each step real-time execution feedback, explores alternative branches when a step fails, and learns from successful trajectories, enabling deliberate backtracking and replanning. The resulting a1-32B model matches larger systems such as o1 on competition mathematics and beats similar models by up to 24.4 points. Analysis shows a steep scaling pattern: early investment in environment interaction pays off more as task complexity grows.},
   url = {https://openreview.net/forum?id=3785},
   year = {2026}
 }
@@ -500,6 +552,7 @@
   booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   doi = {10.21203/rs.3.rs-4613568/v1},
   title = {LLM-A*: Large Language Model Enhanced Incremental Heuristic Search on Path Planning},
+  abstract = {A-star guarantees valid paths but grows expensive with state space, while LLMs reason globally over environments but make invalid or inefficient routes. LLM-A-star combines the two: the LLM supplies global environmental understanding to guide and prune the search, while A-star ensures path validity. The hybrid reduces the time and memory cost of exact planning in large-scale scenarios without sacrificing route correctness, showing that LLMs are best used to steer classical search rather than replace it.},
   url = {https://doi.org/10.21203/rs.3.rs-4613568/v1},
   year = {2024}
 }
@@ -516,6 +569,7 @@
   author = {Rawlekar, Samyak and Swain, Amitabh and Cai, Yujun and Wang, Yiwei and Yang, Ming-Hsuan and Ahuja, Narendra},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   title = {Finding Distributed Object-Centric Properties in Self-Supervised Transformers},
+  abstract = {Self-supervised DINO ViTs discover objects through  CLS attention, but that token summarizes the whole image and localizes objects poorly. Analyzing patch-level query, key, and value similarities across all layers, the work finds object-centric information encoded in all three components and distributed across the network rather than confined to the final layer. Object-DINO exploits this training-free: it clusters attention heads across layers by patch similarity and selects the object-centric cluster. It improves unsupervised object discovery by 3.6 to 12.4 CorLoc points and grounds objects to reduce multimodal LLM hallucination.},
   url = {https://arxiv.org/abs/2603.26127},
   year = {2026}
 }
@@ -527,6 +581,7 @@
   number = {12},
   pages = {14329--14337},
   title = {OIDA-QA: A Multimodal Benchmark for Analyzing the Opioid Industry Documents Archive},
+  abstract = {The Opioid Industry Documents Archive contains millions of pages of legal and corporate records, requiring multimodal analysis of text, images, and layout. OIDA-QA organizes these documents into 400K training and 10K test items, extracts text, visual, and layout features, and uses multiple AI models to build 360K training and 10K test question-answering pairs. Domain-specific multimodal models grounded with historical QA pairs and page-level citations, plus an importance-based page classifier, improve answer precision. The released benchmark and open dataset support research on analyzing large corporate document archives.},
   url = {https://doi.org/10.1609/aaai.v37i12.26676},
   volume = {37},
   year = {2026}
@@ -536,6 +591,7 @@
   author = {Shen, Xuan and Ma, Weize and Zhou, Yufa and Tang, Enhao and Xie, Yanyue and Li, Zhengang and Gong, Yifan and Wang, Quanyi and Ding, Henghui and Wang, Yiwei and Zhao, Pu and Lin, Jun and Gu, Jiuxiang},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {Fastcar: Cache Attentive Replay for Fast Auto-Regressive Video Generation on the Edge},
+  abstract = {Auto-regressive video generation needs far more tokens than image generation, and decode-time MLPs dominate latency while adjacent frames produce highly redundant MLP outputs. FastCar replays cached MLP outputs from the previous frame when a Temporal Attention Score indicates the current frame is similar, backed by a theoretical analysis of when replay is safe. An FPGA accelerator with dynamic resource scheduling realizes the idea on edge hardware. It outperforms sparse-attention approaches with over 2.1 times decoding speedup and better energy efficiency, and combined with sparse attention it reduces drifting for long high-resolution videos.},
   url = {https://arxiv.org/abs/2505.14709},
   year = {2026}
 }
@@ -546,6 +602,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {Hard to Read, Easy to Jailbreak: How Visual Degradation Bypasses MLLM Safety Alignment},
+  abstract = {Rendering text into compressed images lets multimodal models read ultra-long contexts, but degrading image resolution unexpectedly breaks safety alignment even when the text stays legible. Experiments across noise and geometric distortions show state-of-the-art defenses deteriorate sharply, attributed to cognitive overload: deciphering degraded inputs consumes attention that would otherwise audit safety. A simple structured cognitive offloading pipeline that separates visual transcription from safety assessment mitigates the bypass. The finding warns that vision-based context compression creates a security hole in multimodal alignment.},
   url = {https://openreview.net/forum?id=2990},
   year = {2026}
 }
@@ -554,6 +611,7 @@
   author = {Song, Yixin and Liu, Guangchi and Xu, Xiangyu and Li, Shaofeng and Ling, Zhen and Wang, Yiwei and Cai, Yujun},
   journal = {International Conference on Machine Learning (ICML)},
   title = {MIMO-LP: A Multi-Input Multi-Output Framework for Subgraph-based Link Prediction},
+  abstract = {Subgraph-based link prediction is accurate because it uses local structure, but per-query subgraph message passing is slow. MIMO-LP multiplexes a batch of query pairs whose subgraphs come from one shared graph, superposing their message passing into a common latent space with minimal interference. Multiple queries are then processed in a single forward pass at training and inference, cutting redundant computation on overlapping subgraph regions. It runs up to 44 times faster than one-to-one subgraph methods while keeping predictive accuracy comparable.},
   year = {2026}
 }
 
@@ -561,6 +619,7 @@
   author = {Sun, Bowen and Cai, Yujun and Yang, Ming-Hsuan and Wu, Hang and Wang, Yiwei},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   title = {PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs},
+  abstract = {Video LLMs are temporally unstable: small frame-time shifts flip attention, because extending Rotary Position Embeddings to video creates an inverse-Fourier time kernel with frame-scale ripples that weight adjacent frames differently. PAS adds small opposed phase offsets across attention heads and averages their outputs, preserving per-head spectrum magnitude while smoothing the temporal kernel and attenuating high-frequency ripples. The training-free module makes attention Lipschitz-stable to small temporal shifts and improves several video-understanding benchmarks at matched token budgets with negligible cost, as a plug-and-play upgrade for temporal encoding.},
   url = {https://arxiv.org/abs/2511.10979},
   year = {2026}
 }
@@ -569,6 +628,7 @@
   author = {Tao, Xingjian and Wang, Yiwei and Cai, Yujun and Yang, Zhicheng and Tang, Jing},
   journal = {arXiv preprint arXiv:2412.20846},
   title = {Are LLMs Really Not Knowledgable? Mining the Submerged Knowledge in LLMs' Memory},
+  abstract = {LLMs often answer questions wrong or admit uncertainty even though their parameters hold the correct answer. Internal-representation analysis shows correct answers frequently appear among high-probability tokens but are not selected. Hits@k measures such latent knowledge retention independently of surface accuracy, revealing that models store far more knowledge than their QA scores suggest. SkipUnsure then recovers detected-but-unexpressed knowledge without retraining, improving accuracy by up to 11.8 percent on DBPedia and 6.3 percent on IMDB across open-domain and domain-specific QA datasets.},
   url = {https://arxiv.org/abs/2412.20846},
   year = {2025}
 }
@@ -577,6 +637,7 @@
   author = {Tao, Wen and Wang, Yiwei},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {How to Make Large Language Models Generate 100% Valid Molecules?},
+  abstract = {Few-shot LLMs often generate invalid SMILES strings for molecules, and SELFIES, in which every string is a valid molecule, surprisingly works worse than SMILES for LLMs, while direct self-correction of invalid strings is weak. SmiSelf converts an invalid SMILES into SELFIES using grammatical rules and exploits SELFIES' guarantee to repair it, then maps back. The framework ensures 100 percent validity while preserving molecular properties and maintaining or improving other generation metrics, and it is compatible with any SMILES-based generative model, broadening practical LLM use in drug discovery.},
   url = {https://arxiv.org/abs/2509.23099},
   year = {2025}
 }
@@ -585,6 +646,7 @@
   author = {Tao, Xingjian and Wang, Yiwei and Cai, Yujun and Yang, Zhicheng and Tang, Jing},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {Understanding GUI Agent Localization Biases through Logit Sharpness},
+  abstract = {GUI agents ground language into screen coordinates, but multimodal models hallucinate locations systematically. A fine-grained evaluation splits predictions into four error types, exposing failures hidden by plain accuracy. The Peak Sharpness Score measures how well semantic continuity aligns with the coordinate logit distribution, quantifying uncertainty in localization. Context-Aware Cropping, a training-free technique, adaptively crops the input around likely regions and improves grounding. Together the evaluation and method reveal when and why GUI agents drift and make their behavior more interpretable and robust.},
   url = {https://arxiv.org/abs/2506.15425},
   year = {2025}
 }
@@ -593,6 +655,7 @@
   author = {Tao, Xingjian and Wang, Yiwei and Cai, Yujun and Yang, Zhicheng and Tang, Jing},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {Are LLMs Really Not Knowledgeable? Mining the Submerged Knowledge in LLMs' Memory},
+  abstract = {LLMs underperform on QA not only because of missing knowledge but because they keep correct answers buried in the distribution. Token-level analysis finds correct answers often among high-probability candidates yet unselected, and Hits@k measures this latent retention independent of surface form. The work further shows that few-shot prompts allowing unsure outputs suppress low-confidence correct answers, and quantitative experiments isolate this suppression effect. The findings explain why models appear less knowledgeable than they are and give guidance for prompting and decoding in knowledge-intensive tasks.},
   url = {https://arxiv.org/abs/2412.20846},
   year = {2026}
 }
@@ -603,6 +666,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {Mitigating Coordinate Prediction Bias from Positional Encoding Failures},
+  abstract = {High-resolution inputs break visual positional encodings in multimodal models, and the failure is not random: it pushes coordinate predictions toward predictable internal spatial priors. VPSG is a training-free inference-time fix that shuffles visual positional embeddings to expose the position-unconditioned bias, then uses this negative evidence to steer digit decoding through a lightweight finite-state machine. On ScreenSpot-Pro it reduces coordinate drift and improves localization across model scales without retraining.},
   url = {https://openreview.net/forum?id=XXXX},
   year = {2026}
 }
@@ -613,6 +677,7 @@
   doi = {10.18653/v1/2026.findings-acl.XXXX},
   pages = {XXXX--XXXX},
   title = {Rectifying Coordinate Drift in MLLMs via Counterfactual Positional Guidance},
+  abstract = {Precise coordinate grounding is hard for multimodal models because high-resolution inputs degrade visual positional encodings, producing directional rather than random errors as the model falls back on internal spatial priors. Counterfactual positional guidance shuffles the visual positional embeddings at inference to isolate the position-unconditioned tendency and subtracts it while decoding digits through a small finite-state controller. This training-free correction narrows coordinate drift on ScreenSpot-Pro and improves localization accuracy at multiple model scales, showing that positional-encoding failures are diagnosable and reversible.},
   url = {https://openreview.net/forum?id=3125},
   year = {2026}
 }
@@ -622,6 +687,7 @@
   booktitle = {Computer Vision--ECCV 2026: 19th European Conference},
   organization = {Springer},
   title = {{ViewFusion}: Structured Spatial Thinking Chains for Multi-View Reasoning},
+  abstract = {Multi-view reasoning is fragile because models ignore cross-view relations and rely on single-image shortcuts. ViewFusion separates spatial alignment from answering: a first stage reasons explicitly about viewpoint relations and transformations across views into an intermediate workspace, then a second stage answers questions conditioned on that workspace. Trained with synthetic spatial supervision and GRPO reinforcement learning, it stabilizes the two-stage behavior. On MMSI-Bench it beats Qwen3-VL-4B-Instruct by 5.3 percent, with the largest gains on examples requiring genuine cross-view alignment and handling of occlusion.},
   url = {https://arxiv.org/abs/2603.06024},
   year = {2026}
 }
@@ -630,6 +696,7 @@
   author = {Tong, Siqian and Xuan, Li and Wang, Yiwei and Bi, Baolong and Cai, Yujun and Liu, Shenghua and He, Yuchen and Chengpeng, HAO},
   journal = {International Conference on Machine Learning (ICML)},
   title = {AuTAgent: A Reinforcement Learning Framework for Tool-Augmented Audio Reasoning},
+  abstract = {Audio LLMs perceive well but fail at precise acoustic measurements, and using every available tool overloads the context while prompt-based tool selection cannot judge context-dependent utility. AuTAgent is a reinforcement-learning agent that learns when and which acoustic tools to call, trained with sparse feedback and a Differential Reward that rewards tool use only when it beats the base model. On MMAU Test-mini and MMAR it improves accuracy by 4.2 and 6.2 percent for open-source and 9.8 and 8.0 percent for closed-source backbones, and transfers well to new tasks, showing tools complement audio model reasoning.},
   url = {https://arxiv.org/abs/2602.13685},
   year = {2026}
 }
@@ -640,6 +707,7 @@
   doi = {10.1145/3132847.3133161},
   pages = {2351--2354},
   title = {Using knowledge graphs to explain entity co-occurrence in Twitter},
+  abstract = {DBpedia encodes logical relations between named entities, while Twitter records how often entities are mentioned together. The work asks whether semantic paths in the knowledge graph can explain co-occurrence frequencies on Twitter. A ranking function is trained over paths containing a single intermediate entity, using lexical, graph-embedding, and popularity features, to score which path best explains why two entities appear in the same tweet. The results show knowledge-graph relations complement social-media mention statistics, letting semantic structure explain observed entity co-occurrence.},
   url = {https://doi.org/10.1145/3132847.3133161},
   year = {2017}
 }
@@ -651,6 +719,7 @@
   organization = {IEEE},
   pages = {313--324},
   title = {Detecting implementation bugs in graph convolutional network based node classifiers},
+  abstract = {GCN node classifiers suffer silent implementation bugs that compile and run normally yet degrade accuracy, because the contribution of node features and graph structure is opaque. A metamorphic-testing approach compares input-output pairs rather than checking single cases, with formal justification, to expose such bugs. An adaptive pipeline overlaps CPU and GPU work. It detects over 80 percent of synthetic mutants and two real bugs in GCN implementations while running more than ten times faster than a sequential pipeline, offering a practical way to test graph learning systems.},
   url = {https://doi.org/10.1109/issre5003.2020.00037},
   year = {2020}
 }
@@ -659,6 +728,7 @@
   author = {Wang, Yiwei and Wang, Wei and Liang, Yuxuan and Cai, Yujun and Hooi, Bryan},
   journal = {arXiv preprint arXiv:2009.10564},
   title = {Graphcrop: Subgraph cropping for graph classification},
+  abstract = {Omitting a substructure usually does not change a graph's label, so subgraph cropping simulates that real-world noise as data augmentation. GraphCrop keeps a connected, node-centric cropped subgraph with valid context, encouraging GNNs to read global structure rather than memorize a few key nodes or edges. Parameter-free and easy to add to existing classifiers, it creates informative labeled graphs and yields consistent gains on standard graph-classification benchmarks.},
   url = {https://arxiv.org/abs/2009.10564},
   year = {2020}
 }
@@ -669,6 +739,7 @@
   doi = {10.1145/3394486.3403063},
   pages = {207--217},
   title = {NodeAug: Semi-supervised node classification with data augmentation},
+  abstract = {Data augmentation for graphs is hard because edges couple nodes, so augmenting one node changes others and can shift labels. NodeAug builds a parallel universe for each node so augmentations do not interfere, and regularizes every node's prediction to be invariant to its own augmented features and structure. Three augmentation strategies alter attributes and edges, and subgraph mini-batch training feeds only each batch's receptive fields rather than the whole graph. On Cora, Citeseer, Pubmed, and two co-authorship networks it improves strong GCNs while training more efficiently.},
   url = {https://doi.org/10.1145/3394486.3403063},
   year = {2020}
 }
@@ -680,6 +751,7 @@
   organization = {IEEE},
   pages = {621--630},
   title = {Provably robust node classification via low-pass message passing},
+  abstract = {GCN node classifiers are vulnerable to adversarial edge additions and deletions. The proposed low-pass message-passing approach attenuates such perturbations while propagating features, and it comes with theoretical robustness guarantees in addition to empirical gains. The mechanism can be embedded into existing GCN architectures without redesign. Across graphs and perturbation types it improves accuracy under attack and on clean data, offering provably robust node classification.},
   url = {https://doi.org/10.1109/icdm50108.2020.00071},
   year = {2020}
 }
@@ -689,6 +761,7 @@
   journal = {Advances in Neural Information Processing Systems (NeurIPS)},
   pages = {1440--1452},
   title = {Adaptive data augmentation on temporal graphs},
+  abstract = {Temporal graph networks are powerful but complex, so they overfit noise. MeTA applies data augmentation with adaptive magnitudes: a multi-level memory tower processes augmented graphs of different magnitudes on separate levels and exchanges messages across levels to give each prediction an appropriately augmented input. Three augmentation strategies alter temporal and topological features realistically. Added to popular temporal graph networks without raising time complexity, MeTA improves edge prediction and node classification on standard datasets.},
   url = {https://www.semanticscholar.org/paper/32e863f8b3887886386df71ac05e5b397940bdc7},
   volume = {34},
   year = {2021}
@@ -700,6 +773,7 @@
   doi = {10.1145/3442381.3450025},
   pages = {1238--1248},
   title = {Towards Robust Heterogeneous Graph Explanations under Structural Perturbations},
+  abstract = {GNN explainers are unstable on real heterogeneous graphs that contain structural noise. RoHeX first analyzes how heterogeneous architectures amplify perturbations through message passing, then uses denoising variational inference to filter noisy structures and learn robust latent graph representations. Relation-aware semantics are folded into explanation generation as an optimization under the graph information bottleneck, balancing fidelity and compactness. On real heterogeneous graphs it beats state-of-the-art explainers in fidelity, stability under structural perturbation, and semantic meaningfulness.},
   url = {https://doi.org/10.1145/3442381.3450025},
   year = {2026}
 }
@@ -710,6 +784,7 @@
   doi = {10.1145/3442381.3450025},
   pages = {1238--1248},
   title = {Curgraph: Curriculum learning for graph classification},
+  abstract = {Graphs vary in classification difficulty, yet GNNs train on them in random order. CurGraph orders training easy-to-difficult: infomax graph embeddings and a neural density estimator score each graph's difficulty from intra- and inter-class embedding distributions, and a smooth-step schedule gradually admits harder graphs. A GNN then trains at the edge of its capability, expanding it each step. Across popular GNNs and graph-classification benchmarks it yields consistent gains.},
   url = {https://doi.org/10.1145/3442381.3450025},
   year = {2021}
 }
@@ -720,6 +795,7 @@
   doi = {10.1145/3442381.3449796},
   pages = {3663--3674},
   title = {Mixup for node and graph classification},
+  abstract = {Mixup interpolates features and labels of paired samples, but graph topology is irregular and connected nodes interfere. For node classification, a two-branch graph convolution mixes the receptive-field subgraphs of paired nodes, and a two-stage scheme uses pre-mixup neighbor representations to block cross-pair interference. For graph classification, graphs are interpolated in semantic space. Without raising time complexity, the methods regularize GNNs, improve test accuracy and macro-F1 on standard node and graph benchmarks, and reduce overfitting.},
   url = {https://doi.org/10.1145/3442381.3449796},
   year = {2021}
 }
@@ -731,6 +807,7 @@
   organization = {Springer International Publishing},
   pages = {266--281},
   title = {Progressive supervision for node classification},
+  abstract = {GCNs train only on final-layer predictions, forcing every node through one fixed receptive field. ProSup supervises all layers progressively, reweights node losses by hardness estimated along the information flow so the model focuses on hard nodes, and fuses multi-scale hierarchical activations adaptively for the final prediction. Applied to popular GCNs it improves node classification across diverse graphs.},
   url = {https://doi.org/10.1007/978-3-030-67658-2_16},
   year = {2021}
 }
@@ -739,6 +816,7 @@
   author = {Wang, Yiwei and Cai, Yujun and Liang, Yuxuan and Wang, Wei and Ding, Henghui and Chen, Muhao and Tang, Jing and Hooi, Bryan},
   journal = {arXiv preprint arXiv:2112.00499},
   title = {Structure-aware label smoothing for graph neural networks},
+  abstract = {One-hot labels overconfidently treat every node as purely one class, even when its neighbors in other classes are semantically close, and standard label smoothing ignores graph structure. SALS builds structure-aware label distributions from connected nodes' semantic correlations and replaces one-hot targets, adding no inference cost. On seven transductive and inductive node-classification benchmarks it beats conventional label smoothing and improves strong GNNs.},
   url = {https://arxiv.org/abs/2112.00499},
   year = {2021}
 }
@@ -748,6 +826,7 @@
   doi = {10.1109/ijcnn55064.2022.9892942},
   journal = {2022 International Joint Conference on Neural Networks (IJCNN)},
   title = {Time-aware neighbor sampling for temporal graph networks},
+  abstract = {Temporal graph networks need receptive fields of varying time scales depending on the node and prediction time. TNS learns an adaptive neighborhood per node by interpolating neighbor messages to make discrete neighbor indices differentiable, so sampling is trained end-to-end without extra supervision. It plugs into popular temporal graph networks without added time complexity and improves edge prediction and node classification on standard datasets.},
   url = {https://doi.org/10.1109/ijcnn55064.2022.9892942},
   year = {2021}
 }
@@ -758,6 +837,7 @@
   organization = {PMLR},
   pages = {14--1},
   title = {Flashlight: Scalable link prediction with effective decoders},
+  abstract = {HadamardMLP decoders score edges better than dot-product ones for link prediction, but they cannot retrieve top neighbors in sublinear time, which matters for friend-recommendation-scale services. Flashlight accelerates top-neighbor retrieval by progressively applying approximate maximum inner-product search with adaptively adjusted query embeddings. On OGBL-CITATION2 it speeds inference over 100 times without hurting accuracy, making the more effective HadamardMLP decoder scalable to large graphs.},
   url = {https://arxiv.org/abs/2209.10100},
   year = {2022}
 }
@@ -768,6 +848,7 @@
   doi = {10.18653/v1/2022.findings-naacl.128},
   pages = {1698--1708},
   title = {GraphCache: Message Passing as Caching for Sentence-Level Relation Extraction},
+  abstract = {Sentence-level relation extraction relies on entity types and context that are sparse within a single sentence. GraphCache models these properties across the whole dataset: it propagates features across sentences to learn global entity-type representations and augments each instance's local features with them, treating global priors as a cache that updates online. The module improves relation extraction quality while enabling efficient message passing over all sentences.},
   url = {https://doi.org/10.18653/v1/2022.findings-naacl.128},
   year = {2022}
 }
@@ -778,6 +859,7 @@
   doi = {10.18653/v1/2022.naacl-main.224},
   pages = {3071--3081},
   title = {Should We Rely on Entity Mentions for Relation Extraction? Debiasing Relation Extraction with Counterfactual Analysis},
+  abstract = {Relation extraction exploits entity names but picks up spurious name-relation correlations, and masking names removes useful semantics. CORE builds a causal graph of the extraction model and runs counterfactual analysis to isolate the main effect of textual context from the confounding entity-mention effect, mitigating entity bias at inference without retraining. Model-agnostic, it improves effectiveness and generalization on relation extraction benchmarks.},
   url = {https://doi.org/10.18653/v1/2022.naacl-main.224},
   year = {2022}
 }
@@ -788,6 +870,7 @@
   doi = {10.18653/v1/2023.findings-emnlp.1013},
   pages = {15173--15184},
   title = {A Causal View of Entity Bias in (Large) Language Models},
+  abstract = {Pretrained and large language models rely on biased parametric knowledge of entities, causing unfaithful predictions, and causal debiasing is hard because parameters or logits are inaccessible. A structured causal model with easily estimable parameters supports interventions for both settings: replacing an entity with neighboring entities reduces the specific bias of the original while keeping useful semantics. White-box training-time intervention improves out-of-distribution relation extraction by 5.7 points and machine reading comprehension by 9.1 points, while black-box in-context intervention lifts GPT-3.5 exact match on MRC by up to 20.5 points and cuts entity memorization in RE by up to 17.6 points.},
   url = {https://doi.org/10.18653/v1/2023.findings-emnlp.1013},
   year = {2023}
 }
@@ -797,6 +880,7 @@
   doi = {10.18653/v1/2023.conll-1.27},
   journal = {CONLL 2023},
   title = {How Fragile is Relation Extraction under Entity Replacements?},
+  abstract = {Relation extraction should depend on textual context, but models memorize entity-name patterns. Random and type-constrained entity replacements applied to TACRED test instances make state-of-the-art RE models lose 30 to 50 percent F1, showing they rely on names rather than context. The benchmark and code expose this brittleness and argue for RE models robust to entity substitutions.},
   url = {https://doi.org/10.18653/v1/2023.conll-1.27},
   year = {2023}
 }
@@ -807,6 +891,7 @@
   doi = {10.1145/3539597.3570388},
   pages = {348--356},
   title = {Graph explicit neural networks: Explicitly encoding graphs for efficient and accurate inference},
+  abstract = {Message-passing GNNs hide topology inside feature propagation, over-relying on node features and paying high inference latency. GENN explicitly encodes graph topology using network-embedding methods as a separate information source, reducing dependence on node features, and distills an MPNN teacher into a fast student that avoids the teacher's multi-layer inference. The student runs 40 to 78 times faster, improves accuracy by over 40 percent over the teacher when node features are scarce, and even wins in feature-rich settings thanks to distillation.},
   url = {https://doi.org/10.1145/3539597.3570388},
   year = {2023}
 }
@@ -817,6 +902,7 @@
   doi = {10.18653/v1/2023.emnlp-main.8},
   pages = {108--115},
   title = {Primacy Effect of ChatGPT},
+  abstract = {Instruction-tuned models answer discriminative NLU by choosing among candidate labels listed in the prompt, raising the question of whether they inherit human cognitive biases. Experiments show ChatGPT's choice is sensitive to label order and favors labels listed earlier, a primacy effect. The findings warn that prompt formatting can skew zero-shot NLU decisions and encourage position-balanced prompting in reliable applications.},
   url = {https://doi.org/10.18653/v1/2023.emnlp-main.8},
   year = {2023}
 }
@@ -825,6 +911,7 @@
   author = {Wang, Yiwei and Chen, Muhao and Peng, Nanyun and Chang, Kai-Wei},
   journal = {arXiv preprint arXiv:2401.10471},
   title = {Deepedit: Knowledge editing as decoding with constraints},
+  abstract = {Editing knowledge in LLMs is hard because multi-step reasoning deviates from the new fact and loses coherence. DeepEdit applies depth-first-search constrained decoding that enforces logical coherence and integrates new knowledge into reasoning, with a semantic importance estimator that ranks steps by relevance to the question. It also releases two harder benchmarks, MQuAKE-2002 and MQuAKE-Hard. Across knowledge-editing benchmarks it produces succinct, coherent reasoning chains that use the edited fact and improves quantitative accuracy.},
   url = {https://arxiv.org/abs/2401.10471},
   year = {2024}
 }
@@ -834,6 +921,7 @@
   journal = {International Conference on Computational Linguistics (COLING)},
   pages = {18762--18773},
   title = {Con-ReCall: Detecting Pre-training Data in LLMs via Contrastive Decoding},
+  abstract = {Detecting whether text appeared in an LLM's pre-training helps quantify privacy exposure, but prior membership-inference methods look at text in isolation or with non-member contexts only. Con-ReCall contrasts the distributional shift induced by a member context against that of a non-member context through contrastive decoding, amplifying subtle differences. On WikiMIA it reaches state-of-the-art membership detection and stays robust to text manipulations, showing member contexts carry signal once they are compared rather than analyzed alone.},
   url = {https://arxiv.org/abs/2409.03363},
   volume = {34},
   year = {2025}
@@ -844,6 +932,7 @@
   journal = {Second Conference on Language Modeling (COLM)},
   pages = {18762--18773},
   title = {Text Speaks Louder than Vision: ASCII Art Reveals Textual Biases in Vision-Language Models.},
+  abstract = {ASCII art pits textual characters against the visual shapes they form. An evaluation framework using adversarial ASCII art where character-level text deliberately contradicts the global visual pattern tests five state-of-the-art VLMs including GPT-4o, Claude, and Gemini. The models consistently prioritize the text over the visual image, and visual recognition collapses as semantic complexity grows; tuning and prompt engineering only help marginally. The text-priority bias exposes a multimodal integration flaw and a risk for content moderation.},
   url = {https://arxiv.org/abs/2504.01589},
   volume = {34},
   year = {2025}
@@ -854,6 +943,7 @@
   booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
   doi = {10.18653/v1/2025.naacl-long.210},
   title = {Tricking Retrievers with Influential Tokens: An Efficient Black-Box Corpus Poisoning Attack},
+  abstract = {RAG systems trust external corpora, so poisoned passages can hijack retrieval. Existing poisoning attacks need retriever gradients, inversion models, or heavy compute. DIGA is a black-box attack that exploits two retriever quirks: insensitivity to token order and bias toward influential tokens. It runs a genetic algorithm whose operations adaptively focus on influential tokens, generating effective adversarial passages with far less time and memory. Across datasets it matches or beats prior attacks in success rate while being much more efficient and scalable.},
   url = {https://doi.org/10.18653/v1/2025.naacl-long.210},
   year = {2025}
 }
@@ -862,6 +952,7 @@
   author = {Wang, Yiwei and Chen, Muhao and Peng, Nanyun and Chang, Kai-Wei},
   booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
   title = {Vulnerability of Large Language Models to Output Prefix Jailbreaks: Impact of Positions on Safety},
+  abstract = {Most jailbreak research makes input snippets more complex and hidden, but this work shows position matters more. Placing a simple, readable adversarial snippet at the start of the model's output, by directly forcing the target output prefix, exposes safety defenses far more effectively than input-suffix attacks or prompt-based output jailbreaks. The result shows that controlling where adversarial text appears, not how obfuscated it is, determines jailbreak success, with implications for output-side defenses.},
   url = {https://d197for5662m48.cloudfront.net/documents/publicationstatus/232193/preprint_pdf/e72e5ce3c9a28630a06627c5ef849cca.pdf},
   year = {2025}
 }
@@ -871,6 +962,7 @@
   booktitle = {Computer Vision--ECCV 2026: 19th European Conference},
   organization = {Springer},
   title = {{HighlightBench}: Benchmarking and Diagnosing Markup-Driven Table Reasoning in Scientific Documents},
+  abstract = {Visual highlights, underlines, and bold text in tables are explicit directives, but existing benchmarks cannot tell whether a VLM fails to see a markup or fails to reason with it. HighlightBench splits markup-driven table understanding into five task families: markup grounding, constrained retrieval, local relations, aggregation and comparison, and consistency and missingness, and ships a reference pipeline that exposes intermediate decisions. Experiments show strong models remain unstable when visual cues must align with structured symbolic reasoning, pinpointing the perception-to-execution failure chain.},
   url = {https://doi.org/10.1007/978-3-032-37135-5_17},
   year = {2026}
 }
@@ -879,6 +971,7 @@
   author = {Wang, Lexin and Liu, Shenghua and Wang, Yiwei and Guo, Jiafeng and Cheng, Xueqi},
   booktitle = {Findings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {Readable Yet Unpredictable: Rotated-Outcome Prediction in Vision-Language Models},
+  abstract = {Can a VLM predict what a 180-degree rotation reveals without seeing the rotated image? RotOutBench pairs original and rotated images across open visual cases and controlled text rotations. Models often read either image correctly when shown, yet fail to infer the rotated result from the original alone; on controlled text rotations predicted-rotation accuracy collapses near zero even for accurate direct readers. Diagnostics show the internal state can approach the rotated-image reading state while the final readout still follows the original string, exposing an action-prediction gap.},
   url = {https://openreview.net/forum?id=yRv2RKXmIU},
   year = {2026}
 }
@@ -887,6 +980,7 @@
   author = {Wu, Hang and Chen, Hongkai and Cai, Yujun and Liu, Chang and Ye, Qingwen and Yang, Ming-Hsuan and Wang, Yiwei},
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {DiMo-GUI: Advancing Test-time Scaling in GUI Grounding via Modality-Aware Visual Reasoning},
+  abstract = {GUI grounding struggles with cluttered screens and ambiguous language. DiMo-GUI is training-free: it splits a screenshot into textual and iconic elements so a general-purpose VLM reasons about each modality separately, then, when an initial prediction is ambiguous, generates candidate focal regions around it and incrementally zooms in to refine the bounding box. This hierarchical, modality-aware refinement disambiguates crowded layouts without extra training or annotations, improving over baseline inference on standard GUI grounding benchmarks.},
   url = {https://arxiv.org/abs/2507.00008},
   year = {2025}
 }
@@ -896,6 +990,7 @@
   booktitle = {Association for Computational Linguistics ACL},
   pages = {XXXX--XXXX},
   title = {EvoStealer: Differential Evolution for Prompt Template Stealing Against Text-to-Image Synthesis},
+  abstract = {Vendors sell prompt templates by showing sample images, and an attacker with only those images can steal the templates. PRISM is a benchmark of 50 templates and 450 images at easy and hard levels. EvoStealer steals templates by differential evolution without fine-tuning: MLLMs initialize and evolve populations of candidate prompts, and the system distills common offspring features into generalized templates. On open-source InternVL2-26B and closed GPT-4o and GPT-4o-mini, stolen templates reproduce images highly similar to the originals and generalize to new subjects, beating baselines by over 10 percent at low cost.},
   year = {2025}
 }
 
@@ -903,6 +998,7 @@
   author = {Wu, Yike and Wang, Yiwei and Cai, Yujun},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {ChainMPQ: Interleaved Text-Image Reasoning Chains for Mitigating Relation Hallucinations},
+  abstract = {Relation hallucinations are the most common yet least studied failure of LVLMs. ChainMPQ is training-free: it extracts subject and object keywords from the question to highlight image regions, then asks multi-perspective questions about the subject, object, and linking relation in sequence, carrying textual and visual memory from earlier steps into later ones. The interleaved image-text chain builds up relational inference progressively. Across LVLMs and benchmarks it sharply reduces relation hallucination, with ablations confirming each of the three components.},
   url = {https://arxiv.org/abs/2510.06292},
   year = {2026}
 }
@@ -911,6 +1007,7 @@
   author = {Xie, Haodong and Cai, Yujun and Maharjan, Rahul Singh and Wang, Yiwei and Tavella, Federico and Cangelosi, Angelo},
   booktitle = {British Machine Vision Conference (BMVC)},
   title = {Hierarchical, Interpretable, Label-Free Concept Bottleneck Model},
+  abstract = {Concept bottleneck models classify through human-understandable concepts, but at a single semantic level, unlike humans who reason at multiple abstraction levels. HIL-CBM adds hierarchy without relational concept annotations: a gradient-based visual consistency loss pushes abstraction layers to attend to similar spatial regions, and dual classification heads operate on concepts at different abstraction levels, aligning explanation granularity with predictions from abstract to concrete. It beats sparse CBMs on accuracy and, per human evaluation, gives more interpretable, accurate explanations while staying label-free.},
   url = {https://openreview.net/forum?id=VbzLj7TWTf},
   year = {2026}
 }
@@ -920,6 +1017,7 @@
   booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   doi = {10.18653/v1/2024.findings-emnlp.647},
   title = {Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLMs},
+  abstract = {Reasoning LLMs produce long chain-of-thought but behave unstably, degrading under few-shot prompting in counterintuitive ways. A graph framework clusters verbose CoT into semantically coherent steps and builds directed reasoning graphs that capture dependencies among steps. Across models and prompting regimes, structural features such as exploration density, branching, and convergence correlate strongly with accuracy, and prompting substantially reshapes the internal reasoning graph. The framework offers a way to evaluate reasoning quality beyond final answers and to guide prompt engineering.},
   url = {https://doi.org/10.18653/v1/2024.findings-emnlp.647},
   year = {2025}
 }
@@ -928,6 +1026,7 @@
   author = {Xiong, Zhen and Cai, Yujun and Li, Zhecheng and Wang, Yiwei},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {Unveiling the Potential of Diffusion Large Language Model in Controllable Generation},
+  abstract = {Autoregressive LLMs still struggle to emit reliable structured output such as JSON, which matters for function calling. Diffusion LLMs share global information across positions and reverse the generation order, properties S3 exploits: it seeds a schema template directly in the output context as the denoising starting state instead of relying on prompt engineering. The framework improves structure adherence, content fidelity, and faithfulness of generated JSON, showing that diffusion architectures are well suited to controllable generation.},
   url = {https://arxiv.org/abs/2507.04504},
   year = {2026}
 }
@@ -937,6 +1036,7 @@
   journal = {Second Conference on Language Modeling (COLM)},
   pages = {18762--18773},
   title = {How does Watermarking Affect Visual Language Models in Document Understanding?},
+  abstract = {Documents often carry watermarks, and an evaluation across document types, watermark positions, and contents finds watermarks can cut VLM document-understanding accuracy by up to 36 percent. Scattered watermarks disturb more than centered ones, and semantically meaningful watermarks disrupt more than simple occlusion. Attention and embedding analyses trace the drop to widespread attention redistribution and shifted semantic representations, motivating robust inference on watermarked documents in finance, law, and academia.},
   url = {https://arxiv.org/abs/2504.01048},
   volume = {34},
   year = {2025}
@@ -946,6 +1046,7 @@
   author = {Zhicheng Yang and Yinya Huang and Jing Xiong and Liang Feng and Xiaodan Liang and Yiwei Wang and Jing Tang},
   booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {AlignedCoT: Prompting Large Language Models via Native-Speaking Demonstrations},
+  abstract = {Handcrafted few-shot demonstrations mismatch how LLMs think, and prompting style is fragile. AlignedCoT probes, refines, and formats the model's own chain of thought iteratively to produce step-wise demonstrations the model is aligned with, working zero-shot without human-crafted examples. On math and commonsense reasoning it beats human-designed demonstrations, and rewriting GSM8K into the aligned style yields a GSM8K-Align dataset that also helps retrieval-augmented generation.},
   url = {https://arxiv.org/abs/2311.13538},
   year = {2024}
 }
@@ -954,6 +1055,7 @@
   author = {Yang, Zhicheng and Wang, Yiwei and Huang, Yinya and Guo, Zhijiang and Shi, Wei and Han, Xiongwei and Feng, Liang and Song, Linqi and Liang, Xiaodan and Tang, Jing},
   booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
   title = {OptiBench meets ReSocratic: Measure and improve LLMs for optimization modeling},
+  abstract = {Optimization benchmarks test only linear programming, far from real applied optimization. OptiBench covers end-to-end problems, linear and nonlinear, with and without tabular data, requiring models to call code solvers for exact numeric answers. To combat data scarcity, ReSocratic synthesizes optimization demonstrations by first building formal math step by step and then back-translating them into natural-language questions, producing the ReSocratic-29K dataset. Supervised fine-tuning on it closes much of the gap between small open-source models and closed models on optimization modeling.},
   url = {https://arxiv.org/abs/2407.09887},
   year = {2025}
 }
@@ -962,6 +1064,7 @@
   author = {Yang, Zhicheng and Guo, Zhijiang and Huang, Yinya and Wang, Yongxin and Shi, Wenlei and Wang, Yiwei and Liang, Xiaodan and Tang, Jing},
   journal = {International Conference on Machine Learning (ICML)},
   title = {Accordion-Thinking: Self-Regulated Step Summaries for Efficient and Readable LLM Reasoning},
+  abstract = {Long chain-of-thought grows KV cache linearly and attention quadratically. Accordion-Thinking trains the model to self-regulate step granularity: a Fold mode periodically summarizes reasoning and discards earlier thoughts, reducing history-token dependence, while reinforcement learning rewards the compression. Over training, the accuracy gap between Fold and exhaustive Unfold narrows to zero, showing the model packs essentials into summaries. On a 48GB GPU it triples throughput without accuracy loss, and the step summaries double as a human-readable reasoning trace.},
   url = {https://arxiv.org/abs/2602.03249},
   year = {2026}
 }
@@ -970,6 +1073,7 @@
   author = {Yang, Zhicheng and Guo, Zhijiang and Huang, Yinya and Wang, Yongxin and Xie, Dongchun and Li, Hanhui and Wang, Yiwei and Liang, Xiaodan and Tang, Jing},
   journal = {International Conference on Machine Learning (ICML)},
   title = {Depth-Breadth Synergy in RLVR: Unlocking LLM Reasoning Gains with Adaptive Exploration},
+  abstract = {RLVR under-explores problem difficulty and training breadth: GRPO down-weights hard, low-accuracy problems. Difficulty-Adaptive Rollout Sampling re-weights hard problems through targeted multi-stage rollouts and rebalancing schedules, improving Pass@K, while simply enlarging rollout size hurts. Scaling batch size for breadth, by contrast, raises Pass@1 through higher token entropy and less gradient noise. Combining DARS with large-batch training, DARS-Breadth, improves both Pass@K and Pass@1, showing depth and breadth are orthogonal dimensions of RLVR.},
   url = {https://arxiv.org/abs/2508.13755},
   year = {2026}
 }
@@ -978,6 +1082,7 @@
   author = {Yang, Haojin and Hu, Rui and Sun, Zequn and Zhou, Rui and Cai, Yujun and Wang, Yiwei},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {WavefrontDiffusion: Dynamic Decoding Schedule for Improved Reasoning},
+  abstract = {Diffusion language models denoise either globally, which finalizes context prematurely, or in fixed blocks, which breaks coherent semantic units. WavefrontDiffusion expands a wavefront of active tokens outward from finalized positions at the same cost as block diffusion, following the natural flow of semantics. On reasoning and code-generation benchmarks it reaches state-of-the-art denoising quality with higher semantic fidelity, showing adaptive decoding schedules matter as much as the architecture.},
   url = {https://arxiv.org/abs/2511.19473},
   year = {2026}
 }
@@ -995,6 +1100,7 @@
   author = {Yao, Jiayu and Wang, Yiwei and Zhang, Anmeng and Sun, Zhe and Wang, Songsong and Mei, Lingrui and Ge, Yuyao and Liu, Shenghua},
   booktitle = {Findings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {Multimodal Reward Hacking in Reinforcement Learning},
+  abstract = {RL-aligned MLLMs can raise reward scores while degrading visual reasoning, because text-only rewards cannot verify images. A controlled study across safety VQA, chart VQA, and stress tests, varying reward design, ambiguity, scale from 2B to 32B, and RL algorithms, tracks hacking with a Newly Rewarded Failure Rate. Outcome-only rewards cause up to 48.1 percent reward hacking, RL creates new failures rather than inheriting them, scaling helps but does not fix it, and GRPO is most robust while RLOO is most vulnerable. Reliable visual-evidence verifiers, not keyword checks, reduce hacking.},
   url = {https://openreview.net/forum?id=ZjRnXbmNQx},
   year = {2026}
 }
@@ -1003,6 +1109,7 @@
   author = {Yao, Jiayu and Liu, Shenghua and Wang, Yiwei and Cheng, Rundong and Mei, Lingrui and Bi, Baolong and Xiong, Zhen and Cheng, Xueqi},
   booktitle = {China Conference on Artificial Intelligence (CICAI)},
   title = {Not in Sync: Unveiling Temporal Bias in Large Audio-Language Models},
+  abstract = {Audio-language models can describe events but are not tested on when events occur. A first systematic study finds timestamp predictions are consistently biased earlier or later: the error is prevalent across models and datasets, grows with audio length to tens of seconds, and varies by event type and position. A Temporal Bias Index and visualization tool quantify the systematic misalignment. The result exposes a fundamental temporal-reasoning weakness and motivates temporally robust audio architectures.},
   url = {https://openreview.net/forum?id=EozcMROXS7},
   year = {2026}
 }
@@ -1011,6 +1118,7 @@
   author = {Yuan, Liangyu and Huang, Yufei splinter and Lei, Mingkun and Zhao, Tong and Wang, Ruoyu and Chi, Changxi and Wang, Yiwei and Zhang, Chi},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   title = {Improving Diffusion Generalization with Weak-to-Strong Segmented Guidance},
+  abstract = {Guidance for diffusion models extrapolates between main and inferior signals, but when to use classifier-free versus automatic guidance was unclear. Synthetic analysis frames both as weak-to-strong extrapolation methods and maps their effective regimes. Segmented Guidance hybridizes them at inference, and the same weak-to-strong principle is also migrated into the training objective so unguided models generalize better. On SD3 and SD3.5 it beats existing training-free guidance, and transformer training-time experiments show gains in conditional and unconditional settings.},
   url = {https://arxiv.org/abs/2603.20584},
   year = {2026}
 }
@@ -1019,6 +1127,7 @@
   author = {Yuan, Zhenlong and Qu, Xiangyan and Qian, Chengxuan and Chen, Rui and Tang, Jing and Sun, Lei and Chu, Xiangxiang and Zhang, Dapeng and Wang, Yiwei and Cai, Yujun and Li, Shuo},
   booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
   title = {Video-STAR: Reinforcing Open-Vocabulary Action Recognition with Tools},
+  abstract = {Open-vocabulary action recognition is hard because text-centric priors cannot separate semantically similar actions. Video-STAR decomposes actions into discriminative sub-motions for fine-grained matching and dynamically calls tools such as pose estimation and human detection to interleave cross-modal reasoning. A hierarchical reward balancing tool use, sub-motion relevance, and coherence trains the model by reinforcement learning without explicit supervision. On HMDB-51, UCF-101, SSv2, Kinetics-400, and Kinetics-600 it reaches state-of-the-art, reducing cross-modal hallucination in fine-grained action recognition.},
   url = {https://arxiv.org/abs/2510.08480},
   year = {2026}
 }
@@ -1028,6 +1137,7 @@
   journal = {International Conference on Machine Learning (ICML)},
   pages = {18762--18773},
   title = {Peripheral Memory for LLMs: Integration of Sequential Memory Banks with Adaptive Querying},
+  abstract = {Long-term knowledge updates in LLMs remain hard without retraining. The work treats memory as peripheral RAM beside the LLM as CPU: a sequence of memory banks modeled with Kolmogorov-Arnold Networks enables smooth state transitions, and read-write operations are gated by query signals derived from the model's internal states. A sign-bit-like relevance bank masks retrieved memory, which is injected as a prefix. On knowledge-editing benchmarks the peripheral memory is effective and efficient for integrating new information.},
   url = {https://www.semanticscholar.org/paper/326731529545e330414c6597ab604df2c1bb6f94},
   volume = {34},
   year = {2025}
@@ -1037,6 +1147,7 @@
   author = {Zhang, Zhetong and Fu, Honghao and Xu, Miao and Wang, Yiwei and Cai, Yujun},
   booktitle = {Conference on Language Modeling (COLM)},
   title = {V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding--Refusal Coupling Failure},
+  abstract = {Video LLMs fail safety in a counterintuitive way: harmful videos paired with benign queries are attacked more often than harmful videos paired with explicit harmful queries. V-DEAL diagnoses this across behavior, understanding, and internal representations on six video LLMs and three benchmarks: models recognize harmful content over 81 percent of the time yet still leak details under benign prompts at a 48.33 percent attack success rate, and hidden-state analysis shows visual content activates weaker refusal than text. A prompt-injection intervention cuts attack success by 48.24 points, matching fine-tuning-based defenses.},
   url = {https://openreview.net/forum?id=kHY3y2fqnK},
   year = {2026}
 }
@@ -1049,6 +1160,7 @@
   pages = {4231--4244},
   publisher = {IEEE},
   title = {Optimization algorithms for graph Laplacian estimation via ADMM and MM},
+  abstract = {Estimating a combinatorial graph Laplacian under a known topology is a non-convex problem. Two optimization schemes, ADMM and majorization-minimization, yield GLE-ADMM and GLE-MM, both reaching an optimality gap of 1e-4, about three orders better than the prior benchmark. ADMM suits dense near-complete graphs while MM suits sparse trees, and a third algorithm, GLENE, seeds the problem with leading eigenvectors of the sample covariance as a nominal subspace. The subspace initialization helps most when the sample size is small relative to dimension.},
   url = {https://doi.org/10.1109/tsp.2019.2925602},
   volume = {67},
   year = {2019}
@@ -1058,6 +1170,7 @@
   author = {Zhong, Shaochen and others},
   booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
   title = {MQuAKE-Remastered: Multi-Hop Knowledge Editing Can Only Be Advanced With Reliable Evaluations},
+  abstract = {Multi-hop knowledge editing relies on MQuAKE, but an audit finds up to 33 percent of its questions and 76 percent of ground-truth labels are corrupted by clerical errors. MQuAKE-Remastered repairs the dataset without shrinking it and re-benchmarks published editing methods, revealing that many overfit original MQuAKE's quirks rather than improve real multi-hop editing. The audit and fixed dataset establish a more reliable evaluation and a guideline for honest benchmark use in knowledge editing.},
   url = {https://www.semanticscholar.org/paper/30166dbbda6dd0152cbe0ad5a30377ef057a5e9f},
   year = {2025}
 }
@@ -1068,6 +1181,7 @@
   doi = {10.18653/v1/2025.acl-long.1089},
   pages = {XXXX--XXXX},
   title = {Mitigating Lost-in-Retrieval Problems in Retrieval Augmented Multi-Hop Question Answering},
+  abstract = {Multi-hop RAG loses key entities during sub-question decomposition, which breaks retrieval and the reasoning chain. ChainRAG handles sub-questions sequentially: each step completes missing entities and retrieves relevant sentences from a sentence graph, building on prior answers, before integrating all retrieved evidence into the final answer. On MuSiQue, 2Wiki, and HotpotQA with GPT-4o-mini, Qwen2.5-72B, and GLM-4-Plus, it beats baselines in both accuracy and efficiency.},
   url = {https://doi.org/10.18653/v1/2025.acl-long.1089},
   year = {2025}
 }
@@ -1076,6 +1190,7 @@
   author = {Zhu, Rongzhi and Liu, Yi and Wang, Jiancheng and Liu, Xiangyu and Sun, Zequn and Wang, Yiwei and Deng, Yu and Zhou, Zijian and Hu, Wei},
   booktitle = {Findings of the 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   title = {When Can Large Reasoning Models Save Thinking? Mechanistic Analysis of Behavioral Divergence in Reasoning},
+  abstract = {Reasoning models overthink even when prompted to stop, especially on hard questions. Analysis across termination confidence, attention distributions, and attention allocation finds high perplexity predicts continued thinking, and still-thinking cases attend more to the original question. An attention intervention that forces the no-thinking mode suppresses deliberation but also lowers accuracy, showing the suppressed reasoning is genuinely useful. The result quantifies the trade-off between instruction following, inference cost, and correctness.},
   url = {https://openreview.net/forum?id=KsFGBOX119},
   year = {2026}
 }
