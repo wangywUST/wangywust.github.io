@@ -1,6 +1,7 @@
-"""Generate every TeX fragment and the assembled Markdown resumes."""
+"""Generate resumes and website pages, then fill the existing faculty Word form."""
 
 from common import GENERATED, render_profile, render_section
+from faculty_form_word import update_faculty_form
 from publications_latex import generate_latex_publications
 from publications_markdown import generate_markdown_publications
 from site_pages import render_site_pages
@@ -21,6 +22,7 @@ def main() -> None:
             parts.append((GENERATED / language / f"{section}.md").read_text(encoding="utf-8").rstrip())
         (GENERATED / f"resume_{language}.md").write_text("\n\n".join(parts) + "\n", encoding="utf-8")
     render_site_pages()
+    update_faculty_form()
 
 
 if __name__ == "__main__":

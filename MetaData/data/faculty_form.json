@@ -1,0 +1,14 @@
+{
+  "document": "信息学院教师信息统计表_王艺炜_已更新.docx",
+  "publications_mode": "link",
+  "backups_directory": "generated/form_backups",
+  "sections": {
+    "education": {"heading": "学习经历：", "aliases": ["学习经历", "教育背景"], "update": "fill"},
+    "work": {"heading": "工作经历：", "aliases": ["工作经历", "任职经历"], "update": "fill"},
+    "teaching": {"heading": "教授课程：", "aliases": ["教授课程", "讲授课程", "教学经历", "教学情况"], "update": "replace"},
+    "grants": {"heading": "主持科研项目：", "aliases": ["主持科研项目", "科研项目", "主持经费"], "update": "replace"},
+    "awards": {"heading": "曾获奖项：", "aliases": ["曾获奖项", "奖项荣誉", "获奖情况"], "update": "replace"},
+    "activities": {"heading": "专业活动：", "aliases": ["专业活动", "学术服务", "学术活动"], "update": "replace"},
+    "publications": {"heading": "论文著作：", "aliases": ["论文著作", "论文成果", "代表性论文"], "update": "replace"}
+  }
+}
